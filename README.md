@@ -30,7 +30,7 @@ Simply copy `lipsum.hpp` and `lipsum.inl` into your source tree.
 3. To build the static library:  
    Set `LPSM_BUILD_STATIC=ON` in your CMake options.
 
-4. For C wrapper builds, set both `LPSM_BUILD_STATIC` and additional C-specific options as needed.
+4. For C wrapper builds, set both `LPSM_BUILD_STATIC` and `LPSM_BUILD_CWRAPPER` to `ON`.
 
 ## Usage
 
