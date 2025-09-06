@@ -1,31 +1,78 @@
 # lipsum-cpp
 
-Simple single-header library for generating sample Lorem Ipsum text in C++.
+A lightweight, single-header C++ library for generating sample Lorem Ipsum text. Useful for prototyping apps, UI testing, and anywhere placeholder text is needed.
+
+## Features
+
+- Header-only (just `lipsum.hpp` and `lipsum.inl` required)
+- Customizable number of paragraphs, sentences, and words
+- C++ and C API (static library and wrapper builds)
+- CMake support for easy integration
+- Example code and live demo available
+
+## Installation
+
+### Header-only usage
+
+Simply copy `lipsum.hpp` and `lipsum.inl` into your source tree.
+
+### Using CMake (Recommended for static/C builds)
+
+1. Clone or add this repo as a submodule:
+    ```bash
+    git submodule add https://github.com/LambBread/lipsum-cpp.git
+    ```
+2. Add to your CMake project:
+    ```cmake
+    add_subdirectory(lipsum-cpp)
+    target_link_libraries(your_target lipsum-cpp)
+    ```
+3. To build the static library:  
+   Set `LPSM_BUILD_STATIC=ON` in your CMake options.
+
+4. For C wrapper builds, set both `LPSM_BUILD_STATIC` and additional C-specific options as needed.
 
 ## Usage
 
-Copy `lipsum.hpp` and `lipsum.inl` into your project's source code, or alternatively include it in CMake.
+```cpp
+#define LIPSUM_IMPLEMENTATION // Only needed for header-only usage
+#include "lipsum.hpp"
+#include <iostream>
 
-For static library or C wrapper builds, it is recommended to use CMake. Build it with the option `LPSM_BUILD_STATIC` equal to **`ON`**, or for C wrapper builds set options `LSPM_BUILD_STATIC` and `LSPM_BUILD_CWRAPPER` equal to **`ON`**.
+int main() {
+    // 10 paragraphs, each 5-8 sentences, sentences with 4-12 words
+    std::cout << lipsum::GenerateParagraphList(10, 5, 8, 4, 12);
+
+    // Default: 5 paragraphs, each 5-8 sentences, 4-12 words per sentence
+    std::cout << lipsum::GenerateParagraphList();
+
+    // Other functions:
+    // lipsum::GenerateParagraph(int minSent = 5, int maxSent = 8, int minWord = 4, int maxWord = 12)
+    // lipsum::GenerateSentence(int minWord = 4, int maxWord = 12)
+    // lipsum::GenerateWord()
+    return 0;
+}
+```
 
 ## Examples
 
-See `examples/` or [the live demo](https://lambbread.github.io/lipsumcpp-example/)
+- See the [`examples/`](./examples) folder for sample code.
+- [Live demo](https://lambbread.github.io/lipsumcpp-example/)
 
-### Basic example
-```cpp
-#define LIPSUM_IMPLEMENTATION //not necessary when building as a static library
-#include "lipsum.hpp"
-int main()
-{
-  //10 paragraphs, each with between 5-8 sentences, which have 4-12 words
-  std::cout << lipsum::GenerateParagraphList(10, 5, 8, 4, 12);
-  //generate default of 5 paragraphs, each with 5-8 sentences, which have 4-12 words
-  std::cout << lipsum::GenerateParagraphList();
-  //other functions include:
-  //lipsum::GenerateParagraph(int minSent = 5, int maxSent = 8, int minWord = 4, int maxWord = 12)
-  //lipsum::GenerateSentence(int minWord = 4, int maxWord = 12)
-  //lipsum::GenerateWord()
-  return 0;
-}
-```
+## C API Usage
+
+For C projects, use the C wrapper (`lipsum.h`) and call functions with the `lpsm_` prefix. See the [`examples/README.md`](./examples/README.md) for details.
+
+## Scripts
+
+Utility scripts (see [`scripts/`](./scripts)):
+- `split.py`: Converts the sample `lipsum.txt` into a vector for `lipsum.inl`.
+- `lipsum.txt`: Source text for Lorem Ipsum sample generation.
+
+## License
+
+0BSD License. See [LICENSE](LICENSE) for details.
+
+---
+
+> Created by [LambBread](https://github.com/LambBread)
