@@ -11,3 +11,21 @@ For static library or C wrapper builds, it is recommended to use CMake. Build it
 ## Examples
 
 See `examples/` or [the live demo](https://lambbread.github.io/lipsumcpp-example/)
+
+### Basic example
+```cpp
+#define LIPSUM_IMPLEMENTATION //not necessary when building as a static library
+#include "lipsum.hpp"
+int main()
+{
+  //10 paragraphs, each with between 5-8 sentences, which have 4-12 words
+  std::cout << lipsum::GenerateParagraphList(10, 5, 8, 4, 12);
+  //generate default of 5 paragraphs, each with 5-8 sentences, which have 4-12 words
+  std::cout << lipsum::GenerateParagraphList();
+  //other functions include:
+  //lipsum::GenerateParagraph(int minSent = 5, int maxSent = 8, int minWord = 4, int maxWord = 12)
+  //lipsum::GenerateSentence(int minWord = 4, int maxWord = 12)
+  //lipsum::GenerateWord()
+  return 0;
+}
+```
