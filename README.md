@@ -10,4 +10,4 @@ For static library or C wrapper builds, it is recommended to use CMake. Build it
 
 ## Examples
 
-See `examples/`.
+See `examples/` or [the live demo](https://lambbread.github.io/lipsumcpp-example/)
