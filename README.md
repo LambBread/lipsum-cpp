@@ -45,13 +45,13 @@ Simply copy `lipsum.hpp` and `lipsum.inl` into your source tree.
 #include <iostream>
 
 int main() {
-    // 10 paragraphs, each 5-8 sentences, sentences with 4-12 words
-    std::cout << lipsum::GenerateParagraphs(10, 5, 8, 4, 12);
+    // 10 paragraphs, each 5-8 sentences, sentences with 4-12 words, not starting with "Lorem ipsum..."
+    std::cout << lipsum::GenerateParagraphs(10, 5, 8, 4, 12, false);
 
-    // Default: 5 paragraphs, each 5-8 sentences, 4-12 words per sentence
+    // Default: 5 paragraphs, each 5-8 sentences, 4-12 words per sentence, starting with "Lorem ipsum..."
     std::cout << lipsum::GenerateParagraphs();
 
-    // Other functions:
+    // Some other functions:
     // lipsum::GenerateParagraph(int minSent = 5, int maxSent = 8, int minWord = 4, int maxWord = 12)
     // lipsum::GenerateSentence(int minWord = 4, int maxWord = 12)
     // lipsum::GenerateWord()
