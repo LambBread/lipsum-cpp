@@ -65,7 +65,7 @@ int main() {
 - [Live demo](https://lambbread.github.io/lipsumcpp-example/)
 ## Documentation
 
-The documentation is available at [this link](https://lambbread.github.io/lipsum-cpp-docs/)
+The documentation is available [here](https://lambbread.github.io/lipsum-cpp-docs/)
 
 ## C API Usage
 
