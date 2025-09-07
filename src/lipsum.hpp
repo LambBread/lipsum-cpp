@@ -1,5 +1,5 @@
 /** @file lipsum.hpp
- * @brief Main header of lipsum-hpp
+ * @brief Main header of lipsum-cpp
  *
  * This contains the declarations of functions as well as definitions
  * if LIPSUM_IMPLEMENTATION is defined
