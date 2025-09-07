@@ -1,0 +1,6 @@
+PROJECT_NAME = "lipsum-cpp"
+PROJECT_BRIEF = "A C++/C library for generating sample text"
+INPUT = src
+RECURSIVE = YES
+GENERATE_LATEX = NO
+OUTPUT_DIRECTORY = docs

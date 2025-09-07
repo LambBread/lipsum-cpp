@@ -4,9 +4,22 @@ option(LPSM_BUILD_STATIC "Build as static library" OFF)
 option(LPSM_BUILD_CWRAPPER "Build C wrapper" OFF)
 option(LPSM_BUILD_EXAMPLES "Build examples" OFF)
 option(LPSM_BUILD_ASHTML "Set the executable suffix to HTML for WASM builds" ON)
+option(LPSM_BUILD_DOCS "Build Doxygen docs" OFF)
 if(EMSCRIPTEN AND LPSM_BUILD_ASHTML)
     message("Doing WebAssembly HTML build")
     set(CMAKE_EXECUTABLE_SUFFIX ".html")
+endif()
+if(LPSM_BUILD_DOCS)
+    find_package(Doxygen REQUIRED)
+    if(DOXYGEN_FOUND)
+        set(DOXYGEN_IN "${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile")
+        set(DOXYGEN_OUT "${CMAKE_CURRENT_SOURCE_DIR}/docs")
+        add_custom_target(doc
+            COMMAND "${DOXYGEN_EXECUTABLE}" "${DOXYGEN_IN}"
+            WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+            COMMENT "Generating API documentation with Doxygen"
+            VERBATIM)
+    endif()
 endif()
 if(LPSM_BUILD_EXAMPLES)
     message("Building examples")

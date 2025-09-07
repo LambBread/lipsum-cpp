@@ -12,6 +12,11 @@ A lightweight, single-header C++ library for generating sample Lorem Ipsum text.
 
 ## Installation
 
+### Prerequisites
+
+- A C/C++ compiler
+- Optionally CMake and Doxygen
+
 ### Header-only usage
 
 Simply copy `lipsum.hpp` and `lipsum.inl` into your source tree.
@@ -30,7 +35,7 @@ Simply copy `lipsum.hpp` and `lipsum.inl` into your source tree.
 3. To build the static library:  
    Set `LPSM_BUILD_STATIC=ON` in your CMake options.
 
-4. For C wrapper builds, set both `LPSM_BUILD_STATIC` and `LPSM_BUILD_CWRAPPER` to `ON`.
+4. For C wrapper builds, set both `LPSM_BUILD_STATIC` and `LPSM_BUILD_CWRAPPER` to **`ON`**.
 
 ## Usage
 
@@ -41,10 +46,10 @@ Simply copy `lipsum.hpp` and `lipsum.inl` into your source tree.
 
 int main() {
     // 10 paragraphs, each 5-8 sentences, sentences with 4-12 words
-    std::cout << lipsum::GenerateParagraphList(10, 5, 8, 4, 12);
+    std::cout << lipsum::GenerateParagraphs(10, 5, 8, 4, 12);
 
     // Default: 5 paragraphs, each 5-8 sentences, 4-12 words per sentence
-    std::cout << lipsum::GenerateParagraphList();
+    std::cout << lipsum::GenerateParagraphs();
 
     // Other functions:
     // lipsum::GenerateParagraph(int minSent = 5, int maxSent = 8, int minWord = 4, int maxWord = 12)
