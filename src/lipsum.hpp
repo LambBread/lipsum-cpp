@@ -1,6 +1,6 @@
 #pragma once
 #ifndef __cplusplus
-#error lipsum-cpp only supports C++!
+#error lipsum-cpp only supports C++, did you mean lipsum.h?
 #endif
 #include <vector>
 #include <string>
