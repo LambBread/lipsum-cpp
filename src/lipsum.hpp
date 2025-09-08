@@ -8,7 +8,7 @@
  */
 #pragma once
 #ifndef __cplusplus
-#error lipsum-cpp only supports C++, did you mean lipsum.h?
+#error lipsum.hpp only supports C++, did you mean lipsum.h?
 #endif
 #include <sstream>
 #include <string>
