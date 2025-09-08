@@ -10,13 +10,17 @@
 #ifndef __cplusplus
 #error lipsum-cpp only supports C++, did you mean lipsum.h?
 #endif
-#include <vector>
+#include <sstream>
 #include <string>
 #include <iostream>
 #include <random>
 #include <cctype>
 namespace lipsum
 {
+    namespace internal
+    {
+        std::string HandleHTMLEntity(const std::string& str);
+    }
 /**
  * @brief Generate a random word.
  *
@@ -104,8 +108,70 @@ std::string GenerateDefaultLipsumSentence();
  * @param useLipsum Whether the default "Lorem ipsum..." sentence should be the first sentence. By default set to true.
  */
 std::string GenerateSentences(int sentCount = 6, int minWord = 4, int maxWord = 12, bool useLipsum = true);
+/**
+ * @brief Turn a string into HTML paragraph tags.
+ * 
+ * @return std::string The HTML-ified string.
+ *
+ * @param str The string inputted.
+ */
+std::string HTMLify(const std::string& str);
 }
 #ifdef LIPSUM_IMPLEMENTATION
+std::string lipsum::internal::HandleHTMLEntity(const std::string& str)
+{
+    std::string result;
+    for(const auto& c : str)
+    {
+        switch(c)
+        {
+            case '&':
+            {
+                result += "&amp;";
+                break;
+            }
+            case '<':
+            {
+                result += "&lt;";
+                break;
+            }
+            case '>':
+            {
+                result += "&gt;";
+                break;
+            }
+            case '"':
+            {
+                result += "&quot;";
+                break;
+            }
+            case '\'':
+            {
+                result += "&apos;";
+                break;
+            }
+            default:
+            {
+                result.push_back(c);
+            }
+        }
+    }
+    return result;
+}
+std::string lipsum::HTMLify(const std::string& str)
+{
+    std::stringstream ss(str);
+    std::string line;
+    std::string result;
+    while(std::getline(ss, line))
+    {
+        if(!line.empty())
+        {
+            result += std::string("<p>") += lipsum::internal::HandleHTMLEntity(line) += std::string("</p>\n");
+        }
+    }
+    return result;
+}
 std::string lipsum::GenerateSentences(int sentCount, int minWord, int maxWord, bool useLipsum)
 {
     std::string result;

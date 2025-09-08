@@ -25,3 +25,7 @@ const char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, bool
 {
     return lipsum::GenerateSentences(sentCount, minWord, maxWord, useLipsum).c_str();
 }
+const char* lpsm_HTMLify(const char* str)
+{
+    return lipsum::HTMLify(std::string(str)).c_str();
+}

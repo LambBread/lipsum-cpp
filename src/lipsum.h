@@ -105,6 +105,15 @@ const char* lpsm_GenerateDefaultLipsumSentence(void);
  * @param useLipsum Whether the default "Lorem ipsum..." sentence should be the first sentence.
  */
 const char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, bool useLipsum);
+/**
+ * @brief Turn a string into HTML paragraph tags.
+ * 
+ * @return const char* The HTML-ified string.
+ *
+ * @param str The string inputted.
+ */
+const char* lpsm_HTMLify(const char* str);
+
 #ifdef __cplusplus
 }
 #endif
