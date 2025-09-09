@@ -1,0 +1,8 @@
+if(EMSCRIPTEN AND LPSM_BUILD_ASHTML)
+    message("Doing WebAssembly HTML build")
+    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+endif()
+if(LPSM_BUILD_EXAMPLES)
+    message("Building examples")
+    add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/examples")
+endif()
