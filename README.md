@@ -79,7 +79,7 @@ Utility scripts (see [`scripts/`](./scripts)):
 
 ## License
 
-0BSD License. See [LICENSE](LICENSE) for details.
+0BSD License. See [LICENSE.md](LICENSE.md) for details.
 
 ---
 
