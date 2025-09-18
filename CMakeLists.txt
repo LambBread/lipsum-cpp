@@ -13,6 +13,7 @@ if(LPSM_BUILD_STATIC)
     target_compile_definitions(lipsum-cpp PUBLIC LIPSUM_BUILD_STATIC)
     target_include_directories(lipsum-cpp PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 else()
+    # single header
     add_library(lipsum-cpp INTERFACE)
     target_include_directories(lipsum-cpp INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/src")
 endif()

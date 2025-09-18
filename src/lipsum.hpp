@@ -10,9 +10,9 @@
 #ifndef __cplusplus
 #error lipsum.hpp only supports C++, did you mean lipsum.h?
 #endif
+#include <vector>
 #include <sstream>
 #include <string>
-#include <iostream>
 #include <random>
 #include <cctype>
 namespace lipsum
@@ -41,8 +41,9 @@ std::string GenerateWord();
  * 
  * @param maxWord Maximum number of words in the sentence. By default set to 12.
  * 
+ * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence. By default set to 0.75
  */
-std::string GenerateSentence(int minWord = 4, int maxWord = 12);
+std::string GenerateSentence(int minWord = 4, int maxWord = 12, float ratio = 0.75f);
 /**
  * @brief Generate a random paragraph.
  *
@@ -60,8 +61,10 @@ std::string GenerateSentence(int minWord = 4, int maxWord = 12);
  * @param maxWord Maximum number of words in each sentence. By default set to 12.
  *
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the paragraph. By default set to true.
+ *
+ * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence. By default set to 0.75.
  */
-std::string GenerateParagraph(int minSent = 5, int maxSent = 8, int minWord = 4, int maxWord = 12, bool useLipsum = true);
+std::string GenerateParagraph(int minSent = 5, int maxSent = 8, int minWord = 4, int maxWord = 12, bool useLipsum = true, float ratio = 0.75f);
 /**
  * @brief Generate several random paragraphs at once.
  *
@@ -80,8 +83,10 @@ std::string GenerateParagraph(int minSent = 5, int maxSent = 8, int minWord = 4,
  * @param maxWord The maximum number of words per sentence. By default set to 12.
  *
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the first paragraph. By default set to true.
+ *
+ * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence. By default set to 0.75
  */
-std::string GenerateParagraphs(int paraCount = 5, int minSent = 5, int maxSent = 8, int minWord = 4, int maxWord = 12, bool useLipsum = true);
+std::string GenerateParagraphs(int paraCount = 5, int minSent = 5, int maxSent = 8, int minWord = 4, int maxWord = 12, bool useLipsum = true, float ratio = 0.75f);
 
 /**
  * @brief Generate the beginning Lorem Ipsum sentence.
@@ -103,11 +108,13 @@ std::string GenerateDefaultLipsumSentence();
  *
  * @param minWord The minimum number of words per sentence. By default set to 4.
  *
- * @param maxWord The maximum number of words per sentence. By default set to12.
+ * @param maxWord The maximum number of words per sentence. By default set to 12.
  *
  * @param useLipsum Whether the default "Lorem ipsum..." sentence should be the first sentence. By default set to true.
+ *
+ * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence. By default set to 0.75.
  */
-std::string GenerateSentences(int sentCount = 6, int minWord = 4, int maxWord = 12, bool useLipsum = true);
+std::string GenerateSentences(int sentCount = 6, int minWord = 4, int maxWord = 12, bool useLipsum = true, float ratio = 0.75f);
 /**
  * @brief Turn a string into HTML paragraph tags.
  * 
@@ -172,7 +179,7 @@ std::string lipsum::HTMLify(const std::string& str)
     }
     return result;
 }
-std::string lipsum::GenerateSentences(int sentCount, int minWord, int maxWord, bool useLipsum)
+std::string lipsum::GenerateSentences(int sentCount, int minWord, int maxWord, bool useLipsum, float ratio)
 {
     std::string result;
     if(useLipsum)
@@ -180,14 +187,14 @@ std::string lipsum::GenerateSentences(int sentCount, int minWord, int maxWord, b
         result += lipsum::GenerateDefaultLipsumSentence() += " ";
         for(int i = 0; i < sentCount - 1; ++i)
         {
-            result += lipsum::GenerateSentence(minWord, maxWord) += " ";
+            result += lipsum::GenerateSentence(minWord, maxWord, ratio) += " ";
         }
     }
     else
     {
         for(int i = 0; i < sentCount; ++i)
         {
-            result += lipsum::GenerateSentence(minWord, maxWord) += " ";
+            result += lipsum::GenerateSentence(minWord, maxWord, ratio) += " ";
         }
     }
     return result;
@@ -204,14 +211,14 @@ std::string lipsum::GenerateWord()
     std::uniform_int_distribution<> dist(0, lipsumVec.size() - 1);
     return lipsumVec.at(dist(gen));
 }
-std::string lipsum::GenerateSentence(int minWord, int maxWord)
+std::string lipsum::GenerateSentence(int minWord, int maxWord, float ratio)
 {
     std::string result;
     static std::random_device rd;
     static std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist2(minWord, maxWord);
     int words = dist2(gen);
-    bool includecomma = (words >= (maxWord * 4) / 5);
+    bool includecomma = (words >= (maxWord * ratio));
     for(int i = 0; i < words; ++i)
     {
         result += lipsum::GenerateWord();
@@ -228,7 +235,7 @@ std::string lipsum::GenerateSentence(int minWord, int maxWord)
     result.at(0) = std::toupper(result.at(0));
     return result;
 }
-std::string lipsum::GenerateParagraph(int minSent, int maxSent, int minWord, int maxWord, bool useLipsum)
+std::string lipsum::GenerateParagraph(int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio)
 {
     std::string result = "\t";
     static std::random_device rd;
@@ -239,7 +246,7 @@ std::string lipsum::GenerateParagraph(int minSent, int maxSent, int minWord, int
     {
         for(int i = 0; i < sents; ++i)
         {
-            result += lipsum::GenerateSentence(minWord, maxWord) += " ";
+            result += lipsum::GenerateSentence(minWord, maxWord, ratio) += " ";
         }
     }
     else
@@ -247,13 +254,13 @@ std::string lipsum::GenerateParagraph(int minSent, int maxSent, int minWord, int
         result += lipsum::GenerateDefaultLipsumSentence() += " ";
         for(int i = 0; i < sents - 1; ++i)
         {
-            result += lipsum::GenerateSentence(minWord, maxWord) += " ";
+            result += lipsum::GenerateSentence(minWord, maxWord, ratio) += " ";
         }
     }
     result += "\n";
     return result;
 }
-std::string lipsum::GenerateParagraphs(int paraCount, int minSent, int maxSent, int minWord, int maxWord, bool useLipsum)
+std::string lipsum::GenerateParagraphs(int paraCount, int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio)
 {
     std::string result;
     if(!useLipsum)
@@ -261,7 +268,7 @@ std::string lipsum::GenerateParagraphs(int paraCount, int minSent, int maxSent, 
 
         for(int i = 0; i < paraCount; ++i)
         {
-            result += lipsum::GenerateParagraph(minSent, maxSent, minWord, maxWord, false);
+            result += lipsum::GenerateParagraph(minSent, maxSent, minWord, maxWord, false, ratio);
         }
     }
     else
@@ -269,7 +276,7 @@ std::string lipsum::GenerateParagraphs(int paraCount, int minSent, int maxSent, 
         result += lipsum::GenerateParagraph(minSent, maxSent, minWord, maxWord, true);
         for(int i = 0; i < paraCount - 1; ++i)
         {
-            result += lipsum::GenerateParagraph(minSent, maxSent, minWord, maxWord, false);
+            result += lipsum::GenerateParagraph(minSent, maxSent, minWord, maxWord, false, ratio);
         }
     }
     return result;

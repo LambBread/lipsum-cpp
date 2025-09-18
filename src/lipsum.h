@@ -29,8 +29,9 @@ extern "C"
  * 
  * @param maxWord Maximum number of words in the sentence.
  * 
+ * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
  */
-const char* lpsm_GenerateSentence(int minWord, int maxWord);
+const char* lpsm_GenerateSentence(int minWord, int maxWord, float ratio);
 /**
  * @brief Generate a random paragraph.
  *
@@ -48,8 +49,11 @@ const char* lpsm_GenerateSentence(int minWord, int maxWord);
  * @param maxWord Maximum number of words in each sentence.
  *
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the paragraph.
+ *
+ *
+ * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
  */
-const char* lpsm_GenerateParagraph(int minSent, int maxSent, int minWord, int maxWord, bool useLipsum);
+const char* lpsm_GenerateParagraph(int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio);
 
 /**
  * @brief Generate several random paragraphs at once.
@@ -69,8 +73,10 @@ const char* lpsm_GenerateParagraph(int minSent, int maxSent, int minWord, int ma
  * @param maxWord The maximum number of words per sentence.
  *
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the first paragraph.
+ *
+ * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
  */
-const char* lpsm_GenerateParagraphs(int paraCount, int minSent, int maxSent, int minWord, int maxWord, bool useLipsum);
+const char* lpsm_GenerateParagraphs(int paraCount, int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio);
 
 /**
  * @brief Generate a random word.
@@ -103,8 +109,10 @@ const char* lpsm_GenerateDefaultLipsumSentence(void);
  * @param maxWord The maximum number of words per sentence.
  *
  * @param useLipsum Whether the default "Lorem ipsum..." sentence should be the first sentence.
+ *
+ * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
  */
-const char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, bool useLipsum);
+const char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, bool useLipsum, float ratio);
 /**
  * @brief Turn a string into HTML paragraph tags.
  * 

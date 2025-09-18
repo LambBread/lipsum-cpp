@@ -1,3 +1,12 @@
+/** @file lipsum.inl
+ * 
+ * @brief File containing all of the words used by lipsum::GenerateWord()
+ *
+ * This file is for inclusion inside a function, containing a vector of strings,
+ * each a word in the original sample lipsum.txt
+ * 
+ * @author LambBread from github.com
+ */
 static std::vector<std::string> lipsumVec = {"lorem",
 "ipsum",
 "dolor",
