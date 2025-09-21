@@ -23,7 +23,7 @@ extern "C"
  * This function generates a sentence starting with a capital letter
  * and ending with a period, sometimes containing a comma.
  *
- * @return const char* Returns the random sentence.
+ * @return char* Returns the random sentence.
  *
  * @param minWord Minimum number of words in the sentence.
  * 
@@ -31,14 +31,14 @@ extern "C"
  * 
  * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
  */
-const char* lpsm_GenerateSentence(int minWord, int maxWord, float ratio);
+char* lpsm_GenerateSentence(int minWord, int maxWord, float ratio);
 /**
  * @brief Generate a random paragraph.
  *
  * This function generates a random paragraph starting with a tab character and ending in a
  * line break, with each sentence separated by a space.
  *
- * @return const char* Returns the random paragraph.
+ * @return char* Returns the random paragraph.
  *
  * @param minSent Minimum number of sentences in the paragraph.
  * 
@@ -53,14 +53,14 @@ const char* lpsm_GenerateSentence(int minWord, int maxWord, float ratio);
  *
  * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
  */
-const char* lpsm_GenerateParagraph(int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio);
+char* lpsm_GenerateParagraph(int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio);
 
 /**
  * @brief Generate several random paragraphs at once.
  *
  * This function generates several random paragraphs, each separated by a line break. Formerly known as lpsm_GenerateParagraphList().
  * 
- * @return const char* Returns the random paragraphs.
+ * @return char* Returns the random paragraphs.
  *
  * @param paraCount The number of paragraphs.
  *
@@ -76,7 +76,7 @@ const char* lpsm_GenerateParagraph(int minSent, int maxSent, int minWord, int ma
  *
  * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
  */
-const char* lpsm_GenerateParagraphs(int paraCount, int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio);
+char* lpsm_GenerateParagraphs(int paraCount, int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio);
 
 /**
  * @brief Generate a random word.
@@ -85,7 +85,7 @@ const char* lpsm_GenerateParagraphs(int paraCount, int minSent, int maxSent, int
  *
  * @return const char* Returns the random word.
  */
-const char* lpsm_GenerateWord(void);
+char* lpsm_GenerateWord(void);
 /**
  * @brief Generate the beginning Lorem Ipsum sentence.
  * 
@@ -93,14 +93,14 @@ const char* lpsm_GenerateWord(void);
  *
  * @return const char* Returns the default Lorem Ipsum sentence.
  */
-const char* lpsm_GenerateDefaultLipsumSentence(void);
+char* lpsm_GenerateDefaultLipsumSentence(void);
 /**
  * @brief Generate multiple random sentences at once.
  *
  * Generate multiple random sentences separated with spaces. Does not add a tab character before the sentences
  * nor a line break after.
  *
- * @return const char* Returns the random sentences.
+ * @return char* Returns the random sentences.
  *
  * @param sentCount The number of sentences.
  *
@@ -112,15 +112,29 @@ const char* lpsm_GenerateDefaultLipsumSentence(void);
  *
  * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
  */
-const char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, bool useLipsum, float ratio);
+char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, bool useLipsum, float ratio);
 /**
  * @brief Turn a string into HTML paragraph tags.
  * 
- * @return const char* The HTML-ified string.
+ * Add <p> and </p> around the paragraphs and
+ * handle HTML entities like &, <, >, etc.
+ *
+ * @return char* The HTML-ified string.
  *
  * @param str The string inputted.
  */
-const char* lpsm_HTMLify(const char* str);
+char* lpsm_HTMLify(char* str);
+/**
+ * @brief Delete a string returned by a function.
+ *
+ * Since pointers allocated with new[] cannot be deallocated with free(),
+ * this handles the deallocation.
+ *
+ * @return void This function does not return a value.
+ *
+ * @param str The string to delete.
+ */
+void lpsm_DeleteString(char* str);
 
 #ifdef __cplusplus
 }

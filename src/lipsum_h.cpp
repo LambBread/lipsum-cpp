@@ -8,31 +8,43 @@
  */
 #include "lipsum.h"
 #include "lipsum.hpp"
-const char* lpsm_GenerateSentence(int minWord, int maxWord, float ratio)
+#include <string.h>
+static char* ConvertToCstr(const std::string& str)
 {
-    return lipsum::GenerateSentence(minWord, maxWord, ratio).c_str();
+    std::string result = str;
+    char* cstr = new char[result.size() + 1];
+    strcpy(cstr, result.c_str());
+    return cstr;
 }
-const char* lpsm_GenerateParagraph(int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio)
+extern "C" char* lpsm_GenerateSentence(int minWord, int maxWord, float ratio)
 {
-    return lipsum::GenerateParagraph(minSent, maxSent, minWord, maxWord, useLipsum, ratio).c_str();
+    return ConvertToCstr(lipsum::GenerateSentence(minWord, maxWord, ratio));
 }
-const char* lpsm_GenerateParagraphs(int paraCount, int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio)
+extern "C" char* lpsm_GenerateParagraph(int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio)
 {
-    return lipsum::GenerateParagraphs(paraCount, minSent, maxSent, minWord, maxWord, useLipsum, ratio).c_str();
+    return ConvertToCstr(lipsum::GenerateParagraph(minSent, maxSent, minWord, maxWord, useLipsum, ratio));
 }
-const char* lpsm_GenerateWord(void)
+extern "C" char* lpsm_GenerateParagraphs(int paraCount, int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio)
 {
-    return lipsum::GenerateWord().c_str();
+    return ConvertToCstr(lipsum::GenerateParagraphs(paraCount, minSent, maxSent, minWord, maxWord, useLipsum, ratio));
 }
-const char* lpsm_GenerateDefaultLipsumSentence(void)
+extern "C" char* lpsm_GenerateWord(void)
 {
-    return lipsum::GenerateDefaultLipsumSentence().c_str();
+    return ConvertToCstr(lipsum::GenerateWord());
 }
-const char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, bool useLipsum, float ratio)
+extern "C" char* lpsm_GenerateDefaultLipsumSentence(void)
 {
-    return lipsum::GenerateSentences(sentCount, minWord, maxWord, useLipsum, ratio).c_str();
+    return ConvertToCstr(lipsum::GenerateDefaultLipsumSentence());
 }
-const char* lpsm_HTMLify(const char* str)
+extern "C" char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, bool useLipsum, float ratio)
 {
-    return lipsum::HTMLify(std::string(str)).c_str();
+    return ConvertToCstr(lipsum::GenerateSentences(sentCount, minWord, maxWord, useLipsum, ratio));
+}
+extern "C" char* lpsm_HTMLify(char* str)
+{
+    return ConvertToCstr(lipsum::HTMLify(std::string(str)));
+}
+extern "C" void lpsm_DeleteString(char* str)
+{
+    delete[] str;
 }
