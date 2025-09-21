@@ -15,7 +15,7 @@ A lightweight, single-header C++ library for generating sample Lorem Ipsum text.
 ### Prerequisites
 
 - A C/C++ compiler
-- Optionally CMake and Doxygen
+- Optionally CMake, Doxygen, and Python
 
 ### Header-only usage
 
