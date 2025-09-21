@@ -117,7 +117,10 @@ std::string GenerateDefaultLipsumSentence();
 std::string GenerateSentences(int sentCount = 6, int minWord = 4, int maxWord = 12, bool useLipsum = true, float ratio = 0.75f);
 /**
  * @brief Turn a string into HTML paragraph tags.
- * 
+ *
+ * Add <p> and </p> around the paragraphs and
+ * handle HTML entities like &, <, >, etc.
+ *
  * @return std::string The HTML-ified string.
  *
  * @param str The string inputted.
