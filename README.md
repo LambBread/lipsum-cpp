@@ -32,7 +32,7 @@ Simply copy `lipsum.hpp` and `lipsum.inl` into your source tree.
     add_subdirectory(lipsum-cpp)
     target_link_libraries(your_target lipsum-cpp)
     ```
-3. To build the static library:  
+3. To build as a static library (optional):  
    Set `LPSM_BUILD_STATIC=ON` in your CMake options.
 
 4. For C wrapper builds, set both `LPSM_BUILD_STATIC` and `LPSM_BUILD_CWRAPPER` to **`ON`**.
