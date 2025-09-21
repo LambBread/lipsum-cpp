@@ -118,7 +118,7 @@ std::string GenerateSentences(int sentCount = 6, int minWord = 4, int maxWord = 
 /**
  * @brief Turn a string into HTML paragraph tags.
  *
- * Add <p> and </p> around the paragraphs and
+ * Add &lt;p&gt; and &lt;/p&gt; around the paragraphs and
  * handle HTML entities like &, <, >, etc.
  *
  * @return std::string The HTML-ified string.

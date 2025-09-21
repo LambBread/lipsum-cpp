@@ -83,7 +83,7 @@ char* lpsm_GenerateParagraphs(int paraCount, int minSent, int maxSent, int minWo
  *
  * This function generates a random word from a predefined list.
  *
- * @return const char* Returns the random word.
+ * @return char* Returns the random word.
  */
 char* lpsm_GenerateWord(void);
 /**
@@ -91,7 +91,7 @@ char* lpsm_GenerateWord(void);
  * 
  * Returns the sentence "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
  *
- * @return const char* Returns the default Lorem Ipsum sentence.
+ * @return char* Returns the default Lorem Ipsum sentence.
  */
 char* lpsm_GenerateDefaultLipsumSentence(void);
 /**
@@ -116,7 +116,7 @@ char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, bool useLi
 /**
  * @brief Turn a string into HTML paragraph tags.
  * 
- * Add <p> and </p> around the paragraphs and
+ * Add &lt;p&gt; and &lt;/p&gt; around the paragraphs and
  * handle HTML entities like &, <, >, etc.
  *
  * @return char* The HTML-ified string.
