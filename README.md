@@ -15,7 +15,18 @@ A lightweight, single-header C++ library for generating sample Lorem Ipsum text.
 ### Prerequisites
 
 - A C/C++ compiler
-- Optionally CMake, Doxygen, and Python
+- Optionally CMake, a build system (e.g. Make, Ninja, Visual Studio, ...), Doxygen, Python, and Git
+
+#### Installation (Debian-based):
+```bash
+#Required
+sudo apt update
+sudo apt install build-essential
+#Recommended
+sudo apt install cmake
+#Optional
+sudo apt install ninja-build python3 doxygen git
+```
 
 ### Header-only usage
 
