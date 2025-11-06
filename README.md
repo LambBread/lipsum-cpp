@@ -32,6 +32,20 @@ sudo apt install ninja-build python3 doxygen git
 
 Simply copy `lipsum.hpp` and `lipsum.inl` into your source tree.
 
+### Manual static library + C wrapper build
+
+Not recommended.
+
+```bash
+mkdir -p obj
+mkdir -p bin
+g++ -c src/lipsum.cpp -DLIPSUM_BUILD_STATIC -o obj/lipsum.o
+g++ -c src/lipsum_h.cpp -DLIPSUM_BUILD_STATIC -o obj/lipsum_h.o
+ar rcs bin/liblipsum-cpp.a obj/lipsum_h.o obj/lipsum.o
+# build example
+gcc examples/CWrapper.c -Isrc -Lbin -llipsum-cpp -DLIPSUM_BUILD_STATIC -o bin/CWrapper
+
+```
 ### Using CMake (Recommended for static/C builds)
 
 1. Clone or add this repo as a submodule:
