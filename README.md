@@ -46,7 +46,7 @@ ar rcs bin/liblipsum-cpp.a obj/lipsum_h.o obj/lipsum.o
 gcc examples/CWrapper.c -Isrc -Lbin -llipsum-cpp -DLIPSUM_BUILD_STATIC -o bin/CWrapper
 
 ```
-### Using CMake (Recommended for static/C builds)
+### Using CMake (Recommended)
 
 1. Clone or add this repo as a submodule:
     ```bash
