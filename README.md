@@ -65,21 +65,15 @@ gcc examples/CWrapper.c -Isrc -Lbin -llipsum-cpp -DLIPSUM_BUILD_STATIC -o bin/CW
 ## Usage
 
 ```cpp
-#define LIPSUM_IMPLEMENTATION // Only needed for header-only usage
+#define LIPSUM_IMPLEMENTATION //not necessary for static library builds
 #include "lipsum.hpp"
 #include <iostream>
-
-int main() {
-    // 10 paragraphs, each 5-8 sentences, sentences with 4-12 words, not starting with "Lorem ipsum...", last parameter somewhat advanced (see docs)
-    std::cout << lipsum::GenerateParagraphs(10, 5, 8, 4, 12, false, 0.75f);
-
-    // Default: 5 paragraphs, each 5-8 sentences, 4-12 words per sentence, starting with "Lorem ipsum..."
-    std::cout << lipsum::GenerateParagraphs();
-
-    // Some other functions:
-    // lipsum::GenerateParagraph(int minSent = 5, int maxSent = 8, int minWord = 4, int maxWord = 12, bool useLipsum = true, float ratio = 0.75f)
-    // lipsum::GenerateSentence(int minWord = 4, int maxWord = 12, float ratio = 0.75f)
-    // lipsum::GenerateWord()
+int main()
+{
+    //generate 5 paragraphs of 5-8 sentences of 1-3 sentence fragments of 4-9 words, starting with "Lorem ipsum..." (default)
+    std::cout << lpsm::GenerateParagraphs();
+    //generate 10 paragraphs of 7-10 sentences of 3-6 sentence fragments of 6-9 words, not starting with "Lorem ipsum..."
+    std::cout << lpsm::GenerateParagraphs(10, lpsm::ArgVec2(6, 9), lpsm::ArgVec2(3, 6), lpsm::ArgVec2(7, 10), false);
     return 0;
 }
 ```

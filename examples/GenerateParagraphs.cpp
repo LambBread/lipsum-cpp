@@ -5,9 +5,9 @@
 #include <iostream>
 int main()
 {
-    //generate 5 paragraphs of 5-8 sentences and 4-12 words per sentence, starting with "Lorem ipsum..."
-    std::cout << lipsum::GenerateParagraphs();
-    //generate 100 paragraphs of 7-10 sentences and 8-20 words per sentence, not starting with "Lorem ipsum...", see docs for last parameter
-    std::cout << lipsum::GenerateParagraphs(100, 7, 10, 8, 20, false, 0.6f);
+    //generate 5 paragraphs of 5-8 sentences of 1-3 sentence fragments of 4-9 words, starting with "Lorem ipsum..." (default)
+    std::cout << lpsm::GenerateParagraphs();
+    //generate 10 paragraphs of 7-10 sentences of 3-6 sentence fragments of 6-9 words, not starting with "Lorem ipsum..."
+    std::cout << lpsm::GenerateParagraphs(10, lpsm::ArgVec2(6, 9), lpsm::ArgVec2(3, 6), lpsm::ArgVec2(7, 10), false);
     return 0;
 }

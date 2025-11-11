@@ -5,6 +5,8 @@
  * as a static library in order to function.
  *
  * @author LambBread from github.com
+ *
+ * @example CWrapper.c
  */
 #ifndef LIPSUM_H
 #define LIPSUM_H
@@ -25,13 +27,15 @@ extern "C"
  *
  * @return char* Returns the random sentence.
  *
- * @param minWord Minimum number of words in the sentence.
+ * @param minWord Minimum number of words in the sentence fragment.
  * 
- * @param maxWord Maximum number of words in the sentence.
- * 
- * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
+ * @param maxWord Maximum number of words in the sentence fragment.
+ *
+ * @param minFrag Minimum number of sentence fragments in the sentence.
+ *
+ * @param maxFrag Maximum number of sentence fragments in the sentence.
  */
-char* lpsm_GenerateSentence(int minWord, int maxWord, float ratio);
+char* lpsm_GenerateSentence(int minWord, int maxWord, int minFrag, int maxFrag);
 /**
  * @brief Generate a random paragraph.
  *
@@ -44,16 +48,17 @@ char* lpsm_GenerateSentence(int minWord, int maxWord, float ratio);
  * 
  * @param maxSent Maximum number of sentences in the paragraph.
  *
- * @param minWord Minimum number of words in each sentence.
+ * @param minWord Minimum number of words in each sentence fragment.
  *
- * @param maxWord Maximum number of words in each sentence.
+ * @param maxWord Maximum number of words in each sentence fragment.
+ *
+ * @param minFrag Minimum number of sentence fragments in each sentence.
+ *
+ * @param maxFrag Maximum number of sentence fragments in each sentence.
  *
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the paragraph.
- *
- *
- * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
  */
-char* lpsm_GenerateParagraph(int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio);
+char* lpsm_GenerateParagraph(int minWord, int maxWord, int minFrag, int maxFrag, int minSent, int maxSent, bool useLipsum);
 
 /**
  * @brief Generate several random paragraphs at once.
@@ -64,19 +69,21 @@ char* lpsm_GenerateParagraph(int minSent, int maxSent, int minWord, int maxWord,
  *
  * @param paraCount The number of paragraphs.
  *
- * @param minSent The minimum number of sentences per paragraph.
+ * @param minSent Minimum number of sentences in each paragraph.
  *
- * @param maxSent The maximum number of sentences per paragraph.
+ * @param maxSent Maximum number of sentences in each paragraph.
  *
- * @param minWord The minimum number of words per sentence.
+ * @param minWord Minimum number of words in each sentence fragment.
  *
- * @param maxWord The maximum number of words per sentence.
+ * @param maxWord Maximum number of words in each sentence fragment.
+ *
+ * @param minFrag Minimum number of sentence fragments in each sentence.
+ *
+ * @param maxFrag Maximum number of sentence fragments in each sentence.
  *
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the first paragraph.
- *
- * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
  */
-char* lpsm_GenerateParagraphs(int paraCount, int minSent, int maxSent, int minWord, int maxWord, bool useLipsum, float ratio);
+char* lpsm_GenerateParagraphs(int paraCount, int minWord, int maxWord, int minFrag, int maxFrag, int minSent, int maxSent, bool useLipsum);
 
 /**
  * @brief Generate a random word.
@@ -104,20 +111,22 @@ char* lpsm_GenerateDefaultLipsumSentence(void);
  *
  * @param sentCount The number of sentences.
  *
- * @param minWord The minimum number of words per sentence.
+ * @param minWord Minimum number of words in each sentence fragment.
  *
- * @param maxWord The maximum number of words per sentence.
+ * @param maxWord Maximum number of words in each sentence fragment.
+ *
+ * @param minFrag Minimum number of sentence fragments in each sentence.
+ *
+ * @param maxFrag Maximum number of sentence fragments in each sentence.
  *
  * @param useLipsum Whether the default "Lorem ipsum..." sentence should be the first sentence.
- *
- * @param ratio How large the random number generated between minWord and maxWord should be compared to maxWord before a comma is added to a sentence.
  */
-char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, bool useLipsum, float ratio);
+char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, int minFrag, int maxFrag, bool useLipsum);
 /**
  * @brief Turn a string into HTML paragraph tags.
  * 
  * Add &lt;p&gt; and &lt;/p&gt; around the paragraphs and
- * handle HTML entities like &, <, >, etc.
+ * handle HTML entities like &amp;, &lt;, &gt;, etc.
  *
  * @return char* The HTML-ified string.
  *
@@ -128,14 +137,23 @@ char* lpsm_HTMLify(char* str);
  * @brief Delete a string returned by a function.
  *
  * Since pointers allocated with new[] cannot be deallocated with free(),
- * this handles the deallocation.
+ * this function handles the deallocation.
  *
  * @return void This function does not return a value.
  *
  * @param str The string to delete.
  */
 void lpsm_DeleteString(char* str);
-
+/**
+ * @brief Generate a random sentence fragment.
+ *
+ * @return char* Returns the random sentence fragment.
+ *
+ * @param minWord Minimum number of words in the fragment.
+ *
+ * @param maxWord Maximum number of words in the fragment.
+ */
+char* lpsm_GenerateSentenceFragment(int minWord, int maxWord);
 #ifdef __cplusplus
 }
 #endif

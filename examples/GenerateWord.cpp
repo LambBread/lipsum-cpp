@@ -6,6 +6,6 @@
 int main()
 {
     //generate a random word
-    std::cout << lipsum::GenerateWord() << '\n';
+    std::cout << lpsm::GenerateWord() << '\n';
     return 0;
 }

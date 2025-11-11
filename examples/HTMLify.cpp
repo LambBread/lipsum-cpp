@@ -5,7 +5,7 @@
 #include <iostream>
 int main()
 {
-    std::cout << lipsum::HTMLify("This is a paragraph.\n&&This is another paragraph.");
-    std::cout << lipsum::HTMLify(lipsum::GenerateParagraphs());
+    std::cout << lpsm::HTMLify("This is a paragraph.\n&&This is another paragraph.");
+    std::cout << lpsm::HTMLify(lpsm::GenerateParagraphs());
     return 0;
 }

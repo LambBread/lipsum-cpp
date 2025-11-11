@@ -6,6 +6,6 @@
 int main()
 {
     //prints "Lorem ipsum dolor sit amet..."
-    std::cout << lipsum::GenerateDefaultLipsumSentence() << '\n';
+    std::cout << lpsm::GenerateDefaultLipsumSentence() << '\n';
     return 0;
 }
