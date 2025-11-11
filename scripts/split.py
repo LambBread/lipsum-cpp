@@ -16,12 +16,13 @@ def count_unique_words(filename):
 if __name__ == "__main__":
     unique_words = count_unique_words("lipsum.txt")
     with open("../src/lipsum.inl", "w") as file:
-        file.write("""/** @file lipsum.inl
+        file.write("""/** 
+ * @file lipsum.inl
  * 
  * @brief File containing all of the words used by lipsum::GenerateWord()
- *
+ * 
  * This file is for inclusion inside a function, containing a vector of strings,
- * each a word in the original sample lipsum.txt
+ * each a word in the original sample lipsum.txt.
  * 
  * @author LambBread from github.com
  */

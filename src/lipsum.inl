@@ -1,9 +1,10 @@
-/** @file lipsum.inl
+/** 
+ * @file lipsum.inl
  * 
  * @brief File containing all of the words used by lipsum::GenerateWord()
- *
+ * 
  * This file is for inclusion inside a function, containing a vector of strings,
- * each a word in the original sample lipsum.txt
+ * each a word in the original sample lipsum.txt.
  * 
  * @author LambBread from github.com
  */

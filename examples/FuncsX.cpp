@@ -1,0 +1,13 @@
+#ifndef LIPSUM_BUILD_STATIC
+#define LIPSUM_IMPLEMENTATION
+#endif
+#include "lipsum.hpp"
+#include <iostream>
+int main()
+{
+    //generate 5-8 sentences of 1-3 sentence fragments of 4-9 words, starting with "Lorem ipsum..." (default)
+    std::cout << lpsm::GenerateParagraphX();
+    //generate 7-10 sentences of 3-6 sentence fragments of 6-9 words, not starting with "Lorem ipsum..."
+    std::cout << lpsm::GenerateParagraphX(6, 9, 3, 6, 7, 10, false);
+    return 0;
+}

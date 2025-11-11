@@ -5,3 +5,4 @@ EXAMPLE_PATH = examples/
 RECURSIVE = YES
 GENERATE_LATEX = NO
 OUTPUT_DIRECTORY = docs
+ALIASES += "psovload=This function only differs from the above in that it uses minimum and maximum values instead of lipsum::ArgVec2"
