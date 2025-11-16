@@ -4,7 +4,7 @@
  * @brief Main header of lipsum-cpp
  *
  * This contains the declarations of functions as well as definitions
- * if LIPSUM_IMPLEMENTATION is defined
+ * if LIPSUM_IMPLEMENTATION is defined.
  * 
  * @author LambBread from github.com
  * 
