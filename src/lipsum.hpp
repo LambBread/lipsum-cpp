@@ -22,6 +22,27 @@
 #ifndef __cplusplus
 #error lipsum.hpp only supports C++, did you mean lipsum.h?
 #endif
+//conditional
+//on windows:
+//  export if internal
+//  import if external
+//if not windows:
+//  define as nothing
+//if not shared:
+//  define as nothing
+#ifdef LIPSUM_BUILD_SHARED
+    #ifdef _WIN32
+        #ifdef LIPSUM_EXPORT_SHARED
+            #define LIPSUM_API __declspec(dllexport)
+        #else
+            #define LIPSUM_API __declspec(dllimport)
+        #endif
+    #else
+        #define LIPSUM_API
+    #endif
+#else
+    #define LIPSUM_API
+#endif
 #include <vector>
 #include <sstream>
 #include <string>
@@ -47,7 +68,7 @@ namespace lipsum
     namespace internal
     {
         //! \{
-        std::string HandleHTMLEntity(const std::string& str);
+        LIPSUM_API std::string HandleHTMLEntity(const std::string& str);
         //! \}
     }
 
@@ -58,7 +79,7 @@ namespace lipsum
      * are intended to be inputted into functions as arguments.
      * Not exposed in the C wrapper.
      */
-    struct ArgVec2
+    struct LIPSUM_API ArgVec2
     {
         /** 
          * @brief Constructor for ArgVec2
@@ -88,7 +109,7 @@ namespace lipsum
  * 
  * @return std::string The random word.
  */
-std::string GenerateWord();
+LIPSUM_API std::string GenerateWord();
 
 /**
  * @brief Generate a fragment of a sentence without punctuation.
@@ -99,7 +120,7 @@ std::string GenerateWord();
  * 
  * @return std::string The random sentence fragment.
  */
-std::string GenerateSentenceFragment(const ArgVec2& word = ArgVec2(4, 9));
+LIPSUM_API std::string GenerateSentenceFragment(const ArgVec2& word = ArgVec2(4, 9));
 
 /**
  * @brief Generate a fragment of a sentence without punctuation.
@@ -111,7 +132,7 @@ std::string GenerateSentenceFragment(const ArgVec2& word = ArgVec2(4, 9));
  * 
  * @return std::string The random sentence fragment.
  */
-std::string GenerateSentenceFragmentX(int minWord = 4, int maxWord = 9);
+LIPSUM_API std::string GenerateSentenceFragmentX(int minWord = 4, int maxWord = 9);
 
 /**
  * @brief Generate a random sentence.
@@ -124,7 +145,7 @@ std::string GenerateSentenceFragmentX(int minWord = 4, int maxWord = 9);
  * @param word The minimum and maximum possible number of words in a sentence fragment. By default 4 to 9.
  * @param frag The minimum and maximum possible number of sentence fragments in the sentence. By default 1 to 3.
  */
-std::string GenerateSentence(const ArgVec2& word = ArgVec2(4, 9), const ArgVec2& frag = ArgVec2(1, 3));
+LIPSUM_API std::string GenerateSentence(const ArgVec2& word = ArgVec2(4, 9), const ArgVec2& frag = ArgVec2(1, 3));
 
 /**
  * @brief Generate a random sentence.
@@ -138,7 +159,7 @@ std::string GenerateSentence(const ArgVec2& word = ArgVec2(4, 9), const ArgVec2&
  * 
  * @return std::string The random sentence.
  */
-std::string GenerateSentenceX(int minWord = 4, int maxWord = 9, int minFrag = 1, int maxFrag = 3);
+LIPSUM_API std::string GenerateSentenceX(int minWord = 4, int maxWord = 9, int minFrag = 1, int maxFrag = 3);
 
 /**
  * @brief Generate a random paragraph.
@@ -153,8 +174,8 @@ std::string GenerateSentenceX(int minWord = 4, int maxWord = 9, int minFrag = 1,
  * @param word The minimum and maximum possible number of words in a sentence fragment. By default 4 to 9.
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the paragraph. By default true.
  */
-std::string GenerateParagraph(const ArgVec2& word = ArgVec2(4, 9), const ArgVec2& frag = ArgVec2(1, 3), 
-        const ArgVec2& sent = ArgVec2(5, 8), bool useLipsum = true);
+LIPSUM_API std::string GenerateParagraph(const ArgVec2& word = ArgVec2(4, 9), const ArgVec2& frag = ArgVec2(1, 3), 
+            const ArgVec2& sent = ArgVec2(5, 8), bool useLipsum = true);
 
 /**
  * @brief Generate a random paragraph.
@@ -171,7 +192,7 @@ std::string GenerateParagraph(const ArgVec2& word = ArgVec2(4, 9), const ArgVec2
  * 
  * @return std::string The random paragraph.
  */
-std::string GenerateParagraphX(int minWord = 4, int maxWord = 9, int minFrag = 1, int maxFrag = 3, 
+LIPSUM_API std::string GenerateParagraphX(int minWord = 4, int maxWord = 9, int minFrag = 1, int maxFrag = 3, 
         int minSent = 5, int maxSent = 8, bool useLipsum = true);
 
 /**
@@ -187,7 +208,7 @@ std::string GenerateParagraphX(int minWord = 4, int maxWord = 9, int minFrag = 1
  * @param sent The minimum and maximum total number of sentences in a paragraph. By default 5 to 8.
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the first paragraph. By default true.
  */
-std::string GenerateParagraphs(int paraCount = 5, const ArgVec2& word = ArgVec2(4, 9), const ArgVec2& frag = ArgVec2(1, 3),
+LIPSUM_API std::string GenerateParagraphs(int paraCount = 5, const ArgVec2& word = ArgVec2(4, 9), const ArgVec2& frag = ArgVec2(1, 3),
         const ArgVec2& sent = ArgVec2(5, 8), bool useLipsum = true);
 
 /**
@@ -206,7 +227,7 @@ std::string GenerateParagraphs(int paraCount = 5, const ArgVec2& word = ArgVec2(
  * 
  * @return std::string The random paragraphs.
  */
-std::string GenerateParagraphsX(int paraCount = 5, int minWord = 4, int maxWord = 9, int minFrag = 1, int maxFrag = 3, 
+LIPSUM_API std::string GenerateParagraphsX(int paraCount = 5, int minWord = 4, int maxWord = 9, int minFrag = 1, int maxFrag = 3, 
         int minSent = 5, int maxSent = 8, bool useLipsum = true);
 
 /**
@@ -216,7 +237,7 @@ std::string GenerateParagraphsX(int paraCount = 5, int minWord = 4, int maxWord 
  * 
  * @return std::string The default Lorem Ipsum sentence.
  */
-std::string GenerateDefaultLipsumSentence();
+LIPSUM_API std::string GenerateDefaultLipsumSentence();
 
 /**
  * @brief Generate multiple random sentences at once.
@@ -231,7 +252,7 @@ std::string GenerateDefaultLipsumSentence();
  * @param frag The minimum and maximum possible number of sentence fragments in a sentence. By default 1 to 3.
  * @param useLipsum Whether the default "Lorem ipsum..." sentence should be the first sentence. By default true.
  */
-std::string GenerateSentences(int sentCount = 6, const ArgVec2& word = ArgVec2(4, 9), 
+LIPSUM_API std::string GenerateSentences(int sentCount = 6, const ArgVec2& word = ArgVec2(4, 9), 
         const ArgVec2& frag = ArgVec2(1, 3), bool useLipsum = true);
 
 /**
@@ -246,7 +267,7 @@ std::string GenerateSentences(int sentCount = 6, const ArgVec2& word = ArgVec2(4
  * @param maxFrag The maximum possible number of sentence fragments in a sentence. By default 3.
  * @param useLipsum Whether the default "Lorem ipsum..." sentence should be the first sentence. By default true.
  */
-std::string GenerateSentencesX(int sentCount = 6, int minWord = 4, int maxWord = 9, int minFrag = 1, int maxFrag = 3,
+LIPSUM_API std::string GenerateSentencesX(int sentCount = 6, int minWord = 4, int maxWord = 9, int minFrag = 1, int maxFrag = 3,
         bool useLipsum = true);
 
 /**
@@ -259,7 +280,7 @@ std::string GenerateSentencesX(int sentCount = 6, int minWord = 4, int maxWord =
  * 
  * @param str The string inputted.
  */
-std::string HTMLify(const std::string& str);
+LIPSUM_API std::string HTMLify(const std::string& str);
 
 /**
  * @overload
@@ -270,7 +291,7 @@ std::string HTMLify(const std::string& str);
  * 
  * @return std::string The HTML-ified string.
  */
-std::string HTMLify(const char* str);
+LIPSUM_API std::string HTMLify(const char* str);
 }
 
 ///Alias for namespace lipsum

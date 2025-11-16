@@ -60,12 +60,15 @@ gcc examples/CWrapper.c -Isrc -Lbin -llipsum-cpp -DLIPSUM_BUILD_STATIC -o bin/CW
 3. To build as a static library (optional):  
    Set `LPSM_BUILD_STATIC=ON` in your CMake options.
 
-4. For C wrapper builds, set both `LPSM_BUILD_STATIC` and `LPSM_BUILD_CWRAPPER` to **`ON`**.
+4. To build as a shared library (optional):
+   Set `LPSM_BUILD_SHARED=ON` in your CMake options.
+
+5. For C wrapper builds, set either `LPSM_BUILD_STATIC` or `LPSM_BUILD_SHARED`, and `LPSM_BUILD_CWRAPPER` all to `ON`.
 
 ## Usage
 
 ```cpp
-#define LIPSUM_IMPLEMENTATION //not necessary for static library builds
+#define LIPSUM_IMPLEMENTATION //only for header-only usage
 #include "lipsum.hpp"
 #include <iostream>
 int main()

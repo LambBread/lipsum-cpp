@@ -1,5 +1,5 @@
 #ifndef LIPSUM_BUILD_STATIC
-#define LIPSUM_IMPLEMENTATION //only for single-header usage
+#define LIPSUM_IMPLEMENTATION //only for header-only usage
 #endif
 #include "lipsum.hpp"
 #include <iostream>
