@@ -12,6 +12,8 @@ A lightweight, header-only C++ library for generating sample Lorem Ipsum text. U
 
 ## Installation
 
+lipsum-cpp has been mainly tested on Linux and WebAssembly as well as cross-compiled to Windows, although it could likely run on other operating systems as well. 
+
 ### Prerequisites
 
 - A C/C++ compiler
