@@ -3,7 +3,7 @@
  * 
  * @brief Contains the definitions of all the C wrapper's functions.
  * 
- * This file defines all the functions declared in lipsum.h
+ * This file defines all the functions declared in lipsum.h.
  * 
  * @author LambBread from github.com
  */
