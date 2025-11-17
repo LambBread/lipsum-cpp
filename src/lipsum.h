@@ -4,7 +4,7 @@
  * @brief C wrapper over lipsum.hpp
  * 
  * This contains the C wrapper over lipsum-cpp. It requires being built
- * as a static library in order to function.
+ * as a static or shared library in order to function.
  * 
  * @author LambBread from github.com
  * 
@@ -28,7 +28,7 @@
     #define LIPSUMC_API
 #endif
 #ifndef LIPSUM_BUILD_STATIC
-    #error Cannot use C wrapper without building a static library.
+    #error Cannot use C wrapper without building a static or shared library.
 #endif
 
 #ifdef __cplusplus
