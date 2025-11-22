@@ -103,7 +103,7 @@ Utility scripts (see [`scripts/`](./scripts)):
 
 ## License
 
-lipsum-cpp is under the Zero-Clause BSD License, a very permissive public-domain equivalent license. See [LICENSE.md](LICENSE.md) for details.
+lipsum-cpp is under the BSD Zero-Clause License, a very permissive public-domain equivalent license. See [LICENSE.md](LICENSE.md) for details.
 
 ---
 
