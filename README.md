@@ -20,6 +20,7 @@ lipsum-cpp has been mainly tested on Linux and WebAssembly as well as cross-comp
 - Optionally CMake, a build system (e.g. Make, Ninja, Visual Studio, ...), Doxygen, Python, and Git
 
 #### Installation (Debian-based):
+
 ```bash
 #Required
 sudo apt update
@@ -48,17 +49,22 @@ ar rcs bin/liblipsum-cpp.a obj/lipsum_h.o obj/lipsum.o
 gcc examples/CWrapper.c -Isrc -Lbin -llipsum-cpp -DLIPSUM_BUILD_STATIC -o bin/CWrapper
 
 ```
+
 ### Using CMake (Recommended)
 
 1. Clone or add this repo as a submodule:
+    
     ```bash
     git submodule add https://github.com/LambBread/lipsum-cpp.git
     ```
+
 2. Add to your CMake project:
+    
     ```cmake
     add_subdirectory(lipsum-cpp)
     target_link_libraries(your_target lipsum-cpp)
     ```
+
 3. To build as a static library (optional):  
    Set `LPSM_BUILD_STATIC=ON` in your CMake options.
 
@@ -69,16 +75,65 @@ gcc examples/CWrapper.c -Isrc -Lbin -llipsum-cpp -DLIPSUM_BUILD_STATIC -o bin/CW
 
 ## Usage
 
+### Basic example
+
 ```cpp
+#ifndef LIPSUM_BUILD_STATIC
 #define LIPSUM_IMPLEMENTATION //only for header-only usage
+#endif
+#include "lipsum.hpp"
+#include <iostream>
+
+int main()
+{
+    // Create a generator with random seed.
+    lpsm::Generator generator;
+
+    // Generate 3 paragraphs.
+    std::cout << generator.paragraph(3, true);
+    
+    // Generate 6 sentences.
+    std::cout << generator.sentence(6, true) << '\n';
+    
+    // Generate a sentence fragment.
+    std::cout << generator.sentence_fragment() << '\n';
+    
+    // Generate a word.
+    std::cout << generator.word() << '\n';
+    
+    return 0;
+}
+
+```
+
+### Advanced example
+
+```cpp
+#ifndef LIPSUM_BUILD_STATIC
+#define LIPSUM_IMPLEMENTATION //only for header-only usage
+#endif
 #include "lipsum.hpp"
 #include <iostream>
 int main()
 {
-    //generate 5 paragraphs of 5-8 sentences of 1-3 sentence fragments of 4-9 words, starting with "Lorem ipsum..." (default)
+    //generate 5 paragraphs 
+    //of 5-8 sentences 
+    //of 1-3 sentence fragments
+    //of 4-9 words, 
+    //starting with "Lorem ipsum..." and random seed (default)
     std::cout << lpsm::GenerateParagraphs();
-    //generate 10 paragraphs of 7-10 sentences of 3-6 sentence fragments of 6-9 words, not starting with "Lorem ipsum..."
-    std::cout << lpsm::GenerateParagraphs(10, lpsm::ArgVec2(6, 9), lpsm::ArgVec2(3, 6), lpsm::ArgVec2(7, 10), false);
+    //generate 10 paragraphs 
+    //of 7-10 sentences 
+    //of 3-6 sentence fragments 
+    //of 6-9 words, 
+    //not starting with "Lorem ipsum...", and seed 69
+    std::cout << lpsm::GenerateParagraphs(
+        10, 
+        lpsm::ArgVec2(6, 9),
+        lpsm::ArgVec2(3, 6),
+        lpsm::ArgVec2(7, 10),
+        false, 69
+    );
     return 0;
 }
 ```

@@ -50,8 +50,12 @@ extern "C"
  * @param maxWord Maximum number of words in the sentence fragment.
  * @param minFrag Minimum number of sentence fragments in the sentence.
  * @param maxFrag Maximum number of sentence fragments in the sentence.
+ * @param seed The seed chosen. (use 0 for random)
  */
-LIPSUMC_API char* lpsm_GenerateSentence(int minWord, int maxWord, int minFrag, int maxFrag);
+LIPSUMC_API char* lpsm_GenerateSentence(
+        int minWord, int maxWord,
+        int minFrag, int maxFrag,
+        int seed);
  
 /** 
  * @brief Generate a random paragraph.
@@ -68,8 +72,13 @@ LIPSUMC_API char* lpsm_GenerateSentence(int minWord, int maxWord, int minFrag, i
  * @param minFrag Minimum number of sentence fragments in each sentence.
  * @param maxFrag Maximum number of sentence fragments in each sentence.
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the paragraph.
+ * @param seed The seed chosen. (use 0 for random)
  */ 
-LIPSUMC_API char* lpsm_GenerateParagraph(int minWord, int maxWord, int minFrag, int maxFrag, int minSent, int maxSent, bool useLipsum);
+LIPSUMC_API char* lpsm_GenerateParagraph(
+        int minWord, int maxWord,
+        int minFrag, int maxFrag,
+        int minSent, int maxSent,
+        bool useLipsum, int seed);
   
 /**  
  * @brief Generate several random paragraphs at once.
@@ -86,17 +95,25 @@ LIPSUMC_API char* lpsm_GenerateParagraph(int minWord, int maxWord, int minFrag, 
  * @param minFrag Minimum number of sentence fragments in each sentence.
  * @param maxFrag Maximum number of sentence fragments in each sentence.
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the first paragraph.
+ * @param seed The seed chosen. (use 0 for random)
  */ 
-LIPSUMC_API char* lpsm_GenerateParagraphs(int paraCount, int minWord, int maxWord, int minFrag, int maxFrag, int minSent, int maxSent, bool useLipsum);
+LIPSUMC_API char* lpsm_GenerateParagraphs(
+        int paraCount, 
+        int minWord, int maxWord,
+        int minFrag, int maxFrag,
+        int minSent, int maxSent,
+        bool useLipsum, int seed);
   
 /**  
  * @brief Generate a random word.
  *   
  * This function generates a random word from a predefined list.
- *   
+ *
+ * @param seed The seed chosen. (use 0 for random)
+ *
  * @return char* The random word.
  */  
-LIPSUMC_API char* lpsm_GenerateWord(void);
+LIPSUMC_API char* lpsm_GenerateWord(int seed);
    
 /**   
  * @brief Generate the beginning Lorem Ipsum sentence.
@@ -121,8 +138,13 @@ LIPSUMC_API char* lpsm_GenerateDefaultLipsumSentence(void);
  * @param minFrag Minimum number of sentence fragments in each sentence.
  * @param maxFrag Maximum number of sentence fragments in each sentence.
  * @param useLipsum Whether the default "Lorem ipsum..." sentence should be the first sentence.
+ * @param seed The seed chosen. (use 0 for random)
  */  
-LIPSUMC_API char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, int minFrag, int maxFrag, bool useLipsum);
+LIPSUMC_API char* lpsm_GenerateSentences(
+        int sentCount, 
+        int minWord, int maxWord, 
+        int minFrag, int maxFrag, 
+        bool useLipsum, int seed);
    
 /**   
  * @brief Turn a string into HTML paragraph tags.
@@ -153,8 +175,9 @@ LIPSUMC_API void lpsm_DeleteString(char* str);
  *    
  * @param minWord Minimum number of words in the fragment.
  * @param maxWord Maximum number of words in the fragment.
+ * @param seed The seed chosen. (use 0 for random)
  */  
-LIPSUMC_API char* lpsm_GenerateSentenceFragment(int minWord, int maxWord);
+LIPSUMC_API char* lpsm_GenerateSentenceFragment(int minWord, int maxWord, int seed);
    
 #ifdef __cplusplus
 }   

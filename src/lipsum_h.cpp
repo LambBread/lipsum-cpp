@@ -18,26 +18,63 @@ static char* ConvertToCstr(const std::string& str)
     return cstr;
 }
 
-extern "C" char* lpsm_GenerateSentence(int minWord, int maxWord, int minFrag, int maxFrag)
+extern "C" char* lpsm_GenerateSentence(
+        int minWord, int maxWord, 
+        int minFrag, int maxFrag, 
+        int seed)
 {
-    return ConvertToCstr(lipsum::GenerateSentence(lipsum::ArgVec2(minWord, maxWord), lipsum::ArgVec2(minFrag, maxFrag)));
+    return ConvertToCstr
+        (
+            lipsum::GenerateSentenceX
+            (
+                minWord, maxWord,
+                minFrag, maxFrag,
+                seed
+            )
+        );
 }
 
-extern "C" char* lpsm_GenerateParagraph(int minWord, int maxWord, int minFrag, int maxFrag, int minSent, int maxSent, bool useLipsum)
+extern "C" char* lpsm_GenerateParagraph(
+        int minWord, int maxWord,
+        int minFrag, int maxFrag, 
+        int minSent, int maxSent, 
+        bool useLipsum, int seed)
 {
-    return ConvertToCstr(lipsum::GenerateParagraph(lipsum::ArgVec2(minWord, maxWord), lipsum::ArgVec2(minFrag, maxFrag), lipsum::ArgVec2(minSent, maxSent), useLipsum));
+    return ConvertToCstr
+        (
+            lipsum::GenerateParagraphX
+            (
+                minWord, maxWord,
+                minFrag, maxFrag,
+                minSent, maxSent,
+                useLipsum, seed
+            )
+        );
 }
 
-extern "C" char* lpsm_GenerateParagraphs(int paraCount, int minWord, int maxWord, int minFrag, int maxFrag, int minSent, 
-        int maxSent, bool useLipsum)
+extern "C" char* lpsm_GenerateParagraphs(
+        int paraCount,
+        int minWord, int maxWord,
+        int minFrag, int maxFrag,
+        int minSent, int maxSent,
+        bool useLipsum, int seed)
 {
-    return ConvertToCstr(lipsum::GenerateParagraphs(paraCount, lipsum::ArgVec2(minWord, maxWord), lipsum::ArgVec2(minFrag, maxFrag),
-                lipsum::ArgVec2(minSent, maxSent), useLipsum));
+    return ConvertToCstr
+        (
+            lipsum::GenerateParagraphsX
+            (
+                paraCount, 
+                minWord, maxWord, 
+                minFrag, maxFrag,
+                minSent, maxSent,
+                useLipsum, seed
+            )
+        );
 }
 
-extern "C" char* lpsm_GenerateWord(void)
+extern "C" char* lpsm_GenerateWord(int seed)
 {
-    return ConvertToCstr(lipsum::GenerateWord());
+    return ConvertToCstr(lipsum::GenerateWord(seed));
 }
 
 extern "C" char* lpsm_GenerateDefaultLipsumSentence(void)
@@ -45,15 +82,27 @@ extern "C" char* lpsm_GenerateDefaultLipsumSentence(void)
     return ConvertToCstr(lipsum::GenerateDefaultLipsumSentence());
 }
 
-extern "C" char* lpsm_GenerateSentences(int sentCount, int minWord, int maxWord, int minFrag, int maxFrag, bool useLipsum)
+extern "C" char* lpsm_GenerateSentences(
+        int sentCount,
+        int minWord, int maxWord,
+        int minFrag, int maxFrag,
+        bool useLipsum, int seed)
 {
-    return ConvertToCstr(lipsum::GenerateSentences(sentCount, lipsum::ArgVec2(minWord, maxWord),
-                lipsum::ArgVec2(minFrag, maxFrag),useLipsum));
+    return ConvertToCstr
+        (
+            lipsum::GenerateSentencesX
+            (
+                sentCount, 
+                minWord, maxWord,
+                minFrag, maxFrag,
+                useLipsum, seed
+            )
+        );
 }
 
 extern "C" char* lpsm_HTMLify(const char* str)
 {
-    return ConvertToCstr(lipsum::HTMLify(std::string(str)));
+    return ConvertToCstr(lipsum::HTMLify(str));
 }
 
 extern "C" void lpsm_DeleteString(char* str)
@@ -61,7 +110,14 @@ extern "C" void lpsm_DeleteString(char* str)
     delete[] str;
 }
 
-extern "C" char* lpsm_GenerateSentenceFragment(int minWord, int maxWord)
+extern "C" char* lpsm_GenerateSentenceFragment(int minWord, int maxWord, int seed)
 {
-    return ConvertToCstr(lipsum::GenerateSentenceFragment(lipsum::ArgVec2(minWord, maxWord)));
+    return ConvertToCstr
+        (
+            lipsum::GenerateSentenceFragmentX
+            (
+                minWord, maxWord,
+                seed
+            )
+        );
 }
