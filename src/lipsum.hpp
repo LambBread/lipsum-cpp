@@ -18,7 +18,9 @@
  * @example HTMLify.cpp
  * @example FuncsX.cpp
  * @example Basic.cpp
+ * @example GenerateWords.cpp
  */
+#define LIPSUM_CPP_VERSION "0.2.1"
 #pragma once
 #ifndef __cplusplus
 #error lipsum.hpp only supports C++, did you mean lipsum.h?
@@ -69,7 +71,7 @@ namespace lipsum
     namespace internal
     {
         LIPSUM_API std::string HandleHTMLEntity(const std::string& str);
-        LIPSUM_API int RandomNumber(int min, int max, int seed = 0);
+        LIPSUM_API int RandomNumber(int min, int max);
     }
 
     /** 
@@ -94,11 +96,9 @@ namespace lipsum
          * 
          * This function returns a random value between min and max.
          * 
-         * @param seed The seed chosen. By default 0. (use a random seed)
-         *
          * @return int The random number.
          */
-        int Roll(int seed = 0) const;
+        int Roll() const;
         
         int min; ///<The minimum value
         int max; ///<The maximum value
@@ -114,21 +114,17 @@ namespace lipsum
     class LIPSUM_API Generator
     {
     public:
-        /**
-         * @brief Constructor for Generator
-         *
-         * This function sets the internal variable 'seed' to a user-specified value.
-         */
-        Generator(int seed = 0);
         
         /**
          * @brief Generate a word.
          *
-         * This function generates a word based off the seed.
+         * This function generates num words based off the seed.
+         *
+         * @param num The number of words. By default 1.
          *
          * @return std::string The random word.
          */
-        std::string word();
+        std::string words(int num = 1);
 
         /**
          * @brief Generate sentences.
@@ -165,8 +161,6 @@ namespace lipsum
          * @return std::string The random paragraph(s).
          */
         std::string paragraph(int num = 1, bool useLipsum = true);
-    private:
-        int seed; ///<The seed stored
     };
 
 /**
@@ -174,11 +168,20 @@ namespace lipsum
  * 
  * This function generates a random word from a predefined list.
  * 
- * @param seed The seed chosen. By default 0. (use a random seed)
- *
  * @return std::string The random word.
  */
-LIPSUM_API std::string GenerateWord(int seed = 0);
+LIPSUM_API std::string GenerateWord();
+
+/**
+ * @brief Generate a specified number of random words.
+ *
+ * This function generates a sentence fragment with exactly wordCount words.
+ *
+ * @param wordCount The number of words. By default 6.
+ *
+ * @return std::string The random words.
+ */
+LIPSUM_API std::string GenerateWords(int wordCount = 6);
 
 /**
  * @brief Generate a fragment of a sentence without punctuation.
@@ -186,11 +189,10 @@ LIPSUM_API std::string GenerateWord(int seed = 0);
  * This function generates a fragment of a sentence, without punctuation inside.
  * 
  * @param word The minimum and maximum possible number of words in a fragment. By default 4 to 9.
- * @param seed The seed chosen. By default 0. (use a random seed)
  *
  * @return std::string The random sentence fragment.
  */
-LIPSUM_API std::string GenerateSentenceFragment(const ArgVec2& word = ArgVec2(4, 9), int seed = 0);
+LIPSUM_API std::string GenerateSentenceFragment(const ArgVec2& word = ArgVec2(4, 9));
 
 /**
  * @brief Generate a fragment of a sentence without punctuation.
@@ -199,11 +201,10 @@ LIPSUM_API std::string GenerateSentenceFragment(const ArgVec2& word = ArgVec2(4,
  * 
  * @param minWord Minimum possible number of words in a sentence fragment. By default 4.
  * @param maxWord Maximum possible number of words in a sentence fragment. By default 9.
- * @param seed The seed chosen. By default 0. (use a random seed)
  * 
  * @return std::string The random sentence fragment.
  */
-LIPSUM_API std::string GenerateSentenceFragmentX(int minWord = 4, int maxWord = 9, int seed = 0);
+LIPSUM_API std::string GenerateSentenceFragmentX(int minWord = 4, int maxWord = 9);
 
 /**
  * @brief Generate a random sentence.
@@ -215,12 +216,10 @@ LIPSUM_API std::string GenerateSentenceFragmentX(int minWord = 4, int maxWord = 
  * 
  * @param word The minimum and maximum possible number of words in a sentence fragment. By default 4 to 9.
  * @param frag The minimum and maximum possible number of sentence fragments in the sentence. By default 1 to 3.
- * @param seed The seed chosen. By default 0. (use a random seed)
  */
 LIPSUM_API std::string GenerateSentence(
         const ArgVec2& word = ArgVec2(4, 9),
-        const ArgVec2& frag = ArgVec2(1, 3),
-        int seed = 0);
+        const ArgVec2& frag = ArgVec2(1, 3));
 
 /**
  * @brief Generate a random sentence.
@@ -231,14 +230,12 @@ LIPSUM_API std::string GenerateSentence(
  * @param maxWord Maximum possible number of words in a sentence fragment. By default 9.
  * @param minFrag Minimum possible number of sentence fragments in a sentence. By default 1.
  * @param maxFrag Maximum possible number of sentence fragments in a sentence. By default 3.
- * @param seed The seed chosen. By default 0. (use a random seed)
  *
  * @return std::string The random sentence.
  */
 LIPSUM_API std::string GenerateSentenceX(
         int minWord = 4, int maxWord = 9,
-        int minFrag = 1, int maxFrag = 3,
-        int seed = 0);
+        int minFrag = 1, int maxFrag = 3);
 
 /**
  * @brief Generate a random paragraph.
@@ -252,13 +249,12 @@ LIPSUM_API std::string GenerateSentenceX(
  * @param frag The minimum and maximum possible number of sentence fragments in a sentence. By default 1 to 3.
  * @param word The minimum and maximum possible number of words in a sentence fragment. By default 4 to 9.
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the paragraph. By default true.
- * @param seed The seed chosen. By default 0. (use a random seed)
  */
 LIPSUM_API std::string GenerateParagraph(
         const ArgVec2& word = ArgVec2(4, 9),
         const ArgVec2& frag = ArgVec2(1, 3), 
         const ArgVec2& sent = ArgVec2(5, 8),
-        bool useLipsum = true, int seed = 0);
+        bool useLipsum = true);
 
 /**
  * @brief Generate a random paragraph.
@@ -272,7 +268,6 @@ LIPSUM_API std::string GenerateParagraph(
  * @param minSent The minimum possible number of sentences in the paragraph. By default 5.
  * @param maxSent The maximum possible number of sentences in the paragraph. By default 8.
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the paragraph. By default true.
- * @param seed The seed chosen. By default 0. (use a random seed)
  * 
  * @return std::string The random paragraph.
  */
@@ -280,7 +275,7 @@ LIPSUM_API std::string GenerateParagraphX(
         int minWord = 4, int maxWord = 9, 
         int minFrag = 1, int maxFrag = 3, 
         int minSent = 5, int maxSent = 8,
-        bool useLipsum = true, int seed = 0);
+        bool useLipsum = true);
 
 /**
  * @brief Generate several random paragraphs at once.
@@ -294,14 +289,13 @@ LIPSUM_API std::string GenerateParagraphX(
  * @param frag The minimum and maximum total number of sentence fragments in a sentence. By default 1 to 3.
  * @param sent The minimum and maximum total number of sentences in a paragraph. By default 5 to 8.
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the first paragraph. By default true.
- * @param seed The seed chosen. By default 0. (use a random seed)
  */
 LIPSUM_API std::string GenerateParagraphs(
         int paraCount = 5,
         const ArgVec2& word = ArgVec2(4, 9),
         const ArgVec2& frag = ArgVec2(1, 3),
         const ArgVec2& sent = ArgVec2(5, 8),
-        bool useLipsum = true, int seed = 0);
+        bool useLipsum = true);
 
 /**
  * @brief Generate several random paragraphs at once.
@@ -316,7 +310,6 @@ LIPSUM_API std::string GenerateParagraphs(
  * @param minSent The minimum possible number of sentences in a paragraph. By default 5.
  * @param maxSent The maximum possible number of sentences in a paragraph. By default 8.
  * @param useLipsum Whether the default "Lorem ipsum..." text should start the first paragraph. By default true.
- * @param seed The seed chosen. By default 0. (use a random seed)
  *
  * @return std::string The random paragraphs.
  */
@@ -325,7 +318,7 @@ LIPSUM_API std::string GenerateParagraphsX(
         int minWord = 4, int maxWord = 9,
         int minFrag = 1, int maxFrag = 3, 
         int minSent = 5, int maxSent = 8,
-        bool useLipsum = true, int seed = 0);
+        bool useLipsum = true);
 
 /**
  * @brief Generate the beginning Lorem Ipsum sentence.
@@ -348,13 +341,12 @@ LIPSUM_API std::string GenerateDefaultLipsumSentence();
  * @param word The minimum and maximum possible number of words in a sentence fragment. By default 4 to 9.
  * @param frag The minimum and maximum possible number of sentence fragments in a sentence. By default 1 to 3.
  * @param useLipsum Whether the default "Lorem ipsum..." sentence should be the first sentence. By default true.
- * @param seed The seed chosen. By default 0. (use a random seed)
  */
 LIPSUM_API std::string GenerateSentences(
         int sentCount = 6,
         const ArgVec2& word = ArgVec2(4, 9), 
         const ArgVec2& frag = ArgVec2(1, 3),
-        bool useLipsum = true, int seed = 0);
+        bool useLipsum = true);
 
 /**
  * @brief Generate multiple random sentences at once.
@@ -367,13 +359,12 @@ LIPSUM_API std::string GenerateSentences(
  * @param minFrag The minimum possible number of sentence fragments in a sentence. By default 1.
  * @param maxFrag The maximum possible number of sentence fragments in a sentence. By default 3.
  * @param useLipsum Whether the default "Lorem ipsum..." sentence should be the first sentence. By default true.
- * @param seed The seed chosen. By default 0. (use a random seed)
  */
 LIPSUM_API std::string GenerateSentencesX(
         int sentCount = 6, 
         int minWord = 4, int maxWord = 9,
         int minFrag = 1, int maxFrag = 3,
-        bool useLipsum = true, int seed = 0);
+        bool useLipsum = true);
 
 /**
  * @brief Turn a string into HTML paragraph tags.
@@ -404,113 +395,109 @@ LIPSUM_API std::string HTMLify(const char* str);
 namespace lpsm = lipsum;
 
 #ifdef LIPSUM_IMPLEMENTATION
-lipsum::Generator::Generator(int seed)
+
+std::string lpsm::Generator::words(int num)
 {
-    this->seed = seed;
+    return lpsm::GenerateWords(num);
+}
+std::string lpsm::Generator::sentence(int num, bool useLipsum)
+{
+    return lpsm::GenerateSentences(num, lpsm::ArgVec2(4, 9), lpsm::ArgVec2(1, 3), useLipsum);
+}
+std::string lpsm::Generator::sentence_fragment()
+{
+    return lpsm::GenerateSentenceFragment(lpsm::ArgVec2(4, 9));
+}
+std::string lpsm::Generator::paragraph(int num, bool useLipsum)
+{
+    return lpsm::GenerateParagraphs(num, 
+            lpsm::ArgVec2(4, 9), 
+            lpsm::ArgVec2(1, 3), 
+            lpsm::ArgVec2(5, 8), 
+            useLipsum);
+}
+std::string lpsm::GenerateWords(int wordCount)
+{
+    std::string ret;
+    for(int i = 0; i < wordCount; ++i)
+    {
+        ret += lpsm::GenerateWord() += " ";
+    }
+    ret.pop_back();
+    return ret;
 }
 
-std::string lipsum::Generator::word()
-{
-    return lipsum::GenerateWord(seed);
-}
-std::string lipsum::Generator::sentence(int num, bool useLipsum)
-{
-    return lipsum::GenerateSentences(num, lipsum::ArgVec2(4, 9), lipsum::ArgVec2(1, 3), useLipsum, seed);
-}
-std::string lipsum::Generator::sentence_fragment()
-{
-    return lipsum::GenerateSentenceFragment(lipsum::ArgVec2(4, 9), seed);
-}
-std::string lipsum::Generator::paragraph(int num, bool useLipsum)
-{
-    return lipsum::GenerateParagraphs(num, 
-            lipsum::ArgVec2(4, 9), 
-            lipsum::ArgVec2(1, 3), 
-            lipsum::ArgVec2(5, 8), 
-            useLipsum, seed);
-}
-
-int lipsum::internal::RandomNumber(int min, int max, int seed)
+int lpsm::internal::RandomNumber(int min, int max)
 {
     static std::random_device rd;
-    if(seed == 0)
-    {
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dist(min, max);
-        return dist(gen);
-    }
-    else
-    {
-        std::mt19937 gen(seed);
-        std::uniform_int_distribution<> dist(min, max);
-        return dist(gen);
-    }
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dist(min, max);
+    return dist(gen);
 }
 
-std::string lipsum::HTMLify(const char* str)
+std::string lpsm::HTMLify(const char* str)
 {
-    return lipsum::HTMLify(std::string(str));
+    return lpsm::HTMLify(std::string(str));
 }
 
-std::string lipsum::GenerateSentencesX(
+std::string lpsm::GenerateSentencesX(
         int sentCount,
         int minWord, int maxWord, 
         int minFrag, int maxFrag,
-        bool useLipsum, int seed)
+        bool useLipsum)
 {
-    return lipsum::GenerateSentences(
+    return lpsm::GenerateSentences(
             sentCount,
-            lipsum::ArgVec2(minWord, maxWord),
-            lipsum::ArgVec2(minFrag, maxFrag),
-            useLipsum, seed);
+            lpsm::ArgVec2(minWord, maxWord),
+            lpsm::ArgVec2(minFrag, maxFrag),
+            useLipsum);
 }
 
-std::string lipsum::GenerateParagraphsX(
+std::string lpsm::GenerateParagraphsX(
         int paraCount, 
         int minWord, int maxWord,
         int minFrag, int maxFrag,
         int minSent, int maxSent,
-        bool useLipsum, int seed)
+        bool useLipsum)
 {
-    return lipsum::GenerateParagraphs(paraCount, 
-            lipsum::ArgVec2(minWord, maxWord),
-            lipsum::ArgVec2(minFrag, maxFrag),
-            lipsum::ArgVec2(minSent, maxSent), 
-            useLipsum, seed);
+    return lpsm::GenerateParagraphs(paraCount, 
+            lpsm::ArgVec2(minWord, maxWord),
+            lpsm::ArgVec2(minFrag, maxFrag),
+            lpsm::ArgVec2(minSent, maxSent), 
+            useLipsum);
 }
 
-std::string lipsum::GenerateParagraphX(
+std::string lpsm::GenerateParagraphX(
         int minWord, int maxWord,
         int minFrag, int maxFrag,
         int minSent, int maxSent,
-        bool useLipsum, int seed)
+        bool useLipsum)
 {
-    return lipsum::GenerateParagraph(
-            lipsum::ArgVec2(minWord, maxWord), 
-            lipsum::ArgVec2(minFrag, maxFrag),
-            lipsum::ArgVec2(minSent, maxSent),
-            useLipsum, seed);
+    return lpsm::GenerateParagraph(
+            lpsm::ArgVec2(minWord, maxWord), 
+            lpsm::ArgVec2(minFrag, maxFrag),
+            lpsm::ArgVec2(minSent, maxSent),
+            useLipsum);
 }
 
-std::string lipsum::GenerateSentenceX(
+std::string lpsm::GenerateSentenceX(
         int minWord, int maxWord,
-        int minFrag, int maxFrag,
-        int seed)
+        int minFrag, int maxFrag)
 {
-    return lipsum::GenerateSentence(
-            lipsum::ArgVec2(minWord, maxWord),
-            lipsum::ArgVec2(minFrag, maxFrag),
-            seed);
+    return lpsm::GenerateSentence(
+            lpsm::ArgVec2(minWord, maxWord),
+            lpsm::ArgVec2(minFrag, maxFrag)
+            );
 }
 
-std::string lipsum::GenerateSentenceFragmentX(int minWord, int maxWord, int seed)
+std::string lpsm::GenerateSentenceFragmentX(int minWord, int maxWord)
 {
-    return lipsum::GenerateSentenceFragment(
-            lipsum::ArgVec2(minWord, maxWord), 
-            seed);
+    return lpsm::GenerateSentenceFragment(
+            lpsm::ArgVec2(minWord, maxWord)
+            );
 }
 
-std::string lipsum::internal::HandleHTMLEntity(const std::string& str)
+std::string lpsm::internal::HandleHTMLEntity(const std::string& str)
 {
     std::string result;
     for(const auto& c : str)
@@ -551,21 +538,21 @@ std::string lipsum::internal::HandleHTMLEntity(const std::string& str)
     return result;
 }
 
-lipsum::ArgVec2::ArgVec2(int min, int max)
+lpsm::ArgVec2::ArgVec2(int min, int max)
 {
     this->min = min;
     this->max = max;
 }
 
-int lipsum::ArgVec2::Roll(int seed) const
+int lpsm::ArgVec2::Roll() const
 {
     //static std::random_device rd;
     //static std::mt19937 gen(rd());
     //std::uniform_int_distribution<> dist(min, max);
-    return lipsum::internal::RandomNumber(min, max, seed);
+    return lpsm::internal::RandomNumber(min, max);
 }
 
-std::string lipsum::HTMLify(const std::string& str)
+std::string lpsm::HTMLify(const std::string& str)
 {
     std::stringstream ss(str);
     std::string line;
@@ -574,78 +561,79 @@ std::string lipsum::HTMLify(const std::string& str)
     {
         if(!line.empty())
         {
-            result += std::string("<p>") += lipsum::internal::HandleHTMLEntity(line) += std::string("</p>\n");
+            result += std::string("<p>") += lpsm::internal::HandleHTMLEntity(line) += std::string("</p>\n");
         }
     }
     return result;
 }
 
-std::string lipsum::GenerateSentences(
+std::string lpsm::GenerateSentences(
         int sentCount,
-        const lipsum::ArgVec2& word,
-        const lipsum::ArgVec2& frag,
-        bool useLipsum, int seed)
+        const lpsm::ArgVec2& word,
+        const lpsm::ArgVec2& frag,
+        bool useLipsum)
 {
     std::string result;
     if(useLipsum)
     {
-        result += lipsum::GenerateDefaultLipsumSentence() += " ";
+        result += lpsm::GenerateDefaultLipsumSentence() += " ";
         for(int i = 0; i < sentCount - 1; ++i)
         {
-            result += lipsum::GenerateSentence(word, frag, seed) += " ";
+            result += lpsm::GenerateSentence(word, frag) += " ";
         }
     }
     else
     {
         for(int i = 0; i < sentCount; ++i)
         {
-            result += lipsum::GenerateSentence(word, frag, seed) += " ";
+            result += lpsm::GenerateSentence(word, frag) += " ";
         }
     }
     return result;
 }
 
-std::string lipsum::GenerateDefaultLipsumSentence()
+std::string lpsm::GenerateDefaultLipsumSentence()
 {
     return "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 }
 
-std::string lipsum::GenerateWord(int seed)
+std::string lpsm::GenerateWord()
 {
 #include "lipsum.inl"
     //static std::random_device rd;
     //static std::mt19937 gen(rd());
     //std::uniform_int_distribution<> dist(0, lipsumVec.size() - 1);
-    return lipsumVec.at(lipsum::internal::RandomNumber(0, lipsumVec.size() - 1, seed));
+    int randomIdx = lpsm::internal::RandomNumber(0, lipsumVec.size() - 1);
+    return lipsumVec.at(randomIdx);
 }
 
-std::string lipsum::GenerateSentenceFragment(const lipsum::ArgVec2& word, int seed)
+std::string lpsm::GenerateSentenceFragment(const lpsm::ArgVec2& word)
 {
     std::string result;
-    int numWords = word.Roll(seed);
+    int numWords = word.Roll();
     for(int i = 0; i < numWords; ++i)
     {
-        result += lipsum::GenerateWord() += " ";
+        result += lpsm::GenerateWord() += " ";
     }
     result.pop_back(); //remove trailing space
     return result;
 
 }
 
-std::string lipsum::GenerateSentence(const lipsum::ArgVec2& word, const lipsum::ArgVec2& frag, int seed)
+std::string lpsm::GenerateSentence(const lpsm::ArgVec2& word, const lpsm::ArgVec2& frag)
 {
     constexpr int CHANCE_COMMA = 97;
     constexpr int CHANCE_SEMI = 9;
     std::string result;
-    int words = word.Roll(seed);
-    int frags = frag.Roll(seed);
+    int words = word.Roll();
+    int frags = frag.Roll();
     //static std::random_device rd;
     //static std::mt19937 gen(rd());
     //std::uniform_int_distribution<> dist(0, 100);
     for(int i = 0; i < frags; ++i)
     {
-        result += lipsum::GenerateSentenceFragment(word, seed);
-        int check = lipsum::internal::RandomNumber(0, 100, seed);
+        result += lpsm::GenerateSentenceFragment(word);
+        int check = lpsm::internal::RandomNumber(0, 100);
         // don't do if only one fragment
         if(i != frags - 1)
         {
@@ -666,57 +654,59 @@ std::string lipsum::GenerateSentence(const lipsum::ArgVec2& word, const lipsum::
     result += ".";
     result.at(0) = std::toupper(result.at(0));
     return result;
-}
-
-std::string lipsum::GenerateParagraph(
-        const lipsum::ArgVec2& word,
-        const lipsum::ArgVec2& frag, 
-        const lipsum::ArgVec2& sent,
-        bool useLipsum, int seed)
-{
+}   
+   
+std::string lpsm::GenerateParagraph(
+        const lpsm::ArgVec2& word,
+        const lpsm::ArgVec2& frag, 
+        const lpsm::ArgVec2& sent,
+        bool useLipsum)
+{ 
     std::string result = "\t";
-    int sents = sent.Roll(seed);
-    if(!useLipsum)
-    {
+    int sents = sent.Roll();
+    if(!useLipsum) 
+    { 
         for(int i = 0; i < sents; ++i)
-        {
-            result += lipsum::GenerateSentence(word, frag, seed) += " ";
-        }
-    }
-    else
-    {
+        { 
+            result += lpsm::GenerateSentence(word, frag) += " ";
+        } 
+    } 
+    else 
+    { 
         result += lipsum::GenerateDefaultLipsumSentence() += " ";
         for(int i = 0; i < sents - 1; ++i)
         {
-            result += lipsum::GenerateSentence(word, frag, seed) += " ";
+            result += lpsm::GenerateSentence(word, frag) += " ";
         }
     }
+    // remove trailing space
+    result.pop_back();
     result += "\n";
     return result;
-}
-
-std::string lipsum::GenerateParagraphs(
+}    
+    
+std::string lpsm::GenerateParagraphs(
         int paraCount, 
-        const lipsum::ArgVec2& word, 
-        const lipsum::ArgVec2& frag,
-        const lipsum::ArgVec2& sent,
-        bool useLipsum, int seed)
-{
-    std::string result;
-    if(!useLipsum)
-    {
+        const lpsm::ArgVec2& word, 
+        const lpsm::ArgVec2& frag,
+        const lpsm::ArgVec2& sent,
+        bool useLipsum)
+{ 
+    std::string result; 
+    if(!useLipsum) 
+    { 
 
         for(int i = 0; i < paraCount; ++i)
-        {
-            result += lipsum::GenerateParagraph(word, frag, sent, false, seed);
-        }
-    }
-    else
-    {
-        result += lipsum::GenerateParagraph(word, frag, sent, true, seed);
+        {  
+            result += lpsm::GenerateParagraph(word, frag, sent, false);
+        }  
+    }  
+    else  
+    {  
+        result += lpsm::GenerateParagraph(word, frag, sent, true);
         for(int i = 0; i < paraCount - 1; ++i)
-        {
-            result += lipsum::GenerateParagraph(word, frag, sent, false, seed);
+        { 
+            result += lpsm::GenerateParagraph(word, frag, sent, false);
         }
     }
     return result;

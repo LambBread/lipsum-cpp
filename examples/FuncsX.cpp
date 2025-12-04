@@ -13,12 +13,12 @@ int main()
     //generate 7-10 sentences 
     //of 3-6 sentence fragments 
     //of 6-9 words,
-    //not starting with "Lorem ipsum...", seed 69
+    //not starting with "Lorem ipsum..."
     std::cout << lpsm::GenerateParagraphX(
         6, 9,
         3, 6,
         7, 10, 
-        false, 69
+        false
     );
     return 0;
 }

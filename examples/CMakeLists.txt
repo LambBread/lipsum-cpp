@@ -1,27 +1,24 @@
 cmake_minimum_required(VERSION 3.15)
-add_executable(GenerateWord "${CMAKE_CURRENT_SOURCE_DIR}/GenerateWord.cpp")
-add_executable(GenerateParagraph "${CMAKE_CURRENT_SOURCE_DIR}/GenerateParagraph.cpp")
-add_executable(GenerateParagraphs "${CMAKE_CURRENT_SOURCE_DIR}/GenerateParagraphs.cpp")
-add_executable(GenerateSentence "${CMAKE_CURRENT_SOURCE_DIR}/GenerateSentence.cpp")
-add_executable(GenerateSentences "${CMAKE_CURRENT_SOURCE_DIR}/GenerateSentences.cpp")
-add_executable(GenerateDefaultLipsumSentence "${CMAKE_CURRENT_SOURCE_DIR}/GenerateDefaultLipsumSentence.cpp")
-add_executable(GenerateSentenceFragment "${CMAKE_CURRENT_SOURCE_DIR}/GenerateSentenceFragment.cpp")
-add_executable(HTMLify "${CMAKE_CURRENT_SOURCE_DIR}/HTMLify.cpp")
-add_executable(FuncsX "${CMAKE_CURRENT_SOURCE_DIR}/FuncsX.cpp")
-add_executable(Basic "${CMAKE_CURRENT_SOURCE_DIR}/Basic.cpp")
+
+set(LPSM_EXAMPLES_TARGETS
+    GenerateWord
+    GenerateWords
+    GenerateParagraph
+    GenerateParagraphs
+    GenerateSentence
+    GenerateSentences
+    GenerateDefaultLipsumSentence
+    GenerateSentenceFragment
+    HTMLify
+    FuncsX
+    Basic
+)
+foreach(target IN LISTS LPSM_EXAMPLES_TARGETS)
+    add_executable(${target} "${CMAKE_CURRENT_SOURCE_DIR}/${target}.cpp")
+    target_link_libraries(${target} lipsum-cpp)
+endforeach()
+
 if(LPSM_BUILD_CWRAPPER)
     add_executable(CWrapper "${CMAKE_CURRENT_SOURCE_DIR}/CWrapper.c")
-endif()
-target_link_libraries(GenerateWord lipsum-cpp)
-target_link_libraries(GenerateParagraph lipsum-cpp)
-target_link_libraries(GenerateParagraphs lipsum-cpp)
-target_link_libraries(GenerateSentence lipsum-cpp)
-target_link_libraries(GenerateSentences lipsum-cpp)
-target_link_libraries(GenerateDefaultLipsumSentence lipsum-cpp)
-target_link_libraries(HTMLify lipsum-cpp)
-target_link_libraries(GenerateSentenceFragment lipsum-cpp)
-target_link_libraries(FuncsX lipsum-cpp)
-target_link_libraries(Basic lipsum-cpp)
-if(LPSM_BUILD_CWRAPPER)
     target_link_libraries(CWrapper lipsum-cpp)
 endif()

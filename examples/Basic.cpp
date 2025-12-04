@@ -6,7 +6,7 @@
 
 int main()
 {
-    // Create a generator with random seed.
+    // Create a generator.
     lpsm::Generator generator;
 
     // Generate 3 paragraphs.
@@ -18,8 +18,8 @@ int main()
     // Generate a sentence fragment.
     std::cout << generator.sentence_fragment() << '\n';
     
-    // Generate a word.
-    std::cout << generator.word() << '\n';
+    // Generate 5 words.
+    std::cout << generator.words(5) << '\n';
     
     return 0;
 }

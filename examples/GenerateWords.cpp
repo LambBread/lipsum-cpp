@@ -5,7 +5,6 @@
 #include <iostream>
 int main()
 {
-    //generate a random word
-    std::cout << lpsm::GenerateWord() << '\n';
+    std::cout << lpsm::GenerateWords(5) << '\n';
     return 0;
 }
