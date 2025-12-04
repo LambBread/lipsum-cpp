@@ -118,7 +118,7 @@ namespace lipsum
         /**
          * @brief Generate a word.
          *
-         * This function generates num words based off the seed.
+         * This function generates multiple words.
          *
          * @param num The number of words. By default 1.
          *
@@ -129,8 +129,7 @@ namespace lipsum
         /**
          * @brief Generate sentences.
          *
-         * This function generates multiple sentences based off the seed
-         * with default arguments.
+         * This function generates multiple sentences with default arguments.
          * 
          * @param num The number of sentences. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the sentence(s).
@@ -142,8 +141,7 @@ namespace lipsum
         /**
          * @brief Generate a sentence fragment.
          *
-         * This function generates a sentence fragment based off the seed
-         * with default arguments.
+         * This function generates a sentence fragment with default arguments.
          *
          * @return std::string The random sentence fragment.
          */
@@ -152,8 +150,7 @@ namespace lipsum
         /**
          * @brief Generate paragraphs.
          *
-         * This function generates multiple paragraphs based off the seed
-         * with default arguments.
+         * This function generates multiple paragraphs with default arguments.
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph(s).
