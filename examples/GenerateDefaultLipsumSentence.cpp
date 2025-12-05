@@ -1,11 +1,12 @@
 #ifndef LIPSUM_BUILD_STATIC
-#define LIPSUM_IMPLEMENTATION //only for header-only usage
+#    define LIPSUM_IMPLEMENTATION // only for header-only usage
 #endif
-#include "lipsum.hpp"
 #include <iostream>
+
+#include "lipsum.hpp"
 int main()
 {
-    //prints "Lorem ipsum dolor sit amet..."
+    // prints "Lorem ipsum dolor sit amet..."
     std::cout << lpsm::GenerateDefaultLipsumSentence() << '\n';
     return 0;
 }
