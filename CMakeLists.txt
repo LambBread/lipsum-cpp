@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(lipsum-cpp VERSION 0.2.2 LANGUAGES C CXX)
+project(lipsum-cpp VERSION 0.2.3 LANGUAGES C CXX)
 option(LPSM_BUILD_STATIC "Build as static library" OFF)
 option(LPSM_BUILD_SHARED "Build as shared library" OFF)
 option(LPSM_BUILD_CWRAPPER "Build C wrapper" OFF)

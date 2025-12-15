@@ -19,6 +19,30 @@ static char* ConvertToCstr(const std::string& str)
     return cstr;
 }
 
+extern "C" char* lpsm_gen_word(int num)
+{
+    lpsm::Generator gen;
+    return ConvertToCstr(gen.word(num));
+}
+
+extern "C" char* lpsm_gen_sentence(int num, bool useLipsum)
+{
+    lpsm::Generator gen;
+    return ConvertToCstr(gen.sentence(num, useLipsum));
+}
+
+extern "C" char* lpsm_gen_sentence_fragment(void)
+{
+    lpsm::Generator gen;
+    return ConvertToCstr(gen.sentence_fragment());
+}
+
+extern "C" char* lpsm_gen_paragraph(int num, bool useLipsum)
+{
+    lpsm::Generator gen;
+    return ConvertToCstr(gen.paragraph(num, useLipsum));
+}
+
 extern "C" char*
 lpsm_GenerateSentence(int minWord, int maxWord, int minFrag, int maxFrag)
 {

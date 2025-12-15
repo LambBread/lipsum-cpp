@@ -42,7 +42,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.2.2"
+#define LIPSUM_CPP_VERSION_C "0.2.3"
 
 #ifdef __cplusplus
 extern "C"
@@ -50,6 +50,52 @@ extern "C"
 #endif
 
 #include <stdbool.h>
+
+    /**
+     * @brief Generate words.
+     *
+     * This function generates multiple words.
+     *
+     * @param num The number of words.
+     *
+     * @return char* The random word.
+     */
+    LIPSUMC_API char* lpsm_gen_word(int num);
+
+    /**
+     * @brief Generate sentences.
+     *
+     * This function generates multiple sentences with default arguments.
+     *
+     * @param num The number of sentences.
+     * @param useLipsum Whether "Lorem ipsum..." should start the
+     * sentence(s).
+     *
+     * @return char* The random sentence(s).
+     */
+    LIPSUMC_API char* lpsm_gen_sentence(int num, bool useLipsum);
+
+    /**
+     * @brief Generate a sentence fragment.
+     *
+     * This function generates a sentence fragment with default arguments.
+     *
+     * @return char* The random sentence fragment.
+     */
+    LIPSUMC_API char* lpsm_gen_sentence_fragment(void);
+
+    /**
+     * @brief Generate paragraphs.
+     *
+     * This function generates multiple paragraphs with default arguments.
+     *
+     * @param num The number of paragraphs.
+     * @param useLipsum Whether "Lorem ipsum..." should start the
+     * paragraph(s).
+     *
+     * @return char* The random paragraph(s).
+     */
+    LIPSUMC_API char* lpsm_gen_paragraph(int num, bool useLipsum);
 
     /**
      * @brief Generate a random sentence.

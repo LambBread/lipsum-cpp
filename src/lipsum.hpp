@@ -28,7 +28,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION "0.2.2"
+#define LIPSUM_CPP_VERSION "0.2.3"
 
 #ifndef __cplusplus
 #    error lipsum.hpp only supports C++, did you mean lipsum.h?
@@ -117,15 +117,14 @@ namespace lipsum
      * @brief OOP layer over lipsum-cpp
      *
      * This provides a more user-friendly object-oriented layer over lipsum-cpp.
-     * It uses mainly default arguments. It is not exposed in the C wrapper.
-     * Unlike most of the codebase which uses PascalCase, the functions in this
-     * class use snake_case.
+     * It uses mainly default arguments. Unlike most of the codebase which uses
+     * PascalCase, the functions in this class use snake_case.
      */
     class LIPSUM_API Generator
     {
     public:
         /**
-         * @brief Generate a word.
+         * @brief Generate words.
          *
          * This function generates multiple words.
          *
@@ -133,7 +132,7 @@ namespace lipsum
          *
          * @return std::string The random word.
          */
-        std::string words(int num = 1);
+        std::string word(int num = 1);
 
         /**
          * @brief Generate sentences.
@@ -142,7 +141,7 @@ namespace lipsum
          *
          * @param num The number of sentences. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the
-         * sentence(s).
+         * sentence(s). By default true.
          *
          * @return std::string The random sentence(s).
          */
@@ -164,7 +163,7 @@ namespace lipsum
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the
-         * paragraph(s).
+         * paragraph(s). By default true.
          *
          * @return std::string The random paragraph(s).
          */
@@ -455,7 +454,7 @@ namespace lpsm = lipsum;
 
 #ifdef LIPSUM_IMPLEMENTATION
 
-std::string lpsm::Generator::words(int num)
+std::string lpsm::Generator::word(int num)
 {
     return lpsm::GenerateWords(num);
 }

@@ -20,7 +20,7 @@ int main()
     std::cout << generator.sentence_fragment() << '\n';
 
     // Generate 5 words.
-    std::cout << generator.words(5) << '\n';
+    std::cout << generator.word(5) << '\n';
 
     return 0;
 }
