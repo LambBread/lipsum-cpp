@@ -17,7 +17,7 @@ lipsum-cpp has been mainly tested on Linux and WebAssembly as well as cross-comp
 ### Prerequisites
 
 - A C/C++ compiler
-- Optionally CMake, a build system (e.g. Make, Ninja, Visual Studio, ...), Doxygen, Python, and Git
+- Optionally CMake, a build system (e.g. Make, Ninja, Visual Studio, ...), Doxygen, Python, Git, and Clang format.
 
 #### Installation (Debian-based):
 
@@ -28,7 +28,7 @@ sudo apt install build-essential
 #Recommended
 sudo apt install cmake
 #Optional
-sudo apt install ninja-build python3 doxygen git
+sudo apt install ninja-build python3 doxygen git clang-format
 ```
 
 ### Header-only usage
