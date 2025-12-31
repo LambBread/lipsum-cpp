@@ -156,6 +156,10 @@ Utility scripts (see [`scripts/`](./scripts)):
 - `split.py`: Converts the sample `lipsum.txt` into a vector for `lipsum.inl`.
 - `lipsum.txt`: Source text for Lorem Ipsum sample generation.
 
+## AI Usage
+
+All of [`src/`](./src/) and most of [`examples/`](./examples/) were developed by a human, not an LLM. Some portions had some AI usage, such as this README which had some AI assistance involved, or example [`Advanced.cpp`](./examples/Advanced.cpp) which was entirely AI-generated.
+
 ## License
 
 lipsum-cpp is under the BSD Zero-Clause License, a very permissive public-domain equivalent license. See [LICENSE.md](LICENSE.md) for details.
