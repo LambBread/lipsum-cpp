@@ -15,7 +15,7 @@
  * @example GenerateSentenceFragment.cpp
  * @example GenerateSentences.cpp
  * @example GenerateWord.cpp
- * @example HTMLify.cpp
+ * @example Markdown.cpp
  * @example FuncsX.cpp
  * @example Basic.cpp
  * @example GenerateWords.cpp
@@ -28,7 +28,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION "0.2.3"
+#define LIPSUM_CPP_VERSION "0.3.0"
 
 #ifndef __cplusplus
 #    error lipsum.hpp only supports C++, did you mean lipsum.h?
@@ -81,6 +81,13 @@ namespace lipsum
     {
         LIPSUM_API std::string HandleHTMLEntity(const std::string& str);
         LIPSUM_API int         RandomNumber(int min, int max);
+
+        template <typename T> std::string ToString(const T& x)
+        {
+            std::stringstream ss;
+            ss << x;
+            return ss.str();
+        }
     } // namespace internal
 
     /**
@@ -168,6 +175,32 @@ namespace lipsum
          * @return std::string The random paragraph(s).
          */
         std::string paragraph(int num = 1, bool useLipsum = true);
+
+        /**
+         * @brief Generate a Markdown paragraph.
+         *
+         * This function generates a paragraph in Markdown format with default
+         * arguments.
+         *
+         * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+         * By default true.
+         *
+         * @return std::string The random Markdown paragraph.
+         */
+        std::string md_paragraph(bool useLipsum = true);
+
+        /**
+         * @brief Generate a Markdown document.
+         *
+         * This function generates a document in Markdown format with default
+         * arguments.
+         *
+         * @param numElements The number of elements (paragraph, list, heading)
+         * in the document. By default 15.
+         *
+         * @return std::string The random Markdown document.
+         */
+        std::string md_text(int numElements = 15);
     };
 
     /**
@@ -427,32 +460,438 @@ namespace lipsum
     /**
      * @brief Turn a string into HTML paragraph tags.
      *
+     * @deprecated Use a Markdown parser instead.
+     *
      * Add &lt;p&gt; and &lt;/p&gt; around the paragraphs and
-     * handle HTML entities like &amp;, &lt;, &gt;, etc.
+     * handle HTML entities like &amp;, &lt;, &gt;, etc. This function is
+     * deprecated.
      *
      * @return std::string The HTML-ified string.
      *
      * @param str The string inputted.
      */
-    LIPSUM_API std::string HTMLify(const std::string& str);
+    LIPSUM_API [[deprecated("Use a Markdown parser")]] std::string
+    HTMLify(const std::string& str);
 
     /**
      * @overload
      *
+     * @deprecated Use a Markdown parser instead.
+     *
      * Turn a string into HTML paragraph tags specified by a C-style string.
+     * This function is deprecated.
      *
      * @param str The string inputted.
      *
      * @return std::string The HTML-ified string.
      */
-    LIPSUM_API std::string HTMLify(const char* str);
+    LIPSUM_API [[deprecated("Use a Markdown parser")]] std::string
+    HTMLify(const char* str);
 
+    /**
+     * @brief Count the number of sentences in a string.
+     *
+     * Count the number of periods in a string, ignoring usage in Markdown URLs.
+     *
+     * @param str The string inputted.
+     *
+     * @return int The number of sentences.
+     */
+    LIPSUM_API int CountSentences(const std::string& str);
+
+    /**
+     * @brief Generate a random Markdown header.
+     *
+     * Generate a random Markdown header. This function is not exposed in the C
+     * wrapper.
+     *
+     * @param level The level of the heading. By default 1.
+     * @param word The minimum and maximum possible number of words in the
+     * heading. By default 2 to 5.
+     *
+     * @return std::string The random heading.
+     */
+    LIPSUM_API std::string
+    GenerateMarkdownHeader(int level = 1, const ArgVec2& word = ArgVec2(2, 5));
+
+    /**
+     * @brief Generate a random emphasized sentence.
+     *
+     * Generate a random sentence in Markdown format that is either bold or
+     * italic. This function is not exposed in the C wrapper.
+     *
+     * @param isBold Whether the sentence is bold or italic. By default true.
+     * (bold)
+     * @param word The minimum and maximum possible number of words in a
+     * sentence fragment. By default 4 to 8.
+     * @param frag The minimum and maximum possible number of sentence fragments
+     * in the sentence. By default 1 to 2.
+     *
+     * @return std::string The random emphasized sentence.
+     */
+    LIPSUM_API std::string
+               GenerateMarkdownEmphasis(bool           isBold = true,
+                                        const ArgVec2& word   = ArgVec2(4, 8),
+                                        const ArgVec2& frag   = ArgVec2(1, 2));
+
+    /**
+     * @brief Generate a random Markdown link.
+     *
+     * Generate a random link in Markdown format. This function is not exposed
+     * in the C wrapper.
+     *
+     * @param url The URL to base the link off of. By default
+     * https://example.com/.
+     * @param word The minimum and maximum possible number of words in a
+     * sentence fragment. By default 4 to 8.
+     * @param frag The minimum and maximum possible number of sentence fragments
+     * in the sentence. By default 1 to 2.
+     * @param wordURL The minimum and maximum possible number of words at the
+     * end of the URL. By default 2 to 5.
+     *
+     * @return std::string The random link.
+     */
+    LIPSUM_API std::string GenerateMarkdownLink(
+            const std::string& url     = std::string("https://example.com/"),
+            const ArgVec2&     word    = ArgVec2(4, 8),
+            const ArgVec2&     frag    = ArgVec2(1, 2),
+            const ArgVec2&     wordURL = ArgVec2(2, 5));
+
+    /**
+     * @brief Generate a random Markdown list.
+     *
+     * Generate a random ordered or unordered list in Markdown format. This
+     * function is not exposed in the C wrapper.
+     *
+     * @param ordered Whether the list is ordered or unordered. By default
+     * false. (unordered)
+     * @param word The minimum and maximum possible number of words in a
+     * sentence fragment. By default 4 to 8.
+     * @param frag The minimum and maximum possible number of sentence fragments
+     * in a point. By default 1 to 2.
+     * @param point The minimum and maximum possible number of points in the
+     * list. By default 3 to 5.
+     *
+     * @return std::string The random Markdown list.
+     */
+    LIPSUM_API std::string
+               GenerateMarkdownList(bool           ordered = false,
+                                    const ArgVec2& word    = ArgVec2(4, 8),
+                                    const ArgVec2& frag    = ArgVec2(1, 2),
+                                    const ArgVec2& point   = ArgVec2(3, 5));
+
+    /**
+     * @brief Generate a random formatted paragraph.
+     *
+     * Generate a paragraph in Markdown format with bold, italic, and links.
+     * This function is not exposed in the C wrapper.
+     *
+     * @param word The minimum and maximum possible number of words in a
+     * sentence fragment. By default 4 to 9.
+     * @param frag The minimum and maximum possible number of sentence fragments
+     * in a sentence. By default 1 to 3.
+     * @param sent The minimum and maximum possible number of sentences in the
+     * paragraph. By default 5 to 8.
+     * @param wordFmt The minimum and maximum possible number of words in a
+     * sentence fragment in a formatted sentence. By default 4 to 8.
+     * @param fragFmt The minimum and maximum possible number of sentence
+     * fragments in a formatted sentence. By default 1 to 2.
+     * @param wordLink The minimum and maximum possible number of words in a
+     * link URL. By default 2 to 5.
+     * @param linkURL The URL to base links off of. By default
+     * https://example.com/.
+     * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+     *
+     * @return std::string The random paragraph.
+     */
+    LIPSUM_API std::string GenerateMarkdownParagraph(
+            const ArgVec2&     word      = ArgVec2(4, 9),
+            const ArgVec2&     frag      = ArgVec2(1, 3),
+            const ArgVec2&     sent      = ArgVec2(5, 8),
+            const ArgVec2&     wordFmt   = ArgVec2(4, 8),
+            const ArgVec2&     fragFmt   = ArgVec2(1, 2),
+            const ArgVec2&     wordLink  = ArgVec2(2, 5),
+            const std::string& linkURL   = std::string("https://example.com/"),
+            bool               useLipsum = true);
+
+    /**
+     * @brief Generate a random Markdown document.
+     *
+     * Generate a random document in Markdown format.
+     *
+     * @param word The minimum and maximum possible number of words in a
+     * sentence fragment. By default 4 to 9.
+     * @param frag The minimum and maximum possible number of sentence fragments
+     * in a sentence. By default 1 to 3.
+     * @param sent The minimum and maximum possible number of sentences in a
+     * paragraph. By default 5 to 8.
+     * @param point The minimum and maximum possible number of points in a list.
+     * By default 3 to 5.
+     * @param wordFmt The minimum and maximum possible number of words in a
+     * sentence fragment in a formatted sentence. By default 4 to 8.
+     * @param fragFmt The minimum and maximum possible number of sentence
+     * fragments in a formatted sentence. By default 1 to 2.
+     * @param wordHead The minimum and maximum possible number of words in a
+     * link URL or heading. By default 2 to 5.
+     * @param level The minimum and maximum possible heading levels, excluding
+     * the main heading. By default 2 to 4.
+     * @param linkURL The URL to base links off of. By default
+     * https://example.com/.
+     * @param numElements The number of paragraphs, headings, and lists total.
+     * By default 15.
+     *
+     * @return std::string The random Markdown document.
+     */
+    LIPSUM_API std::string GenerateMarkdownText(
+            const ArgVec2&     word     = ArgVec2(4, 9),
+            const ArgVec2&     frag     = ArgVec2(1, 3),
+            const ArgVec2&     sent     = ArgVec2(5, 8),
+            const ArgVec2&     point    = ArgVec2(3, 5),
+            const ArgVec2&     wordFmt  = ArgVec2(4, 8),
+            const ArgVec2&     fragFmt  = ArgVec2(1, 2),
+            const ArgVec2&     wordHead = ArgVec2(2, 5),
+            const ArgVec2&     level    = ArgVec2(2, 4),
+            const std::string& linkURL  = std::string("https://example.com/"),
+            int                numElements = 15);
 } // namespace lipsum
 
 /// Alias for namespace lipsum
 namespace lpsm = lipsum;
 
 #ifdef LIPSUM_IMPLEMENTATION
+
+std::string lpsm::Generator::md_paragraph(bool useLipsum)
+{
+    return lpsm::GenerateMarkdownParagraph(ArgVec2(4, 9),
+                                           ArgVec2(1, 3),
+                                           ArgVec2(5, 8),
+                                           ArgVec2(4, 8),
+                                           ArgVec2(1, 2),
+                                           ArgVec2(2, 5),
+                                           std::string("https://example.com/"),
+                                           useLipsum);
+}
+
+std::string lpsm::Generator::md_text(int numElements)
+{
+    return lpsm::GenerateMarkdownText(ArgVec2(4, 9),
+                                      ArgVec2(1, 3),
+                                      ArgVec2(5, 8),
+                                      ArgVec2(3, 5),
+                                      ArgVec2(4, 8),
+                                      ArgVec2(1, 2),
+                                      ArgVec2(2, 5),
+                                      ArgVec2(2, 4),
+                                      std::string("https://example.com/"),
+                                      numElements);
+}
+
+std::string lpsm::GenerateMarkdownText(const ArgVec2&     word,
+                                       const ArgVec2&     frag,
+                                       const ArgVec2&     sent,
+                                       const ArgVec2&     point,
+                                       const ArgVec2&     wordFmt,
+                                       const ArgVec2&     fragFmt,
+                                       const ArgVec2&     wordHead,
+                                       const ArgVec2&     level,
+                                       const std::string& linkURL,
+                                       int                numElements)
+{
+    std::string ret;
+    ret += lpsm::GenerateMarkdownHeader(1, wordHead);
+    ret += lpsm::GenerateMarkdownParagraph(word,
+                                           frag,
+                                           sent,
+                                           wordFmt,
+                                           fragFmt,
+                                           wordHead,
+                                           linkURL,
+                                           false);
+    numElements -= 2;
+    int           rand;
+    bool          ordered;
+    lpsm::ArgVec2 elem  = ArgVec2(0, 2);
+    lpsm::ArgVec2 order = ArgVec2(0, 1);
+    while (numElements > 0)
+    {
+        rand    = elem.Roll();
+        ordered = static_cast<bool>(order.Roll());
+        switch (rand)
+        {
+            case 0:
+            {
+                ret += lpsm::GenerateMarkdownParagraph(word,
+                                                       frag,
+                                                       sent,
+                                                       wordFmt,
+                                                       fragFmt,
+                                                       wordHead,
+                                                       linkURL,
+                                                       false);
+                break;
+            }
+            case 1:
+            {
+                ret += lpsm::GenerateMarkdownHeader(level.Roll(), wordHead);
+                break;
+            }
+            case 2:
+            {
+                ret += lpsm::GenerateMarkdownList(ordered,
+                                                  wordFmt,
+                                                  fragFmt,
+                                                  point);
+                break;
+            }
+        }
+        --numElements;
+    }
+    return ret;
+}
+
+std::string lpsm::GenerateMarkdownList(bool                 ordered,
+                                       const lpsm::ArgVec2& word,
+                                       const lpsm::ArgVec2& frag,
+                                       const lpsm::ArgVec2& point)
+{
+    std::string ret;
+    int         points = point.Roll();
+    for (int i = 0; i < points; ++i)
+    {
+        if (ordered)
+        {
+            ret += lpsm::internal::ToString(i + 1) += ". ";
+        }
+        else
+        {
+            ret += "- ";
+        }
+        ret += lpsm::GenerateSentence(word, frag) += "\n";
+    }
+    ret += "\n";
+    return ret;
+}
+
+int lpsm::CountSentences(const std::string& str)
+{
+    int res    = 0;
+    int urlNum = 0;
+    for (const char& c : str)
+    {
+        if (c == '(')
+        {
+            ++urlNum;
+        }
+        if (c == ')')
+        {
+            --urlNum;
+        }
+        if (c == '.' && urlNum == 0)
+        {
+            ++res;
+        }
+    }
+    return res;
+}
+
+std::string lpsm::GenerateMarkdownParagraph(const lpsm::ArgVec2& word,
+                                            const lpsm::ArgVec2& frag,
+                                            const lpsm::ArgVec2& sent,
+                                            const ArgVec2&       wordFmt,
+                                            const ArgVec2&       fragFmt,
+                                            const ArgVec2&       wordLink,
+                                            const std::string&   linkURL,
+                                            bool                 useLipsum)
+{
+    std::string   ret;
+    int           sents = sent.Roll();
+    int           fmtRoll;
+    bool          addLink;
+    bool          isBold;
+    lpsm::ArgVec2 linkEmph = ArgVec2(0, 1);
+    lpsm::ArgVec2 boldItal = ArgVec2(0, 1);
+    for (int i = 0; i < sents; ++i)
+    {
+        fmtRoll = sent.Roll();
+        addLink = static_cast<bool>(linkEmph.Roll());
+        isBold  = static_cast<bool>(boldItal.Roll());
+        if (i == 0 && useLipsum)
+        {
+            ret += lpsm::GenerateDefaultLipsumSentence();
+        }
+        else if ((fmtRoll == sent.min) && addLink)
+        {
+            ret += lpsm::GenerateMarkdownLink(linkURL,
+                                              wordFmt,
+                                              fragFmt,
+                                              wordLink);
+        }
+        else if ((fmtRoll == sent.min) && !addLink)
+        {
+            ret += lpsm::GenerateMarkdownEmphasis(isBold, wordFmt, fragFmt);
+        }
+        else
+        {
+            ret += lpsm::GenerateSentence(word, frag);
+        }
+        ret += " ";
+    }
+    ret += "\n\n";
+    return ret;
+}
+
+std::string lpsm::GenerateMarkdownLink(const std::string&   url,
+                                       const lpsm::ArgVec2& word,
+                                       const lpsm::ArgVec2& frag,
+                                       const lpsm::ArgVec2& wordURL)
+{
+    std::string ret;
+    ret += std::string("[") += lpsm::GenerateSentence(word, frag) +=
+            std::string("](") += url;
+    std::string words = lpsm::GenerateSentenceFragment(wordURL);
+    for (char& c : words)
+    {
+        if (c == ' ')
+        {
+            c = '-';
+        }
+    }
+    ret += std::string("#") += words += ")";
+    return ret;
+}
+
+std::string lpsm::GenerateMarkdownEmphasis(bool                 isBold,
+                                           const lpsm::ArgVec2& word,
+                                           const lpsm::ArgVec2& frag)
+{
+    std::string ret;
+    ret += "*";
+    if (isBold)
+    {
+        ret += "*";
+    }
+    ret += lpsm::GenerateSentence(word, frag);
+    ret += "*";
+    if (isBold)
+    {
+        ret += "*";
+    }
+    return ret;
+}
+
+std::string lpsm::GenerateMarkdownHeader(int level, const lpsm::ArgVec2& word)
+{
+    std::string ret;
+    for (int i = 0; i < level; ++i)
+    {
+        ret += "#";
+    }
+    ret += " ";
+    std::string words = lpsm::GenerateSentenceFragment(word);
+    words.at(0)       = std::toupper(words.at(0));
+    ret += words += "\n\n";
+    return ret;
+}
 
 std::string lpsm::Generator::word(int num)
 {
@@ -467,7 +906,7 @@ std::string lpsm::Generator::sentence(int num, bool useLipsum)
 }
 std::string lpsm::Generator::sentence_fragment()
 {
-    return lpsm::GenerateSentenceFragment(lpsm::ArgVec2(4, 9));
+    return lpsm::GenerateSentenceFragment();
 }
 std::string lpsm::Generator::paragraph(int num, bool useLipsum)
 {

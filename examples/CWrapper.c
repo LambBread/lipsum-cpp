@@ -11,13 +11,15 @@ int main(void)
     // 5-8 sentences per paragraph,
     // start with "Lorem ipsum..."
     char* generatedParagraph = lpsm_GenerateParagraph(4, 9, 1, 3, 5, 8, true);
-    char* htmlified          = lpsm_HTMLify(
-            "This is a paragraph\n\n&& And this is <<another paragraph.>>\n");
+
+    // generate markdown document with 15 "elements"
+    char* generatedMarkdown = lpsm_gen_md_text(15);
+
     printf("%s\n", generatedWords);
     printf("%s", generatedParagraph);
-    printf("%s", htmlified);
+    printf("%s", generatedMarkdown);
     lpsm_DeleteString(generatedParagraph);
-    lpsm_DeleteString(htmlified);
     lpsm_DeleteString(generatedWords);
+    lpsm_DeleteString(generatedMarkdown);
     return 0;
 }

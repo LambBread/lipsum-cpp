@@ -160,6 +160,8 @@ Utility scripts (see [`scripts/`](./scripts)):
 
 lipsum-cpp is under the BSD Zero-Clause License, a very permissive public-domain equivalent license. See [LICENSE.md](LICENSE.md) for details.
 
+Example [`Markdown.cpp`](./examples/Markdown.cpp) uses library [maddy](https://github.com/progsource/maddy), under MIT License.
+
 ---
 
 > Created by [LambBread](https://github.com/LambBread)

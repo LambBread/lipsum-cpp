@@ -42,12 +42,27 @@ extern "C" char* lpsm_gen_paragraph(int num, bool useLipsum)
     lpsm::Generator gen;
     return ConvertToCstr(gen.paragraph(num, useLipsum));
 }
+extern "C" char* lpsm_gen_md_paragraph(bool useLipsum)
+{
+    lpsm::Generator gen;
+    return ConvertToCstr(gen.md_paragraph(useLipsum));
+}
+extern "C" char* lpsm_gen_md_text(int numElements)
+{
+    lpsm::Generator gen;
+    return ConvertToCstr(gen.md_text(numElements));
+}
 
 extern "C" char*
 lpsm_GenerateSentence(int minWord, int maxWord, int minFrag, int maxFrag)
 {
     return ConvertToCstr(
             lpsm::GenerateSentenceX(minWord, maxWord, minFrag, maxFrag));
+}
+
+extern "C" int lpsm_CountSentences(const char* str)
+{
+    return lpsm::CountSentences(std::string(str));
 }
 
 extern "C" char* lpsm_GenerateParagraph(int  minWord,

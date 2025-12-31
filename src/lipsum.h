@@ -42,7 +42,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.2.3"
+#define LIPSUM_CPP_VERSION_C "0.3.0"
 
 #ifdef __cplusplus
 extern "C"
@@ -96,6 +96,42 @@ extern "C"
      * @return char* The random paragraph(s).
      */
     LIPSUMC_API char* lpsm_gen_paragraph(int num, bool useLipsum);
+
+    /**
+     * @brief Generate a Markdown paragraph.
+     *
+     * This function generates a paragraph in Markdown format with default
+     * arguments.
+     *
+     * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+     *
+     * @return char* The random Markdown paragraph.
+     */
+    LIPSUMC_API char* lpsm_gen_md_paragraph(bool useLipsum);
+
+    /**
+     * @brief Generate a Markdown document.
+     *
+     * This function generates a document in Markdown format with default
+     * arguments.
+     *
+     * @param numElements The number of elements (paragraph, list, heading) in
+     * the document.
+     *
+     * @return char* The random Markdown document.
+     */
+    LIPSUMC_API char* lpsm_gen_md_text(int numElements);
+
+    /**
+     * @brief Count the number of sentences in a string.
+     *
+     * Count the number of periods in a string, ignoring usage in Markdown URLs.
+     *
+     * @param str The string inputted.
+     *
+     * @return int The number of sentences.
+     */
+    LIPSUMC_API int lpsm_CountSentences(const char* str);
 
     /**
      * @brief Generate a random sentence.
@@ -222,7 +258,8 @@ extern "C"
      * @brief Turn a string into HTML paragraph tags.
      *
      * Add &lt;p&gt; and &lt;/p&gt; around the paragraphs and
-     * handle HTML entities like &amp;, &lt;, &gt;, etc.
+     * handle HTML entities like &amp;, &lt;, &gt;, etc. This function is
+     * deprecated.
      *
      * @return char* The HTML-ified string.
      *
