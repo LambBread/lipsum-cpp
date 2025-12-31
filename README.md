@@ -59,7 +59,7 @@ Not recommended.
 ```bash
 mkdir -p obj
 mkdir -p bin
-g++ -c src/lipsum.cpp -DLIPSUM_BUILD_STATIC -o obj/lipsum.o
+g++ -c src/lipsum_static.cpp -DLIPSUM_BUILD_STATIC -o obj/lipsum.o
 g++ -c src/lipsum_h.cpp -DLIPSUM_BUILD_STATIC -o obj/lipsum_h.o
 ar rcs bin/liblipsum-cpp.a obj/lipsum_h.o obj/lipsum.o
 # build example
