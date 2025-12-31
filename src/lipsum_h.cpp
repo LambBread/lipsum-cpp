@@ -3,7 +3,10 @@
  *
  * @brief Contains the definitions of all the C wrapper's functions.
  *
- * This file defines all the functions declared in lipsum.h.
+ * This file defines all the functions declared in lipsum.h. This file is under
+ * the BSD Zero-Clause License.
+ *
+ * @copyright Copyright (c) 2025 LambBread
  *
  * @author LambBread from github.com
  */
@@ -42,11 +45,13 @@ extern "C" char* lpsm_gen_paragraph(int num, bool useLipsum)
     lpsm::Generator gen;
     return ConvertToCstr(gen.paragraph(num, useLipsum));
 }
+
 extern "C" char* lpsm_gen_md_paragraph(bool useLipsum)
 {
     lpsm::Generator gen;
     return ConvertToCstr(gen.md_paragraph(useLipsum));
 }
+
 extern "C" char* lpsm_gen_md_text(int numElements)
 {
     lpsm::Generator gen;

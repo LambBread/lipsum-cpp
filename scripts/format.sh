@@ -1,10 +1,17 @@
 #!/bin/bash
 # This script runs clang-format on all of the source files.
-cd ..
-clang-format -i src/lipsum.hpp src/lipsum.h src/lipsum_h.cpp
+clang-format -i src/lipsum_h.cpp src/lipsum.hpp src/lipsum.h
+
+for file in src/lipsum/*.hpp; do
+    clang-format -i "$file"
+done
+
+for file in src/lipsum/*.inl; do
+    clang-format -i "$file"
+done
+
 
 for file in examples/*.cpp; do
     clang-format -i "$file"
 done
 clang-format -i examples/CWrapper.c
-cd - &>/dev/null

@@ -47,7 +47,7 @@ IncludeCategories:
     Priority: 1
   - Regex: '^".*"$'
     Priority: 2
-SortIncludes: true
+SortIncludes: false
 
 # Line breaking
 BreakConstructorInitializers: BeforeColon

@@ -4,7 +4,7 @@ A lightweight, header-only C++ library for generating sample Lorem Ipsum text. U
 
 ## Features
 
-- Header-only (just `lipsum.hpp` and `lipsum.inl` required)
+- Header-only (also possible to use an amalgamated `lipsum.hpp`)
 - Customizable number of paragraphs, sentences, sentence fragments, and words
 - C++ and C API (static/shared library and wrapper builds supported)
 - CMake support for easy integration
@@ -17,23 +17,40 @@ lipsum-cpp has been mainly tested on Linux and WebAssembly as well as cross-comp
 ### Prerequisites
 
 - A C/C++ compiler
-- Optionally CMake, a build system (e.g. Make, Ninja, Visual Studio, ...), Doxygen, Python, Git, and Clang format.
+- Optionally CMake, a build system (e.g. Make, Ninja, Visual Studio, ...), Doxygen, Python, Git, Clang format, and [quom](https://github.com/Viatorus/quom).
 
 #### Installation (Debian-based):
 
 ```bash
-#Required
+# Required
 sudo apt update
 sudo apt install build-essential
-#Recommended
+# Recommended
 sudo apt install cmake
-#Optional
-sudo apt install ninja-build python3 doxygen git clang-format
+
+# Optional
+sudo apt install ninja-build python3 python3-pip python3-venv doxygen git clang-format
+
+# may need to use venv on some systems
+pip install --user quom
+
 ```
 
 ### Header-only usage
 
-Simply copy `lipsum.hpp` and `lipsum.inl` into your source tree.
+Simply copy `src/` into your source tree or download an amalgamated single-header release from the `Releases` section.
+
+#### Amalgamating
+
+Install [quom](https://github.com/Viatorus/quom) via `pip`, such as with:
+
+```bash
+# may need to use venv for this depending on your system
+
+pip install --user quom
+```
+
+In the root of the project, run `scripts/amalgamate.sh`.
 
 ### Manual static library + C wrapper build
 

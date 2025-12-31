@@ -1,10 +1,13 @@
 /**
  * @file lipsum.h
  *
- * @brief C wrapper over lipsum.hpp
+ * @brief C wrapper over lipsum-cpp
  *
  * This contains the C wrapper over lipsum-cpp. It requires being built
- * as a static or shared library in order to function.
+ * as a static or shared library in order to function. This file is under the
+ * BSD Zero-Clause License.
+ *
+ * @copyright Copyright (c) 2025 LambBread
  *
  * @author LambBread from github.com
  *
@@ -42,7 +45,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.3.0"
+#define LIPSUM_CPP_VERSION_C "0.3.1"
 
 #ifdef __cplusplus
 extern "C"
@@ -123,15 +126,14 @@ extern "C"
     LIPSUMC_API char* lpsm_gen_md_text(int numElements);
 
     /**
-     * @brief Count the number of sentences in a string.
+     * @brief Generate a random sentence fragment.
      *
-     * Count the number of periods in a string, ignoring usage in Markdown URLs.
+     * @return char* The random sentence fragment.
      *
-     * @param str The string inputted.
-     *
-     * @return int The number of sentences.
+     * @param minWord Minimum number of words in the fragment.
+     * @param maxWord Maximum number of words in the fragment.
      */
-    LIPSUMC_API int lpsm_CountSentences(const char* str);
+    LIPSUMC_API char* lpsm_GenerateSentenceFragment(int minWord, int maxWord);
 
     /**
      * @brief Generate a random sentence.
@@ -261,11 +263,24 @@ extern "C"
      * handle HTML entities like &amp;, &lt;, &gt;, etc. This function is
      * deprecated.
      *
+     * @deprecated Use a Markdown parser instead.
+     *
      * @return char* The HTML-ified string.
      *
      * @param str The string inputted.
      */
     LIPSUMC_API char* lpsm_HTMLify(const char* str);
+
+    /**
+     * @brief Count the number of sentences in a string.
+     *
+     * Count the number of periods in a string, ignoring usage in Markdown URLs.
+     *
+     * @param str The string inputted.
+     *
+     * @return int The number of sentences.
+     */
+    LIPSUMC_API int lpsm_CountSentences(const char* str);
 
     /**
      * @brief Delete a string returned by a function.
@@ -276,16 +291,6 @@ extern "C"
      * @param str The string to delete.
      */
     LIPSUMC_API void lpsm_DeleteString(char* str);
-
-    /**
-     * @brief Generate a random sentence fragment.
-     *
-     * @return char* The random sentence fragment.
-     *
-     * @param minWord Minimum number of words in the fragment.
-     * @param maxWord Maximum number of words in the fragment.
-     */
-    LIPSUMC_API char* lpsm_GenerateSentenceFragment(int minWord, int maxWord);
 
 #ifdef __cplusplus
 }
