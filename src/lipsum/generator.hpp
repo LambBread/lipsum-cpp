@@ -17,6 +17,8 @@ namespace lipsum
     /**
      * @brief OOP layer over lipsum-cpp
      *
+     * @since 0.2.0
+     *
      * This provides a more user-friendly object-oriented layer over lipsum-cpp.
      * It uses mainly default arguments. Unlike most of the codebase which uses
      * PascalCase, the functions in this class use snake_case.
@@ -26,6 +28,8 @@ namespace lipsum
     public:
         /**
          * @brief Generate words.
+         *
+         * @since 0.2.0
          *
          * This function generates multiple words.
          *
@@ -37,6 +41,8 @@ namespace lipsum
 
         /**
          * @brief Generate sentences.
+         *
+         * @since 0.2.0
          *
          * This function generates multiple sentences with default arguments.
          *
@@ -51,6 +57,8 @@ namespace lipsum
         /**
          * @brief Generate a sentence fragment.
          *
+         * @since 0.2.0
+         *
          * This function generates a sentence fragment with default arguments.
          *
          * @return std::string The random sentence fragment.
@@ -59,6 +67,8 @@ namespace lipsum
 
         /**
          * @brief Generate paragraphs.
+         *
+         * @since 0.2.0
          *
          * This function generates multiple paragraphs with default arguments.
          *
@@ -73,18 +83,23 @@ namespace lipsum
         /**
          * @brief Generate a Markdown paragraph.
          *
+         * @since 0.3.0
+         *
          * This function generates a paragraph in Markdown format with default
          * arguments.
          *
+         * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
          * By default true.
          *
          * @return std::string The random Markdown paragraph.
          */
-        std::string md_paragraph(bool useLipsum = true);
+        std::string md_paragraph(int num = 1, bool useLipsum = true);
 
         /**
          * @brief Generate a Markdown document.
+         *
+         * @since 0.3.0
          *
          * This function generates a document in Markdown format with default
          * arguments.

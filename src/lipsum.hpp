@@ -62,7 +62,7 @@ namespace lpsm = lipsum;
 #    include "lipsum/misc.inl"
 #    include "lipsum/core_funcs.inl"
 #    include "lipsum/internal.inl"
-#    include "lipsum/core_xfuncs.inl"
+#    include "lipsum/xfuncs.inl"
 #    include "lipsum/argvec2.inl"
 
 #endif

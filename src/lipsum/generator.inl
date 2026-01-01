@@ -12,16 +12,17 @@
  */
 #pragma once
 
-std::string lpsm::Generator::md_paragraph(bool useLipsum)
+std::string lpsm::Generator::md_paragraph(int num, bool useLipsum)
 {
-    return lpsm::GenerateMarkdownParagraph(ArgVec2(4, 9),
-                                           ArgVec2(1, 3),
-                                           ArgVec2(5, 8),
-                                           ArgVec2(4, 8),
-                                           ArgVec2(1, 2),
-                                           ArgVec2(2, 5),
-                                           std::string("https://example.com/"),
-                                           useLipsum);
+    return lpsm::GenerateMarkdownParagraphs(num,
+                                            ArgVec2(4, 9),
+                                            ArgVec2(1, 3),
+                                            ArgVec2(5, 8),
+                                            ArgVec2(4, 8),
+                                            ArgVec2(1, 2),
+                                            ArgVec2(2, 5),
+                                            std::string("https://example.com/"),
+                                            useLipsum);
 }
 
 std::string lpsm::Generator::md_text(int numElements)

@@ -15,9 +15,11 @@
 /**
  * @brief The current version of lipsum-cpp.
  *
+ * @since 0.2.1
+ *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION "0.3.1"
+#define LIPSUM_CPP_VERSION "0.3.2"
 
 #ifndef __cplusplus
 #    error lipsum.hpp only supports C++, did you mean lipsum.h?
@@ -25,6 +27,8 @@
 
 /**
  * @brief Macro for shared libraries
+ *
+ * @since 0.1.2
  *
  * This macro helps with shared libraries on Windows by exporting
  * or importing functions.

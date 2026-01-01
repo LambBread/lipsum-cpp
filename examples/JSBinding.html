@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!--Compile the JS binding first to use this, and put the generated lipsum.js and lipsum.wasm in the directory-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lipsum-cpp embind example</title>
+</head>
+<body>
+    <script src="lipsum.js"></script>
+    <script>
+        createLipsumCpp().then((Module)=>
+            {
+                console.log(Module.lpsm_LipsumVersion());
+                const av2 = new Module.lpsm_ArgVec2(1, 6);
+                console.log(av2.Roll());
+                const gen = new Module.lpsm_Generator();
+                console.log(gen.md_text(20));
+                console.log(Module.lpsm_GenerateWord());
+                console.log(Module.lpsm_CountSentences("Yes this is a test. Testing 123. Testing 123. Foobar test."));
+            });
+    </script>
+</body>
+</html>

@@ -150,3 +150,24 @@ extern "C" char* lpsm_GenerateSentenceFragment(int minWord, int maxWord)
 {
     return ConvertToCstr(lpsm::GenerateSentenceFragmentX(minWord, maxWord));
 }
+
+extern "C" char* lpsm_GenerateText(int  minWord,
+                                   int  maxWord,
+                                   int  minFrag,
+                                   int  maxFrag,
+                                   int  minSent,
+                                   int  maxSent,
+                                   int  minPara,
+                                   int  maxPara,
+                                   bool useLipsum)
+{
+    return ConvertToCstr(lpsm::GenerateTextX(minWord,
+                                             maxWord,
+                                             minFrag,
+                                             maxFrag,
+                                             minSent,
+                                             maxSent,
+                                             minPara,
+                                             maxPara,
+                                             useLipsum));
+}

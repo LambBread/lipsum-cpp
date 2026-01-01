@@ -5,7 +5,7 @@
  * @brief Miscellaneous functions of lipsum-cpp
  *
  * This defines miscellaneous functions in lipsum-cpp,
- * such as CountSentences() and deprecated HTMLify. This file is under the BSD
+ * such as CountSentences() and deprecated HTMLify(). This file is under the BSD
  * Zero-Clause License.
  *
  * @copyright Copyright (c) 2025 LambBread
@@ -55,4 +55,9 @@ std::string lpsm::HTMLify(const std::string& str)
         }
     }
     return result;
+}
+
+std::string lpsm::LipsumVersion()
+{
+    return std::string(LIPSUM_CPP_VERSION);
 }

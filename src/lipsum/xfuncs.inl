@@ -1,12 +1,11 @@
 
 /**
- * @file lipsum/core_xfuncs.inl
+ * @file lipsum/xfuncs.inl
  *
- * @brief Core "X" functions of lipsum-cpp
+ * @brief X functions of lipsum-cpp
  *
- * This defines the "X" varieties of core functions in lipsum-cpp around
- * generation of words, sentences, paragraphs, etc. This file is under the BSD
- * Zero-Clause License.
+ * This defines the &quot;X&quot; variants of functions in lipsum-cpp. This file
+ * is under the BSD Zero-Clause License.
  *
  * @copyright Copyright (c) 2025 LambBread
  *
@@ -66,4 +65,21 @@ lpsm::GenerateSentenceX(int minWord, int maxWord, int minFrag, int maxFrag)
 std::string lpsm::GenerateSentenceFragmentX(int minWord, int maxWord)
 {
     return lpsm::GenerateSentenceFragment(lpsm::ArgVec2(minWord, maxWord));
+}
+
+std::string lpsm::GenerateTextX(int  minWord,
+                                int  maxWord,
+                                int  minFrag,
+                                int  maxFrag,
+                                int  minSent,
+                                int  maxSent,
+                                int  minPara,
+                                int  maxPara,
+                                bool useLipsum)
+{
+    return lpsm::GenerateText(lpsm::ArgVec2(minWord, maxWord),
+                              lpsm::ArgVec2(minFrag, maxFrag),
+                              lpsm::ArgVec2(minSent, maxSent),
+                              lpsm::ArgVec2(minPara, maxPara),
+                              useLipsum);
 }

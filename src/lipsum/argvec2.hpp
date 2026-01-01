@@ -18,6 +18,8 @@ namespace lipsum
     /**
      * @brief Store data for inputting into functions.
      *
+     * @since 0.1.0
+     *
      * This struct stores values min and max, which
      * are intended to be inputted into functions as arguments.
      * Not exposed in the C wrapper.
@@ -27,6 +29,8 @@ namespace lipsum
         /**
          * @brief Constructor for ArgVec2
          *
+         * @since 0.1.0
+         *
          * @param min Value to enter into this->min
          * @param max Value to enter into this->max
          */
@@ -34,6 +38,8 @@ namespace lipsum
 
         /**
          * @brief Return a number between min and max.
+         *
+         * @since 0.1.0
          *
          * This function returns a random value between min and max.
          *

@@ -164,3 +164,26 @@ std::string lpsm::GenerateParagraphs(int                  paraCount,
     }
     return result;
 }
+
+std::string lpsm::GenerateText(const ArgVec2& word,
+                               const ArgVec2& frag,
+                               const ArgVec2& sent,
+                               const ArgVec2& para,
+                               bool           useLipsum)
+{
+    std::string ret;
+    int         paras = para.Roll();
+    for (int i = 0; i < paras; ++i)
+    {
+        if (i == 0 && useLipsum)
+        {
+            ret += lpsm::GenerateParagraph(word, frag, sent, true);
+        }
+        else
+        {
+            ret += lpsm::GenerateParagraph(word, frag, sent, false);
+        }
+        ret += "\n";
+    }
+    return ret;
+}

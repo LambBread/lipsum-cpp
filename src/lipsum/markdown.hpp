@@ -16,6 +16,8 @@ namespace lipsum
     /**
      * @brief Generate a random Markdown header.
      *
+     * @since 0.3.0
+     *
      * Generate a random Markdown header. This function is not exposed in the C
      * wrapper.
      *
@@ -30,6 +32,8 @@ namespace lipsum
 
     /**
      * @brief Generate a random emphasized sentence.
+     *
+     * @since 0.3.0
      *
      * Generate a random sentence in Markdown format that is either bold or
      * italic. This function is not exposed in the C wrapper.
@@ -50,6 +54,8 @@ namespace lipsum
 
     /**
      * @brief Generate a random Markdown link.
+     *
+     * @since 0.3.0
      *
      * Generate a random link in Markdown format. This function is not exposed
      * in the C wrapper.
@@ -74,6 +80,8 @@ namespace lipsum
     /**
      * @brief Generate a random Markdown list.
      *
+     * @since 0.3.0
+     *
      * Generate a random ordered or unordered list in Markdown format. This
      * function is not exposed in the C wrapper.
      *
@@ -96,6 +104,8 @@ namespace lipsum
 
     /**
      * @brief Generate a random formatted paragraph.
+     *
+     * @since 0.3.0
      *
      * Generate a paragraph in Markdown format with bold, italic, and links.
      * This function is not exposed in the C wrapper.
@@ -127,9 +137,48 @@ namespace lipsum
             const ArgVec2&     wordLink  = ArgVec2(2, 5),
             const std::string& linkURL   = std::string("https://example.com/"),
             bool               useLipsum = true);
+    /**
+     * @brief Generate multiple random formatted paragraphs.
+     *
+     * @since 0.3.2
+     *
+     * Generate multiple paragraphs in Markdown format with bold, italic, and
+     * links. This function is not exposed in the C wrapper.
+     *
+     * @param paraCount The number of paragraphs. By default 5.
+     * @param word The minimum and maximum possible number of words in a
+     * sentence fragment. By default 4 to 9.
+     * @param frag The minimum and maximum possible number of sentence fragments
+     * in a sentence. By default 1 to 3.
+     * @param sent The minimum and maximum possible number of sentences in the
+     * paragraph. By default 5 to 8.
+     * @param wordFmt The minimum and maximum possible number of words in a
+     * sentence fragment in a formatted sentence. By default 4 to 8.
+     * @param fragFmt The minimum and maximum possible number of sentence
+     * fragments in a formatted sentence. By default 1 to 2.
+     * @param wordLink The minimum and maximum possible number of words in a
+     * link URL. By default 2 to 5.
+     * @param linkURL The URL to base links off of. By default
+     * https://example.com/.
+     * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+     *
+     * @return std::string The random paragraph.
+     */
+    LIPSUM_API std::string GenerateMarkdownParagraphs(
+            int                paraCount = 5,
+            const ArgVec2&     word      = ArgVec2(4, 9),
+            const ArgVec2&     frag      = ArgVec2(1, 3),
+            const ArgVec2&     sent      = ArgVec2(5, 8),
+            const ArgVec2&     wordFmt   = ArgVec2(4, 8),
+            const ArgVec2&     fragFmt   = ArgVec2(1, 2),
+            const ArgVec2&     wordLink  = ArgVec2(2, 5),
+            const std::string& linkURL   = std::string("https://example.com/"),
+            bool               useLipsum = true);
 
     /**
      * @brief Generate a random Markdown document.
+     *
+     * @since 0.3.0
      *
      * Generate a random document in Markdown format.
      *

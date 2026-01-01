@@ -195,3 +195,41 @@ std::string lpsm::GenerateMarkdownHeader(int level, const lpsm::ArgVec2& word)
     ret += words += "\n\n";
     return ret;
 }
+std::string lpsm::GenerateMarkdownParagraphs(int                  paraCount,
+                                             const lpsm::ArgVec2& word,
+                                             const lpsm::ArgVec2& frag,
+                                             const lpsm::ArgVec2& sent,
+                                             const lpsm::ArgVec2& wordFmt,
+                                             const lpsm::ArgVec2& fragFmt,
+                                             const lpsm::ArgVec2& wordLink,
+                                             const std::string&   linkURL,
+                                             bool                 useLipsum)
+{
+    std::string ret;
+    for (int i = 0; i < paraCount; ++i)
+    {
+        if (i == 0 && useLipsum)
+        {
+            ret += lpsm::GenerateMarkdownParagraph(word,
+                                                   frag,
+                                                   sent,
+                                                   wordFmt,
+                                                   fragFmt,
+                                                   wordLink,
+                                                   linkURL,
+                                                   true);
+        }
+        else
+        {
+            ret += lpsm::GenerateMarkdownParagraph(word,
+                                                   frag,
+                                                   sent,
+                                                   wordFmt,
+                                                   fragFmt,
+                                                   wordLink,
+                                                   linkURL,
+                                                   false);
+        }
+    }
+    return ret;
+}

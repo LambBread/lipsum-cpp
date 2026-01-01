@@ -20,6 +20,8 @@
 /**
  * @brief Macro for shared libraries
  *
+ * @since 0.1.2
+ *
  * This macro helps with shared libraries on Windows by exporting
  * or importing functions.
  */
@@ -43,9 +45,20 @@
 /**
  * @brief The current version of lipsum-cpp.
  *
+ * @since 0.2.1
+ *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.3.1"
+#define LIPSUM_CPP_VERSION_C "0.3.2"
+
+/**
+ * @brief Return the current version of lipsum-cpp
+ *
+ * @since 0.3.2
+ *
+ * This macro function simply expands to LIPSUM_CPP_VERSION_C.
+ */
+#define lpsm_LipsumVersion() LIPSUM_CPP_VERSION_C
 
 #ifdef __cplusplus
 extern "C"
@@ -57,6 +70,8 @@ extern "C"
     /**
      * @brief Generate words.
      *
+     * @since 0.2.3
+     *
      * This function generates multiple words.
      *
      * @param num The number of words.
@@ -67,6 +82,8 @@ extern "C"
 
     /**
      * @brief Generate sentences.
+     *
+     * @since 0.2.3
      *
      * This function generates multiple sentences with default arguments.
      *
@@ -81,6 +98,8 @@ extern "C"
     /**
      * @brief Generate a sentence fragment.
      *
+     * @since 0.2.3
+     *
      * This function generates a sentence fragment with default arguments.
      *
      * @return char* The random sentence fragment.
@@ -89,6 +108,8 @@ extern "C"
 
     /**
      * @brief Generate paragraphs.
+     *
+     * @since 0.2.3
      *
      * This function generates multiple paragraphs with default arguments.
      *
@@ -103,6 +124,8 @@ extern "C"
     /**
      * @brief Generate a Markdown paragraph.
      *
+     * @since 0.3.0
+     *
      * This function generates a paragraph in Markdown format with default
      * arguments.
      *
@@ -114,6 +137,8 @@ extern "C"
 
     /**
      * @brief Generate a Markdown document.
+     *
+     * @since 0.3.0
      *
      * This function generates a document in Markdown format with default
      * arguments.
@@ -128,6 +153,8 @@ extern "C"
     /**
      * @brief Generate a random sentence fragment.
      *
+     * @since 0.1.0
+     *
      * @return char* The random sentence fragment.
      *
      * @param minWord Minimum number of words in the fragment.
@@ -137,6 +164,8 @@ extern "C"
 
     /**
      * @brief Generate a random sentence.
+     *
+     * @since 0.0.2
      *
      * This function generates a sentence starting with a capital letter
      * and ending with a period, sometimes containing a comma.
@@ -153,6 +182,8 @@ extern "C"
 
     /**
      * @brief Generate a random paragraph.
+     *
+     * @since 0.0.2
      *
      * This function generates a random paragraph starting with a tab character
      * and ending in a line break, with each sentence separated by a space.
@@ -178,6 +209,8 @@ extern "C"
 
     /**
      * @brief Generate several random paragraphs at once.
+     *
+     * @since 0.0.2
      *
      * This function generates several random paragraphs, each separated by a
      * line break. Formerly known as lpsm_GenerateParagraphList().
@@ -206,6 +239,8 @@ extern "C"
     /**
      * @brief Generate a random word.
      *
+     * @since 0.0.3
+     *
      * This function generates a random word from a predefined list.
      *
      * @return char* The random word.
@@ -214,6 +249,8 @@ extern "C"
 
     /**
      * @brief Generate a specified number of random words.
+     *
+     * @since 0.2.2
      *
      * This function generates a sentence fragment with exactly wordCount words.
      *
@@ -226,6 +263,8 @@ extern "C"
     /**
      * @brief Generate the beginning Lorem Ipsum sentence.
      *
+     * @since 0.0.5
+     *
      * Returns the sentence "Lorem ipsum dolor sit amet, consectetur adipiscing
      * elit."
      *
@@ -235,6 +274,8 @@ extern "C"
 
     /**
      * @brief Generate multiple random sentences at once.
+     *
+     * @since 0.0.5
      *
      * Generate multiple random sentences separated with spaces. Does not add a
      * tab character before the sentences nor a line break after.
@@ -259,6 +300,8 @@ extern "C"
     /**
      * @brief Turn a string into HTML paragraph tags.
      *
+     * @since 0.0.6
+     *
      * Add &lt;p&gt; and &lt;/p&gt; around the paragraphs and
      * handle HTML entities like &amp;, &lt;, &gt;, etc. This function is
      * deprecated.
@@ -274,6 +317,8 @@ extern "C"
     /**
      * @brief Count the number of sentences in a string.
      *
+     * @since 0.3.0
+     *
      * Count the number of periods in a string, ignoring usage in Markdown URLs.
      *
      * @param str The string inputted.
@@ -285,12 +330,46 @@ extern "C"
     /**
      * @brief Delete a string returned by a function.
      *
+     * @since 0.0.8
+     *
      * Since pointers allocated with new[] cannot be deallocated with free(),
      * this function handles the deallocation.
      *
      * @param str The string to delete.
      */
     LIPSUMC_API void lpsm_DeleteString(char* str);
+
+    /**
+     * @brief Generate a random number of random paragraphs.
+     *
+     * @since 0.3.2
+     *
+     * @return char* The random text.
+     *
+     * @param minWord The minimum possible number of words in a sentence
+     * fragment.
+     * @param maxWord The maximum possible number of words in a sentence
+     * fragment.
+     * @param minFrag The minimum possible number of sentence fragments in a
+     * sentence.
+     * @param maxFrag The maximum possible number of sentence fragments in a
+     * sentence.
+     * @param minSent The minimum possible number of sentences in a paragraph.
+     * @param maxSent The maximum possible number of sentences in a paragraph.
+     * @param minPara The minimum possible number of paragraphs in the text.
+     * @param maxPara The maximum possible number of paragraphs in the text.
+     * @param useLipsum Whether "Lorem ipsum..." should start the first
+     * paragraph.
+     */
+    LIPSUMC_API char* lpsm_GenerateText(int  minWord,
+                                        int  maxWord,
+                                        int  minFrag,
+                                        int  maxFrag,
+                                        int  minSent,
+                                        int  maxSent,
+                                        int  minPara,
+                                        int  maxPara,
+                                        bool useLipsum);
 
 #ifdef __cplusplus
 }

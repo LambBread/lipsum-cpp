@@ -3,9 +3,9 @@
  *
  * @brief Core "X" functions of lipsum-cpp
  *
- * This declares the "X" varieties of core functions in lipsum-cpp around
- * generation of words, sentences, paragraphs, etc. This file is under the BSD
- * Zero-Clause License.
+ * This declares the &quot;X&quot; variants of core functions in lipsum-cpp
+ * around generation of words, sentences, paragraphs, etc. This file is under
+ * the BSD Zero-Clause License.
  *
  * @copyright Copyright (c) 2025 LambBread
  *
@@ -17,6 +17,8 @@ namespace lipsum
 {
     /**
      * @brief Generate a fragment of a sentence without punctuation.
+     *
+     * @since 0.1.1
      *
      * @xovload
      *
@@ -32,6 +34,8 @@ namespace lipsum
 
     /**
      * @brief Generate a random sentence.
+     *
+     * @since 0.1.1
      *
      * @xovload
      *
@@ -53,6 +57,8 @@ namespace lipsum
 
     /**
      * @brief Generate a random paragraph.
+     *
+     * @since 0.1.1
      *
      * @xovload
      *
@@ -83,6 +89,8 @@ namespace lipsum
 
     /**
      * @brief Generate several random paragraphs at once.
+     *
+     * @since 0.1.1
      *
      * @xovload
      *
@@ -116,6 +124,8 @@ namespace lipsum
     /**
      * @brief Generate multiple random sentences at once.
      *
+     * @since 0.1.1
+     *
      * @xovload
      *
      * @param sentCount The number of sentences. By default 6.
@@ -136,4 +146,42 @@ namespace lipsum
                                               int  minFrag   = 1,
                                               int  maxFrag   = 3,
                                               bool useLipsum = true);
+
+    /**
+     * @brief Generate a random number of random paragraphs.
+     *
+     * @since 0.3.2
+     *
+     * @xovload
+     *
+     * @return std::string The random text.
+     *
+     * @param minWord The minimum possible number of words in a sentence
+     * fragment. By default 4.
+     * @param maxWord The maximum possible number of words in a sentence
+     * fragment. By default 9.
+     * @param minFrag The minimum possible number of sentence fragments in a
+     * sentence. By default 1.
+     * @param maxFrag The maximum possible number of sentence fragments in a
+     * sentence. By default 3.
+     * @param minSent The minimum possible number of sentences in a paragraph.
+     * By default 5.
+     * @param maxSent The maximum possible number of sentences in a paragraph.
+     * By default 8.
+     * @param minPara The minimum possible number of paragraphs in the text. By
+     * default 1.
+     * @param maxPara The maximum possible number of paragraphs in the text. By
+     * default 4.
+     * @param useLipsum Whether "Lorem ipsum..." should start the first
+     * paragraph. By default true.
+     */
+    LIPSUM_API std::string GenerateTextX(int  minWord   = 4,
+                                         int  maxWord   = 9,
+                                         int  minFrag   = 1,
+                                         int  maxFrag   = 3,
+                                         int  minSent   = 5,
+                                         int  maxSent   = 8,
+                                         int  minPara   = 1,
+                                         int  maxPara   = 4,
+                                         bool useLipsum = true);
 } // namespace lipsum
