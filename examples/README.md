@@ -7,6 +7,8 @@ For each example, C is similar but with:
 - `lipsum.hpp` replaced with `lipsum.h`
 - Arguments explicitly provided to functions, such as `lpsm_GenerateParagraphs(5, 4, 9, 1, 3, 5, 8, true, 0)` replacing `lpsm::GenerateParagraphs()`
 
+Some features are not available, such as most Markdown functions and `lpsm::ArgVec2`.
+
 When using the C wrapper, remember to use `lpsm_DeleteString()` to avoid memory leaks!
 
 Example [`Markdown.cpp`](./Markdown.cpp) uses library [maddy](https://github.com/progsource/maddy), under MIT License.

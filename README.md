@@ -4,7 +4,7 @@ A lightweight, header-only C++ library for generating sample Lorem Ipsum text. U
 
 ## Features
 
-- Header-only (also possible to use an amalgamated `lipsum.hpp`)
+- Header-only (also possible to use an amalgamated single-header `lipsum.hpp`)
 - Customizable number of paragraphs, sentences, sentence fragments, and words
 - C++, C, and JavaScript API (static/shared library, wrapper, and Emscripten module builds supported)
 - CMake support for easy integration
@@ -16,8 +16,16 @@ lipsum-cpp has been mainly tested on Linux and WebAssembly as well as cross-comp
 
 ### Prerequisites
 
-- A C/C++ compiler
-- Optionally CMake, a build system (e.g. Make, Ninja, Visual Studio, ...), Doxygen, Python, Git, Clang format, and [quom](https://github.com/Viatorus/quom).
+- A C/C++ compiler (e.g. GCC, MSVC, Clang)
+- Optionally:
+    - CMake
+    - Emscripten
+    - a build system (e.g. Make, Ninja, MSBuild, ...)
+    - Doxygen
+    - Python
+    - Git
+    - Clang format
+    - [quom](https://github.com/Viatorus/quom)
 
 #### Installation (Debian-based):
 
@@ -29,7 +37,9 @@ sudo apt install build-essential
 sudo apt install cmake
 
 # Optional
-sudo apt install ninja-build python3 python3-pip python3-venv doxygen git clang-format
+sudo apt install ninja-build python3 python3-pip python3-ply python3-venv doxygen git clang-format
+
+# install emscripten here...
 
 # may need to use venv on some systems
 pip install --user quom
@@ -45,7 +55,7 @@ Simply copy `src/` into your source tree or download an amalgamated single-heade
 Install [quom](https://github.com/Viatorus/quom) via `pip`, such as with:
 
 ```bash
-# may need to use venv for this depending on your system
+# may need to use venv on some systems
 
 pip install --user quom
 ```
@@ -65,6 +75,15 @@ ar rcs bin/liblipsum-cpp.a obj/lipsum_h.o obj/lipsum.o
 # build example
 gcc examples/CWrapper.c -Isrc -Lbin -llipsum-cpp -DLIPSUM_BUILD_STATIC -o bin/CWrapper
 
+```
+
+### Build JS bindings
+
+Either use CMake with the option `LPSM_BUILD_JSBIND=ON` while using Emscripten toolchain, or run:
+
+```bash
+mkdir -p bin
+em++ src/jsbind/lipsum_binding_js.cpp -o bin/lipsum.js -s MODULARIZE=1 -s EXPORT_NAME=createLipsumCpp -lembind -Isrc/
 ```
 
 ### Using CMake (Recommended)
@@ -89,6 +108,8 @@ gcc examples/CWrapper.c -Isrc -Lbin -llipsum-cpp -DLIPSUM_BUILD_STATIC -o bin/CW
    Set `LPSM_BUILD_SHARED=ON` in your CMake options.
 
 5. For C wrapper builds, set either `LPSM_BUILD_STATIC` or `LPSM_BUILD_SHARED`, and `LPSM_BUILD_CWRAPPER` all to `ON`.
+
+Alternatively, use `FetchContent` instead of submodules and `add_subdirectory()`.
 
 ## Usage
 
