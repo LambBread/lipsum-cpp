@@ -6,7 +6,7 @@ A lightweight, header-only C++ library for generating sample Lorem Ipsum text. U
 
 - Header-only (also possible to use an amalgamated `lipsum.hpp`)
 - Customizable number of paragraphs, sentences, sentence fragments, and words
-- C++ and C API (static/shared library and wrapper builds supported)
+- C++, C, and JavaScript API (static/shared library, wrapper, and Emscripten module builds supported)
 - CMake support for easy integration
 - Example code and live demo available
 
@@ -166,6 +166,10 @@ The documentation is available [here](https://lambbread.github.io/lipsum-cpp-doc
 ## C API Usage
 
 For C projects, use the C wrapper (`lipsum.h`) and call functions with the `lpsm_` prefix. See the [`examples/README.md`](./examples/README.md) for details.
+
+## JS Binding Usage
+
+For JavaScript projects, usage is similar to the C API. See the [`src/jsbind/README.md`](./src/jsbind/README.md) and [example](./examples/JSBinding.html) for details.
 
 ## Scripts
 
