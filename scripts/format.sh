@@ -15,3 +15,4 @@ for file in examples/*.cpp; do
     clang-format -i "$file"
 done
 clang-format -i examples/CWrapper.c
+clang-format -i src/jsbind/lipsum_binding_js.cpp

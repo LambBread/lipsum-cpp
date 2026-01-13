@@ -6,7 +6,7 @@
  * This defines the macros for the current lipsum-cpp version as well as the
  * shared library macro. This file is under the BSD Zero-Clause License.
  *
- * @copyright Copyright (c) 2025 LambBread
+ * @copyright Copyright (c) 2026 LambBread
  *
  * @author LambBread from github.com
  */
@@ -19,7 +19,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION "0.3.2"
+#define LIPSUM_CPP_VERSION "0.3.3"
 
 #ifndef __cplusplus
 #    error lipsum.hpp only supports C++, did you mean lipsum.h?

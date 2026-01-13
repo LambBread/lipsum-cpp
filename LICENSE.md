@@ -1,6 +1,6 @@
 # BSD Zero Clause License (SPDX: 0BSD)
 
-Copyright © 2025 LambBread
+Copyright © 2026 LambBread
 
 Permission to use, copy, modify, and/or distribute this software for any purpose
 with or without fee is hereby granted.

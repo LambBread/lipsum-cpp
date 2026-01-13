@@ -6,7 +6,7 @@
  *
  * This declares struct ArgVec2. This file is under the BSD Zero Clause License.
  *
- * @copyright Copyright (c) 2025 LambBread
+ * @copyright Copyright (c) 2026 LambBread
  *
  * @author LambBread from github.com
  */
@@ -22,7 +22,6 @@ namespace lipsum
      *
      * This struct stores values min and max, which
      * are intended to be inputted into functions as arguments.
-     * Not exposed in the C wrapper.
      */
     struct LIPSUM_API ArgVec2
     {

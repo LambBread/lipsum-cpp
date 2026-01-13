@@ -6,7 +6,7 @@
  * This file defines all the functions declared in lipsum.h. This file is under
  * the BSD Zero-Clause License.
  *
- * @copyright Copyright (c) 2025 LambBread
+ * @copyright Copyright (c) 2026 LambBread
  *
  * @author LambBread from github.com
  */
@@ -20,6 +20,29 @@ static char* ConvertToCstr(const std::string& str)
     char*       cstr   = new char[result.size() + 1];
     strcpy(cstr, result.c_str());
     return cstr;
+}
+
+extern "C" lpsm_ArgVec2Handle lpsm_ArgVec2(int min, int max)
+{
+    return reinterpret_cast<lpsm_ArgVec2Handle>(new lpsm::ArgVec2(min, max));
+}
+
+extern "C" void lpsm_ArgVec2Destroy(lpsm_ArgVec2Handle av2)
+{
+    lpsm::ArgVec2* realAv2 = reinterpret_cast<lpsm::ArgVec2*>(av2);
+    delete realAv2;
+}
+extern "C" int lpsm_ArgVec2Roll(lpsm_ArgVec2Handle av2)
+{
+    return (reinterpret_cast<lpsm::ArgVec2*>(av2))->Roll();
+}
+extern "C" int lpsm_ArgVec2GetMin(lpsm_ArgVec2Handle av2)
+{
+    return (reinterpret_cast<lpsm::ArgVec2*>(av2))->min;
+}
+extern "C" int lpsm_ArgVec2GetMax(lpsm_ArgVec2Handle av2)
+{
+    return (reinterpret_cast<lpsm::ArgVec2*>(av2))->max;
 }
 
 extern "C" char* lpsm_gen_word(int num)

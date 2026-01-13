@@ -7,7 +7,7 @@
  * as a static or shared library in order to function. This file is under the
  * BSD Zero-Clause License.
  *
- * @copyright Copyright (c) 2025 LambBread
+ * @copyright Copyright (c) 2026 LambBread
  *
  * @author LambBread from github.com
  *
@@ -49,7 +49,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.3.2"
+#define LIPSUM_CPP_VERSION_C "0.3.3"
 
 /**
  * @brief Return the current version of lipsum-cpp
@@ -60,12 +60,86 @@
  */
 #define lpsm_LipsumVersion() LIPSUM_CPP_VERSION_C
 
+/**
+ * @brief A handle to a lpsm::ArgVec2
+ *
+ * @since 0.3.3
+ *
+ * This is a typedef of a pointer to a lpsm::ArgVec2.
+ */
+typedef void* lpsm_ArgVec2Handle;
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
 #include <stdbool.h>
+
+    /**
+     * @brief Create a lpsm::ArgVec2.
+     *
+     * @since 0.3.3
+     *
+     * This function creates a pointer pointing to a lpsm::ArgVec2.
+     *
+     * @param min Value to enter into the minimum value
+     * @param max Value to enter into the maximum value
+     *
+     * @return lpsm_ArgVec2Handle The lpsm::ArgVec2.
+     */
+    LIPSUMC_API lpsm_ArgVec2Handle lpsm_ArgVec2(int min, int max);
+
+    /**
+     * @brief Delete a lpsm::ArgVec2.
+     *
+     * @since 0.3.3
+     *
+     * This function deletes a lpsm::ArgVec2 allocated with
+     * lpsm_ArgVec2.
+     *
+     * @param av2 The lpsm::ArgVec2.
+     */
+    LIPSUMC_API void lpsm_ArgVec2Destroy(lpsm_ArgVec2Handle av2);
+
+    /**
+     * @brief Run lpsm::ArgVec2::Roll.
+     *
+     * @since 0.3.3
+     *
+     * This function calls lpsm::ArgVec2::Roll().
+     *
+     * @param av2 The lpsm::ArgVec2
+     *
+     * @return int The random number.
+     */
+    LIPSUMC_API int lpsm_ArgVec2Roll(lpsm_ArgVec2Handle av2);
+
+    /**
+     * @brief Get lpsm::ArgVec2::min
+     *
+     * @since 0.3.3
+     *
+     * This function retrieves the min property of a lpsm::ArgVec2.
+     *
+     * @param av2 The lpsm::ArgVec2
+     *
+     * @return int The min value
+     */
+    LIPSUMC_API int lpsm_ArgVec2GetMin(lpsm_ArgVec2Handle av2);
+
+    /**
+     * @brief Get lpsm::ArgVec2::max
+     *
+     * @since 0.3.3
+     *
+     * This function retrieves the max property of a lpsm::ArgVec2.
+     *
+     * @param av2 The lpsm::ArgVec2
+     *
+     * @return int The max value
+     */
+    LIPSUMC_API int lpsm_ArgVec2GetMax(lpsm_ArgVec2Handle av2);
 
     /**
      * @brief Generate words.

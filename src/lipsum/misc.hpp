@@ -8,7 +8,7 @@
  * such as CountSentences() and deprecated HTMLify(). This file is under the BSD
  * Zero-Clause License.
  *
- * @copyright Copyright (c) 2025 LambBread
+ * @copyright Copyright (c) 2026 LambBread
  *
  * @author LambBread from github.com
  */

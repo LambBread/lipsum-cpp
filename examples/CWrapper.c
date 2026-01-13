@@ -15,9 +15,17 @@ int main(void)
     // generate markdown document with 15 "elements"
     char* generatedMarkdown = lpsm_gen_md_text(15);
 
+    // create a lpsm::ArgVec2
+    lpsm_ArgVec2Handle handle = lpsm_ArgVec2(4, 10);
+    // roll
+    printf("%d\n", lpsm_ArgVec2Roll(handle));
+
     printf("%s\n", generatedWords);
     printf("%s", generatedParagraph);
     printf("%s", generatedMarkdown);
+
+    // delete stuff
+    lpsm_ArgVec2Destroy(handle);
     lpsm_DeleteString(generatedParagraph);
     lpsm_DeleteString(generatedWords);
     lpsm_DeleteString(generatedMarkdown);

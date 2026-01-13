@@ -7,7 +7,7 @@
  * This defines the &quot;X&quot; variants of functions in lipsum-cpp. This file
  * is under the BSD Zero-Clause License.
  *
- * @copyright Copyright (c) 2025 LambBread
+ * @copyright Copyright (c) 2026 LambBread
  *
  * @author LambBread from github.com
  */

@@ -6,7 +6,7 @@
  * This defines core functions in lipsum-cpp around generation of words,
  * sentences, paragraphs, etc. This file is under the BSD Zero-Clause License.
  *
- * @copyright Copyright (c) 2025 LambBread
+ * @copyright Copyright (c) 2026 LambBread
  *
  * @author LambBread from github.com
  */

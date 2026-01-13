@@ -9,7 +9,7 @@
  *
  * @author LambBread from github.com
  *
- * @copyright Copyright (c) 2025 LambBread
+ * @copyright Copyright (c) 2026 LambBread
  *
  * @example GenerateDefaultLipsumSentence.cpp
  * @example GenerateParagraph.cpp
