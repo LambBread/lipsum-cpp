@@ -1,7 +1,6 @@
 #ifndef LIPSUM_BUILD_STATIC
 #    define LIPSUM_IMPLEMENTATION // only for header-only usage
 #endif
-#include <iostream>
 
 #include "lipsum.hpp"
 int main()
@@ -20,5 +19,8 @@ int main()
                                          lpsm::ArgVec2(3, 6),
                                          false)
               << '\n';
+
+    // equivalent statement
+    std::cout << lpsm::GenerateSentencesX(4, 6, 9, 3, 6, false) << '\n';
     return 0;
 }

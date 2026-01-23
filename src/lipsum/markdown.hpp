@@ -18,8 +18,7 @@ namespace lipsum
      *
      * @since 0.3.0
      *
-     * Generate a random Markdown header. This function is not exposed in the C
-     * wrapper.
+     * Generate a random Markdown header.
      *
      * @param level The level of the heading. By default 1.
      * @param word The minimum and maximum possible number of words in the
@@ -36,7 +35,7 @@ namespace lipsum
      * @since 0.3.0
      *
      * Generate a random sentence in Markdown format that is either bold or
-     * italic. This function is not exposed in the C wrapper.
+     * italic.
      *
      * @param isBold Whether the sentence is bold or italic. By default true.
      * (bold)
@@ -57,8 +56,7 @@ namespace lipsum
      *
      * @since 0.3.0
      *
-     * Generate a random link in Markdown format. This function is not exposed
-     * in the C wrapper.
+     * Generate a random link in Markdown format.
      *
      * @param url The URL to base the link off of. By default
      * https://example.com/.
@@ -82,8 +80,7 @@ namespace lipsum
      *
      * @since 0.3.0
      *
-     * Generate a random ordered or unordered list in Markdown format. This
-     * function is not exposed in the C wrapper.
+     * Generate a random ordered or unordered list in Markdown format.
      *
      * @param ordered Whether the list is ordered or unordered. By default
      * false. (unordered)

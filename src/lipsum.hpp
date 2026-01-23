@@ -11,23 +11,27 @@
  *
  * @copyright Copyright (c) 2026 LambBread
  *
+ * @example Advanced.cpp
+ * @example Basic.cpp
  * @example GenerateDefaultLipsumSentence.cpp
+ * @example GenerateMarkdownEmphasis.cpp
+ * @example GenerateMarkdownHeader.cpp
  * @example GenerateParagraph.cpp
  * @example GenerateParagraphs.cpp
  * @example GenerateSentence.cpp
  * @example GenerateSentenceFragment.cpp
  * @example GenerateSentences.cpp
+ * @example GenerateText.cpp
  * @example GenerateWord.cpp
- * @example Markdown.cpp
- * @example FuncsX.cpp
- * @example Basic.cpp
  * @example GenerateWords.cpp
- * @example Advanced.cpp
+ * @example Markdown.cpp
+ * @example Misc.cpp
  */
 
 #pragma once
 
 #include <cctype>
+#include <iostream>
 #include <random>
 #include <sstream>
 #include <string>
@@ -41,6 +45,8 @@
 #include "lipsum/core_xfuncs.hpp"
 #include "lipsum/misc.hpp"
 #include "lipsum/markdown.hpp"
+#include "lipsum/md_xfuncs.hpp"
+
 /**
  * @namespace lipsum
  *

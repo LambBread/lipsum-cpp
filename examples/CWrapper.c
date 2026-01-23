@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "lipsum.h"
 
 int main(void)
@@ -12,7 +10,7 @@ int main(void)
     // start with "Lorem ipsum..."
     char* generatedParagraph = lpsm_GenerateParagraph(4, 9, 1, 3, 5, 8, true);
 
-    // generate markdown document with 15 "elements"
+    // generate markdown document with 15 elements
     char* generatedMarkdown = lpsm_gen_md_text(15);
 
     // create a lpsm::ArgVec2

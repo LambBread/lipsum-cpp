@@ -19,7 +19,6 @@
 #    error Must build JS wrapper with Emscripten
 #endif
 
-#include <string>
 #ifndef LIPSUM_BUILD_STATIC
 #    define LIPSUM_IMPLEMENTATION
 #endif
@@ -70,4 +69,9 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     function("lpsm_GenerateTextX", &lpsm::GenerateTextX);
     function("lpsm_GenerateMarkdownParagraphs",
              &lpsm::GenerateMarkdownParagraphs);
+    function("lpsm_GenerateMarkdownHeaderX", &lpsm::GenerateMarkdownHeaderX);
+    function("lpsm_GenerateMarkdownEmphasisX",
+             &lpsm::GenerateMarkdownEmphasisX);
+    function("lpsm_GenerateMarkdownLinkX", &lpsm::GenerateMarkdownLinkX);
+    function("lpsm_GenerateMarkdownListX", &lpsm::GenerateMarkdownListX);
 }

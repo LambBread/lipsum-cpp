@@ -1,7 +1,6 @@
 #ifndef LIPSUM_BUILD_STATIC
 #    define LIPSUM_IMPLEMENTATION // only for header-only usage
 #endif
-#include <iostream>
 
 #include "lipsum.hpp"
 
@@ -21,6 +20,12 @@ int main()
 
     // Generate 5 words.
     std::cout << generator.word(5) << '\n';
+
+    // Generate 5 Markdown paragraphs.
+    std::cout << generator.md_paragraph(5, true);
+
+    // Generate a Markdown document with 20 elements.
+    std::cout << generator.md_text(20);
 
     return 0;
 }

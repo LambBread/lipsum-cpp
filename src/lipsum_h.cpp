@@ -10,7 +10,7 @@
  *
  * @author LambBread from github.com
  */
-#include <string.h>
+#include <cstring>
 
 #include "lipsum.h"
 #include "lipsum.hpp"
@@ -20,6 +20,57 @@ static char* ConvertToCstr(const std::string& str)
     char*       cstr   = new char[result.size() + 1];
     strcpy(cstr, result.c_str());
     return cstr;
+}
+
+extern "C" char*
+lpsm_GenerateMarkdownHeader(int level, int minWord, int maxWord)
+{
+    return ConvertToCstr(
+            lpsm::GenerateMarkdownHeaderX(level, minWord, maxWord));
+}
+
+extern "C" char* lpsm_GenerateMarkdownEmphasis(
+        bool isBold, int minWord, int maxWord, int minFrag, int maxFrag)
+{
+    return ConvertToCstr(lpsm::GenerateMarkdownEmphasisX(isBold,
+                                                         minWord,
+                                                         maxWord,
+                                                         minFrag,
+                                                         maxFrag));
+}
+
+extern "C" char* lpsm_GenerateMarkdownLink(const char* url,
+                                           int         minWord,
+                                           int         maxWord,
+                                           int         minFrag,
+                                           int         maxFrag,
+                                           int         minWordURL,
+                                           int         maxWordURL)
+{
+    return ConvertToCstr(lpsm::GenerateMarkdownLinkX(url,
+                                                     minWord,
+                                                     maxWord,
+                                                     minFrag,
+                                                     maxFrag,
+                                                     minWordURL,
+                                                     maxWordURL));
+}
+
+extern "C" char* lpsm_GenerateMarkdownList(bool ordered,
+                                           int  minWord,
+                                           int  maxWord,
+                                           int  minFrag,
+                                           int  maxFrag,
+                                           int  minPoint,
+                                           int  maxPoint)
+{
+    return ConvertToCstr(lpsm::GenerateMarkdownListX(ordered,
+                                                     minWord,
+                                                     maxWord,
+                                                     minFrag,
+                                                     maxFrag,
+                                                     minPoint,
+                                                     maxPoint));
 }
 
 extern "C" lpsm_ArgVec2Handle lpsm_ArgVec2(int min, int max)
@@ -32,14 +83,17 @@ extern "C" void lpsm_ArgVec2Destroy(lpsm_ArgVec2Handle av2)
     lpsm::ArgVec2* realAv2 = reinterpret_cast<lpsm::ArgVec2*>(av2);
     delete realAv2;
 }
+
 extern "C" int lpsm_ArgVec2Roll(lpsm_ArgVec2Handle av2)
 {
     return (reinterpret_cast<lpsm::ArgVec2*>(av2))->Roll();
 }
+
 extern "C" int lpsm_ArgVec2GetMin(lpsm_ArgVec2Handle av2)
 {
     return (reinterpret_cast<lpsm::ArgVec2*>(av2))->min;
 }
+
 extern "C" int lpsm_ArgVec2GetMax(lpsm_ArgVec2Handle av2)
 {
     return (reinterpret_cast<lpsm::ArgVec2*>(av2))->max;

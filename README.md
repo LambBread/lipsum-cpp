@@ -117,10 +117,10 @@ Alternatively, use `FetchContent` instead of submodules and `add_subdirectory()`
 
 ```cpp
 #ifndef LIPSUM_BUILD_STATIC
-#define LIPSUM_IMPLEMENTATION //only for header-only usage
+#    define LIPSUM_IMPLEMENTATION // only for header-only usage
 #endif
+
 #include "lipsum.hpp"
-#include <iostream>
 
 int main()
 {
@@ -129,49 +129,54 @@ int main()
 
     // Generate 3 paragraphs.
     std::cout << generator.paragraph(3, true);
-    
+
     // Generate 6 sentences.
     std::cout << generator.sentence(6, true) << '\n';
-    
+
     // Generate a sentence fragment.
     std::cout << generator.sentence_fragment() << '\n';
-    
+
     // Generate 5 words.
     std::cout << generator.word(5) << '\n';
-    
+
+    // Generate 5 Markdown paragraphs.
+    std::cout << generator.md_paragraph(5, true);
+
+    // Generate a Markdown document with 20 elements.
+    std::cout << generator.md_text(20);
+
     return 0;
 }
-
 ```
 
 ### Advanced example
 
 ```cpp
 #ifndef LIPSUM_BUILD_STATIC
-#define LIPSUM_IMPLEMENTATION //only for header-only usage
+#    define LIPSUM_IMPLEMENTATION // only for header-only usage
 #endif
+
 #include "lipsum.hpp"
-#include <iostream>
 int main()
 {
-    //generate 5 paragraphs 
-    //of 5-8 sentences 
-    //of 1-3 sentence fragments
-    //of 4-9 words, 
-    //starting with "Lorem ipsum..." (default)
+    // generate 5 paragraphs
+    // of 5-8 sentences
+    // of 1-3 sentence fragments
+    // of 4-9 words,
+    // starting with "Lorem ipsum..." (default)
     std::cout << lpsm::GenerateParagraphs();
-    //generate 10 paragraphs 
-    //of 7-10 sentences 
-    //of 3-6 sentence fragments 
-    //of 6-9 words, 
-    //not starting with "Lorem ipsum..."
-    std::cout << lpsm::GenerateParagraphs(
-        10, 
-        lpsm::ArgVec2(6, 9),
-        lpsm::ArgVec2(3, 6),
-        lpsm::ArgVec2(7, 10),
-        false
-    );
+    // generate 10 paragraphs
+    // of 7-10 sentences
+    // of 3-6 sentence fragments
+    // of 6-9 words,
+    // not starting with "Lorem ipsum..."
+    std::cout << lpsm::GenerateParagraphs(10,
+                                          lpsm::ArgVec2(6, 9),
+                                          lpsm::ArgVec2(3, 6),
+                                          lpsm::ArgVec2(7, 10),
+                                          false);
+    // equivalent statement
+    std::cout << lpsm::GenerateParagraphsX(10, 6, 9, 3, 6, 7, 10, false);
     return 0;
 }
 ```

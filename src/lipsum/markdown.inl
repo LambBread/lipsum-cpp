@@ -184,6 +184,11 @@ std::string lpsm::GenerateMarkdownEmphasis(bool                 isBold,
 
 std::string lpsm::GenerateMarkdownHeader(int level, const lpsm::ArgVec2& word)
 {
+    if (level > 6 || level < 1)
+    {
+        std::cout << "lipsum-cpp warning: invalid header level " << level
+                  << ", expected from 1 to 6\n";
+    }
     std::string ret;
     for (int i = 0; i < level; ++i)
     {

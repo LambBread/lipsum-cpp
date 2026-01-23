@@ -55,6 +55,7 @@ namespace lipsum
      * @brief Count the number of sentences in a string.
      *
      * Count the number of periods in a string, ignoring usage in Markdown URLs.
+     * (i.e. in parentheses)
      *
      * @since 0.3.0
      *

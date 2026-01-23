@@ -85,8 +85,8 @@ namespace lipsum
          *
          * @since 0.3.0
          *
-         * This function generates a paragraph in Markdown format with default
-         * arguments.
+         * This function generates multiple paragraphs in Markdown format with
+         * default arguments.
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.

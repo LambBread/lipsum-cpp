@@ -49,7 +49,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.3.3"
+#define LIPSUM_CPP_VERSION_C "0.3.4"
 
 /**
  * @brief Return the current version of lipsum-cpp
@@ -59,6 +59,9 @@
  * This macro function simply expands to LIPSUM_CPP_VERSION_C.
  */
 #define lpsm_LipsumVersion() LIPSUM_CPP_VERSION_C
+
+#include <stdbool.h>
+#include <stdio.h>
 
 /**
  * @brief A handle to a lpsm::ArgVec2
@@ -74,7 +77,107 @@ extern "C"
 {
 #endif
 
-#include <stdbool.h>
+    /**
+     * @brief Generate a random Markdown header.
+     *
+     * @since 0.3.4
+     *
+     * Generate a random Markdown header.
+     *
+     * @param level The level of the heading.
+     * @param minWord The minimum possible number of words in the
+     * heading.
+     * @param maxWord The maximum possible number of words in the heading.
+     *
+     * @return char* The random heading.
+     */
+    LIPSUMC_API char*
+    lpsm_GenerateMarkdownHeader(int level, int minWord, int maxWord);
+
+    /**
+     * @brief Generate a random emphasized sentence.
+     *
+     * @since 0.3.4
+     *
+     * Generate a random sentence in Markdown format that is either bold or
+     * italic.
+     *
+     * @param isBold Whether the sentence is bold or italic.
+     * @param minWord The minimum possible number of words in a
+     * sentence fragment.
+     * @param maxWord The maximum possible number of words in a sentence
+     * fragment.
+     * @param minFrag The minimum possible number of sentence fragments
+     * in the sentence.
+     * @param maxFrag The maximum possible number of sentence fragments in the
+     * sentence.
+     *
+     * @return char* The random emphasized sentence.
+     */
+    LIPSUMC_API char* lpsm_GenerateMarkdownEmphasis(
+            bool isBold, int minWord, int maxWord, int minFrag, int maxFrag);
+
+    /**
+     * @brief Generate a random Markdown link.
+     *
+     * @since 0.3.4
+     *
+     * Generate a random link in Markdown format.
+     *
+     * @param url The URL to base the link off of.
+     * @param minWord The minimum possible number of words in a
+     * sentence fragment.
+     * @param maxWord The maximum possible number of words in a sentence
+     * fragment.
+     * @param minFrag The minimum possible number of sentence fragments
+     * in the sentence.
+     * @param maxFrag The maximum possible number of sentence fragments in the
+     * sentence.
+     * @param minWordURL The minimum possible number of words at the
+     * end of the URL.
+     * @param maxWordURL The maximum possible number of words at the end of the
+     * URL.
+     *
+     * @return char* The random link.
+     */
+    LIPSUMC_API char* lpsm_GenerateMarkdownLink(const char* url,
+                                                int         minWord,
+                                                int         maxWord,
+                                                int         minFrag,
+                                                int         maxFrag,
+                                                int         minWordURL,
+                                                int         maxWordURL);
+
+    /**
+     * @brief Generate a random Markdown list.
+     *
+     * @since 0.3.4
+     *
+     * Generate a random ordered or unordered list in Markdown format.
+     *
+     * @param ordered Whether the list is ordered or unordered.
+     * @param minWord The minimum possible number of words in a
+     * sentence fragment.
+     * @param maxWord The maximum possible number of words in a
+     * sentence fragment.
+     * @param minFrag The minimum possible number of sentence fragments
+     * in a point.
+     * @param maxFrag The maximum possible number of sentence fragments
+     * in a point.
+     * @param minPoint The minimum possible number of points in the
+     * list.
+     * @param maxPoint The maximum possible number of points in the
+     * list.
+     *
+     * @return char* The random Markdown list.
+     */
+    LIPSUMC_API char* lpsm_GenerateMarkdownList(bool ordered,
+                                                int  minWord,
+                                                int  maxWord,
+                                                int  minFrag,
+                                                int  maxFrag,
+                                                int  minPoint,
+                                                int  maxPoint);
 
     /**
      * @brief Create a lpsm::ArgVec2.
@@ -200,8 +303,8 @@ extern "C"
      *
      * @since 0.3.0
      *
-     * This function generates a paragraph in Markdown format with default
-     * arguments.
+     * This function generates multiple paragraphs in Markdown format with
+     * default arguments.
      *
      * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
      *

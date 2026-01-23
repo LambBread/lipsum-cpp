@@ -12,6 +12,48 @@
  * @author LambBread from github.com
  */
 #pragma once
+
+std::string lpsm::GenerateMarkdownHeaderX(int level, int minWord, int maxWord)
+{
+    return lpsm::GenerateMarkdownHeader(level, lpsm::ArgVec2(minWord, maxWord));
+}
+
+std::string lpsm::GenerateMarkdownEmphasisX(
+        bool isBold, int minWord, int maxWord, int minFrag, int maxFrag)
+{
+    return lpsm::GenerateMarkdownEmphasis(isBold,
+                                          lpsm::ArgVec2(minWord, maxWord),
+                                          lpsm::ArgVec2(minFrag, maxFrag));
+}
+
+std::string lpsm::GenerateMarkdownLinkX(const std::string& url,
+                                        int                minWord,
+                                        int                maxWord,
+                                        int                minFrag,
+                                        int                maxFrag,
+                                        int                minWordURL,
+                                        int                maxWordURL)
+{
+    return lpsm::GenerateMarkdownLink(url,
+                                      lpsm::ArgVec2(minWord, maxWord),
+                                      lpsm::ArgVec2(minFrag, maxFrag),
+                                      lpsm::ArgVec2(minWordURL, maxWordURL));
+}
+
+std::string lpsm::GenerateMarkdownListX(bool ordered,
+                                        int  minWord,
+                                        int  maxWord,
+                                        int  minFrag,
+                                        int  maxFrag,
+                                        int  minPoint,
+                                        int  maxPoint)
+{
+    return lpsm::GenerateMarkdownList(ordered,
+                                      lpsm::ArgVec2(minWord, maxWord),
+                                      lpsm::ArgVec2(minFrag, maxFrag),
+                                      lpsm::ArgVec2(minPoint, maxPoint));
+}
+
 std::string lpsm::GenerateSentencesX(int  sentCount,
                                      int  minWord,
                                      int  maxWord,

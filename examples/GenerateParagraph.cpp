@@ -1,7 +1,6 @@
 #ifndef LIPSUM_BUILD_STATIC
 #    define LIPSUM_IMPLEMENTATION // only for header-only usage
 #endif
-#include <iostream>
 
 #include "lipsum.hpp"
 int main()
@@ -19,5 +18,8 @@ int main()
                                          lpsm::ArgVec2(3, 6),
                                          lpsm::ArgVec2(7, 10),
                                          false);
+
+    // equivalent statement
+    std::cout << lpsm::GenerateParagraphX(6, 9, 3, 6, 7, 10, false);
     return 0;
 }
