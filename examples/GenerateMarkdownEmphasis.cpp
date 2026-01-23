@@ -12,5 +12,8 @@ int main()
     std::cout << lpsm::GenerateMarkdownEmphasis(false,
                                                 lpsm::ArgVec2(6, 9),
                                                 lpsm::ArgVec2(3, 6));
+
+    // equivalent statement
+    std::cout << lpsm::GenerateMarkdownEmphasisX(false, 6, 9, 3, 6);
     return 0;
 }

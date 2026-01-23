@@ -10,5 +10,8 @@ int main()
 
     // generate subtitle header with 6-9 words
     std::cout << lpsm::GenerateMarkdownHeader(2, lpsm::ArgVec2(6, 9));
+
+    // equivalent statement
+    std::cout << lpsm::GenerateMarkdownHeaderX(2, 6, 9);
     return 0;
 }
