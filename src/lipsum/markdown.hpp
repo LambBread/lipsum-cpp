@@ -105,7 +105,6 @@ namespace lipsum
      * @since 0.3.0
      *
      * Generate a paragraph in Markdown format with bold, italic, and links.
-     * This function is not exposed in the C wrapper.
      *
      * @param word The minimum and maximum possible number of words in a
      * sentence fragment. By default 4 to 9.
@@ -121,7 +120,8 @@ namespace lipsum
      * link URL. By default 2 to 5.
      * @param linkURL The URL to base links off of. By default
      * https://example.com/.
-     * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+     * @param useLipsum Whether "Lorem ipsum..." should start the paragraph. By
+     * default true.
      *
      * @return std::string The random paragraph.
      */
@@ -134,13 +134,14 @@ namespace lipsum
             const ArgVec2&     wordLink  = ArgVec2(2, 5),
             const std::string& linkURL   = std::string("https://example.com/"),
             bool               useLipsum = true);
+
     /**
      * @brief Generate multiple random formatted paragraphs.
      *
      * @since 0.3.2
      *
      * Generate multiple paragraphs in Markdown format with bold, italic, and
-     * links. This function is not exposed in the C wrapper.
+     * links.
      *
      * @param paraCount The number of paragraphs. By default 5.
      * @param word The minimum and maximum possible number of words in a
@@ -157,7 +158,8 @@ namespace lipsum
      * link URL. By default 2 to 5.
      * @param linkURL The URL to base links off of. By default
      * https://example.com/.
-     * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+     * @param useLipsum Whether "Lorem ipsum..." should start the first
+     * paragraph. By default true.
      *
      * @return std::string The random paragraph.
      */

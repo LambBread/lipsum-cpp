@@ -1,11 +1,12 @@
 PROJECT_NAME = "lipsum-cpp"
 PROJECT_BRIEF = "A C++/C library for generating sample text"
-PROJECT_NUMBER = "0.3.4"
+PROJECT_NUMBER = "0.3.5"
 INPUT = src
 EXAMPLE_PATH = examples/
 RECURSIVE = YES
 GENERATE_LATEX = NO
 OUTPUT_DIRECTORY = docs
 ALIASES += "xovload=This function only differs from the function of the similar name in that it uses minimum and maximum values instead of lipsum::ArgVec2."
+ALIASES += "sovload=This function only differs from the function of the similar name in that it uses lpsm_ArgVec2Handle instead of separate minimum and maximum arguments. The arguments must be allocated with function lpsm_ArgVec2(), and deallocation is handled automatically if argument del is true."
 WARN_IF_UNDOCUMENTED = NO
 WARN_NO_PARAMDOC = YES

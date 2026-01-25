@@ -7,7 +7,7 @@ For each example, C is similar but with:
 - `lipsum.hpp` replaced with `lipsum.h`
 - Arguments explicitly provided to functions, such as `lpsm_GenerateParagraphs(5, 4, 9, 1, 3, 5, 8, true)` replacing `lpsm::GenerateParagraphs()`
 
-Some features are not available in the C wrapper, such as internal functions and most Markdown functions.
+Internal functions such as `lpsm::internal::RandomNumber` are not available in the C wrapper.
 
 When using the C wrapper, remember to use `lpsm_DeleteString()` to avoid memory leaks!
 

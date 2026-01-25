@@ -106,7 +106,7 @@ namespace lipsum
      * @since 0.0.2
      *
      * This function generates several random paragraphs, each separated by a
-     * line break. Formerly known as lipsum::GenerateParagraphList().
+     * line break. Formerly known as GenerateParagraphList().
      *
      * @return std::string The random paragraphs.
      *
