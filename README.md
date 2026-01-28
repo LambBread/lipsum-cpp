@@ -1,6 +1,6 @@
 # lipsum-cpp
 
-A lightweight, header-only C++ library for generating sample Lorem Ipsum text. Useful for prototyping apps, UI testing, and anywhere placeholder text is needed.
+A header-only C++ library for generating sample Lorem Ipsum text. Useful for prototyping apps, UI testing, and anywhere placeholder text is needed.
 
 ## Features
 
