@@ -1,3 +1,5 @@
+# Makefile for Linux
+# This is a Makefile targeting Linux which calls CMake and handles packaging of new releases.
 BUILD_DIR := build
 PKG_DIR := bin
 SRC_DIR := src
