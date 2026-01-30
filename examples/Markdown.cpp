@@ -1,5 +1,5 @@
-#ifndef LPSM_BUILD_STATIC
-#    define LPSM_IMPLEMENTATION
+#ifndef LIPSUM_BUILD_STATIC
+#    define LIPSUM_IMPLEMENTATION
 #endif
 #include <memory>
 #ifdef __EMSCRIPTEN__

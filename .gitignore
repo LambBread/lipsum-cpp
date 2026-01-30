@@ -5,4 +5,4 @@ docs/
 *~
 *.swp
 
-compile.sh
+# compile.sh

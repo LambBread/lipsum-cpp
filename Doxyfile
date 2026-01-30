@@ -10,3 +10,6 @@ ALIASES += "xovload=This function only differs from the function of the similar 
 ALIASES += "sovload=This function only differs from the function of the similar name in that it uses lpsm_ArgVec2Handle instead of separate minimum and maximum arguments. The arguments must be allocated with function lpsm_ArgVec2(), and deallocation is handled automatically if argument del is true."
 WARN_IF_UNDOCUMENTED = NO
 WARN_NO_PARAMDOC = YES
+WARN_IF_DOC_ERROR = YES
+QUIET = YES
+WARNINGS = YES

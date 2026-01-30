@@ -36,6 +36,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "lipsum/core.hpp"
 #include "lipsum/internal.hpp"

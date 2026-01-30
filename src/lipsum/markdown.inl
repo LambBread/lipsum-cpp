@@ -152,6 +152,7 @@ std::string lpsm::GenerateMarkdownLink(const std::string&   url,
     ret += std::string("[") += lpsm::GenerateSentence(word, frag) +=
             std::string("](") += url;
     std::string words = lpsm::GenerateSentenceFragment(wordURL);
+    /*
     for (char& c : words)
     {
         if (c == ' ')
@@ -159,6 +160,8 @@ std::string lpsm::GenerateMarkdownLink(const std::string&   url,
             c = '-';
         }
     }
+    */
+    std::replace(words.begin(), words.end(), ' ', '-');
     ret += std::string("#") += words += ")";
     return ret;
 }
