@@ -12,7 +12,7 @@ CMAKE_OPTS := -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON \
 			  -DLPSM_BUILD_DOCS=ON -DLPSM_BUILD_EXAMPLES=ON -DLPSM_BUILD_SAMPLE=ON \
 			  -DLPSM_BUILD_JSBIND=ON -DLPSM_FORMAT=ON
 
-.PHONY: all clean build configure em_configure em_build format amalgamate pkg total_clean
+.PHONY: all clean build configure em_configure em_build format amalgamate pkg total_clean sample
 
 all: build
 
@@ -29,6 +29,10 @@ em_build: em_configure
 	cmake --build $(BUILD_DIR)
 
 format:
+	cmake --build $(BUILD_DIR) --target format
+
+sample:
+	cmake --build $(BUILD_DIR) --target sample
 	cmake --build $(BUILD_DIR) --target format
 
 amalgamate:

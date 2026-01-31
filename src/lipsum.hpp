@@ -18,6 +18,9 @@
  * @example GenerateMarkdownHeader.cpp
  * @example GenerateMarkdownLink.cpp
  * @example GenerateMarkdownList.cpp
+ * @example GenerateMarkdownParagraph.cpp
+ * @example GenerateMarkdownParagraphs.cpp
+ * @example GenerateMarkdownText.cpp
  * @example GenerateParagraph.cpp
  * @example GenerateParagraphs.cpp
  * @example GenerateSentence.cpp

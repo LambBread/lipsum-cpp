@@ -5,7 +5,7 @@
 #include "lipsum.hpp"
 int main()
 {
-    // prints "Lorem ipsum dolor sit amet..."
+    // prints default "Lorem ipsum..." sentence
     std::cout << lpsm::GenerateDefaultLipsumSentence() << '\n';
     return 0;
 }
