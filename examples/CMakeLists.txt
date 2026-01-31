@@ -22,6 +22,8 @@ set(LPSM_EXAMPLES_TARGETS
     Misc
     GenerateMarkdownHeader
     GenerateMarkdownEmphasis
+    GenerateMarkdownLink
+    GenerateMarkdownList
 )
 foreach(target IN LISTS LPSM_EXAMPLES_TARGETS)
     add_executable(${target} "${CMAKE_CURRENT_SOURCE_DIR}/${target}.cpp")

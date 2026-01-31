@@ -16,6 +16,8 @@
  * @example GenerateDefaultLipsumSentence.cpp
  * @example GenerateMarkdownEmphasis.cpp
  * @example GenerateMarkdownHeader.cpp
+ * @example GenerateMarkdownLink.cpp
+ * @example GenerateMarkdownList.cpp
  * @example GenerateParagraph.cpp
  * @example GenerateParagraphs.cpp
  * @example GenerateSentence.cpp
