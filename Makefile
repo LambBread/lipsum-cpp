@@ -1,5 +1,7 @@
 # Makefile for Linux
-# This is a Makefile targeting Linux which calls CMake and handles packaging of new releases.
+#
+# This is a Makefile targeting Linux, intended for development which 
+# calls CMake and handles packaging of new releases.
 BUILD_DIR := build
 PKG_DIR := bin
 SRC_DIR := src
@@ -8,7 +10,7 @@ CMAKE_GENERATOR := Ninja
 BUILD_TYPE := Release
 CMAKE_OPTS := -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON \
 			  -DLPSM_BUILD_DOCS=ON -DLPSM_BUILD_EXAMPLES=ON -DLPSM_BUILD_SAMPLE=ON \
-			  -DLPSM_BUILD_JSBIND=ON
+			  -DLPSM_BUILD_JSBIND=ON -DLPSM_FORMAT=ON
 
 .PHONY: all clean build configure em_configure em_build format amalgamate pkg total_clean
 
@@ -27,7 +29,7 @@ em_build: em_configure
 	cmake --build $(BUILD_DIR)
 
 format:
-	scripts/format.sh
+	cmake --build $(BUILD_DIR) --target format
 
 amalgamate:
 	mkdir -p $(PKG_DIR)
