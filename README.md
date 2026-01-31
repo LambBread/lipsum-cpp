@@ -20,7 +20,8 @@ lipsum-cpp has been mainly tested on Linux and WebAssembly as well as cross-comp
 - Optionally:
     - CMake
     - Emscripten
-    - a build system (e.g. Make, Ninja, MSBuild, ...)
+    - Make
+    - a build system (e.g. Ninja, MSBuild, ...)
     - Doxygen
     - Python
     - Git
@@ -60,7 +61,7 @@ Install [quom](https://github.com/Viatorus/quom) via `pip`, such as with:
 pip install --user quom
 ```
 
-In the root of the project, run `scripts/amalgamate.sh`.
+At the root of the project, run `make amalgamate` or `make pkg`.
 
 ### Manual static library + C wrapper build
 
