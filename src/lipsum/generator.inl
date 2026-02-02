@@ -22,7 +22,8 @@ std::string lpsm::Generator::md_paragraph(int num, bool useLipsum)
                                             ArgVec2(1, 2),
                                             ArgVec2(2, 5),
                                             std::string("https://example.com/"),
-                                            useLipsum);
+                                            useLipsum,
+                                            false);
 }
 
 std::string lpsm::Generator::md_text(int numElements)
@@ -36,7 +37,8 @@ std::string lpsm::Generator::md_text(int numElements)
                                       ArgVec2(2, 5),
                                       ArgVec2(2, 4),
                                       std::string("https://example.com/"),
-                                      numElements);
+                                      numElements,
+                                      false);
 }
 std::string lpsm::Generator::word(int num)
 {

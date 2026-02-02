@@ -15,6 +15,25 @@
 
 namespace lipsum
 {
+
+    /**
+     * @brief Generate a slug joined by a specified character.
+     *
+     * @since 0.3.6
+     *
+     * @xovload
+     *
+     * @param minWord The minimum possible number of words in the slug. By
+     * default 2.
+     * @param maxWord The maximum possible number of words in the slug. By
+     * default 5.
+     * @param separator The separator character. By default a hyphen.
+     *
+     * @return std::string The slug.
+     */
+    LIPSUM_API std::string
+    GenerateSlugX(int minWord = 2, int maxWord = 5, char separator = '-');
+
     /**
      * @brief Generate a fragment of a sentence without punctuation.
      *

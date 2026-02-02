@@ -16,6 +16,23 @@
 namespace lipsum
 {
     /**
+     * @brief Generate a slug joined by a specified character.
+     *
+     * @since 0.3.6
+     *
+     * Generates a sentence fragment with spaces replaced with the specified
+     * separator character.
+     *
+     * @param word The minimum and maximum possible number of words in the slug.
+     * By default 2 to 5.
+     * @param separator The separator character. By default a hyphen.
+     *
+     * @return std::string The slug.
+     */
+    LIPSUM_API std::string GenerateSlug(const ArgVec2& word = ArgVec2(2, 5),
+                                        char           separator = '-');
+
+    /**
      * @brief Generate a random word.
      *
      * @since 0.0.3

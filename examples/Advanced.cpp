@@ -68,7 +68,8 @@ int main()
     std::string highlights = lpsm::GenerateMarkdownList(false,
                                                         lpsm::ArgVec2(3, 6),
                                                         lpsm::ArgVec2(1, 2),
-                                                        lpsm::ArgVec2(3, 5));
+                                                        lpsm::ArgVec2(3, 5),
+                                                        false);
 
     // A single random word used in the code block
     std::string word = lpsm::GenerateWord();
@@ -78,7 +79,8 @@ int main()
             lpsm::GenerateMarkdownLink(std::string("https://example.com/"),
                                        lpsm::ArgVec2(3, 6),
                                        lpsm::ArgVec2(1, 2),
-                                       lpsm::ArgVec2(2, 4));
+                                       lpsm::ArgVec2(2, 4),
+                                       false);
 
     // Gallery: several short paragraphs
     std::string gallery = lpsm::GenerateParagraphs(3,
@@ -118,8 +120,8 @@ int main()
 
     // Demonstrate HTMLify (deprecated) just to show it exists: wrap paragraphs
     // into <p> tags.
-    std::cout << "\n----- HTMLified (deprecated HTMLify) -----\n\n";
-    std::cout << lpsm::HTMLify(md) << "\n";
+    // std::cout << "\n----- HTMLified (deprecated HTMLify) -----\n\n";
+    // std::cout << lpsm::HTMLify(md) << "\n";
 
     return 0;
 }

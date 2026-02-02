@@ -6,15 +6,16 @@
 int main()
 {
     // generate link at https://example.com with 1-2 sentence fragments of 4-8
-    // words and URL ending in 2-5 words (default)
+    // words and URL ending in 2-5 words, in Markdown (default)
     std::cout << lpsm::GenerateMarkdownLink() << '\n';
 
     // generate link at https://google.com with 3-6 sentence fragments of 7-10
-    // words and URL ending in 6-9 words
+    // words and URL ending in 6-9 words, in HTML
     std::cout << lpsm::GenerateMarkdownLink(std::string("https://google.com/"),
                                             lpsm::ArgVec2(7, 10),
                                             lpsm::ArgVec2(3, 6),
-                                            lpsm::ArgVec2(6, 9))
+                                            lpsm::ArgVec2(6, 9),
+                                            true)
               << '\n';
 
     // equivalent statement
@@ -24,7 +25,8 @@ int main()
                                              3,
                                              6,
                                              6,
-                                             9)
+                                             9,
+                                             true)
               << '\n';
     return 0;
 }

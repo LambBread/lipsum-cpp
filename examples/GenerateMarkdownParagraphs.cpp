@@ -8,13 +8,14 @@ int main()
     // generate 5 paragraphs of 5-8 sentences of 1-3 sentence fragments of 4-9
     // words, with formatted sentences of 1-2 sentence fragments of 4-8 words
     // with 2-5 words at the end of a URL, with URLs starting at
-    // https://example.com, starting with "Lorem ipsum..." (default)
+    // https://example.com, starting with "Lorem ipsum...", in Markdown
+    // (default)
     std::cout << lpsm::GenerateMarkdownParagraphs();
 
     // generate 10 paragraphs of 7-10 sentences of 3-6 sentence fragments of 6-9
     // words, with formatted sentences of 3-5 sentence fragments of 6-8 words
     // with 6-10 words at the end of a URL, with URLs starting at
-    // https://google.com, not starting with "Lorem ipsum..."
+    // https://google.com, not starting with "Lorem ipsum...", in HTML
     std::cout
             << lpsm::GenerateMarkdownParagraphs(10,
                                                 lpsm::ArgVec2(6, 9),
@@ -25,6 +26,7 @@ int main()
                                                 lpsm::ArgVec2(6, 10),
                                                 std::string(
                                                         "https://google.com/"),
-                                                false);
+                                                false,
+                                                true);
     return 0;
 }

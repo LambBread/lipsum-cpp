@@ -12,6 +12,13 @@
  */
 #pragma once
 
+std::string lpsm::GenerateSlug(const lpsm::ArgVec2& word, char separator)
+{
+    std::string ret = lpsm::GenerateSentenceFragment(word);
+    std::replace(ret.begin(), ret.end(), ' ', separator);
+    return ret;
+}
+
 std::string lpsm::GenerateWords(int wordCount)
 {
     std::string ret;

@@ -13,17 +13,30 @@
  */
 #pragma once
 
-std::string lpsm::GenerateMarkdownHeaderX(int level, int minWord, int maxWord)
+std::string lpsm::GenerateSlugX(int minWord, int maxWord, char separator)
 {
-    return lpsm::GenerateMarkdownHeader(level, lpsm::ArgVec2(minWord, maxWord));
+    return lpsm::GenerateSlug(lpsm::ArgVec2(minWord, maxWord), separator);
 }
 
-std::string lpsm::GenerateMarkdownEmphasisX(
-        bool isBold, int minWord, int maxWord, int minFrag, int maxFrag)
+std::string
+lpsm::GenerateMarkdownHeaderX(int level, int minWord, int maxWord, bool useHtml)
+{
+    return lpsm::GenerateMarkdownHeader(level,
+                                        lpsm::ArgVec2(minWord, maxWord),
+                                        useHtml);
+}
+
+std::string lpsm::GenerateMarkdownEmphasisX(bool isBold,
+                                            int  minWord,
+                                            int  maxWord,
+                                            int  minFrag,
+                                            int  maxFrag,
+                                            bool useHtml)
 {
     return lpsm::GenerateMarkdownEmphasis(isBold,
                                           lpsm::ArgVec2(minWord, maxWord),
-                                          lpsm::ArgVec2(minFrag, maxFrag));
+                                          lpsm::ArgVec2(minFrag, maxFrag),
+                                          useHtml);
 }
 
 std::string lpsm::GenerateMarkdownLinkX(const std::string& url,
@@ -32,12 +45,14 @@ std::string lpsm::GenerateMarkdownLinkX(const std::string& url,
                                         int                minFrag,
                                         int                maxFrag,
                                         int                minWordURL,
-                                        int                maxWordURL)
+                                        int                maxWordURL,
+                                        bool               useHtml)
 {
     return lpsm::GenerateMarkdownLink(url,
                                       lpsm::ArgVec2(minWord, maxWord),
                                       lpsm::ArgVec2(minFrag, maxFrag),
-                                      lpsm::ArgVec2(minWordURL, maxWordURL));
+                                      lpsm::ArgVec2(minWordURL, maxWordURL),
+                                      useHtml);
 }
 
 std::string lpsm::GenerateMarkdownListX(bool ordered,
@@ -46,12 +61,14 @@ std::string lpsm::GenerateMarkdownListX(bool ordered,
                                         int  minFrag,
                                         int  maxFrag,
                                         int  minPoint,
-                                        int  maxPoint)
+                                        int  maxPoint,
+                                        bool useHtml)
 {
     return lpsm::GenerateMarkdownList(ordered,
                                       lpsm::ArgVec2(minWord, maxWord),
                                       lpsm::ArgVec2(minFrag, maxFrag),
-                                      lpsm::ArgVec2(minPoint, maxPoint));
+                                      lpsm::ArgVec2(minPoint, maxPoint),
+                                      useHtml);
 }
 
 std::string lpsm::GenerateSentencesX(int  sentCount,

@@ -23,11 +23,15 @@ namespace lipsum
      * @param level The level of the heading. By default 1.
      * @param word The minimum and maximum possible number of words in the
      * heading. By default 2 to 5.
+     * @param useHtml Whether HTML should be outputted instead of Markdown. By
+     * default false.
      *
      * @return std::string The random heading.
      */
     LIPSUM_API std::string
-    GenerateMarkdownHeader(int level = 1, const ArgVec2& word = ArgVec2(2, 5));
+               GenerateMarkdownHeader(int            level   = 1,
+                                      const ArgVec2& word    = ArgVec2(2, 5),
+                                      bool           useHtml = false);
 
     /**
      * @brief Generate a random emphasized sentence.
@@ -43,13 +47,16 @@ namespace lipsum
      * sentence fragment. By default 4 to 8.
      * @param frag The minimum and maximum possible number of sentence fragments
      * in the sentence. By default 1 to 2.
+     * @param useHtml Whether HTML should be outputted instead of Markdown. By
+     * default false.
      *
      * @return std::string The random emphasized sentence.
      */
     LIPSUM_API std::string
-               GenerateMarkdownEmphasis(bool           isBold = true,
-                                        const ArgVec2& word   = ArgVec2(4, 8),
-                                        const ArgVec2& frag   = ArgVec2(1, 2));
+               GenerateMarkdownEmphasis(bool           isBold  = true,
+                                        const ArgVec2& word    = ArgVec2(4, 8),
+                                        const ArgVec2& frag    = ArgVec2(1, 2),
+                                        bool           useHtml = false);
 
     /**
      * @brief Generate a random Markdown link.
@@ -66,6 +73,8 @@ namespace lipsum
      * in the sentence. By default 1 to 2.
      * @param wordURL The minimum and maximum possible number of words at the
      * end of the URL. By default 2 to 5.
+     * @param useHtml Whether HTML should be outputted instead of Markdown. By
+     * default false.
      *
      * @return std::string The random link.
      */
@@ -73,7 +82,8 @@ namespace lipsum
             const std::string& url     = std::string("https://example.com/"),
             const ArgVec2&     word    = ArgVec2(4, 8),
             const ArgVec2&     frag    = ArgVec2(1, 2),
-            const ArgVec2&     wordURL = ArgVec2(2, 5));
+            const ArgVec2&     wordURL = ArgVec2(2, 5),
+            bool               useHtml = false);
 
     /**
      * @brief Generate a random Markdown list.
@@ -90,6 +100,8 @@ namespace lipsum
      * in a point. By default 1 to 2.
      * @param point The minimum and maximum possible number of points in the
      * list. By default 3 to 5.
+     * @param useHtml Whether HTML should be outputted instead of Markdown. By
+     * default false.
      *
      * @return std::string The random Markdown list.
      */
@@ -97,7 +109,8 @@ namespace lipsum
                GenerateMarkdownList(bool           ordered = false,
                                     const ArgVec2& word    = ArgVec2(4, 8),
                                     const ArgVec2& frag    = ArgVec2(1, 2),
-                                    const ArgVec2& point   = ArgVec2(3, 5));
+                                    const ArgVec2& point   = ArgVec2(3, 5),
+                                    bool           useHtml = false);
 
     /**
      * @brief Generate a random formatted paragraph.
@@ -122,6 +135,8 @@ namespace lipsum
      * https://example.com/.
      * @param useLipsum Whether "Lorem ipsum..." should start the paragraph. By
      * default true.
+     * @param useHtml Whether HTML should be outputted instead of Markdown. By
+     * default false.
      *
      * @return std::string The random paragraph.
      */
@@ -133,7 +148,8 @@ namespace lipsum
             const ArgVec2&     fragFmt   = ArgVec2(1, 2),
             const ArgVec2&     wordLink  = ArgVec2(2, 5),
             const std::string& linkURL   = std::string("https://example.com/"),
-            bool               useLipsum = true);
+            bool               useLipsum = true,
+            bool               useHtml   = false);
 
     /**
      * @brief Generate multiple random formatted paragraphs.
@@ -160,6 +176,8 @@ namespace lipsum
      * https://example.com/.
      * @param useLipsum Whether "Lorem ipsum..." should start the first
      * paragraph. By default true.
+     * @param useHtml Whether HTML should be outputted instead of Markdown. By
+     * default false.
      *
      * @return std::string The random paragraph.
      */
@@ -172,7 +190,8 @@ namespace lipsum
             const ArgVec2&     fragFmt   = ArgVec2(1, 2),
             const ArgVec2&     wordLink  = ArgVec2(2, 5),
             const std::string& linkURL   = std::string("https://example.com/"),
-            bool               useLipsum = true);
+            bool               useLipsum = true,
+            bool               useHtml   = false);
 
     /**
      * @brief Generate a random Markdown document.
@@ -201,6 +220,8 @@ namespace lipsum
      * https://example.com/.
      * @param numElements The number of paragraphs, headings, and lists total.
      * By default 15.
+     * @param useHtml Whether HTML should be outputted instead of Markdown. By
+     * default false.
      *
      * @return std::string The random Markdown document.
      */
@@ -214,5 +235,6 @@ namespace lipsum
             const ArgVec2&     wordHead = ArgVec2(2, 5),
             const ArgVec2&     level    = ArgVec2(2, 4),
             const std::string& linkURL  = std::string("https://example.com/"),
-            int                numElements = 15);
+            int                numElements = 15,
+            bool               useHtml     = false);
 } // namespace lipsum

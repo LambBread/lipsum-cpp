@@ -49,7 +49,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.3.5"
+#define LIPSUM_CPP_VERSION_C "0.3.6"
 
 /**
  * @brief Return the current version of lipsum-cpp
@@ -76,6 +76,41 @@ typedef void* lpsm_ArgVec2Handle;
 extern "C"
 {
 #endif
+
+    /**
+     * @brief Generate a slug joined by a specified character.
+     *
+     * @since 0.3.6
+     *
+     * @sovload
+     *
+     * @param word The minimum and maximum possible number of words in the slug.
+     * @param separator The separator character.
+     * @param del Whether the ArgVec2 handles should be deleted after the
+     * function is called.
+     *
+     * @return char* The slug.
+     */
+    LIPSUMC_API char*
+    lpsm_GenerateSlugS(lpsm_ArgVec2Handle word, char separator, bool del);
+
+    /**
+     * @brief Generate a slug joined by a specified character.
+     *
+     * @since 0.3.6
+     *
+     * Generates a sentence fragment with spaces replaced with the specified
+     * separator character.
+     *
+     * @param minWord The minimum possible number of words in the slug.
+     * @param maxWord The maximum possible number of words in the slug.
+     * @param separator The separator character.
+     *
+     * @return char* The slug.
+     */
+    LIPSUMC_API char*
+    lpsm_GenerateSlug(int minWord, int maxWord, char separator);
+
     /**
      * @brief Generate a fragment of a sentence without punctuation.
      *
@@ -233,11 +268,14 @@ extern "C"
      * heading.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random heading.
      */
-    LIPSUMC_API char*
-    lpsm_GenerateMarkdownHeaderS(int level, lpsm_ArgVec2Handle word, bool del);
+    LIPSUMC_API char* lpsm_GenerateMarkdownHeaderS(int                level,
+                                                   lpsm_ArgVec2Handle word,
+                                                   bool               useHtml,
+                                                   bool               del);
 
     /**
      * @brief Generate a random emphasized sentence.
@@ -253,12 +291,14 @@ extern "C"
      * in the sentence.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random emphasized sentence.
      */
     LIPSUMC_API char* lpsm_GenerateMarkdownEmphasisS(bool               isBold,
                                                      lpsm_ArgVec2Handle word,
                                                      lpsm_ArgVec2Handle frag,
+                                                     bool               useHtml,
                                                      bool               del);
 
     /**
@@ -277,6 +317,7 @@ extern "C"
      * end of the URL.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random link.
      */
@@ -284,6 +325,7 @@ extern "C"
                                                  lpsm_ArgVec2Handle word,
                                                  lpsm_ArgVec2Handle frag,
                                                  lpsm_ArgVec2Handle wordURL,
+                                                 bool               useHtml,
                                                  bool               del);
 
     /**
@@ -302,6 +344,7 @@ extern "C"
      * list.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random Markdown list.
      */
@@ -309,6 +352,7 @@ extern "C"
                                                  lpsm_ArgVec2Handle word,
                                                  lpsm_ArgVec2Handle frag,
                                                  lpsm_ArgVec2Handle point,
+                                                 bool               useHtml,
                                                  bool               del);
 
     /**
@@ -332,6 +376,7 @@ extern "C"
      * link URL.
      * @param linkURL The URL to base links off of.
      * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      *
@@ -346,6 +391,7 @@ extern "C"
                                     lpsm_ArgVec2Handle wordLink,
                                     const char*        linkURL,
                                     bool               useLipsum,
+                                    bool               useHtml,
                                     bool               del);
 
     /**
@@ -373,6 +419,7 @@ extern "C"
      * paragraph.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random paragraph.
      */
@@ -386,6 +433,7 @@ extern "C"
                                      lpsm_ArgVec2Handle wordLink,
                                      const char*        linkURL,
                                      bool               useLipsum,
+                                     bool               useHtml,
                                      bool               del);
 
     /**
@@ -412,6 +460,7 @@ extern "C"
      * the main heading.
      * @param linkURL The URL to base links off of.
      * @param numElements The number of paragraphs, headings, and lists total.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      *
@@ -427,6 +476,7 @@ extern "C"
                                                  lpsm_ArgVec2Handle level,
                                                  const char*        linkURL,
                                                  int                numElements,
+                                                 bool               useHtml,
                                                  bool               del);
 
     /**
@@ -440,11 +490,14 @@ extern "C"
      * @param minWord The minimum possible number of words in the
      * heading.
      * @param maxWord The maximum possible number of words in the heading.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random heading.
      */
-    LIPSUMC_API char*
-    lpsm_GenerateMarkdownHeader(int level, int minWord, int maxWord);
+    LIPSUMC_API char* lpsm_GenerateMarkdownHeader(int  level,
+                                                  int  minWord,
+                                                  int  maxWord,
+                                                  bool useHtml);
 
     /**
      * @brief Generate a random emphasized sentence.
@@ -463,11 +516,16 @@ extern "C"
      * in the sentence.
      * @param maxFrag The maximum possible number of sentence fragments in the
      * sentence.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random emphasized sentence.
      */
-    LIPSUMC_API char* lpsm_GenerateMarkdownEmphasis(
-            bool isBold, int minWord, int maxWord, int minFrag, int maxFrag);
+    LIPSUMC_API char* lpsm_GenerateMarkdownEmphasis(bool isBold,
+                                                    int  minWord,
+                                                    int  maxWord,
+                                                    int  minFrag,
+                                                    int  maxFrag,
+                                                    bool useHtml);
 
     /**
      * @brief Generate a random Markdown link.
@@ -489,6 +547,7 @@ extern "C"
      * end of the URL.
      * @param maxWordURL The maximum possible number of words at the end of the
      * URL.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random link.
      */
@@ -498,7 +557,8 @@ extern "C"
                                                 int         minFrag,
                                                 int         maxFrag,
                                                 int         minWordURL,
-                                                int         maxWordURL);
+                                                int         maxWordURL,
+                                                bool        useHtml);
 
     /**
      * @brief Generate a random Markdown list.
@@ -520,6 +580,7 @@ extern "C"
      * list.
      * @param maxPoint The maximum possible number of points in the
      * list.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random Markdown list.
      */
@@ -529,7 +590,8 @@ extern "C"
                                                 int  minFrag,
                                                 int  maxFrag,
                                                 int  minPoint,
-                                                int  maxPoint);
+                                                int  maxPoint,
+                                                bool useHtml);
 
     /**
      * @brief Create a lpsm::ArgVec2.
@@ -825,23 +887,6 @@ extern "C"
                                              int  minFrag,
                                              int  maxFrag,
                                              bool useLipsum);
-
-    /**
-     * @brief Turn a string into HTML paragraph tags.
-     *
-     * @since 0.0.6
-     *
-     * Add &lt;p&gt; and &lt;/p&gt; around the paragraphs and
-     * handle HTML entities like &amp;, &lt;, &gt;, etc. This function is
-     * deprecated.
-     *
-     * @deprecated Use a Markdown parser instead.
-     *
-     * @return char* The HTML-ified string.
-     *
-     * @param str The string inputted.
-     */
-    LIPSUMC_API char* lpsm_HTMLify(const char* str);
 
     /**
      * @brief Count the number of sentences in a string.

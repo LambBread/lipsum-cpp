@@ -27,11 +27,15 @@ namespace lipsum
      * heading. By default 2.
      * @param maxWord The maximum possible number of words in the heading. By
      * default 5.
+     * @param useHtml Whether HTML should be outputted instead of Markdown. By
+     * default false.
      *
      * @return std::string The random heading.
      */
-    LIPSUM_API std::string
-    GenerateMarkdownHeaderX(int level = 1, int minWord = 2, int maxWord = 5);
+    LIPSUM_API std::string GenerateMarkdownHeaderX(int  level   = 1,
+                                                   int  minWord = 2,
+                                                   int  maxWord = 5,
+                                                   bool useHtml = false);
 
     /**
      * @brief Generate a random emphasized sentence.
@@ -50,6 +54,8 @@ namespace lipsum
      * in the sentence. By default 1.
      * @param maxFrag The maximum possible number of sentence fragments in the
      * sentence. By default 2.
+     * @param useHtml Whether HTML should be outputted instead of Markdown. By
+     * default false.
      *
      * @return std::string The random emphasized sentence.
      */
@@ -57,7 +63,8 @@ namespace lipsum
                                                      int  minWord = 4,
                                                      int  maxWord = 8,
                                                      int  minFrag = 1,
-                                                     int  maxFrag = 2);
+                                                     int  maxFrag = 2,
+                                                     bool useHtml = false);
 
     /**
      * @brief Generate a random Markdown link.
@@ -80,6 +87,8 @@ namespace lipsum
      * end of the URL. By default 2.
      * @param maxWordURL The maximum possible number of words at the end of the
      * URL. By default 5.
+     * @param useHtml Whether HTML should be outputted instead of Markdown. By
+     * default false.
      *
      * @return std::string The random link.
      */
@@ -90,7 +99,8 @@ namespace lipsum
             int                minFrag    = 1,
             int                maxFrag    = 2,
             int                minWordURL = 2,
-            int                maxWordURL = 5);
+            int                maxWordURL = 5,
+            bool               useHtml    = false);
 
     /**
      * @brief Generate a random Markdown list.
@@ -113,6 +123,8 @@ namespace lipsum
      * list. By default 3.
      * @param maxPoint The maximum possible number of points in the
      * list. By default 5.
+     * @param useHtml Whether HTML should be outputted instead of Markdown. By
+     * default false.
      *
      * @return std::string The random Markdown list.
      */
@@ -122,5 +134,6 @@ namespace lipsum
                                                  int  minFrag  = 1,
                                                  int  maxFrag  = 2,
                                                  int  minPoint = 3,
-                                                 int  maxPoint = 5);
+                                                 int  maxPoint = 5,
+                                                 bool useHtml  = false);
 } // namespace lipsum

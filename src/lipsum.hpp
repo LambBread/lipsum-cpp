@@ -26,6 +26,7 @@
  * @example GenerateSentence.cpp
  * @example GenerateSentenceFragment.cpp
  * @example GenerateSentences.cpp
+ * @example GenerateSlug.cpp
  * @example GenerateText.cpp
  * @example GenerateWord.cpp
  * @example GenerateWords.cpp

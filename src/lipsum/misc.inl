@@ -35,28 +35,6 @@ int lpsm::CountSentences(const std::string& str)
     return res;
 }
 
-std::string lpsm::HTMLify(const char* str)
-{
-    return lpsm::HTMLify(std::string(str));
-}
-
-std::string lpsm::HTMLify(const std::string& str)
-{
-    std::stringstream ss(str);
-    std::string       line;
-    std::string       result;
-    while (std::getline(ss, line))
-    {
-        if (!line.empty())
-        {
-            result += std::string("<p>") +=
-                    lpsm::internal::HandleHTMLEntity(line) +=
-                    std::string("</p>\n");
-        }
-    }
-    return result;
-}
-
 std::string lpsm::LipsumVersion()
 {
     return std::string(LIPSUM_CPP_VERSION);

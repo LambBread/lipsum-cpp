@@ -6,6 +6,7 @@
     <title>lipsum-cpp embind example</title>
 </head>
 <body>
+    <div id="content"></div>
     <script src="lipsum.js"></script>
     <script>
         createLipsumCpp().then((Module)=>
@@ -17,6 +18,13 @@
                 console.log(gen.md_text(20));
                 console.log(Module.lpsm_GenerateWord());
                 console.log(Module.lpsm_CountSentences("Yes this is a test. Testing 123. Testing 123. Foobar test."));
+                const text = Module.lpsm_GenerateMarkdownText(new Module.lpsm_ArgVec2(4, 9), new Module.lpsm_ArgVec2(1, 3),
+                                                       new Module.lpsm_ArgVec2(5, 8), new Module.lpsm_ArgVec2(3, 5),
+                                                       new Module.lpsm_ArgVec2(4, 8), new Module.lpsm_ArgVec2(1, 2),
+                                                       new Module.lpsm_ArgVec2(2, 5), new Module.lpsm_ArgVec2(2, 4),
+                                                       "https://example.com/", 15, true);
+                console.log(text);
+                document.querySelector("#content").innerHTML = text;
             });
     </script>
 </body>
