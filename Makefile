@@ -42,7 +42,14 @@ amalgamate:
 pkg: clean em_build format amalgamate
 	rm $(BUILD_DIR)/$(SRC_DIR)/jsbind/cmake_install.cmake
 	rm -rf $(BUILD_DIR)/$(SRC_DIR)/jsbind/CMakeFiles
-	7z a -tzip -r -mx=9 $(PKG_DIR)/lipsum-jsbind.zip $(BUILD_DIR)/$(SRC_DIR)/jsbind
+	cd $(BUILD_DIR)/$(SRC_DIR)
+	7z a -tzip -r -mx=9 $(PKG_DIR)/lipsum-jsbind.zip jsbind
+
+quick_pkg: em_build format amalgamate
+	rm $(BUILD_DIR)/$(SRC_DIR)/jsbind/cmake_install.cmake
+	rm -rf $(BUILD_DIR)/$(SRC_DIR)/jsbind/CMakeFiles
+	cd $(BUILD_DIR)/$(SRC_DIR)
+	7z a -tzip -r -mx=9 $(PKG_DIR)/lipsum-jsbind.zip jsbind
 
 clean:
 	rm -rf $(BUILD_DIR)
