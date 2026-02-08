@@ -73,8 +73,6 @@ namespace lipsum
      *
      * @xovload
      *
-     * @param url The URL to base the link off of. By default
-     * https://example.com/.
      * @param minWord The minimum possible number of words in a
      * sentence fragment. By default 4.
      * @param maxWord The maximum possible number of words in a sentence
@@ -92,15 +90,13 @@ namespace lipsum
      *
      * @return std::string The random link.
      */
-    LIPSUM_API std::string GenerateMarkdownLinkX(
-            const std::string& url        = std::string("https://example.com/"),
-            int                minWord    = 4,
-            int                maxWord    = 8,
-            int                minFrag    = 1,
-            int                maxFrag    = 2,
-            int                minWordURL = 2,
-            int                maxWordURL = 5,
-            bool               useHtml    = false);
+    LIPSUM_API std::string GenerateMarkdownLinkX(int  minWord    = 4,
+                                                 int  maxWord    = 8,
+                                                 int  minFrag    = 1,
+                                                 int  maxFrag    = 2,
+                                                 int  minWordURL = 2,
+                                                 int  maxWordURL = 5,
+                                                 bool useHtml    = false);
 
     /**
      * @brief Generate a random Markdown list.

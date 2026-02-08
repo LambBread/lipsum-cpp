@@ -1,9 +1,9 @@
 /**
  * @file lipsum/generator.hpp
  *
- * @brief lpsm::Generator
+ * @brief Declaration of lipsum::Generator
  *
- * This declares the functions in lpsm::Generator. This file is under the
+ * This declares the functions in lipsum::Generator. This file is under the
  * BSD Zero-Clause License.
  *
  * @copyright Copyright (c) 2026 LambBread

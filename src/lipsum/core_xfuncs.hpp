@@ -17,6 +17,22 @@ namespace lipsum
 {
 
     /**
+     * @brief Generate a random URL.
+     *
+     * @since 0.3.7
+     *
+     * @xovload
+     *
+     * @param minWord The minimum possible number of words at the end
+     * of the URL. By default 2.
+     * @param maxWord The maximum possible number of words at the end of the
+     * URL. By default 5.
+     *
+     * @return std::string The URL.
+     */
+    LIPSUM_API std::string GenerateURLX(int minWord = 2, int maxWord = 5);
+
+    /**
      * @brief Generate a slug joined by a specified character.
      *
      * @since 0.3.6

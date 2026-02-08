@@ -13,6 +13,10 @@
  */
 #pragma once
 
+std::string lpsm::GenerateURLX(int minWord, int maxWord)
+{
+    return lpsm::GenerateURL(lpsm::ArgVec2(minWord, maxWord));
+}
 std::string lpsm::GenerateSlugX(int minWord, int maxWord, char separator)
 {
     return lpsm::GenerateSlug(lpsm::ArgVec2(minWord, maxWord), separator);
@@ -39,17 +43,15 @@ std::string lpsm::GenerateMarkdownEmphasisX(bool isBold,
                                           useHtml);
 }
 
-std::string lpsm::GenerateMarkdownLinkX(const std::string& url,
-                                        int                minWord,
-                                        int                maxWord,
-                                        int                minFrag,
-                                        int                maxFrag,
-                                        int                minWordURL,
-                                        int                maxWordURL,
-                                        bool               useHtml)
+std::string lpsm::GenerateMarkdownLinkX(int  minWord,
+                                        int  maxWord,
+                                        int  minFrag,
+                                        int  maxFrag,
+                                        int  minWordURL,
+                                        int  maxWordURL,
+                                        bool useHtml)
 {
-    return lpsm::GenerateMarkdownLink(url,
-                                      lpsm::ArgVec2(minWord, maxWord),
+    return lpsm::GenerateMarkdownLink(lpsm::ArgVec2(minWord, maxWord),
                                       lpsm::ArgVec2(minFrag, maxFrag),
                                       lpsm::ArgVec2(minWordURL, maxWordURL),
                                       useHtml);

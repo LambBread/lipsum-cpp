@@ -11,17 +11,16 @@
  * @author LambBread from github.com
  */
 #pragma once
-std::string lpsm::GenerateMarkdownText(const ArgVec2&     word,
-                                       const ArgVec2&     frag,
-                                       const ArgVec2&     sent,
-                                       const ArgVec2&     point,
-                                       const ArgVec2&     wordFmt,
-                                       const ArgVec2&     fragFmt,
-                                       const ArgVec2&     wordHead,
-                                       const ArgVec2&     level,
-                                       const std::string& linkURL,
-                                       int                numElements,
-                                       bool               useHtml)
+std::string lpsm::GenerateMarkdownText(const lpsm::ArgVec2& word,
+                                       const lpsm::ArgVec2& frag,
+                                       const lpsm::ArgVec2& sent,
+                                       const lpsm::ArgVec2& point,
+                                       const lpsm::ArgVec2& wordFmt,
+                                       const lpsm::ArgVec2& fragFmt,
+                                       const lpsm::ArgVec2& wordHead,
+                                       const lpsm::ArgVec2& level,
+                                       int                  numElements,
+                                       bool                 useHtml)
 {
     std::string ret;
     ret += lpsm::GenerateMarkdownHeader(1, wordHead, useHtml);
@@ -31,7 +30,6 @@ std::string lpsm::GenerateMarkdownText(const ArgVec2&     word,
                                            wordFmt,
                                            fragFmt,
                                            wordHead,
-                                           linkURL,
                                            false,
                                            useHtml);
     numElements -= 2;
@@ -53,7 +51,6 @@ std::string lpsm::GenerateMarkdownText(const ArgVec2&     word,
                                                        wordFmt,
                                                        fragFmt,
                                                        wordHead,
-                                                       linkURL,
                                                        false,
                                                        useHtml);
                 break;
@@ -144,10 +141,9 @@ std::string lpsm::GenerateMarkdownList(bool                 ordered,
 std::string lpsm::GenerateMarkdownParagraph(const lpsm::ArgVec2& word,
                                             const lpsm::ArgVec2& frag,
                                             const lpsm::ArgVec2& sent,
-                                            const ArgVec2&       wordFmt,
-                                            const ArgVec2&       fragFmt,
-                                            const ArgVec2&       wordLink,
-                                            const std::string&   linkURL,
+                                            const lpsm::ArgVec2& wordFmt,
+                                            const lpsm::ArgVec2& fragFmt,
+                                            const lpsm::ArgVec2& wordLink,
                                             bool                 useLipsum,
                                             bool                 useHtml)
 {
@@ -173,8 +169,7 @@ std::string lpsm::GenerateMarkdownParagraph(const lpsm::ArgVec2& word,
         }
         else if ((fmtRoll == sent.min) && addLink)
         {
-            ret += lpsm::GenerateMarkdownLink(linkURL,
-                                              wordFmt,
+            ret += lpsm::GenerateMarkdownLink(wordFmt,
                                               fragFmt,
                                               wordLink,
                                               useHtml);
@@ -200,15 +195,15 @@ std::string lpsm::GenerateMarkdownParagraph(const lpsm::ArgVec2& word,
     return ret;
 }
 
-std::string lpsm::GenerateMarkdownLink(const std::string&   url,
-                                       const lpsm::ArgVec2& word,
+std::string lpsm::GenerateMarkdownLink(const lpsm::ArgVec2& word,
                                        const lpsm::ArgVec2& frag,
                                        const lpsm::ArgVec2& wordURL,
                                        bool                 useHtml)
 {
     std::string ret;
-    std::string link =
-            url + std::string("#") + lpsm::GenerateSlug(wordURL, '-');
+    // std::string link =
+    //         url + std::string("#") + lpsm::GenerateSlug(wordURL, '-');
+    std::string link     = lpsm::GenerateURL(wordURL);
     std::string sentence = lpsm::GenerateSentence(word, frag);
     if (!useHtml)
     {
@@ -309,7 +304,6 @@ std::string lpsm::GenerateMarkdownParagraphs(int                  paraCount,
                                              const lpsm::ArgVec2& wordFmt,
                                              const lpsm::ArgVec2& fragFmt,
                                              const lpsm::ArgVec2& wordLink,
-                                             const std::string&   linkURL,
                                              bool                 useLipsum,
                                              bool                 useHtml)
 {
@@ -324,7 +318,6 @@ std::string lpsm::GenerateMarkdownParagraphs(int                  paraCount,
                                                    wordFmt,
                                                    fragFmt,
                                                    wordLink,
-                                                   linkURL,
                                                    true,
                                                    useHtml);
         }
@@ -336,7 +329,6 @@ std::string lpsm::GenerateMarkdownParagraphs(int                  paraCount,
                                                    wordFmt,
                                                    fragFmt,
                                                    wordLink,
-                                                   linkURL,
                                                    false,
                                                    useHtml);
         }

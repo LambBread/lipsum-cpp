@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(lipsum-cpp VERSION 0.3.6 LANGUAGES C CXX)
+project(lipsum-cpp VERSION 0.3.7 LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/options.cmake")
@@ -14,9 +14,10 @@ if(LPSM_BUILD_STATIC)
     target_include_directories(lipsum-cpp PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 elseif(LPSM_BUILD_SHARED)
     add_library(lipsum-cpp SHARED "${LPSM_SRCS}")
-    target_compile_definitions(lipsum-cpp PUBLIC LIPSUM_BUILD_STATIC)
-    target_compile_definitions(lipsum-cpp PUBLIC LIPSUM_BUILD_SHARED)
-    target_compile_definitions(lipsum-cpp PRIVATE LIPSUM_EXPORT_SHARED)
+    target_compile_definitions(lipsum-cpp 
+        PUBLIC LIPSUM_BUILD_STATIC LIPSUM_BUILD_SHARED 
+        PRIVATE LIPSUM_EXPORT_SHARED
+    )
     target_include_directories(lipsum-cpp PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 else()
     # single header

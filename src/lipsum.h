@@ -49,7 +49,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.3.6"
+#define LIPSUM_CPP_VERSION_C "0.3.7"
 
 /**
  * @brief Return the current version of lipsum-cpp
@@ -76,6 +76,40 @@ typedef void* lpsm_ArgVec2Handle;
 extern "C"
 {
 #endif
+
+    /**
+     * @brief Generate a random URL.
+     *
+     * @since 0.3.7
+     *
+     * @sovload
+     *
+     * @param word The minimum and maximum possible number of words at the end
+     * of the URL.
+     * @param del Whether the ArgVec2 handles should be deleted after the
+     * function is called.
+     *
+     * @return char* The URL.
+     */
+    LIPSUMC_API char* lpsm_GenerateURLS(lpsm_ArgVec2Handle word, bool del);
+
+    /**
+     * @brief Generate a random URL.
+     *
+     * @since 0.3.7
+     *
+     * Generate a URL starting in https://, followed by a random word, followed
+     * by a random TLD, followed by a slash and a random HTML id as a slug
+     * separated by hyphens.
+     *
+     * @param minWord The minimum possible number of words at the end
+     * of the URL.
+     * @param maxWord The maximum possible number of words at the end of the
+     * URL.
+     *
+     * @return char* The URL.
+     */
+    LIPSUMC_API char* lpsm_GenerateURL(int minWord, int maxWord);
 
     /**
      * @brief Generate a slug joined by a specified character.
@@ -308,7 +342,6 @@ extern "C"
      *
      * @sovload
      *
-     * @param url The URL to base the link off of.
      * @param word The minimum and maximum possible number of words in a
      * sentence fragment.
      * @param frag The minimum and maximum possible number of sentence fragments
@@ -321,8 +354,7 @@ extern "C"
      *
      * @return char* The random link.
      */
-    LIPSUMC_API char* lpsm_GenerateMarkdownLinkS(const char*        url,
-                                                 lpsm_ArgVec2Handle word,
+    LIPSUMC_API char* lpsm_GenerateMarkdownLinkS(lpsm_ArgVec2Handle word,
                                                  lpsm_ArgVec2Handle frag,
                                                  lpsm_ArgVec2Handle wordURL,
                                                  bool               useHtml,
@@ -374,7 +406,6 @@ extern "C"
      * fragments in a formatted sentence.
      * @param wordLink The minimum and maximum possible number of words in a
      * link URL.
-     * @param linkURL The URL to base links off of.
      * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
      * @param del Whether the ArgVec2 handles should be deleted after the
@@ -389,7 +420,6 @@ extern "C"
                                     lpsm_ArgVec2Handle wordFmt,
                                     lpsm_ArgVec2Handle fragFmt,
                                     lpsm_ArgVec2Handle wordLink,
-                                    const char*        linkURL,
                                     bool               useLipsum,
                                     bool               useHtml,
                                     bool               del);
@@ -414,7 +444,6 @@ extern "C"
      * fragments in a formatted sentence.
      * @param wordLink The minimum and maximum possible number of words in a
      * link URL.
-     * @param linkURL The URL to base links off of.
      * @param useLipsum Whether "Lorem ipsum..." should start the first
      * paragraph.
      * @param del Whether the ArgVec2 handles should be deleted after the
@@ -431,7 +460,6 @@ extern "C"
                                      lpsm_ArgVec2Handle wordFmt,
                                      lpsm_ArgVec2Handle fragFmt,
                                      lpsm_ArgVec2Handle wordLink,
-                                     const char*        linkURL,
                                      bool               useLipsum,
                                      bool               useHtml,
                                      bool               del);
@@ -458,7 +486,6 @@ extern "C"
      * link URL or heading.
      * @param level The minimum and maximum possible heading levels, excluding
      * the main heading.
-     * @param linkURL The URL to base links off of.
      * @param numElements The number of paragraphs, headings, and lists total.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
      * @param del Whether the ArgVec2 handles should be deleted after the
@@ -474,7 +501,6 @@ extern "C"
                                                  lpsm_ArgVec2Handle fragFmt,
                                                  lpsm_ArgVec2Handle wordHead,
                                                  lpsm_ArgVec2Handle level,
-                                                 const char*        linkURL,
                                                  int                numElements,
                                                  bool               useHtml,
                                                  bool               del);
@@ -534,7 +560,6 @@ extern "C"
      *
      * Generate a random link in Markdown format.
      *
-     * @param url The URL to base the link off of.
      * @param minWord The minimum possible number of words in a
      * sentence fragment.
      * @param maxWord The maximum possible number of words in a sentence
@@ -551,14 +576,13 @@ extern "C"
      *
      * @return char* The random link.
      */
-    LIPSUMC_API char* lpsm_GenerateMarkdownLink(const char* url,
-                                                int         minWord,
-                                                int         maxWord,
-                                                int         minFrag,
-                                                int         maxFrag,
-                                                int         minWordURL,
-                                                int         maxWordURL,
-                                                bool        useHtml);
+    LIPSUMC_API char* lpsm_GenerateMarkdownLink(int  minWord,
+                                                int  maxWord,
+                                                int  minFrag,
+                                                int  maxFrag,
+                                                int  minWordURL,
+                                                int  maxWordURL,
+                                                bool useHtml);
 
     /**
      * @brief Generate a random Markdown list.

@@ -1,7 +1,7 @@
 /**
  * @file lipsum/internal.hpp
  *
- * @brief lipsum::internal
+ * @brief Declaration of lipsum::internal
  *
  * This declares members in lipsum::internal. This file is under the BSD
  * Zero-Clause License.
@@ -25,6 +25,7 @@ namespace lipsum
      */
     namespace internal
     {
+        LIPSUM_API std::string GenerateTLD();
         LIPSUM_API std::string HandleHTMLEntity(const std::string& str);
         LIPSUM_API int         RandomNumber(int min, int max);
 

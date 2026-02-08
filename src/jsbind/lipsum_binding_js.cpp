@@ -76,4 +76,6 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     function("lpsm_GenerateMarkdownListX", &lpsm::GenerateMarkdownListX);
     function("lpsm_GenerateSlug", &lpsm::GenerateSlug);
     function("lpsm_GenerateSlugX", &lpsm::GenerateSlugX);
+    function("lpsm_GenerateURL", &lpsm::GenerateURL);
+    function("lpsm_GenerateURLX", &lpsm::GenerateURLX);
 }

@@ -45,6 +45,18 @@ static char* ConvertToCstr(const std::string& str)
     return cstr;
 }
 
+extern "C" char* lpsm_GenerateURL(int minWord, int maxWord)
+{
+    return ConvertToCstr(lpsm::GenerateURLX(minWord, maxWord));
+}
+
+extern "C" char* lpsm_GenerateURLS(lpsm_ArgVec2Handle word, bool del)
+{
+    char* ret = ConvertToCstr(lpsm::GenerateURL(LPSM_CPPIFY(word)));
+    LPSM_AV2_DESTROY(1, word)
+    return ret;
+}
+
 extern "C" char* lpsm_GenerateSlug(int minWord, int maxWord, char separator)
 {
     return ConvertToCstr(lpsm::GenerateSlugX(minWord, maxWord, separator));
@@ -76,6 +88,7 @@ extern "C" char* lpsm_GenerateSentenceS(lpsm_ArgVec2Handle word,
     LPSM_AV2_DESTROY(2, word, frag)
     return ret;
 }
+
 extern "C" char* lpsm_GenerateParagraphS(lpsm_ArgVec2Handle word,
                                          lpsm_ArgVec2Handle frag,
                                          lpsm_ArgVec2Handle sent,
@@ -89,6 +102,7 @@ extern "C" char* lpsm_GenerateParagraphS(lpsm_ArgVec2Handle word,
     LPSM_AV2_DESTROY(3, word, frag, sent)
     return ret;
 }
+
 extern "C" char* lpsm_GenerateParagraphsS(int                paraCount,
                                           lpsm_ArgVec2Handle word,
                                           lpsm_ArgVec2Handle frag,
@@ -104,6 +118,7 @@ extern "C" char* lpsm_GenerateParagraphsS(int                paraCount,
     LPSM_AV2_DESTROY(3, word, frag, sent)
     return ret;
 }
+
 extern "C" char* lpsm_GenerateSentencesS(int                sentCount,
                                          lpsm_ArgVec2Handle word,
                                          lpsm_ArgVec2Handle frag,
@@ -117,6 +132,7 @@ extern "C" char* lpsm_GenerateSentencesS(int                sentCount,
     LPSM_AV2_DESTROY(2, word, frag)
     return ret;
 }
+
 extern "C" char* lpsm_GenerateTextS(lpsm_ArgVec2Handle word,
                                     lpsm_ArgVec2Handle frag,
                                     lpsm_ArgVec2Handle sent,
@@ -143,6 +159,7 @@ extern "C" char* lpsm_GenerateMarkdownHeaderS(int                level,
     LPSM_AV2_DESTROY(1, word)
     return ret;
 }
+
 extern "C" char* lpsm_GenerateMarkdownEmphasisS(bool               isBold,
                                                 lpsm_ArgVec2Handle word,
                                                 lpsm_ArgVec2Handle frag,
@@ -156,21 +173,21 @@ extern "C" char* lpsm_GenerateMarkdownEmphasisS(bool               isBold,
     LPSM_AV2_DESTROY(2, word, frag)
     return ret;
 }
-extern "C" char* lpsm_GenerateMarkdownLinkS(const char*        url,
-                                            lpsm_ArgVec2Handle word,
+
+extern "C" char* lpsm_GenerateMarkdownLinkS(lpsm_ArgVec2Handle word,
                                             lpsm_ArgVec2Handle frag,
                                             lpsm_ArgVec2Handle wordURL,
                                             bool               useHtml,
                                             bool               del)
 {
-    char* ret = ConvertToCstr(lpsm::GenerateMarkdownLink(std::string(url),
-                                                         LPSM_CPPIFY(word),
+    char* ret = ConvertToCstr(lpsm::GenerateMarkdownLink(LPSM_CPPIFY(word),
                                                          LPSM_CPPIFY(frag),
                                                          LPSM_CPPIFY(wordURL),
                                                          useHtml));
     LPSM_AV2_DESTROY(3, word, frag, wordURL)
     return ret;
 }
+
 extern "C" char* lpsm_GenerateMarkdownListS(bool               ordered,
                                             lpsm_ArgVec2Handle word,
                                             lpsm_ArgVec2Handle frag,
@@ -186,13 +203,13 @@ extern "C" char* lpsm_GenerateMarkdownListS(bool               ordered,
     LPSM_AV2_DESTROY(3, word, frag, point)
     return ret;
 }
+
 extern "C" char* lpsm_GenerateMarkdownParagraphS(lpsm_ArgVec2Handle word,
                                                  lpsm_ArgVec2Handle frag,
                                                  lpsm_ArgVec2Handle sent,
                                                  lpsm_ArgVec2Handle wordFmt,
                                                  lpsm_ArgVec2Handle fragFmt,
                                                  lpsm_ArgVec2Handle wordLink,
-                                                 const char*        linkURL,
                                                  bool               useLipsum,
                                                  bool               useHtml,
                                                  bool               del)
@@ -204,12 +221,12 @@ extern "C" char* lpsm_GenerateMarkdownParagraphS(lpsm_ArgVec2Handle word,
                                                           LPSM_CPPIFY(wordFmt),
                                                           LPSM_CPPIFY(fragFmt),
                                                           LPSM_CPPIFY(wordLink),
-                                                          std::string(linkURL),
                                                           useLipsum,
                                                           useHtml));
     LPSM_AV2_DESTROY(6, word, frag, sent, wordFmt, fragFmt, wordLink)
     return ret;
 }
+
 extern "C" char* lpsm_GenerateMarkdownParagraphsS(int                paraCount,
                                                   lpsm_ArgVec2Handle word,
                                                   lpsm_ArgVec2Handle frag,
@@ -217,7 +234,6 @@ extern "C" char* lpsm_GenerateMarkdownParagraphsS(int                paraCount,
                                                   lpsm_ArgVec2Handle wordFmt,
                                                   lpsm_ArgVec2Handle fragFmt,
                                                   lpsm_ArgVec2Handle wordLink,
-                                                  const char*        linkURL,
                                                   bool               useLipsum,
                                                   bool               useHtml,
                                                   bool               del)
@@ -230,7 +246,6 @@ extern "C" char* lpsm_GenerateMarkdownParagraphsS(int                paraCount,
                                              LPSM_CPPIFY(wordFmt),
                                              LPSM_CPPIFY(fragFmt),
                                              LPSM_CPPIFY(wordLink),
-                                             std::string(linkURL),
                                              useLipsum,
                                              useHtml));
     LPSM_AV2_DESTROY(6, word, frag, sent, wordFmt, fragFmt, wordLink)
@@ -244,7 +259,6 @@ extern "C" char* lpsm_GenerateMarkdownTextS(lpsm_ArgVec2Handle word,
                                             lpsm_ArgVec2Handle fragFmt,
                                             lpsm_ArgVec2Handle wordHead,
                                             lpsm_ArgVec2Handle level,
-                                            const char*        linkURL,
                                             int                numElements,
                                             bool               useHtml,
                                             bool               del)
@@ -257,7 +271,6 @@ extern "C" char* lpsm_GenerateMarkdownTextS(lpsm_ArgVec2Handle word,
                                                          LPSM_CPPIFY(fragFmt),
                                                          LPSM_CPPIFY(wordHead),
                                                          LPSM_CPPIFY(level),
-                                                         std::string(linkURL),
                                                          numElements,
                                                          useHtml));
     LPSM_AV2_DESTROY(8,
@@ -294,17 +307,15 @@ extern "C" char* lpsm_GenerateMarkdownEmphasis(bool isBold,
                                                          useHtml));
 }
 
-extern "C" char* lpsm_GenerateMarkdownLink(const char* url,
-                                           int         minWord,
-                                           int         maxWord,
-                                           int         minFrag,
-                                           int         maxFrag,
-                                           int         minWordURL,
-                                           int         maxWordURL,
-                                           bool        useHtml)
+extern "C" char* lpsm_GenerateMarkdownLink(int  minWord,
+                                           int  maxWord,
+                                           int  minFrag,
+                                           int  maxFrag,
+                                           int  minWordURL,
+                                           int  maxWordURL,
+                                           bool useHtml)
 {
-    return ConvertToCstr(lpsm::GenerateMarkdownLinkX(std::string(url),
-                                                     minWord,
+    return ConvertToCstr(lpsm::GenerateMarkdownLinkX(minWord,
                                                      maxWord,
                                                      minFrag,
                                                      maxFrag,

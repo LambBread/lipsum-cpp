@@ -16,11 +16,27 @@
 namespace lipsum
 {
     /**
+     * @brief Generate a random URL.
+     *
+     * @since 0.3.7
+     *
+     * Generate a URL starting in https://, followed by a random word, followed
+     * by a random TLD, followed by a slash and a random HTML id as a slug
+     * separated by hyphens.
+     *
+     * @param word The minimum and maximum possible number of words at the end
+     * of the URL. By default 2 to 5.
+     *
+     * @return std::string The URL.
+     */
+    LIPSUM_API std::string GenerateURL(const ArgVec2& word = ArgVec2(2, 5));
+
+    /**
      * @brief Generate a slug joined by a specified character.
      *
      * @since 0.3.6
      *
-     * Generates a sentence fragment with spaces replaced with the specified
+     * Generate a sentence fragment with spaces replaced with the specified
      * separator character.
      *
      * @param word The minimum and maximum possible number of words in the slug.

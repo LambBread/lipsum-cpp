@@ -2,7 +2,7 @@
 /**
  * @file lipsum/argvec2.inl
  *
- * @brief lipsum::ArgVec2
+ * @brief Definition of lipsum::ArgVec2
  *
  * This defines functions in struct ArgVec2. This file is under the BSD Zero
  * Clause License.

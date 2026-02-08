@@ -75,12 +75,10 @@ int main()
     std::string word = lpsm::GenerateWord();
 
     // A markdown link (uses example.com by default)
-    std::string mdLink =
-            lpsm::GenerateMarkdownLink(std::string("https://example.com/"),
-                                       lpsm::ArgVec2(3, 6),
-                                       lpsm::ArgVec2(1, 2),
-                                       lpsm::ArgVec2(2, 4),
-                                       false);
+    std::string mdLink = lpsm::GenerateMarkdownLink(lpsm::ArgVec2(3, 6),
+                                                    lpsm::ArgVec2(1, 2),
+                                                    lpsm::ArgVec2(2, 4),
+                                                    false);
 
     // Gallery: several short paragraphs
     std::string gallery = lpsm::GenerateParagraphs(3,

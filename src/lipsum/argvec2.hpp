@@ -2,7 +2,7 @@
 /**
  * @file lipsum/argvec2.hpp
  *
- * @brief lipsum::ArgVec2
+ * @brief Declaration of lipsum::ArgVec2
  *
  * This declares struct ArgVec2. This file is under the BSD Zero Clause License.
  *

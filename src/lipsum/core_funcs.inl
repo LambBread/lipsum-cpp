@@ -12,6 +12,13 @@
  */
 #pragma once
 
+std::string lpsm::GenerateURL(const lpsm::ArgVec2& word)
+{
+    return std::string("https://") + lpsm::GenerateWord() +
+           lpsm::internal::GenerateTLD() + std::string("/#") +
+           lpsm::GenerateSlug(word, '-');
+}
+
 std::string lpsm::GenerateSlug(const lpsm::ArgVec2& word, char separator)
 {
     std::string ret = lpsm::GenerateSentenceFragment(word);
@@ -84,7 +91,7 @@ std::string lpsm::GenerateSentenceFragment(const lpsm::ArgVec2& word)
 std::string lpsm::GenerateSentence(const lpsm::ArgVec2& word,
                                    const lpsm::ArgVec2& frag)
 {
-    constexpr int CHANCE_COMMA = 97;
+    constexpr int CHANCE_COMMA = 88;
     constexpr int CHANCE_SEMI  = 9;
     std::string   result;
     int           words = word.Roll();
@@ -95,18 +102,21 @@ std::string lpsm::GenerateSentence(const lpsm::ArgVec2& word,
     for (int i = 0; i < frags; ++i)
     {
         result += lpsm::GenerateSentenceFragment(word);
-        int check = lpsm::internal::RandomNumber(0, 100);
+        int check = lpsm::internal::RandomNumber(0, 99);
         // don't do if only one fragment
         if (i != frags - 1)
         {
+            // 9% chance
             if (check < CHANCE_SEMI)
             {
                 result += "; ";
             }
-            else if (check < CHANCE_COMMA)
+            // 88% chance
+            else if (check < CHANCE_SEMI + CHANCE_COMMA)
             {
                 result += ", ";
             }
+            // 3% chance
             else
             {
                 result += " - ";

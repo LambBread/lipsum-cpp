@@ -28,6 +28,7 @@
  * @example GenerateSentences.cpp
  * @example GenerateSlug.cpp
  * @example GenerateText.cpp
+ * @example GenerateURL.cpp
  * @example GenerateWord.cpp
  * @example GenerateWords.cpp
  * @example Markdown.cpp
@@ -36,23 +37,25 @@
 
 #pragma once
 
+#include <algorithm>
 #include <cctype>
 #include <iostream>
 #include <random>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <algorithm>
 
 #include "lipsum/core.hpp"
-#include "lipsum/internal.hpp"
+
 #include "lipsum/argvec2.hpp"
 #include "lipsum/generator.hpp"
+#include "lipsum/internal.hpp"
+
 #include "lipsum/core_funcs.hpp"
-#include "lipsum/core_xfuncs.hpp"
-#include "lipsum/misc.hpp"
 #include "lipsum/markdown.hpp"
+#include "lipsum/core_xfuncs.hpp"
 #include "lipsum/md_xfuncs.hpp"
+#include "lipsum/misc.hpp"
 
 /**
  * @namespace lipsum
@@ -70,12 +73,13 @@ namespace lpsm = lipsum;
 
 #ifdef LIPSUM_IMPLEMENTATION
 
-#    include "lipsum/generator.inl"
-#    include "lipsum/markdown.inl"
-#    include "lipsum/misc.inl"
-#    include "lipsum/core_funcs.inl"
-#    include "lipsum/internal.inl"
-#    include "lipsum/xfuncs.inl"
 #    include "lipsum/argvec2.inl"
+#    include "lipsum/generator.inl"
+#    include "lipsum/internal.inl"
+
+#    include "lipsum/core_funcs.inl"
+#    include "lipsum/markdown.inl"
+#    include "lipsum/xfuncs.inl"
+#    include "lipsum/misc.inl"
 
 #endif
