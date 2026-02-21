@@ -78,4 +78,5 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     function("lpsm_GenerateSlugX", &lpsm::GenerateSlugX);
     function("lpsm_GenerateURL", &lpsm::GenerateURL);
     function("lpsm_GenerateURLX", &lpsm::GenerateURLX);
+    function("lpsm_CountWords", &lpsm::CountWords);
 }

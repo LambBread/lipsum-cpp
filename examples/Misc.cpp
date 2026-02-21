@@ -13,6 +13,10 @@ int main()
                                       "123.](https://example.com/foo-bar) "
                                       "Testing 123. Foobar test.")
               << '\n';
+    std::cout << lpsm::CountWords("Hello World, Foo bar baz qux quuz. "
+                                  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA. Lorem ipsum "
+                                  "dolor sit amet, aaaaaaaaaaaaaaaaaa")
+              << '\n';
 
     return 0;
 }

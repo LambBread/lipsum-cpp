@@ -17,6 +17,20 @@ namespace lipsum
 {
 
     /**
+     * @brief Count the number of words in a string.
+     *
+     * Count the number of words in a string using a naive approach. It counts
+     * some Markdown formatting as words.
+     *
+     * @since 0.3.8
+     *
+     * @param str The string inputted.
+     *
+     * @return int The number of words.
+     */
+    LIPSUM_API int CountWords(const std::string& str);
+
+    /**
      * @brief Count the number of sentences in a string.
      *
      * Count the number of periods in a string, ignoring usage in Markdown URLs.

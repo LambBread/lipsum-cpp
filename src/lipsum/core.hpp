@@ -19,7 +19,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION "0.3.7"
+#define LIPSUM_CPP_VERSION "0.3.8"
 
 #ifndef __cplusplus
 #    error lipsum.hpp only supports C++, did you mean lipsum.h?

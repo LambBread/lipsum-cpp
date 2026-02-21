@@ -49,7 +49,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.3.7"
+#define LIPSUM_CPP_VERSION_C "0.3.8"
 
 /**
  * @brief Return the current version of lipsum-cpp
@@ -76,6 +76,20 @@ typedef void* lpsm_ArgVec2Handle;
 extern "C"
 {
 #endif
+
+    /**
+     * @brief Count the number of words in a string.
+     *
+     * Count the number of words in a string using a naive approach. It counts
+     * some Markdown formatting as words.
+     *
+     * @since 0.3.8
+     *
+     * @param str The string inputted.
+     *
+     * @return int The number of words.
+     */
+    LIPSUMC_API int lpsm_CountWords(const char* str);
 
     /**
      * @brief Generate a random URL.

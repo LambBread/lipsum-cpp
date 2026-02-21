@@ -13,6 +13,19 @@
  * @author LambBread from github.com
  */
 #pragma once
+
+int lpsm::CountWords(const std::string& str)
+{
+    std::stringstream ss(str);
+    int               count = 0;
+    std::string       tmp;
+    while (ss >> tmp)
+    {
+        ++count;
+    }
+    return count;
+}
+
 int lpsm::CountSentences(const std::string& str)
 {
     int res    = 0;
