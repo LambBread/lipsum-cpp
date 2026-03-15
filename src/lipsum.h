@@ -49,7 +49,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.3.8"
+#define LIPSUM_CPP_VERSION_C "0.3.9"
 
 /**
  * @brief Return the current version of lipsum-cpp
@@ -76,6 +76,32 @@ typedef void* lpsm_ArgVec2Handle;
 extern "C"
 {
 #endif
+
+    /**
+     * @brief Generate a random character scramble
+     *
+     * @since 0.3.9
+     *
+     * Generate a random string of text with random characters.
+     *
+     * @param length The number of characters.
+     * @param min The lowest-valued ASCII character that can appear.
+     * @param max The highest-valued ASCII character than can appear.
+     *
+     * @return char* The character scramble
+     */
+    LIPSUMC_API char* lpsm_GenerateScramble(int length, char min, char max);
+
+    /**
+     * @brief Generate a random plain URL
+     *
+     * @since 0.3.9
+     *
+     * Generate a URL with a random word followed by a random TLD.
+     *
+     * @return char* The plain URL
+     */
+    LIPSUMC_API char* lpsm_GeneratePlainURL(void);
 
     /**
      * @brief Count the number of words in a string.

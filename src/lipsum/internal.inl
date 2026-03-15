@@ -13,6 +13,19 @@
  */
 #pragma once
 
+template <> char lpsm::internal::RandomNumber(char min, char max)
+{
+    return static_cast<char>(
+            lpsm::internal::RandomNumber(static_cast<int>(min),
+                                         static_cast<int>(max)));
+}
+
+template <> bool lpsm::internal::RandomNumber(bool min, bool max)
+{
+    int choice = lpsm::internal::RandomNumber(0, 1);
+    return choice == 0 ? min : max;
+}
+
 std::string lpsm::internal::GenerateTLD()
 {
     constexpr int CHANCE_COM = 70;
@@ -54,6 +67,7 @@ std::string lpsm::internal::GenerateTLD()
     }
 }
 
+/*
 int lpsm::internal::RandomNumber(int min, int max)
 {
     static std::random_device       rd;
@@ -61,6 +75,7 @@ int lpsm::internal::RandomNumber(int min, int max)
     std::uniform_int_distribution<> dist(min, max);
     return dist(gen);
 }
+*/
 
 std::string lpsm::internal::HandleHTMLEntity(const std::string& str)
 {

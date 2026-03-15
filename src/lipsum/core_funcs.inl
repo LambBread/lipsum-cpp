@@ -12,11 +12,28 @@
  */
 #pragma once
 
+#include "sample.inl"
+
+std::string lpsm::GeneratePlainURL()
+{
+    return std::string("lpsmcpp-") + lpsm::GenerateWord() +
+           lpsm::internal::GenerateTLD();
+}
+
+std::string lpsm::GenerateScramble(int length, char min, char max)
+{
+    std::string ret;
+    for (int i = 0; i < length; ++i)
+    {
+        ret.push_back(lpsm::internal::RandomNumber<char>(min, max));
+    }
+    return ret;
+}
+
 std::string lpsm::GenerateURL(const lpsm::ArgVec2& word)
 {
-    return std::string("https://") + lpsm::GenerateWord() +
-           lpsm::internal::GenerateTLD() + std::string("/#") +
-           lpsm::GenerateSlug(word, '-');
+    return std::string("https://") + lpsm::GeneratePlainURL() +
+           std::string("/#") + lpsm::GenerateSlug(word, '-');
 }
 
 std::string lpsm::GenerateSlug(const lpsm::ArgVec2& word, char separator)
@@ -63,17 +80,14 @@ std::string lpsm::GenerateSentences(int                  sentCount,
 
 std::string lpsm::GenerateDefaultLipsumSentence()
 {
-    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    return std::string(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
 }
 
 std::string lpsm::GenerateWord()
 {
-#include "sample.inl"
-    // static std::random_device rd;
-    // static std::mt19937 gen(rd());
-    // std::uniform_int_distribution<> dist(0, lipsumVec.size() - 1);
-    int randomIdx = lpsm::internal::RandomNumber(0, lipsumVec.size() - 1);
-    return lipsumVec.at(randomIdx);
+    int randomIdx = lpsm::internal::RandomNumber<int>(0, LIPSUM_VEC.size() - 1);
+    return std::string(LIPSUM_VEC[randomIdx]);
 }
 
 std::string lpsm::GenerateSentenceFragment(const lpsm::ArgVec2& word)
@@ -102,7 +116,7 @@ std::string lpsm::GenerateSentence(const lpsm::ArgVec2& word,
     for (int i = 0; i < frags; ++i)
     {
         result += lpsm::GenerateSentenceFragment(word);
-        int check = lpsm::internal::RandomNumber(0, 99);
+        int check = lpsm::internal::RandomNumber<int>(0, 99);
         // don't do if only one fragment
         if (i != frags - 1)
         {

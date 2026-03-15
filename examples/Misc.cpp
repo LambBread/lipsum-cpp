@@ -17,6 +17,9 @@ int main()
                                   "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA. Lorem ipsum "
                                   "dolor sit amet, aaaaaaaaaaaaaaaaaa")
               << '\n';
+    std::cout << "this is a plain URL:" << lpsm::GeneratePlainURL() << '\n';
+    std::cout << "your generated password is "
+              << lpsm::GenerateScramble(24, ' ', '~') << '\n';
 
     return 0;
 }

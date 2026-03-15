@@ -3,12 +3,12 @@
  *
  * @brief File containing all of the words used by lipsum::GenerateWord()
  *
- * This file is for inclusion inside a function, containing a vector of strings,
+ * This file contains a constexpr array of strings,
  * each a word in the original sample lipsum.txt.
  *
  * @author LambBread from github.com
  */
-static std::vector<std::string> lipsumVec = {
+static constexpr std::array<const char*, 167> LIPSUM_VEC = {
         "lorem",        "ipsum",       "dolor",       "sit",
         "amet",         "consectetur", "adipiscing",  "elit",
         "suspendisse",  "vel",         "condimentum", "neque",

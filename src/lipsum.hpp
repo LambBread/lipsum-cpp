@@ -38,12 +38,13 @@
 #pragma once
 
 #include <algorithm>
+#include <array>
 #include <cctype>
 #include <iostream>
 #include <random>
 #include <sstream>
 #include <string>
-#include <vector>
+// #include <vector>
 
 #include "lipsum/core.hpp"
 

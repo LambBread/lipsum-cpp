@@ -15,6 +15,36 @@
 // #include "argvec2.hpp"
 namespace lipsum
 {
+
+    /**
+     * @brief Generate a random character scramble
+     *
+     * @since 0.3.9
+     *
+     * Generate a random string of text with random characters.
+     *
+     * @param length The number of characters. By default 16.
+     * @param min The lowest-valued ASCII character that can appear. By default
+     * a space.
+     * @param max The highest-valued ASCII character than can appear. By default
+     * a tilde.
+     *
+     * @return std::string The character scramble
+     */
+    LIPSUM_API std::string
+    GenerateScramble(int length = 16, char min = ' ', char max = '~');
+
+    /**
+     * @brief Generate a random plain URL
+     *
+     * @since 0.3.9
+     *
+     * Generate a URL with a random word followed by a random TLD.
+     *
+     * @return std::string The plain URL
+     */
+    LIPSUM_API std::string GeneratePlainURL();
+
     /**
      * @brief Generate a random URL.
      *

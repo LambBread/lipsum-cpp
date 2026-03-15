@@ -45,6 +45,16 @@ static char* ConvertToCstr(const std::string& str)
     return cstr;
 }
 
+extern "C" char* lpsm_GenerateScramble(int length, char min, char max)
+{
+    return ConvertToCstr(lpsm::GenerateScramble(length, min, max));
+}
+
+extern "C" char* lpsm_GeneratePlainURL(void)
+{
+    return ConvertToCstr(lpsm::GeneratePlainURL());
+}
+
 extern "C" int lpsm_CountWords(const char* str)
 {
     return lpsm::CountWords(std::string(str));

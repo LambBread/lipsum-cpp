@@ -33,14 +33,16 @@ std::string lpsm::GenerateMarkdownText(const lpsm::ArgVec2& word,
                                            false,
                                            useHtml);
     numElements -= 2;
-    int           rand;
-    bool          ordered;
-    lpsm::ArgVec2 elem  = ArgVec2(0, 2);
-    lpsm::ArgVec2 order = ArgVec2(0, 1);
+    int  rand;
+    bool ordered;
+    // lpsm::ArgVec2 elem  = ArgVec2(0, 2);
+    // lpsm::ArgVec2 order = ArgVec2(0, 1);
     while (numElements > 0)
     {
-        rand    = elem.Roll();
-        ordered = static_cast<bool>(order.Roll());
+        // rand    = elem.Roll();
+        // ordered = static_cast<bool>(order.Roll());
+        rand    = lpsm::internal::RandomNumber<int>(0, 2);
+        ordered = LPSM_FLIP_COIN;
         switch (rand)
         {
             case 0:
@@ -147,13 +149,13 @@ std::string lpsm::GenerateMarkdownParagraph(const lpsm::ArgVec2& word,
                                             bool                 useLipsum,
                                             bool                 useHtml)
 {
-    std::string   ret;
-    int           sents = sent.Roll();
-    int           fmtRoll;
-    bool          addLink;
-    bool          isBold;
-    lpsm::ArgVec2 linkEmph = ArgVec2(0, 1);
-    lpsm::ArgVec2 boldItal = ArgVec2(0, 1);
+    std::string ret;
+    int         sents = sent.Roll();
+    int         fmtRoll;
+    bool        addLink;
+    bool        isBold;
+    // lpsm::ArgVec2 linkEmph = ArgVec2(0, 1);
+    // lpsm::ArgVec2 boldItal = ArgVec2(0, 1);
     if (useHtml)
     {
         ret += "<p>";
@@ -161,8 +163,10 @@ std::string lpsm::GenerateMarkdownParagraph(const lpsm::ArgVec2& word,
     for (int i = 0; i < sents; ++i)
     {
         fmtRoll = sent.Roll();
-        addLink = static_cast<bool>(linkEmph.Roll());
-        isBold  = static_cast<bool>(boldItal.Roll());
+        // addLink = static_cast<bool>(linkEmph.Roll());
+        // isBold  = static_cast<bool>(boldItal.Roll());
+        addLink = LPSM_FLIP_COIN;
+        isBold  = LPSM_FLIP_COIN;
         if (i == 0 && useLipsum)
         {
             ret += lpsm::GenerateDefaultLipsumSentence();
