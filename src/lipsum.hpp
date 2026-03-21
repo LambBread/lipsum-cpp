@@ -44,6 +44,7 @@
 #include <random>
 #include <sstream>
 #include <string>
+#include <type_traits>
 // #include <vector>
 
 #include "lipsum/core.hpp"
