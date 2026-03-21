@@ -13,16 +13,18 @@
  */
 #pragma once
 
-lpsm::ArgVec2::ArgVec2(int min, int max)
+namespace lipsum
 {
-    this->min = min;
-    this->max = max;
-}
 
-int lpsm::ArgVec2::Roll() const
-{
-    // static std::random_device rd;
-    // static std::mt19937 gen(rd());
-    // std::uniform_int_distribution<> dist(min, max);
-    return lpsm::internal::RandomNumber<int>(min, max);
-}
+    ArgVec2::ArgVec2(int min, int max)
+    {
+        this->min = min;
+        this->max = max;
+    }
+
+    int ArgVec2::Roll() const
+    {
+        return internal::RandomNumber<int>(min, max);
+    }
+
+} // namespace lipsum

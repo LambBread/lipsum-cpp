@@ -13,107 +13,110 @@
  */
 #pragma once
 
-template <> char lpsm::internal::RandomNumber(char min, char max)
+namespace lipsum
 {
-    return static_cast<char>(
-            lpsm::internal::RandomNumber(static_cast<int>(min),
-                                         static_cast<int>(max)));
-}
 
-template <> bool lpsm::internal::RandomNumber(bool min, bool max)
-{
-    int choice = lpsm::internal::RandomNumber(0, 1);
-    return choice == 0 ? min : max;
-}
+    template <> char internal::RandomNumber(char min, char max)
+    {
+        return static_cast<char>(internal::RandomNumber(static_cast<int>(min),
+                                                        static_cast<int>(max)));
+    }
 
-std::string lpsm::internal::GenerateTLD()
-{
-    constexpr int CHANCE_COM = 70;
-    constexpr int CHANCE_ORG = 10;
-    constexpr int CHANCE_NET = 7;
-    constexpr int CHANCE_EDU = 5;
-    constexpr int CHANCE_IO  = 5;
-    constexpr int CHANCE_CA  = 2;
-    int           rand       = lpsm::internal::RandomNumber(0, 99);
-    if (rand < CHANCE_COM)
+    template <> bool internal::RandomNumber(bool min, bool max)
     {
-        return std::string(".com");
+        int choice = internal::RandomNumber(0, 1);
+        return choice == 0 ? min : max;
     }
-    else if (rand < CHANCE_COM + CHANCE_ORG)
-    {
-        return std::string(".org");
-    }
-    else if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET)
-    {
-        return std::string(".net");
-    }
-    else if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU)
-    {
-        return std::string(".edu");
-    }
-    else if (rand <
-             CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU + CHANCE_IO)
-    {
-        return std::string(".io");
-    }
-    else if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU +
-                            CHANCE_IO + CHANCE_CA)
-    {
-        return std::string(".ca");
-    }
-    else
-    {
-        return std::string(".co.uk");
-    }
-}
 
-/*
-int lpsm::internal::RandomNumber(int min, int max)
-{
-    static std::random_device       rd;
-    std::mt19937                    gen(rd());
-    std::uniform_int_distribution<> dist(min, max);
-    return dist(gen);
-}
-*/
-
-std::string lpsm::internal::HandleHTMLEntity(const std::string& str)
-{
-    std::string result;
-    for (const auto& c : str)
+    std::string internal::GenerateTLD()
     {
-        switch (c)
+        constexpr int CHANCE_COM = 70;
+        constexpr int CHANCE_ORG = 10;
+        constexpr int CHANCE_NET = 7;
+        constexpr int CHANCE_EDU = 5;
+        constexpr int CHANCE_IO  = 5;
+        constexpr int CHANCE_CA  = 2;
+        int           rand       = internal::RandomNumber(0, 99);
+        if (rand < CHANCE_COM)
         {
-            case '&':
-            {
-                result += "&amp;";
-                break;
-            }
-            case '<':
-            {
-                result += "&lt;";
-                break;
-            }
-            case '>':
-            {
-                result += "&gt;";
-                break;
-            }
-            case '"':
-            {
-                result += "&quot;";
-                break;
-            }
-            case '\'':
-            {
-                result += "&apos;";
-                break;
-            }
-            default:
-            {
-                result.push_back(c);
-            }
+            return std::string(".com");
+        }
+        else if (rand < CHANCE_COM + CHANCE_ORG)
+        {
+            return std::string(".org");
+        }
+        else if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET)
+        {
+            return std::string(".net");
+        }
+        else if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU)
+        {
+            return std::string(".edu");
+        }
+        else if (rand <
+                 CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU + CHANCE_IO)
+        {
+            return std::string(".io");
+        }
+        else if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU +
+                                CHANCE_IO + CHANCE_CA)
+        {
+            return std::string(".ca");
+        }
+        else
+        {
+            return std::string(".co.uk");
         }
     }
-    return result;
-}
+
+    /*
+    int lpsm::internal::RandomNumber(int min, int max)
+    {
+        static std::random_device       rd;
+        std::mt19937                    gen(rd());
+        std::uniform_int_distribution<> dist(min, max);
+        return dist(gen);
+    }
+    */
+
+    std::string internal::HandleHTMLEntity(const std::string& str)
+    {
+        std::string result;
+        for (const auto& c : str)
+        {
+            switch (c)
+            {
+                case '&':
+                {
+                    result += "&amp;";
+                    break;
+                }
+                case '<':
+                {
+                    result += "&lt;";
+                    break;
+                }
+                case '>':
+                {
+                    result += "&gt;";
+                    break;
+                }
+                case '"':
+                {
+                    result += "&quot;";
+                    break;
+                }
+                case '\'':
+                {
+                    result += "&apos;";
+                    break;
+                }
+                default:
+                {
+                    result.push_back(c);
+                }
+            }
+        }
+        return result;
+    }
+} // namespace lipsum

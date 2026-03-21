@@ -11,331 +11,336 @@
  * @author LambBread from github.com
  */
 #pragma once
-std::string lpsm::GenerateMarkdownText(const lpsm::ArgVec2& word,
-                                       const lpsm::ArgVec2& frag,
-                                       const lpsm::ArgVec2& sent,
-                                       const lpsm::ArgVec2& point,
-                                       const lpsm::ArgVec2& wordFmt,
-                                       const lpsm::ArgVec2& fragFmt,
-                                       const lpsm::ArgVec2& wordHead,
-                                       const lpsm::ArgVec2& level,
-                                       int                  numElements,
-                                       bool                 useHtml)
+namespace lipsum
 {
-    std::string ret;
-    ret += lpsm::GenerateMarkdownHeader(1, wordHead, useHtml);
-    ret += lpsm::GenerateMarkdownParagraph(word,
-                                           frag,
-                                           sent,
-                                           wordFmt,
-                                           fragFmt,
-                                           wordHead,
-                                           false,
-                                           useHtml);
-    numElements -= 2;
-    int  rand;
-    bool ordered;
-    // lpsm::ArgVec2 elem  = ArgVec2(0, 2);
-    // lpsm::ArgVec2 order = ArgVec2(0, 1);
-    while (numElements > 0)
-    {
-        // rand    = elem.Roll();
-        // ordered = static_cast<bool>(order.Roll());
-        rand    = lpsm::internal::RandomNumber<int>(0, 2);
-        ordered = LPSM_FLIP_COIN;
-        switch (rand)
-        {
-            case 0:
-            {
-                ret += lpsm::GenerateMarkdownParagraph(word,
-                                                       frag,
-                                                       sent,
-                                                       wordFmt,
-                                                       fragFmt,
-                                                       wordHead,
-                                                       false,
-                                                       useHtml);
-                break;
-            }
-            case 1:
-            {
-                ret += lpsm::GenerateMarkdownHeader(level.Roll(),
-                                                    wordHead,
-                                                    useHtml);
-                break;
-            }
-            case 2:
-            {
-                ret += lpsm::GenerateMarkdownList(ordered,
-                                                  wordFmt,
-                                                  fragFmt,
-                                                  point,
-                                                  useHtml);
-                break;
-            }
-        }
-        --numElements;
-    }
-    return ret;
-}
 
-std::string lpsm::GenerateMarkdownList(bool                 ordered,
-                                       const lpsm::ArgVec2& word,
-                                       const lpsm::ArgVec2& frag,
-                                       const lpsm::ArgVec2& point,
-                                       bool                 useHtml)
-{
-    std::string ret;
-    int         points = point.Roll();
-    if (useHtml)
+    std::string GenerateMarkdownText(const ArgVec2& word,
+                                     const ArgVec2& frag,
+                                     const ArgVec2& sent,
+                                     const ArgVec2& point,
+                                     const ArgVec2& wordFmt,
+                                     const ArgVec2& fragFmt,
+                                     const ArgVec2& wordHead,
+                                     const ArgVec2& level,
+                                     int            numElements,
+                                     bool           useHtml)
     {
-        if (ordered)
+        std::string ret;
+        ret += GenerateMarkdownHeader(1, wordHead, useHtml);
+        ret += GenerateMarkdownParagraph(word,
+                                         frag,
+                                         sent,
+                                         wordFmt,
+                                         fragFmt,
+                                         wordHead,
+                                         false,
+                                         useHtml);
+        numElements -= 2;
+        int  rand;
+        bool ordered;
+        // lpsm::ArgVec2 elem  = ArgVec2(0, 2);
+        // lpsm::ArgVec2 order = ArgVec2(0, 1);
+        while (numElements > 0)
         {
-            ret += "<ol>";
+            // rand    = elem.Roll();
+            // ordered = static_cast<bool>(order.Roll());
+            rand    = internal::RandomNumber<int>(0, 2);
+            ordered = LPSM_FLIP_COIN;
+            switch (rand)
+            {
+                case 0:
+                {
+                    ret += GenerateMarkdownParagraph(word,
+                                                     frag,
+                                                     sent,
+                                                     wordFmt,
+                                                     fragFmt,
+                                                     wordHead,
+                                                     false,
+                                                     useHtml);
+                    break;
+                }
+                case 1:
+                {
+                    ret += GenerateMarkdownHeader(level.Roll(),
+                                                  wordHead,
+                                                  useHtml);
+                    break;
+                }
+                case 2:
+                {
+                    ret += GenerateMarkdownList(ordered,
+                                                wordFmt,
+                                                fragFmt,
+                                                point,
+                                                useHtml);
+                    break;
+                }
+            }
+            --numElements;
         }
-        else
-        {
-            ret += "<ul>";
-        }
+        return ret;
     }
-    for (int i = 0; i < points; ++i)
+
+    std::string GenerateMarkdownList(bool           ordered,
+                                     const ArgVec2& word,
+                                     const ArgVec2& frag,
+                                     const ArgVec2& point,
+                                     bool           useHtml)
     {
-        if (!useHtml)
+        std::string ret;
+        int         points = point.Roll();
+        if (useHtml)
         {
             if (ordered)
             {
-                ret += lpsm::internal::ToString(i + 1) += ". ";
+                ret += "<ol>";
             }
             else
             {
-                ret += "- ";
+                ret += "<ul>";
+            }
+        }
+        for (int i = 0; i < points; ++i)
+        {
+            if (!useHtml)
+            {
+                if (ordered)
+                {
+                    ret += internal::ToString(i + 1) += ". ";
+                }
+                else
+                {
+                    ret += "- ";
+                }
+            }
+            else
+            {
+                ret += "<li>";
+            }
+            ret += GenerateSentence(word, frag);
+            if (useHtml)
+            {
+                ret += "</li>";
+            }
+            else
+            {
+                ret += "\n";
+            }
+        }
+        if (useHtml)
+        {
+            if (ordered)
+            {
+                ret += "</ol>";
+            }
+            else
+            {
+                ret += "</ul>";
+            }
+        }
+        ret += "\n";
+        return ret;
+    }
+
+    std::string GenerateMarkdownParagraph(const ArgVec2& word,
+                                          const ArgVec2& frag,
+                                          const ArgVec2& sent,
+                                          const ArgVec2& wordFmt,
+                                          const ArgVec2& fragFmt,
+                                          const ArgVec2& wordLink,
+                                          bool           useLipsum,
+                                          bool           useHtml)
+    {
+        std::string ret;
+        int         sents = sent.Roll();
+        int         fmtRoll;
+        bool        addLink;
+        bool        isBold;
+        // lpsm::ArgVec2 linkEmph = ArgVec2(0, 1);
+        // lpsm::ArgVec2 boldItal = ArgVec2(0, 1);
+        if (useHtml)
+        {
+            ret += "<p>";
+        }
+        for (int i = 0; i < sents; ++i)
+        {
+            fmtRoll = sent.Roll();
+            // addLink = static_cast<bool>(linkEmph.Roll());
+            // isBold  = static_cast<bool>(boldItal.Roll());
+            addLink = LPSM_FLIP_COIN;
+            isBold  = LPSM_FLIP_COIN;
+            if (i == 0 && useLipsum)
+            {
+                ret += GenerateDefaultLipsumSentence();
+            }
+            else if ((fmtRoll == sent.min) && addLink)
+            {
+                ret += GenerateMarkdownLink(wordFmt,
+                                            fragFmt,
+                                            wordLink,
+                                            useHtml);
+            }
+            else if ((fmtRoll == sent.min) && !addLink)
+            {
+                ret += GenerateMarkdownEmphasis(isBold,
+                                                wordFmt,
+                                                fragFmt,
+                                                useHtml);
+            }
+            else
+            {
+                ret += GenerateSentence(word, frag);
+            }
+            ret += " ";
+        }
+        if (useHtml)
+        {
+            ret += "</p>";
+        }
+        ret += "\n\n";
+        return ret;
+    }
+
+    std::string GenerateMarkdownLink(const ArgVec2& word,
+                                     const ArgVec2& frag,
+                                     const ArgVec2& wordURL,
+                                     bool           useHtml)
+    {
+        std::string ret;
+        // std::string link =
+        //         url + std::string("#") + lpsm::GenerateSlug(wordURL, '-');
+        std::string link     = GenerateURL(wordURL);
+        std::string sentence = GenerateSentence(word, frag);
+        if (!useHtml)
+        {
+            ret += std::string("[") += sentence += std::string("](") += link +=
+                    ")";
+        }
+        else
+        {
+            ret += std::string("<a href=\"") + link + std::string("\">") +
+                   sentence + "</a>";
+        }
+        return ret;
+    }
+
+    std::string GenerateMarkdownEmphasis(bool           isBold,
+                                         const ArgVec2& word,
+                                         const ArgVec2& frag,
+                                         bool           useHtml)
+    {
+        std::string ret;
+        std::string sent = GenerateSentence(word, frag);
+
+        if (!useHtml)
+        {
+            ret += "*";
+            if (isBold)
+            {
+                ret += "*";
             }
         }
         else
         {
-            ret += "<li>";
+            if (isBold)
+            {
+                ret += "<strong>";
+            }
+            else
+            {
+                ret += "<em>";
+            }
         }
-        ret += lpsm::GenerateSentence(word, frag);
-        if (useHtml)
-        {
-            ret += "</li>";
-        }
-        else
-        {
-            ret += "\n";
-        }
-    }
-    if (useHtml)
-    {
-        if (ordered)
-        {
-            ret += "</ol>";
-        }
-        else
-        {
-            ret += "</ul>";
-        }
-    }
-    ret += "\n";
-    return ret;
-}
 
-std::string lpsm::GenerateMarkdownParagraph(const lpsm::ArgVec2& word,
-                                            const lpsm::ArgVec2& frag,
-                                            const lpsm::ArgVec2& sent,
-                                            const lpsm::ArgVec2& wordFmt,
-                                            const lpsm::ArgVec2& fragFmt,
-                                            const lpsm::ArgVec2& wordLink,
-                                            bool                 useLipsum,
-                                            bool                 useHtml)
-{
-    std::string ret;
-    int         sents = sent.Roll();
-    int         fmtRoll;
-    bool        addLink;
-    bool        isBold;
-    // lpsm::ArgVec2 linkEmph = ArgVec2(0, 1);
-    // lpsm::ArgVec2 boldItal = ArgVec2(0, 1);
-    if (useHtml)
-    {
-        ret += "<p>";
-    }
-    for (int i = 0; i < sents; ++i)
-    {
-        fmtRoll = sent.Roll();
-        // addLink = static_cast<bool>(linkEmph.Roll());
-        // isBold  = static_cast<bool>(boldItal.Roll());
-        addLink = LPSM_FLIP_COIN;
-        isBold  = LPSM_FLIP_COIN;
-        if (i == 0 && useLipsum)
-        {
-            ret += lpsm::GenerateDefaultLipsumSentence();
-        }
-        else if ((fmtRoll == sent.min) && addLink)
-        {
-            ret += lpsm::GenerateMarkdownLink(wordFmt,
-                                              fragFmt,
-                                              wordLink,
-                                              useHtml);
-        }
-        else if ((fmtRoll == sent.min) && !addLink)
-        {
-            ret += lpsm::GenerateMarkdownEmphasis(isBold,
-                                                  wordFmt,
-                                                  fragFmt,
-                                                  useHtml);
-        }
-        else
-        {
-            ret += lpsm::GenerateSentence(word, frag);
-        }
-        ret += " ";
-    }
-    if (useHtml)
-    {
-        ret += "</p>";
-    }
-    ret += "\n\n";
-    return ret;
-}
+        ret += sent;
 
-std::string lpsm::GenerateMarkdownLink(const lpsm::ArgVec2& word,
-                                       const lpsm::ArgVec2& frag,
-                                       const lpsm::ArgVec2& wordURL,
-                                       bool                 useHtml)
-{
-    std::string ret;
-    // std::string link =
-    //         url + std::string("#") + lpsm::GenerateSlug(wordURL, '-');
-    std::string link     = lpsm::GenerateURL(wordURL);
-    std::string sentence = lpsm::GenerateSentence(word, frag);
-    if (!useHtml)
-    {
-        ret += std::string("[") += sentence += std::string("](") += link += ")";
-    }
-    else
-    {
-        ret += std::string("<a href=\"") + link + std::string("\">") +
-               sentence + "</a>";
-    }
-    return ret;
-}
-
-std::string lpsm::GenerateMarkdownEmphasis(bool                 isBold,
-                                           const lpsm::ArgVec2& word,
-                                           const lpsm::ArgVec2& frag,
-                                           bool                 useHtml)
-{
-    std::string ret;
-    std::string sent = lpsm::GenerateSentence(word, frag);
-
-    if (!useHtml)
-    {
-        ret += "*";
-        if (isBold)
+        if (!useHtml)
         {
             ret += "*";
-        }
-    }
-    else
-    {
-        if (isBold)
-        {
-            ret += "<strong>";
+            if (isBold)
+            {
+                ret += "*";
+            }
         }
         else
         {
-            ret += "<em>";
+            if (isBold)
+            {
+                ret += "</strong>";
+            }
+            else
+            {
+                ret += "</em>";
+            }
         }
+        return ret;
     }
 
-    ret += sent;
-
-    if (!useHtml)
+    std::string
+    GenerateMarkdownHeader(int level, const ArgVec2& word, bool useHtml)
     {
-        ret += "*";
-        if (isBold)
+        if (level > 6 || level < 1)
         {
-            ret += "*";
+            std::cerr << "lipsum-cpp warning: invalid header level " << level
+                      << ", expected from 1 to 6\n";
         }
-    }
-    else
-    {
-        if (isBold)
+        std::string ret;
+        std::string words = GenerateSentenceFragment(word);
+        words.at(0)       = std::toupper(words.at(0));
+        if (!useHtml)
         {
-            ret += "</strong>";
+            for (int i = 0; i < level; ++i)
+            {
+                ret += "#";
+            }
+            ret += " ";
+            ret += words += "\n\n";
         }
         else
         {
-            ret += "</em>";
+            ret += std::string("<h") + internal::ToString(level) + ">";
+            ret += words +=
+                    std::string("</h") + internal::ToString(level) + ">";
         }
+        return ret;
     }
-    return ret;
-}
-
-std::string
-lpsm::GenerateMarkdownHeader(int level, const lpsm::ArgVec2& word, bool useHtml)
-{
-    if (level > 6 || level < 1)
+    std::string GenerateMarkdownParagraphs(int            paraCount,
+                                           const ArgVec2& word,
+                                           const ArgVec2& frag,
+                                           const ArgVec2& sent,
+                                           const ArgVec2& wordFmt,
+                                           const ArgVec2& fragFmt,
+                                           const ArgVec2& wordLink,
+                                           bool           useLipsum,
+                                           bool           useHtml)
     {
-        std::cerr << "lipsum-cpp warning: invalid header level " << level
-                  << ", expected from 1 to 6\n";
-    }
-    std::string ret;
-    std::string words = lpsm::GenerateSentenceFragment(word);
-    words.at(0)       = std::toupper(words.at(0));
-    if (!useHtml)
-    {
-        for (int i = 0; i < level; ++i)
+        std::string ret;
+        for (int i = 0; i < paraCount; ++i)
         {
-            ret += "#";
+            if (i == 0 && useLipsum)
+            {
+                ret += GenerateMarkdownParagraph(word,
+                                                 frag,
+                                                 sent,
+                                                 wordFmt,
+                                                 fragFmt,
+                                                 wordLink,
+                                                 true,
+                                                 useHtml);
+            }
+            else
+            {
+                ret += GenerateMarkdownParagraph(word,
+                                                 frag,
+                                                 sent,
+                                                 wordFmt,
+                                                 fragFmt,
+                                                 wordLink,
+                                                 false,
+                                                 useHtml);
+            }
         }
-        ret += " ";
-        ret += words += "\n\n";
+        return ret;
     }
-    else
-    {
-        ret += std::string("<h") + lpsm::internal::ToString(level) + ">";
-        ret += words +=
-                std::string("</h") + lpsm::internal::ToString(level) + ">";
-    }
-    return ret;
-}
-std::string lpsm::GenerateMarkdownParagraphs(int                  paraCount,
-                                             const lpsm::ArgVec2& word,
-                                             const lpsm::ArgVec2& frag,
-                                             const lpsm::ArgVec2& sent,
-                                             const lpsm::ArgVec2& wordFmt,
-                                             const lpsm::ArgVec2& fragFmt,
-                                             const lpsm::ArgVec2& wordLink,
-                                             bool                 useLipsum,
-                                             bool                 useHtml)
-{
-    std::string ret;
-    for (int i = 0; i < paraCount; ++i)
-    {
-        if (i == 0 && useLipsum)
-        {
-            ret += lpsm::GenerateMarkdownParagraph(word,
-                                                   frag,
-                                                   sent,
-                                                   wordFmt,
-                                                   fragFmt,
-                                                   wordLink,
-                                                   true,
-                                                   useHtml);
-        }
-        else
-        {
-            ret += lpsm::GenerateMarkdownParagraph(word,
-                                                   frag,
-                                                   sent,
-                                                   wordFmt,
-                                                   fragFmt,
-                                                   wordLink,
-                                                   false,
-                                                   useHtml);
-        }
-    }
-    return ret;
-}
+} // namespace lipsum

@@ -14,41 +14,45 @@
  */
 #pragma once
 
-int lpsm::CountWords(const std::string& str)
+namespace lipsum
 {
-    std::stringstream ss(str);
-    int               count = 0;
-    std::string       tmp;
-    while (ss >> tmp)
-    {
-        ++count;
-    }
-    return count;
-}
 
-int lpsm::CountSentences(const std::string& str)
-{
-    int res    = 0;
-    int urlNum = 0;
-    for (const char& c : str)
+    int CountWords(const std::string& str)
     {
-        if (c == '(')
+        std::stringstream ss(str);
+        int               count = 0;
+        std::string       tmp;
+        while (ss >> tmp)
         {
-            ++urlNum;
+            ++count;
         }
-        if (c == ')')
-        {
-            --urlNum;
-        }
-        if (c == '.' && urlNum == 0)
-        {
-            ++res;
-        }
+        return count;
     }
-    return res;
-}
 
-std::string lpsm::LipsumVersion()
-{
-    return std::string(LIPSUM_CPP_VERSION);
-}
+    int CountSentences(const std::string& str)
+    {
+        int res    = 0;
+        int urlNum = 0;
+        for (const char& c : str)
+        {
+            if (c == '(')
+            {
+                ++urlNum;
+            }
+            if (c == ')')
+            {
+                --urlNum;
+            }
+            if (c == '.' && urlNum == 0)
+            {
+                ++res;
+            }
+        }
+        return res;
+    }
+
+    std::string LipsumVersion()
+    {
+        return std::string(LIPSUM_CPP_VERSION);
+    }
+} // namespace lipsum

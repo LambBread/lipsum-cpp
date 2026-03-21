@@ -14,207 +14,207 @@
 
 #include "sample.inl"
 
-std::string lpsm::GeneratePlainURL()
+namespace lipsum
 {
-    return std::string("lpsmcpp-") + lpsm::GenerateWord() +
-           lpsm::internal::GenerateTLD();
-}
 
-std::string lpsm::GenerateScramble(int length, char min, char max)
-{
-    std::string ret;
-    for (int i = 0; i < length; ++i)
+    std::string GeneratePlainURL()
     {
-        ret.push_back(lpsm::internal::RandomNumber<char>(min, max));
+        return std::string("lpsmcpp-") + GenerateWord() +
+               internal::GenerateTLD();
     }
-    return ret;
-}
 
-std::string lpsm::GenerateURL(const lpsm::ArgVec2& word)
-{
-    return std::string("https://") + lpsm::GeneratePlainURL() +
-           std::string("/#") + lpsm::GenerateSlug(word, '-');
-}
-
-std::string lpsm::GenerateSlug(const lpsm::ArgVec2& word, char separator)
-{
-    std::string ret = lpsm::GenerateSentenceFragment(word);
-    std::replace(ret.begin(), ret.end(), ' ', separator);
-    return ret;
-}
-
-std::string lpsm::GenerateWords(int wordCount)
-{
-    std::string ret;
-    for (int i = 0; i < wordCount; ++i)
+    std::string GenerateScramble(int length, char min, char max)
     {
-        ret += lpsm::GenerateWord() += " ";
-    }
-    ret.pop_back();
-    return ret;
-}
-
-std::string lpsm::GenerateSentences(int                  sentCount,
-                                    const lpsm::ArgVec2& word,
-                                    const lpsm::ArgVec2& frag,
-                                    bool                 useLipsum)
-{
-    std::string result;
-    if (useLipsum)
-    {
-        result += lpsm::GenerateDefaultLipsumSentence() += " ";
-        for (int i = 0; i < sentCount - 1; ++i)
+        std::string ret;
+        for (int i = 0; i < length; ++i)
         {
-            result += lpsm::GenerateSentence(word, frag) += " ";
+            ret.push_back(internal::RandomNumber<char>(min, max));
         }
+        return ret;
     }
-    else
+
+    std::string GenerateURL(const ArgVec2& word)
     {
-        for (int i = 0; i < sentCount; ++i)
+        return std::string("https://") + GeneratePlainURL() +
+               std::string("/#") + GenerateSlug(word, '-');
+    }
+
+    std::string GenerateSlug(const ArgVec2& word, char separator)
+    {
+        std::string ret = GenerateSentenceFragment(word);
+        std::replace(ret.begin(), ret.end(), ' ', separator);
+        return ret;
+    }
+
+    std::string GenerateWords(int wordCount)
+    {
+        std::string ret;
+        for (int i = 0; i < wordCount; ++i)
         {
-            result += lpsm::GenerateSentence(word, frag) += " ";
+            ret += GenerateWord() += " ";
         }
+        ret.pop_back();
+        return ret;
     }
-    return result;
-}
 
-std::string lpsm::GenerateDefaultLipsumSentence()
-{
-    return std::string(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-}
-
-std::string lpsm::GenerateWord()
-{
-    int randomIdx = lpsm::internal::RandomNumber<int>(0, LIPSUM_VEC.size() - 1);
-    return std::string(LIPSUM_VEC[randomIdx]);
-}
-
-std::string lpsm::GenerateSentenceFragment(const lpsm::ArgVec2& word)
-{
-    std::string result;
-    int         numWords = word.Roll();
-    for (int i = 0; i < numWords; ++i)
+    std::string GenerateSentences(int            sentCount,
+                                  const ArgVec2& word,
+                                  const ArgVec2& frag,
+                                  bool           useLipsum)
     {
-        result += lpsm::GenerateWord() += " ";
-    }
-    result.pop_back(); // remove trailing space
-    return result;
-}
-
-std::string lpsm::GenerateSentence(const lpsm::ArgVec2& word,
-                                   const lpsm::ArgVec2& frag)
-{
-    constexpr int CHANCE_COMMA = 88;
-    constexpr int CHANCE_SEMI  = 9;
-    std::string   result;
-    int           words = word.Roll();
-    int           frags = frag.Roll();
-    // static std::random_device rd;
-    // static std::mt19937 gen(rd());
-    // std::uniform_int_distribution<> dist(0, 100);
-    for (int i = 0; i < frags; ++i)
-    {
-        result += lpsm::GenerateSentenceFragment(word);
-        int check = lpsm::internal::RandomNumber<int>(0, 99);
-        // don't do if only one fragment
-        if (i != frags - 1)
+        std::string result;
+        if (useLipsum)
         {
-            // 9% chance
-            if (check < CHANCE_SEMI)
+            result += GenerateDefaultLipsumSentence() += " ";
+            for (int i = 0; i < sentCount - 1; ++i)
             {
-                result += "; ";
+                result += GenerateSentence(word, frag) += " ";
             }
-            // 88% chance
-            else if (check < CHANCE_SEMI + CHANCE_COMMA)
-            {
-                result += ", ";
-            }
-            // 3% chance
-            else
-            {
-                result += " - ";
-            }
-        }
-    }
-    result += ".";
-    result.at(0) = std::toupper(result.at(0));
-    return result;
-}
-
-std::string lpsm::GenerateParagraph(const lpsm::ArgVec2& word,
-                                    const lpsm::ArgVec2& frag,
-                                    const lpsm::ArgVec2& sent,
-                                    bool                 useLipsum)
-{
-    std::string result = "\t";
-    int         sents  = sent.Roll();
-    if (!useLipsum)
-    {
-        for (int i = 0; i < sents; ++i)
-        {
-            result += lpsm::GenerateSentence(word, frag) += " ";
-        }
-    }
-    else
-    {
-        result += lipsum::GenerateDefaultLipsumSentence() += " ";
-        for (int i = 0; i < sents - 1; ++i)
-        {
-            result += lpsm::GenerateSentence(word, frag) += " ";
-        }
-    }
-    // remove trailing space
-    result.pop_back();
-    result += "\n";
-    return result;
-}
-
-std::string lpsm::GenerateParagraphs(int                  paraCount,
-                                     const lpsm::ArgVec2& word,
-                                     const lpsm::ArgVec2& frag,
-                                     const lpsm::ArgVec2& sent,
-                                     bool                 useLipsum)
-{
-    std::string result;
-    if (!useLipsum)
-    {
-
-        for (int i = 0; i < paraCount; ++i)
-        {
-            result += lpsm::GenerateParagraph(word, frag, sent, false);
-        }
-    }
-    else
-    {
-        result += lpsm::GenerateParagraph(word, frag, sent, true);
-        for (int i = 0; i < paraCount - 1; ++i)
-        {
-            result += lpsm::GenerateParagraph(word, frag, sent, false);
-        }
-    }
-    return result;
-}
-
-std::string lpsm::GenerateText(const ArgVec2& word,
-                               const ArgVec2& frag,
-                               const ArgVec2& sent,
-                               const ArgVec2& para,
-                               bool           useLipsum)
-{
-    std::string ret;
-    int         paras = para.Roll();
-    for (int i = 0; i < paras; ++i)
-    {
-        if (i == 0 && useLipsum)
-        {
-            ret += lpsm::GenerateParagraph(word, frag, sent, true);
         }
         else
         {
-            ret += lpsm::GenerateParagraph(word, frag, sent, false);
+            for (int i = 0; i < sentCount; ++i)
+            {
+                result += GenerateSentence(word, frag) += " ";
+            }
         }
-        ret += "\n";
+        return result;
     }
-    return ret;
-}
+
+    std::string GenerateDefaultLipsumSentence()
+    {
+        return std::string(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+    }
+
+    std::string GenerateWord()
+    {
+        int randomIdx = internal::RandomNumber<int>(0, LIPSUM_VEC.size() - 1);
+        return std::string(LIPSUM_VEC[randomIdx]);
+    }
+
+    std::string GenerateSentenceFragment(const ArgVec2& word)
+    {
+        std::string result;
+        int         numWords = word.Roll();
+        for (int i = 0; i < numWords; ++i)
+        {
+            result += GenerateWord() += " ";
+        }
+        result.pop_back(); // remove trailing space
+        return result;
+    }
+
+    std::string GenerateSentence(const ArgVec2& word, const ArgVec2& frag)
+    {
+        constexpr int CHANCE_COMMA = 88;
+        constexpr int CHANCE_SEMI  = 9;
+        std::string   result;
+        int           words = word.Roll();
+        int           frags = frag.Roll();
+        for (int i = 0; i < frags; ++i)
+        {
+            result += GenerateSentenceFragment(word);
+            int check = internal::RandomNumber<int>(0, 99);
+            // don't do if only one fragment
+            if (i != frags - 1)
+            {
+                // 9% chance
+                if (check < CHANCE_SEMI)
+                {
+                    result += "; ";
+                }
+                // 88% chance
+                else if (check < CHANCE_SEMI + CHANCE_COMMA)
+                {
+                    result += ", ";
+                }
+                // 3% chance
+                else
+                {
+                    result += " - ";
+                }
+            }
+        }
+        result += ".";
+        result.at(0) = std::toupper(result.at(0));
+        return result;
+    }
+
+    std::string GenerateParagraph(const ArgVec2& word,
+                                  const ArgVec2& frag,
+                                  const ArgVec2& sent,
+                                  bool           useLipsum)
+    {
+        std::string result = "\t";
+        int         sents  = sent.Roll();
+        if (!useLipsum)
+        {
+            for (int i = 0; i < sents; ++i)
+            {
+                result += GenerateSentence(word, frag) += " ";
+            }
+        }
+        else
+        {
+            result += GenerateDefaultLipsumSentence() += " ";
+            for (int i = 0; i < sents - 1; ++i)
+            {
+                result += GenerateSentence(word, frag) += " ";
+            }
+        }
+        // remove trailing space
+        result.pop_back();
+        result += "\n";
+        return result;
+    }
+
+    std::string GenerateParagraphs(int            paraCount,
+                                   const ArgVec2& word,
+                                   const ArgVec2& frag,
+                                   const ArgVec2& sent,
+                                   bool           useLipsum)
+    {
+        std::string result;
+        if (!useLipsum)
+        {
+
+            for (int i = 0; i < paraCount; ++i)
+            {
+                result += GenerateParagraph(word, frag, sent, false);
+            }
+        }
+        else
+        {
+            result += GenerateParagraph(word, frag, sent, true);
+            for (int i = 0; i < paraCount - 1; ++i)
+            {
+                result += GenerateParagraph(word, frag, sent, false);
+            }
+        }
+        return result;
+    }
+
+    std::string GenerateText(const ArgVec2& word,
+                             const ArgVec2& frag,
+                             const ArgVec2& sent,
+                             const ArgVec2& para,
+                             bool           useLipsum)
+    {
+        std::string ret;
+        int         paras = para.Roll();
+        for (int i = 0; i < paras; ++i)
+        {
+            if (i == 0 && useLipsum)
+            {
+                ret += GenerateParagraph(word, frag, sent, true);
+            }
+            else
+            {
+                ret += GenerateParagraph(word, frag, sent, false);
+            }
+            ret += "\n";
+        }
+        return ret;
+    }
+} // namespace lipsum
