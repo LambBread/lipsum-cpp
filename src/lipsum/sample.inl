@@ -8,6 +8,7 @@
  *
  * @author LambBread from github.com
  */
+#pragma once
 static constexpr std::array<const char*, 167> LIPSUM_VEC = {
         "lorem",        "ipsum",       "dolor",       "sit",
         "amet",         "consectetur", "adipiscing",  "elit",

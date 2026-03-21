@@ -26,6 +26,7 @@ if __name__ == "__main__":
  * 
  * @author LambBread from github.com
  */
+#pragma once
 static constexpr std::array<const char*, """ + str(len(unique_words)) + "> LIPSUM_VEC = {")
         for word in unique_words:
             file.write(f"\"{word}\",\n")

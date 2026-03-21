@@ -40,18 +40,22 @@
 #include <algorithm>
 #include <array>
 #include <cctype>
+#include <fstream>
 #include <iostream>
+#include <iterator>
 #include <random>
 #include <sstream>
 #include <string>
 #include <type_traits>
-// #include <vector>
+#include <unordered_set>
+#include <vector>
 
 #include "lipsum/core.hpp"
 
 #include "lipsum/argvec2.hpp"
 #include "lipsum/generator.hpp"
 #include "lipsum/internal.hpp"
+#include "lipsum/source.hpp"
 
 #include "lipsum/core_funcs.hpp"
 #include "lipsum/markdown.hpp"
@@ -70,14 +74,14 @@ namespace lipsum
 {
 }
 
-/// Alias for namespace lipsum
-namespace lpsm = lipsum;
+namespace lpsm = lipsum; ///< Alias for namespace lipsum
 
 #ifdef LIPSUM_IMPLEMENTATION
 
 #    include "lipsum/argvec2.inl"
 #    include "lipsum/generator.inl"
 #    include "lipsum/internal.inl"
+#    include "lipsum/source.inl"
 
 #    include "lipsum/core_funcs.inl"
 #    include "lipsum/markdown.inl"

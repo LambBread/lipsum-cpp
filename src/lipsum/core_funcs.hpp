@@ -83,11 +83,14 @@ namespace lipsum
      *
      * @since 0.0.3
      *
-     * This function generates a random word from a predefined list.
+     * This function generates a random word from a source specified.
+     *
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random word.
      */
-    LIPSUM_API std::string GenerateWord();
+    LIPSUM_API std::string GenerateWord(const Source& source = Source());
 
     /**
      * @brief Generate a specified number of random words.
