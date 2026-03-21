@@ -6,6 +6,7 @@ For each example, C is similar but with:
 - Class `lpsm::Generator` replaced with functions starting in `lpsm_gen`
 - `lipsum.hpp` replaced with `lipsum.h`
 - Arguments explicitly provided to functions, such as `lpsm_GenerateParagraphs(5, 4, 9, 1, 3, 5, 8, true)` replacing `lpsm::GenerateParagraphs()`
+- Explicit creation of a `lpsm_SourceHandle`
 
 Internal functions such as `lpsm::internal::RandomNumber` are not available in the C wrapper.
 

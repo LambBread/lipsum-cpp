@@ -82,18 +82,52 @@
 #include <stdio.h>
 
 /**
- * @brief A handle to a lpsm::ArgVec2
+ * @brief A handle to a lipsum::ArgVec2
  *
  * @since 0.3.3
  *
- * This is a typedef of a pointer to a lpsm::ArgVec2.
+ * This is a typedef of a pointer to a lipsum::ArgVec2.
  */
 typedef void* lpsm_ArgVec2Handle;
+
+/**
+ * @brief A handle to a lipsum::Source
+ *
+ * @since 0.4.0
+ *
+ * This is a typedef of a pointer to a lipsum::ArgVec2.
+ */
+typedef void* lpsm_SourceHandle;
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
+    /**
+     * @brief Constructor of lipsum::Source
+     *
+     * @since 0.4.0
+     *
+     * This is a wrapper over the constructor of lipsum::Source.
+     *
+     * @param path The path entered into lipsum::Source::Source. If path is set
+     * to "default", use the default sample.
+     *
+     * @return lpsm_SourceHandle A handle to the object.
+     */
+    LIPSUMC_API lpsm_SourceHandle lpsm_Source(const char* path);
+
+    /**
+     * @brief Delete a lipsum::Source
+     *
+     * @since 0.4.0
+     *
+     * This function handles deletion of a lpsm_SourceHandle.
+     *
+     * @param handle A lpsm_SourceHandle to delete.
+     */
+    LIPSUMC_API void lpsm_SourceDestroy(lpsm_SourceHandle handle);
 
     /**
      * @brief Generate a random character scramble
@@ -117,9 +151,11 @@ extern "C"
      *
      * Generate a URL with a random word followed by a random TLD.
      *
+     * @param source The source for words.
+     *
      * @return char* The plain URL
      */
-    LIPSUMC_API char* lpsm_GeneratePlainURL(void);
+    LIPSUMC_API char* lpsm_GeneratePlainURL(lpsm_SourceHandle source);
 
     /**
      * @brief Count the number of words in a string.
@@ -146,10 +182,13 @@ extern "C"
      * of the URL.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     * @param source The source for words.
      *
      * @return char* The URL.
      */
-    LIPSUMC_API char* lpsm_GenerateURLS(lpsm_ArgVec2Handle word, bool del);
+    LIPSUMC_API char* lpsm_GenerateURLS(lpsm_ArgVec2Handle word,
+                                        lpsm_SourceHandle  source,
+                                        bool               del);
 
     /**
      * @brief Generate a random URL.
@@ -164,10 +203,12 @@ extern "C"
      * of the URL.
      * @param maxWord The maximum possible number of words at the end of the
      * URL.
+     * @param source The source for words.
      *
      * @return char* The URL.
      */
-    LIPSUMC_API char* lpsm_GenerateURL(int minWord, int maxWord);
+    LIPSUMC_API char*
+    lpsm_GenerateURL(int minWord, int maxWord, lpsm_SourceHandle source);
 
     /**
      * @brief Generate a slug joined by a specified character.
@@ -180,11 +221,14 @@ extern "C"
      * @param separator The separator character.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     * @param source The source for words.
      *
      * @return char* The slug.
      */
-    LIPSUMC_API char*
-    lpsm_GenerateSlugS(lpsm_ArgVec2Handle word, char separator, bool del);
+    LIPSUMC_API char* lpsm_GenerateSlugS(lpsm_ArgVec2Handle word,
+                                         char               separator,
+                                         lpsm_SourceHandle  source,
+                                         bool               del);
 
     /**
      * @brief Generate a slug joined by a specified character.
@@ -197,11 +241,14 @@ extern "C"
      * @param minWord The minimum possible number of words in the slug.
      * @param maxWord The maximum possible number of words in the slug.
      * @param separator The separator character.
+     * @param source The source for words.
      *
      * @return char* The slug.
      */
-    LIPSUMC_API char*
-    lpsm_GenerateSlug(int minWord, int maxWord, char separator);
+    LIPSUMC_API char* lpsm_GenerateSlug(int               minWord,
+                                        int               maxWord,
+                                        char              separator,
+                                        lpsm_SourceHandle source);
 
     /**
      * @brief Generate a fragment of a sentence without punctuation.
@@ -214,10 +261,12 @@ extern "C"
      * fragment.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     * @param source The source for words.
      *
      * @return char* The random sentence fragment.
      */
     LIPSUMC_API char* lpsm_GenerateSentenceFragmentS(lpsm_ArgVec2Handle word,
+                                                     lpsm_SourceHandle  source,
                                                      bool               del);
 
     /**
@@ -233,11 +282,13 @@ extern "C"
      * sentence fragment.
      * @param frag The minimum and maximum possible number of sentence fragments
      * in the sentence.
+     * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      */
     LIPSUMC_API char* lpsm_GenerateSentenceS(lpsm_ArgVec2Handle word,
                                              lpsm_ArgVec2Handle frag,
+                                             lpsm_SourceHandle  source,
                                              bool               del);
 
     /**
@@ -257,6 +308,7 @@ extern "C"
      * sentence fragment.
      * @param useLipsum Whether the default "Lorem ipsum..." text should start
      * the paragraph. By default true.
+     * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      */
@@ -264,6 +316,7 @@ extern "C"
                                               lpsm_ArgVec2Handle frag,
                                               lpsm_ArgVec2Handle sent,
                                               bool               useLipsum,
+                                              lpsm_SourceHandle  source,
                                               bool               del);
 
     /**
@@ -284,6 +337,7 @@ extern "C"
      * paragraph.
      * @param useLipsum Whether the default "Lorem ipsum..." text should start
      * the first paragraph.
+     * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      */
@@ -292,6 +346,7 @@ extern "C"
                                                lpsm_ArgVec2Handle frag,
                                                lpsm_ArgVec2Handle sent,
                                                bool               useLipsum,
+                                               lpsm_SourceHandle  source,
                                                bool               del);
 
     /**
@@ -310,6 +365,7 @@ extern "C"
      * in a sentence.
      * @param useLipsum Whether the default "Lorem ipsum..." sentence should be
      * the first sentence.
+     * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      */
@@ -317,6 +373,7 @@ extern "C"
                                               lpsm_ArgVec2Handle word,
                                               lpsm_ArgVec2Handle frag,
                                               bool               useLipsum,
+                                              lpsm_SourceHandle  source,
                                               bool               del);
 
     /**
@@ -338,6 +395,7 @@ extern "C"
      * text.
      * @param useLipsum Whether "Lorem ipsum..." should start the first
      * paragraph.
+     * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      */
@@ -346,6 +404,7 @@ extern "C"
                                          lpsm_ArgVec2Handle sent,
                                          lpsm_ArgVec2Handle para,
                                          bool               useLipsum,
+                                         lpsm_SourceHandle  source,
                                          bool               del);
 
     /**
@@ -358,6 +417,7 @@ extern "C"
      * @param level The level of the heading.
      * @param word The minimum and maximum possible number of words in the
      * heading.
+     * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
@@ -367,6 +427,7 @@ extern "C"
     LIPSUMC_API char* lpsm_GenerateMarkdownHeaderS(int                level,
                                                    lpsm_ArgVec2Handle word,
                                                    bool               useHtml,
+                                                   lpsm_SourceHandle  source,
                                                    bool               del);
 
     /**
@@ -383,6 +444,7 @@ extern "C"
      * in the sentence.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     * @param source The source for words.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random emphasized sentence.
@@ -391,6 +453,7 @@ extern "C"
                                                      lpsm_ArgVec2Handle word,
                                                      lpsm_ArgVec2Handle frag,
                                                      bool               useHtml,
+                                                     lpsm_SourceHandle  source,
                                                      bool               del);
 
     /**
@@ -406,6 +469,7 @@ extern "C"
      * in the sentence.
      * @param wordURL The minimum and maximum possible number of words at the
      * end of the URL.
+     * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
@@ -416,6 +480,7 @@ extern "C"
                                                  lpsm_ArgVec2Handle frag,
                                                  lpsm_ArgVec2Handle wordURL,
                                                  bool               useHtml,
+                                                 lpsm_SourceHandle  source,
                                                  bool               del);
 
     /**
@@ -432,6 +497,7 @@ extern "C"
      * in a point.
      * @param point The minimum and maximum possible number of points in the
      * list.
+     * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
@@ -443,6 +509,7 @@ extern "C"
                                                  lpsm_ArgVec2Handle frag,
                                                  lpsm_ArgVec2Handle point,
                                                  bool               useHtml,
+                                                 lpsm_SourceHandle  source,
                                                  bool               del);
 
     /**
@@ -466,6 +533,7 @@ extern "C"
      * link URL.
      * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
+     * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      *
@@ -480,6 +548,7 @@ extern "C"
                                     lpsm_ArgVec2Handle wordLink,
                                     bool               useLipsum,
                                     bool               useHtml,
+                                    lpsm_SourceHandle  source,
                                     bool               del);
 
     /**
@@ -507,6 +576,7 @@ extern "C"
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
+     * @param source The source for words.
      *
      * @return char* The random paragraph.
      */
@@ -520,6 +590,7 @@ extern "C"
                                      lpsm_ArgVec2Handle wordLink,
                                      bool               useLipsum,
                                      bool               useHtml,
+                                     lpsm_SourceHandle  source,
                                      bool               del);
 
     /**
@@ -546,6 +617,7 @@ extern "C"
      * the main heading.
      * @param numElements The number of paragraphs, headings, and lists total.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
+     * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      *
@@ -561,6 +633,7 @@ extern "C"
                                                  lpsm_ArgVec2Handle level,
                                                  int                numElements,
                                                  bool               useHtml,
+                                                 lpsm_SourceHandle  source,
                                                  bool               del);
 
     /**
@@ -575,13 +648,15 @@ extern "C"
      * heading.
      * @param maxWord The maximum possible number of words in the heading.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
+     * @param source The source for words.
      *
      * @return char* The random heading.
      */
-    LIPSUMC_API char* lpsm_GenerateMarkdownHeader(int  level,
-                                                  int  minWord,
-                                                  int  maxWord,
-                                                  bool useHtml);
+    LIPSUMC_API char* lpsm_GenerateMarkdownHeader(int               level,
+                                                  int               minWord,
+                                                  int               maxWord,
+                                                  bool              useHtml,
+                                                  lpsm_SourceHandle source);
 
     /**
      * @brief Generate a random emphasized sentence.
@@ -601,15 +676,17 @@ extern "C"
      * @param maxFrag The maximum possible number of sentence fragments in the
      * sentence.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
+     * @param source The source for words.
      *
      * @return char* The random emphasized sentence.
      */
-    LIPSUMC_API char* lpsm_GenerateMarkdownEmphasis(bool isBold,
-                                                    int  minWord,
-                                                    int  maxWord,
-                                                    int  minFrag,
-                                                    int  maxFrag,
-                                                    bool useHtml);
+    LIPSUMC_API char* lpsm_GenerateMarkdownEmphasis(bool              isBold,
+                                                    int               minWord,
+                                                    int               maxWord,
+                                                    int               minFrag,
+                                                    int               maxFrag,
+                                                    bool              useHtml,
+                                                    lpsm_SourceHandle source);
 
     /**
      * @brief Generate a random Markdown link.
@@ -631,16 +708,18 @@ extern "C"
      * @param maxWordURL The maximum possible number of words at the end of the
      * URL.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
+     * @param source The source for words.
      *
      * @return char* The random link.
      */
-    LIPSUMC_API char* lpsm_GenerateMarkdownLink(int  minWord,
-                                                int  maxWord,
-                                                int  minFrag,
-                                                int  maxFrag,
-                                                int  minWordURL,
-                                                int  maxWordURL,
-                                                bool useHtml);
+    LIPSUMC_API char* lpsm_GenerateMarkdownLink(int               minWord,
+                                                int               maxWord,
+                                                int               minFrag,
+                                                int               maxFrag,
+                                                int               minWordURL,
+                                                int               maxWordURL,
+                                                bool              useHtml,
+                                                lpsm_SourceHandle source);
 
     /**
      * @brief Generate a random Markdown list.
@@ -663,17 +742,19 @@ extern "C"
      * @param maxPoint The maximum possible number of points in the
      * list.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
+     * @param source The source for words.
      *
      * @return char* The random Markdown list.
      */
-    LIPSUMC_API char* lpsm_GenerateMarkdownList(bool ordered,
-                                                int  minWord,
-                                                int  maxWord,
-                                                int  minFrag,
-                                                int  maxFrag,
-                                                int  minPoint,
-                                                int  maxPoint,
-                                                bool useHtml);
+    LIPSUMC_API char* lpsm_GenerateMarkdownList(bool              ordered,
+                                                int               minWord,
+                                                int               maxWord,
+                                                int               minFrag,
+                                                int               maxFrag,
+                                                int               minPoint,
+                                                int               maxPoint,
+                                                bool              useHtml,
+                                                lpsm_SourceHandle source);
 
     /**
      * @brief Create a lpsm::ArgVec2.
@@ -832,8 +913,11 @@ extern "C"
      *
      * @param minWord Minimum number of words in the fragment.
      * @param maxWord Maximum number of words in the fragment.
+     * @param source The source for words.
      */
-    LIPSUMC_API char* lpsm_GenerateSentenceFragment(int minWord, int maxWord);
+    LIPSUMC_API char* lpsm_GenerateSentenceFragment(int               minWord,
+                                                    int               maxWord,
+                                                    lpsm_SourceHandle source);
 
     /**
      * @brief Generate a random sentence.
@@ -849,9 +933,13 @@ extern "C"
      * @param maxWord Maximum number of words in the sentence fragment.
      * @param minFrag Minimum number of sentence fragments in the sentence.
      * @param maxFrag Maximum number of sentence fragments in the sentence.
+     * @param source The source for words.
      */
-    LIPSUMC_API char*
-    lpsm_GenerateSentence(int minWord, int maxWord, int minFrag, int maxFrag);
+    LIPSUMC_API char* lpsm_GenerateSentence(int               minWord,
+                                            int               maxWord,
+                                            int               minFrag,
+                                            int               maxFrag,
+                                            lpsm_SourceHandle source);
 
     /**
      * @brief Generate a random paragraph.
@@ -871,14 +959,16 @@ extern "C"
      * @param maxFrag Maximum number of sentence fragments in each sentence.
      * @param useLipsum Whether the default "Lorem ipsum..." text should start
      * the paragraph.
+     * @param source The source for words.
      */
-    LIPSUMC_API char* lpsm_GenerateParagraph(int  minWord,
-                                             int  maxWord,
-                                             int  minFrag,
-                                             int  maxFrag,
-                                             int  minSent,
-                                             int  maxSent,
-                                             bool useLipsum);
+    LIPSUMC_API char* lpsm_GenerateParagraph(int               minWord,
+                                             int               maxWord,
+                                             int               minFrag,
+                                             int               maxFrag,
+                                             int               minSent,
+                                             int               maxSent,
+                                             bool              useLipsum,
+                                             lpsm_SourceHandle source);
 
     /**
      * @brief Generate several random paragraphs at once.
@@ -899,15 +989,17 @@ extern "C"
      * @param maxFrag Maximum number of sentence fragments in each sentence.
      * @param useLipsum Whether the default "Lorem ipsum..." text should start
      * the first paragraph.
+     * @param source The source for words.
      */
-    LIPSUMC_API char* lpsm_GenerateParagraphs(int  paraCount,
-                                              int  minWord,
-                                              int  maxWord,
-                                              int  minFrag,
-                                              int  maxFrag,
-                                              int  minSent,
-                                              int  maxSent,
-                                              bool useLipsum);
+    LIPSUMC_API char* lpsm_GenerateParagraphs(int               paraCount,
+                                              int               minWord,
+                                              int               maxWord,
+                                              int               minFrag,
+                                              int               maxFrag,
+                                              int               minSent,
+                                              int               maxSent,
+                                              bool              useLipsum,
+                                              lpsm_SourceHandle source);
 
     /**
      * @brief Generate a random word.
@@ -916,9 +1008,11 @@ extern "C"
      *
      * This function generates a random word from a predefined list.
      *
+     * @param source The source for words.
+     *
      * @return char* The random word.
      */
-    LIPSUMC_API char* lpsm_GenerateWord(void);
+    LIPSUMC_API char* lpsm_GenerateWord(lpsm_SourceHandle source);
 
     /**
      * @brief Generate a specified number of random words.
@@ -928,10 +1022,12 @@ extern "C"
      * This function generates a sentence fragment with exactly wordCount words.
      *
      * @param wordCount The number of words.
+     * @param source The source for words.
      *
      * @return char* The random words.
      */
-    LIPSUMC_API char* lpsm_GenerateWords(int wordCount);
+    LIPSUMC_API char* lpsm_GenerateWords(int               wordCount,
+                                         lpsm_SourceHandle source);
 
     /**
      * @brief Generate the beginning Lorem Ipsum sentence.
@@ -962,13 +1058,15 @@ extern "C"
      * @param maxFrag Maximum number of sentence fragments in each sentence.
      * @param useLipsum Whether the default "Lorem ipsum..." sentence should be
      * the first sentence.
+     * @param source The source for words.
      */
-    LIPSUMC_API char* lpsm_GenerateSentences(int  sentCount,
-                                             int  minWord,
-                                             int  maxWord,
-                                             int  minFrag,
-                                             int  maxFrag,
-                                             bool useLipsum);
+    LIPSUMC_API char* lpsm_GenerateSentences(int               sentCount,
+                                             int               minWord,
+                                             int               maxWord,
+                                             int               minFrag,
+                                             int               maxFrag,
+                                             bool              useLipsum,
+                                             lpsm_SourceHandle source);
 
     /**
      * @brief Count the number of sentences in a string.
@@ -1016,16 +1114,18 @@ extern "C"
      * @param maxPara The maximum possible number of paragraphs in the text.
      * @param useLipsum Whether "Lorem ipsum..." should start the first
      * paragraph.
+     * @param source The source for words.
      */
-    LIPSUMC_API char* lpsm_GenerateText(int  minWord,
-                                        int  maxWord,
-                                        int  minFrag,
-                                        int  maxFrag,
-                                        int  minSent,
-                                        int  maxSent,
-                                        int  minPara,
-                                        int  maxPara,
-                                        bool useLipsum);
+    LIPSUMC_API char* lpsm_GenerateText(int               minWord,
+                                        int               maxWord,
+                                        int               minFrag,
+                                        int               maxFrag,
+                                        int               minSent,
+                                        int               maxSent,
+                                        int               minPara,
+                                        int               maxPara,
+                                        bool              useLipsum,
+                                        lpsm_SourceHandle source);
 
 #ifdef __cplusplus
 }

@@ -41,9 +41,12 @@ namespace lipsum
      *
      * Generate a URL with a random word followed by a random TLD.
      *
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
+     *
      * @return std::string The plain URL
      */
-    LIPSUM_API std::string GeneratePlainURL();
+    LIPSUM_API std::string GeneratePlainURL(const Source& source = Source());
 
     /**
      * @brief Generate a random URL.
@@ -56,10 +59,13 @@ namespace lipsum
      *
      * @param word The minimum and maximum possible number of words at the end
      * of the URL. By default 2 to 5.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The URL.
      */
-    LIPSUM_API std::string GenerateURL(const ArgVec2& word = ArgVec2(2, 5));
+    LIPSUM_API std::string GenerateURL(const ArgVec2& word   = ArgVec2(2, 5),
+                                       const Source&  source = Source());
 
     /**
      * @brief Generate a slug joined by a specified character.
@@ -72,11 +78,14 @@ namespace lipsum
      * @param word The minimum and maximum possible number of words in the slug.
      * By default 2 to 5.
      * @param separator The separator character. By default a hyphen.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The slug.
      */
     LIPSUM_API std::string GenerateSlug(const ArgVec2& word = ArgVec2(2, 5),
-                                        char           separator = '-');
+                                        char           separator = '-',
+                                        const Source&  source    = Source());
 
     /**
      * @brief Generate a random word.
@@ -100,10 +109,13 @@ namespace lipsum
      * This function generates a sentence fragment with exactly wordCount words.
      *
      * @param wordCount The number of words. By default 6.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random words.
      */
-    LIPSUM_API std::string GenerateWords(int wordCount = 6);
+    LIPSUM_API std::string GenerateWords(int           wordCount = 6,
+                                         const Source& source    = Source());
 
     /**
      * @brief Generate a fragment of a sentence without punctuation.
@@ -115,11 +127,14 @@ namespace lipsum
      *
      * @param word The minimum and maximum possible number of words in a
      * fragment. By default 4 to 9.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random sentence fragment.
      */
     LIPSUM_API std::string
-               GenerateSentenceFragment(const ArgVec2& word = ArgVec2(4, 9));
+               GenerateSentenceFragment(const ArgVec2& word   = ArgVec2(4, 9),
+                                        const Source&  source = Source());
 
     /**
      * @brief Generate a random sentence.
@@ -136,10 +151,12 @@ namespace lipsum
      * sentence fragment. By default 4 to 9.
      * @param frag The minimum and maximum possible number of sentence fragments
      * in the sentence. By default 1 to 3.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      */
     LIPSUM_API std::string GenerateSentence(const ArgVec2& word = ArgVec2(4, 9),
-                                            const ArgVec2& frag = ArgVec2(1,
-                                                                          3));
+                                            const ArgVec2& frag = ArgVec2(1, 3),
+                                            const Source&  source = Source());
 
     /**
      * @brief Generate a random paragraph.
@@ -159,12 +176,15 @@ namespace lipsum
      * sentence fragment. By default 4 to 9.
      * @param useLipsum Whether the default "Lorem ipsum..." text should start
      * the paragraph. By default true.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      */
     LIPSUM_API std::string
                GenerateParagraph(const ArgVec2& word      = ArgVec2(4, 9),
                                  const ArgVec2& frag      = ArgVec2(1, 3),
                                  const ArgVec2& sent      = ArgVec2(5, 8),
-                                 bool           useLipsum = true);
+                                 bool           useLipsum = true,
+                                 const Source&  source    = Source());
 
     /**
      * @brief Generate several random paragraphs at once.
@@ -185,13 +205,16 @@ namespace lipsum
      * paragraph. By default 5 to 8.
      * @param useLipsum Whether the default "Lorem ipsum..." text should start
      * the first paragraph. By default true.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      */
     LIPSUM_API std::string
                GenerateParagraphs(int            paraCount = 5,
                                   const ArgVec2& word      = ArgVec2(4, 9),
                                   const ArgVec2& frag      = ArgVec2(1, 3),
                                   const ArgVec2& sent      = ArgVec2(5, 8),
-                                  bool           useLipsum = true);
+                                  bool           useLipsum = true,
+                                  const Source&  source    = Source());
 
     /**
      * @brief Generate the beginning Lorem Ipsum sentence.
@@ -222,12 +245,15 @@ namespace lipsum
      * in a sentence. By default 1 to 3.
      * @param useLipsum Whether the default "Lorem ipsum..." sentence should be
      * the first sentence. By default true.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      */
     LIPSUM_API std::string
                GenerateSentences(int            sentCount = 6,
                                  const ArgVec2& word      = ArgVec2(4, 9),
                                  const ArgVec2& frag      = ArgVec2(1, 3),
-                                 bool           useLipsum = true);
+                                 bool           useLipsum = true,
+                                 const Source&  source    = Source());
 
     /**
      * @brief Generate a random number of random paragraphs.
@@ -248,10 +274,13 @@ namespace lipsum
      * text. By default 1 to 4.
      * @param useLipsum Whether "Lorem ipsum..." should start the first
      * paragraph. By default true.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      */
     LIPSUM_API std::string GenerateText(const ArgVec2& word = ArgVec2(4, 9),
                                         const ArgVec2& frag = ArgVec2(1, 3),
                                         const ArgVec2& sent = ArgVec2(5, 8),
                                         const ArgVec2& para = ArgVec2(1, 4),
-                                        bool           useLipsum = true);
+                                        bool           useLipsum = true,
+                                        const Source&  source    = Source());
 } // namespace lipsum

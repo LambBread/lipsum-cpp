@@ -29,13 +29,17 @@ namespace lipsum
      * default 5.
      * @param useHtml Whether HTML should be outputted instead of Markdown. By
      * default false.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random heading.
      */
-    LIPSUM_API std::string GenerateMarkdownHeaderX(int  level   = 1,
-                                                   int  minWord = 2,
-                                                   int  maxWord = 5,
-                                                   bool useHtml = false);
+    LIPSUM_API std::string
+               GenerateMarkdownHeaderX(int           level   = 1,
+                                       int           minWord = 2,
+                                       int           maxWord = 5,
+                                       bool          useHtml = false,
+                                       const Source& source  = Source());
 
     /**
      * @brief Generate a random emphasized sentence.
@@ -56,15 +60,19 @@ namespace lipsum
      * sentence. By default 2.
      * @param useHtml Whether HTML should be outputted instead of Markdown. By
      * default false.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random emphasized sentence.
      */
-    LIPSUM_API std::string GenerateMarkdownEmphasisX(bool isBold  = true,
-                                                     int  minWord = 4,
-                                                     int  maxWord = 8,
-                                                     int  minFrag = 1,
-                                                     int  maxFrag = 2,
-                                                     bool useHtml = false);
+    LIPSUM_API std::string
+               GenerateMarkdownEmphasisX(bool          isBold  = true,
+                                         int           minWord = 4,
+                                         int           maxWord = 8,
+                                         int           minFrag = 1,
+                                         int           maxFrag = 2,
+                                         bool          useHtml = false,
+                                         const Source& source  = Source());
 
     /**
      * @brief Generate a random Markdown link.
@@ -87,16 +95,20 @@ namespace lipsum
      * URL. By default 5.
      * @param useHtml Whether HTML should be outputted instead of Markdown. By
      * default false.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random link.
      */
-    LIPSUM_API std::string GenerateMarkdownLinkX(int  minWord    = 4,
-                                                 int  maxWord    = 8,
-                                                 int  minFrag    = 1,
-                                                 int  maxFrag    = 2,
-                                                 int  minWordURL = 2,
-                                                 int  maxWordURL = 5,
-                                                 bool useHtml    = false);
+    LIPSUM_API std::string
+               GenerateMarkdownLinkX(int           minWord    = 4,
+                                     int           maxWord    = 8,
+                                     int           minFrag    = 1,
+                                     int           maxFrag    = 2,
+                                     int           minWordURL = 2,
+                                     int           maxWordURL = 5,
+                                     bool          useHtml    = false,
+                                     const Source& source     = Source());
 
     /**
      * @brief Generate a random Markdown list.
@@ -121,15 +133,19 @@ namespace lipsum
      * list. By default 5.
      * @param useHtml Whether HTML should be outputted instead of Markdown. By
      * default false.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random Markdown list.
      */
-    LIPSUM_API std::string GenerateMarkdownListX(bool ordered  = false,
-                                                 int  minWord  = 4,
-                                                 int  maxWord  = 8,
-                                                 int  minFrag  = 1,
-                                                 int  maxFrag  = 2,
-                                                 int  minPoint = 3,
-                                                 int  maxPoint = 5,
-                                                 bool useHtml  = false);
+    LIPSUM_API std::string
+               GenerateMarkdownListX(bool          ordered  = false,
+                                     int           minWord  = 4,
+                                     int           maxWord  = 8,
+                                     int           minFrag  = 1,
+                                     int           maxFrag  = 2,
+                                     int           minPoint = 3,
+                                     int           maxPoint = 5,
+                                     bool          useHtml  = false,
+                                     const Source& source   = Source());
 } // namespace lipsum

@@ -16,135 +16,161 @@
 namespace lipsum
 {
 
-    std::string GenerateURLX(int minWord, int maxWord)
+    std::string GenerateURLX(int minWord, int maxWord, const Source& source)
     {
-        return GenerateURL(ArgVec2(minWord, maxWord));
+        return GenerateURL(ArgVec2(minWord, maxWord), source);
     }
-    std::string GenerateSlugX(int minWord, int maxWord, char separator)
+    std::string GenerateSlugX(int           minWord,
+                              int           maxWord,
+                              char          separator,
+                              const Source& source)
     {
-        return GenerateSlug(ArgVec2(minWord, maxWord), separator);
+        return GenerateSlug(ArgVec2(minWord, maxWord), separator, source);
     }
 
-    std::string
-    GenerateMarkdownHeaderX(int level, int minWord, int maxWord, bool useHtml)
+    std::string GenerateMarkdownHeaderX(int           level,
+                                        int           minWord,
+                                        int           maxWord,
+                                        bool          useHtml,
+                                        const Source& source)
     {
         return GenerateMarkdownHeader(level,
                                       ArgVec2(minWord, maxWord),
-                                      useHtml);
+                                      useHtml,
+                                      source);
     }
 
-    std::string GenerateMarkdownEmphasisX(bool isBold,
-                                          int  minWord,
-                                          int  maxWord,
-                                          int  minFrag,
-                                          int  maxFrag,
-                                          bool useHtml)
+    std::string GenerateMarkdownEmphasisX(bool          isBold,
+                                          int           minWord,
+                                          int           maxWord,
+                                          int           minFrag,
+                                          int           maxFrag,
+                                          bool          useHtml,
+                                          const Source& source)
     {
         return GenerateMarkdownEmphasis(isBold,
                                         lpsm::ArgVec2(minWord, maxWord),
                                         lpsm::ArgVec2(minFrag, maxFrag),
-                                        useHtml);
+                                        useHtml,
+                                        source);
     }
 
-    std::string GenerateMarkdownLinkX(int  minWord,
-                                      int  maxWord,
-                                      int  minFrag,
-                                      int  maxFrag,
-                                      int  minWordURL,
-                                      int  maxWordURL,
-                                      bool useHtml)
+    std::string GenerateMarkdownLinkX(int           minWord,
+                                      int           maxWord,
+                                      int           minFrag,
+                                      int           maxFrag,
+                                      int           minWordURL,
+                                      int           maxWordURL,
+                                      bool          useHtml,
+                                      const Source& source)
     {
         return GenerateMarkdownLink(ArgVec2(minWord, maxWord),
                                     ArgVec2(minFrag, maxFrag),
                                     ArgVec2(minWordURL, maxWordURL),
-                                    useHtml);
+                                    useHtml,
+                                    source);
     }
 
-    std::string GenerateMarkdownListX(bool ordered,
-                                      int  minWord,
-                                      int  maxWord,
-                                      int  minFrag,
-                                      int  maxFrag,
-                                      int  minPoint,
-                                      int  maxPoint,
-                                      bool useHtml)
+    std::string GenerateMarkdownListX(bool          ordered,
+                                      int           minWord,
+                                      int           maxWord,
+                                      int           minFrag,
+                                      int           maxFrag,
+                                      int           minPoint,
+                                      int           maxPoint,
+                                      bool          useHtml,
+                                      const Source& source)
     {
         return GenerateMarkdownList(ordered,
                                     ArgVec2(minWord, maxWord),
                                     ArgVec2(minFrag, maxFrag),
                                     ArgVec2(minPoint, maxPoint),
-                                    useHtml);
+                                    useHtml,
+                                    source);
     }
 
-    std::string GenerateSentencesX(int  sentCount,
-                                   int  minWord,
-                                   int  maxWord,
-                                   int  minFrag,
-                                   int  maxFrag,
-                                   bool useLipsum)
+    std::string GenerateSentencesX(int           sentCount,
+                                   int           minWord,
+                                   int           maxWord,
+                                   int           minFrag,
+                                   int           maxFrag,
+                                   bool          useLipsum,
+                                   const Source& source)
     {
         return GenerateSentences(sentCount,
                                  ArgVec2(minWord, maxWord),
                                  ArgVec2(minFrag, maxFrag),
-                                 useLipsum);
+                                 useLipsum,
+                                 source);
     }
 
-    std::string GenerateParagraphsX(int  paraCount,
-                                    int  minWord,
-                                    int  maxWord,
-                                    int  minFrag,
-                                    int  maxFrag,
-                                    int  minSent,
-                                    int  maxSent,
-                                    bool useLipsum)
+    std::string GenerateParagraphsX(int           paraCount,
+                                    int           minWord,
+                                    int           maxWord,
+                                    int           minFrag,
+                                    int           maxFrag,
+                                    int           minSent,
+                                    int           maxSent,
+                                    bool          useLipsum,
+                                    const Source& source)
     {
         return GenerateParagraphs(paraCount,
                                   ArgVec2(minWord, maxWord),
                                   ArgVec2(minFrag, maxFrag),
                                   ArgVec2(minSent, maxSent),
-                                  useLipsum);
+                                  useLipsum,
+                                  source);
     }
 
-    std::string GenerateParagraphX(int  minWord,
-                                   int  maxWord,
-                                   int  minFrag,
-                                   int  maxFrag,
-                                   int  minSent,
-                                   int  maxSent,
-                                   bool useLipsum)
+    std::string GenerateParagraphX(int           minWord,
+                                   int           maxWord,
+                                   int           minFrag,
+                                   int           maxFrag,
+                                   int           minSent,
+                                   int           maxSent,
+                                   bool          useLipsum,
+                                   const Source& source)
     {
         return GenerateParagraph(ArgVec2(minWord, maxWord),
                                  ArgVec2(minFrag, maxFrag),
                                  ArgVec2(minSent, maxSent),
-                                 useLipsum);
+                                 useLipsum,
+                                 source);
+    }
+
+    std::string GenerateSentenceX(int           minWord,
+                                  int           maxWord,
+                                  int           minFrag,
+                                  int           maxFrag,
+                                  const Source& source)
+    {
+        return GenerateSentence(ArgVec2(minWord, maxWord),
+                                ArgVec2(minFrag, maxFrag),
+                                source);
     }
 
     std::string
-    GenerateSentenceX(int minWord, int maxWord, int minFrag, int maxFrag)
+    GenerateSentenceFragmentX(int minWord, int maxWord, const Source& source)
     {
-        return GenerateSentence(ArgVec2(minWord, maxWord),
-                                ArgVec2(minFrag, maxFrag));
+        return GenerateSentenceFragment(ArgVec2(minWord, maxWord), source);
     }
 
-    std::string GenerateSentenceFragmentX(int minWord, int maxWord)
-    {
-        return GenerateSentenceFragment(ArgVec2(minWord, maxWord));
-    }
-
-    std::string GenerateTextX(int  minWord,
-                              int  maxWord,
-                              int  minFrag,
-                              int  maxFrag,
-                              int  minSent,
-                              int  maxSent,
-                              int  minPara,
-                              int  maxPara,
-                              bool useLipsum)
+    std::string GenerateTextX(int           minWord,
+                              int           maxWord,
+                              int           minFrag,
+                              int           maxFrag,
+                              int           minSent,
+                              int           maxSent,
+                              int           minPara,
+                              int           maxPara,
+                              bool          useLipsum,
+                              const Source& source)
     {
         return GenerateText(ArgVec2(minWord, maxWord),
                             ArgVec2(minFrag, maxFrag),
                             ArgVec2(minSent, maxSent),
                             ArgVec2(minPara, maxPara),
-                            useLipsum);
+                            useLipsum,
+                            source);
     }
 } // namespace lipsum

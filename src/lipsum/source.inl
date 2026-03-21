@@ -15,22 +15,22 @@ namespace lipsum
 {
     Source::Source(const std::string& path)
     {
-        std::ifstream f(path);
+        std::ifstream                   f(path);
         std::unordered_set<std::string> unique;
-        std::string word;
-        char c;
-        if(!f.is_open())
+        std::string                     word;
+        char                            c;
+        if (!f.is_open())
         {
-            std::cerr << "lipsum-cpp error: Could not open file " << path << '\n';
+            std::cerr << "lipsum-cpp error: Could not open file " << path
+                      << '\n';
             return;
         }
-        while(f.get(c))
+        while (f.get(c))
         {
-            if(std::isalnum(static_cast<unsigned char>(c)) || c == '_')
+            if (std::isalnum(static_cast<unsigned char>(c)) || c == '_')
             {
                 word += static_cast<char>(
-                        std::tolower(static_cast<unsigned char>(c))
-                    );
+                        std::tolower(static_cast<unsigned char>(c)));
             }
             else if (!word.empty())
             {
@@ -38,7 +38,7 @@ namespace lipsum
                 word.clear();
             }
         }
-        if(!word.empty())
+        if (!word.empty())
         {
             unique.insert(word);
         }
@@ -48,7 +48,7 @@ namespace lipsum
     std::string Source::RandomWord() const
     {
         int idx;
-        if(m_Words.empty())
+        if (m_Words.empty())
         {
             idx = internal::RandomNumber<int>(0, LIPSUM_VEC.size() - 1);
             return std::string(LIPSUM_VEC.at(idx));
@@ -59,4 +59,4 @@ namespace lipsum
             return m_Words.at(idx);
         }
     }
-}
+} // namespace lipsum

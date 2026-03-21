@@ -25,13 +25,16 @@ namespace lipsum
      * heading. By default 2 to 5.
      * @param useHtml Whether HTML should be outputted instead of Markdown. By
      * default false.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random heading.
      */
     LIPSUM_API std::string
                GenerateMarkdownHeader(int            level   = 1,
                                       const ArgVec2& word    = ArgVec2(2, 5),
-                                      bool           useHtml = false);
+                                      bool           useHtml = false,
+                                      const Source&  source  = Source());
 
     /**
      * @brief Generate a random emphasized sentence.
@@ -49,6 +52,8 @@ namespace lipsum
      * in the sentence. By default 1 to 2.
      * @param useHtml Whether HTML should be outputted instead of Markdown. By
      * default false.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random emphasized sentence.
      */
@@ -56,7 +61,8 @@ namespace lipsum
                GenerateMarkdownEmphasis(bool           isBold  = true,
                                         const ArgVec2& word    = ArgVec2(4, 8),
                                         const ArgVec2& frag    = ArgVec2(1, 2),
-                                        bool           useHtml = false);
+                                        bool           useHtml = false,
+                                        const Source&  source  = Source());
 
     /**
      * @brief Generate a random Markdown link.
@@ -73,6 +79,8 @@ namespace lipsum
      * end of the URL. By default 2 to 5.
      * @param useHtml Whether HTML should be outputted instead of Markdown. By
      * default false.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random link.
      */
@@ -80,7 +88,8 @@ namespace lipsum
                GenerateMarkdownLink(const ArgVec2& word    = ArgVec2(4, 8),
                                     const ArgVec2& frag    = ArgVec2(1, 2),
                                     const ArgVec2& wordURL = ArgVec2(2, 5),
-                                    bool           useHtml = false);
+                                    bool           useHtml = false,
+                                    const Source&  source  = Source());
 
     /**
      * @brief Generate a random Markdown list.
@@ -99,6 +108,8 @@ namespace lipsum
      * list. By default 3 to 5.
      * @param useHtml Whether HTML should be outputted instead of Markdown. By
      * default false.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random Markdown list.
      */
@@ -107,7 +118,8 @@ namespace lipsum
                                     const ArgVec2& word    = ArgVec2(4, 8),
                                     const ArgVec2& frag    = ArgVec2(1, 2),
                                     const ArgVec2& point   = ArgVec2(3, 5),
-                                    bool           useHtml = false);
+                                    bool           useHtml = false,
+                                    const Source&  source  = Source());
 
     /**
      * @brief Generate a random formatted paragraph.
@@ -132,6 +144,8 @@ namespace lipsum
      * default true.
      * @param useHtml Whether HTML should be outputted instead of Markdown. By
      * default false.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random paragraph.
      */
@@ -143,7 +157,8 @@ namespace lipsum
                                          const ArgVec2& fragFmt = ArgVec2(1, 2),
                                          const ArgVec2& wordLink = ArgVec2(2, 5),
                                          bool           useLipsum = true,
-                                         bool           useHtml   = false);
+                                         bool           useHtml   = false,
+                                         const Source&  source    = Source());
 
     /**
      * @brief Generate multiple random formatted paragraphs.
@@ -170,6 +185,8 @@ namespace lipsum
      * paragraph. By default true.
      * @param useHtml Whether HTML should be outputted instead of Markdown. By
      * default false.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random paragraph.
      */
@@ -182,7 +199,8 @@ namespace lipsum
                                           const ArgVec2& fragFmt = ArgVec2(1, 2),
                                           const ArgVec2& wordLink = ArgVec2(2, 5),
                                           bool           useLipsum = true,
-                                          bool           useHtml   = false);
+                                          bool           useHtml   = false,
+                                          const Source&  source    = Source());
 
     /**
      * @brief Generate a random Markdown document.
@@ -211,6 +229,8 @@ namespace lipsum
      * By default 15.
      * @param useHtml Whether HTML should be outputted instead of Markdown. By
      * default false.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random Markdown document.
      */
@@ -224,5 +244,6 @@ namespace lipsum
                                     const ArgVec2& wordHead    = ArgVec2(2, 5),
                                     const ArgVec2& level       = ArgVec2(2, 4),
                                     int            numElements = 15,
-                                    bool           useHtml     = false);
+                                    bool           useHtml     = false,
+                                    const Source&  source      = Source());
 } // namespace lipsum

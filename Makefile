@@ -40,11 +40,15 @@ amalgamate:
 	quom $(SRC_DIR)/lipsum.hpp $(PKG_DIR)/lipsum.hpp
 
 pkg: clean em_build format amalgamate
+	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(BUILD_DIR)/examples/
+	cp examples/JSBinding.html $(BUILD_DIR)/examples/
 	rm $(BUILD_DIR)/$(SRC_DIR)/jsbind/cmake_install.cmake
 	rm -rf $(BUILD_DIR)/$(SRC_DIR)/jsbind/CMakeFiles
 	7z a -tzip -r -mx=9 $(PKG_DIR)/lipsum-jsbind.zip $(BUILD_DIR)/$(SRC_DIR)/jsbind
 
 quick_pkg: em_build format amalgamate
+	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(BUILD_DIR)/examples/
+	cp examples/JSBinding.html $(BUILD_DIR)/examples/
 	rm $(BUILD_DIR)/$(SRC_DIR)/jsbind/cmake_install.cmake
 	rm -rf $(BUILD_DIR)/$(SRC_DIR)/jsbind/CMakeFiles
 	7z a -tzip -r -mx=9 $(PKG_DIR)/lipsum-jsbind.zip $(BUILD_DIR)/$(SRC_DIR)/jsbind

@@ -1,6 +1,6 @@
 # lipsum-cpp Todo
 
-- [ ] Multi-source generation
+- [x] Multi-source generation
 - [ ] More format generation
     - [ ] JSON
     - [ ] XML

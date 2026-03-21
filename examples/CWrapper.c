@@ -2,13 +2,15 @@
 
 int main(void)
 {
+    lpsm_SourceHandle source = lpsm_Source("default");
     // Generate 5 words.
     char* generatedWords = lpsm_gen_word(5);
     // generate a paragraph with 4-9 words per sentence fragment,
     // 1-3 sentence fragments per sentence,
     // 5-8 sentences per paragraph,
     // start with "Lorem ipsum..."
-    char* generatedParagraph = lpsm_GenerateParagraph(4, 9, 1, 3, 5, 8, true);
+    char* generatedParagraph =
+            lpsm_GenerateParagraph(4, 9, 1, 3, 5, 8, true, source);
 
     // generate markdown document with 15 elements
     char* generatedMarkdown = lpsm_gen_md_text(15);
@@ -17,7 +19,7 @@ int main(void)
     lpsm_ArgVec2Handle handle = lpsm_ArgVec2(4, 10);
 
     // generate a sentence fragment with 4-10 words
-    char* example = lpsm_GenerateSentenceFragmentS(handle, false);
+    char* example = lpsm_GenerateSentenceFragmentS(handle, source, false);
 
     // temp object, will be deleted in paragraph generation
     lpsm_ArgVec2Handle wordAv2 = lpsm_ArgVec2(4, 9);
@@ -27,6 +29,7 @@ int main(void)
                                                    lpsm_ArgVec2(1, 3),
                                                    lpsm_ArgVec2(5, 8),
                                                    true,
+                                                   source,
                                                    true);
 
     // roll
@@ -40,6 +43,7 @@ int main(void)
 
     // delete stuff
     lpsm_ArgVec2Destroy(handle);
+    lpsm_SourceDestroy(source);
     lpsm_DeleteString(generatedParagraph);
     lpsm_DeleteString(generatedWords);
     lpsm_DeleteString(generatedMarkdown);

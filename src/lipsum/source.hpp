@@ -18,7 +18,8 @@ namespace lipsum
      *
      * @since 0.4.0
      *
-     * This class is for multi-source generation which exposes a function to generate a random word.
+     * This class is for multi-source generation which exposes a function to
+     * generate a random word.
      */
     class LIPSUM_API Source
     {
@@ -28,7 +29,8 @@ namespace lipsum
          *
          * @since 0.4.0
          *
-         * Default constructor which leaves the m_Words object empty and using global LIPSUM_VEC from sample.inl instead.
+         * Default constructor which leaves the m_Words object empty and using
+         * global LIPSUM_VEC from sample.inl instead.
          */
         Source() = default;
 
@@ -37,23 +39,27 @@ namespace lipsum
          *
          * @since 0.4.0
          *
-         * Constructor which reads from the file specified and fills object m_Words with unique words.
-         * 
+         * Constructor which reads from the file specified and fills object
+         * m_Words with unique words.
+         *
          * @param path A path to the source file.
          */
         Source(const std::string& path);
-        
+
         /**
          * @brief Select a random word.
          *
          * @since 0.4.0
-         * 
-         * Select a random word from m_Words unless m_Words is empty, in which it uses LIPSUM_VEC from sample.inl as a fallback.
+         *
+         * Select a random word from m_Words unless m_Words is empty, in which
+         * it uses LIPSUM_VEC from sample.inl as a fallback.
          *
          * @return std::string The random word.
          */
         std::string RandomWord() const;
+
     private:
-        std::vector<std::string> m_Words; ///< The internal list of words stored.
+        std::vector<std::string>
+                m_Words; ///< The internal list of words stored.
     };
-}
+} // namespace lipsum

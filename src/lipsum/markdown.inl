@@ -23,10 +23,11 @@ namespace lipsum
                                      const ArgVec2& wordHead,
                                      const ArgVec2& level,
                                      int            numElements,
-                                     bool           useHtml)
+                                     bool           useHtml,
+                                     const Source&  source)
     {
         std::string ret;
-        ret += GenerateMarkdownHeader(1, wordHead, useHtml);
+        ret += GenerateMarkdownHeader(1, wordHead, useHtml, source);
         ret += GenerateMarkdownParagraph(word,
                                          frag,
                                          sent,
@@ -34,7 +35,8 @@ namespace lipsum
                                          fragFmt,
                                          wordHead,
                                          false,
-                                         useHtml);
+                                         useHtml,
+                                         source);
         numElements -= 2;
         int  rand;
         bool ordered;
@@ -57,14 +59,16 @@ namespace lipsum
                                                      fragFmt,
                                                      wordHead,
                                                      false,
-                                                     useHtml);
+                                                     useHtml,
+                                                     source);
                     break;
                 }
                 case 1:
                 {
                     ret += GenerateMarkdownHeader(level.Roll(),
                                                   wordHead,
-                                                  useHtml);
+                                                  useHtml,
+                                                  source);
                     break;
                 }
                 case 2:
@@ -73,7 +77,8 @@ namespace lipsum
                                                 wordFmt,
                                                 fragFmt,
                                                 point,
-                                                useHtml);
+                                                useHtml,
+                                                source);
                     break;
                 }
             }
@@ -86,7 +91,8 @@ namespace lipsum
                                      const ArgVec2& word,
                                      const ArgVec2& frag,
                                      const ArgVec2& point,
-                                     bool           useHtml)
+                                     bool           useHtml,
+                                     const Source&  source)
     {
         std::string ret;
         int         points = point.Roll();
@@ -118,7 +124,7 @@ namespace lipsum
             {
                 ret += "<li>";
             }
-            ret += GenerateSentence(word, frag);
+            ret += GenerateSentence(word, frag, source);
             if (useHtml)
             {
                 ret += "</li>";
@@ -150,7 +156,8 @@ namespace lipsum
                                           const ArgVec2& fragFmt,
                                           const ArgVec2& wordLink,
                                           bool           useLipsum,
-                                          bool           useHtml)
+                                          bool           useHtml,
+                                          const Source&  source)
     {
         std::string ret;
         int         sents = sent.Roll();
@@ -179,18 +186,20 @@ namespace lipsum
                 ret += GenerateMarkdownLink(wordFmt,
                                             fragFmt,
                                             wordLink,
-                                            useHtml);
+                                            useHtml,
+                                            source);
             }
             else if ((fmtRoll == sent.min) && !addLink)
             {
                 ret += GenerateMarkdownEmphasis(isBold,
                                                 wordFmt,
                                                 fragFmt,
-                                                useHtml);
+                                                useHtml,
+                                                source);
             }
             else
             {
-                ret += GenerateSentence(word, frag);
+                ret += GenerateSentence(word, frag, source);
             }
             ret += " ";
         }
@@ -205,13 +214,14 @@ namespace lipsum
     std::string GenerateMarkdownLink(const ArgVec2& word,
                                      const ArgVec2& frag,
                                      const ArgVec2& wordURL,
-                                     bool           useHtml)
+                                     bool           useHtml,
+                                     const Source&  source)
     {
         std::string ret;
         // std::string link =
         //         url + std::string("#") + lpsm::GenerateSlug(wordURL, '-');
-        std::string link     = GenerateURL(wordURL);
-        std::string sentence = GenerateSentence(word, frag);
+        std::string link     = GenerateURL(wordURL, source);
+        std::string sentence = GenerateSentence(word, frag, source);
         if (!useHtml)
         {
             ret += std::string("[") += sentence += std::string("](") += link +=
@@ -228,10 +238,11 @@ namespace lipsum
     std::string GenerateMarkdownEmphasis(bool           isBold,
                                          const ArgVec2& word,
                                          const ArgVec2& frag,
-                                         bool           useHtml)
+                                         bool           useHtml,
+                                         const Source&  source)
     {
         std::string ret;
-        std::string sent = GenerateSentence(word, frag);
+        std::string sent = GenerateSentence(word, frag, source);
 
         if (!useHtml)
         {
@@ -277,8 +288,10 @@ namespace lipsum
         return ret;
     }
 
-    std::string
-    GenerateMarkdownHeader(int level, const ArgVec2& word, bool useHtml)
+    std::string GenerateMarkdownHeader(int            level,
+                                       const ArgVec2& word,
+                                       bool           useHtml,
+                                       const Source&  source)
     {
         if (level > 6 || level < 1)
         {
@@ -286,8 +299,9 @@ namespace lipsum
                       << ", expected from 1 to 6\n";
         }
         std::string ret;
-        std::string words = GenerateSentenceFragment(word);
-        words.at(0)       = std::toupper(words.at(0));
+        std::string words = GenerateSentenceFragment(word, source);
+        words.at(0)       = static_cast<char>(
+                std::toupper(static_cast<unsigned char>(words.at(0))));
         if (!useHtml)
         {
             for (int i = 0; i < level; ++i)
@@ -313,7 +327,8 @@ namespace lipsum
                                            const ArgVec2& fragFmt,
                                            const ArgVec2& wordLink,
                                            bool           useLipsum,
-                                           bool           useHtml)
+                                           bool           useHtml,
+                                           const Source&  source)
     {
         std::string ret;
         for (int i = 0; i < paraCount; ++i)
@@ -327,7 +342,8 @@ namespace lipsum
                                                  fragFmt,
                                                  wordLink,
                                                  true,
-                                                 useHtml);
+                                                 useHtml,
+                                                 source);
             }
             else
             {
@@ -338,7 +354,8 @@ namespace lipsum
                                                  fragFmt,
                                                  wordLink,
                                                  false,
-                                                 useHtml);
+                                                 useHtml,
+                                                 source);
             }
         }
         return ret;

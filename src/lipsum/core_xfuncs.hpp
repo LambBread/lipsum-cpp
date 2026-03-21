@@ -27,10 +27,14 @@ namespace lipsum
      * of the URL. By default 2.
      * @param maxWord The maximum possible number of words at the end of the
      * URL. By default 5.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The URL.
      */
-    LIPSUM_API std::string GenerateURLX(int minWord = 2, int maxWord = 5);
+    LIPSUM_API std::string GenerateURLX(int           minWord = 2,
+                                        int           maxWord = 5,
+                                        const Source& source  = Source());
 
     /**
      * @brief Generate a slug joined by a specified character.
@@ -44,11 +48,15 @@ namespace lipsum
      * @param maxWord The maximum possible number of words in the slug. By
      * default 5.
      * @param separator The separator character. By default a hyphen.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The slug.
      */
-    LIPSUM_API std::string
-    GenerateSlugX(int minWord = 2, int maxWord = 5, char separator = '-');
+    LIPSUM_API std::string GenerateSlugX(int           minWord   = 2,
+                                         int           maxWord   = 5,
+                                         char          separator = '-',
+                                         const Source& source    = Source());
 
     /**
      * @brief Generate a fragment of a sentence without punctuation.
@@ -61,11 +69,13 @@ namespace lipsum
      * By default 4.
      * @param maxWord Maximum possible number of words in a sentence fragment.
      * By default 9.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random sentence fragment.
      */
-    LIPSUM_API std::string GenerateSentenceFragmentX(int minWord = 4,
-                                                     int maxWord = 9);
+    LIPSUM_API std::string GenerateSentenceFragmentX(
+            int minWord = 4, int maxWord = 9, const Source& source = Source());
 
     /**
      * @brief Generate a random sentence.
@@ -82,13 +92,16 @@ namespace lipsum
      * sentence. By default 1.
      * @param maxFrag Maximum possible number of sentence fragments in a
      * sentence. By default 3.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random sentence.
      */
-    LIPSUM_API std::string GenerateSentenceX(int minWord = 4,
-                                             int maxWord = 9,
-                                             int minFrag = 1,
-                                             int maxFrag = 3);
+    LIPSUM_API std::string GenerateSentenceX(int           minWord = 4,
+                                             int           maxWord = 9,
+                                             int           minFrag = 1,
+                                             int           maxFrag = 3,
+                                             const Source& source  = Source());
 
     /**
      * @brief Generate a random paragraph.
@@ -111,16 +124,19 @@ namespace lipsum
      * By default 8.
      * @param useLipsum Whether the default "Lorem ipsum..." text should start
      * the paragraph. By default true.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random paragraph.
      */
-    LIPSUM_API std::string GenerateParagraphX(int  minWord   = 4,
-                                              int  maxWord   = 9,
-                                              int  minFrag   = 1,
-                                              int  maxFrag   = 3,
-                                              int  minSent   = 5,
-                                              int  maxSent   = 8,
-                                              bool useLipsum = true);
+    LIPSUM_API std::string GenerateParagraphX(int           minWord   = 4,
+                                              int           maxWord   = 9,
+                                              int           minFrag   = 1,
+                                              int           maxFrag   = 3,
+                                              int           minSent   = 5,
+                                              int           maxSent   = 8,
+                                              bool          useLipsum = true,
+                                              const Source& source = Source());
 
     /**
      * @brief Generate several random paragraphs at once.
@@ -144,17 +160,20 @@ namespace lipsum
      * By default 8.
      * @param useLipsum Whether the default "Lorem ipsum..." text should start
      * the first paragraph. By default true.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      *
      * @return std::string The random paragraphs.
      */
-    LIPSUM_API std::string GenerateParagraphsX(int  paraCount = 5,
-                                               int  minWord   = 4,
-                                               int  maxWord   = 9,
-                                               int  minFrag   = 1,
-                                               int  maxFrag   = 3,
-                                               int  minSent   = 5,
-                                               int  maxSent   = 8,
-                                               bool useLipsum = true);
+    LIPSUM_API std::string GenerateParagraphsX(int           paraCount = 5,
+                                               int           minWord   = 4,
+                                               int           maxWord   = 9,
+                                               int           minFrag   = 1,
+                                               int           maxFrag   = 3,
+                                               int           minSent   = 5,
+                                               int           maxSent   = 8,
+                                               bool          useLipsum = true,
+                                               const Source& source = Source());
 
     /**
      * @brief Generate multiple random sentences at once.
@@ -174,13 +193,16 @@ namespace lipsum
      * sentence. By default 3.
      * @param useLipsum Whether the default "Lorem ipsum..." sentence should be
      * the first sentence. By default true.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      */
-    LIPSUM_API std::string GenerateSentencesX(int  sentCount = 6,
-                                              int  minWord   = 4,
-                                              int  maxWord   = 9,
-                                              int  minFrag   = 1,
-                                              int  maxFrag   = 3,
-                                              bool useLipsum = true);
+    LIPSUM_API std::string GenerateSentencesX(int           sentCount = 6,
+                                              int           minWord   = 4,
+                                              int           maxWord   = 9,
+                                              int           minFrag   = 1,
+                                              int           maxFrag   = 3,
+                                              bool          useLipsum = true,
+                                              const Source& source = Source());
 
     /**
      * @brief Generate a random number of random paragraphs.
@@ -209,14 +231,17 @@ namespace lipsum
      * default 4.
      * @param useLipsum Whether "Lorem ipsum..." should start the first
      * paragraph. By default true.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
      */
-    LIPSUM_API std::string GenerateTextX(int  minWord   = 4,
-                                         int  maxWord   = 9,
-                                         int  minFrag   = 1,
-                                         int  maxFrag   = 3,
-                                         int  minSent   = 5,
-                                         int  maxSent   = 8,
-                                         int  minPara   = 1,
-                                         int  maxPara   = 4,
-                                         bool useLipsum = true);
+    LIPSUM_API std::string GenerateTextX(int           minWord   = 4,
+                                         int           maxWord   = 9,
+                                         int           minFrag   = 1,
+                                         int           maxFrag   = 3,
+                                         int           minSent   = 5,
+                                         int           maxSent   = 8,
+                                         int           minPara   = 1,
+                                         int           maxPara   = 4,
+                                         bool          useLipsum = true,
+                                         const Source& source    = Source());
 } // namespace lipsum
