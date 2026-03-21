@@ -23,6 +23,7 @@
 #    define LIPSUM_IMPLEMENTATION
 #endif
 #include "lipsum.hpp"
+std::string LIP_VERSION = std::string(LIPSUM_CPP_VERSION);
 
 using namespace emscripten;
 
@@ -64,7 +65,11 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     function("lpsm_GenerateParagraphsX", &lpsm::GenerateParagraphsX);
     function("lpsm_GenerateSentencesX", &lpsm::GenerateSentencesX);
     function("lpsm_CountSentences", &lpsm::CountSentences);
-    function("lpsm_LipsumVersion", &lpsm::LipsumVersion);
+    // function("lpsm_LipsumVersion", &lpsm::LipsumVersion);
+    constant("LIPSUM_CPP_VERSION", LIP_VERSION);
+    constant("LIPSUM_CPP_VERSION_MAJOR", LIPSUM_CPP_VERSION_MAJOR);
+    constant("LIPSUM_CPP_VERSION_MINOR", LIPSUM_CPP_VERSION_MINOR);
+    constant("LIPSUM_CPP_VERSION_PATCH", LIPSUM_CPP_VERSION_PATCH);
     function("lpsm_GenerateText", &lpsm::GenerateText);
     function("lpsm_GenerateTextX", &lpsm::GenerateTextX);
     function("lpsm_GenerateMarkdownParagraphs",

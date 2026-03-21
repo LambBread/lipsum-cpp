@@ -6,7 +6,10 @@
 int main()
 {
     // print current version of lipsum-cpp
-    std::cout << lpsm::LipsumVersion() << '\n';
+    std::cout << LIPSUM_CPP_VERSION << '\n';
+    std::cout << "major " << LIPSUM_CPP_VERSION_MAJOR << " minor "
+              << LIPSUM_CPP_VERSION_MINOR << " patch "
+              << LIPSUM_CPP_VERSION_PATCH << '\n';
 
     // should be 4
     std::cout << lpsm::CountSentences("Yes this is a test. [Testing "
@@ -17,7 +20,7 @@ int main()
                                   "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA. Lorem ipsum "
                                   "dolor sit amet, aaaaaaaaaaaaaaaaaa")
               << '\n';
-    std::cout << "this is a plain URL:" << lpsm::GeneratePlainURL() << '\n';
+    std::cout << "this is a plain URL: " << lpsm::GeneratePlainURL() << '\n';
     std::cout << "your generated password is "
               << lpsm::GenerateScramble(24, ' ', '~') << '\n';
 

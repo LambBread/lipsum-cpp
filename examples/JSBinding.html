@@ -11,7 +11,7 @@
     <script>
         createLipsumCpp().then((Module)=>
             {
-                console.log(Module.lpsm_LipsumVersion());
+                console.log(Module.LIPSUM_CPP_VERSION);
                 const av2 = new Module.lpsm_ArgVec2(1, 6);
                 console.log(av2.Roll());
                 const gen = new Module.lpsm_Generator();

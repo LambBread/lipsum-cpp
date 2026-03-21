@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
-project(lipsum-cpp VERSION 0.3.9 LANGUAGES C CXX)
-set(CMAKE_CXX_STANDARD 17)
+project(lipsum-cpp VERSION 0.4.0 LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/options.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/sample.cmake")

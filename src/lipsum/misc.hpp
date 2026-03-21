@@ -44,14 +44,4 @@ namespace lipsum
      */
     LIPSUM_API int CountSentences(const std::string& str);
 
-    /**
-     * @brief Return the current version of lipsum-cpp.
-     *
-     * Return the macro LIPSUM_CPP_VERSION.
-     *
-     * @since 0.3.2
-     *
-     * @return std::string The current version of lipsum-cpp.
-     */
-    LIPSUM_API std::string LipsumVersion();
 } // namespace lipsum

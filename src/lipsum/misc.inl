@@ -51,8 +51,4 @@ namespace lipsum
         return res;
     }
 
-    std::string LipsumVersion()
-    {
-        return std::string(LIPSUM_CPP_VERSION);
-    }
 } // namespace lipsum

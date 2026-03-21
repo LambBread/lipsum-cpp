@@ -49,16 +49,34 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.3.9"
+#define LIPSUM_CPP_VERSION_C "0.4.0"
 
 /**
- * @brief Return the current version of lipsum-cpp
+ * @brief The major version of lipsum-cpp.
  *
- * @since 0.3.2
+ * @since 0.4.0
  *
- * This macro function simply expands to LIPSUM_CPP_VERSION_C.
+ * This macro stores the current major version of lipsum-cpp.
  */
-#define lpsm_LipsumVersion() LIPSUM_CPP_VERSION_C
+#define LIPSUM_CPP_VERSION_MAJOR_C 0
+
+/**
+ * @brief The minor version of lipsum-cpp.
+ *
+ * @since 0.4.0
+ *
+ * This macro stores the current minor version of lipsum-cpp.
+ */
+#define LIPSUM_CPP_VERSION_MINOR_C 4
+
+/**
+ * @brief The patch version of lipsum-cpp.
+ *
+ * @since 0.4.0
+ *
+ * This macro stores the current patch version of lipsum-cpp.
+ */
+#define LIPSUM_CPP_VERSION_PATCH_C 0
 
 #include <stdbool.h>
 #include <stdio.h>
