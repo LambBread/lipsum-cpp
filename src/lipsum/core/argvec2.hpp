@@ -1,6 +1,6 @@
 
 /**
- * @file lipsum/argvec2.hpp
+ * @file lipsum/core/argvec2.hpp
  *
  * @brief Declaration of lipsum::ArgVec2
  *
@@ -12,7 +12,7 @@
  */
 
 #pragma once
-// #include "core.hpp"
+#include "core.hpp"
 namespace lipsum
 {
     /**

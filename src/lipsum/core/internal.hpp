@@ -1,5 +1,5 @@
 /**
- * @file lipsum/internal.hpp
+ * @file lipsum/core/internal.hpp
  *
  * @brief Declaration of lipsum::internal
  *
@@ -12,6 +12,7 @@
  */
 #pragma once
 
+#include "core.hpp"
 /**
  * @brief Choose between true or false
  */

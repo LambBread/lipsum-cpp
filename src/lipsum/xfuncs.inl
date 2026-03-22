@@ -13,6 +13,7 @@
  */
 #pragma once
 
+#include "core/argvec2.hpp"
 namespace lipsum
 {
 

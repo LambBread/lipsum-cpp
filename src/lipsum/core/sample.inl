@@ -1,5 +1,5 @@
 /**
- * @file lipsum/sample.inl
+ * @file lipsum/core/sample.inl
  *
  * @brief File containing all of the words used by lipsum::GenerateWord()
  *

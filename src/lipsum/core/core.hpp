@@ -1,5 +1,5 @@
 /**
- * @file lipsum/core.hpp
+ * @file lipsum/core/core.hpp
  *
  * @brief Core macros for lipsum-cpp
  *

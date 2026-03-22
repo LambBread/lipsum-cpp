@@ -38,26 +38,10 @@
 
 #pragma once
 
-#include <algorithm>
-#include <array>
-#include <cctype>
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <random>
-#include <sstream>
-#include <string>
-#include <type_traits>
-#include <unordered_set>
-#include <vector>
+#include "lipsum/core/stdincludes.hpp"
+#include "lipsum/core/internal.hpp"
 
-#include "lipsum/core.hpp"
-
-#include "lipsum/argvec2.hpp"
 #include "lipsum/generator.hpp"
-#include "lipsum/internal.hpp"
-#include "lipsum/source.hpp"
-
 #include "lipsum/core_funcs.hpp"
 #include "lipsum/markdown.hpp"
 #include "lipsum/core_xfuncs.hpp"
@@ -79,14 +63,14 @@ namespace lpsm = lipsum; ///< Alias for namespace lipsum
 
 #ifdef LIPSUM_IMPLEMENTATION
 
-#    include "lipsum/argvec2.inl"
-#    include "lipsum/generator.inl"
-#    include "lipsum/internal.inl"
-#    include "lipsum/source.inl"
+#    include "lipsum/core/argvec2.inl"
+#    include "lipsum/core/internal.inl"
+#    include "lipsum/core/source.inl"
 
 #    include "lipsum/core_funcs.inl"
+#    include "lipsum/generator.inl"
 #    include "lipsum/markdown.inl"
-#    include "lipsum/xfuncs.inl"
 #    include "lipsum/misc.inl"
+#    include "lipsum/xfuncs.inl"
 
 #endif

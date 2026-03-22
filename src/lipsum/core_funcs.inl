@@ -12,6 +12,7 @@
  */
 #pragma once
 
+#include "core/internal.hpp"
 // #include "sample.inl"
 
 namespace lipsum

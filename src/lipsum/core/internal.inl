@@ -1,6 +1,6 @@
 
 /**
- * @file lipsum/internal.inl
+ * @file lipsum/core/internal.inl
  *
  * @brief Definition of lipsum::internal
  *

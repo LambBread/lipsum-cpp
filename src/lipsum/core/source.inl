@@ -1,5 +1,5 @@
 /**
- * @file lipsum/source.inl
+ * @file lipsum/core/source.inl
  *
  * @brief Mutli-source generation for lipsum-cpp
  *
@@ -10,6 +10,7 @@
  * @author LambBread from github.com
  */
 #pragma once
+#include "internal.hpp"
 #include "sample.inl"
 namespace lipsum
 {

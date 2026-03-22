@@ -1,6 +1,6 @@
 
 /**
- * @file lipsum/argvec2.inl
+ * @file lipsum/core/argvec2.inl
  *
  * @brief Definition of lipsum::ArgVec2
  *
@@ -12,6 +12,7 @@
  * @author LambBread from github.com
  */
 #pragma once
+#include "internal.hpp"
 
 namespace lipsum
 {

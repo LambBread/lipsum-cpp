@@ -12,7 +12,9 @@
  */
 
 #pragma once
-// #include "argvec2.hpp"
+#include "core/core.hpp"
+#include "core/argvec2.hpp"
+#include "core/source.hpp"
 namespace lipsum
 {
 
