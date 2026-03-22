@@ -1,5 +1,9 @@
 if(LPSM_BUILD_DOCS)
+    # if building docs, find doxygen
     find_package(Doxygen REQUIRED)
+
+    # if found, add custom target running on all builds
+    # which builds docs
     if(DOXYGEN_FOUND)
         set(DOXYGEN_IN "${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile")
         set(DOXYGEN_OUT "${CMAKE_CURRENT_SOURCE_DIR}/docs")

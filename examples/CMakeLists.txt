@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
+
+# get markdown parser library
 include(FetchContent)
 FetchContent_Declare(
     maddy
@@ -6,6 +8,8 @@ FetchContent_Declare(
     GIT_TAG master
 )
 FetchContent_MakeAvailable(maddy)
+
+# all example targets
 set(LPSM_EXAMPLES_TARGETS
     GenerateWord
     GenerateWords
@@ -31,12 +35,17 @@ set(LPSM_EXAMPLES_TARGETS
     GenerateURL
     Source
 )
+
+# add executable + link to lipsum-cpp for each
 foreach(target IN LISTS LPSM_EXAMPLES_TARGETS)
     add_executable(${target} "${CMAKE_CURRENT_SOURCE_DIR}/${target}.cpp")
     target_link_libraries(${target} lipsum-cpp)
 endforeach()
+
+# link markdown example with markdown parser lib
 target_link_libraries(Markdown maddy)
 
+# add c wrapper example if supported
 if(LPSM_BUILD_CWRAPPER)
     add_executable(CWrapper "${CMAKE_CURRENT_SOURCE_DIR}/CWrapper.c")
     target_link_libraries(CWrapper lipsum-cpp)

@@ -1,6 +1,8 @@
-
 if(LPSM_BUILD_SAMPLE)
+    # if chosen, find python
     find_package(Python COMPONENTS Interpreter REQUIRED)
+
+    # add target
     add_custom_target(
         sample
         COMMAND ${Python_EXECUTABLE} split.py
