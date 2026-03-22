@@ -6,13 +6,14 @@ BUILD_DIR := build
 PKG_DIR := bin
 SRC_DIR := src
 DOCS_DIR := docs
+EXAMPLES_DIR := examples
 CMAKE_GENERATOR := Ninja
 BUILD_TYPE := Release
 CMAKE_OPTS := -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON \
 			  -DLPSM_BUILD_DOCS=ON -DLPSM_BUILD_EXAMPLES=ON -DLPSM_BUILD_SAMPLE=ON \
 			  -DLPSM_BUILD_JSBIND=ON -DLPSM_FORMAT=ON
 
-.PHONY: all clean build configure em_configure em_build format amalgamate pkg total_clean sample quick_pkg
+.PHONY: all clean build configure em_configure em_build format amalgamate pkg full_clean sample quick_pkg pkg_
 
 all: build
 
@@ -39,23 +40,20 @@ amalgamate:
 	mkdir -p $(PKG_DIR)
 	quom $(SRC_DIR)/lipsum.hpp $(PKG_DIR)/lipsum.hpp
 
-pkg: clean em_build format amalgamate
+pkg_:
 	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(BUILD_DIR)/examples/
-	cp examples/JSBinding.html $(BUILD_DIR)/examples/
+	cp $(EXAMPLES_DIR)/JSBinding.html $(BUILD_DIR)/examples/
 	rm $(BUILD_DIR)/$(SRC_DIR)/jsbind/cmake_install.cmake
 	rm -rf $(BUILD_DIR)/$(SRC_DIR)/jsbind/CMakeFiles
 	7z a -tzip -r -mx=9 $(PKG_DIR)/lipsum-jsbind.zip $(BUILD_DIR)/$(SRC_DIR)/jsbind
+	
+quick_pkg: em_configure format em_build amalgamate pkg_
 
-quick_pkg: em_build format amalgamate
-	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(BUILD_DIR)/examples/
-	cp examples/JSBinding.html $(BUILD_DIR)/examples/
-	rm $(BUILD_DIR)/$(SRC_DIR)/jsbind/cmake_install.cmake
-	rm -rf $(BUILD_DIR)/$(SRC_DIR)/jsbind/CMakeFiles
-	7z a -tzip -r -mx=9 $(PKG_DIR)/lipsum-jsbind.zip $(BUILD_DIR)/$(SRC_DIR)/jsbind
+pkg: clean quick_pkg
 
 clean:
 	rm -rf $(BUILD_DIR)
 
-total_clean: clean
+full_clean: clean
 	rm -rf $(PKG_DIR)
 	rm -rf $(DOCS_DIR)
