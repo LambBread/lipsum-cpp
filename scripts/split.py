@@ -17,7 +17,7 @@ if __name__ == "__main__":
     unique_words = count_unique_words("lipsum.txt")
     with open("../src/lipsum/core/sample.inl", "w") as file:
         file.write("""/** 
- * @file lipsum/sample.inl
+ * @file lipsum/core/sample.inl
  * 
  * @brief File containing all of the words used by lipsum::GenerateWord()
  * 
