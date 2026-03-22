@@ -11,7 +11,10 @@
  * @author LambBread from github.com
  */
 #pragma once
+
 #include "core/internal.hpp"
+#include "core_funcs.hpp"
+
 namespace lipsum
 {
 

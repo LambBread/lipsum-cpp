@@ -14,6 +14,9 @@
 #pragma once
 
 #include "core/argvec2.hpp"
+#include "core_funcs.hpp"
+#include "markdown.hpp"
+
 namespace lipsum
 {
 
