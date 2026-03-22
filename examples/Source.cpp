@@ -6,7 +6,7 @@
 
 int main()
 {
-    lpsm::Source src("../../examples/sample.txt");
+    lpsm::Source src("../../examples/catipsum_example.txt");
     std::cout << lpsm::GenerateParagraph(lpsm::ArgVec2(4, 9),
                                          lpsm::ArgVec2(1, 3),
                                          lpsm::ArgVec2(5, 8),

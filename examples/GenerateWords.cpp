@@ -5,6 +5,7 @@
 #include "lipsum.hpp"
 int main()
 {
+    // generate 5 words
     std::cout << lpsm::GenerateWords(5) << '\n';
     return 0;
 }

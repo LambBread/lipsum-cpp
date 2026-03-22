@@ -1,4 +1,8 @@
 #!/bin/bash
+# This script opens a server in build/examples on port 6968 
+# and docs/html on port 6969. Once the script is exited, both
+# servers will be killed.
+
 pids=()
 
 cd docs/html

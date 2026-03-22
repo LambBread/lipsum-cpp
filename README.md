@@ -1,12 +1,17 @@
 # lipsum-cpp
 
+![GitHub License](https://img.shields.io/github/license/LambBread/lipsum-cpp)
+![GitHub Tag](https://img.shields.io/github/v/tag/LambBread/lipsum-cpp)
+![GitHub top language](https://img.shields.io/github/languages/top/LambBread/lipsum-cpp)
+
+
 A header-only C++ library for generating sample Lorem Ipsum text. Useful for prototyping apps, UI testing, and anywhere placeholder text is needed.
 
 ## Features
 
 - Header-only (also possible to use an amalgamated single-header `lipsum.hpp`)
 - Customizable number of paragraphs, sentences, sentence fragments, and words
-- Multi-source generation
+- Multi-source lorem-ipsum generation
 - Markdown and HTML generation
 - C++, C, and JavaScript API (static/shared library, wrapper, and Emscripten module builds supported)
 - CMake support for easy integration
@@ -19,10 +24,11 @@ lipsum-cpp has been mainly tested on Linux and WebAssembly as well as cross-comp
 ### Prerequisites
 
 - A C/C++ compiler (e.g. GCC, MSVC, Clang)
-- Optionally:
+- Recommended:
     - CMake
-    - Emscripten
     - Make
+- Optional:
+    - Emscripten
     - a build system (e.g. Ninja, MSBuild, ...)
     - Doxygen
     - Python
