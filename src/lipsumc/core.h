@@ -45,7 +45,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_C "0.4.0"
+#define LIPSUM_CPP_VERSION_C "0.4.1"
 
 /**
  * @brief The major version of lipsum-cpp.
@@ -72,6 +72,6 @@
  *
  * This macro stores the current patch version of lipsum-cpp.
  */
-#define LIPSUM_CPP_VERSION_PATCH_C 0
+#define LIPSUM_CPP_VERSION_PATCH_C 1
 
 #endif

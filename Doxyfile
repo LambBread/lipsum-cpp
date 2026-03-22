@@ -1,6 +1,6 @@
 PROJECT_NAME = "lipsum-cpp"
 PROJECT_BRIEF = "A C++/C library for generating sample text"
-PROJECT_NUMBER = "0.4.0"
+PROJECT_NUMBER = "0.4.1"
 INPUT = src
 EXAMPLE_PATH = examples/
 RECURSIVE = YES

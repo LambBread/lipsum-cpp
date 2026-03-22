@@ -18,9 +18,9 @@
  *
  * @since 0.2.1
  *
- * This macro stores the current version of lipsum-cpp, stored as a string.
+ * This constant stores the current version of lipsum-cpp, stored as a string.
  */
-inline constexpr const char* LIPSUM_CPP_VERSION = "0.4.0";
+inline constexpr const char* LIPSUM_CPP_VERSION = "0.4.1";
 // #define LIPSUM_CPP_VERSION "0.4.0"
 
 /**
@@ -28,7 +28,7 @@ inline constexpr const char* LIPSUM_CPP_VERSION = "0.4.0";
  *
  * @since 0.4.0
  *
- * This macro stores the current major version of lipsum-cpp.
+ * This constant stores the current major version of lipsum-cpp.
  */
 inline constexpr int LIPSUM_CPP_VERSION_MAJOR = 0;
 // #define LIPSUM_CPP_VERSION_MAJOR 0
@@ -38,7 +38,7 @@ inline constexpr int LIPSUM_CPP_VERSION_MAJOR = 0;
  *
  * @since 0.4.0
  *
- * This macro stores the current minor version of lipsum-cpp.
+ * This constant stores the current minor version of lipsum-cpp.
  */
 inline constexpr int LIPSUM_CPP_VERSION_MINOR = 4;
 // #define LIPSUM_CPP_VERSION_MINOR 4
@@ -48,9 +48,9 @@ inline constexpr int LIPSUM_CPP_VERSION_MINOR = 4;
  *
  * @since 0.4.0
  *
- * This macro stores the current patch version of lipsum-cpp.
+ * This constant stores the current patch version of lipsum-cpp.
  */
-inline constexpr int LIPSUM_CPP_VERSION_PATCH = 0;
+inline constexpr int LIPSUM_CPP_VERSION_PATCH = 1;
 // #define LIPSUM_CPP_VERSION_PATCH 0
 
 #ifndef __cplusplus

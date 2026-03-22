@@ -47,6 +47,18 @@ namespace lipsum
         Source(const std::string& path);
 
         /**
+         * @brief Load a source and fill the vector.
+         *
+         * @since 0.4.1
+         *
+         * Read from the file specified and fill object m_Words with the unique
+         * words from it.
+         *
+         * @param path A path to the source file.
+         */
+        void Load(const std::string& path);
+
+        /**
          * @brief Select a random word.
          *
          * @since 0.4.0

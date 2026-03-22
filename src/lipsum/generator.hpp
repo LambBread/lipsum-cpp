@@ -13,6 +13,8 @@
 
 #pragma once
 #include "core/core.hpp"
+#include "core/source.hpp"
+
 namespace lipsum
 {
     /**
@@ -27,6 +29,25 @@ namespace lipsum
     class LIPSUM_API Generator
     {
     public:
+        /**
+         * @brief Default constructor for Generator
+         *
+         * @since 0.2.0
+         *
+         * This loads the default lorem ipsum source.
+         */
+        Generator() = default;
+
+        /**
+         * @brief Constructor for Generator
+         *
+         * @since 0.4.1
+         *
+         * This loads the specified lorem ipsum source into m_Source.
+         *
+         * @param path The filepath of the lorem ipsum source.
+         */
+        Generator(const std::string& path);
         /**
          * @brief Generate words.
          *
@@ -111,5 +132,16 @@ namespace lipsum
          * @return std::string The random Markdown document.
          */
         std::string md_text(int numElements = 15);
+
+    private:
+        /**
+         * @brief Source used for generation.
+         *
+         * This is the source passed into functions. By default the default
+         * lorem-ipsum source from sample.inl.
+         *
+         * @since 0.4.1
+         */
+        Source m_Source;
     };
 } // namespace lipsum

@@ -18,6 +18,11 @@
 namespace lipsum
 {
 
+    Generator::Generator(const std::string& path)
+    {
+        m_Source.Load(path);
+    }
+
     std::string Generator::md_paragraph(int num, bool useLipsum)
     {
         return GenerateMarkdownParagraphs(num,
@@ -28,7 +33,8 @@ namespace lipsum
                                           ArgVec2(1, 2),
                                           ArgVec2(2, 5),
                                           useLipsum,
-                                          false);
+                                          false,
+                                          m_Source);
     }
 
     std::string Generator::md_text(int numElements)
@@ -42,19 +48,24 @@ namespace lipsum
                                     ArgVec2(2, 5),
                                     ArgVec2(2, 4),
                                     numElements,
-                                    false);
+                                    false,
+                                    m_Source);
     }
     std::string Generator::word(int num)
     {
-        return GenerateWords(num);
+        return GenerateWords(num, m_Source);
     }
     std::string Generator::sentence(int num, bool useLipsum)
     {
-        return GenerateSentences(num, ArgVec2(4, 9), ArgVec2(1, 3), useLipsum);
+        return GenerateSentences(num,
+                                 ArgVec2(4, 9),
+                                 ArgVec2(1, 3),
+                                 useLipsum,
+                                 m_Source);
     }
     std::string Generator::sentence_fragment()
     {
-        return GenerateSentenceFragment();
+        return GenerateSentenceFragment(ArgVec2(4, 9), m_Source);
     }
     std::string Generator::paragraph(int num, bool useLipsum)
     {
@@ -62,6 +73,7 @@ namespace lipsum
                                   ArgVec2(4, 9),
                                   ArgVec2(1, 3),
                                   ArgVec2(5, 8),
-                                  useLipsum);
+                                  useLipsum,
+                                  m_Source);
     }
 } // namespace lipsum

@@ -16,6 +16,27 @@ namespace lipsum
 {
     Source::Source(const std::string& path)
     {
+        Load(path);
+    }
+
+    std::string Source::RandomWord() const
+    {
+        int idx;
+        if (m_Words.empty())
+        {
+            idx = internal::RandomNumber<int>(0, LIPSUM_VEC.size() - 1);
+            return std::string(LIPSUM_VEC.at(idx));
+        }
+        else
+        {
+            idx = internal::RandomNumber<int>(0, m_Words.size() - 1);
+            return m_Words.at(idx);
+        }
+    }
+
+    void Source::Load(const std::string& path)
+    {
+        m_Words.clear();
         std::ifstream                   f(path);
         std::unordered_set<std::string> unique;
         std::string                     word;
@@ -44,20 +65,5 @@ namespace lipsum
             unique.insert(word);
         }
         std::copy(unique.begin(), unique.end(), std::back_inserter(m_Words));
-    }
-
-    std::string Source::RandomWord() const
-    {
-        int idx;
-        if (m_Words.empty())
-        {
-            idx = internal::RandomNumber<int>(0, LIPSUM_VEC.size() - 1);
-            return std::string(LIPSUM_VEC.at(idx));
-        }
-        else
-        {
-            idx = internal::RandomNumber<int>(0, m_Words.size() - 1);
-            return m_Words.at(idx);
-        }
     }
 } // namespace lipsum
