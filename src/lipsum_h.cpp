@@ -10,10 +10,12 @@
  *
  * @author LambBread from github.com
  */
+
 #include <cstring>
 
 #include "lipsum.h"
 #include "lipsum.hpp"
+
 #define LPSM_CPPIFY(x) (*(reinterpret_cast<lpsm::ArgVec2*>((x))))
 #define LPSM_SRC_CPPIFY(x) (*(reinterpret_cast<lpsm::Source*>((x))))
 
@@ -45,24 +47,69 @@ static char* ConvertToCstr(const std::string& str)
     strcpy(cstr, result.c_str());
     return cstr;
 }
-extern "C" lpsm_SourceHandle lpsm_Source(const char* path)
+
+#include "lipsumc/binded.inl"
+#include "lipsumc/sfuncs.inl"
+
+/*
+ * BULK
+ * ----------------
+ */
+
+extern "C" char* lpsm_GenerateWords(int wordCount, lpsm_SourceHandle source)
 {
-    lpsm_SourceHandle ret;
-    if (strcmp(path, "default") == 0)
-    {
-        ret = reinterpret_cast<lpsm_SourceHandle>(new lpsm::Source);
-    }
-    else
-    {
-        ret = reinterpret_cast<lpsm_SourceHandle>(new lpsm::Source(path));
-    }
-    return ret;
+    return ConvertToCstr(
+            lpsm::GenerateWords(wordCount, LPSM_SRC_CPPIFY(source)));
 }
-extern "C" void lpsm_SourceDestroy(lpsm_SourceHandle handle)
+
+extern "C" char* lpsm_GenerateSentences(int               sentCount,
+                                        int               minWord,
+                                        int               maxWord,
+                                        int               minFrag,
+                                        int               maxFrag,
+                                        bool              useLipsum,
+                                        lpsm_SourceHandle source)
 {
-    lpsm::Source* realSource = reinterpret_cast<lpsm::Source*>(handle);
-    delete realSource;
+    return ConvertToCstr(lpsm::GenerateSentencesX(sentCount,
+                                                  minWord,
+                                                  maxWord,
+                                                  minFrag,
+                                                  maxFrag,
+                                                  useLipsum,
+                                                  LPSM_SRC_CPPIFY(source)));
 }
+
+extern "C" char* lpsm_GenerateParagraphs(int               paraCount,
+                                         int               minWord,
+                                         int               maxWord,
+                                         int               minFrag,
+                                         int               maxFrag,
+                                         int               minSent,
+                                         int               maxSent,
+                                         bool              useLipsum,
+                                         lpsm_SourceHandle source)
+{
+    return ConvertToCstr(lpsm::GenerateParagraphsX(paraCount,
+                                                   minWord,
+                                                   maxWord,
+                                                   minFrag,
+                                                   maxFrag,
+                                                   minSent,
+                                                   maxSent,
+                                                   useLipsum,
+                                                   LPSM_SRC_CPPIFY(source)));
+}
+
+/*
+ * MISC
+ * ----------------
+ */
+
+extern "C" char* lpsm_GenerateDefaultLipsumSentence(void)
+{
+    return ConvertToCstr(lpsm::GenerateDefaultLipsumSentence());
+}
+
 extern "C" char* lpsm_GenerateScramble(int length, char min, char max)
 {
     return ConvertToCstr(lpsm::GenerateScramble(length, min, max));
@@ -73,25 +120,11 @@ extern "C" char* lpsm_GeneratePlainURL(lpsm_SourceHandle source)
     return ConvertToCstr(lpsm::GeneratePlainURL(LPSM_SRC_CPPIFY(source)));
 }
 
-extern "C" int lpsm_CountWords(const char* str)
-{
-    return lpsm::CountWords(std::string(str));
-}
-
 extern "C" char*
 lpsm_GenerateURL(int minWord, int maxWord, lpsm_SourceHandle source)
 {
     return ConvertToCstr(
             lpsm::GenerateURLX(minWord, maxWord, LPSM_SRC_CPPIFY(source)));
-}
-
-extern "C" char*
-lpsm_GenerateURLS(lpsm_ArgVec2Handle word, lpsm_SourceHandle source, bool del)
-{
-    char* ret = ConvertToCstr(
-            lpsm::GenerateURL(LPSM_CPPIFY(word), LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(1, word)
-    return ret;
 }
 
 extern "C" char* lpsm_GenerateSlug(int               minWord,
@@ -105,265 +138,100 @@ extern "C" char* lpsm_GenerateSlug(int               minWord,
                                              LPSM_SRC_CPPIFY(source)));
 }
 
-extern "C" char* lpsm_GenerateSlugS(lpsm_ArgVec2Handle word,
-                                    char               separator,
-                                    lpsm_SourceHandle  source,
-                                    bool               del)
+extern "C" int lpsm_CountWords(const char* str)
 {
-    char* ret = ConvertToCstr(lpsm::GenerateSlug(LPSM_CPPIFY(word),
-                                                 separator,
-                                                 LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(1, word)
-    return ret;
+    return lpsm::CountWords(std::string(str));
 }
 
-extern "C" char* lpsm_GenerateSentenceFragmentS(lpsm_ArgVec2Handle word,
-                                                lpsm_SourceHandle  source,
-                                                bool               del)
+extern "C" int lpsm_CountSentences(const char* str)
 {
-    char* ret = ConvertToCstr(
-            lpsm::GenerateSentenceFragment(LPSM_CPPIFY(word),
-                                           LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(1, word)
-    return ret;
+    return lpsm::CountSentences(std::string(str));
 }
 
-extern "C" char* lpsm_GenerateSentenceS(lpsm_ArgVec2Handle word,
-                                        lpsm_ArgVec2Handle frag,
-                                        lpsm_SourceHandle  source,
-                                        bool               del)
+extern "C" void lpsm_DeleteString(char* str)
 {
-    char* ret = ConvertToCstr(lpsm::GenerateSentence(LPSM_CPPIFY(word),
-                                                     LPSM_CPPIFY(frag),
-                                                     LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(2, word, frag)
-    return ret;
+    delete[] str;
 }
 
-extern "C" char* lpsm_GenerateParagraphS(lpsm_ArgVec2Handle word,
-                                         lpsm_ArgVec2Handle frag,
-                                         lpsm_ArgVec2Handle sent,
-                                         bool               useLipsum,
-                                         lpsm_SourceHandle  source,
-                                         bool               del)
+/*
+ * CORE
+ * ----------------
+ */
+
+extern "C" char* lpsm_GenerateWord(lpsm_SourceHandle source)
 {
-    char* ret = ConvertToCstr(lpsm::GenerateParagraph(LPSM_CPPIFY(word),
-                                                      LPSM_CPPIFY(frag),
-                                                      LPSM_CPPIFY(sent),
-                                                      useLipsum,
-                                                      LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(3, word, frag, sent)
-    return ret;
+    return ConvertToCstr(lpsm::GenerateWord(LPSM_SRC_CPPIFY(source)));
 }
 
-extern "C" char* lpsm_GenerateParagraphsS(int                paraCount,
-                                          lpsm_ArgVec2Handle word,
-                                          lpsm_ArgVec2Handle frag,
-                                          lpsm_ArgVec2Handle sent,
-                                          bool               useLipsum,
-                                          lpsm_SourceHandle  source,
-                                          bool               del)
+extern "C" char* lpsm_GenerateSentenceFragment(int               minWord,
+                                               int               maxWord,
+                                               lpsm_SourceHandle source)
 {
-    char* ret =
-            ConvertToCstr(lpsm::GenerateParagraphs(paraCount,
-                                                   LPSM_CPPIFY(word),
-                                                   LPSM_CPPIFY(frag),
-                                                   LPSM_CPPIFY(sent),
-                                                   useLipsum,
-                                                   LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(3, word, frag, sent)
-    return ret;
-}
-
-extern "C" char* lpsm_GenerateSentencesS(int                sentCount,
-                                         lpsm_ArgVec2Handle word,
-                                         lpsm_ArgVec2Handle frag,
-                                         bool               useLipsum,
-                                         lpsm_SourceHandle  source,
-                                         bool               del)
-{
-    char* ret = ConvertToCstr(lpsm::GenerateSentences(sentCount,
-                                                      LPSM_CPPIFY(word),
-                                                      LPSM_CPPIFY(frag),
-                                                      useLipsum,
-                                                      LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(2, word, frag)
-    return ret;
-}
-
-extern "C" char* lpsm_GenerateTextS(lpsm_ArgVec2Handle word,
-                                    lpsm_ArgVec2Handle frag,
-                                    lpsm_ArgVec2Handle sent,
-                                    lpsm_ArgVec2Handle para,
-                                    bool               useLipsum,
-                                    lpsm_SourceHandle  source,
-                                    bool               del)
-{
-    char* ret = ConvertToCstr(lpsm::GenerateText(LPSM_CPPIFY(word),
-                                                 LPSM_CPPIFY(frag),
-                                                 LPSM_CPPIFY(sent),
-                                                 LPSM_CPPIFY(para),
-                                                 useLipsum,
-                                                 LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(4, word, frag, sent, para)
-    return ret;
-}
-
-extern "C" char* lpsm_GenerateMarkdownHeaderS(int                level,
-                                              lpsm_ArgVec2Handle word,
-                                              bool               useHtml,
-                                              lpsm_SourceHandle  source,
-                                              bool               del)
-{
-    char* ret = ConvertToCstr(
-            lpsm::GenerateMarkdownHeader(level,
-                                         LPSM_CPPIFY(word),
-                                         useHtml,
-                                         LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(1, word)
-    return ret;
-}
-
-extern "C" char* lpsm_GenerateMarkdownEmphasisS(bool               isBold,
-                                                lpsm_ArgVec2Handle word,
-                                                lpsm_ArgVec2Handle frag,
-                                                bool               useHtml,
-                                                lpsm_SourceHandle  source,
-                                                bool               del)
-{
-    char* ret = ConvertToCstr(
-            lpsm::GenerateMarkdownEmphasis(isBold,
-                                           LPSM_CPPIFY(word),
-                                           LPSM_CPPIFY(frag),
-                                           useHtml,
-                                           LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(2, word, frag)
-    return ret;
-}
-
-extern "C" char* lpsm_GenerateMarkdownLinkS(lpsm_ArgVec2Handle word,
-                                            lpsm_ArgVec2Handle frag,
-                                            lpsm_ArgVec2Handle wordURL,
-                                            bool               useHtml,
-                                            lpsm_SourceHandle  source,
-                                            bool               del)
-{
-    char* ret =
-            ConvertToCstr(lpsm::GenerateMarkdownLink(LPSM_CPPIFY(word),
-                                                     LPSM_CPPIFY(frag),
-                                                     LPSM_CPPIFY(wordURL),
-                                                     useHtml,
-                                                     LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(3, word, frag, wordURL)
-    return ret;
-}
-
-extern "C" char* lpsm_GenerateMarkdownListS(bool               ordered,
-                                            lpsm_ArgVec2Handle word,
-                                            lpsm_ArgVec2Handle frag,
-                                            lpsm_ArgVec2Handle point,
-                                            bool               useHtml,
-                                            lpsm_SourceHandle  source,
-                                            bool               del)
-{
-    char* ret =
-            ConvertToCstr(lpsm::GenerateMarkdownList(ordered,
-                                                     LPSM_CPPIFY(word),
-                                                     LPSM_CPPIFY(frag),
-                                                     LPSM_CPPIFY(point),
-                                                     useHtml,
-                                                     LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(3, word, frag, point)
-    return ret;
-}
-
-extern "C" char* lpsm_GenerateMarkdownParagraphS(lpsm_ArgVec2Handle word,
-                                                 lpsm_ArgVec2Handle frag,
-                                                 lpsm_ArgVec2Handle sent,
-                                                 lpsm_ArgVec2Handle wordFmt,
-                                                 lpsm_ArgVec2Handle fragFmt,
-                                                 lpsm_ArgVec2Handle wordLink,
-                                                 bool               useLipsum,
-                                                 bool               useHtml,
-                                                 lpsm_SourceHandle  source,
-                                                 bool               del)
-{
-    char* ret = ConvertToCstr(
-            lpsm::GenerateMarkdownParagraph(LPSM_CPPIFY(word),
-                                            LPSM_CPPIFY(frag),
-                                            LPSM_CPPIFY(sent),
-                                            LPSM_CPPIFY(wordFmt),
-                                            LPSM_CPPIFY(fragFmt),
-                                            LPSM_CPPIFY(wordLink),
-                                            useLipsum,
-                                            useHtml,
+    return ConvertToCstr(
+            lpsm::GenerateSentenceFragmentX(minWord,
+                                            maxWord,
                                             LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(6, word, frag, sent, wordFmt, fragFmt, wordLink)
-    return ret;
 }
 
-extern "C" char* lpsm_GenerateMarkdownParagraphsS(int                paraCount,
-                                                  lpsm_ArgVec2Handle word,
-                                                  lpsm_ArgVec2Handle frag,
-                                                  lpsm_ArgVec2Handle sent,
-                                                  lpsm_ArgVec2Handle wordFmt,
-                                                  lpsm_ArgVec2Handle fragFmt,
-                                                  lpsm_ArgVec2Handle wordLink,
-                                                  bool               useLipsum,
-                                                  bool               useHtml,
-                                                  lpsm_SourceHandle  source,
-                                                  bool               del)
+extern "C" char* lpsm_GenerateSentence(int               minWord,
+                                       int               maxWord,
+                                       int               minFrag,
+                                       int               maxFrag,
+                                       lpsm_SourceHandle source)
 {
-    char* ret = ConvertToCstr(
-            lpsm::GenerateMarkdownParagraphs(paraCount,
-                                             LPSM_CPPIFY(word),
-                                             LPSM_CPPIFY(frag),
-                                             LPSM_CPPIFY(sent),
-                                             LPSM_CPPIFY(wordFmt),
-                                             LPSM_CPPIFY(fragFmt),
-                                             LPSM_CPPIFY(wordLink),
+    return ConvertToCstr(lpsm::GenerateSentenceX(minWord,
+                                                 maxWord,
+                                                 minFrag,
+                                                 maxFrag,
+                                                 LPSM_SRC_CPPIFY(source)));
+}
+
+extern "C" char* lpsm_GenerateParagraph(int               minWord,
+                                        int               maxWord,
+                                        int               minFrag,
+                                        int               maxFrag,
+                                        int               minSent,
+                                        int               maxSent,
+                                        bool              useLipsum,
+                                        lpsm_SourceHandle source)
+{
+    return ConvertToCstr(lpsm::GenerateParagraphX(minWord,
+                                                  maxWord,
+                                                  minFrag,
+                                                  maxFrag,
+                                                  minSent,
+                                                  maxSent,
+                                                  useLipsum,
+                                                  LPSM_SRC_CPPIFY(source)));
+}
+
+extern "C" char* lpsm_GenerateText(int               minWord,
+                                   int               maxWord,
+                                   int               minFrag,
+                                   int               maxFrag,
+                                   int               minSent,
+                                   int               maxSent,
+                                   int               minPara,
+                                   int               maxPara,
+                                   bool              useLipsum,
+                                   lpsm_SourceHandle source)
+{
+    return ConvertToCstr(lpsm::GenerateTextX(minWord,
+                                             maxWord,
+                                             minFrag,
+                                             maxFrag,
+                                             minSent,
+                                             maxSent,
+                                             minPara,
+                                             maxPara,
                                              useLipsum,
-                                             useHtml,
                                              LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(6, word, frag, sent, wordFmt, fragFmt, wordLink)
-    return ret;
 }
-extern "C" char* lpsm_GenerateMarkdownTextS(lpsm_ArgVec2Handle word,
-                                            lpsm_ArgVec2Handle frag,
-                                            lpsm_ArgVec2Handle sent,
-                                            lpsm_ArgVec2Handle point,
-                                            lpsm_ArgVec2Handle wordFmt,
-                                            lpsm_ArgVec2Handle fragFmt,
-                                            lpsm_ArgVec2Handle wordHead,
-                                            lpsm_ArgVec2Handle level,
-                                            int                numElements,
-                                            bool               useHtml,
-                                            lpsm_SourceHandle  source,
-                                            bool               del)
-{
-    char* ret =
-            ConvertToCstr(lpsm::GenerateMarkdownText(LPSM_CPPIFY(word),
-                                                     LPSM_CPPIFY(frag),
-                                                     LPSM_CPPIFY(sent),
-                                                     LPSM_CPPIFY(point),
-                                                     LPSM_CPPIFY(wordFmt),
-                                                     LPSM_CPPIFY(fragFmt),
-                                                     LPSM_CPPIFY(wordHead),
-                                                     LPSM_CPPIFY(level),
-                                                     numElements,
-                                                     useHtml,
-                                                     LPSM_SRC_CPPIFY(source)));
-    LPSM_AV2_DESTROY(8,
-                     word,
-                     frag,
-                     sent,
-                     point,
-                     wordFmt,
-                     fragFmt,
-                     wordHead,
-                     level)
-    return ret;
-}
+
+/*
+ * MARKDOWN
+ * ----------------
+ */
 
 extern "C" char* lpsm_GenerateMarkdownHeader(int               level,
                                              int               minWord,
@@ -435,195 +303,4 @@ extern "C" char* lpsm_GenerateMarkdownList(bool              ordered,
                                                      maxPoint,
                                                      useHtml,
                                                      LPSM_SRC_CPPIFY(source)));
-}
-
-extern "C" lpsm_ArgVec2Handle lpsm_ArgVec2(int min, int max)
-{
-    return reinterpret_cast<lpsm_ArgVec2Handle>(new lpsm::ArgVec2(min, max));
-}
-
-extern "C" void lpsm_ArgVec2Destroy(lpsm_ArgVec2Handle av2)
-{
-    lpsm::ArgVec2* realAv2 = reinterpret_cast<lpsm::ArgVec2*>(av2);
-    delete realAv2;
-}
-
-extern "C" int lpsm_ArgVec2Roll(lpsm_ArgVec2Handle av2)
-{
-    return (reinterpret_cast<lpsm::ArgVec2*>(av2))->Roll();
-}
-
-extern "C" int lpsm_ArgVec2GetMin(lpsm_ArgVec2Handle av2)
-{
-    return (reinterpret_cast<lpsm::ArgVec2*>(av2))->min;
-}
-
-extern "C" int lpsm_ArgVec2GetMax(lpsm_ArgVec2Handle av2)
-{
-    return (reinterpret_cast<lpsm::ArgVec2*>(av2))->max;
-}
-
-extern "C" char* lpsm_gen_word(int num)
-{
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.word(num));
-}
-
-extern "C" char* lpsm_gen_sentence(int num, bool useLipsum)
-{
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.sentence(num, useLipsum));
-}
-
-extern "C" char* lpsm_gen_sentence_fragment(void)
-{
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.sentence_fragment());
-}
-
-extern "C" char* lpsm_gen_paragraph(int num, bool useLipsum)
-{
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.paragraph(num, useLipsum));
-}
-
-extern "C" char* lpsm_gen_md_paragraph(bool useLipsum)
-{
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.md_paragraph(useLipsum));
-}
-
-extern "C" char* lpsm_gen_md_text(int numElements)
-{
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.md_text(numElements));
-}
-
-extern "C" char* lpsm_GenerateSentence(int               minWord,
-                                       int               maxWord,
-                                       int               minFrag,
-                                       int               maxFrag,
-                                       lpsm_SourceHandle source)
-{
-    return ConvertToCstr(lpsm::GenerateSentenceX(minWord,
-                                                 maxWord,
-                                                 minFrag,
-                                                 maxFrag,
-                                                 LPSM_SRC_CPPIFY(source)));
-}
-
-extern "C" int lpsm_CountSentences(const char* str)
-{
-    return lpsm::CountSentences(std::string(str));
-}
-
-extern "C" char* lpsm_GenerateParagraph(int               minWord,
-                                        int               maxWord,
-                                        int               minFrag,
-                                        int               maxFrag,
-                                        int               minSent,
-                                        int               maxSent,
-                                        bool              useLipsum,
-                                        lpsm_SourceHandle source)
-{
-    return ConvertToCstr(lpsm::GenerateParagraphX(minWord,
-                                                  maxWord,
-                                                  minFrag,
-                                                  maxFrag,
-                                                  minSent,
-                                                  maxSent,
-                                                  useLipsum,
-                                                  LPSM_SRC_CPPIFY(source)));
-}
-
-extern "C" char* lpsm_GenerateParagraphs(int               paraCount,
-                                         int               minWord,
-                                         int               maxWord,
-                                         int               minFrag,
-                                         int               maxFrag,
-                                         int               minSent,
-                                         int               maxSent,
-                                         bool              useLipsum,
-                                         lpsm_SourceHandle source)
-{
-    return ConvertToCstr(lpsm::GenerateParagraphsX(paraCount,
-                                                   minWord,
-                                                   maxWord,
-                                                   minFrag,
-                                                   maxFrag,
-                                                   minSent,
-                                                   maxSent,
-                                                   useLipsum,
-                                                   LPSM_SRC_CPPIFY(source)));
-}
-
-extern "C" char* lpsm_GenerateWord(lpsm_SourceHandle source)
-{
-    return ConvertToCstr(lpsm::GenerateWord(LPSM_SRC_CPPIFY(source)));
-}
-
-extern "C" char* lpsm_GenerateWords(int wordCount, lpsm_SourceHandle source)
-{
-    return ConvertToCstr(
-            lpsm::GenerateWords(wordCount, LPSM_SRC_CPPIFY(source)));
-}
-
-extern "C" char* lpsm_GenerateDefaultLipsumSentence(void)
-{
-    return ConvertToCstr(lpsm::GenerateDefaultLipsumSentence());
-}
-
-extern "C" char* lpsm_GenerateSentences(int               sentCount,
-                                        int               minWord,
-                                        int               maxWord,
-                                        int               minFrag,
-                                        int               maxFrag,
-                                        bool              useLipsum,
-                                        lpsm_SourceHandle source)
-{
-    return ConvertToCstr(lpsm::GenerateSentencesX(sentCount,
-                                                  minWord,
-                                                  maxWord,
-                                                  minFrag,
-                                                  maxFrag,
-                                                  useLipsum,
-                                                  LPSM_SRC_CPPIFY(source)));
-}
-
-extern "C" void lpsm_DeleteString(char* str)
-{
-    delete[] str;
-}
-
-extern "C" char* lpsm_GenerateSentenceFragment(int               minWord,
-                                               int               maxWord,
-                                               lpsm_SourceHandle source)
-{
-    return ConvertToCstr(
-            lpsm::GenerateSentenceFragmentX(minWord,
-                                            maxWord,
-                                            LPSM_SRC_CPPIFY(source)));
-}
-
-extern "C" char* lpsm_GenerateText(int               minWord,
-                                   int               maxWord,
-                                   int               minFrag,
-                                   int               maxFrag,
-                                   int               minSent,
-                                   int               maxSent,
-                                   int               minPara,
-                                   int               maxPara,
-                                   bool              useLipsum,
-                                   lpsm_SourceHandle source)
-{
-    return ConvertToCstr(lpsm::GenerateTextX(minWord,
-                                             maxWord,
-                                             minFrag,
-                                             maxFrag,
-                                             minSent,
-                                             maxSent,
-                                             minPara,
-                                             maxPara,
-                                             useLipsum,
-                                             LPSM_SRC_CPPIFY(source)));
 }

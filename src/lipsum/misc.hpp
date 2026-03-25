@@ -13,7 +13,9 @@
  * @author LambBread from github.com
  */
 #pragma once
+
 #include "core/core.hpp"
+
 namespace lipsum
 {
 

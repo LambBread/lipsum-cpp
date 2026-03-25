@@ -12,6 +12,7 @@
  */
 
 #pragma once
+
 #include "core/core.hpp"
 #include "core/source.hpp"
 
@@ -48,6 +49,7 @@ namespace lipsum
          * @param path The filepath of the lorem ipsum source.
          */
         Generator(const std::string& path);
+
         /**
          * @brief Generate words.
          *

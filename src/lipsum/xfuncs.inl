@@ -19,11 +19,54 @@
 
 namespace lipsum
 {
+    /*
+     * BULK
+     * ----------------
+     */
+
+    std::string GenerateSentencesX(int           sentCount,
+                                   int           minWord,
+                                   int           maxWord,
+                                   int           minFrag,
+                                   int           maxFrag,
+                                   bool          useLipsum,
+                                   const Source& source)
+    {
+        return GenerateSentences(sentCount,
+                                 ArgVec2(minWord, maxWord),
+                                 ArgVec2(minFrag, maxFrag),
+                                 useLipsum,
+                                 source);
+    }
+
+    std::string GenerateParagraphsX(int           paraCount,
+                                    int           minWord,
+                                    int           maxWord,
+                                    int           minFrag,
+                                    int           maxFrag,
+                                    int           minSent,
+                                    int           maxSent,
+                                    bool          useLipsum,
+                                    const Source& source)
+    {
+        return GenerateParagraphs(paraCount,
+                                  ArgVec2(minWord, maxWord),
+                                  ArgVec2(minFrag, maxFrag),
+                                  ArgVec2(minSent, maxSent),
+                                  useLipsum,
+                                  source);
+    }
+
+    /*
+     * MISC
+     * ----------------
+     */
 
     std::string GenerateURLX(int minWord, int maxWord, const Source& source)
     {
         return GenerateURL(ArgVec2(minWord, maxWord), source);
     }
+
     std::string GenerateSlugX(int           minWord,
                               int           maxWord,
                               char          separator,
@@ -31,6 +74,68 @@ namespace lipsum
     {
         return GenerateSlug(ArgVec2(minWord, maxWord), separator, source);
     }
+
+    /*
+     * CORE
+     * ----------------
+     */
+
+    std::string
+    GenerateSentenceFragmentX(int minWord, int maxWord, const Source& source)
+    {
+        return GenerateSentenceFragment(ArgVec2(minWord, maxWord), source);
+    }
+
+    std::string GenerateSentenceX(int           minWord,
+                                  int           maxWord,
+                                  int           minFrag,
+                                  int           maxFrag,
+                                  const Source& source)
+    {
+        return GenerateSentence(ArgVec2(minWord, maxWord),
+                                ArgVec2(minFrag, maxFrag),
+                                source);
+    }
+
+    std::string GenerateParagraphX(int           minWord,
+                                   int           maxWord,
+                                   int           minFrag,
+                                   int           maxFrag,
+                                   int           minSent,
+                                   int           maxSent,
+                                   bool          useLipsum,
+                                   const Source& source)
+    {
+        return GenerateParagraph(ArgVec2(minWord, maxWord),
+                                 ArgVec2(minFrag, maxFrag),
+                                 ArgVec2(minSent, maxSent),
+                                 useLipsum,
+                                 source);
+    }
+
+    std::string GenerateTextX(int           minWord,
+                              int           maxWord,
+                              int           minFrag,
+                              int           maxFrag,
+                              int           minSent,
+                              int           maxSent,
+                              int           minPara,
+                              int           maxPara,
+                              bool          useLipsum,
+                              const Source& source)
+    {
+        return GenerateText(ArgVec2(minWord, maxWord),
+                            ArgVec2(minFrag, maxFrag),
+                            ArgVec2(minSent, maxSent),
+                            ArgVec2(minPara, maxPara),
+                            useLipsum,
+                            source);
+    }
+
+    /*
+     * MARKDOWN
+     * ----------------
+     */
 
     std::string GenerateMarkdownHeaderX(int           level,
                                         int           minWord,
@@ -93,88 +198,4 @@ namespace lipsum
                                     source);
     }
 
-    std::string GenerateSentencesX(int           sentCount,
-                                   int           minWord,
-                                   int           maxWord,
-                                   int           minFrag,
-                                   int           maxFrag,
-                                   bool          useLipsum,
-                                   const Source& source)
-    {
-        return GenerateSentences(sentCount,
-                                 ArgVec2(minWord, maxWord),
-                                 ArgVec2(minFrag, maxFrag),
-                                 useLipsum,
-                                 source);
-    }
-
-    std::string GenerateParagraphsX(int           paraCount,
-                                    int           minWord,
-                                    int           maxWord,
-                                    int           minFrag,
-                                    int           maxFrag,
-                                    int           minSent,
-                                    int           maxSent,
-                                    bool          useLipsum,
-                                    const Source& source)
-    {
-        return GenerateParagraphs(paraCount,
-                                  ArgVec2(minWord, maxWord),
-                                  ArgVec2(minFrag, maxFrag),
-                                  ArgVec2(minSent, maxSent),
-                                  useLipsum,
-                                  source);
-    }
-
-    std::string GenerateParagraphX(int           minWord,
-                                   int           maxWord,
-                                   int           minFrag,
-                                   int           maxFrag,
-                                   int           minSent,
-                                   int           maxSent,
-                                   bool          useLipsum,
-                                   const Source& source)
-    {
-        return GenerateParagraph(ArgVec2(minWord, maxWord),
-                                 ArgVec2(minFrag, maxFrag),
-                                 ArgVec2(minSent, maxSent),
-                                 useLipsum,
-                                 source);
-    }
-
-    std::string GenerateSentenceX(int           minWord,
-                                  int           maxWord,
-                                  int           minFrag,
-                                  int           maxFrag,
-                                  const Source& source)
-    {
-        return GenerateSentence(ArgVec2(minWord, maxWord),
-                                ArgVec2(minFrag, maxFrag),
-                                source);
-    }
-
-    std::string
-    GenerateSentenceFragmentX(int minWord, int maxWord, const Source& source)
-    {
-        return GenerateSentenceFragment(ArgVec2(minWord, maxWord), source);
-    }
-
-    std::string GenerateTextX(int           minWord,
-                              int           maxWord,
-                              int           minFrag,
-                              int           maxFrag,
-                              int           minSent,
-                              int           maxSent,
-                              int           minPara,
-                              int           maxPara,
-                              bool          useLipsum,
-                              const Source& source)
-    {
-        return GenerateText(ArgVec2(minWord, maxWord),
-                            ArgVec2(minFrag, maxFrag),
-                            ArgVec2(minSent, maxSent),
-                            ArgVec2(minPara, maxPara),
-                            useLipsum,
-                            source);
-    }
 } // namespace lipsum

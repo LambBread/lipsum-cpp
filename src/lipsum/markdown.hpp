@@ -11,9 +11,11 @@
  * @author LambBread from github.com
  */
 #pragma once
+
 #include "core/core.hpp"
 #include "core/argvec2.hpp"
 #include "core/source.hpp"
+
 namespace lipsum
 {
     /**

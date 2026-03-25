@@ -4,7 +4,7 @@
  *
  * @brief S functions of lipsum-cpp C wrapper
  *
- * This defines the &quot;S&quot; variants of functions in lipsum-cpp's C
+ * This declares the &quot;S&quot; variants of functions in lipsum-cpp's C
  * wrapper. This file is under the BSD Zero-Clause License.
  *
  * @copyright Copyright (c) 2026 LambBread
@@ -13,6 +13,7 @@
  */
 #ifndef LIPSUM_SFUNCS_H
 #define LIPSUM_SFUNCS_H
+
 #include "core.h"
 #include "binded.h"
 
@@ -20,6 +21,74 @@
 extern "C"
 {
 #endif
+
+    /*
+     * BULK
+     * ----------------
+     */
+
+    /**
+     * @brief Generate multiple random sentences at once.
+     *
+     * @since 0.3.5
+     *
+     * @sovload
+     *
+     * @return char* The random sentences.
+     *
+     * @param sentCount The number of sentences.
+     * @param word The minimum and maximum possible number of words in a
+     * sentence fragment.
+     * @param frag The minimum and maximum possible number of sentence fragments
+     * in a sentence.
+     * @param useLipsum Whether the default "Lorem ipsum..." sentence should be
+     * the first sentence.
+     * @param source The source for words.
+     * @param del Whether the ArgVec2 handles should be deleted after the
+     * function is called.
+     */
+    LIPSUMC_API char* lpsm_GenerateSentencesS(int                sentCount,
+                                              lpsm_ArgVec2Handle word,
+                                              lpsm_ArgVec2Handle frag,
+                                              bool               useLipsum,
+                                              lpsm_SourceHandle  source,
+                                              bool               del);
+
+    /**
+     * @brief Generate several random paragraphs at once.
+     *
+     * @since 0.3.5
+     *
+     * @sovload
+     *
+     * @return char* The random paragraphs.
+     *
+     * @param paraCount The number of paragraphs. By default 5.
+     * @param word The minimum and maximum total number of words in a sentence
+     * fragment.
+     * @param frag The minimum and maximum total number of sentence fragments in
+     * a sentence.
+     * @param sent The minimum and maximum total number of sentences in a
+     * paragraph.
+     * @param useLipsum Whether the default "Lorem ipsum..." text should start
+     * the first paragraph.
+     * @param source The source for words.
+     * @param del Whether the ArgVec2 handles should be deleted after the
+     * function is called.
+     */
+    LIPSUMC_API char* lpsm_GenerateParagraphsS(int                paraCount,
+                                               lpsm_ArgVec2Handle word,
+                                               lpsm_ArgVec2Handle frag,
+                                               lpsm_ArgVec2Handle sent,
+                                               bool               useLipsum,
+                                               lpsm_SourceHandle  source,
+                                               bool               del);
+
+    /*
+     * MISC
+     * ----------------
+     */
+
     /**
      * @brief Generate a random URL.
      *
@@ -58,6 +127,11 @@ extern "C"
                                          char               separator,
                                          lpsm_SourceHandle  source,
                                          bool               del);
+
+    /*
+     * CORE
+     * ----------------
+     */
 
     /**
      * @brief Generate a fragment of a sentence without punctuation.
@@ -129,63 +203,6 @@ extern "C"
                                               bool               del);
 
     /**
-     * @brief Generate several random paragraphs at once.
-     *
-     * @since 0.3.5
-     *
-     * @sovload
-     *
-     * @return char* The random paragraphs.
-     *
-     * @param paraCount The number of paragraphs. By default 5.
-     * @param word The minimum and maximum total number of words in a sentence
-     * fragment.
-     * @param frag The minimum and maximum total number of sentence fragments in
-     * a sentence.
-     * @param sent The minimum and maximum total number of sentences in a
-     * paragraph.
-     * @param useLipsum Whether the default "Lorem ipsum..." text should start
-     * the first paragraph.
-     * @param source The source for words.
-     * @param del Whether the ArgVec2 handles should be deleted after the
-     * function is called.
-     */
-    LIPSUMC_API char* lpsm_GenerateParagraphsS(int                paraCount,
-                                               lpsm_ArgVec2Handle word,
-                                               lpsm_ArgVec2Handle frag,
-                                               lpsm_ArgVec2Handle sent,
-                                               bool               useLipsum,
-                                               lpsm_SourceHandle  source,
-                                               bool               del);
-
-    /**
-     * @brief Generate multiple random sentences at once.
-     *
-     * @since 0.3.5
-     *
-     * @sovload
-     *
-     * @return char* The random sentences.
-     *
-     * @param sentCount The number of sentences.
-     * @param word The minimum and maximum possible number of words in a
-     * sentence fragment.
-     * @param frag The minimum and maximum possible number of sentence fragments
-     * in a sentence.
-     * @param useLipsum Whether the default "Lorem ipsum..." sentence should be
-     * the first sentence.
-     * @param source The source for words.
-     * @param del Whether the ArgVec2 handles should be deleted after the
-     * function is called.
-     */
-    LIPSUMC_API char* lpsm_GenerateSentencesS(int                sentCount,
-                                              lpsm_ArgVec2Handle word,
-                                              lpsm_ArgVec2Handle frag,
-                                              bool               useLipsum,
-                                              lpsm_SourceHandle  source,
-                                              bool               del);
-
-    /**
      * @brief Generate a random number of random paragraphs.
      *
      * @since 0.3.5
@@ -215,6 +232,11 @@ extern "C"
                                          bool               useLipsum,
                                          lpsm_SourceHandle  source,
                                          bool               del);
+
+    /*
+     * MARKDOWN
+     * ----------------
+     */
 
     /**
      * @brief Generate a random Markdown header.
@@ -447,4 +469,5 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif
+
 #endif

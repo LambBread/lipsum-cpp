@@ -13,40 +13,13 @@
 #pragma once
 
 #include "core/internal.hpp"
-// #include "sample.inl"
 
 namespace lipsum
 {
-
-    std::string GeneratePlainURL(const Source& source)
-    {
-        return std::string("lpsmcpp-") + GenerateWord(source) +
-               internal::GenerateTLD();
-    }
-
-    std::string GenerateScramble(int length, char min, char max)
-    {
-        std::string ret;
-        for (int i = 0; i < length; ++i)
-        {
-            ret.push_back(internal::RandomNumber<char>(min, max));
-        }
-        return ret;
-    }
-
-    std::string GenerateURL(const ArgVec2& word, const Source& source)
-    {
-        return std::string("https://") + GeneratePlainURL(source) +
-               std::string("/#") + GenerateSlug(word, '-', source);
-    }
-
-    std::string
-    GenerateSlug(const ArgVec2& word, char separator, const Source& source)
-    {
-        std::string ret = GenerateSentenceFragment(word, source);
-        std::replace(ret.begin(), ret.end(), ' ', separator);
-        return ret;
-    }
+    /*
+     * BULK
+     * ----------------
+     */
 
     std::string GenerateWords(int wordCount, const Source& source)
     {
@@ -84,16 +57,81 @@ namespace lipsum
         return result;
     }
 
+    std::string GenerateParagraphs(int            paraCount,
+                                   const ArgVec2& word,
+                                   const ArgVec2& frag,
+                                   const ArgVec2& sent,
+                                   bool           useLipsum,
+                                   const Source&  source)
+    {
+        std::string result;
+        if (!useLipsum)
+        {
+
+            for (int i = 0; i < paraCount; ++i)
+            {
+                result += GenerateParagraph(word, frag, sent, false, source);
+            }
+        }
+        else
+        {
+            result += GenerateParagraph(word, frag, sent, true, source);
+            for (int i = 0; i < paraCount - 1; ++i)
+            {
+                result += GenerateParagraph(word, frag, sent, false, source);
+            }
+        }
+        return result;
+    }
+
+    /*
+     * MISC
+     * ----------------
+     */
+
     std::string GenerateDefaultLipsumSentence()
     {
         return std::string(
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
     }
 
+    std::string GenerateScramble(int length, char min, char max)
+    {
+        std::string ret;
+        for (int i = 0; i < length; ++i)
+        {
+            ret.push_back(internal::RandomNumber<char>(min, max));
+        }
+        return ret;
+    }
+
+    std::string GeneratePlainURL(const Source& source)
+    {
+        return std::string("lpsmcpp-") + GenerateWord(source) +
+               internal::GenerateTLD();
+    }
+
+    std::string GenerateURL(const ArgVec2& word, const Source& source)
+    {
+        return std::string("https://") + GeneratePlainURL(source) +
+               std::string("/#") + GenerateSlug(word, '-', source);
+    }
+
+    std::string
+    GenerateSlug(const ArgVec2& word, char separator, const Source& source)
+    {
+        std::string ret = GenerateSentenceFragment(word, source);
+        std::replace(ret.begin(), ret.end(), ' ', separator);
+        return ret;
+    }
+
+    /*
+     * CORE
+     * ----------------
+     */
+
     std::string GenerateWord(const Source& source)
     {
-        // int randomIdx = internal::RandomNumber<int>(0, LIPSUM_VEC.size() -
-        // 1); return std::string(LIPSUM_VEC.at(randomIdx));
         return source.RandomWord();
     }
 
@@ -175,33 +213,6 @@ namespace lipsum
         // remove trailing space
         result.pop_back();
         result += "\n";
-        return result;
-    }
-
-    std::string GenerateParagraphs(int            paraCount,
-                                   const ArgVec2& word,
-                                   const ArgVec2& frag,
-                                   const ArgVec2& sent,
-                                   bool           useLipsum,
-                                   const Source&  source)
-    {
-        std::string result;
-        if (!useLipsum)
-        {
-
-            for (int i = 0; i < paraCount; ++i)
-            {
-                result += GenerateParagraph(word, frag, sent, false, source);
-            }
-        }
-        else
-        {
-            result += GenerateParagraph(word, frag, sent, true, source);
-            for (int i = 0; i < paraCount - 1; ++i)
-            {
-                result += GenerateParagraph(word, frag, sent, false, source);
-            }
-        }
         return result;
     }
 

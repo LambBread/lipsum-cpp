@@ -13,6 +13,7 @@
  */
 #ifndef LIPSUM_BINDED_H
 #define LIPSUM_BINDED_H
+
 #include "core.h"
 
 /**
@@ -37,6 +38,7 @@ typedef void* lpsm_SourceHandle;
 extern "C"
 {
 #endif
+
     /**
      * @brief Constructor of lipsum::Source
      *
