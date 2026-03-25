@@ -1,5 +1,5 @@
 /**
- * @file lipsumc/sfuncs.h
+ * @file lipsumc/sfuncs.inl
  *
  * @brief S functions of lipsum-cpp C wrapper
  *
