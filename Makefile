@@ -39,13 +39,15 @@ sample:
 amalgamate:
 	mkdir -p $(PKG_DIR)
 	quom $(SRC_DIR)/lipsum.hpp $(PKG_DIR)/lipsum.hpp
+	quom $(SRC_DIR)/lipsum.h $(PKG_DIR)/lipsum.h
+	quom $(SRC_DIR)/lipsum_h.cpp $(PKG_DIR)/lipsum_h.cpp
 
 pkg_:
 	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(BUILD_DIR)/examples/
+	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(PKG_DIR)/
 	cp $(EXAMPLES_DIR)/JSBinding.html $(BUILD_DIR)/examples/
-	rm $(BUILD_DIR)/$(SRC_DIR)/jsbind/cmake_install.cmake
-	rm -rf $(BUILD_DIR)/$(SRC_DIR)/jsbind/CMakeFiles
-	7z a -tzip -r -mx=9 $(PKG_DIR)/lipsum-jsbind.zip $(BUILD_DIR)/$(SRC_DIR)/jsbind
+	rm $(BUILD_DIR)/examples/Source.*
+	7z a -tzip -r -mx=9 lipsum-pkg.zip $(PKG_DIR)
 	
 quick_pkg: em_configure format em_build amalgamate pkg_
 

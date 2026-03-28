@@ -11,10 +11,11 @@
  *
  * @author LambBread from github.com
  */
+#pragma once
 #ifndef LIPSUM_BINDED_H
-#define LIPSUM_BINDED_H
+#    define LIPSUM_BINDED_H
 
-#include "core.h"
+#    include "core.h"
 
 /**
  * @brief A handle to a lipsum::ArgVec2
@@ -34,10 +35,10 @@ typedef void* lpsm_ArgVec2Handle;
  */
 typedef void* lpsm_SourceHandle;
 
-#ifdef __cplusplus
+#    ifdef __cplusplus
 extern "C"
 {
-#endif
+#    endif
 
     /**
      * @brief Constructor of lipsum::Source
@@ -211,8 +212,8 @@ extern "C"
      * @return char* The random Markdown document.
      */
     LIPSUMC_API char* lpsm_gen_md_text(int numElements);
-#ifdef __cplusplus
+#    ifdef __cplusplus
 }
-#endif
+#    endif
 
 #endif

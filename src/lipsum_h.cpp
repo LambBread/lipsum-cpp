@@ -13,8 +13,9 @@
 
 #include <cstring>
 
-#include "lipsum.h"
-#include "lipsum.hpp"
+// angle brackets to stop quom from doing shit
+#include <lipsum.h>
+#include <lipsum.hpp>
 
 #define LPSM_CPPIFY(x) (*(reinterpret_cast<lpsm::ArgVec2*>((x))))
 #define LPSM_SRC_CPPIFY(x) (*(reinterpret_cast<lpsm::Source*>((x))))

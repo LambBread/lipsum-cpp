@@ -14,19 +14,21 @@
  * @example CWrapper.c
  */
 
+#pragma once
+
 #ifndef LIPSUM_H
-#define LIPSUM_H
+#    define LIPSUM_H
 
-#include <stdbool.h>
-#include <stdio.h>
+#    include <stdbool.h>
+#    include <stdio.h>
 
-#include "lipsumc/binded.h"
-#include "lipsumc/sfuncs.h"
+#    include "lipsumc/binded.h"
+#    include "lipsumc/sfuncs.h"
 
-#ifdef __cplusplus
+#    ifdef __cplusplus
 extern "C"
 {
-#endif
+#    endif
 
     /*
      * BULK
@@ -472,8 +474,8 @@ extern "C"
                                                 bool              useHtml,
                                                 lpsm_SourceHandle source);
 
-#ifdef __cplusplus
+#    ifdef __cplusplus
 }
-#endif
+#    endif
 
 #endif

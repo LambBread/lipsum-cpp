@@ -11,16 +11,17 @@
  *
  * @author LambBread from github.com
  */
+#pragma once
 #ifndef LIPSUM_SFUNCS_H
-#define LIPSUM_SFUNCS_H
+#    define LIPSUM_SFUNCS_H
 
-#include "core.h"
-#include "binded.h"
+#    include "core.h"
+#    include "binded.h"
 
-#ifdef __cplusplus
+#    ifdef __cplusplus
 extern "C"
 {
-#endif
+#    endif
 
     /*
      * BULK
@@ -466,8 +467,8 @@ extern "C"
                                                  bool               useHtml,
                                                  lpsm_SourceHandle  source,
                                                  bool               del);
-#ifdef __cplusplus
+#    ifdef __cplusplus
 }
-#endif
+#    endif
 
 #endif
