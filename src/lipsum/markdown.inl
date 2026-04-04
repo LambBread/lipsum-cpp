@@ -12,8 +12,11 @@
  */
 #pragma once
 
-#include "core/internal.hpp"
-#include "core_funcs.hpp"
+#ifndef LIPSUM_MARKDOWN_INL
+#    define LIPSUM_MAKRDOWN_INL
+
+#    include "core/internal.hpp"
+#    include "core_funcs.hpp"
 
 namespace lipsum
 {
@@ -365,3 +368,4 @@ namespace lipsum
         return ret;
     }
 } // namespace lipsum
+#endif

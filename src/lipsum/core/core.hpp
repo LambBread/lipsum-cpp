@@ -13,6 +13,9 @@
 
 #pragma once
 
+#ifndef LIPSUM_CORE_CORE_HPP
+#    define LIPSUM_CORE_CORE_HPP
+
 /**
  * @brief The current version of lipsum-cpp.
  *
@@ -53,9 +56,9 @@ inline constexpr int LIPSUM_CPP_VERSION_MINOR = 4;
 inline constexpr int LIPSUM_CPP_VERSION_PATCH = 1;
 // #define LIPSUM_CPP_VERSION_PATCH 0
 
-#ifndef __cplusplus
-#    error lipsum.hpp only supports C++, did you mean lipsum.h?
-#endif
+#    ifndef __cplusplus
+#        error lipsum.hpp only supports C++, did you mean lipsum.h?
+#    endif
 
 /**
  * @brief Macro for shared libraries
@@ -65,16 +68,17 @@ inline constexpr int LIPSUM_CPP_VERSION_PATCH = 1;
  * This macro helps with shared libraries on Windows by exporting
  * or importing functions.
  */
-#ifdef LIPSUM_BUILD_SHARED
-#    ifdef _WIN32
-#        ifdef LIPSUM_EXPORT_SHARED
-#            define LIPSUM_API __declspec(dllexport)
+#    ifdef LIPSUM_BUILD_SHARED
+#        ifdef _WIN32
+#            ifdef LIPSUM_EXPORT_SHARED
+#                define LIPSUM_API __declspec(dllexport)
+#            else
+#                define LIPSUM_API __declspec(dllimport)
+#            endif
 #        else
-#            define LIPSUM_API __declspec(dllimport)
+#            define LIPSUM_API
 #        endif
 #    else
 #        define LIPSUM_API
 #    endif
-#else
-#    define LIPSUM_API
 #endif

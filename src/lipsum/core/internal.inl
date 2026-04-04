@@ -1,4 +1,3 @@
-
 /**
  * @file lipsum/core/internal.inl
  *
@@ -12,6 +11,9 @@
  * @author LambBread from github.com
  */
 #pragma once
+
+#ifndef LIPSUM_CORE_INTERNAL_INL
+#    define LIPSUM_CORE_INTERNAL_INL
 
 namespace lipsum
 {
@@ -120,3 +122,4 @@ namespace lipsum
         return result;
     }
 } // namespace lipsum
+#endif

@@ -27,8 +27,12 @@ if __name__ == "__main__":
  * @author LambBread from github.com
  */
 #pragma once
+
+#ifndef LIPSUM_CORE_SAMPLE_INL
+#define LIPSUM_CORE_SAMPLE_INL
+
 static constexpr std::array<const char*, """ + str(len(unique_words)) + "> LIPSUM_VEC = {")
         for word in unique_words:
             file.write(f"\"{word}\",\n")
-        file.write("};")
+        file.write("};\n#endif")
 

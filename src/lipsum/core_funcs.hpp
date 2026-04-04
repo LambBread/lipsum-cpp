@@ -13,9 +13,12 @@
 
 #pragma once
 
-#include "core/core.hpp"
-#include "core/argvec2.hpp"
-#include "core/source.hpp"
+#ifndef LIPSUM_CORE_FUNCS_HPP
+#    define LIPSUM_CORE_FUNCS_HPP
+
+#    include "core/core.hpp"
+#    include "core/argvec2.hpp"
+#    include "core/source.hpp"
 
 namespace lipsum
 {
@@ -300,3 +303,4 @@ namespace lipsum
                                         bool           useLipsum = true,
                                         const Source&  source    = Source());
 } // namespace lipsum
+#endif

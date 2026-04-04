@@ -1,4 +1,3 @@
-
 /**
  * @file lipsum/core/argvec2.hpp
  *
@@ -12,7 +11,12 @@
  */
 
 #pragma once
-#include "core.hpp"
+
+#ifndef LIPSUM_CORE_ARGVEC2_HPP
+#    define LIPSUM_CORE_ARGVEC2_HPP
+
+#    include "core.hpp"
+
 namespace lipsum
 {
     /**
@@ -50,3 +54,4 @@ namespace lipsum
         int max; ///< The maximum value
     };
 } // namespace lipsum
+#endif

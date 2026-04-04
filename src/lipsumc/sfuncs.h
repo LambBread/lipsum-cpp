@@ -1,4 +1,3 @@
-
 /**
  * @file lipsumc/sfuncs.h
  *
@@ -12,8 +11,9 @@
  * @author LambBread from github.com
  */
 #pragma once
-#ifndef LIPSUM_SFUNCS_H
-#    define LIPSUM_SFUNCS_H
+
+#ifndef LIPSUMC_SFUNCS_H
+#    define LIPSUMC_SFUNCS_H
 
 #    include "core.h"
 #    include "binded.h"

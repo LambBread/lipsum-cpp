@@ -38,15 +38,18 @@
 
 #pragma once
 
-#include "lipsum/core/stdincludes.hpp"
-#include "lipsum/core/internal.hpp"
+#ifndef LIPSUM_HPP
+#    define LIPSUM_HPP
 
-#include "lipsum/generator.hpp"
-#include "lipsum/core_funcs.hpp"
-#include "lipsum/markdown.hpp"
-#include "lipsum/core_xfuncs.hpp"
-#include "lipsum/md_xfuncs.hpp"
-#include "lipsum/misc.hpp"
+#    include "lipsum/core/stdincludes.hpp"
+#    include "lipsum/core/internal.hpp"
+
+#    include "lipsum/generator.hpp"
+#    include "lipsum/core_funcs.hpp"
+#    include "lipsum/markdown.hpp"
+#    include "lipsum/core_xfuncs.hpp"
+#    include "lipsum/md_xfuncs.hpp"
+#    include "lipsum/misc.hpp"
 
 /**
  * @namespace lipsum
@@ -61,16 +64,17 @@ namespace lipsum
 
 namespace lpsm = lipsum; ///< Alias for namespace lipsum
 
-#ifdef LIPSUM_IMPLEMENTATION
+#    ifdef LIPSUM_IMPLEMENTATION
 
-#    include "lipsum/core/argvec2.inl"
-#    include "lipsum/core/internal.inl"
-#    include "lipsum/core/source.inl"
+#        include "lipsum/core/argvec2.inl"
+#        include "lipsum/core/internal.inl"
+#        include "lipsum/core/source.inl"
 
-#    include "lipsum/core_funcs.inl"
-#    include "lipsum/generator.inl"
-#    include "lipsum/markdown.inl"
-#    include "lipsum/misc.inl"
-#    include "lipsum/xfuncs.inl"
+#        include "lipsum/core_funcs.inl"
+#        include "lipsum/generator.inl"
+#        include "lipsum/markdown.inl"
+#        include "lipsum/misc.inl"
+#        include "lipsum/xfuncs.inl"
 
+#    endif
 #endif

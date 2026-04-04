@@ -12,7 +12,10 @@
  */
 #pragma once
 
-#include "core/internal.hpp"
+#ifndef LIPSUM_CORE_FUNCS_INL
+#    define LIPSUM_CORE_FUNCS_INL
+
+#    include "core/internal.hpp"
 
 namespace lipsum
 {
@@ -240,3 +243,4 @@ namespace lipsum
         return ret;
     }
 } // namespace lipsum
+#endif

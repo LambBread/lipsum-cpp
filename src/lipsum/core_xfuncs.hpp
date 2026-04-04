@@ -13,8 +13,11 @@
  */
 #pragma once
 
-#include "core/core.hpp"
-#include "core/source.hpp"
+#ifndef LIPSUM_CORE_XFUNCS_HPP
+#    define LIPSUM_CORE_XFUNCS_HPP
+
+#    include "core/core.hpp"
+#    include "core/source.hpp"
 
 namespace lipsum
 {
@@ -261,3 +264,4 @@ namespace lipsum
                                          bool          useLipsum = true,
                                          const Source& source    = Source());
 } // namespace lipsum
+#endif

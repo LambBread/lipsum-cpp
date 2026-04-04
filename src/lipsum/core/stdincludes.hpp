@@ -12,15 +12,19 @@
  */
 #pragma once
 
-#include <algorithm>
-#include <array>
-#include <cctype>
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <random>
-#include <sstream>
-#include <string>
-#include <type_traits>
-#include <unordered_set>
-#include <vector>
+#ifndef LIPSUM_CORE_STDINCLUDES_HPP
+#    define LIPSUM_CORE_STDINCLUDES_HPP
+
+#    include <algorithm>
+#    include <array>
+#    include <cctype>
+#    include <fstream>
+#    include <iostream>
+#    include <iterator>
+#    include <random>
+#    include <sstream>
+#    include <string>
+#    include <type_traits>
+#    include <unordered_set>
+#    include <vector>
+#endif

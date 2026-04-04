@@ -12,11 +12,15 @@
  */
 #pragma once
 
-#include "core.hpp"
+#ifndef LIPSUM_CORE_INTERNAL_HPP
+#    define LIPSUM_CORE_INTERNAL_HPP
+
+#    include "core.hpp"
+
 /**
  * @brief Choose between true or false
  */
-#define LPSM_FLIP_COIN lpsm::internal::RandomNumber<bool>(false, true)
+#    define LPSM_FLIP_COIN lpsm::internal::RandomNumber<bool>(false, true)
 
 namespace lipsum
 {
@@ -64,3 +68,4 @@ namespace lipsum
         }
     } // namespace internal
 } // namespace lipsum
+#endif

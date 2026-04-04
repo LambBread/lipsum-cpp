@@ -1,4 +1,3 @@
-
 /**
  * @file lipsumc/binded.h
  *
@@ -12,8 +11,9 @@
  * @author LambBread from github.com
  */
 #pragma once
-#ifndef LIPSUM_BINDED_H
-#    define LIPSUM_BINDED_H
+
+#ifndef LIPSUMC_BINDED_H
+#    define LIPSUMC_BINDED_H
 
 #    include "core.h"
 

@@ -13,8 +13,11 @@
 
 #pragma once
 
-#include "core/core.hpp"
-#include "core/source.hpp"
+#ifndef LIPSUM_GENERATOR_HPP
+#    define LIPSUM_GENERATOR_HPP
+
+#    include "core/core.hpp"
+#    include "core/source.hpp"
 
 namespace lipsum
 {
@@ -147,3 +150,4 @@ namespace lipsum
         Source m_Source;
     };
 } // namespace lipsum
+#endif

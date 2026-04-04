@@ -1,4 +1,3 @@
-
 /**
  * @file lipsum/xfuncs.inl
  *
@@ -13,9 +12,12 @@
  */
 #pragma once
 
-#include "core/argvec2.hpp"
-#include "core_funcs.hpp"
-#include "markdown.hpp"
+#ifndef LIPSUM_XFUNCS_INL
+#    define LIPSUM_XFUNCS_INL
+
+#    include "core/argvec2.hpp"
+#    include "core_funcs.hpp"
+#    include "markdown.hpp"
 
 namespace lipsum
 {
@@ -199,3 +201,4 @@ namespace lipsum
     }
 
 } // namespace lipsum
+#endif

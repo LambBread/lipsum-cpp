@@ -12,9 +12,12 @@
  */
 #pragma once
 
-#include "core/core.hpp"
-#include "core/argvec2.hpp"
-#include "core/source.hpp"
+#ifndef LIPSUM_MARKDOWN_HPP
+#    define LIPSUM_MARKDOWN_HPP
+
+#    include "core/core.hpp"
+#    include "core/argvec2.hpp"
+#    include "core/source.hpp"
 
 namespace lipsum
 {
@@ -252,3 +255,4 @@ namespace lipsum
                                     bool           useHtml     = false,
                                     const Source&  source      = Source());
 } // namespace lipsum
+#endif

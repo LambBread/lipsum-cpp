@@ -1,4 +1,3 @@
-
 /**
  * @file lipsum/misc.inl
  *
@@ -13,6 +12,9 @@
  * @author LambBread from github.com
  */
 #pragma once
+
+#ifndef LIPSUM_MISC_INL
+#    define LIPSUM_MISC_INL
 
 namespace lipsum
 {
@@ -52,3 +54,4 @@ namespace lipsum
     }
 
 } // namespace lipsum
+#endif

@@ -12,9 +12,12 @@
  */
 #pragma once
 
-#include "core/argvec2.hpp"
-#include "core_funcs.hpp"
-#include "markdown.hpp"
+#ifndef LIPSUM_GENERATOR_INL
+#    define LIPSUM_GENERATOR_INL
+
+#    include "core/argvec2.hpp"
+#    include "core_funcs.hpp"
+#    include "markdown.hpp"
 
 namespace lipsum
 {
@@ -78,3 +81,4 @@ namespace lipsum
                                   m_Source);
     }
 } // namespace lipsum
+#endif

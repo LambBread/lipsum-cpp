@@ -1,4 +1,3 @@
-
 /**
  * @file lipsum/core/argvec2.inl
  *
@@ -12,7 +11,11 @@
  * @author LambBread from github.com
  */
 #pragma once
-#include "internal.hpp"
+
+#ifndef LIPSUM_CORE_ARGVEC2_INL
+#    define LIPSUM_CORE_ARGVEC2_INL
+
+#    include "internal.hpp"
 
 namespace lipsum
 {
@@ -29,3 +32,4 @@ namespace lipsum
     }
 
 } // namespace lipsum
+#endif

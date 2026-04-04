@@ -13,6 +13,9 @@
 
 #pragma once
 
+#ifndef LIPSUMC_BINDED_INL
+#    define LIPSUMC_BINDED_INL
+
 /*
  * BINDED
  * ----------------
@@ -99,3 +102,4 @@ extern "C" char* lpsm_gen_md_text(int numElements)
     lpsm::Generator gen;
     return ConvertToCstr(gen.md_text(numElements));
 }
+#endif

@@ -13,6 +13,8 @@
 
 #pragma once
 
+#ifndef LIPSUMC_SFUNCS_INL
+#    define LIPSUMC_SFUNCS_INL
 /*
  * BULK
  * ----------------
@@ -302,3 +304,4 @@ extern "C" char* lpsm_GenerateMarkdownTextS(lpsm_ArgVec2Handle word,
                      level)
     return ret;
 }
+#endif

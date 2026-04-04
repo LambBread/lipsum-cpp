@@ -1,4 +1,3 @@
-
 /**
  * @file lipsum/misc.hpp
  *
@@ -14,7 +13,10 @@
  */
 #pragma once
 
-#include "core/core.hpp"
+#ifndef LIPSUM_MISC_HPP
+#    define LIPSUM_MISC_HPP
+
+#    include "core/core.hpp"
 
 namespace lipsum
 {
@@ -48,3 +50,4 @@ namespace lipsum
     LIPSUM_API int CountSentences(const std::string& str);
 
 } // namespace lipsum
+#endif

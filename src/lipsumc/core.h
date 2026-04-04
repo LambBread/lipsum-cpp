@@ -11,8 +11,9 @@
  * @author LambBread from github.com
  */
 #pragma once
-#ifndef LIPSUM_CORE_H
-#    define LIPSUM_CORE_H
+
+#ifndef LIPSUMC_CORE_H
+#    define LIPSUMC_CORE_H
 
 /**
  * @brief Macro for shared libraries

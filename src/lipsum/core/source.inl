@@ -10,8 +10,13 @@
  * @author LambBread from github.com
  */
 #pragma once
-#include "internal.hpp"
-#include "sample.inl"
+
+#ifndef LIPSUM_CORE_SOURCE_INL
+#    define LIPSUM_CORE_SOURCE_INL
+
+#    include "internal.hpp"
+#    include "sample.inl"
+
 namespace lipsum
 {
     Source::Source(const std::string& path)
@@ -67,3 +72,4 @@ namespace lipsum
         std::copy(unique.begin(), unique.end(), std::back_inserter(m_Words));
     }
 } // namespace lipsum
+#endif
