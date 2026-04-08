@@ -14,7 +14,8 @@ if(LPSM_FORMAT)
 
         # custom target running on sources
         add_custom_target(format COMMAND ${CLANG_FORMAT_EXE} -i ${LPSM_FORMAT_SOURCES}
-            COMMENT "Running clang-format on source files...")
+            COMMENT "Running clang-format on source files..."
+            VERBATIM)
     else()
         message(WARNING "lipsum-cpp ---- cannot find clang-format. Target 'format' will not be available.")
     endif()

@@ -13,7 +13,7 @@
 
 #include <cstring>
 
-// angle brackets to stop quom from doing shit
+// angle brackets to stop quom from doing stuff
 #include <lipsum.h>
 #include <lipsum.hpp>
 

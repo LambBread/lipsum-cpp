@@ -16,45 +16,7 @@
 #ifndef LIPSUM_CORE_CORE_HPP
 #    define LIPSUM_CORE_CORE_HPP
 
-/**
- * @brief The current version of lipsum-cpp.
- *
- * @since 0.2.1
- *
- * This constant stores the current version of lipsum-cpp, stored as a string.
- */
-inline constexpr const char* LIPSUM_CPP_VERSION = "0.4.1";
-// #define LIPSUM_CPP_VERSION "0.4.0"
-
-/**
- * @brief The major version of lipsum-cpp.
- *
- * @since 0.4.0
- *
- * This constant stores the current major version of lipsum-cpp.
- */
-inline constexpr int LIPSUM_CPP_VERSION_MAJOR = 0;
-// #define LIPSUM_CPP_VERSION_MAJOR 0
-
-/**
- * @brief The minor version of lipsum-cpp.
- *
- * @since 0.4.0
- *
- * This constant stores the current minor version of lipsum-cpp.
- */
-inline constexpr int LIPSUM_CPP_VERSION_MINOR = 4;
-// #define LIPSUM_CPP_VERSION_MINOR 4
-
-/**
- * @brief The patch version of lipsum-cpp.
- *
- * @since 0.4.0
- *
- * This constant stores the current patch version of lipsum-cpp.
- */
-inline constexpr int LIPSUM_CPP_VERSION_PATCH = 1;
-// #define LIPSUM_CPP_VERSION_PATCH 0
+#    include "version.hpp"
 
 #    ifndef __cplusplus
 #        error lipsum.hpp only supports C++, did you mean lipsum.h?

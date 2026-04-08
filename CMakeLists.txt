@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(lipsum-cpp VERSION 0.4.1 LANGUAGES C CXX)
+project(lipsum-cpp VERSION 0.4.2 LANGUAGES C CXX)
 
 # c++20
 set(CMAKE_CXX_STANDARD 20)
@@ -12,6 +12,7 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/docs.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/examples.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/optcomp.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/format.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/version.cmake")
 
 if(LPSM_BUILD_STATIC)
 

@@ -10,10 +10,10 @@ EXAMPLES_DIR := examples
 CMAKE_GENERATOR := Ninja
 BUILD_TYPE := Release
 CMAKE_OPTS := -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON \
-			  -DLPSM_BUILD_DOCS=ON -DLPSM_BUILD_EXAMPLES=ON -DLPSM_BUILD_SAMPLE=ON \
-			  -DLPSM_BUILD_JSBIND=ON -DLPSM_FORMAT=ON
+			  -DLPSM_BUILD_DOCS=ON -DLPSM_BUILD_EXAMPLES=ON \
+			  -DLPSM_BUILD_JSBIND=ON
 
-.PHONY: all clean build configure em_configure em_build format amalgamate pkg full_clean sample quick_pkg pkg_
+.PHONY: all clean build configure em_configure em_build format amalgamate pkg full_clean sample quick_pkg pkg_ version
 
 all: build
 
@@ -28,6 +28,10 @@ build: configure
 
 em_build: em_configure
 	cmake --build $(BUILD_DIR)
+
+version:
+	cmake --build $(BUILD_DIR) --target version
+	cmake --build $(BUILD_DIR) --target format
 
 format:
 	cmake --build $(BUILD_DIR) --target format
@@ -49,7 +53,7 @@ pkg_:
 	rm $(BUILD_DIR)/examples/Source.*
 	7z a -tzip -r -mx=9 lipsum-pkg.zip $(PKG_DIR)
 	
-quick_pkg: em_configure format em_build amalgamate pkg_
+quick_pkg: em_configure version format em_build amalgamate pkg_
 
 pkg: clean quick_pkg
 
