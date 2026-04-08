@@ -20,7 +20,7 @@
 #define LPSM_CPPIFY(x) (*(reinterpret_cast<lpsm::ArgVec2*>((x))))
 #define LPSM_SRC_CPPIFY(x) (*(reinterpret_cast<lpsm::Source*>((x))))
 
-// macro shit go!!!
+// macro stuff go!!!
 #define LPSM_AV2_DESTROY_1(x)                                                  \
     if (del)                                                                   \
     {                                                                          \

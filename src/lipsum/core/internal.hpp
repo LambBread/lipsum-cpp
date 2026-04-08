@@ -37,14 +37,9 @@ namespace lipsum
     {
         LIPSUM_API std::string GenerateTLD();
         LIPSUM_API std::string HandleHTMLEntity(const std::string& str);
-        // LIPSUM_API int         RandomNumber(int min, int max);
 
         template <typename T> T RandomNumber(T min, T max)
         {
-            // static thread_local std::random_device rd;
-            // std::mt19937                           gen(rd());
-            // std::uniform_int_distribution<T>       dist(min, max);
-            // return dist(gen);
             static thread_local std::mt19937 gen(std::random_device{}());
             if constexpr (std::is_integral_v<T>)
             {

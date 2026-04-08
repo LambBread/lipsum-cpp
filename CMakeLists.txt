@@ -5,7 +5,7 @@ project(lipsum-cpp VERSION 0.4.1 LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# include shit
+# include configuration files
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/options.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/sample.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/docs.cmake")
@@ -14,8 +14,8 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/optcomp.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/format.cmake")
 
 if(LPSM_BUILD_STATIC)
+
     # static library, define building static
-    
     add_library(lipsum-cpp STATIC "${LPSM_SRCS}")
     target_compile_definitions(lipsum-cpp PUBLIC LIPSUM_BUILD_STATIC)
     target_include_directories(lipsum-cpp PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
