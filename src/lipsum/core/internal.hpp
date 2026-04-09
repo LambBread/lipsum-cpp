@@ -38,6 +38,26 @@ namespace lipsum
         LIPSUM_API std::string GenerateTLD();
         LIPSUM_API std::string HandleHTMLEntity(const std::string& str);
 
+        /**
+         * @brief Log a warning.
+         *
+         * @since 0.4.2
+         *
+         * Log a warning to the console coloured yellow, starting with
+         * "lipsum-cpp WARNING -- " and the message, ending in a newline. If in
+         * Emscripten environment, use JavaScript console.warn() instead.
+         *
+         * @warning This function uses ANSI escape codes. The default Windows
+         * terminal on older versions of Windows (< Windows 10 1511) does not
+         * support ANSI escape codes. The default Windows terminal on newer
+         * versions of Windows (>= Windows 10 1511) has support for ANSI escape
+         * codes, but one may have to manually enable them with
+         * SetConsoleMode(..., ENABLE_VIRTUAL_TERMINAL_PROCESSING).
+         *
+         * @param msg The message to print.
+         */
+        LIPSUM_API void LogWarn(const std::string& msg);
+
         template <typename T> T RandomNumber(T min, T max)
         {
             static thread_local std::mt19937 gen(std::random_device{}());

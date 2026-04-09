@@ -48,8 +48,12 @@ namespace lipsum
         char                            c;
         if (!f.is_open())
         {
-            std::cerr << "lipsum-cpp error: Could not open file " << path
-                      << '\n';
+            // std::cerr << "lipsum-cpp error: Could not open file " << path
+            //           << '\n';
+            internal::LogWarn(
+                    std::string("Could not open file ") + path +
+                    std::string(
+                            "; falling back to standard lorem-ipsum source"));
             return;
         }
         while (f.get(c))

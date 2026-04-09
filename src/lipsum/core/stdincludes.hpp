@@ -27,4 +27,7 @@
 #    include <type_traits>
 #    include <unordered_set>
 #    include <vector>
+#    ifdef __EMSCRIPTEN__
+#        include <emscripten.h>
+#    endif
 #endif

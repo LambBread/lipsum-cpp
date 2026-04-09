@@ -5,7 +5,7 @@
 - [ ] Switch manual macros in `lipsum_h.cpp` to variadic templates
 - [ ] `make help`
 - [ ] Packaging, `make install`
-- [ ] Better error handling
+- [x] Better error handling
 - [ ] More format generation
     - [ ] JSON
     - [ ] XML

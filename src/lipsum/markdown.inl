@@ -47,12 +47,8 @@ namespace lipsum
         numElements -= 2;
         int  rand;
         bool ordered;
-        // lpsm::ArgVec2 elem  = ArgVec2(0, 2);
-        // lpsm::ArgVec2 order = ArgVec2(0, 1);
         while (numElements > 0)
         {
-            // rand    = elem.Roll();
-            // ordered = static_cast<bool>(order.Roll());
             rand    = internal::RandomNumber<int>(0, 2);
             ordered = LPSM_FLIP_COIN;
             switch (rand)
@@ -171,8 +167,6 @@ namespace lipsum
         int         fmtRoll;
         bool        addLink;
         bool        isBold;
-        // lpsm::ArgVec2 linkEmph = ArgVec2(0, 1);
-        // lpsm::ArgVec2 boldItal = ArgVec2(0, 1);
         if (useHtml)
         {
             ret += "<p>";
@@ -180,8 +174,6 @@ namespace lipsum
         for (int i = 0; i < sents; ++i)
         {
             fmtRoll = sent.Roll();
-            // addLink = static_cast<bool>(linkEmph.Roll());
-            // isBold  = static_cast<bool>(boldItal.Roll());
             addLink = LPSM_FLIP_COIN;
             isBold  = LPSM_FLIP_COIN;
             if (i == 0 && useLipsum)
@@ -225,8 +217,6 @@ namespace lipsum
                                      const Source&  source)
     {
         std::string ret;
-        // std::string link =
-        //         url + std::string("#") + lpsm::GenerateSlug(wordURL, '-');
         std::string link     = GenerateURL(wordURL, source);
         std::string sentence = GenerateSentence(word, frag, source);
         if (!useHtml)
@@ -302,8 +292,11 @@ namespace lipsum
     {
         if (level > 6 || level < 1)
         {
-            std::cerr << "lipsum-cpp warning: invalid header level " << level
-                      << ", expected from 1 to 6\n";
+            // std::cerr << "lipsum-cpp warning: invalid header level " << level
+            //           << ", expected from 1 to 6\n";
+            internal::LogWarn(std::string("invalid header level ") +
+                              internal::ToString(level) +
+                              std::string(", expected from 1 to 6"));
         }
         std::string ret;
         std::string words = GenerateSentenceFragment(word, source);
