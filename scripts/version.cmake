@@ -113,3 +113,21 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h
  #define LIPSUM_CPP_VERSION_PATCH_C ${LPSM_VERSION_PATCH}
  #endif
  ")
+
+ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
+"PROJECT_NAME = \"lipsum-cpp\"
+PROJECT_BRIEF = \"A library written in C++ for generating sample text.\"
+PROJECT_NUMBER = \"${LPSM_VERSION}\"
+INPUT = src
+EXAMPLE_PATH = examples/
+RECURSIVE = YES
+GENERATE_LATEX = NO
+OUTPUT_DIRECTORY = docs
+ALIASES += \"xovload=This function only differs from the function of the similar name in that it uses minimum and maximum values instead of lipsum::ArgVec2.\"
+ALIASES += \"sovload=This function only differs from the function of the similar name in that it uses lpsm_ArgVec2Handle instead of separate minimum and maximum arguments. The arguments must be allocated with function lpsm_ArgVec2(), and deallocation is handled automatically if argument del is true.\"
+WARN_IF_UNDOCUMENTED = NO
+WARN_NO_PARAMDOC = YES
+WARN_IF_DOC_ERROR = YES
+QUIET = YES
+WARNINGS = YES
+")
