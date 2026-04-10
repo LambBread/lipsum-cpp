@@ -57,11 +57,11 @@ namespace lipsum
          * @since 0.4.1
          *
          * Read from the file specified and fill object m_Words with the unique
-         * words from it.
+         * words from it. Formerly known as lpsm::Source::Load().
          *
          * @param path A path to the source file.
          */
-        void Load(const std::string& path);
+        void load(const std::string& path);
 
         /**
          * @brief Select a random word.
@@ -69,11 +69,12 @@ namespace lipsum
          * @since 0.4.0
          *
          * Select a random word from m_Words unless m_Words is empty, in which
-         * it uses LIPSUM_VEC from sample.inl as a fallback.
+         * it uses LIPSUM_VEC from sample.inl as a fallback. Formerly known as
+         * lpsm::Source::RandomWord().
          *
          * @return std::string The random word.
          */
-        std::string RandomWord() const;
+        std::string random_word() const;
 
     private:
         std::vector<std::string>

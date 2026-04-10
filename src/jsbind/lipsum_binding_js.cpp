@@ -31,7 +31,7 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
 {
     class_<lpsm::ArgVec2>("lpsm_ArgVec2")
             .constructor<int, int>()
-            .function("Roll", &lpsm::ArgVec2::Roll)
+            .function("roll", &lpsm::ArgVec2::roll)
             .property("min", &lpsm::ArgVec2::min)
             .property("max", &lpsm::ArgVec2::max);
     class_<lpsm::Generator>("lpsm_Generator")
@@ -46,8 +46,8 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     class_<lpsm::Source>("lpsm_Source")
             .constructor<>()
             .constructor<std::string>()
-            .function("RandomWord", &lpsm::Source::RandomWord)
-            .function("Load", &lpsm::Source::Load);
+            .function("random_word", &lpsm::Source::random_word)
+            .function("load", &lpsm::Source::load);
     function("lpsm_GenerateWord", &lpsm::GenerateWord);
     function("lpsm_GenerateSentence", &lpsm::GenerateSentence);
     function("lpsm_GenerateSentenceFragment", &lpsm::GenerateSentenceFragment);

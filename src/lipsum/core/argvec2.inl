@@ -46,7 +46,7 @@ namespace lipsum
         this->max = max;
     }
 
-    int ArgVec2::Roll() const
+    int ArgVec2::roll() const
     {
         return internal::RandomNumber<int>(min, max);
     }

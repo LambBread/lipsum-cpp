@@ -5,7 +5,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/LambBread/lipsum-cpp)
 
 
-A header-only C++ library for generating sample Lorem Ipsum text. Useful for prototyping apps, UI testing, and anywhere placeholder text is needed.
+A header-only library written in C++ for generating sample Lorem Ipsum text. Useful for prototyping apps, UI testing, and anywhere placeholder text is needed.
 
 ## Features
 
@@ -31,8 +31,6 @@ lipsum-cpp has been mainly tested on Linux and WebAssembly as well as cross-comp
     - Emscripten
     - a build system (e.g. Ninja, MSBuild, ...)
     - Doxygen
-    - Python
-    - Git
     - Clang format
     - [quom](https://github.com/Viatorus/quom)
 

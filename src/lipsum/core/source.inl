@@ -21,10 +21,10 @@ namespace lipsum
 {
     Source::Source(const std::string& path)
     {
-        Load(path);
+        load(path);
     }
 
-    std::string Source::RandomWord() const
+    std::string Source::random_word() const
     {
         int idx;
         if (m_Words.empty())
@@ -39,7 +39,7 @@ namespace lipsum
         }
     }
 
-    void Source::Load(const std::string& path)
+    void Source::load(const std::string& path)
     {
         m_Words.clear();
         std::ifstream                   f(path);

@@ -12,6 +12,7 @@ int main()
                                          lpsm::ArgVec2(5, 8),
                                          false,
                                          src);
+
     lpsm::Generator gen("../../examples/catipsum_example.txt");
     std::cout << gen.md_text(20);
     return 0;

@@ -135,14 +135,14 @@ namespace lipsum
 
     std::string GenerateWord(const Source& source)
     {
-        return source.RandomWord();
+        return source.random_word();
     }
 
     std::string GenerateSentenceFragment(const ArgVec2& word,
                                          const Source&  source)
     {
         std::string result;
-        int         numWords = word.Roll();
+        int         numWords = word.roll();
         for (int i = 0; i < numWords; ++i)
         {
             result += GenerateWord(source) += " ";
@@ -158,8 +158,8 @@ namespace lipsum
         constexpr int CHANCE_COMMA = 88;
         constexpr int CHANCE_SEMI  = 9;
         std::string   result;
-        int           words = word.Roll();
-        int           frags = frag.Roll();
+        int           words = word.roll();
+        int           frags = frag.roll();
         for (int i = 0; i < frags; ++i)
         {
             result += GenerateSentenceFragment(word, source);
@@ -197,7 +197,7 @@ namespace lipsum
                                   const Source&  source)
     {
         std::string result = "\t";
-        int         sents  = sent.Roll();
+        int         sents  = sent.roll();
         if (!useLipsum)
         {
             for (int i = 0; i < sents; ++i)
@@ -227,7 +227,7 @@ namespace lipsum
                              const Source&  source)
     {
         std::string ret;
-        int         paras = para.Roll();
+        int         paras = para.roll();
         for (int i = 0; i < paras; ++i)
         {
             if (i == 0 && useLipsum)

@@ -33,7 +33,7 @@ int main(void)
                                                    true);
 
     // roll
-    printf("%d\n", lpsm_ArgVec2Roll(handle));
+    printf("%d\n", lpsm_ArgVec2_roll(handle));
 
     printf("%s\n", example);
     printf("%s\n", generatedWords);
@@ -41,7 +41,7 @@ int main(void)
     printf("%s", generatedMarkdown);
     printf("%s", paragraphWithS);
 
-    // delete stuff
+    // delete objects
     lpsm_ArgVec2Destroy(handle);
     lpsm_SourceDestroy(source);
     lpsm_DeleteString(generatedParagraph);
@@ -51,6 +51,6 @@ int main(void)
 
     // undefined behaviour
     // causes segfault
-    // printf("%d\n", lpsm_ArgVec2Roll(wordAv2));
+    // printf("%d\n", lpsm_ArgVec2_roll(wordAv2));
     return 0;
 }

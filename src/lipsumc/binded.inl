@@ -52,17 +52,17 @@ extern "C" void lpsm_ArgVec2Destroy(lpsm_ArgVec2Handle av2)
     delete realAv2;
 }
 
-extern "C" int lpsm_ArgVec2Roll(lpsm_ArgVec2Handle av2)
+extern "C" int lpsm_ArgVec2_roll(lpsm_ArgVec2Handle av2)
 {
-    return (reinterpret_cast<lpsm::ArgVec2*>(av2))->Roll();
+    return (reinterpret_cast<lpsm::ArgVec2*>(av2))->roll();
 }
 
-extern "C" int lpsm_ArgVec2GetMin(lpsm_ArgVec2Handle av2)
+extern "C" int lpsm_ArgVec2_min(lpsm_ArgVec2Handle av2)
 {
     return (reinterpret_cast<lpsm::ArgVec2*>(av2))->min;
 }
 
-extern "C" int lpsm_ArgVec2GetMax(lpsm_ArgVec2Handle av2)
+extern "C" int lpsm_ArgVec2_max(lpsm_ArgVec2Handle av2)
 {
     return (reinterpret_cast<lpsm::ArgVec2*>(av2))->max;
 }

@@ -24,7 +24,7 @@ namespace lipsum
 
     Generator::Generator(const std::string& path)
     {
-        m_Source.Load(path);
+        m_Source.load(path);
     }
 
     std::string Generator::md_paragraph(int num, bool useLipsum)

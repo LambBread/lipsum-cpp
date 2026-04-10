@@ -1,15 +1,13 @@
 # lipsum-cpp examples
 
-For each example, C is similar but with:
+These are examples for lipsum-cpp with an example for most functions. There is also some other examples, being:
 
-- Namespace `lpsm` replaced with prefix `lpsm_`
-- Class `lpsm::Generator` replaced with functions starting in `lpsm_gen`
-- `lipsum.hpp` replaced with `lipsum.h`
-- Arguments explicitly provided to functions, such as `lpsm_GenerateParagraphs(5, 4, 9, 1, 3, 5, 8, true)` replacing `lpsm::GenerateParagraphs()`
-- Explicit creation of a `lpsm_SourceHandle`
-
-Internal functions such as `lpsm::internal::RandomNumber` are not available in the C wrapper.
-
-When using the C wrapper, remember to use `lpsm_DeleteString()` to avoid memory leaks!
+- [`Advanced.cpp`](./Advanced.cpp), which is an AI-generated example
+- [`Basic.cpp`](./Basic.cpp), demonstrating `lpsm::Generator`
+- [`CWrapper.c`](./CWrapper.c), demonstrating the C wrapper
+- [`JSBinding.html`](./JSBinding.html), demonstrating the JavaScript binding
+- [`Markdown.cpp`](./Markdown.cpp), demonstrating simple generation and parsing of Markdown
+- [`Misc.cpp`](./Misc.cpp), demonstrating miscellanous features not used in other examples
+- [`Source.cpp`](./Source.cpp), demonstrating use of alternative lorem-ipsum sources, using [`catipsum_example.txt`](./catipsum_exampe.txt) as a source
 
 Example [`Markdown.cpp`](./Markdown.cpp) uses library [maddy](https://github.com/progsource/maddy), under MIT License.

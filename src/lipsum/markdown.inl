@@ -68,7 +68,7 @@ namespace lipsum
                 }
                 case 1:
                 {
-                    ret += GenerateMarkdownHeader(level.Roll(),
+                    ret += GenerateMarkdownHeader(level.roll(),
                                                   wordHead,
                                                   useHtml,
                                                   source);
@@ -98,7 +98,7 @@ namespace lipsum
                                      const Source&  source)
     {
         std::string ret;
-        int         points = point.Roll();
+        int         points = point.roll();
         if (useHtml)
         {
             if (ordered)
@@ -163,7 +163,7 @@ namespace lipsum
                                           const Source&  source)
     {
         std::string ret;
-        int         sents = sent.Roll();
+        int         sents = sent.roll();
         int         fmtRoll;
         bool        addLink;
         bool        isBold;
@@ -173,7 +173,7 @@ namespace lipsum
         }
         for (int i = 0; i < sents; ++i)
         {
-            fmtRoll = sent.Roll();
+            fmtRoll = sent.roll();
             addLink = LPSM_FLIP_COIN;
             isBold  = LPSM_FLIP_COIN;
             if (i == 0 && useLipsum)

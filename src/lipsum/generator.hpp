@@ -27,8 +27,7 @@ namespace lipsum
      * @since 0.2.0
      *
      * This provides a more user-friendly object-oriented layer over lipsum-cpp.
-     * It uses mainly default arguments. Unlike most of the codebase which uses
-     * PascalCase, the functions in this class use snake_case.
+     * It uses mainly default arguments.
      */
     class LIPSUM_API Generator
     {

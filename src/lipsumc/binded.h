@@ -50,6 +50,9 @@ extern "C"
      * @param path The path entered into lipsum::Source::Source. If path is set
      * to "default", use the default sample.
      *
+     * @warning The lpsm_SourceHandle must be manually deleted with
+     * lpsm_SourceDestroy().
+     *
      * @return lpsm_SourceHandle A handle to the object.
      */
     LIPSUMC_API lpsm_SourceHandle lpsm_Source(const char* path);
@@ -61,6 +64,10 @@ extern "C"
      *
      * This function handles deletion of a lpsm_SourceHandle.
      *
+     * @warning Do not call lpsm_SourceDestroy on the same handle twice or use
+     * the handle after deleting it, as that would be a double-free or
+     * use-after-free.
+     *
      * @param handle A lpsm_SourceHandle to delete.
      */
     LIPSUMC_API void lpsm_SourceDestroy(lpsm_SourceHandle handle);
@@ -71,6 +78,10 @@ extern "C"
      * @since 0.3.3
      *
      * This function creates a pointer pointing to a lpsm::ArgVec2.
+     *
+     * @warning The lpsm_ArgVec2Handle must be manually deleted with
+     * lpsm_ArgVec2Destroy(), except for objects created in the "S" functions
+     * when argument "del" is set to true.
      *
      * @param min Value to enter into the minimum value
      * @param max Value to enter into the maximum value
@@ -87,48 +98,55 @@ extern "C"
      * This function deletes a lpsm::ArgVec2 allocated with
      * lpsm_ArgVec2.
      *
+     * @warning Do not call lpsm_ArgVec2Destroy on the same handle twice or use
+     * the handle after deleting it, as that would be a double-free or
+     * use-after-free.
+     *
      * @param av2 The lpsm::ArgVec2.
      */
     LIPSUMC_API void lpsm_ArgVec2Destroy(lpsm_ArgVec2Handle av2);
 
     /**
-     * @brief Run lpsm::ArgVec2::Roll.
+     * @brief Run lpsm::ArgVec2::roll.
      *
      * @since 0.3.3
      *
-     * This function calls lpsm::ArgVec2::Roll().
+     * This function calls lpsm::ArgVec2::Roll(). Formerly known as
+     * lpsm_ArgVec2Roll().
      *
-     * @param av2 The lpsm::ArgVec2
+     * @param av2 The lpsm::ArgVec2.
      *
      * @return int The random number.
      */
-    LIPSUMC_API int lpsm_ArgVec2Roll(lpsm_ArgVec2Handle av2);
+    LIPSUMC_API int lpsm_ArgVec2_roll(lpsm_ArgVec2Handle av2);
 
     /**
      * @brief Get lpsm::ArgVec2::min
      *
      * @since 0.3.3
      *
-     * This function retrieves the min property of a lpsm::ArgVec2.
+     * This function retrieves the min property of a lpsm::ArgVec2. Formerly
+     * known a lpsm_ArgVec2GetMin().
      *
-     * @param av2 The lpsm::ArgVec2
+     * @param av2 The lpsm::ArgVec2.
      *
-     * @return int The min value
+     * @return int The min value.
      */
-    LIPSUMC_API int lpsm_ArgVec2GetMin(lpsm_ArgVec2Handle av2);
+    LIPSUMC_API int lpsm_ArgVec2_min(lpsm_ArgVec2Handle av2);
 
     /**
      * @brief Get lpsm::ArgVec2::max
      *
      * @since 0.3.3
      *
-     * This function retrieves the max property of a lpsm::ArgVec2.
+     * This function retrieves the max property of a lpsm::ArgVec2. Formerly
+     * known as lpsm_ArgVec2GetMax().
      *
-     * @param av2 The lpsm::ArgVec2
+     * @param av2 The lpsm::ArgVec2.
      *
-     * @return int The max value
+     * @return int The max value.
      */
-    LIPSUMC_API int lpsm_ArgVec2GetMax(lpsm_ArgVec2Handle av2);
+    LIPSUMC_API int lpsm_ArgVec2_max(lpsm_ArgVec2Handle av2);
 
     /**
      * @brief Generate words.
