@@ -75,33 +75,42 @@ namespace lipsum
     std::string internal::HandleHTMLEntity(const std::string& str)
     {
         std::string result;
+
+        // -> RESERVE_NUMER / RESERVE_DENOM times size of string
+        constexpr int RESERVE_NUMER = 7;
+        constexpr int RESERVE_DENOM = 5;
+        // plus RESERVE_PLUS for small strings
+        constexpr int RESERVE_PLUS = 8;
+
+        result.reserve(str.length() * RESERVE_NUMER / RESERVE_DENOM +
+                       RESERVE_PLUS);
         for (const auto& c : str)
         {
             switch (c)
             {
                 case '&':
                 {
-                    result += "&amp;";
+                    result.append("&amp;");
                     break;
                 }
                 case '<':
                 {
-                    result += "&lt;";
+                    result.append("&lt;");
                     break;
                 }
                 case '>':
                 {
-                    result += "&gt;";
+                    result.append("&gt;");
                     break;
                 }
                 case '"':
                 {
-                    result += "&quot;";
+                    result.append("&quot;");
                     break;
                 }
                 case '\'':
                 {
-                    result += "&apos;";
+                    result.append("&apos;");
                     break;
                 }
                 default:

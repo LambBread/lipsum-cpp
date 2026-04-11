@@ -47,12 +47,15 @@ namespace lipsum
          * "lipsum-cpp WARNING -- " and the message, ending in a newline. If in
          * Emscripten environment, use JavaScript console.warn() instead.
          *
-         * @warning This function uses ANSI escape codes. The default Windows
+         * @note This function uses ANSI escape codes. The default Windows
          * terminal on older versions of Windows (< Windows 10 1511) does not
          * support ANSI escape codes. The default Windows terminal on newer
          * versions of Windows (>= Windows 10 1511) has support for ANSI escape
          * codes, but one may have to manually enable them with
          * SetConsoleMode(..., ENABLE_VIRTUAL_TERMINAL_PROCESSING).
+         *
+         * @tparam Args The arguments' types. All must be printable with
+         * std::ostream, or else the code will fail to compile.
          *
          * @param args The arguments to print.
          */
