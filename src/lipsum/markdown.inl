@@ -101,14 +101,7 @@ namespace lipsum
         int         points = point.roll();
         if (useHtml)
         {
-            if (ordered)
-            {
-                ret += "<ol>";
-            }
-            else
-            {
-                ret += "<ul>";
-            }
+            ret += (ordered ? "<ol>" : "<ul>");
         }
         for (int i = 0; i < points; ++i)
         {
@@ -128,25 +121,11 @@ namespace lipsum
                 ret += "<li>";
             }
             ret += GenerateSentence(word, frag, source);
-            if (useHtml)
-            {
-                ret += "</li>";
-            }
-            else
-            {
-                ret += "\n";
-            }
+            ret += (useHtml ? "</li>" : "\n");
         }
         if (useHtml)
         {
-            if (ordered)
-            {
-                ret += "</ol>";
-            }
-            else
-            {
-                ret += "</ul>";
-            }
+            ret += (ordered ? "</ol>" : "</ul>");
         }
         ret += "\n";
         return ret;
@@ -243,44 +222,22 @@ namespace lipsum
 
         if (!useHtml)
         {
-            ret += "*";
-            if (isBold)
-            {
-                ret += "*";
-            }
+            ret += (isBold ? "**" : "*");
         }
         else
         {
-            if (isBold)
-            {
-                ret += "<strong>";
-            }
-            else
-            {
-                ret += "<em>";
-            }
+            ret += (isBold ? "<strong>" : "<em>");
         }
 
         ret += sent;
 
         if (!useHtml)
         {
-            ret += "*";
-            if (isBold)
-            {
-                ret += "*";
-            }
+            ret += (isBold ? "**" : "*");
         }
         else
         {
-            if (isBold)
-            {
-                ret += "</strong>";
-            }
-            else
-            {
-                ret += "</em>";
-            }
+            ret += (isBold ? "</strong>" : "</em>");
         }
         return ret;
     }
@@ -292,11 +249,10 @@ namespace lipsum
     {
         if (level > 6 || level < 1)
         {
-            // std::cerr << "lipsum-cpp warning: invalid header level " << level
-            //           << ", expected from 1 to 6\n";
-            internal::LogWarn(std::string("invalid header level ") +
-                              internal::ToString(level) +
-                              std::string(", expected from 1 to 6"));
+            internal::LogWarn("lpsm::GenerateMarkdownHeader(): invalid header "
+                              "level ",
+                              level,
+                              ", expected from 1 to 6");
         }
         std::string ret;
         std::string words = GenerateSentenceFragment(word, source);
@@ -331,6 +287,14 @@ namespace lipsum
                                            const Source&  source)
     {
         std::string ret;
+
+        if (paraCount < 0)
+        {
+            internal::LogWarn("lpsm::GenerateMarkdownParagraphs(): expected "
+                              "paraCount >= 0, got ",
+                              paraCount);
+        }
+
         for (int i = 0; i < paraCount; ++i)
         {
             if (i == 0 && useLipsum)

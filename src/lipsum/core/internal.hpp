@@ -54,9 +54,21 @@ namespace lipsum
          * codes, but one may have to manually enable them with
          * SetConsoleMode(..., ENABLE_VIRTUAL_TERMINAL_PROCESSING).
          *
-         * @param msg The message to print.
+         * @param args The arguments to print.
          */
-        LIPSUM_API void LogWarn(const std::string& msg);
+        template <typename... Args> void LogWarn(const Args&... args)
+        {
+            std::ostringstream ss;
+            ss << "lipsum-cpp WARNING -- ";
+            ((ss << args), ...);
+            ss << '\n';
+            std::string message = ss.str();
+#    ifndef __EMSCRIPTEN__
+            std::cerr << "\033[33m" << message << "\033[0m";
+#    else
+            emscripten_console_warn(message.c_str());
+#    endif
+        }
 
         template <typename T> T RandomNumber(T min, T max)
         {
@@ -72,12 +84,12 @@ namespace lipsum
                 return dist(gen);
             }
         }
-        template <> char RandomNumber(char min, char max);
-        template <> bool RandomNumber(bool min, bool max);
+        template <> LIPSUM_API char RandomNumber(char min, char max);
+        template <> LIPSUM_API bool RandomNumber(bool min, bool max);
 
         template <typename T> std::string ToString(const T& x)
         {
-            std::stringstream ss;
+            std::ostringstream ss;
             ss << x;
             return ss.str();
         }

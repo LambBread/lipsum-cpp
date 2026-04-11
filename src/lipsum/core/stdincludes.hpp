@@ -29,6 +29,6 @@
 #    include <vector>
 #    include <utility>
 #    ifdef __EMSCRIPTEN__
-#        include <emscripten.h>
+#        include <emscripten/console.h>
 #    endif
 #endif

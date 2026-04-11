@@ -22,24 +22,16 @@ namespace lipsum
 
     ArgVec2::ArgVec2(int min, int max)
     {
-        if (min < 0)
+        if (min < 0 || max < 0)
         {
-            internal::LogWarn(
-                    std::string("ArgVec2 min set to ") +
-                    internal::ToString(min) +
-                    std::string(", expected greater than or equal to 0. If "
-                                "this is intentional,"
-                                "use lpsm::internal::RandomNumber instead."));
-        }
-
-        if (max < 0)
-        {
-            internal::LogWarn(
-                    std::string("ArgVec2 max set to ") +
-                    internal::ToString(max) +
-                    std::string(", expected greater than or equal to 0. If "
-                                "this is intentional,"
-                                "use lpsm::internal::RandomNumber instead."));
+            internal::LogWarn("lpsm::ArgVec2::ArgVec2(): min and max set to (",
+                              min,
+                              ", ",
+                              max,
+                              "), expected both >= 0. If "
+                              "this is intentional,"
+                              "use another method to generate random numbers "
+                              "instead.");
         }
 
         this->min = min;

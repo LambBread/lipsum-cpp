@@ -46,7 +46,9 @@ namespace lipsum
          *
          * @since 0.4.1
          *
-         * This loads the specified lorem ipsum source into m_Source.
+         * This loads the specified lorem ipsum source into m_Source. If path is
+         * invalid, it will print a warning and default to the standard
+         * lorem-ipsum source.
          *
          * @param path The filepath of the lorem ipsum source.
          */

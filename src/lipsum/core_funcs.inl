@@ -27,6 +27,14 @@ namespace lipsum
     std::string GenerateWords(int wordCount, const Source& source)
     {
         std::string ret;
+
+        if (wordCount < 0)
+        {
+            internal::LogWarn("lpsm::GenerateWords(): expected wordCount >= 0, "
+                              "got ",
+                              wordCount);
+        }
+
         for (int i = 0; i < wordCount; ++i)
         {
             ret += GenerateWord(source) += " ";
@@ -42,17 +50,21 @@ namespace lipsum
                                   const Source&  source)
     {
         std::string result;
-        if (useLipsum)
+
+        if (sentCount < 0)
         {
-            result += GenerateDefaultLipsumSentence() += " ";
-            for (int i = 0; i < sentCount - 1; ++i)
-            {
-                result += GenerateSentence(word, frag, source) += " ";
-            }
+            internal::LogWarn("lpsm::GenerateSentences(): expected sentCount "
+                              ">= 0, got",
+                              sentCount);
         }
-        else
+
+        for (int i = 0; i < sentCount; ++i)
         {
-            for (int i = 0; i < sentCount; ++i)
+            if (i == 0 && useLipsum)
+            {
+                result += GenerateDefaultLipsumSentence() + " ";
+            }
+            else
             {
                 result += GenerateSentence(word, frag, source) += " ";
             }
@@ -68,18 +80,21 @@ namespace lipsum
                                    const Source&  source)
     {
         std::string result;
-        if (!useLipsum)
-        {
 
-            for (int i = 0; i < paraCount; ++i)
-            {
-                result += GenerateParagraph(word, frag, sent, false, source);
-            }
-        }
-        else
+        if (paraCount < 0)
         {
-            result += GenerateParagraph(word, frag, sent, true, source);
-            for (int i = 0; i < paraCount - 1; ++i)
+            internal::LogWarn("lpsm::GenerateParagraphs(): expected paraCount "
+                              ">= 0, got ",
+                              paraCount);
+        }
+
+        for (int i = 0; i < paraCount; ++i)
+        {
+            if (i == 0 && useLipsum)
+            {
+                result += GenerateParagraph(word, frag, sent, true, source);
+            }
+            else
             {
                 result += GenerateParagraph(word, frag, sent, false, source);
             }
@@ -198,21 +213,18 @@ namespace lipsum
     {
         std::string result = "\t";
         int         sents  = sent.roll();
-        if (!useLipsum)
+        for (int i = 0; i < sents; ++i)
         {
-            for (int i = 0; i < sents; ++i)
+            if (i == 0 && useLipsum)
+            {
+                result += GenerateDefaultLipsumSentence() += " ";
+            }
+            else
             {
                 result += GenerateSentence(word, frag, source) += " ";
             }
         }
-        else
-        {
-            result += GenerateDefaultLipsumSentence() += " ";
-            for (int i = 0; i < sents - 1; ++i)
-            {
-                result += GenerateSentence(word, frag, source) += " ";
-            }
-        }
+
         // remove trailing space
         result.pop_back();
         result += "\n";

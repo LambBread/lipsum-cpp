@@ -18,23 +18,6 @@
 namespace lipsum
 {
 
-    void internal::LogWarn(const std::string& str)
-    {
-#    ifndef __EMSCRIPTEN__
-        std::cerr << "\033[33mlipsum-cpp WARNING -- " << str << "\033[0m\n";
-#    else
-        // clang-format off
-
-// use javascript console instead
-        EM_ASM({
-            const strText = UTF8ToString($0);
-            console.warn("lipsum-cpp WARNING --", strText);
-        }, str.c_str());
-
-// clang-format on
-#    endif
-    }
-
     template <> char internal::RandomNumber(char min, char max)
     {
         return static_cast<char>(internal::RandomNumber(static_cast<int>(min),
@@ -47,6 +30,7 @@ namespace lipsum
         return choice == 0 ? min : max;
     }
 
+    // TODO: remove hardcoded values
     std::string internal::GenerateTLD()
     {
         constexpr int CHANCE_COM = 70;

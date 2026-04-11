@@ -14,6 +14,7 @@
 
 ## Upcoming
 
+- [ ] Remove hardcoded values in `lpsm::internal::GenerateTLD()`
 - [ ] `make help`
 - [ ] Packaging, `make install`
 - [ ] More format generation
