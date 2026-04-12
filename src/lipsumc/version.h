@@ -56,7 +56,18 @@
  *
  * @since 0.4.2
  *
- * This macro stores the current abbreviated Git commit ID of lipsum-cpp.
+ * This macro stores the current abbreviated Git commit ID of lipsum-cpp
+ * as of the last time scripts/version.cmake was ran.
  */
-#    define LIPSUM_CPP_VERSION_COMMIT_C = "2043a5b";
+#    define LIPSUM_CPP_VERSION_COMMIT_C "d081972";
+
+/**
+ * @brief The current version of lipsum-cpp, to the Git commit.
+ *
+ * @since 0.4.2
+ *
+ * This macro stores the current version of lipsum-cpp with the abbreviated Git
+ * commit ID as of the last time scripts/version.cmake was ran.
+ */
+#    define LIPSUM_CPP_VERSION_FULL_C "0.4.2-d081972";
 #endif

@@ -57,7 +57,19 @@ inline constexpr int LIPSUM_CPP_VERSION_PATCH = 2;
  *
  * @since 0.4.2
  *
- * This constant stores the current abbreviated Git commit ID of lipsum-cpp.
+ * This constant stores the current abbreviated Git commit ID of lipsum-cpp
+ * as of the last time scripts/version.cmake was ran.
  */
-inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = "2043a5b";
+inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = "d081972";
+
+/**
+ * @brief The current version of lipsum-cpp, to the Git commit.
+ *
+ * @since 0.4.2
+ *
+ * This constant stores the current version of lipsum-cpp with the abbreviated
+ * Git commit ID as of the last time scripts/version.cmake was ran.
+ */
+inline constexpr const char* LIPSUM_CPP_VERSION_FULL = "0.4.2-d081972";
+
 #endif
