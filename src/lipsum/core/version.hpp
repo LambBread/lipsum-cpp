@@ -26,7 +26,7 @@
 inline constexpr const char* LIPSUM_CPP_VERSION = "0.4.2";
 
 /**
- * @brief The major version of lipsum-cpp.
+ * @brief The current major version of lipsum-cpp.
  *
  * @since 0.4.0
  *
@@ -35,7 +35,7 @@ inline constexpr const char* LIPSUM_CPP_VERSION = "0.4.2";
 inline constexpr int LIPSUM_CPP_VERSION_MAJOR = 0;
 
 /**
- * @brief The minor version of lipsum-cpp.
+ * @brief The current minor version of lipsum-cpp.
  *
  * @since 0.4.0
  *
@@ -44,11 +44,20 @@ inline constexpr int LIPSUM_CPP_VERSION_MAJOR = 0;
 inline constexpr int LIPSUM_CPP_VERSION_MINOR = 4;
 
 /**
- * @brief The patch version of lipsum-cpp.
+ * @brief The current patch version of lipsum-cpp.
  *
  * @since 0.4.0
  *
  * This constant stores the current patch version of lipsum-cpp.
  */
 inline constexpr int LIPSUM_CPP_VERSION_PATCH = 2;
+
+/**
+ * @brief The current Git commit of lipsum-cpp
+ *
+ * @since 0.4.2
+ *
+ * This constant stores the current abbreviated Git commit ID of lipsum-cpp.
+ */
+inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = "2043a5b";
 #endif

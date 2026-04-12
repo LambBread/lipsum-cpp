@@ -2,6 +2,24 @@
 
 message(STATUS "lipsum-cpp ---- creating version header files")
 
+find_package(Git QUIET)
+if(Git_FOUND)
+    execute_process(
+        COMMAND git rev-parse --short HEAD
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        OUTPUT_VARIABLE LPSM_VERSION_COMMIT
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        RESULT_VARIABLE GIT_RESULT
+    )
+    if(NOT GIT_RESULT EQUAL 0)
+        set(LPSM_VERSION_COMMIT "unknown")
+    endif()
+else()
+    set(LPSM_VERSION_COMMIT "unknown")
+endif()
+message(STATUS "lipsum-cpp ---- current Git commit ${LPSM_VERSION_COMMIT}")
+
+
 file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum/core/version.hpp
 "/**
  * @file lipsum/core/version.hpp
@@ -30,7 +48,7 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum/core/version.hpp
 inline constexpr const char* LIPSUM_CPP_VERSION = \"${LPSM_VERSION}\";
 
 /**
- * @brief The major version of lipsum-cpp.
+ * @brief The current major version of lipsum-cpp.
  *
  * @since 0.4.0
  *
@@ -39,7 +57,7 @@ inline constexpr const char* LIPSUM_CPP_VERSION = \"${LPSM_VERSION}\";
 inline constexpr int LIPSUM_CPP_VERSION_MAJOR = ${LPSM_VERSION_MAJOR};
 
 /**
- * @brief The minor version of lipsum-cpp.
+ * @brief The current minor version of lipsum-cpp.
  *
  * @since 0.4.0
  *
@@ -48,13 +66,22 @@ inline constexpr int LIPSUM_CPP_VERSION_MAJOR = ${LPSM_VERSION_MAJOR};
  inline constexpr int LIPSUM_CPP_VERSION_MINOR = ${LPSM_VERSION_MINOR};
 
 /**
- * @brief The patch version of lipsum-cpp.
+ * @brief The current patch version of lipsum-cpp.
  *
  * @since 0.4.0
  *
  * This constant stores the current patch version of lipsum-cpp.
  */
  inline constexpr int LIPSUM_CPP_VERSION_PATCH = ${LPSM_VERSION_PATCH};
+
+/**
+* @brief The current Git commit of lipsum-cpp
+*
+* @since 0.4.2
+*
+* This constant stores the current abbreviated Git commit ID of lipsum-cpp.
+*/
+inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = \"${LPSM_VERSION_COMMIT}\";
 #endif
 ")
 
@@ -111,6 +138,15 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h
  * This macro stores the current patch version of lipsum-cpp.
  */
  #define LIPSUM_CPP_VERSION_PATCH_C ${LPSM_VERSION_PATCH}
+
+/**
+* @brief The current Git commit of lipsum-cpp
+*
+* @since 0.4.2
+*
+* This macro stores the current abbreviated Git commit ID of lipsum-cpp.
+*/
+#define LIPSUM_CPP_VERSION_COMMIT_C = \"${LPSM_VERSION_COMMIT}\";
  #endif
  ")
 

@@ -12,10 +12,10 @@
 - [x] Automatic version numbering using CMake (0.4.2)
 - [x] Switch manual macros in `lipsum_h.cpp` to variadic templates (0.4.2)
 - [x] Better logging (0.4.2)
+- [x] Git commit tag in `version.hpp` (0.4.2)
 
 ## Upcoming
 
-- [ ] Git commit tag in `version.hpp`
 - [ ] Remove hardcoded values in `lpsm::internal::GenerateTLD()`
 - [ ] `make help`
 - [ ] Packaging, `make install`

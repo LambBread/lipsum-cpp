@@ -50,4 +50,13 @@
  * This macro stores the current patch version of lipsum-cpp.
  */
 #    define LIPSUM_CPP_VERSION_PATCH_C 2
+
+/**
+ * @brief The current Git commit of lipsum-cpp
+ *
+ * @since 0.4.2
+ *
+ * This macro stores the current abbreviated Git commit ID of lipsum-cpp.
+ */
+#    define LIPSUM_CPP_VERSION_COMMIT_C = "2043a5b";
 #endif
