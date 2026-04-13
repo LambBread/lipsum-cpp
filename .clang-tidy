@@ -1,0 +1,8 @@
+Checks: 'modernize-*,readability-*,-modernize-use-trailing-return-type,-readability-magic-numbers,-modernize-use-ranges'
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*'
+#AnalyzeTemporaryDtors: false
+FormatStyle: none
+ExtraArgs:
+  - -std=c++20
+  - -I./src

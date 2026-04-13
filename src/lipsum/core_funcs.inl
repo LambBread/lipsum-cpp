@@ -109,8 +109,7 @@ namespace lipsum
 
     std::string GenerateDefaultLipsumSentence()
     {
-        return std::string(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+        return {"Lorem ipsum dolor sit amet, consectetur adipiscing elit."};
     }
 
     std::string GenerateScramble(int length, char min, char max)
@@ -173,7 +172,6 @@ namespace lipsum
         constexpr int CHANCE_COMMA = 88;
         constexpr int CHANCE_SEMI  = 9;
         std::string   result;
-        int           words = word.roll();
         int           frags = frag.roll();
         for (int i = 0; i < frags; ++i)
         {

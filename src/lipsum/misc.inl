@@ -21,10 +21,10 @@ namespace lipsum
 
     int CountWords(const std::string& str)
     {
-        std::stringstream ss(str);
-        int               count = 0;
-        std::string       tmp;
-        while (ss >> tmp)
+        std::istringstream iss(str);
+        int                count = 0;
+        std::string        tmp;
+        while (iss >> tmp)
         {
             ++count;
         }
@@ -35,17 +35,17 @@ namespace lipsum
     {
         int res    = 0;
         int urlNum = 0;
-        for (const char& c : str)
+        for (const char& letter : str)
         {
-            if (c == '(')
+            if (letter == '(')
             {
                 ++urlNum;
             }
-            if (c == ')')
+            if (letter == ')')
             {
                 --urlNum;
             }
-            if (c == '.' && urlNum == 0)
+            if (letter == '.' && urlNum == 0)
             {
                 ++res;
             }

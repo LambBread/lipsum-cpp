@@ -16,33 +16,12 @@
 #ifndef LIPSUMC_SFUNCS_INL
 #    define LIPSUMC_SFUNCS_INL
 
-// macro stuff go!!!
-/*
-#define LPSM_AV2_DESTROY_1(x)                                                  \
-    if (del)                                                                   \
-    {                                                                          \
-        lpsm_ArgVec2Destroy(x);                                                \
-    }
-#define LPSM_AV2_DESTROY_2(x, y) LPSM_AV2_DESTROY_1(x) LPSM_AV2_DESTROY_1(y)
-#define LPSM_AV2_DESTROY_3(x, y, z)                                            \
-    LPSM_AV2_DESTROY_2(x, y) LPSM_AV2_DESTROY_1(z)
-#define LPSM_AV2_DESTROY_4(x, y, z, w)                                         \
-    LPSM_AV2_DESTROY_3(x, y, z) LPSM_AV2_DESTROY_1(w)
-#define LPSM_AV2_DESTROY_5(x, y, z, w, v)                                      \
-    LPSM_AV2_DESTROY_4(x, y, z, w) LPSM_AV2_DESTROY_1(v)
-#define LPSM_AV2_DESTROY_6(x, y, z, w, v, u)                                   \
-    LPSM_AV2_DESTROY_5(x, y, z, w, v) LPSM_AV2_DESTROY_1(u)
-#define LPSM_AV2_DESTROY_7(x, y, z, w, v, u, t)                                \
-    LPSM_AV2_DESTROY_6(x, y, z, w, v, u) LPSM_AV2_DESTROY_1(t)
-#define LPSM_AV2_DESTROY_8(x, y, z, w, v, u, t, s)                             \
-    LPSM_AV2_DESTROY_7(x, y, z, w, v, u, t) LPSM_AV2_DESTROY_1(s)
-#define LPSM_AV2_DESTROY(n, ...) LPSM_AV2_DESTROY_##n(__VA_ARGS__)
-*/
-
 template <typename... Args> static void Av2Destroy(bool del, Args&&... args)
 {
     if (!del)
+    {
         return;
+    }
 
     (lpsm_ArgVec2Destroy(std::forward<Args>(args)), ...);
 }

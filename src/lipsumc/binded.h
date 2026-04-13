@@ -17,6 +17,8 @@
 
 #    include "core.h"
 
+// NOLINTBEGIN(modernize-use-using)
+
 /**
  * @brief A handle to a lipsum::ArgVec2
  *
@@ -34,6 +36,8 @@ typedef void* lpsm_ArgVec2Handle;
  * This is a typedef of a pointer to a lipsum::ArgVec2.
  */
 typedef void* lpsm_SourceHandle;
+
+// NOLINTEND(modernize-use-using)
 
 #    ifdef __cplusplus
 extern "C"
@@ -210,11 +214,12 @@ extern "C"
      * This function generates multiple paragraphs in Markdown format with
      * default arguments.
      *
+     * @param num The number of paragraphs.
      * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
      *
      * @return char* The random Markdown paragraph.
      */
-    LIPSUMC_API char* lpsm_gen_md_paragraph(bool useLipsum);
+    LIPSUMC_API char* lpsm_gen_md_paragraph(int num, bool useLipsum);
 
     /**
      * @brief Generate a Markdown document.

@@ -42,34 +42,31 @@ namespace lipsum
         int           rand       = internal::RandomNumber(0, 99);
         if (rand < CHANCE_COM)
         {
-            return std::string(".com");
+            return {".com"};
         }
-        else if (rand < CHANCE_COM + CHANCE_ORG)
+        if (rand < CHANCE_COM + CHANCE_ORG)
         {
-            return std::string(".org");
+            return {".org"};
         }
-        else if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET)
+        if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET)
         {
-            return std::string(".net");
+            return {".net"};
         }
-        else if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU)
+        if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU)
         {
-            return std::string(".edu");
+            return {".edu"};
         }
-        else if (rand <
-                 CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU + CHANCE_IO)
+        if (rand <
+            CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU + CHANCE_IO)
         {
-            return std::string(".io");
+            return {".io"};
         }
-        else if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU +
-                                CHANCE_IO + CHANCE_CA)
+        if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU +
+                           CHANCE_IO + CHANCE_CA)
         {
-            return std::string(".ca");
+            return {".ca"};
         }
-        else
-        {
-            return std::string(".co.uk");
-        }
+        return {".co.uk"};
     }
 
     std::string internal::HandleHTMLEntity(const std::string& str)
@@ -82,11 +79,11 @@ namespace lipsum
         // plus RESERVE_PLUS for small strings
         constexpr int RESERVE_PLUS = 8;
 
-        result.reserve(str.length() * RESERVE_NUMER / RESERVE_DENOM +
+        result.reserve((str.length() * RESERVE_NUMER / RESERVE_DENOM) +
                        RESERVE_PLUS);
-        for (const auto& c : str)
+        for (const auto& letter : str)
         {
-            switch (c)
+            switch (letter)
             {
                 case '&':
                 {
@@ -115,7 +112,7 @@ namespace lipsum
                 }
                 default:
                 {
-                    result.push_back(c);
+                    result.push_back(letter);
                 }
             }
         }

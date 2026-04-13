@@ -49,7 +49,7 @@ namespace lipsum
          *
          * @return int The random number.
          */
-        int roll() const;
+        [[nodiscard]] int roll() const;
 
         int min; ///< The minimum value
         int max; ///< The maximum value

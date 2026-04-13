@@ -74,7 +74,7 @@ namespace lipsum
          *
          * @return std::string The random word.
          */
-        std::string random_word() const;
+        [[nodiscard]] std::string random_word() const;
 
     private:
         std::vector<std::string>

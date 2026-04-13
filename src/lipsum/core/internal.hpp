@@ -22,80 +22,77 @@
  */
 #    define LPSM_FLIP_COIN lpsm::internal::RandomNumber<bool>(false, true)
 
-namespace lipsum
+/**
+ * @namespace lipsum::internal
+ *
+ * @brief This namespace contains functions only used internally by other
+ * functions.
+ *
+ * This namespace's functions are not intended for public use and are
+ * not exposed in the C wrapper.
+ */
+namespace lipsum::internal
 {
+    LIPSUM_API std::string GenerateTLD();
+    LIPSUM_API std::string HandleHTMLEntity(const std::string& str);
+
     /**
-     * @namespace lipsum::internal
+     * @brief Log a warning.
      *
-     * @brief This namespace contains functions only used internally by other
-     * functions.
+     * @since 0.4.2
      *
-     * This namespace's functions are not intended for public use and are
-     * not exposed in the C wrapper.
+     * Log a warning to the console coloured yellow, starting with
+     * "lipsum-cpp WARNING -- " and the message, ending in a newline. If in
+     * Emscripten environment, use JavaScript console.warn() instead.
+     *
+     * @note This function uses ANSI escape codes. The default Windows
+     * terminal on older versions of Windows (< Windows 10 1511) does not
+     * support ANSI escape codes. The default Windows terminal on newer
+     * versions of Windows (>= Windows 10 1511) has support for ANSI escape
+     * codes, but one may have to manually enable them with
+     * SetConsoleMode(..., ENABLE_VIRTUAL_TERMINAL_PROCESSING).
+     *
+     * @tparam Args The arguments' types. All must be printable with
+     * std::ostream, or else the code will fail to compile.
+     *
+     * @param args The arguments to print.
      */
-    namespace internal
+    template <typename... Args> void LogWarn(const Args&... args)
     {
-        LIPSUM_API std::string GenerateTLD();
-        LIPSUM_API std::string HandleHTMLEntity(const std::string& str);
-
-        /**
-         * @brief Log a warning.
-         *
-         * @since 0.4.2
-         *
-         * Log a warning to the console coloured yellow, starting with
-         * "lipsum-cpp WARNING -- " and the message, ending in a newline. If in
-         * Emscripten environment, use JavaScript console.warn() instead.
-         *
-         * @note This function uses ANSI escape codes. The default Windows
-         * terminal on older versions of Windows (< Windows 10 1511) does not
-         * support ANSI escape codes. The default Windows terminal on newer
-         * versions of Windows (>= Windows 10 1511) has support for ANSI escape
-         * codes, but one may have to manually enable them with
-         * SetConsoleMode(..., ENABLE_VIRTUAL_TERMINAL_PROCESSING).
-         *
-         * @tparam Args The arguments' types. All must be printable with
-         * std::ostream, or else the code will fail to compile.
-         *
-         * @param args The arguments to print.
-         */
-        template <typename... Args> void LogWarn(const Args&... args)
-        {
-            std::ostringstream ss;
-            ss << "lipsum-cpp WARNING -- ";
-            ((ss << args), ...);
-            ss << '\n';
-            std::string message = ss.str();
+        std::ostringstream oss;
+        oss << "lipsum-cpp WARNING -- ";
+        ((oss << args), ...);
+        oss << '\n';
+        std::string message = oss.str();
 #    ifndef __EMSCRIPTEN__
-            std::cerr << "\033[33m" << message << "\033[0m";
+        std::cerr << "\033[33m" << message << "\033[0m";
 #    else
-            emscripten_console_warn(message.c_str());
+        emscripten_console_warn(message.c_str());
 #    endif
-        }
+    }
 
-        template <typename T> T RandomNumber(T min, T max)
+    template <typename T> T RandomNumber(T min, T max)
+    {
+        static thread_local std::mt19937 gen(std::random_device{}());
+        if constexpr (std::is_integral_v<T>)
         {
-            static thread_local std::mt19937 gen(std::random_device{}());
-            if constexpr (std::is_integral_v<T>)
-            {
-                std::uniform_int_distribution<T> dist(min, max);
-                return dist(gen);
-            }
-            else
-            {
-                std::uniform_real_distribution<T> dist(min, max);
-                return dist(gen);
-            }
+            std::uniform_int_distribution<T> dist(min, max);
+            return dist(gen);
         }
-        template <> LIPSUM_API char RandomNumber(char min, char max);
-        template <> LIPSUM_API bool RandomNumber(bool min, bool max);
+        else
+        {
+            std::uniform_real_distribution<T> dist(min, max);
+            return dist(gen);
+        }
+    }
+    template <> LIPSUM_API char RandomNumber(char min, char max);
+    template <> LIPSUM_API bool RandomNumber(bool min, bool max);
 
-        template <typename T> std::string ToString(const T& x)
-        {
-            std::ostringstream ss;
-            ss << x;
-            return ss.str();
-        }
-    } // namespace internal
-} // namespace lipsum
+    template <typename T> std::string ToString(const T& str)
+    {
+        std::ostringstream oss;
+        oss << str;
+        return oss.str();
+    }
+} // namespace lipsum::internal
 #endif

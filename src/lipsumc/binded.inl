@@ -37,7 +37,7 @@ extern "C" lpsm_SourceHandle lpsm_Source(const char* path)
 
 extern "C" void lpsm_SourceDestroy(lpsm_SourceHandle handle)
 {
-    lpsm::Source* realSource = reinterpret_cast<lpsm::Source*>(handle);
+    auto* realSource = reinterpret_cast<lpsm::Source*>(handle);
     delete realSource;
 }
 
@@ -48,7 +48,7 @@ extern "C" lpsm_ArgVec2Handle lpsm_ArgVec2(int min, int max)
 
 extern "C" void lpsm_ArgVec2Destroy(lpsm_ArgVec2Handle av2)
 {
-    lpsm::ArgVec2* realAv2 = reinterpret_cast<lpsm::ArgVec2*>(av2);
+    auto* realAv2 = reinterpret_cast<lpsm::ArgVec2*>(av2);
     delete realAv2;
 }
 
@@ -91,10 +91,10 @@ extern "C" char* lpsm_gen_paragraph(int num, bool useLipsum)
     return ConvertToCstr(gen.paragraph(num, useLipsum));
 }
 
-extern "C" char* lpsm_gen_md_paragraph(bool useLipsum)
+extern "C" char* lpsm_gen_md_paragraph(int num, bool useLipsum)
 {
     lpsm::Generator gen;
-    return ConvertToCstr(gen.md_paragraph(useLipsum));
+    return ConvertToCstr(gen.md_paragraph(num, useLipsum));
 }
 
 extern "C" char* lpsm_gen_md_text(int numElements)

@@ -115,6 +115,8 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h
 #ifndef LIPSUMC_VERSION_H
 #define LIPSUMC_VERSION_H
 
+//NOLINTBEGIN(modernize-macro-to-enum)
+
 /**
  * @brief The current version of lipsum-cpp.
  *
@@ -159,7 +161,7 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h
 * This macro stores the current abbreviated Git commit ID of lipsum-cpp 
 * as of the last time scripts/version.cmake was ran.
 */
-#define LIPSUM_CPP_VERSION_COMMIT_C \"${LPSM_VERSION_COMMIT}\";
+#define LIPSUM_CPP_VERSION_COMMIT_C \"${LPSM_VERSION_COMMIT}\"
 
 /**
 * @brief The current version of lipsum-cpp, to the Git commit.
@@ -169,7 +171,8 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h
 * This macro stores the current version of lipsum-cpp with the abbreviated Git commit ID
 * as of the last time scripts/version.cmake was ran.
 */
-#define LIPSUM_CPP_VERSION_FULL_C \"${LPSM_VERSION}-${LPSM_VERSION_COMMIT}\";
+#define LIPSUM_CPP_VERSION_FULL_C \"${LPSM_VERSION}-${LPSM_VERSION_COMMIT}\"
+//NOLINTEND(modernize-macro-to-enum)
  #endif
  ")
 
