@@ -31,6 +31,7 @@ lipsum-cpp has been mainly tested on Linux and WebAssembly as well as cross-comp
     - Git
 - Optional:
     - Emscripten
+    - 7-Zip
     - a build system (e.g. Ninja, MSBuild, ...)
     - Doxygen
     - Clang format
@@ -48,7 +49,7 @@ sudo apt install cmake
 
 # Optional
 sudo apt install ninja-build python3 python3-pip python3-ply python3-venv \
-    doxygen git clang-format clang-tidy
+    doxygen git clang-format clang-tidy 7zip
 
 # install emscripten here...
 

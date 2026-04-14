@@ -23,7 +23,7 @@
  *
  * This constant stores the current version of lipsum-cpp, stored as a string.
  */
-inline constexpr const char* LIPSUM_CPP_VERSION = "0.4.2";
+inline constexpr const char* LIPSUM_CPP_VERSION = "0.4.3";
 
 /**
  * @brief The current major version of lipsum-cpp.
@@ -50,7 +50,7 @@ inline constexpr int LIPSUM_CPP_VERSION_MINOR = 4;
  *
  * This constant stores the current patch version of lipsum-cpp.
  */
-inline constexpr int LIPSUM_CPP_VERSION_PATCH = 2;
+inline constexpr int LIPSUM_CPP_VERSION_PATCH = 3;
 
 /**
  * @brief The current Git commit of lipsum-cpp
@@ -60,7 +60,7 @@ inline constexpr int LIPSUM_CPP_VERSION_PATCH = 2;
  * This constant stores the current abbreviated Git commit ID of lipsum-cpp
  * as of the last time scripts/version.cmake was ran.
  */
-inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = "5f4840b";
+inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = "4086c23";
 
 /**
  * @brief The current version of lipsum-cpp, to the Git commit.
@@ -70,6 +70,6 @@ inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = "5f4840b";
  * This constant stores the current version of lipsum-cpp with the abbreviated
  * Git commit ID as of the last time scripts/version.cmake was ran.
  */
-inline constexpr const char* LIPSUM_CPP_VERSION_FULL = "0.4.2-5f4840b";
+inline constexpr const char* LIPSUM_CPP_VERSION_FULL = "0.4.3-4086c23";
 
 #endif

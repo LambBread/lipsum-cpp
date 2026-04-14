@@ -14,11 +14,11 @@
 - [x] Better logging (0.4.2)
 - [x] Git commit tag in `version.hpp` (0.4.2)
 - [x] Clang tidy (0.4.2)
+- [x] `make help` (0.4.3)
 
 ## Upcoming
 
 - [ ] Remove hardcoded values in `lpsm::internal::GenerateTLD()`
-- [ ] `make help`
 - [ ] Packaging, `make install`
 - [ ] More format generation
     - [ ] JSON
