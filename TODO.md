@@ -19,10 +19,10 @@
 ## Upcoming
 
 - [ ] Remove hardcoded values in `lpsm::internal::GenerateTLD()`
-- [ ] Packaging, `make install`
+- [ ] Move free functions into `lpsm::Generator`
+- [ ] Unit tests
 - [ ] More format generation
     - [ ] JSON
     - [ ] XML
 - [ ] CLI tool
-- [ ] Unit tests
 
