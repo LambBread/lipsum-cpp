@@ -14,7 +14,7 @@ CMAKE_OPTS ?= -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON \
 			  -DLPSM_BUILD_JSBIND=ON
 
 .PHONY: all clean build configure em_configure em_build format amalgamate \
-	pkg full_clean sample quick_pkg pkg_ version tidy help
+	pkg full_clean sample quick_pkg pkg_ version tidy help install
 
 all: build ## Build the project normally.
 
@@ -68,6 +68,9 @@ clean: ## Remove the build directory.
 full_clean: clean ## Remove the build directory, packaging directory, and generated docs directory.
 	rm -rf $(PKG_DIR)
 	rm -rf $(DOCS_DIR)
+
+install: clean build ## Install lipsum-cpp to the default install location.
+	cmake --install build
 
 help: ## Show this help.
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \

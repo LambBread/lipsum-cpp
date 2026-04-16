@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
 project(lipsum-cpp VERSION 0.4.3 LANGUAGES C CXX)
 
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
 # include configuration files
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/options.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/sample.cmake")
@@ -15,39 +18,48 @@ if(LPSM_BUILD_STATIC AND LPSM_BUILD_SHARED)
 endif()
 
 if(LPSM_BUILD_STATIC)
-
     # static library
+
     add_library(lipsum-cpp STATIC "${LPSM_SRCS}")
     
-    # c++20
-    target_compile_features(lipsum-cpp PUBLIC cxx_std_20)
-    
-    # definitions and include directories
+    # definitions
     target_compile_definitions(lipsum-cpp PUBLIC LIPSUM_BUILD_STATIC)
-    target_include_directories(lipsum-cpp PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 elseif(LPSM_BUILD_SHARED)
-
     # shared library
+
     add_library(lipsum-cpp SHARED "${LPSM_SRCS}")
     
-    # c++20
-    target_compile_features(lipsum-cpp PUBLIC cxx_std_20)
-
-    # definitions and include directories
+    # definitions
     target_compile_definitions(lipsum-cpp 
         PUBLIC LIPSUM_BUILD_STATIC LIPSUM_BUILD_SHARED 
         PRIVATE LIPSUM_EXPORT_SHARED
     )
-    target_include_directories(lipsum-cpp PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 else()
     # header only
 
     add_library(lipsum-cpp INTERFACE)
+endif()
+
+#add_library(lipsum-cpp::lipsum-cpp ALIAS lipsum-cpp)
+
+if(LPSM_BUILD_SHARED OR LPSM_BUILD_STATIC)
+    # c++20
+    target_compile_features(lipsum-cpp PUBLIC cxx_std_20)
+    
+    # include directories
+    target_include_directories(lipsum-cpp PUBLIC 
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>"
+        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/lipsum-cpp>"
+    )
+else()
 
     # c++20
     target_compile_features(lipsum-cpp INTERFACE cxx_std_20)
-
+    
     # include directories
-    target_include_directories(lipsum-cpp INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+    target_include_directories(lipsum-cpp INTERFACE 
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>"
+        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/lipsum-cpp>")
 endif()
 
+include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/install.cmake")
