@@ -4,9 +4,9 @@
 #include <memory>
 #ifdef __EMSCRIPTEN__
 #    include <emscripten.h>
+#    include "maddy/parser.h"
 #endif
 #include "lipsum.hpp"
-#include "maddy/parser.h"
 
 int main()
 {

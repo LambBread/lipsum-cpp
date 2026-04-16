@@ -16,3 +16,15 @@ install(
     INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/lipsum-cpp"
 )
 
+set(CPACK_PACKAGE_NAME "lipsum-cpp")
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
+set(CPACK_PACKAGE_VENDOR "LambBread")
+set(CPACK_PACKAGE_CONTACT "LambBread@github.com")
+if(WIN32)
+    set(CPACK_GENERATOR "ZIP")
+elseif(APPLE)
+    set(CPACK_GENERATOR "ZIP;DragNDrop")
+else()
+    set(CPACK_GENERATOR "ZIP;TGZ;DEB")
+endif()
+include(CPack)

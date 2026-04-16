@@ -16,11 +16,12 @@
 - [x] Clang tidy (0.4.2)
 - [x] `make help` (0.4.3)
 - [x] `make install`, CMake install rules (0.4.3)
+- [x] CPack packaging (0.4.3)
 
 ## Upcoming
 
 - [ ] Remove hardcoded values in `lpsm::internal::GenerateTLD()`
-- [ ] CPack packaging
+- [ ] CI/CD with GitHub Actions
 - [ ] Move free functions into `lpsm::Generator`
 - [ ] Unit tests
 - [ ] More format generation
