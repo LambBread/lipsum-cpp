@@ -223,6 +223,9 @@ For JavaScript projects, usage is similar to the C wrapper. See the [`src/jsbind
 
 ## Credits
 
+[`scripts/lipsum.txt`](./scripts/lipsum.txt) was generated with [lipsum.com](https://lipsum.com/).
+[`examples/catipsum_example.txt`](./examples/catipsum_example.txt) was generated with [catipsum.com](http://www.catipsum.com/).
+
 Example [`Markdown.cpp`](./examples/Markdown.cpp) uses library [maddy](https://github.com/progsource/maddy), under MIT License.
 
 ---
