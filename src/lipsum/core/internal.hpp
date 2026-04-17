@@ -88,6 +88,8 @@ namespace lipsum::internal
     template <> LIPSUM_API char RandomNumber(char min, char max);
     template <> LIPSUM_API bool RandomNumber(bool min, bool max);
 
+    LIPSUM_API int WeightedRandomIdx(const std::vector<int>& weights);
+
     template <typename T> std::string ToString(const T& str)
     {
         std::ostringstream oss;

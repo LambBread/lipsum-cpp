@@ -30,9 +30,26 @@ namespace lipsum
         return choice == 0 ? min : max;
     }
 
-    // TODO: remove hardcoded values
+    int internal::WeightedRandomIdx(const std::vector<int>& weights)
+    {
+        static thread_local std::mt19937 gen(std::random_device{}());
+        std::discrete_distribution<>     dist(weights.begin(), weights.end());
+        return dist(gen);
+    }
+
     std::string internal::GenerateTLD()
     {
+        std::vector<std::string> tlds    = {{".com"},
+                                            {".org"},
+                                            {".net"},
+                                            {".edu"},
+                                            {".io"},
+                                            {".ca"},
+                                            {".co.uk"}};
+        std::vector<int>         weights = {70, 10, 7, 5, 5, 2, 1};
+        int                      idx     = internal::WeightedRandomIdx(weights);
+        return tlds.at(idx);
+        /*
         constexpr int CHANCE_COM = 70;
         constexpr int CHANCE_ORG = 10;
         constexpr int CHANCE_NET = 7;
@@ -67,6 +84,7 @@ namespace lipsum
             return {".ca"};
         }
         return {".co.uk"};
+        */
     }
 
     std::string internal::HandleHTMLEntity(const std::string& str)
