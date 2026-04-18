@@ -26,8 +26,13 @@ jobs:
           cmake -S . -B build -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON -DLPSM_BUILD_EXAMPLES=ON -DLPSM_FORMAT=OFF -DLPSM_BUILD_SAMPLE=OFF -DLPSM_BUILD_VERSION=OFF -DCMAKE_BUILD_TYPE=Release
           cmake --build build --config Release
 
+      - name: Package with CPack
+        run: |
+          cd build
+          cpack
+
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: lipsum-cpp-packages
           path: |
