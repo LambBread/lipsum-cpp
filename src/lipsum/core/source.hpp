@@ -34,8 +34,8 @@ namespace lipsum
          *
          * @since 0.4.0
          *
-         * Default constructor which leaves the m_Words object empty and using
-         * global LIPSUM_VEC from sample.inl instead.
+         * Default constructor which leaves the m_Words object empty, using the
+         * standard lorem-ipsum from sample.inl instead.
          */
         Source() = default;
 
@@ -44,8 +44,9 @@ namespace lipsum
          *
          * @since 0.4.0
          *
-         * Constructor which reads from the file specified and fills object
-         * m_Words with unique words.
+         * Constructor which reads from the file specified or enables the
+         * specified built-in source, and filling object m_Words with unique
+         * words if applicable.
          *
          * @param path A path to the source file.
          */
@@ -57,7 +58,10 @@ namespace lipsum
          * @since 0.4.1
          *
          * Read from the file specified and fill object m_Words with the unique
-         * words from it. Formerly known as lpsm::Source::Load().
+         * words from it. Formerly known as lpsm::Source::Load(). If path is
+         * "default"/"lorem", use default lorem-ipsum source. If path is "cat",
+         * use cat-ipsum. If path is "dog"/"doggo", use dog-ipsum. If path is
+         * "corpo"/"corporate", use corporate-ipsum.
          *
          * @param path A path to the source file.
          */
@@ -69,14 +73,16 @@ namespace lipsum
          * @since 0.4.0
          *
          * Select a random word from m_Words unless m_Words is empty, in which
-         * it uses LIPSUM_VEC from sample.inl as a fallback. Formerly known as
-         * lpsm::Source::RandomWord().
+         * it uses a built-in source from sample.inl as a fallback. Formerly
+         * known as lpsm::Source::RandomWord().
          *
          * @return std::string The random word.
          */
         [[nodiscard]] std::string random_word() const;
 
     private:
+        std::string currentLoaded; ///< If not using a custom list, which
+                                   ///< built-in source to use.
         std::vector<std::string>
                 m_Words; ///< The internal list of words stored.
     };

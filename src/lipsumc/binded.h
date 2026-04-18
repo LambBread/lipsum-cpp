@@ -52,7 +52,8 @@ extern "C"
      * This is a wrapper over the constructor of lipsum::Source.
      *
      * @param path The path entered into lipsum::Source::Source. If path is set
-     * to "default", use the default sample.
+     * to any of the built-in sources by lipsum::Source::Source(const
+     * std::string&), it will use the specified built-in source.
      *
      * @warning The lpsm_SourceHandle must be manually deleted with
      * lpsm_SourceDestroy().

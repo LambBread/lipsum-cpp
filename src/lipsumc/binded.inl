@@ -24,14 +24,14 @@
 extern "C" lpsm_SourceHandle lpsm_Source(const char* path)
 {
     lpsm_SourceHandle ret;
-    if (strcmp(path, "default") == 0)
-    {
-        ret = reinterpret_cast<lpsm_SourceHandle>(new lpsm::Source);
-    }
-    else
-    {
-        ret = reinterpret_cast<lpsm_SourceHandle>(new lpsm::Source(path));
-    }
+    // if (strcmp(path, "default") == 0)
+    //{
+    //     ret = reinterpret_cast<lpsm_SourceHandle>(new lpsm::Source);
+    // }
+    // else
+    //{
+    ret = reinterpret_cast<lpsm_SourceHandle>(new lpsm::Source(path));
+    //}
     return ret;
 }
 

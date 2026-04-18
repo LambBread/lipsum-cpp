@@ -1,13 +1,13 @@
 # lipsum-cpp scripts
 
-There are four files in this folder: 
+There are eight files in this folder: 
 
-- [`lipsum.txt`](./lipsum.txt)
-- [`server.sh`](./server.sh)
-- [`split.py`](./split.py)
-- [`version.cmake`](./version.cmake)
+- [`README.md`](./README.md) - this README
+- [`catipsum.txt`](./catipsum.txt) - lorem-ipsum source "cat"
+- [`corporateipsum.txt`](./corporateipsum.txt) - lorem-ipsum source "corpo"/"corporate"
+- [`dogipsum.txt`](./dogipsum.txt) - lorem-ipsum source "dog"/"doggo"
+- [`lipsum.txt`](./lipsum.txt) - lorem-ipsum source "default"/"lorem"
+- [`server.sh`](./server.sh) - run a web server in build/examples and docs/html
+- [`split.py`](./split.py) - form sources into [`src/lipsum/sample.inl`](../src/lipsum/sample.inl)
+- [`version.cmake`](./version.cmake) - create header files for current version of lipsum-cpp
 
-`split.py` is used to count the words in the sample `lipsum.txt` and form it into an `std::array<const char*>`, 
-stored in [`src/lipsum/sample.inl`](../src/lipsum/sample.inl). `server.sh` is a script that runs an HTTP server 
-in `docs/html` and `build/examples`. `version.cmake` creates header files storing the current version of lipsum-cpp, 
-and is called by [`cmake/version.cmake`](../cmake/version.cmake).

@@ -17,6 +17,13 @@
 #    include "internal.hpp"
 #    include "sample.inl"
 
+#    define LPSM_SOURCE_CUSTOM_IPSUM(ipsum, name)                              \
+        if (currentLoaded == name)                                             \
+        {                                                                      \
+            idx = internal::RandomNumber<int>(0, ipsum.size() - 1);            \
+            return {ipsum.at(idx)};                                            \
+        }
+
 namespace lipsum
 {
     Source::Source(const std::string& path)
@@ -29,6 +36,9 @@ namespace lipsum
         int idx;
         if (m_Words.empty())
         {
+            LPSM_SOURCE_CUSTOM_IPSUM(CAT_IPSUM, "cat")
+            LPSM_SOURCE_CUSTOM_IPSUM(DOG_IPSUM, "dog")
+            LPSM_SOURCE_CUSTOM_IPSUM(CORPO_IPSUM, "corpo")
             idx = internal::RandomNumber<int>(0, LIPSUM_VEC.size() - 1);
             return {LIPSUM_VEC.at(idx)};
         }
@@ -40,6 +50,27 @@ namespace lipsum
     void Source::load(const std::string& path)
     {
         m_Words.clear();
+        if (path == "default" || path == "lorem")
+        {
+            currentLoaded = "default";
+            return;
+        }
+        if (path == "cat")
+        {
+            currentLoaded = "cat";
+            return;
+        }
+        if (path == "dog" || path == "doggo")
+        {
+            currentLoaded = "dog";
+            return;
+        }
+        if (path == "corpo" || path == "corporate")
+        {
+            currentLoaded = "corpo";
+            return;
+        }
+
         std::ifstream                   file(path);
         std::unordered_set<std::string> unique;
         std::string                     word;

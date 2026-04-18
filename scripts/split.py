@@ -14,15 +14,25 @@ def count_unique_words(filename):
     return unique_words
 
 if __name__ == "__main__":
-    unique_words = count_unique_words("lipsum.txt")
+    lorem_ipsum = count_unique_words("lipsum.txt")
+    cat_ipsum = count_unique_words("catipsum.txt")
+    dog_ipsum = count_unique_words("dogipsum.txt")
+    corpo_ipsum = count_unique_words("corporateipsum.txt")
+    def write_array(array, name, f):
+        f.write("static constexpr std::array<const char*, " + str(len(array)) + "> " 
+                + name + " = {")
+        for word in array:
+            f.write(f"\"{word}\",\n")
+        f.write("};\n")
+
     with open("../src/lipsum/core/sample.inl", "w") as file:
         file.write("""/** 
  * @file lipsum/core/sample.inl
  * 
- * @brief File containing all of the words used by lipsum::GenerateWord()
+ * @brief File containing all of the words used by lipsum::Source
  * 
- * This file contains a constexpr array of strings,
- * each a word in the original sample lipsum.txt.
+ * This file contains constexpr arrays of strings,
+ * each a word in the original samples.
  * 
  * @author LambBread from github.com
  */
@@ -31,8 +41,10 @@ if __name__ == "__main__":
 #ifndef LIPSUM_CORE_SAMPLE_INL
 #define LIPSUM_CORE_SAMPLE_INL
 
-static constexpr std::array<const char*, """ + str(len(unique_words)) + "> LIPSUM_VEC = {")
-        for word in unique_words:
-            file.write(f"\"{word}\",\n")
-        file.write("};\n#endif")
+""")
+        write_array(lorem_ipsum, "LIPSUM_VEC", file)
+        write_array(cat_ipsum, "CAT_IPSUM", file)
+        write_array(dog_ipsum, "DOG_IPSUM", file)
+        write_array(corpo_ipsum, "CORPO_IPSUM", file)
+        file.write("#endif")
 
