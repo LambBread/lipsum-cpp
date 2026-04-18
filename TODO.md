@@ -19,10 +19,10 @@
 - [x] CPack packaging (0.4.3)
 - [x] Make `lpsm::internal::GenerateTLD()` less repetitive (0.4.3)
 - [x] More built-in lorem-ipsum sources (0.4.3)
+- [x] CI/CD with GitHub Actions (0.4.3)
 
 ## Upcoming
 
-- [ ] CI/CD with GitHub Actions
 - [ ] Move free functions into `lpsm::Generator`
 - [ ] Unit tests
 - [ ] More format generation
