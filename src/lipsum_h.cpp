@@ -24,7 +24,11 @@ static char* ConvertToCstr(const std::string& str)
 {
     std::string result = str;
     char*       cstr   = new char[result.size() + 1];
+#ifndef _WIN32
     strlcpy(cstr, result.c_str(), result.size() + 1);
+#else
+    strcpy_s(cstr, result.size() + 1, result.c_str());
+#endif
     return cstr;
 }
 
