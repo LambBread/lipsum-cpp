@@ -27,7 +27,7 @@ jobs:
           cmake --build build --config Release
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: lipsum-cpp-packages
           path: |
