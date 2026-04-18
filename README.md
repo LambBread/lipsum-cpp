@@ -3,7 +3,9 @@
 ![GitHub License](https://img.shields.io/github/license/LambBread/lipsum-cpp)
 ![GitHub Tag](https://img.shields.io/github/v/tag/LambBread/lipsum-cpp)
 ![GitHub top language](https://img.shields.io/github/languages/top/LambBread/lipsum-cpp)
-
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/LambBread/lipsum-cpp)
+![GitHub last commit](https://img.shields.io/github/last-commit/LambBread/lipsum-cpp)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/LambBread/lipsum-cpp/build.yml)
 
 A header-only library written in C++ for generating sample Lorem Ipsum text. Useful for prototyping apps, UI testing, and anywhere placeholder text is needed.
 
@@ -11,7 +13,7 @@ A header-only library written in C++ for generating sample Lorem Ipsum text. Use
 
 - Header-only (also possible to use an amalgamated single-header `lipsum.hpp`)
 - Customizable number of paragraphs, sentences, sentence fragments, and words
-- Multi-source lorem-ipsum generation
+- Multi-source lorem-ipsum generation including built-in lorem-ipsum, cat-ipsum, dog-ipsum, and corporate-ipsum
 - Markdown and HTML generation
 - Extensive documentation via Doxygen
 - C++, C, and JavaScript support (static/shared library, wrapper, and Emscripten module builds supported)
@@ -20,7 +22,7 @@ A header-only library written in C++ for generating sample Lorem Ipsum text. Use
 
 ## Installation
 
-lipsum-cpp has been mainly tested on Linux and WebAssembly as well as cross-compiled to Windows, although it could likely run on other operating systems as well. 
+lipsum-cpp has been mainly tested on Linux and WebAssembly, although there have been passing builds for Windows and macOS as well.
 
 ### Prerequisites
 
@@ -75,13 +77,10 @@ pip install --user quom
     target_link_libraries(your_target lipsum-cpp)
     ```
 
-3. To build as a static library (optional):  
-   Set `LPSM_BUILD_STATIC=ON` in your CMake options.
+3. To build as a static or shared library (optional):  
+   Set `LPSM_BUILD_STATIC=ON` or `LPSM_BUILD_SHARED=ON` in your CMake options.
 
-4. To build as a shared library (optional):
-   Set `LPSM_BUILD_SHARED=ON` in your CMake options.
-
-5. For C wrapper builds, set either `LPSM_BUILD_STATIC` or `LPSM_BUILD_SHARED`, and `LPSM_BUILD_CWRAPPER` all to `ON`.
+4. For C wrapper builds, set `LPSM_BUILD_STATIC` or `LPSM_BUILD_SHARED`, and `LPSM_BUILD_CWRAPPER` all to `ON`.
 
 Alternatively, use `FetchContent` instead of submodules and `add_subdirectory()`.
 
