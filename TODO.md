@@ -20,12 +20,12 @@
 - [x] Make `lpsm::internal::GenerateTLD()` less repetitive (0.4.3)
 - [x] More built-in lorem-ipsum sources (0.4.3)
 - [x] CI/CD with GitHub Actions (0.4.3)
+- [x] XML generation (0.4.4)
 
 ## Upcoming
 
 - [ ] Unit tests
 - [ ] More format generation
     - [ ] JSON
-    - [ ] XML
 - [ ] CLI tool
 

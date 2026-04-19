@@ -36,6 +36,7 @@ set(LPSM_EXAMPLES_TARGETS
     GenerateSlug
     GenerateURL
     Source
+    Formats
 )
 
 # add executable + link to lipsum-cpp for each

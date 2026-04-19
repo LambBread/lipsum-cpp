@@ -34,6 +34,7 @@
  * @example Markdown.cpp
  * @example Misc.cpp
  * @example Source.cpp
+ * @example Formats.cpp
  */
 
 #pragma once
@@ -48,6 +49,7 @@
 #    include "lipsum/core_funcs.hpp"
 #    include "lipsum/markdown.hpp"
 #    include "lipsum/core_xfuncs.hpp"
+#    include "lipsum/formats.hpp"
 #    include "lipsum/md_xfuncs.hpp"
 #    include "lipsum/misc.hpp"
 
@@ -73,6 +75,7 @@ namespace lpsm = lipsum; ///< Alias for namespace lipsum
 #        include "lipsum/core_funcs.inl"
 #        include "lipsum/generator.inl"
 #        include "lipsum/markdown.inl"
+#        include "lipsum/formats.inl"
 #        include "lipsum/misc.inl"
 #        include "lipsum/xfuncs.inl"
 

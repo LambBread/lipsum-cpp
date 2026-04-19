@@ -61,7 +61,7 @@
  * This macro stores the current abbreviated Git commit ID of lipsum-cpp
  * as of the last time scripts/version.cmake was ran.
  */
-#    define LIPSUM_CPP_VERSION_COMMIT_C "6ad9555"
+#    define LIPSUM_CPP_VERSION_COMMIT_C "79e5d11"
 
 /**
  * @brief The current version of lipsum-cpp, to the Git commit.
@@ -71,6 +71,6 @@
  * This macro stores the current version of lipsum-cpp with the abbreviated Git
  * commit ID as of the last time scripts/version.cmake was ran.
  */
-#    define LIPSUM_CPP_VERSION_FULL_C "0.4.4-6ad9555"
+#    define LIPSUM_CPP_VERSION_FULL_C "0.4.4-79e5d11"
 // NOLINTEND(modernize-macro-to-enum)
 #endif
