@@ -23,7 +23,6 @@
 
 ## Upcoming
 
-- [ ] Move free functions into `lpsm::Generator`
 - [ ] Unit tests
 - [ ] More format generation
     - [ ] JSON

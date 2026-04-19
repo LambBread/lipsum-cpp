@@ -139,6 +139,37 @@ namespace lipsum
          */
         std::string md_text(int numElements = 15);
 
+        /**
+         * @brief Generate an HTML paragraph.
+         *
+         * @since 0.4.4
+         *
+         * This function generates multiple paragraphs in HTML format with
+         * default arguments.
+         *
+         * @param num The number of paragraphs. By default 1.
+         * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+         * By default true.
+         *
+         * @return std::string The random HTML paragraph.
+         */
+        std::string html_paragraph(int num = 1, bool useLipsum = true);
+
+        /**
+         * @brief Generate an HTML document.
+         *
+         * @since 0.4.4
+         *
+         * This function generates a document in HTML format with default
+         * arguments.
+         *
+         * @param numElements The number of elements (paragraph, list, heading)
+         * in the document. By default 15.
+         *
+         * @return std::string The random HTML document.
+         */
+        std::string html_text(int numElements = 15);
+
     private:
         /**
          * @brief Source used for generation.

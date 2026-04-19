@@ -55,6 +55,36 @@ namespace lipsum
                                     false,
                                     m_Source);
     }
+
+    std::string Generator::html_paragraph(int num, bool useLipsum)
+    {
+        return GenerateMarkdownParagraphs(num,
+                                          ArgVec2(4, 9),
+                                          ArgVec2(1, 3),
+                                          ArgVec2(5, 8),
+                                          ArgVec2(4, 8),
+                                          ArgVec2(1, 2),
+                                          ArgVec2(2, 5),
+                                          useLipsum,
+                                          true,
+                                          m_Source);
+    }
+
+    std::string Generator::html_text(int numElements)
+    {
+        return GenerateMarkdownText(ArgVec2(4, 9),
+                                    ArgVec2(1, 3),
+                                    ArgVec2(5, 8),
+                                    ArgVec2(3, 5),
+                                    ArgVec2(4, 8),
+                                    ArgVec2(1, 2),
+                                    ArgVec2(2, 5),
+                                    ArgVec2(2, 4),
+                                    numElements,
+                                    true,
+                                    m_Source);
+    }
+
     std::string Generator::word(int num)
     {
         return GenerateWords(num, m_Source);

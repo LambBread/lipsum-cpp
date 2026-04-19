@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(lipsum-cpp VERSION 0.4.3 LANGUAGES C CXX)
+project(lipsum-cpp VERSION 0.4.4 LANGUAGES C CXX)
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)

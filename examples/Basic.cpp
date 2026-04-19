@@ -27,5 +27,11 @@ int main()
     // Generate a Markdown document with 20 elements.
     std::cout << generator.md_text(20);
 
+    // Generate 5 HTML paragraphs.
+    std::cout << generator.html_paragraph(5, true);
+
+    // Generate an HTML document with 20 elements.
+    std::cout << generator.html_text(20);
+
     return 0;
 }
