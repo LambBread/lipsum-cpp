@@ -49,42 +49,6 @@ namespace lipsum
         std::vector<int>         weights = {70, 10, 7, 5, 5, 2, 1};
         int                      idx     = internal::WeightedRandomIdx(weights);
         return tlds.at(idx);
-        /*
-        constexpr int CHANCE_COM = 70;
-        constexpr int CHANCE_ORG = 10;
-        constexpr int CHANCE_NET = 7;
-        constexpr int CHANCE_EDU = 5;
-        constexpr int CHANCE_IO  = 5;
-        constexpr int CHANCE_CA  = 2;
-        int           rand       = internal::RandomNumber(0, 99);
-        if (rand < CHANCE_COM)
-        {
-            return {".com"};
-        }
-        if (rand < CHANCE_COM + CHANCE_ORG)
-        {
-            return {".org"};
-        }
-        if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET)
-        {
-            return {".net"};
-        }
-        if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU)
-        {
-            return {".edu"};
-        }
-        if (rand <
-            CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU + CHANCE_IO)
-        {
-            return {".io"};
-        }
-        if (rand < CHANCE_COM + CHANCE_ORG + CHANCE_NET + CHANCE_EDU +
-                           CHANCE_IO + CHANCE_CA)
-        {
-            return {".ca"};
-        }
-        return {".co.uk"};
-        */
     }
 
     std::string internal::HandleHTMLEntity(const std::string& str)

@@ -494,8 +494,7 @@ extern "C"
      * a sentence.
      * @param maxFrag The maximum total number of sentence fragments in
      * a sentence.
-     * @param source The source for words. By default the standard "Lorem
-     * ipsum..." sample.
+     * @param source The source for words.
      *
      * @return char* The XML document.
      */

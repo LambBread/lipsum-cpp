@@ -43,7 +43,6 @@ extern "C" char* lpsm_GenerateSentencesS(int                sentCount,
                                                       LPSM_CPPIFY(frag),
                                                       useLipsum,
                                                       LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(2, word, frag)
     Av2Destroy(del, word, frag);
     return ret;
 }
@@ -63,7 +62,6 @@ extern "C" char* lpsm_GenerateParagraphsS(int                paraCount,
                                                    LPSM_CPPIFY(sent),
                                                    useLipsum,
                                                    LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(3, word, frag, sent)
     Av2Destroy(del, word, frag);
     return ret;
 }
@@ -78,7 +76,6 @@ lpsm_GenerateURLS(lpsm_ArgVec2Handle word, lpsm_SourceHandle source, bool del)
 {
     char* ret = ConvertToCstr(
             lpsm::GenerateURL(LPSM_CPPIFY(word), LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(1, word)
     Av2Destroy(del, word);
     return ret;
 }
@@ -91,7 +88,6 @@ extern "C" char* lpsm_GenerateSlugS(lpsm_ArgVec2Handle word,
     char* ret = ConvertToCstr(lpsm::GenerateSlug(LPSM_CPPIFY(word),
                                                  separator,
                                                  LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(1, word)
     Av2Destroy(del, word);
     return ret;
 }
@@ -108,7 +104,6 @@ extern "C" char* lpsm_GenerateSentenceFragmentS(lpsm_ArgVec2Handle word,
     char* ret = ConvertToCstr(
             lpsm::GenerateSentenceFragment(LPSM_CPPIFY(word),
                                            LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(1, word)
     Av2Destroy(del, word);
     return ret;
 }
@@ -121,7 +116,6 @@ extern "C" char* lpsm_GenerateSentenceS(lpsm_ArgVec2Handle word,
     char* ret = ConvertToCstr(lpsm::GenerateSentence(LPSM_CPPIFY(word),
                                                      LPSM_CPPIFY(frag),
                                                      LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(2, word, frag)
     Av2Destroy(del, word, frag);
     return ret;
 }
@@ -138,7 +132,6 @@ extern "C" char* lpsm_GenerateParagraphS(lpsm_ArgVec2Handle word,
                                                       LPSM_CPPIFY(sent),
                                                       useLipsum,
                                                       LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(3, word, frag, sent)
     Av2Destroy(del, word, frag, sent);
     return ret;
 }
@@ -157,7 +150,6 @@ extern "C" char* lpsm_GenerateTextS(lpsm_ArgVec2Handle word,
                                                  LPSM_CPPIFY(para),
                                                  useLipsum,
                                                  LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(4, word, frag, sent, para)
     Av2Destroy(del, word, frag, sent, para);
     return ret;
 }
@@ -178,7 +170,6 @@ extern "C" char* lpsm_GenerateMarkdownHeaderS(int                level,
                                          LPSM_CPPIFY(word),
                                          useHtml,
                                          LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(1, word)
     Av2Destroy(del, word);
     return ret;
 }
@@ -196,7 +187,6 @@ extern "C" char* lpsm_GenerateMarkdownEmphasisS(bool               isBold,
                                            LPSM_CPPIFY(frag),
                                            useHtml,
                                            LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(2, word, frag)
     Av2Destroy(del, word, frag);
     return ret;
 }
@@ -214,7 +204,6 @@ extern "C" char* lpsm_GenerateMarkdownLinkS(lpsm_ArgVec2Handle word,
                                                      LPSM_CPPIFY(wordURL),
                                                      useHtml,
                                                      LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(3, word, frag, wordURL)
     Av2Destroy(del, word, frag, wordURL);
     return ret;
 }
@@ -234,7 +223,6 @@ extern "C" char* lpsm_GenerateMarkdownListS(bool               ordered,
                                                      LPSM_CPPIFY(point),
                                                      useHtml,
                                                      LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(3, word, frag, point)
     Av2Destroy(del, word, frag, point);
     return ret;
 }
@@ -260,7 +248,6 @@ extern "C" char* lpsm_GenerateMarkdownParagraphS(lpsm_ArgVec2Handle word,
                                             useLipsum,
                                             useHtml,
                                             LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(6, word, frag, sent, wordFmt, fragFmt, wordLink)
     Av2Destroy(del, word, frag, sent, wordFmt, fragFmt, wordLink);
     return ret;
 }
@@ -288,7 +275,6 @@ extern "C" char* lpsm_GenerateMarkdownParagraphsS(int                paraCount,
                                              useLipsum,
                                              useHtml,
                                              LPSM_SRC_CPPIFY(source)));
-    // LPSM_AV2_DESTROY(6, word, frag, sent, wordFmt, fragFmt, wordLink)
     Av2Destroy(del, word, frag, sent, wordFmt, fragFmt, wordLink);
     return ret;
 }
@@ -318,17 +304,27 @@ extern "C" char* lpsm_GenerateMarkdownTextS(lpsm_ArgVec2Handle word,
                                                      numElements,
                                                      useHtml,
                                                      LPSM_SRC_CPPIFY(source)));
-    /*
-    LPSM_AV2_DESTROY(8,
-                     word,
-                     frag,
-                     sent,
-                     point,
-                     wordFmt,
-                     fragFmt,
-                     wordHead,
-                     level)*/
     Av2Destroy(del, word, frag, sent, point, wordFmt, fragFmt, wordHead, level);
     return ret;
 }
+
+/*
+ * FORMATS
+ */
+
+extern "C" char* lpsm_GenerateXMLDocumentS(int                choices,
+                                           lpsm_ArgVec2Handle word,
+                                           lpsm_ArgVec2Handle frag,
+                                           lpsm_SourceHandle  source,
+                                           bool               del)
+{
+    char* ret =
+            ConvertToCstr(lpsm::GenerateXMLDocument(choices,
+                                                    LPSM_CPPIFY(word),
+                                                    LPSM_CPPIFY(frag),
+                                                    LPSM_SRC_CPPIFY(source)));
+    Av2Destroy(del, word, frag);
+    return ret;
+}
+
 #endif

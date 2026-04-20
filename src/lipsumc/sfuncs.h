@@ -467,6 +467,33 @@ extern "C"
                                                  bool               useHtml,
                                                  lpsm_SourceHandle  source,
                                                  bool               del);
+    /*
+     * FORMATS
+     */
+
+    /**
+     * @brief Generate a random XML document.
+     *
+     * @since 0.4.4
+     *
+     * @sovload
+     *
+     * @param choices The number of choices to make.
+     * @param word The minimum and maximum total number of words in a sentence
+     * fragment.
+     * @param frag The minimum and maximum total number of sentence fragments in
+     * a sentence.
+     * @param source The source for words.
+     * @param del Whether the ArgVec2 handles should be deleted after the
+     * function is called.
+     *
+     * @return std::string The XML document.
+     */
+    LIPSUMC_API char* lpsm_GenerateXMLDocumentS(int                choices,
+                                                lpsm_ArgVec2Handle word,
+                                                lpsm_ArgVec2Handle frag,
+                                                lpsm_SourceHandle  source,
+                                                bool               del);
 #    ifdef __cplusplus
 }
 #    endif

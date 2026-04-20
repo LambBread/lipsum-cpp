@@ -21,10 +21,10 @@
 - [x] More built-in lorem-ipsum sources (0.4.3)
 - [x] CI/CD with GitHub Actions (0.4.3)
 - [x] XML generation (0.4.4)
+- [x] More documentation for `lpsm::internal` functions (0.4.4)
 
 ## Upcoming
 
-- [ ] More documentation for `lpsm::internal` functions
 - [ ] Unit tests
 - [ ] More format generation
     - [ ] JSON
