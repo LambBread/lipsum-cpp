@@ -5,6 +5,6 @@
 
 int main()
 {
-    std::cout << lpsm::GenerateXMLDocument();
+    std::cout << lpsm::GenerateXMLDocument() << '\n';
     return 0;
 }

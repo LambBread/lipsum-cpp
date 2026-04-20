@@ -17,6 +17,7 @@
 
 #    include "core/argvec2.hpp"
 #    include "core_funcs.hpp"
+#    include "formats.hpp"
 #    include "markdown.hpp"
 
 namespace lipsum
@@ -83,6 +84,14 @@ namespace lipsum
                                     numElements,
                                     true,
                                     m_Source);
+    }
+
+    std::string Generator::xml(int choices)
+    {
+        return GenerateXMLDocument(choices,
+                                   ArgVec2(4, 9),
+                                   ArgVec2(1, 3),
+                                   m_Source);
     }
 
     std::string Generator::word(int num)

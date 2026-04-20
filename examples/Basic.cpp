@@ -33,5 +33,8 @@ int main()
     // Generate an HTML document with 20 elements.
     std::cout << generator.html_text(20);
 
+    // Generate an XML document with 40 "choices"
+    std::cout << generator.xml(40) << '\n';
+
     return 0;
 }

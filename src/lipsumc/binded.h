@@ -266,6 +266,21 @@ extern "C"
      * @return char* The random HTML document.
      */
     LIPSUMC_API char* lpsm_gen_html_text(int numElements);
+
+    /**
+     * @brief Generate an XML document.
+     *
+     * @since 0.4.4
+     *
+     * This function generats a document in XML format with default arguments.
+     *
+     * @param choices The number of choices (start element, end element, add
+     * data element) that are made.
+     *
+     * @return char* The random XML document.
+     */
+    LIPSUMC_API char* lpsm_gen_xml(int choices);
+
 #    ifdef __cplusplus
 }
 #    endif

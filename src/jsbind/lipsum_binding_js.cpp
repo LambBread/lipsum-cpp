@@ -44,7 +44,8 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("md_paragraph", &lpsm::Generator::md_paragraph)
             .function("md_text", &lpsm::Generator::md_text)
             .function("html_paragraph", &lpsm::Generator::html_paragraph)
-            .function("html_text", &lpsm::Generator::html_text);
+            .function("html_text", &lpsm::Generator::html_text)
+            .function("xml", &lpsm::Generator::xml);
     class_<lpsm::Source>("lpsm_Source")
             .constructor<>()
             .constructor<std::string>()

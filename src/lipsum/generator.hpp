@@ -170,6 +170,21 @@ namespace lipsum
          */
         std::string html_text(int numElements = 15);
 
+        /**
+         * @brief Generate an XML document.
+         *
+         * @since 0.4.4
+         *
+         * This function generats a document in XML format with default
+         * arguments.
+         *
+         * @param choices The number of choices (start element, end element, add
+         * data element) that are made. By default 30.
+         *
+         * @return std::string The random XML document.
+         */
+        std::string xml(int choices = 30);
+
     private:
         /**
          * @brief Source used for generation.

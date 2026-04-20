@@ -107,4 +107,10 @@ extern "C" char* lpsm_gen_html_text(int numElements)
     lpsm::Generator gen;
     return ConvertToCstr(gen.html_text(numElements));
 }
+
+extern "C" char* lpsm_gen_xml(int choices)
+{
+    lpsm::Generator gen;
+    return ConvertToCstr(gen.xml(choices));
+}
 #endif
