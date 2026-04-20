@@ -288,3 +288,22 @@ extern "C" char* lpsm_GenerateMarkdownList(bool              ordered,
                                                      useHtml,
                                                      LPSM_SRC_CPPIFY(source)));
 }
+
+/*
+ * FORMATS
+ */
+
+extern "C" char* lpsm_GenerateXMLDocument(int               choices,
+                                          int               minWord,
+                                          int               maxWord,
+                                          int               minFrag,
+                                          int               maxFrag,
+                                          lpsm_SourceHandle source)
+{
+    return ConvertToCstr(lpsm::GenerateXMLDocumentX(choices,
+                                                    minWord,
+                                                    maxWord,
+                                                    minFrag,
+                                                    maxFrag,
+                                                    LPSM_SRC_CPPIFY(source)));
+}

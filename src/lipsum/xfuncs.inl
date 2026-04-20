@@ -200,5 +200,21 @@ namespace lipsum
                                     source);
     }
 
+    /*
+     * FORMATS
+     */
+
+    std::string GenerateXMLDocumentX(int           choices,
+                                     int           minWord,
+                                     int           maxWord,
+                                     int           minFrag,
+                                     int           maxFrag,
+                                     const Source& source)
+    {
+        return GenerateXMLDocument(choices,
+                                   ArgVec2(minWord, maxWord),
+                                   ArgVec2(minFrag, maxFrag),
+                                   source);
+    }
 } // namespace lipsum
 #endif

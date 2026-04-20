@@ -24,14 +24,7 @@
 extern "C" lpsm_SourceHandle lpsm_Source(const char* path)
 {
     lpsm_SourceHandle ret;
-    // if (strcmp(path, "default") == 0)
-    //{
-    //     ret = reinterpret_cast<lpsm_SourceHandle>(new lpsm::Source);
-    // }
-    // else
-    //{
     ret = reinterpret_cast<lpsm_SourceHandle>(new lpsm::Source(path));
-    //}
     return ret;
 }
 
@@ -101,5 +94,17 @@ extern "C" char* lpsm_gen_md_text(int numElements)
 {
     lpsm::Generator gen;
     return ConvertToCstr(gen.md_text(numElements));
+}
+
+extern "C" char* lpsm_gen_html_paragraph(int num, bool useLipsum)
+{
+    lpsm::Generator gen;
+    return ConvertToCstr(gen.html_paragraph(num, useLipsum));
+}
+
+extern "C" char* lpsm_gen_html_text(int numElements)
+{
+    lpsm::Generator gen;
+    return ConvertToCstr(gen.html_text(numElements));
 }
 #endif

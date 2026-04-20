@@ -474,6 +474,38 @@ extern "C"
                                                 bool              useHtml,
                                                 lpsm_SourceHandle source);
 
+    /*
+     * FORMATS
+     */
+
+    /**
+     * @brief Generate a random XML document.
+     *
+     * @since 0.4.4
+     *
+     * @xovload
+     *
+     * @param choices The number of choices to make.
+     * @param minWord The minimum total number of words in a sentence
+     * fragment.
+     * @param maxWord The maximum total number of words in a sentence
+     * fragment.
+     * @param minFrag The minimum total number of sentence fragments in
+     * a sentence.
+     * @param maxFrag The maximum total number of sentence fragments in
+     * a sentence.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
+     *
+     * @return char* The XML document.
+     */
+    LIPSUMC_API char* lpsm_GenerateXMLDocument(int               choices,
+                                               int               minWord,
+                                               int               maxWord,
+                                               int               minFrag,
+                                               int               maxFrag,
+                                               lpsm_SourceHandle source);
+
 #    ifdef __cplusplus
 }
 #    endif

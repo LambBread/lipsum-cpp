@@ -24,6 +24,7 @@
 
 ## Upcoming
 
+- [ ] More documentation for `lpsm::internal` functions
 - [ ] Unit tests
 - [ ] More format generation
     - [ ] JSON

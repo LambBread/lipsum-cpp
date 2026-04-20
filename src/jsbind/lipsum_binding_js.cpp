@@ -42,7 +42,9 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("sentence_fragment", &lpsm::Generator::sentence_fragment)
             .function("paragraph", &lpsm::Generator::paragraph)
             .function("md_paragraph", &lpsm::Generator::md_paragraph)
-            .function("md_text", &lpsm::Generator::md_text);
+            .function("md_text", &lpsm::Generator::md_text)
+            .function("html_paragraph", &lpsm::Generator::html_paragraph)
+            .function("html_text", &lpsm::Generator::html_text);
     class_<lpsm::Source>("lpsm_Source")
             .constructor<>()
             .constructor<std::string>()
@@ -92,4 +94,6 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     function("lpsm_CountWords", &lpsm::CountWords);
     function("lpsm_GeneratePlainURL", &lpsm::GeneratePlainURL);
     function("lpsm_GenerateScramble", &lpsm::GenerateScramble);
+    function("lpsm_GenerateXMLDocument", &lpsm::GenerateXMLDocument);
+    function("lpsm_GenerateXMLDocumentX", &lpsm::GenerateXMLDocumentX);
 }

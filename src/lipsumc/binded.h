@@ -236,6 +236,36 @@ extern "C"
      * @return char* The random Markdown document.
      */
     LIPSUMC_API char* lpsm_gen_md_text(int numElements);
+
+    /**
+     * @brief Generate an HTML paragraph.
+     *
+     * @since 0.4.4
+     *
+     * This function generates multiple paragraphs in HTML format with
+     * default arguments.
+     *
+     * @param num The number of paragraphs.
+     * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+     *
+     * @return char* The random HTML paragraph.
+     */
+    LIPSUMC_API char* lpsm_gen_html_paragraph(int num, bool useLipsum);
+
+    /**
+     * @brief Generate an HTML document.
+     *
+     * @since 0.4.4
+     *
+     * This function generates a document in HTML format with default
+     * arguments.
+     *
+     * @param numElements The number of elements (paragraph, list, heading)
+     * in the document.
+     *
+     * @return char* The random HTML document.
+     */
+    LIPSUMC_API char* lpsm_gen_html_text(int numElements);
 #    ifdef __cplusplus
 }
 #    endif
