@@ -6,5 +6,7 @@
 int main()
 {
     std::cout << lpsm::GenerateXMLDocument() << '\n';
+
+    std::cout << lpsm::GenerateJSONObject() << '\n';
     return 0;
 }

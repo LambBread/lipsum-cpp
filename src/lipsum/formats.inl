@@ -54,7 +54,7 @@ namespace lipsum
                     break;
                 }
 
-                case 2:
+                default:
                 {
                     if (!tagStack.empty())
                     {
@@ -62,14 +62,6 @@ namespace lipsum
                         tagStack.pop_back();
                     }
                     break;
-                }
-
-                default:
-                {
-                    internal::LogWarn(
-                            "lpsm::GenerateXMLDocument(): choice chosen "
-                            "somehow < 0 or > 2. If you are reading this, "
-                            "something went seriously wrong.");
                 }
             }
         }
@@ -83,6 +75,120 @@ namespace lipsum
         ret += std::string("</") + root + ">";
 
         return ret;
+    }
+
+    std::string GenerateJSONString(const Source& source)
+    {
+        return std::string("\"") + GenerateWord(source) + "\"";
+    }
+
+    std::string GenerateJSONNumber()
+    {
+        constexpr int JSON_NUMBER_MIN = -1000;
+        constexpr int JSON_NUMBER_MAX = 1000;
+        return internal::ToString(
+                internal::RandomNumber(JSON_NUMBER_MIN, JSON_NUMBER_MAX));
+    }
+
+    std::string GenerateJSONArray(int            depth,
+                                  int            maxDepth,
+                                  const ArgVec2& jsonLength,
+                                  const Source&  source)
+    {
+        int         count = jsonLength.roll();
+        std::string ret   = "[";
+        for (int i = 0; i < count; ++i)
+        {
+            if (i > 0)
+            {
+                ret += ",";
+            }
+            ret += GenerateJSONValue(depth + 1, maxDepth, jsonLength, source);
+        }
+        ret += "]";
+        return ret;
+    }
+
+    std::string GenerateJSONObject(int            depth,
+                                   int            maxDepth,
+                                   const ArgVec2& jsonLength,
+                                   const Source&  source)
+    {
+        int         count = jsonLength.roll();
+        std::string ret   = "{";
+        for (int i = 0; i < count; ++i)
+        {
+            if (i > 0)
+            {
+                ret += ",";
+            }
+            std::string key = GenerateJSONString(source);
+            ret += key + std::string(":") +
+                   GenerateJSONValue(depth + 1, maxDepth, jsonLength, source);
+        }
+        ret += "}";
+        return ret;
+    }
+
+    std::string GenerateJSONValue(int            depth,
+                                  int            maxDepth,
+                                  const ArgVec2& jsonLength,
+                                  const Source&  source)
+    {
+        int choice;
+        if (depth > maxDepth)
+        {
+            choice = internal::RandomNumber(0, 3);
+            switch (choice)
+            {
+                case 0:
+                {
+                    return GenerateJSONString(source);
+                }
+                case 1:
+                {
+                    return GenerateJSONNumber();
+                }
+                case 2:
+                {
+                    return LPSM_FLIP_COIN ? "true" : "false";
+                }
+                default:
+                {
+                    return "null";
+                }
+            }
+        }
+
+        choice = internal::RandomNumber(0, 5);
+        switch (choice)
+        {
+
+            case 0:
+            {
+                return GenerateJSONString(source);
+            }
+            case 1:
+            {
+                return GenerateJSONNumber();
+            }
+            case 2:
+            {
+                return LPSM_FLIP_COIN ? "true" : "false";
+            }
+            case 3:
+            {
+                return "null";
+            }
+            case 4:
+            {
+                return GenerateJSONArray(depth, maxDepth, jsonLength, source);
+            }
+            default:
+            {
+                return GenerateJSONObject(depth, maxDepth, jsonLength, source);
+            }
+        }
     }
 } // namespace lipsum
 

@@ -22,11 +22,10 @@
 - [x] CI/CD with GitHub Actions (0.4.3)
 - [x] XML generation (0.4.4)
 - [x] More documentation for `lpsm::internal` functions (0.4.4)
+- [x] JSON generation (0.4.4)
 
 ## Upcoming
 
 - [ ] Unit tests
-- [ ] More format generation
-    - [ ] JSON
 - [ ] CLI tool
 
