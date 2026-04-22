@@ -110,11 +110,12 @@ namespace lipsum
      *
      * @return std::string The random JSON array.
      */
-    LIPSUM_API std::string LIPSUM_API
+    LIPSUM_API std::string
                GenerateJSONArray(int            depth      = 0,
                                  int            maxDepth   = 3,
                                  const ArgVec2& jsonLength = ArgVec2(2, 5),
                                  const Source&  source     = Source());
+
     /**
      * @brief Generate a random JSON value.
      *
@@ -166,6 +167,79 @@ namespace lipsum
                                     int           minFrag = 1,
                                     int           maxFrag = 3,
                                     const Source& source  = Source());
+
+    /**
+     * @brief Generate a random JSON object.
+     *
+     * @since 0.4.4
+     *
+     * @xovload
+     *
+     * @param depth The current level of recursion. By default 0.
+     * @param maxDepth The maximum level of recursion. By default 3.
+     * @param minJsonLength The minimum possible number of items in the
+     * object. By default 2.
+     * @param maxJsonLength The maximum possible number of items in the
+     * object. By default 5.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
+     *
+     * @return std::string The random JSON object.
+     */
+    LIPSUM_API std::string GenerateJSONObjectX(int           depth         = 0,
+                                               int           maxDepth      = 3,
+                                               int           minJsonLength = 2,
+                                               int           maxJsonLength = 5,
+                                               const Source& source = Source());
+
+    /**
+     * @brief Generate a random JSON array.
+     *
+     * @since 0.4.4
+     *
+     * @xovload
+     *
+     * @param depth The current level of recursion. By default 0.
+     * @param maxDepth The maximum level of recursion. By default 3.
+     * @param minJsonLength The minimum possible number of items in the
+     * array. By default 2.
+     * @param maxJsonLength The maximum possible number of items in the
+     * array. By default 5.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
+     *
+     * @return std::string The random JSON array.
+     */
+    LIPSUM_API std::string GenerateJSONArrayX(int           depth         = 0,
+                                              int           maxDepth      = 3,
+                                              int           minJsonLength = 2,
+                                              int           maxJsonLength = 5,
+                                              const Source& source = Source());
+
+    /**
+     * @brief Generate a random JSON value.
+     *
+     * @since 0.4.4
+     *
+     * @xovload
+     *
+     * @param depth The current level of recursion. By default 0.
+     * @param maxDepth The maximum level of recursion. By default 3.
+     * @param minJsonLength The minimum possible number of items in
+     * arrays and objects. By default 2.
+     * @param maxJsonLength The maximum possible number of items in
+     * arrays and objects. By default 5.
+     * @param source The source for words. By default the standard "Lorem
+     * ipsum..." sample.
+     *
+     * @return std::string The random JSON value.
+     */
+    LIPSUM_API std::string GenerateJSONValueX(int           depth         = 0,
+                                              int           maxDepth      = 3,
+                                              int           minJsonLength = 2,
+                                              int           maxJsonLength = 5,
+                                              const Source& source = Source());
+
 } // namespace lipsum
 
 #endif

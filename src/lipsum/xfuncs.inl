@@ -217,5 +217,41 @@ namespace lipsum
                                    ArgVec2(minFrag, maxFrag),
                                    source);
     }
+
+    std::string GenerateJSONValueX(int           depth,
+                                   int           maxDepth,
+                                   int           minJsonLength,
+                                   int           maxJsonLength,
+                                   const Source& source)
+    {
+        return GenerateJSONValue(depth,
+                                 maxDepth,
+                                 ArgVec2(minJsonLength, maxJsonLength),
+                                 source);
+    }
+
+    std::string GenerateJSONArrayX(int           depth,
+                                   int           maxDepth,
+                                   int           minJsonLength,
+                                   int           maxJsonLength,
+                                   const Source& source)
+    {
+        return GenerateJSONArray(depth,
+                                 maxDepth,
+                                 ArgVec2(minJsonLength, maxJsonLength),
+                                 source);
+    }
+    std::string GenerateJSONObjectX(int           depth,
+                                    int           maxDepth,
+                                    int           minJsonLength,
+                                    int           maxJsonLength,
+                                    const Source& source)
+    {
+        return GenerateJSONObject(depth,
+                                  maxDepth,
+                                  ArgVec2(minJsonLength, maxJsonLength),
+                                  source);
+    }
+
 } // namespace lipsum
 #endif
