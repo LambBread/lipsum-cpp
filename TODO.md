@@ -26,6 +26,7 @@
 
 ## Upcoming
 
+- [ ] Merge smaller examples
 - [ ] Unit tests
 - [ ] CLI tool
 
