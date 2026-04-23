@@ -45,7 +45,8 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("md_text", &lpsm::Generator::md_text)
             .function("html_paragraph", &lpsm::Generator::html_paragraph)
             .function("html_text", &lpsm::Generator::html_text)
-            .function("xml", &lpsm::Generator::xml);
+            .function("xml", &lpsm::Generator::xml)
+            .function("json", &lpsm::Generator::json);
     class_<lpsm::Source>("lpsm_Source")
             .constructor<>()
             .constructor<std::string>()
@@ -74,7 +75,6 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     function("lpsm_GenerateParagraphsX", &lpsm::GenerateParagraphsX);
     function("lpsm_GenerateSentencesX", &lpsm::GenerateSentencesX);
     function("lpsm_CountSentences", &lpsm::CountSentences);
-    // function("lpsm_LipsumVersion", &lpsm::LipsumVersion);
     constant("LIPSUM_CPP_VERSION", std::string(LIPSUM_CPP_VERSION));
     constant("LIPSUM_CPP_VERSION_MAJOR", LIPSUM_CPP_VERSION_MAJOR);
     constant("LIPSUM_CPP_VERSION_MINOR", LIPSUM_CPP_VERSION_MINOR);
@@ -97,4 +97,12 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     function("lpsm_GenerateScramble", &lpsm::GenerateScramble);
     function("lpsm_GenerateXMLDocument", &lpsm::GenerateXMLDocument);
     function("lpsm_GenerateXMLDocumentX", &lpsm::GenerateXMLDocumentX);
+    function("lpsm_GenerateJSONString", &lpsm::GenerateJSONString);
+    function("lpsm_GenerateJSONNumber", &lpsm::GenerateJSONNumber);
+    function("lpsm_GenerateJSONObject", &lpsm::GenerateJSONObject);
+    function("lpsm_GenerateJSONObjectX", &lpsm::GenerateJSONObjectX);
+    function("lpsm_GenerateJSONArray", &lpsm::GenerateJSONArray);
+    function("lpsm_GenerateJSONArrayX", &lpsm::GenerateJSONArrayX);
+    function("lpsm_GenerateJSONValue", &lpsm::GenerateJSONValue);
+    function("lpsm_GenerateJSONValueX", &lpsm::GenerateJSONValueX);
 }

@@ -281,6 +281,22 @@ extern "C"
      */
     LIPSUMC_API char* lpsm_gen_xml(int choices);
 
+    /**
+     * @brief Generate a JSON object or array.
+     *
+     * @since 0.4.4
+     *
+     * This function generates an object or array in JSON format with
+     * default arguments.
+     *
+     * @param maxDepth Maximum depth of recursion.
+     * @param isObject Whether to output an object (true) or an array
+     * (false).
+     *
+     * @return char* The random JSON object or array.
+     */
+    LIPSUMC_API char* lpsm_gen_json(int maxDepth, bool isObject);
+
 #    ifdef __cplusplus
 }
 #    endif

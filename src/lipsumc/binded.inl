@@ -113,4 +113,10 @@ extern "C" char* lpsm_gen_xml(int choices)
     lpsm::Generator gen;
     return ConvertToCstr(gen.xml(choices));
 }
+
+extern "C" char* lpsm_gen_json(int maxDepth, bool isObject)
+{
+    lpsm::Generator gen;
+    return ConvertToCstr(gen.json(maxDepth, isObject));
+}
 #endif

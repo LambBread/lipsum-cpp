@@ -350,7 +350,7 @@ extern "C"
                                         lpsm_SourceHandle source);
 
     /*
-     * CORE
+     * MARKDONW
      * ----------------
      */
 
@@ -483,7 +483,9 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * @xovload
+     * Generate a random document in XML format starting with an XML metadata
+     * tag. Create a root element and make a number of choices to create a new
+     * tag, fill a tag, or close a tag. Afterwards, close all remaining tags.
      *
      * @param choices The number of choices to make.
      * @param minWord The minimum total number of words in a sentence
@@ -504,6 +506,100 @@ extern "C"
                                                int               minFrag,
                                                int               maxFrag,
                                                lpsm_SourceHandle source);
+
+    /**
+     * @brief Generate a random JSON string.
+     *
+     * @since 0.4.4
+     *
+     * Generate a word with quotes surrounding it.
+     *
+     * @param source The source for words.
+     *
+     * @return char* The random JSON string.
+     */
+    LIPSUMC_API char* lpsm_GenerateJSONString(lpsm_SourceHandle source);
+
+    /**
+     * @brief Generate a random JSON number.
+     *
+     * @since 0.4.4
+     *
+     * Generate a random number from -1000 to 1000 and convert it to a string.
+     *
+     * @return char* The random JSON number.
+     */
+    LIPSUMC_API char* lpsm_GenerateJSONNumber(void);
+
+    /**
+     * @brief Generate a random JSON object.
+     *
+     * @since 0.4.4
+     *
+     * Generate a random JSON object recursively.
+     *
+     * @param depth The current level of recursion.
+     * @param maxDepth The maximum level of recursion.
+     * @param minJsonLength The minimum possible number of items in the
+     * object.
+     * @param maxJsonLength The maximum possible number of items in the
+     * object.
+     * @param source The source for words.
+     *
+     * @return char* The random JSON object.
+     */
+    LIPSUMC_API char* lpsm_GenerateJSONObject(int               depth,
+                                              int               maxDepth,
+                                              int               minJsonLength,
+                                              int               maxJsonLength,
+                                              lpsm_SourceHandle source);
+
+    /**
+     * @brief Generate a random JSON array.
+     *
+     * @since 0.4.4
+     *
+     * Generate a random JSON array recursively.
+     *
+     * @param depth The current level of recursion.
+     * @param maxDepth The maximum level of recursion.
+     * @param minJsonLength The minimum possible number of items in the
+     * array.
+     * @param maxJsonLength The maximum possible number of items in the
+     * array.
+     * @param source The source for words.
+     *
+     * @return char* The random JSON array.
+     */
+    LIPSUMC_API char* lpsm_GenerateJSONArray(int               depth,
+                                             int               maxDepth,
+                                             int               minJsonLength,
+                                             int               maxJsonLength,
+                                             lpsm_SourceHandle source);
+
+    /**
+     * @brief Generate a random JSON value.
+     *
+     * @since 0.4.4
+     *
+     * Generate a random JSON value, which can be a string, a number, a bool,
+     * null, and if depth <= maxDepth, an object or array.
+     *
+     * @param depth The current level of recursion.
+     * @param maxDepth The maximum level of recursion.
+     * @param minJsonLength The minimum possible number of items in
+     * arrays and objects.
+     * @param maxJsonLength The maximum possible number of items in
+     * arrays and objects.
+     * @param source The source for words.
+     *
+     * @return char* The random JSON value.
+     */
+    LIPSUMC_API char* lpsm_GenerateJSONValue(int               depth,
+                                             int               maxDepth,
+                                             int               minJsonLength,
+                                             int               maxJsonLength,
+                                             lpsm_SourceHandle source);
 
 #    ifdef __cplusplus
 }

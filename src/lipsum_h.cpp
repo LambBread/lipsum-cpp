@@ -307,3 +307,52 @@ extern "C" char* lpsm_GenerateXMLDocument(int               choices,
                                                     maxFrag,
                                                     LPSM_SRC_CPPIFY(source)));
 }
+
+extern "C" char* lpsm_GenerateJSONString(lpsm_SourceHandle source)
+{
+    return ConvertToCstr(lpsm::GenerateJSONString(LPSM_SRC_CPPIFY(source)));
+}
+
+extern "C" char* lpsm_GenerateJSONNumber()
+{
+    return ConvertToCstr(lpsm::GenerateJSONNumber());
+}
+
+extern "C" char* lpsm_GenerateJSONObject(int               depth,
+                                         int               maxDepth,
+                                         int               minJsonLength,
+                                         int               maxJsonLength,
+                                         lpsm_SourceHandle source)
+{
+    return ConvertToCstr(lpsm::GenerateJSONObjectX(depth,
+                                                   maxDepth,
+                                                   minJsonLength,
+                                                   maxJsonLength,
+                                                   LPSM_SRC_CPPIFY(source)));
+}
+
+extern "C" char* lpsm_GenerateJSONArray(int               depth,
+                                        int               maxDepth,
+                                        int               minJsonLength,
+                                        int               maxJsonLength,
+                                        lpsm_SourceHandle source)
+{
+    return ConvertToCstr(lpsm::GenerateJSONArrayX(depth,
+                                                  maxDepth,
+                                                  minJsonLength,
+                                                  maxJsonLength,
+                                                  LPSM_SRC_CPPIFY(source)));
+}
+
+extern "C" char* lpsm_GenerateJSONValue(int               depth,
+                                        int               maxDepth,
+                                        int               minJsonLength,
+                                        int               maxJsonLength,
+                                        lpsm_SourceHandle source)
+{
+    return ConvertToCstr(lpsm::GenerateJSONValueX(depth,
+                                                  maxDepth,
+                                                  minJsonLength,
+                                                  maxJsonLength,
+                                                  LPSM_SRC_CPPIFY(source)));
+}

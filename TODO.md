@@ -28,6 +28,7 @@
 ## Upcoming
 
 - [ ] Merge smaller examples
+- [ ] Customizable settings in `lpsm::Generator`
 - [ ] Unit tests
 - [ ] CLI tool
 

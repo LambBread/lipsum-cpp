@@ -327,4 +327,46 @@ extern "C" char* lpsm_GenerateXMLDocumentS(int                choices,
     return ret;
 }
 
+extern "C" char* lpsm_GenerateJSONObjectS(int                depth,
+                                          int                maxDepth,
+                                          lpsm_ArgVec2Handle jsonLength,
+                                          lpsm_SourceHandle  source,
+                                          bool               del)
+{
+    char* ret =
+            ConvertToCstr(lpsm::GenerateJSONObject(depth,
+                                                   maxDepth,
+                                                   LPSM_CPPIFY(jsonLength),
+                                                   LPSM_SRC_CPPIFY(source)));
+    Av2Destroy(del, jsonLength);
+    return ret;
+}
+
+extern "C" char* lpsm_GenerateJSONArrayS(int                depth,
+                                         int                maxDepth,
+                                         lpsm_ArgVec2Handle jsonLength,
+                                         lpsm_SourceHandle  source,
+                                         bool               del)
+{
+    char* ret = ConvertToCstr(lpsm::GenerateJSONArray(depth,
+                                                      maxDepth,
+                                                      LPSM_CPPIFY(jsonLength),
+                                                      LPSM_SRC_CPPIFY(source)));
+    Av2Destroy(del, jsonLength);
+    return ret;
+}
+
+extern "C" char* lpsm_GenerateJSONValueS(int                depth,
+                                         int                maxDepth,
+                                         lpsm_ArgVec2Handle jsonLength,
+                                         lpsm_SourceHandle  source,
+                                         bool               del)
+{
+    char* ret = ConvertToCstr(lpsm::GenerateJSONValue(depth,
+                                                      maxDepth,
+                                                      LPSM_CPPIFY(jsonLength),
+                                                      LPSM_SRC_CPPIFY(source)));
+    Av2Destroy(del, jsonLength);
+    return ret;
+}
 #endif

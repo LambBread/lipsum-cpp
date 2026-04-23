@@ -196,6 +196,8 @@ namespace lipsum
          * @param maxDepth Maximum depth of recursion. By default 3.
          * @param isObject Whether to output an object (true) or an array
          * (false). By default true.
+         *
+         * @return std::string The random JSON object or array.
          */
         std::string json(int maxDepth = 3, bool isObject = true);
 

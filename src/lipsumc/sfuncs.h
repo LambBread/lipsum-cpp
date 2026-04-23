@@ -487,13 +487,83 @@ extern "C"
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
      *
-     * @return std::string The XML document.
+     * @return char* he XML document.
      */
     LIPSUMC_API char* lpsm_GenerateXMLDocumentS(int                choices,
                                                 lpsm_ArgVec2Handle word,
                                                 lpsm_ArgVec2Handle frag,
                                                 lpsm_SourceHandle  source,
                                                 bool               del);
+
+    /**
+     * @brief Generate a random JSON object.
+     *
+     * @since 0.4.4
+     *
+     * @sovload
+     *
+     * @param depth The current level of recursion.
+     * @param maxDepth The maximum level of recursion.
+     * @param jsonLength The minimum and maximum possible number of items in the
+     * object.
+     * @param source The source for words.
+     * @param del Whether the ArgVec2 handles should be deleted after the
+     * function is called.
+     *
+     * @return char* The random JSON object.
+     */
+    LIPSUMC_API char* lpsm_GenerateJSONObjectS(int                depth,
+                                               int                maxDepth,
+                                               lpsm_ArgVec2Handle jsonLength,
+                                               lpsm_SourceHandle  source,
+                                               bool               del);
+
+    /**
+     * @brief Generate a random JSON array.
+     *
+     * @since 0.4.4
+     *
+     * @sovload
+     *
+     * @param depth The current level of recursion.
+     * @param maxDepth The maximum level of recursion.
+     * @param jsonLength The minimum and maximum possible number of items in the
+     * array.
+     * @param source The source for words.
+     * @param del Whether the ArgVec2 handles should be deleted after the
+     * function is called.
+     *
+     * @return char* The random JSON array.
+     */
+    LIPSUMC_API char* lpsm_GenerateJSONArrayS(int                depth,
+                                              int                maxDepth,
+                                              lpsm_ArgVec2Handle jsonLength,
+                                              lpsm_SourceHandle  source,
+                                              bool               del);
+
+    /**
+     * @brief Generate a random JSON value.
+     *
+     * @since 0.4.4
+     *
+     * @sovload
+     *
+     * @param depth The current level of recursion.
+     * @param maxDepth The maximum level of recursion.
+     * @param jsonLength The minimum and maximum possible number of items in
+     * arrays and objects.
+     * @param source The source for words.
+     * @param del Whether the ArgVec2 handles should be deleted after the
+     * function is called.
+     *
+     * @return char* The random JSON value.
+     */
+    LIPSUMC_API char* lpsm_GenerateJSONValueS(int                depth,
+                                              int                maxDepth,
+                                              lpsm_ArgVec2Handle jsonLength,
+                                              lpsm_SourceHandle  source,
+                                              bool               del);
+
 #    ifdef __cplusplus
 }
 #    endif
