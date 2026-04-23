@@ -36,5 +36,8 @@ int main()
     // Generate an XML document with 40 "choices"
     std::cout << generator.xml(40) << '\n';
 
+    // Generate a JSON object with a max recursion of 5
+    std::cout << generator.json(5, true) << '\n';
+
     return 0;
 }

@@ -185,6 +185,20 @@ namespace lipsum
          */
         std::string xml(int choices = 30);
 
+        /**
+         * @brief Generate a JSON object or array.
+         *
+         * @since 0.4.4
+         *
+         * This function generates an object or array in JSON format with
+         * default arguments.
+         *
+         * @param maxDepth Maximum depth of recursion. By default 3.
+         * @param isObject Whether to output an object (true) or an array
+         * (false). By default true.
+         */
+        std::string json(int maxDepth = 3, bool isObject = true);
+
     private:
         /**
          * @brief Source used for generation.

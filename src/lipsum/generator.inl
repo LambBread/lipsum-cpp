@@ -94,6 +94,15 @@ namespace lipsum
                                    m_Source);
     }
 
+    std::string Generator::json(int maxDepth, bool isObject)
+    {
+        if (isObject)
+        {
+            return GenerateJSONObject(0, maxDepth, ArgVec2(2, 5), m_Source);
+        }
+        return GenerateJSONArray(0, maxDepth, ArgVec2(2, 5), m_Source);
+    }
+
     std::string Generator::word(int num)
     {
         return GenerateWords(num, m_Source);

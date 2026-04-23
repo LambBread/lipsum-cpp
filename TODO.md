@@ -23,6 +23,7 @@
 - [x] XML generation (0.4.4)
 - [x] More documentation for `lpsm::internal` functions (0.4.4)
 - [x] JSON generation (0.4.4)
+- [x] More `lpsm::Generator` functions (0.4.4)
 
 ## Upcoming
 
