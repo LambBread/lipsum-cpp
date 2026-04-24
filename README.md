@@ -238,7 +238,6 @@ For JavaScript projects, usage is similar to the C wrapper. See the [`src/jsbind
 - [`scripts/catipsum.txt`](./scripts/catipsum.txt) was generated with [catipsum.com](https://www.catipsum.com/).
 - [`scripts/dogipsum.txt`](./scripts/dogipsum.txt) was generated with [doggoipsum.com](https://doggoipsum.com/).
 - [`scripts/corporateipsum.txt`](./scripts/corporateipsum.txt) was generated with [corporate-ipsum.com](https://www.corporate-ipsum.com/).
-- Example [`Markdown.cpp`](./examples/Markdown.cpp) uses library [maddy](https://github.com/progsource/maddy), under MIT License.
 
 ---
 

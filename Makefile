@@ -55,7 +55,6 @@ pkg_: ## Copy the JS wrapper and its example to build/examples, and then compres
 	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(BUILD_DIR)/$(EXAMPLES_DIR)/
 	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(PKG_DIR)/
 	cp $(EXAMPLES_DIR)/JSBinding.html $(BUILD_DIR)/$(EXAMPLES_DIR)/
-	rm $(BUILD_DIR)/$(EXAMPLES_DIR)/Source.*
 	7z a -tzip -r -mx=9 lipsum-pkg.zip $(PKG_DIR)
 	
 quick_pkg: em_configure version format tidy em_build amalgamate pkg_ ## Build an Emscripten build of the project, running the versioning script, clang-format, clang-tidy, amalgamation, and final packaging steps.
