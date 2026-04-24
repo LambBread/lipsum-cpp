@@ -24,10 +24,10 @@
 - [x] More documentation for `lpsm::internal` functions (0.4.4)
 - [x] JSON generation (0.4.4)
 - [x] More `lpsm::Generator` functions (0.4.4)
+- [x] Merge smaller examples (0.4.4)
 
 ## Upcoming
 
-- [ ] Merge smaller examples
 - [ ] Customizable settings in `lpsm::Generator`
 - [ ] Unit tests
 - [ ] CLI tool

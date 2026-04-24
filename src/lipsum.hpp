@@ -13,28 +13,18 @@
  *
  * @example Advanced.cpp
  * @example Basic.cpp
- * @example GenerateDefaultLipsumSentence.cpp
- * @example GenerateMarkdownEmphasis.cpp
- * @example GenerateMarkdownHeader.cpp
- * @example GenerateMarkdownLink.cpp
- * @example GenerateMarkdownList.cpp
- * @example GenerateMarkdownParagraph.cpp
- * @example GenerateMarkdownParagraphs.cpp
- * @example GenerateMarkdownText.cpp
+ * @example Formats.cpp
  * @example GenerateParagraph.cpp
  * @example GenerateParagraphs.cpp
  * @example GenerateSentence.cpp
  * @example GenerateSentenceFragment.cpp
  * @example GenerateSentences.cpp
- * @example GenerateSlug.cpp
  * @example GenerateText.cpp
- * @example GenerateURL.cpp
  * @example GenerateWord.cpp
  * @example GenerateWords.cpp
  * @example Markdown.cpp
  * @example Misc.cpp
  * @example Source.cpp
- * @example Formats.cpp
  */
 
 #pragma once
