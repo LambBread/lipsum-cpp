@@ -15,7 +15,7 @@
 #ifndef LIPSUM_GENERATOR_INL
 #    define LIPSUM_GENERATOR_INL
 
-#    include "core/argvec2.hpp"
+#    include "core/internal.hpp"
 #    include "core_funcs.hpp"
 #    include "formats.hpp"
 #    include "markdown.hpp"
@@ -31,27 +31,86 @@ namespace lipsum
     std::string Generator::md_paragraph(int num, bool useLipsum)
     {
         return GenerateMarkdownParagraphs(num,
-                                          ArgVec2(4, 9),
-                                          ArgVec2(1, 3),
-                                          ArgVec2(5, 8),
-                                          ArgVec2(4, 8),
-                                          ArgVec2(1, 2),
-                                          ArgVec2(2, 5),
+                                          m_Word,
+                                          m_Frag,
+                                          m_Sent,
+                                          m_WordFmt,
+                                          m_FragFmt,
+                                          m_WordURL,
                                           useLipsum,
                                           false,
                                           m_Source);
     }
 
+    void Generator::change_setting(const std::string& setting,
+                                   const ArgVec2&     value)
+    {
+        if (setting == "word")
+        {
+            m_Word = value;
+        }
+        else if (setting == "frag")
+        {
+            m_Frag = value;
+        }
+        else if (setting == "sent")
+        {
+            m_Sent = value;
+        }
+        else if (setting == "para")
+        {
+            m_Para = value;
+        }
+        else if (setting == "point")
+        {
+            m_Point = value;
+        }
+        else if (setting == "wordFmt")
+        {
+            m_WordFmt = value;
+        }
+        else if (setting == "fragFmt")
+        {
+            m_FragFmt = value;
+        }
+        else if (setting == "wordURL")
+        {
+            m_WordURL = value;
+        }
+        else if (setting == "level")
+        {
+            m_Level = value;
+        }
+        else if (setting == "jsonLength")
+        {
+            m_JsonLength = value;
+        }
+        else
+        {
+            internal::LogWarn("lpsm::Generator::change_setting(): unknown "
+                              "setting ",
+                              setting,
+                              ", ignoring");
+        }
+    }
+
+    void Generator::change_setting(const std::string& setting,
+                                   int                minValue,
+                                   int                maxValue)
+    {
+        change_setting(setting, ArgVec2(minValue, maxValue));
+    }
+
     std::string Generator::md_text(int numElements)
     {
-        return GenerateMarkdownText(ArgVec2(4, 9),
-                                    ArgVec2(1, 3),
-                                    ArgVec2(5, 8),
-                                    ArgVec2(3, 5),
-                                    ArgVec2(4, 8),
-                                    ArgVec2(1, 2),
-                                    ArgVec2(2, 5),
-                                    ArgVec2(2, 4),
+        return GenerateMarkdownText(m_Word,
+                                    m_Frag,
+                                    m_Sent,
+                                    m_Point,
+                                    m_WordFmt,
+                                    m_FragFmt,
+                                    m_WordURL,
+                                    m_Level,
                                     numElements,
                                     false,
                                     m_Source);
@@ -60,12 +119,12 @@ namespace lipsum
     std::string Generator::html_paragraph(int num, bool useLipsum)
     {
         return GenerateMarkdownParagraphs(num,
-                                          ArgVec2(4, 9),
-                                          ArgVec2(1, 3),
-                                          ArgVec2(5, 8),
-                                          ArgVec2(4, 8),
-                                          ArgVec2(1, 2),
-                                          ArgVec2(2, 5),
+                                          m_Word,
+                                          m_Frag,
+                                          m_Sent,
+                                          m_WordFmt,
+                                          m_FragFmt,
+                                          m_WordURL,
                                           useLipsum,
                                           true,
                                           m_Source);
@@ -73,14 +132,14 @@ namespace lipsum
 
     std::string Generator::html_text(int numElements)
     {
-        return GenerateMarkdownText(ArgVec2(4, 9),
-                                    ArgVec2(1, 3),
-                                    ArgVec2(5, 8),
-                                    ArgVec2(3, 5),
-                                    ArgVec2(4, 8),
-                                    ArgVec2(1, 2),
-                                    ArgVec2(2, 5),
-                                    ArgVec2(2, 4),
+        return GenerateMarkdownText(m_Word,
+                                    m_Frag,
+                                    m_Sent,
+                                    m_Point,
+                                    m_WordFmt,
+                                    m_FragFmt,
+                                    m_WordURL,
+                                    m_Level,
                                     numElements,
                                     true,
                                     m_Source);
@@ -88,19 +147,16 @@ namespace lipsum
 
     std::string Generator::xml(int choices)
     {
-        return GenerateXMLDocument(choices,
-                                   ArgVec2(4, 9),
-                                   ArgVec2(1, 3),
-                                   m_Source);
+        return GenerateXMLDocument(choices, m_Word, m_Frag, m_Source);
     }
 
     std::string Generator::json(int maxDepth, bool isObject)
     {
         if (isObject)
         {
-            return GenerateJSONObject(0, maxDepth, ArgVec2(2, 5), m_Source);
+            return GenerateJSONObject(0, maxDepth, m_JsonLength, m_Source);
         }
-        return GenerateJSONArray(0, maxDepth, ArgVec2(2, 5), m_Source);
+        return GenerateJSONArray(0, maxDepth, m_JsonLength, m_Source);
     }
 
     std::string Generator::word(int num)
@@ -109,24 +165,30 @@ namespace lipsum
     }
     std::string Generator::sentence(int num, bool useLipsum)
     {
-        return GenerateSentences(num,
-                                 ArgVec2(4, 9),
-                                 ArgVec2(1, 3),
-                                 useLipsum,
-                                 m_Source);
+        return GenerateSentences(num, m_Word, m_Frag, useLipsum, m_Source);
     }
     std::string Generator::sentence_fragment()
     {
-        return GenerateSentenceFragment(ArgVec2(4, 9), m_Source);
+        return GenerateSentenceFragment(m_Word, m_Source);
     }
     std::string Generator::paragraph(int num, bool useLipsum)
     {
         return GenerateParagraphs(num,
-                                  ArgVec2(4, 9),
-                                  ArgVec2(1, 3),
-                                  ArgVec2(5, 8),
+                                  m_Word,
+                                  m_Frag,
+                                  m_Sent,
                                   useLipsum,
                                   m_Source);
+    }
+
+    std::string Generator::text(bool useLipsum)
+    {
+        return GenerateText(m_Word,
+                            m_Frag,
+                            m_Sent,
+                            m_Para,
+                            useLipsum,
+                            m_Source);
     }
 } // namespace lipsum
 #endif

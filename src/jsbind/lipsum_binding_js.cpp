@@ -41,6 +41,14 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("sentence", &lpsm::Generator::sentence)
             .function("sentence_fragment", &lpsm::Generator::sentence_fragment)
             .function("paragraph", &lpsm::Generator::paragraph)
+            .function("text", &lpsm::Generator::text)
+            .function("change_setting",
+                      select_overload<void(const std::string&,
+                                           const lpsm::ArgVec2&)>(
+                              &lpsm::Generator::change_setting))
+            .function("change_setting_x",
+                      select_overload<void(const std::string&, int, int)>(
+                              &lpsm::Generator::change_setting))
             .function("md_paragraph", &lpsm::Generator::md_paragraph)
             .function("md_text", &lpsm::Generator::md_text)
             .function("html_paragraph", &lpsm::Generator::html_paragraph)

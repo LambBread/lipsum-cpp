@@ -17,6 +17,7 @@
 
 #    include "core/internal.hpp"
 #    include "core_funcs.hpp"
+#    include "misc.hpp"
 
 namespace lipsum
 {

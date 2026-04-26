@@ -17,6 +17,7 @@
 #    define LIPSUM_GENERATOR_HPP
 
 #    include "core/core.hpp"
+#    include "core/argvec2.hpp"
 #    include "core/source.hpp"
 
 namespace lipsum
@@ -27,7 +28,6 @@ namespace lipsum
      * @since 0.2.0
      *
      * This provides a more user-friendly object-oriented layer over lipsum-cpp.
-     * It uses mainly default arguments.
      */
     class LIPSUM_API Generator
     {
@@ -55,6 +55,35 @@ namespace lipsum
         Generator(const std::string& path);
 
         /**
+         * @brief Change a setting
+         *
+         * @since 0.4.4
+         *
+         * Change a setting for generation. Valid setting names include "word",
+         * "frag", "sent", "para", "point", "wordFmt", "fragFmt", "wordURL",
+         * "level", and "jsonLength". If an invalid setting name is used, raise
+         * a warning and ignore.
+         *
+         * @param setting The name of the setting.
+         * @param value The new value for the setting.
+         */
+        void change_setting(const std::string& setting, const ArgVec2& value);
+
+        /**
+         * @brief Change a setting
+         *
+         * @since 0.4.4
+         *
+         * @overload
+         *
+         * @param setting The name of the setting.
+         * @param minValue The new minimum value of the setting.
+         * @param maxValue The new maximum value of the setting.
+         */
+        void
+        change_setting(const std::string& setting, int minValue, int maxValue);
+
+        /**
          * @brief Generate words.
          *
          * @since 0.2.0
@@ -72,7 +101,7 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * This function generates multiple sentences with default arguments.
+         * This function generates multiple sentences.
          *
          * @param num The number of sentences. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the
@@ -87,7 +116,7 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * This function generates a sentence fragment with default arguments.
+         * This function generates a sentence fragment.
          *
          * @return std::string The random sentence fragment.
          */
@@ -98,7 +127,7 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * This function generates multiple paragraphs with default arguments.
+         * This function generates multiple paragraphs.
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the
@@ -109,12 +138,25 @@ namespace lipsum
         std::string paragraph(int num = 1, bool useLipsum = true);
 
         /**
+         * @brief Generate a random number of random paragraphs.
+         *
+         * @since 0.4.4
+         *
+         * This function generates a random number of random paragraphs.
+         *
+         * @param useLipsum Whether "Lorem ipsum..." should start the
+         * paragraph(s). By default true.
+         *
+         * @return std::string The random text.
+         */
+        std::string text(bool useLipsum = true);
+
+        /**
          * @brief Generate a Markdown paragraph.
          *
          * @since 0.3.0
          *
-         * This function generates multiple paragraphs in Markdown format with
-         * default arguments.
+         * This function generates multiple paragraphs in Markdown format.
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
@@ -129,8 +171,7 @@ namespace lipsum
          *
          * @since 0.3.0
          *
-         * This function generates a document in Markdown format with default
-         * arguments.
+         * This function generates a document in Markdown format.
          *
          * @param numElements The number of elements (paragraph, list, heading)
          * in the document. By default 15.
@@ -144,8 +185,7 @@ namespace lipsum
          *
          * @since 0.4.4
          *
-         * This function generates multiple paragraphs in HTML format with
-         * default arguments.
+         * This function generates multiple paragraphs in HTML format.
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
@@ -160,8 +200,7 @@ namespace lipsum
          *
          * @since 0.4.4
          *
-         * This function generates a document in HTML format with default
-         * arguments.
+         * This function generates a document in HTML format.
          *
          * @param numElements The number of elements (paragraph, list, heading)
          * in the document. By default 15.
@@ -175,8 +214,7 @@ namespace lipsum
          *
          * @since 0.4.4
          *
-         * This function generats a document in XML format with default
-         * arguments.
+         * This function generats a document in XML format.
          *
          * @param choices The number of choices (start element, end element, add
          * data element) that are made. By default 30.
@@ -190,8 +228,7 @@ namespace lipsum
          *
          * @since 0.4.4
          *
-         * This function generates an object or array in JSON format with
-         * default arguments.
+         * This function generates an object or array in JSON format.
          *
          * @param maxDepth Maximum depth of recursion. By default 3.
          * @param isObject Whether to output an object (true) or an array
@@ -202,6 +239,85 @@ namespace lipsum
         std::string json(int maxDepth = 3, bool isObject = true);
 
     private:
+        /**
+         * @brief The minimum and maximum possible number of words in a sentence
+         * fragment.
+         *
+         * @since 0.4.4
+         */
+        ArgVec2 m_Word{4, 9};
+
+        /**
+         * @brief The minimum and maximum possible number of sentence fragments
+         * in a sentence.
+         *
+         * @since 0.4.4
+         */
+        ArgVec2 m_Frag{1, 3};
+
+        /**
+         * @brief The minimum and maximum possible number of sentences in a
+         * paragraph.
+         *
+         * @since 0.4.4
+         */
+        ArgVec2 m_Sent{5, 8};
+
+        /**
+         * @brief The minimum and maximum possible number of paragraphs in a
+         * text.
+         *
+         * @since 0.4.4
+         */
+        ArgVec2 m_Para{1, 4};
+
+        /**
+         * @brief The minimum and maximum possible number of points in lists.
+         *
+         * @since 0.4.4
+         */
+        ArgVec2 m_Point{3, 5};
+
+        /**
+         * @brief The minimum and maximum possible number of words at the end of
+         * a URL or in a heading.
+         *
+         * @since 0.4.4
+         */
+        ArgVec2 m_WordURL{2, 5};
+
+        /**
+         * @brief The minimum and maximum possible number of words in a sentence
+         * fragment in formatted sentences.
+         *
+         * @since 0.4.4
+         */
+        ArgVec2 m_WordFmt{4, 8};
+
+        /**
+         * @brief The minimum and maximum possible number of sentence fragments
+         * in a formatted sentence.
+         *
+         * @since 0.4.4
+         */
+        ArgVec2 m_FragFmt{1, 2};
+
+        /**
+         * @brief The minimum and maximum possible heading levels, excluding
+         * the main heading.
+         *
+         * @since 0.4.4
+         */
+        ArgVec2 m_Level{2, 4};
+
+        /**
+         * @brief The minimum and maximum possible number of items in JSON
+         * objects and arrays.
+         *
+         * @since 0.4.4
+         */
+        ArgVec2 m_JsonLength{2, 5};
+
         /**
          * @brief Source used for generation.
          *

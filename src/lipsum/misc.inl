@@ -16,8 +16,51 @@
 #ifndef LIPSUM_MISC_INL
 #    define LIPSUM_MISC_INL
 
+#    include "core/internal.hpp"
+#    include "core_funcs.hpp"
+
 namespace lipsum
 {
+
+    /*
+     * MISC
+     * ----------------
+     */
+
+    std::string GenerateDefaultLipsumSentence()
+    {
+        return {"Lorem ipsum dolor sit amet, consectetur adipiscing elit."};
+    }
+
+    std::string GenerateScramble(int length, char min, char max)
+    {
+        std::string ret;
+        for (int i = 0; i < length; ++i)
+        {
+            ret.push_back(internal::RandomNumber<char>(min, max));
+        }
+        return ret;
+    }
+
+    std::string GeneratePlainURL(const Source& source)
+    {
+        return std::string("lpsmcpp-") + GenerateWord(source) +
+               internal::GenerateTLD();
+    }
+
+    std::string GenerateURL(const ArgVec2& word, const Source& source)
+    {
+        return std::string("https://") + GeneratePlainURL(source) +
+               std::string("/#") + GenerateSlug(word, '-', source);
+    }
+
+    std::string
+    GenerateSlug(const ArgVec2& word, char separator, const Source& source)
+    {
+        std::string ret = GenerateSentenceFragment(word, source);
+        std::replace(ret.begin(), ret.end(), ' ', separator);
+        return ret;
+    }
 
     int CountWords(const std::string& str)
     {

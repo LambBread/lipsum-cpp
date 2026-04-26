@@ -9,6 +9,8 @@ int main()
     // Create a generator.
     lpsm::Generator generator;
 
+    generator.change_setting("word", 6, 9);
+
     // Generate 3 paragraphs.
     std::cout << generator.paragraph(3, true);
 
