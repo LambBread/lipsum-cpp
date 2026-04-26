@@ -9,7 +9,8 @@ set(LPSM_EXAMPLES_TARGETS
     GenerateSentence
     GenerateSentences
     GenerateSentenceFragment
-    Basic
+    Generator
+    GeneratorFormats
     Markdown
     Advanced
     GenerateText

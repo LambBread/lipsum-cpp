@@ -12,7 +12,8 @@
  * @copyright Copyright (c) 2026 LambBread
  *
  * @example Advanced.cpp
- * @example Basic.cpp
+ * @example Generator.cpp
+ * @example GeneratorFormats.cpp
  * @example Formats.cpp
  * @example GenerateParagraph.cpp
  * @example GenerateParagraphs.cpp

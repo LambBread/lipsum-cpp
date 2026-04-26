@@ -147,37 +147,22 @@ em++ src/jsbind/lipsum_binding_js.cpp -o bin/lipsum.js -s MODULARIZE=1 -s EXPORT
 int main()
 {
     // Create a generator.
-    lpsm::Generator generator;
-
-    // Generate 3 paragraphs.
-    std::cout << generator.paragraph(3, true);
-
-    // Generate 6 sentences.
-    std::cout << generator.sentence(6, true) << '\n';
-
-    // Generate a sentence fragment.
-    std::cout << generator.sentence_fragment() << '\n';
+    lpsm::Generator gen;
 
     // Generate 5 words.
-    std::cout << generator.word(5) << '\n';
-
-    // Generate 5 Markdown paragraphs.
-    std::cout << generator.md_paragraph(5, true);
-
-    // Generate a Markdown document with 20 elements.
-    std::cout << generator.md_text(20);
+    std::cout << gen.word(5) << '\n';
     
-    // Generate 5 HTML paragraphs.
-    std::cout << generator.html_paragraph(5, true);
+    // Generate a sentence fragment.
+    std::cout << gen.sentence_fragment() << '\n';
+    
+    // Generate 6 sentences.
+    std::cout << gen.sentence(6, true) << '\n';
+    
+    // Generate 3 paragraphs.
+    std::cout << gen.paragraph(3, true);
 
-    // Generate an HTML document with 20 elements.
-    std::cout << generator.html_text(20);
-
-    // Generate an XML document with 40 "choices"
-    std::cout << generator.xml(40) << '\n';
-
-    // Generate a JSON object with a max recursion of 5
-    std::cout << generator.json(5, true) << '\n';
+    // Generate a text.
+    std::cout << gen.text(true);
 
     return 0;
 }
