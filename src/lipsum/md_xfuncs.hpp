@@ -3,7 +3,7 @@
  *
  * @brief Markdown "X" functions of lipsum-cpp
  *
- * This declares &quot;X&quot; variants of some Markdown functions in
+ * This declares "X" variants of some Markdown functions in
  * lipsum-cpp. This file is under the BSD Zero Clause License.
  *
  * @copyright Copyright (c) 2026 LambBread

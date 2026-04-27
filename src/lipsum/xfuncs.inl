@@ -1,9 +1,9 @@
 /**
  * @file lipsum/xfuncs.inl
  *
- * @brief X functions of lipsum-cpp
+ * @brief "X" functions of lipsum-cpp
  *
- * This defines the &quot;X&quot; variants of functions in lipsum-cpp. This file
+ * This defines the "X" variants of functions in lipsum-cpp. This file
  * is under the BSD Zero-Clause License.
  *
  * @copyright Copyright (c) 2026 LambBread

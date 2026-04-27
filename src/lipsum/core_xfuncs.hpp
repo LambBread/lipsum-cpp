@@ -3,7 +3,7 @@
  *
  * @brief Core "X" functions of lipsum-cpp
  *
- * This declares the &quot;X&quot; variants of core functions in lipsum-cpp
+ * This declares the "X" variants of core functions in lipsum-cpp
  * around generation of words, sentences, paragraphs, etc. This file is under
  * the BSD Zero-Clause License.
  *

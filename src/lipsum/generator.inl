@@ -28,20 +28,6 @@ namespace lipsum
         m_Source.load(path);
     }
 
-    std::string Generator::md_paragraph(int num, bool useLipsum)
-    {
-        return GenerateMarkdownParagraphs(num,
-                                          m_Word,
-                                          m_Frag,
-                                          m_Sent,
-                                          m_WordFmt,
-                                          m_FragFmt,
-                                          m_WordURL,
-                                          useLipsum,
-                                          false,
-                                          m_Source);
-    }
-
     void Generator::change_setting(const std::string& setting,
                                    const ArgVec2&     value)
     {
@@ -99,6 +85,55 @@ namespace lipsum
                                    int                maxValue)
     {
         change_setting(setting, ArgVec2(minValue, maxValue));
+    }
+
+    std::string Generator::word(int num)
+    {
+        return GenerateWords(num, m_Source);
+    }
+
+    std::string Generator::sentence_fragment()
+    {
+        return GenerateSentenceFragment(m_Word, m_Source);
+    }
+
+    std::string Generator::sentence(int num, bool useLipsum)
+    {
+        return GenerateSentences(num, m_Word, m_Frag, useLipsum, m_Source);
+    }
+
+    std::string Generator::paragraph(int num, bool useLipsum)
+    {
+        return GenerateParagraphs(num,
+                                  m_Word,
+                                  m_Frag,
+                                  m_Sent,
+                                  useLipsum,
+                                  m_Source);
+    }
+
+    std::string Generator::text(bool useLipsum)
+    {
+        return GenerateText(m_Word,
+                            m_Frag,
+                            m_Sent,
+                            m_Para,
+                            useLipsum,
+                            m_Source);
+    }
+
+    std::string Generator::md_paragraph(int num, bool useLipsum)
+    {
+        return GenerateMarkdownParagraphs(num,
+                                          m_Word,
+                                          m_Frag,
+                                          m_Sent,
+                                          m_WordFmt,
+                                          m_FragFmt,
+                                          m_WordURL,
+                                          useLipsum,
+                                          false,
+                                          m_Source);
     }
 
     std::string Generator::md_text(int numElements)
@@ -159,36 +194,5 @@ namespace lipsum
         return GenerateJSONArray(0, maxDepth, m_JsonLength, m_Source);
     }
 
-    std::string Generator::word(int num)
-    {
-        return GenerateWords(num, m_Source);
-    }
-    std::string Generator::sentence(int num, bool useLipsum)
-    {
-        return GenerateSentences(num, m_Word, m_Frag, useLipsum, m_Source);
-    }
-    std::string Generator::sentence_fragment()
-    {
-        return GenerateSentenceFragment(m_Word, m_Source);
-    }
-    std::string Generator::paragraph(int num, bool useLipsum)
-    {
-        return GenerateParagraphs(num,
-                                  m_Word,
-                                  m_Frag,
-                                  m_Sent,
-                                  useLipsum,
-                                  m_Source);
-    }
-
-    std::string Generator::text(bool useLipsum)
-    {
-        return GenerateText(m_Word,
-                            m_Frag,
-                            m_Sent,
-                            m_Para,
-                            useLipsum,
-                            m_Source);
-    }
 } // namespace lipsum
 #endif

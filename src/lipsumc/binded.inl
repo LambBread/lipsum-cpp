@@ -60,63 +60,91 @@ extern "C" int lpsm_ArgVec2_max(lpsm_ArgVec2Handle av2)
     return (reinterpret_cast<lpsm::ArgVec2*>(av2))->max;
 }
 
-extern "C" char* lpsm_gen_word(int num)
+extern "C" lpsm_GeneratorHandle lpsm_Generator(const char* path)
 {
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.word(num));
+    return (reinterpret_cast<lpsm_GeneratorHandle>(new lpsm::Generator(path)));
 }
 
-extern "C" char* lpsm_gen_sentence(int num, bool useLipsum)
+extern "C" void lpsm_GeneratorDestroy(lpsm_GeneratorHandle handle)
 {
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.sentence(num, useLipsum));
+    auto* realSource = LPSM_GEN_CPPIFY(handle);
+    delete realSource;
 }
 
-extern "C" char* lpsm_gen_sentence_fragment(void)
+extern "C" char* lpsm_Generator_word(lpsm_GeneratorHandle handle, int num)
 {
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.sentence_fragment());
+    auto ret = LPSM_GEN_CPPIFY(handle)->word(num);
+    return ConvertToCstr(ret);
 }
 
-extern "C" char* lpsm_gen_paragraph(int num, bool useLipsum)
+extern "C" char* lpsm_Generator_sentence_fragment(lpsm_GeneratorHandle handle)
 {
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.paragraph(num, useLipsum));
+    auto ret = LPSM_GEN_CPPIFY(handle)->sentence_fragment();
+    return ConvertToCstr(ret);
 }
 
-extern "C" char* lpsm_gen_md_paragraph(int num, bool useLipsum)
+extern "C" char*
+lpsm_Generator_sentence(lpsm_GeneratorHandle handle, int num, bool useLipsum)
 {
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.md_paragraph(num, useLipsum));
+    auto ret = LPSM_GEN_CPPIFY(handle)->sentence(num, useLipsum);
+    return ConvertToCstr(ret);
 }
 
-extern "C" char* lpsm_gen_md_text(int numElements)
+extern "C" char*
+lpsm_Generator_paragraph(lpsm_GeneratorHandle handle, int num, bool useLipsum)
 {
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.md_text(numElements));
+    auto ret = LPSM_GEN_CPPIFY(handle)->paragraph(num, useLipsum);
+    return ConvertToCstr(ret);
 }
 
-extern "C" char* lpsm_gen_html_paragraph(int num, bool useLipsum)
+extern "C" char* lpsm_Generator_text(lpsm_GeneratorHandle handle,
+                                     bool                 useLipsum)
 {
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.html_paragraph(num, useLipsum));
+    auto ret = LPSM_GEN_CPPIFY(handle)->text(useLipsum);
+    return ConvertToCstr(ret);
 }
 
-extern "C" char* lpsm_gen_html_text(int numElements)
+extern "C" char* lpsm_Generator_md_paragraph(lpsm_GeneratorHandle handle,
+                                             int                  num,
+                                             bool                 useLipsum)
 {
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.html_text(numElements));
+    auto ret = LPSM_GEN_CPPIFY(handle)->md_paragraph(num, useLipsum);
+    return ConvertToCstr(ret);
 }
 
-extern "C" char* lpsm_gen_xml(int choices)
+extern "C" char* lpsm_Generator_md_text(lpsm_GeneratorHandle handle,
+                                        int                  numElements)
 {
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.xml(choices));
+    auto ret = LPSM_GEN_CPPIFY(handle)->md_text(numElements);
+    return ConvertToCstr(ret);
 }
 
-extern "C" char* lpsm_gen_json(int maxDepth, bool isObject)
+extern "C" char* lpsm_Generator_html_paragraph(lpsm_GeneratorHandle handle,
+                                               int                  num,
+                                               bool                 useLipsum)
 {
-    lpsm::Generator gen;
-    return ConvertToCstr(gen.json(maxDepth, isObject));
+    auto ret = LPSM_GEN_CPPIFY(handle)->html_paragraph(num, useLipsum);
+    return ConvertToCstr(ret);
 }
+
+extern "C" char* lpsm_Generator_html_text(lpsm_GeneratorHandle handle,
+                                          int                  numElements)
+{
+    auto ret = LPSM_GEN_CPPIFY(handle)->html_text(numElements);
+    return ConvertToCstr(ret);
+}
+
+extern "C" char* lpsm_Generator_xml(lpsm_GeneratorHandle handle, int choices)
+{
+    auto ret = LPSM_GEN_CPPIFY(handle)->xml(choices);
+    return ConvertToCstr(ret);
+}
+
+extern "C" char*
+lpsm_Generator_json(lpsm_GeneratorHandle handle, int maxDepth, bool isObject)
+{
+    auto ret = LPSM_GEN_CPPIFY(handle)->json(maxDepth, isObject);
+    return ConvertToCstr(ret);
+}
+
 #endif

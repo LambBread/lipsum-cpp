@@ -19,6 +19,7 @@
 
 #define LPSM_CPPIFY(x) (*(reinterpret_cast<lpsm::ArgVec2*>((x))))
 #define LPSM_SRC_CPPIFY(x) (*(reinterpret_cast<lpsm::Source*>((x))))
+#define LPSM_GEN_CPPIFY(x) (reinterpret_cast<lpsm::Generator*>((x)))
 
 static char* ConvertToCstr(const std::string& str)
 {

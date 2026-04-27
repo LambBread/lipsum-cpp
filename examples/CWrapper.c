@@ -2,9 +2,12 @@
 
 int main(void)
 {
-    lpsm_SourceHandle source = lpsm_Source("default");
+    lpsm_SourceHandle    source = lpsm_Source("default");
+    lpsm_GeneratorHandle gen    = lpsm_Generator("dog");
+
     // Generate 5 words.
-    char* generatedWords = lpsm_gen_word(5);
+    char* generatedWords = lpsm_Generator_word(gen, 5);
+
     // generate a paragraph with 4-9 words per sentence fragment,
     // 1-3 sentence fragments per sentence,
     // 5-8 sentences per paragraph,
@@ -13,7 +16,7 @@ int main(void)
             lpsm_GenerateParagraph(4, 9, 1, 3, 5, 8, true, source);
 
     // generate markdown document with 15 elements
-    char* generatedMarkdown = lpsm_gen_md_text(15);
+    char* generatedMarkdown = lpsm_Generator_md_text(gen, 15);
 
     // create a lpsm::ArgVec2
     lpsm_ArgVec2Handle handle = lpsm_ArgVec2(4, 10);
@@ -44,6 +47,8 @@ int main(void)
     // delete objects
     lpsm_ArgVec2Destroy(handle);
     lpsm_SourceDestroy(source);
+    lpsm_GeneratorDestroy(gen);
+
     lpsm_DeleteString(generatedParagraph);
     lpsm_DeleteString(generatedWords);
     lpsm_DeleteString(generatedMarkdown);

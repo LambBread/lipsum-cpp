@@ -50,7 +50,9 @@ namespace lipsum
          * invalid, it will print a warning and default to the standard
          * lorem-ipsum source.
          *
-         * @param path The filepath of the lorem ipsum source.
+         * @param path The filepath or name of the lorem ipsum source.
+         *
+         * @sa lipsum::Source::load
          */
         Generator(const std::string& path);
 
@@ -97,6 +99,17 @@ namespace lipsum
         std::string word(int num = 1);
 
         /**
+         * @brief Generate a sentence fragment.
+         *
+         * @since 0.2.0
+         *
+         * This function generates a sentence fragment.
+         *
+         * @return std::string The random sentence fragment.
+         */
+        std::string sentence_fragment();
+
+        /**
          * @brief Generate sentences.
          *
          * @since 0.2.0
@@ -110,17 +123,6 @@ namespace lipsum
          * @return std::string The random sentence(s).
          */
         std::string sentence(int num = 1, bool useLipsum = true);
-
-        /**
-         * @brief Generate a sentence fragment.
-         *
-         * @since 0.2.0
-         *
-         * This function generates a sentence fragment.
-         *
-         * @return std::string The random sentence fragment.
-         */
-        std::string sentence_fragment();
 
         /**
          * @brief Generate paragraphs.

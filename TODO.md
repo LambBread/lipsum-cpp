@@ -26,10 +26,10 @@
 - [x] More `lpsm::Generator` functions (0.4.4)
 - [x] Merge smaller examples (0.4.4)
 - [x] Customizable settings in `lpsm::Generator` (0.4.4)
+- [x] Expose `lpsm::Generator` traditionally in C wrapper (0.4.4)
 
 ## Upcoming
 
-- [ ] Expose `lpsm::Generator` traditionally in C wrapper
 - [ ] Move some of the free functions' logic into `lpsm::Generator`
 - [ ] Unit tests
 - [ ] CLI tool
