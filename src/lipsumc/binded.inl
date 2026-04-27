@@ -71,6 +71,14 @@ extern "C" void lpsm_GeneratorDestroy(lpsm_GeneratorHandle handle)
     delete realSource;
 }
 
+extern "C" void lpsm_Generator_change_setting(lpsm_GeneratorHandle handle,
+                                              const char*          setting,
+                                              int                  minValue,
+                                              int                  maxValue)
+{
+    LPSM_GEN_CPPIFY(handle)->change_setting(setting, minValue, maxValue);
+}
+
 extern "C" char* lpsm_Generator_word(lpsm_GeneratorHandle handle, int num)
 {
     auto ret = LPSM_GEN_CPPIFY(handle)->word(num);

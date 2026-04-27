@@ -195,6 +195,25 @@ extern "C"
     LIPSUMC_API void lpsm_GeneratorDestroy(lpsm_GeneratorHandle handle);
 
     /**
+     * @brief Change a setting
+     *
+     * @since 0.4.5
+     *
+     * Change a setting for generation. Valid setting names include "word",
+     * "frag", "sent", "para", "point", "wordFmt", "fragFmt", "wordURL",
+     * "level", and "jsonLength". If an invalid setting name is used, raise
+     * a warning and ignore.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param setting The name of the setting.
+     * @param minValue The new minimum value of the setting.
+     * @param maxValue The new maximum value of the setting.
+     */
+    LIPSUMC_API void lpsm_Generator_change_setting(lpsm_GeneratorHandle handle,
+                                                   const char*          setting,
+                                                   int minValue,
+                                                   int maxValue);
+    /**
      * @brief Generate words.
      *
      * @since 0.4.4
