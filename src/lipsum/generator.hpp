@@ -72,7 +72,7 @@ namespace lipsum
 
         /**
          * @brief The minimum and maximum possible number of words at the end of
-         * a URL or in a heading.
+         * a URL, in a heading, or in slugs.
          *
          * @since 0.4.5
          */
@@ -189,6 +189,10 @@ namespace lipsum
         void
         change_setting(const std::string& setting, int minValue, int maxValue);
 
+        /*
+         * CORE
+         */
+
         /**
          * @brief Generate words.
          *
@@ -256,6 +260,70 @@ namespace lipsum
          * @return std::string The random text.
          */
         std::string text(bool useLipsum = true);
+
+        /*
+         * MISC
+         */
+
+        /**
+         * @brief Generate a random character scramble.
+         *
+         * @since 0.4.5
+         *
+         * Generate a random string of text with random characters.
+         *
+         * @param length The number of characters. By default 16.
+         * @param minChar The lowest-valued ASCII character that can appear. By
+         * default a space.
+         * @param maxChar The highest-valued ASCII character than can appear. By
+         * default a tilde.
+         *
+         * @return std::string The character scramble.
+         */
+        std::string
+        scramble(int length = 16, char minChar = ' ', char maxChar = '~');
+
+        /**
+         * @brief Generate a URL.
+         *
+         * @since 0.4.5
+         *
+         * Generate a URL starting in https://, followed by a random word,
+         * followed by a random TLD, followed by a slash and a random HTML id as
+         * a slug separated by hyphens.
+         *
+         * @return std::string The URL.
+         */
+        std::string url();
+
+        /**
+         * @brief Generate a plain URL.
+         *
+         * @since 0.4.5
+         *
+         * Generate a URL with a random word followed by a random TLD.
+         *
+         * @return std::string The plain URL.
+         */
+        std::string plain_url();
+
+        /**
+         * @brief Generate a slug.
+         *
+         * @since 0.4.5
+         *
+         * This function generates a sentence fragment with the spaces replaced
+         * with the specified separator character.
+         *
+         * @param separator The separator character. By default a hyphen.
+         *
+         * @return std::string The slug.
+         */
+        std::string slug(char separator = '-');
+
+        /*
+         * FORMATS
+         */
 
         /**
          * @brief Generate a Markdown paragraph.

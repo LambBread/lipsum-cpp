@@ -112,6 +112,34 @@ extern "C" char* lpsm_Generator_text(lpsm_GeneratorHandle handle,
     return ConvertToCstr(ret);
 }
 
+extern "C" char* lpsm_Generator_scramble(lpsm_GeneratorHandle handle,
+                                         int                  length,
+                                         char                 minChar,
+                                         char                 maxChar)
+{
+    auto ret = LPSM_GEN_CPPIFY(handle)->scramble(length, minChar, maxChar);
+    return ConvertToCstr(ret);
+}
+
+extern "C" char* lpsm_Generator_url(lpsm_GeneratorHandle handle)
+{
+    auto ret = LPSM_GEN_CPPIFY(handle)->url();
+    return ConvertToCstr(ret);
+}
+
+extern "C" char* lpsm_Generator_plain_url(lpsm_GeneratorHandle handle)
+{
+    auto ret = LPSM_GEN_CPPIFY(handle)->plain_url();
+    return ConvertToCstr(ret);
+}
+
+extern "C" char* lpsm_Generator_slug(lpsm_GeneratorHandle handle,
+                                     char                 separator)
+{
+    auto ret = LPSM_GEN_CPPIFY(handle)->slug(separator);
+    return ConvertToCstr(ret);
+}
+
 extern "C" char* lpsm_Generator_md_paragraph(lpsm_GeneratorHandle handle,
                                              int                  num,
                                              bool                 useLipsum)

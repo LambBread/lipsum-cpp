@@ -50,8 +50,6 @@ namespace lipsum
      * Generate multiple random sentences separated with spaces. Does not add a
      * tab character before the sentences nor a line break after.
      *
-     * @return std::string The random sentences.
-     *
      * @param sentCount The number of sentences. By default 6.
      * @param word The minimum and maximum possible number of words in a
      * sentence fragment. By default 4 to 9.
@@ -61,6 +59,8 @@ namespace lipsum
      * the first sentence. By default true.
      * @param source The source for words. By default the standard "Lorem
      * ipsum..." sample.
+     *
+     * @return std::string The random sentences.
      */
     LIPSUM_API std::string
                GenerateSentences(int            sentCount = 6,
@@ -76,8 +76,6 @@ namespace lipsum
      * This function generates several random paragraphs, each separated by a
      * line break. Formerly known as GenerateParagraphList().
      *
-     * @return std::string The random paragraphs.
-     *
      * @param paraCount The number of paragraphs. By default 5.
      * @param word The minimum and maximum total number of words in a sentence
      * fragment. By default 4 to 9.
@@ -89,6 +87,8 @@ namespace lipsum
      * the first paragraph. By default true.
      * @param source The source for words. By default the standard "Lorem
      * ipsum..." sample.
+     *
+     * @return std::string The random paragraphs.
      */
     LIPSUM_API std::string
                GenerateParagraphs(int            paraCount = 5,
@@ -145,14 +145,14 @@ namespace lipsum
      * and ending with a period, often containing commas, semicolons, and
      * dashes.
      *
-     * @return std::string The random sentence.
-     *
      * @param word The minimum and maximum possible number of words in a
      * sentence fragment. By default 4 to 9.
      * @param frag The minimum and maximum possible number of sentence fragments
      * in the sentence. By default 1 to 3.
      * @param source The source for words. By default the standard "Lorem
      * ipsum..." sample.
+     *
+     * @return std::string The random sentence.
      */
     LIPSUM_API std::string GenerateSentence(const ArgVec2& word = ArgVec2(4, 9),
                                             const ArgVec2& frag = ArgVec2(1, 3),
@@ -166,8 +166,6 @@ namespace lipsum
      * This function generates a random paragraph starting with a tab character
      * and ending in a line break, with each sentence separated by a space.
      *
-     * @return std::string The random paragraph.
-     *
      * @param sent The minimum and maximum possible number of sentences in the
      * paragraph. By default 5 to 8.
      * @param frag The minimum and maximum possible number of sentence fragments
@@ -178,6 +176,8 @@ namespace lipsum
      * the paragraph. By default true.
      * @param source The source for words. By default the standard "Lorem
      * ipsum..." sample.
+     *
+     * @return std::string The random paragraph.
      */
     LIPSUM_API std::string
                GenerateParagraph(const ArgVec2& word      = ArgVec2(4, 9),
@@ -193,8 +193,6 @@ namespace lipsum
      *
      * Generate a random number of random paragraphs separated by line breaks.
      *
-     * @return std::string The random text.
-     *
      * @param word The minimum and maximum possible number of words in a
      * sentence fragment. By default 4 to 9.
      * @param frag The minimum and maximum possible number of sentence fragments
@@ -207,6 +205,8 @@ namespace lipsum
      * paragraph. By default true.
      * @param source The source for words. By default the standard "Lorem
      * ipsum..." sample.
+     *
+     * @return std::string The random text.
      */
     LIPSUM_API std::string GenerateText(const ArgVec2& word = ArgVec2(4, 9),
                                         const ArgVec2& frag = ArgVec2(1, 3),

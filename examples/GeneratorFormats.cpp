@@ -16,6 +16,18 @@ int main()
     gen.change_setting("frag", 3, 6);
     gen.change_setting("jsonLength", 6, 9);
 
+    // Generate a URL.
+    std::cout << gen.url() << '\n';
+
+    // Generate a plain URL.
+    std::cout << gen.plain_url() << '\n';
+
+    // Generate a slug.
+    std::cout << gen.slug('_') << '\n';
+
+    // Generate a scramble.
+    std::cout << gen.scramble(24, 'a', 'z') << '\n';
+
     // Generate 5 Markdown paragraphs.
     std::cout << gen.md_paragraph(5, true);
 

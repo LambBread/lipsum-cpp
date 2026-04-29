@@ -46,6 +46,8 @@ namespace lipsum
      * the first sentence. By default true.
      * @param source The source for words. By default the standard "Lorem
      * ipsum..." sample.
+     *
+     * @return std::string The random sentences.
      */
     LIPSUM_API std::string GenerateSentencesX(int           sentCount = 6,
                                               int           minWord   = 4,
@@ -230,8 +232,6 @@ namespace lipsum
      *
      * @xovload
      *
-     * @return std::string The random text.
-     *
      * @param minWord The minimum possible number of words in a sentence
      * fragment. By default 4.
      * @param maxWord The maximum possible number of words in a sentence
@@ -252,6 +252,8 @@ namespace lipsum
      * paragraph. By default true.
      * @param source The source for words. By default the standard "Lorem
      * ipsum..." sample.
+     *
+     * @return std::string The random text.
      */
     LIPSUM_API std::string GenerateTextX(int           minWord   = 4,
                                          int           maxWord   = 9,

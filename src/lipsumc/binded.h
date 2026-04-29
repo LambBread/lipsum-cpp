@@ -60,12 +60,12 @@ extern "C"
      *
      * This function creates a pointer pointing to a lipsum::Source.
      *
+     * @warning The lpsm_SourceHandle must be manually deleted with
+     * lpsm_SourceDestroy().
+     *
      * @param path The path entered into lipsum::Source::Source. If path is set
      * to any of the built-in sources by lipsum::Source::Source(const
      * std::string&), it will use the specified built-in source.
-     *
-     * @warning The lpsm_SourceHandle must be manually deleted with
-     * lpsm_SourceDestroy().
      *
      * @return lpsm_SourceHandle A handle to the object.
      */
@@ -292,6 +292,69 @@ extern "C"
      */
     LIPSUMC_API char* lpsm_Generator_text(lpsm_GeneratorHandle handle,
                                           bool                 useLipsum);
+
+    /**
+     * @brief Generate a random character scramble.
+     *
+     * @since 0.4.5
+     *
+     * Generate a random string of text with random characters.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param length The number of characters.
+     * @param minChar The lowest-valued ASCII character that can appear.
+     * @param maxChar The highest-valued ASCII character than can appear.
+     *
+     * @return char* The character scramble.
+     */
+    LIPSUMC_API char* lpsm_Generator_scramble(lpsm_GeneratorHandle handle,
+                                              int                  length,
+                                              char                 minChar,
+                                              char                 maxChar);
+
+    /**
+     * @brief Generate a URL.
+     *
+     * @since 0.4.5
+     *
+     * Generate a URL starting in https://, followed by a random word, followed
+     * by a random TLD, followed by a slash and a random HTML id as a slug
+     * separated by hyphens.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     *
+     * @return char* The URL.
+     */
+    LIPSUMC_API char* lpsm_Generator_url(lpsm_GeneratorHandle handle);
+
+    /**
+     * @brief Generate a plain URL.
+     *
+     * @since 0.4.5
+     *
+     * Generate a URL with a random word followed by a random TLD.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     *
+     * @return char* The plain URL.
+     */
+    LIPSUMC_API char* lpsm_Generator_plain_url(lpsm_GeneratorHandle handle);
+
+    /**
+     * @brief Generate a slug.
+     *
+     * @since 0.4.5
+     *
+     * This function generates a sentence fragment with the spaces replaced with
+     * the specified separator character.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param separator The separator character.
+     *
+     * @return char* The slug.
+     */
+    LIPSUMC_API char* lpsm_Generator_slug(lpsm_GeneratorHandle handle,
+                                          char                 separator);
 
     /**
      * @brief Generate a Markdown paragraph.

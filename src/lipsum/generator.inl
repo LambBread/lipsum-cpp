@@ -110,6 +110,26 @@ namespace lipsum
                             m_Source);
     }
 
+    std::string Generator::scramble(int length, char minChar, char maxChar)
+    {
+        return GenerateScramble(length, minChar, maxChar);
+    }
+
+    std::string Generator::url()
+    {
+        return GenerateURL(m_Settings.word, m_Source);
+    }
+
+    std::string Generator::plain_url()
+    {
+        return GeneratePlainURL(m_Source);
+    }
+
+    std::string Generator::slug(char separator)
+    {
+        return GenerateSlug(m_Settings.word, separator, m_Source);
+    }
+
     std::string Generator::md_paragraph(int num, bool useLipsum)
     {
         return GenerateMarkdownParagraphs(num,

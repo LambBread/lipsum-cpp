@@ -35,8 +35,6 @@ extern "C"
      *
      * @sovload
      *
-     * @return char* The random sentences.
-     *
      * @param sentCount The number of sentences.
      * @param word The minimum and maximum possible number of words in a
      * sentence fragment.
@@ -47,6 +45,8 @@ extern "C"
      * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     *
+     * @return char* The random sentences.
      */
     LIPSUMC_API char* lpsm_GenerateSentencesS(int                sentCount,
                                               lpsm_ArgVec2Handle word,
@@ -62,8 +62,6 @@ extern "C"
      *
      * @sovload
      *
-     * @return char* The random paragraphs.
-     *
      * @param paraCount The number of paragraphs. By default 5.
      * @param word The minimum and maximum total number of words in a sentence
      * fragment.
@@ -76,6 +74,8 @@ extern "C"
      * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     *
+     * @return char* The random paragraphs.
      */
     LIPSUMC_API char* lpsm_GenerateParagraphsS(int                paraCount,
                                                lpsm_ArgVec2Handle word,
@@ -160,8 +160,6 @@ extern "C"
      *
      * @sovload
      *
-     * @return char* The random sentence.
-     *
      * @param word The minimum and maximum possible number of words in a
      * sentence fragment.
      * @param frag The minimum and maximum possible number of sentence fragments
@@ -169,6 +167,8 @@ extern "C"
      * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     *
+     * @return char* The random sentence.
      */
     LIPSUMC_API char* lpsm_GenerateSentenceS(lpsm_ArgVec2Handle word,
                                              lpsm_ArgVec2Handle frag,
@@ -182,8 +182,6 @@ extern "C"
      *
      * @sovload
      *
-     * @return char* The random paragraph.
-     *
      * @param sent The minimum and maximum possible number of sentences in the
      * paragraph.
      * @param frag The minimum and maximum possible number of sentence fragments
@@ -195,6 +193,8 @@ extern "C"
      * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     *
+     * @return char* The random paragraph.
      */
     LIPSUMC_API char* lpsm_GenerateParagraphS(lpsm_ArgVec2Handle word,
                                               lpsm_ArgVec2Handle frag,
@@ -210,8 +210,6 @@ extern "C"
      *
      * @sovload
      *
-     * @return char* The random text.
-     *
      * @param word The minimum and maximum possible number of words in a
      * sentence fragment.
      * @param frag The minimum and maximum possible number of sentence fragments
@@ -225,6 +223,8 @@ extern "C"
      * @param source The source for words.
      * @param del Whether the ArgVec2 handles should be deleted after the
      * function is called.
+     *
+     * @return char* The random text.
      */
     LIPSUMC_API char* lpsm_GenerateTextS(lpsm_ArgVec2Handle word,
                                          lpsm_ArgVec2Handle frag,

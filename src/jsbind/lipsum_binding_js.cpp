@@ -37,11 +37,6 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     class_<lpsm::Generator>("lpsm_Generator")
             .constructor<>()
             .constructor<std::string>()
-            .function("word", &lpsm::Generator::word)
-            .function("sentence", &lpsm::Generator::sentence)
-            .function("sentence_fragment", &lpsm::Generator::sentence_fragment)
-            .function("paragraph", &lpsm::Generator::paragraph)
-            .function("text", &lpsm::Generator::text)
             .function("change_setting",
                       select_overload<void(const std::string&,
                                            const lpsm::ArgVec2&)>(
@@ -49,6 +44,15 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("change_setting_x",
                       select_overload<void(const std::string&, int, int)>(
                               &lpsm::Generator::change_setting))
+            .function("word", &lpsm::Generator::word)
+            .function("sentence", &lpsm::Generator::sentence)
+            .function("sentence_fragment", &lpsm::Generator::sentence_fragment)
+            .function("paragraph", &lpsm::Generator::paragraph)
+            .function("text", &lpsm::Generator::text)
+            .function("scramble", &lpsm::Generator::scramble)
+            .function("plain_url", &lpsm::Generator::plain_url)
+            .function("url", &lpsm::Generator::url)
+            .function("slug", &lpsm::Generator::slug)
             .function("md_paragraph", &lpsm::Generator::md_paragraph)
             .function("md_text", &lpsm::Generator::md_text)
             .function("html_paragraph", &lpsm::Generator::html_paragraph)

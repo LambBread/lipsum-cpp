@@ -41,7 +41,7 @@ namespace lipsum
     LIPSUM_API std::string GenerateDefaultLipsumSentence();
 
     /**
-     * @brief Generate a random character scramble
+     * @brief Generate a random character scramble.
      *
      * @since 0.3.9
      *
@@ -53,7 +53,7 @@ namespace lipsum
      * @param max The highest-valued ASCII character than can appear. By default
      * a tilde.
      *
-     * @return std::string The character scramble
+     * @return std::string The character scramble.
      */
     LIPSUM_API std::string
     GenerateScramble(int length = 16, char min = ' ', char max = '~');
@@ -68,7 +68,7 @@ namespace lipsum
      * @param source The source for words. By default the standard "Lorem
      * ipsum..." sample.
      *
-     * @return std::string The plain URL
+     * @return std::string The plain URL.
      */
     LIPSUM_API std::string GeneratePlainURL(const Source& source = Source());
 
@@ -114,10 +114,11 @@ namespace lipsum
     /**
      * @brief Count the number of words in a string.
      *
-     * Count the number of words in a string using a naive approach. It counts
-     * some Markdown formatting as words.
-     *
      * @since 0.3.8
+     *
+     * Count the number of words in a string using a naive approach.
+     *
+     * @note Some formatting will be counted as words.
      *
      * @param str The string inputted.
      *
@@ -128,10 +129,10 @@ namespace lipsum
     /**
      * @brief Count the number of sentences in a string.
      *
+     * @since 0.3.0
+     *
      * Count the number of periods in a string, ignoring usage in Markdown URLs.
      * (i.e. in parentheses)
-     *
-     * @since 0.3.0
      *
      * @param str The string inputted.
      *

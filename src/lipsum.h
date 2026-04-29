@@ -58,8 +58,6 @@ extern "C"
      * Generate multiple random sentences separated with spaces. Does not add a
      * tab character before the sentences nor a line break after.
      *
-     * @return char* The random sentences.
-     *
      * @param sentCount The number of sentences.
      * @param minWord Minimum number of words in each sentence fragment.
      * @param maxWord Maximum number of words in each sentence fragment.
@@ -68,6 +66,8 @@ extern "C"
      * @param useLipsum Whether the default "Lorem ipsum..." sentence should be
      * the first sentence.
      * @param source The source for words.
+     *
+     * @return char* The random sentences.
      */
     LIPSUMC_API char* lpsm_GenerateSentences(int               sentCount,
                                              int               minWord,
@@ -85,8 +85,6 @@ extern "C"
      * This function generates several random paragraphs, each separated by a
      * line break. Formerly known as lpsm_GenerateParagraphList().
      *
-     * @return char* The random paragraphs.
-     *
      * @param paraCount The number of paragraphs.
      * @param minSent Minimum number of sentences in each paragraph.
      * @param maxSent Maximum number of sentences in each paragraph.
@@ -97,6 +95,8 @@ extern "C"
      * @param useLipsum Whether the default "Lorem ipsum..." text should start
      * the first paragraph.
      * @param source The source for words.
+     *
+     * @return char* The random paragraphs.
      */
     LIPSUMC_API char* lpsm_GenerateParagraphs(int               paraCount,
                                               int               minWord,
@@ -255,11 +255,11 @@ extern "C"
      *
      * @since 0.1.0
      *
-     * @return char* The random sentence fragment.
-     *
      * @param minWord Minimum number of words in the fragment.
      * @param maxWord Maximum number of words in the fragment.
      * @param source The source for words.
+     *
+     * @return char* The random sentence fragment.
      */
     LIPSUMC_API char* lpsm_GenerateSentenceFragment(int               minWord,
                                                     int               maxWord,
@@ -273,13 +273,13 @@ extern "C"
      * This function generates a sentence starting with a capital letter
      * and ending with a period, sometimes containing a comma.
      *
-     * @return char* The random sentence.
-     *
      * @param minWord Minimum number of words in the sentence fragment.
      * @param maxWord Maximum number of words in the sentence fragment.
      * @param minFrag Minimum number of sentence fragments in the sentence.
      * @param maxFrag Maximum number of sentence fragments in the sentence.
      * @param source The source for words.
+     *
+     * @return char* The random sentence.
      */
     LIPSUMC_API char* lpsm_GenerateSentence(int               minWord,
                                             int               maxWord,
@@ -295,8 +295,6 @@ extern "C"
      * This function generates a random paragraph starting with a tab character
      * and ending in a line break, with each sentence separated by a space.
      *
-     * @return char* The random paragraph.
-     *
      * @param minSent Minimum number of sentences in the paragraph.
      * @param maxSent Maximum number of sentences in the paragraph.
      * @param minWord Minimum number of words in each sentence fragment.
@@ -306,6 +304,8 @@ extern "C"
      * @param useLipsum Whether the default "Lorem ipsum..." text should start
      * the paragraph.
      * @param source The source for words.
+     *
+     * @return char* The random paragraph.
      */
     LIPSUMC_API char* lpsm_GenerateParagraph(int               minWord,
                                              int               maxWord,
@@ -319,8 +319,6 @@ extern "C"
      * @brief Generate a random number of random paragraphs.
      *
      * @since 0.3.2
-     *
-     * @return char* The random text.
      *
      * @param minWord The minimum possible number of words in a sentence
      * fragment.
@@ -337,6 +335,8 @@ extern "C"
      * @param useLipsum Whether "Lorem ipsum..." should start the first
      * paragraph.
      * @param source The source for words.
+     *
+     * @return char* The random text.
      */
     LIPSUMC_API char* lpsm_GenerateText(int               minWord,
                                         int               maxWord,
