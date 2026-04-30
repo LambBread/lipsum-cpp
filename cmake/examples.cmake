@@ -10,6 +10,12 @@ if(LPSM_BUILD_EXAMPLES)
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/examples")
 endif()
 
+# if building cli, message and add subdir
+if(LPSM_BUILD_CLI)
+    message(STATUS "lipsum-cpp ---- Building CLI")
+    add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/cli/")
+endif()
+
 # if building emscripten and JS binding, add as subdir
 if(EMSCRIPTEN AND LPSM_BUILD_JSBIND)
     message(STATUS "lipsum-cpp ---- Building JS binding")

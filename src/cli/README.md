@@ -1,0 +1,3 @@
+# lipsum-cpp CLI
+
+WIP
