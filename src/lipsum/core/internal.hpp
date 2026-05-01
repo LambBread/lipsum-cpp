@@ -66,16 +66,11 @@ namespace lipsum::internal
      *
      * @since 0.4.2
      *
-     * Log a warning to the console coloured yellow, starting with
-     * "lipsum-cpp WARNING -- " and the message, ending in a newline. If in
-     * Emscripten environment, use JavaScript console.warn() instead.
-     *
-     * @note This function uses ANSI escape codes. The default Windows
-     * terminal on older versions of Windows (< Windows 10 1511) does not
-     * support ANSI escape codes. The default Windows terminal on newer
-     * versions of Windows (>= Windows 10 1511) has support for ANSI escape
-     * codes, but one may have to manually enable them with
-     * SetConsoleMode(..., ENABLE_VIRTUAL_TERMINAL_PROCESSING).
+     * Log a warning to the console coloured yellow using ANSI escape codes,
+     * starting with "lipsum-cpp WARNING -- " and the message, ending in a
+     * newline. If in Emscripten environment, use JavaScript console.warn()
+     * instead. If in Windows environment, use SetConsoleTextAttribute()
+     * instead.
      *
      * @tparam Args The arguments' types. All must be printable with
      * std::ostream, or else the code will fail to compile.
@@ -89,10 +84,26 @@ namespace lipsum::internal
         ((oss << args), ...);
         oss << '\n';
         std::string message = oss.str();
-#    ifndef __EMSCRIPTEN__
-        std::cerr << "\033[33m" << message << "\033[0m";
-#    else
+#    ifdef __EMSCRIPTEN__
+        // emscripten
+
         emscripten_console_warn(message.c_str());
+#    elif defined(_WIN32)
+        // windows
+
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+        // yellow
+        SetConsoleTextAttribute(hConsole, 6);
+
+        std::cerr << message;
+
+        // default
+        SetConsoleTextAttribute(hConsole, 7);
+#    else
+        // assumed unix-like
+
+        std::cerr << "\033[33m" << message << "\033[0m";
 #    endif
     }
 

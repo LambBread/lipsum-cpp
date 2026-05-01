@@ -62,4 +62,8 @@ else()
         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/lipsum-cpp>")
 endif()
 
+if(WIN32)
+    target_link_libraries(lipsum-cpp PUBLIC kernel32)
+endif()
+
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/install.cmake")

@@ -35,6 +35,12 @@ namespace lipsum
     std::string GenerateScramble(int length, char min, char max)
     {
         std::string ret;
+        if (length < 0)
+        {
+            internal::LogWarn("lpsm::GenerateScramble(): expected length >= 0, "
+                              "got ",
+                              length);
+        }
         for (int i = 0; i < length; ++i)
         {
             ret.push_back(internal::RandomNumber<char>(min, max));
