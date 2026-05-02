@@ -175,6 +175,8 @@ extern "C"
      * @param path The filepath or name of the lorem ipsum source.
      *
      * @return lpsm_GeneratorHandle The lipsum::Generator.
+     *
+     * @sa lipsum::Source::load
      */
     LIPSUMC_API lpsm_GeneratorHandle lpsm_Generator(const char* path);
 
@@ -193,6 +195,23 @@ extern "C"
      * @param handle The lpsm_GeneratorHandle to delete.
      */
     LIPSUMC_API void lpsm_GeneratorDestroy(lpsm_GeneratorHandle handle);
+
+    /**
+     * @brief Reload a source
+     *
+     * @since 0.4.5
+     *
+     * This reloads the specified lorem ipsum source into m_Source. If path is
+     * invalid, it will print a warning and default to the standard
+     * lorem-ipsum source.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param path The filepath or name of the lorem ipsum source.
+     *
+     * @sa lipsum::Source::load
+     */
+    LIPSUMC_API void lpsm_Generator_load_source(lpsm_GeneratorHandle handle,
+                                                const char*          path);
 
     /**
      * @brief Change a setting

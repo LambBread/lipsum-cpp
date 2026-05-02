@@ -161,6 +161,21 @@ namespace lipsum
         Generator(const std::string& path);
 
         /**
+         * @brief Reload a source
+         *
+         * @since 0.4.5
+         *
+         * This reloads the specified lorem ipsum source into m_Source. If path
+         * is invalid, it will print a warning and default to the standard
+         * lorem-ipsum source.
+         *
+         * @param path The filepath or name of the lorem ipsum source.
+         *
+         * @sa lipsum::Source::load
+         */
+        void load_source(const std::string& path);
+
+        /**
          * @brief Change a setting
          *
          * @since 0.4.4

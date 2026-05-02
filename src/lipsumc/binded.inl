@@ -71,6 +71,12 @@ extern "C" void lpsm_GeneratorDestroy(lpsm_GeneratorHandle handle)
     delete realSource;
 }
 
+extern "C" void lpsm_Generator_load_source(lpsm_GeneratorHandle handle,
+                                           const char*          path)
+{
+    LPSM_GEN_CPPIFY(handle)->load_source(path);
+}
+
 extern "C" void lpsm_Generator_change_setting(lpsm_GeneratorHandle handle,
                                               const char*          setting,
                                               int                  minValue,

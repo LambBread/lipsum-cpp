@@ -10,6 +10,29 @@
         varName = ToType<type>(commandOpts.at(idx - 1));                       \
     }
 
+#define NUM_AND_USELIPSUM_SUBCOMMAND(name)                                     \
+    if (subcommand == #name)                                                   \
+    {                                                                          \
+        int  num       = 1;                                                    \
+        bool useLipsum = true;                                                 \
+        GET_ARG(num, 2, int);                                                  \
+        GET_ARG(useLipsum, 3, bool);                                           \
+        std::cout << gen.name(num, useLipsum);                                 \
+    }
+#define SINGLE_ARG_SUBCOMMAND(name, argName, defaultVal, type)                 \
+    if (subcommand == #name)                                                   \
+    {                                                                          \
+        type argName = defaultVal;                                             \
+        GET_ARG(argName, 2, type)                                              \
+        std::cout << gen.name(argName);                                        \
+    }
+
+#define NO_ARG_SUBCOMMAND(name)                                                \
+    if (subcommand == #name)                                                   \
+    {                                                                          \
+        std::cout << gen.name();                                               \
+    }
+
 template <typename T> T ToType(const std::string& str)
 {
     std::stringstream ss(str);
@@ -39,6 +62,25 @@ void ErrorMessage(const std::string& str)
 #endif
 }
 
+lpsm::ArgVec2 ParseAv2(const std::string& str)
+{
+    size_t pos = str.find(',');
+
+    lpsm::ArgVec2 ret{0, 0};
+    if (pos != std::string::npos)
+    {
+        ret.min = ToType<int>(str.substr(0, pos));
+        ret.max = ToType<int>(str.substr(pos + 1));
+    }
+    else
+    {
+        ErrorMessage("Error: invalid format of argument\nMust be in format: "
+                     "<min>,<max>");
+    }
+
+    return ret;
+}
+
 int main(int argc, char** argv)
 {
     if (argc < 2)
@@ -48,6 +90,8 @@ int main(int argc, char** argv)
 
     std::vector<std::string> options;
     std::vector<std::string> commandOpts;
+
+    lpsm::Generator gen;
 
     for (int i = 1; i < argc; ++i)
     {
@@ -64,6 +108,25 @@ int main(int argc, char** argv)
 
     for (const auto& option : options)
     {
+        if (option.starts_with("--help"))
+        {
+            // see other todo
+            return 0;
+        }
+        else if (option.starts_with("--word"))
+        {
+            size_t pos = option.find('=');
+            if (pos != std::string::npos)
+            {
+                std::string   value = option.substr(pos + 1);
+                lpsm::ArgVec2 word  = ParseAv2(value);
+                gen.change_setting("word", word);
+            }
+            else
+            {
+                ErrorMessage("Error: must be in format --option=value\n");
+            }
+        }
         std::cout << option << '\n';
     }
 
@@ -71,8 +134,6 @@ int main(int argc, char** argv)
     {
         std::cout << option << '\n';
     }
-
-    lpsm::Generator gen;
 
     // no subcommand
     // TODO: add help command
@@ -83,40 +144,14 @@ int main(int argc, char** argv)
 
     std::string subcommand = commandOpts.at(0);
 
-    if (subcommand == "word")
-    {
-        int num = 1;
-
-        GET_ARG(num, 2, int)
-        std::cout << gen.word(num);
-    }
-    else if (subcommand == "sentence_fragment")
-    {
-        std::cout << gen.sentence_fragment();
-    }
-    else if (subcommand == "sentence")
-    {
-        int  num       = 1;
-        bool useLipsum = true;
-        GET_ARG(num, 2, int)
-        GET_ARG(useLipsum, 3, bool)
-        std::cout << gen.sentence(num, useLipsum);
-    }
-    else if (subcommand == "paragraph")
-    {
-        int  num       = 1;
-        bool useLipsum = true;
-        GET_ARG(num, 2, int)
-        GET_ARG(useLipsum, 3, bool)
-        std::cout << gen.paragraph(num, useLipsum);
-    }
-    else if (subcommand == "text")
-    {
-        bool useLipsum = true;
-        GET_ARG(useLipsum, 2, bool)
-        std::cout << gen.text(useLipsum);
-    }
+    // clang-format off
+    SINGLE_ARG_SUBCOMMAND(word, num, 1, int)
+    else NO_ARG_SUBCOMMAND(sentence_fragment) 
+    else NUM_AND_USELIPSUM_SUBCOMMAND(sentence) 
+    else NUM_AND_USELIPSUM_SUBCOMMAND(paragraph) 
+    else SINGLE_ARG_SUBCOMMAND(text, useLipsum, true, bool) 
     else if (subcommand == "scramble")
+    // clang-format on
     {
         int length  = 16;
         int minChar = static_cast<int>(' ');
@@ -136,57 +171,17 @@ int main(int argc, char** argv)
                                   static_cast<char>(minChar),
                                   static_cast<char>(maxChar));
     }
-    else if (subcommand == "url")
-    {
-        std::cout << gen.url();
-    }
-    else if (subcommand == "plain_url")
-    {
-        std::cout << gen.plain_url();
-    }
-    else if (subcommand == "slug")
-    {
-        char separator = '-';
-
-        GET_ARG(separator, 2, char)
-
-        std::cout << gen.slug(separator);
-    }
-    else if (subcommand == "md_paragraph")
-    {
-        int  num       = 1;
-        bool useLipsum = true;
-        GET_ARG(num, 2, int)
-        GET_ARG(useLipsum, 3, bool)
-        std::cout << gen.md_paragraph(num, useLipsum);
-    }
-    else if (subcommand == "md_text")
-    {
-        int numElements = 15;
-        GET_ARG(numElements, 2, int)
-        std::cout << gen.md_text(numElements);
-    }
-    else if (subcommand == "html_paragraph")
-    {
-        int  num       = 1;
-        bool useLipsum = true;
-        GET_ARG(num, 2, int)
-        GET_ARG(useLipsum, 3, bool)
-        std::cout << gen.html_paragraph(num, useLipsum);
-    }
-    else if (subcommand == "html_text")
-    {
-        int numElements = 15;
-        GET_ARG(numElements, 2, int)
-        std::cout << gen.html_text(numElements);
-    }
-    else if (subcommand == "xml")
-    {
-        int choices = 30;
-        GET_ARG(choices, 2, int)
-        std::cout << gen.xml(choices);
-    }
+    // clang-format off
+    else NO_ARG_SUBCOMMAND(url)
+    else NO_ARG_SUBCOMMAND(plain_url) 
+    else SINGLE_ARG_SUBCOMMAND(slug, separator, '-', char) 
+    else NUM_AND_USELIPSUM_SUBCOMMAND(md_paragraph)
+    else SINGLE_ARG_SUBCOMMAND(md_text, numElements, 15, int) 
+    else NUM_AND_USELIPSUM_SUBCOMMAND(html_paragraph) 
+    else SINGLE_ARG_SUBCOMMAND(html_text, numElements, 15, int)
+    else SINGLE_ARG_SUBCOMMAND(xml, choices, 30, int)
     else if (subcommand == "json")
+    // clang-format on
     {
         int  maxDepth = 3;
         bool isObject = true;

@@ -55,6 +55,11 @@ namespace lipsum
 
     Generator::Generator(const std::string& path)
     {
+        load_source(path);
+    }
+
+    void Generator::load_source(const std::string& path)
+    {
         m_Source.load(path);
     }
 
