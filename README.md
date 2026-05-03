@@ -12,7 +12,7 @@ A header-only library written in C++ for generating sample Lorem Ipsum text. Use
 ## Features
 
 - Header-only (also possible to use an amalgamated single-header `lipsum.hpp`)
-- Zero third-party dependencies
+- Zero third-party dependencies for usage
 - Customizable number of paragraphs, sentences, sentence fragments, and words
 - Multi-source lorem-ipsum generation including built-in lorem-ipsum, cat-ipsum, dog-ipsum, and corporate-ipsum
 - Markdown, HTML, XML, and JSON generation
@@ -20,6 +20,7 @@ A header-only library written in C++ for generating sample Lorem Ipsum text. Use
 - C++, C, and JavaScript support (static/shared library, wrapper, and Emscripten module builds supported)
 - CMake support for easy integration
 - Example code and live demo available
+- CLI tool
 
 ## Installation
 
