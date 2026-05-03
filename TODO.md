@@ -54,19 +54,18 @@
 - [x] Merge smaller examples (0.4.4)
 - [x] Customizable settings in `lpsm::Generator` (0.4.4)
 - [x] Expose `lpsm::Generator` traditionally in C wrapper (0.4.4)
-
-## Upcoming
-
-- [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
-- [ ] Unit tests (planned 0.5.x)
-- [ ] CLI tool (planned 0.4.5)
+- [x] CLI tool (0.4.5)
     - [x] Subcommands for all `lpsm::Generator` generation functions (0.4.5)
     - [x] Add install rules (0.4.5)
     - [x] Options for all `lpsm::Generator` settings (0.4.5)
     - [x] Help command, documentation (0.4.5)
     - [x] Shorthand options (0.4.5)
     - [x] Version option (0.4.5)
-    - [ ] Multi-source functionality
+    - [x] Multi-source functionality (0.4.5)
 
+## Upcoming
+
+- [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
+- [ ] Unit tests (planned 0.5.x)
 - [ ] Stabilize API and release 1.0.0
 

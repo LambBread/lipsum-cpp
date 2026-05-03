@@ -37,11 +37,14 @@
     }
 
 #define SETTING_OPTION(name, shorth)                                           \
-    if (option.starts_with(std::string("--") + #name) ||                       \
-        option.starts_with(shorth))                                            \
+    if (OPTION_COND(name, shorth))                                             \
     {                                                                          \
         SettingOption(option, #name, gen);                                     \
     }
+
+#define OPTION_COND(name, shorth)                                              \
+    (option.starts_with(std::string("--") + #name) ||                          \
+     option.starts_with(shorth))
 
 template <typename T> T ToType(const std::string& str)
 {
@@ -59,9 +62,7 @@ constexpr bool InCharRange(int num)
 
 void ErrorMessage(const std::string& str)
 {
-#ifdef __EMSCRIPTEN__
-    emscripten_console_error(str.c_str());
-#elif defined(_WIN32)
+#ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
     SetConsoleTextAttribute(hConsole, 4);
@@ -138,7 +139,12 @@ void Help()
                  "headings.\n";
     std::cout
             << "  --jsonLength=<min,max>, -j - The min and max amount of items "
-               "in JSON objects.\n\n";
+               "in JSON objects.\n";
+    std::cout << "  --source=<source>, -S - Load specified source.\n";
+    std::cout << "      <source> may be a filepath to a file or a built-in "
+                 "source.\n";
+    std::cout << "      Built in sources include: default/lorem, cat, "
+                 "dog/doggo, corpo/corporate.\n\n";
     std::cout << "Valid subcommands include:\n";
     std::cout << "  help - Show this help.\n\n";
     std::cout << "  word [<num = 1>] - Generate words.\n";
@@ -193,6 +199,7 @@ void Help()
 
 int main(int argc, char** argv)
 {
+
     if (argc < 2)
     {
         Help();
@@ -219,13 +226,13 @@ int main(int argc, char** argv)
 
     for (const auto& option : options)
     {
-        if (option.starts_with("--help") || option.starts_with("-h"))
+        if (OPTION_COND(help, "-h"))
         {
             Help();
             return 0;
         }
 
-        if (option.starts_with("--version") || option.starts_with("-v"))
+        if (OPTION_COND(version, "-v"))
         {
             std::cout << LIPSUM_CPP_VERSION_FULL << '\n';
             return 0;
@@ -242,10 +249,25 @@ int main(int argc, char** argv)
         else SETTING_OPTION(fragFmt, "-F")
         else SETTING_OPTION(level, "-l")
         else SETTING_OPTION(jsonLength, "-j")
-        else
+        else if(OPTION_COND(source, "-S"))
         // clang-format on
         {
+            size_t pos = option.find('=');
+            if (pos != std::string::npos)
+            {
+                std::string value = option.substr(pos + 1);
+                gen.load_source(value);
+            }
+            else
+            {
+                ErrorMessage("Error: must be in format --option=value\n");
+                return -1;
+            }
+        }
+        else
+        {
             ErrorMessage("Error: unknown option\n");
+            return -1;
         }
     }
 

@@ -11,7 +11,7 @@ if(LPSM_BUILD_EXAMPLES)
 endif()
 
 # if building cli, message and add subdir
-if(LPSM_BUILD_CLI)
+if(LPSM_BUILD_CLI AND NOT EMSCRIPTEN)
     message(STATUS "lipsum-cpp ---- Building CLI")
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/cli/")
 endif()

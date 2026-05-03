@@ -51,7 +51,7 @@ amalgamate: ## Form the main source files into single file variants.
 	quom $(SRC_DIR)/lipsum.h $(PKG_DIR)/lipsum.h
 	quom $(SRC_DIR)/lipsum_h.cpp $(PKG_DIR)/lipsum_h.cpp
 
-pkg_: ## Copy the JS wrapper and its example to build/examples, and then compress the package directory bin/
+pkg_: ## Run the final packaging steps, namely copying certain examples and compressing the final archive.
 	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(BUILD_DIR)/$(EXAMPLES_DIR)/
 	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(PKG_DIR)/
 	cp $(EXAMPLES_DIR)/JSBinding.html $(BUILD_DIR)/$(EXAMPLES_DIR)/
