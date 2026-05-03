@@ -1,6 +1,6 @@
 # lipsum-cpp C wrapper
 
-The C wrapper provides a lower-level native C API over lipsum-cpp for integration into C projects.
+The C wrapper provides a lower-level C API over lipsum-cpp for integration into C projects.
 
 The differences between the C++ and C API are that:
 

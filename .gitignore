@@ -4,6 +4,8 @@ docs/
 
 *~
 *.swp
+*.bak
+.DS_Store
+Thumbs.db
 
-# compile.sh
 lipsum-pkg.zip
