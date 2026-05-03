@@ -21,6 +21,12 @@ jobs:
         with:
           cmake-version: '3.31.6'
 
+      - name: Setup RPM packaging
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rpm
+
       - name: Build static library
         run: |
           cmake -S . -B build -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON -DLPSM_BUILD_EXAMPLES=ON -DLPSM_FORMAT=OFF -DLPSM_BUILD_SAMPLE=OFF -DLPSM_BUILD_VERSION=OFF -DCMAKE_BUILD_TYPE=Release
@@ -40,4 +46,6 @@ jobs:
             build/*.tar.gz
             build/*.deb
             build/*.dmg
+            build/*.rpm
+            build/*.msi
           if-no-files-found: ignore

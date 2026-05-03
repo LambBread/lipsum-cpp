@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(lipsum-cpp VERSION 0.4.5 LANGUAGES C CXX)
+project(lipsum-cpp VERSION 0.4.5
+    LANGUAGES C CXX
+    DESCRIPTION "A basic library written in C++ for generating placeholder Lorem Ipsum text.")
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
