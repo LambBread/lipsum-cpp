@@ -64,6 +64,8 @@
     - [x] Add install rules (0.4.5)
     - [x] Options for all `lpsm::Generator` settings (0.4.5)
     - [x] Help command, documentation (0.4.5)
+    - [x] Shorthand options (0.4.5)
+    - [ ] Version option
     - [ ] Multi-source functionality
 
 - [ ] Stabilize API and release 1.0.0

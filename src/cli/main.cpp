@@ -36,8 +36,9 @@
         std::cout << gen.name();                                               \
     }
 
-#define SETTING_OPTION(name)                                                   \
-    if (option.starts_with(std::string("--") + #name))                         \
+#define SETTING_OPTION(name, shorth)                                           \
+    if (option.starts_with(std::string("--") + #name) ||                       \
+        option.starts_with(shorth))                                            \
     {                                                                          \
         SettingOption(option, #name, gen);                                     \
     }
@@ -112,24 +113,31 @@ void Help()
     std::cout
             << "Usage: lpsmcpp-cli <subcommand> [<arguments>] [<options>]\n\n";
     std::cout << "Valid options include:\n";
-    std::cout << "  --help - Show this help\n";
-    std::cout << "  --word=<min,max> - The min and max words per sentence "
+    std::cout << "  --help, -h - Show this help\n";
+    std::cout << "  --word=<min,max>, -w - The min and max words per sentence "
                  "fragment.\n";
-    std::cout << "  --frag=<min,max> - The min and max sentence fragments per "
+    std::cout << "  --frag=<min,max>, -f - The min and max sentence fragments "
+                 "per "
                  "sentence.\n";
-    std::cout << "  --sent=<min,max> - The min and max sentences per "
+    std::cout << "  --sent=<min,max>, -s - The min and max sentences per "
                  "paragraph.\n";
-    std::cout << "  --para=<min,max> - The min and max paragraphs per text.\n";
-    std::cout << "  --point=<min,max> - The min and max points per list.\n";
-    std::cout << "  --wordURL=<min,max> - The min and max words in headings, "
-                 "in slugs, and at the end of URLs.\n";
-    std::cout << "  --wordFmt=<min,max> - The min and max words per formatted "
+    std::cout << "  --para=<min,max>, -p - The min and max paragraphs per "
+                 "text.\n";
+    std::cout << "  --point=<min,max>, -P - The min and max points per list.\n";
+    std::cout
+            << "  --wordURL=<min,max>, -u - The min and max words in headings, "
+               "in slugs, and at the end of URLs.\n";
+    std::cout << "  --wordFmt=<min,max>, -W - The min and max words per "
+                 "formatted "
                  "sentence fragment.\n";
-    std::cout << "  --fragFmt=<min,max> - The min and max sentence fragments "
-                 "per formatted sentence.\n";
-    std::cout << "  --level=<min,max> - The min and max levels of headings.\n";
-    std::cout << "  --jsonLength=<min,max> - The min and max amount of items "
-                 "in JSON objects.\n\n";
+    std::cout
+            << "  --fragFmt=<min,max>, -F - The min and max sentence fragments "
+               "per formatted sentence.\n";
+    std::cout << "  --level=<min,max>, -l - The min and max levels of "
+                 "headings.\n";
+    std::cout
+            << "  --jsonLength=<min,max>, -j - The min and max amount of items "
+               "in JSON objects.\n\n";
     std::cout << "Valid subcommands include:\n";
     std::cout << "  help - Show this help.\n\n";
     std::cout << "  word [<num = 1>] - Generate words.\n";
@@ -198,7 +206,7 @@ int main(int argc, char** argv)
     for (int i = 1; i < argc; ++i)
     {
         std::string realArg = argv[i];
-        if (realArg.starts_with("--")) // using a c++20 feature!
+        if (realArg.starts_with("-")) // using a c++20 feature!
         {
             options.push_back(realArg);
         }
@@ -210,35 +218,29 @@ int main(int argc, char** argv)
 
     for (const auto& option : options)
     {
-        if (option.starts_with("--help"))
+        if (option.starts_with("--help") || option.starts_with("-h"))
         {
             Help();
             return 0;
         }
 
         // clang-format off
-        SETTING_OPTION(word)
-        else SETTING_OPTION(frag)
-        else SETTING_OPTION(sent)
-        else SETTING_OPTION(para)
-        else SETTING_OPTION(point)
-        else SETTING_OPTION(wordURL)
-        else SETTING_OPTION(wordFmt)
-        else SETTING_OPTION(fragFmt)
-        else SETTING_OPTION(level)
-        else SETTING_OPTION(jsonLength)
+        SETTING_OPTION(word, "-w")
+        else SETTING_OPTION(frag, "-f")
+        else SETTING_OPTION(sent, "-s")
+        else SETTING_OPTION(para, "-p")
+        else SETTING_OPTION(point, "-P")
+        else SETTING_OPTION(wordURL, "-u")
+        else SETTING_OPTION(wordFmt, "-W")
+        else SETTING_OPTION(fragFmt, "-F")
+        else SETTING_OPTION(level, "-l")
+        else SETTING_OPTION(jsonLength, "-j")
         else
         // clang-format on
         {
             ErrorMessage("Error: unknown option\n");
         }
-        //std::cout << option << '\n';
     }
-
-    //for (const auto& option : commandOpts)
-    //{
-    //    std::cout << option << '\n';
-    //}
 
     // no subcommand
     if (commandOpts.empty())
