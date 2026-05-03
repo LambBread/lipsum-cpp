@@ -66,3 +66,5 @@
     - [x] Help command, documentation (0.4.5)
     - [ ] Multi-source functionality
 
+- [ ] Stabilize API and release 1.0.0
+
