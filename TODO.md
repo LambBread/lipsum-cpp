@@ -63,6 +63,6 @@
     - [x] Subcommands for all `lpsm::Generator` generation functions (0.4.5)
     - [x] Add install rules (0.4.5)
     - [x] Options for all `lpsm::Generator` settings (0.4.5)
-    - [ ] Help command, documentation
-    - [ ] Multi-source
+    - [x] Help command, documentation (0.4.5)
+    - [ ] Multi-source functionality
 

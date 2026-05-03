@@ -94,8 +94,6 @@ void SettingOption(const std::string& option,
                    const std::string& name,
                    lpsm::Generator&   gen)
 {
-    // if(option.starts_with(std::string("--") + name))
-    //{
     size_t pos = option.find('=');
     if (pos != std::string::npos)
     {
@@ -107,13 +105,88 @@ void SettingOption(const std::string& option,
     {
         ErrorMessage("Error: must be in format --option=value\n");
     }
-    //}
+}
+
+void Help()
+{
+    std::cout
+            << "Usage: lpsmcpp-cli <subcommand> [<arguments>] [<options>]\n\n";
+    std::cout << "Valid options include:\n";
+    std::cout << "  --help - Show this help\n";
+    std::cout << "  --word=<min,max> - The min and max words per sentence "
+                 "fragment.\n";
+    std::cout << "  --frag=<min,max> - The min and max sentence fragments per "
+                 "sentence.\n";
+    std::cout << "  --sent=<min,max> - The min and max sentences per "
+                 "paragraph.\n";
+    std::cout << "  --para=<min,max> - The min and max paragraphs per text.\n";
+    std::cout << "  --point=<min,max> - The min and max points per list.\n";
+    std::cout << "  --wordURL=<min,max> - The min and max words in headings, "
+                 "in slugs, and at the end of URLs.\n";
+    std::cout << "  --wordFmt=<min,max> - The min and max words per formatted "
+                 "sentence fragment.\n";
+    std::cout << "  --fragFmt=<min,max> - The min and max sentence fragments "
+                 "per formatted sentence.\n";
+    std::cout << "  --level=<min,max> - The min and max levels of headings.\n";
+    std::cout << "  --jsonLength=<min,max> - The min and max amount of items "
+                 "in JSON objects.\n\n";
+    std::cout << "Valid subcommands include:\n";
+    std::cout << "  help - Show this help.\n\n";
+    std::cout << "  word [<num = 1>] - Generate words.\n";
+    std::cout << "    num - The number of words.\n\n";
+    std::cout << "  sentence_fragment - Generate a sentence fragment.\n\n";
+    std::cout << "  sentence [<num = 1>] [<useLipsum = true>] - Generate "
+                 "sentences.\n";
+    std::cout << "    num - The number of sentences.\n";
+    std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the "
+                 "sentences.\n\n";
+    std::cout << "  paragraph [<num = 1>] [<useLipsum = true>] - Generate "
+                 "paragraphs.\n";
+    std::cout << "    num - The number of paragraphs.\n";
+    std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the "
+                 "first sentence.\n\n";
+    std::cout << "  text [<useLipsum = true>] - Generate a text.\n";
+    std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the "
+                 "first sentence.\n\n";
+    std::cout << "  scramble [<length = 16>] [<minChar = 32>] [<maxChar = "
+                 "126>] - Generate a character scramble.\n";
+    std::cout << "    length - The number of characters.\n";
+    std::cout << "    minChar - The lowest ASCII value possible.\n";
+    std::cout << "    maxChar - The highest ASCII value possible.\n\n";
+    std::cout << "  url - Generate a URL.\n\n";
+    std::cout << "  plain_url - Generate a plain URL.\n\n";
+    std::cout << "  slug [<separator = '-'>] - Generate a slug.\n";
+    std::cout << "    separator - The separator to use.\n\n";
+    std::cout << "  md_paragraph [<num = 1>] [<useLipsum = true>] - Generate a "
+                 "Markdown paragraph.\n";
+    std::cout << "    num - The number of paragraphs.\n";
+    std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the "
+                 "first sentence.\n\n";
+    std::cout << "  md_text [<numElements = 15>] - Generate a Markdown "
+                 "document\n";
+    std::cout << "    numElements - The number of elements.\n\n";
+    std::cout << "  html_paragraph [<num = 1>] [<useLipsum = true>] - Generate "
+                 "an HTML paragraph.\n";
+    std::cout << "    num - The number of paragraphs.\n";
+    std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the "
+                 "first sentence.\n\n";
+    std::cout << "  html_text [<numElements = 15>] - Generate an HTML "
+                 "document.\n";
+    std::cout << "    numElements - The number of elements.\n\n";
+    std::cout << "  xml [<choices = 30>] - Generate an XML document.\n";
+    std::cout << "    choices - The number of 'choices' to make.\n\n";
+    std::cout << "  json [<maxDepth = 3>] [<isObject = true>] - Generate a "
+                 "JSON object or array.\n";
+    std::cout << "    maxDepth - The maximum recursion depth.\n";
+    std::cout
+            << "    isObject - Whether the output is an object or an array.\n";
 }
 
 int main(int argc, char** argv)
 {
     if (argc < 2)
     {
+        Help();
         return 0;
     }
 
@@ -139,7 +212,7 @@ int main(int argc, char** argv)
     {
         if (option.starts_with("--help"))
         {
-            // see other todo
+            Help();
             return 0;
         }
 
@@ -159,18 +232,18 @@ int main(int argc, char** argv)
         {
             ErrorMessage("Error: unknown option\n");
         }
-        std::cout << option << '\n';
+        //std::cout << option << '\n';
     }
 
-    for (const auto& option : commandOpts)
-    {
-        std::cout << option << '\n';
-    }
+    //for (const auto& option : commandOpts)
+    //{
+    //    std::cout << option << '\n';
+    //}
 
     // no subcommand
-    // TODO: add help command
     if (commandOpts.empty())
     {
+        Help();
         return 0;
     }
 
@@ -220,6 +293,11 @@ int main(int argc, char** argv)
         GET_ARG(maxDepth, 2, int)
         GET_ARG(isObject, 3, bool)
         std::cout << gen.json(maxDepth, isObject);
+    }
+    else if (subcommand == "help")
+    {
+        Help();
+        return 0;
     }
     else
     {
