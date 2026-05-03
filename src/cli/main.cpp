@@ -4,6 +4,9 @@
 #include <lipsum.hpp>
 #include <limits>
 
+// various macros to avoid repetition
+// maybe not best practice?
+
 #define GET_ARG(varName, idx, type)                                            \
     if (commandOpts.size() >= idx)                                             \
     {                                                                          \
@@ -31,6 +34,12 @@
     if (subcommand == #name)                                                   \
     {                                                                          \
         std::cout << gen.name();                                               \
+    }
+
+#define SETTING_OPTION(name)                                                   \
+    if (option.starts_with(std::string("--") + #name))                         \
+    {                                                                          \
+        SettingOption(option, #name, gen);                                     \
     }
 
 template <typename T> T ToType(const std::string& str)
@@ -81,6 +90,26 @@ lpsm::ArgVec2 ParseAv2(const std::string& str)
     return ret;
 }
 
+void SettingOption(const std::string& option,
+                   const std::string& name,
+                   lpsm::Generator&   gen)
+{
+    // if(option.starts_with(std::string("--") + name))
+    //{
+    size_t pos = option.find('=');
+    if (pos != std::string::npos)
+    {
+        std::string   value = option.substr(pos + 1);
+        lpsm::ArgVec2 av2   = ParseAv2(value);
+        gen.change_setting(name, av2);
+    }
+    else
+    {
+        ErrorMessage("Error: must be in format --option=value\n");
+    }
+    //}
+}
+
 int main(int argc, char** argv)
 {
     if (argc < 2)
@@ -113,19 +142,22 @@ int main(int argc, char** argv)
             // see other todo
             return 0;
         }
-        else if (option.starts_with("--word"))
+
+        // clang-format off
+        SETTING_OPTION(word)
+        else SETTING_OPTION(frag)
+        else SETTING_OPTION(sent)
+        else SETTING_OPTION(para)
+        else SETTING_OPTION(point)
+        else SETTING_OPTION(wordURL)
+        else SETTING_OPTION(wordFmt)
+        else SETTING_OPTION(fragFmt)
+        else SETTING_OPTION(level)
+        else SETTING_OPTION(jsonLength)
+        else
+        // clang-format on
         {
-            size_t pos = option.find('=');
-            if (pos != std::string::npos)
-            {
-                std::string   value = option.substr(pos + 1);
-                lpsm::ArgVec2 word  = ParseAv2(value);
-                gen.change_setting("word", word);
-            }
-            else
-            {
-                ErrorMessage("Error: must be in format --option=value\n");
-            }
+            ErrorMessage("Error: unknown option\n");
         }
         std::cout << option << '\n';
     }
@@ -137,7 +169,7 @@ int main(int argc, char** argv)
 
     // no subcommand
     // TODO: add help command
-    if (commandOpts.size() <= 0)
+    if (commandOpts.empty())
     {
         return 0;
     }
