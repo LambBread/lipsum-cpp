@@ -114,6 +114,7 @@ void Help()
             << "Usage: lpsmcpp-cli <subcommand> [<arguments>] [<options>]\n\n";
     std::cout << "Valid options include:\n";
     std::cout << "  --help, -h - Show this help\n";
+    std::cout << "  --version, -v - Show the current version of lipsum-cpp.\n";
     std::cout << "  --word=<min,max>, -w - The min and max words per sentence "
                  "fragment.\n";
     std::cout << "  --frag=<min,max>, -f - The min and max sentence fragments "
@@ -186,8 +187,8 @@ void Help()
     std::cout << "  json [<maxDepth = 3>] [<isObject = true>] - Generate a "
                  "JSON object or array.\n";
     std::cout << "    maxDepth - The maximum recursion depth.\n";
-    std::cout
-            << "    isObject - Whether the output is an object or an array.\n";
+    std::cout << "    isObject - Whether the output is an object or an "
+                 "array.\n\n";
 }
 
 int main(int argc, char** argv)
@@ -221,6 +222,12 @@ int main(int argc, char** argv)
         if (option.starts_with("--help") || option.starts_with("-h"))
         {
             Help();
+            return 0;
+        }
+
+        if (option.starts_with("--version") || option.starts_with("-v"))
+        {
+            std::cout << LIPSUM_CPP_VERSION_FULL << '\n';
             return 0;
         }
 
