@@ -62,9 +62,15 @@
     - [x] Shorthand options (0.4.5)
     - [x] Version option (0.4.5)
     - [x] Multi-source functionality (0.4.5)
+- [x] Use C++20 concepts in `lpsm::internal` (0.4.6)
 
 ## Upcoming
 
+- [ ] `lpsm::internal::ToType()` (planned 0.4.6)
+- [ ] CLI: Rewrite with better code practice (e.g. less macros, replace if-elseif-elseif-else) (planned 0.4.6)
+- [ ] Add `CHANGELOG.md`
+- [ ] Merge `lpsm::Generator::html_*` functions into `lpsm::Generator::md_*` (planned 0.4.6)
+- [ ] Add more `lpsm::Generator` functions around Markdown (planned 0.4.6)
 - [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
 - [ ] Unit tests (planned 0.5.x)
 - [ ] Stabilize API and release 1.0.0

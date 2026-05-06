@@ -18,13 +18,13 @@
 namespace lipsum
 {
 
-    template <> char internal::RandomNumber(char min, char max)
+    char internal::RandomNumber(char min, char max)
     {
         return static_cast<char>(internal::RandomNumber(static_cast<int>(min),
                                                         static_cast<int>(max)));
     }
 
-    template <> bool internal::RandomNumber(bool min, bool max)
+    bool internal::RandomNumber(bool min, bool max)
     {
         int choice = internal::RandomNumber(0, 1);
         return choice == 0 ? min : max;

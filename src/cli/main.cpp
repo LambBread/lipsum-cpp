@@ -56,8 +56,8 @@ template <typename T> T ToType(const std::string& str)
 
 constexpr bool InCharRange(int num)
 {
-    return (num > std::numeric_limits<char>::min()) &&
-           (num < std::numeric_limits<char>::max());
+    return (num >= std::numeric_limits<char>::min()) &&
+           (num <= std::numeric_limits<char>::max());
 }
 
 void ErrorMessage(const std::string& str)

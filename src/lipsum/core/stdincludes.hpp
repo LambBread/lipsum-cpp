@@ -1,4 +1,3 @@
-
 /**
  * @file lipsum/core/stdincludes.hpp
  *
@@ -18,6 +17,7 @@
 #    include <algorithm>
 #    include <array>
 #    include <cctype>
+#    include <concepts>
 #    include <fstream>
 #    include <iostream>
 #    include <iterator>

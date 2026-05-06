@@ -166,10 +166,10 @@ mkdir -p obj
 mkdir -p bin
 
 # primary cpp portion
-g++ -c src/lipsum_static.cpp -DLIPSUM_BUILD_STATIC -o obj/lipsum.o
+g++ -c src/lipsum_static.cpp -DLIPSUM_BUILD_STATIC -o obj/lipsum.o --std=c++20
 
 # c wrapper
-g++ -c src/lipsum_h.cpp -DLIPSUM_BUILD_STATIC -o obj/lipsum_h.o
+g++ -c src/lipsum_h.cpp -DLIPSUM_BUILD_STATIC -o obj/lipsum_h.o --std=c++20
 
 # link together
 ar rcs bin/liblipsum-cpp.a obj/lipsum_h.o obj/lipsum.o

@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.20)
 if(NOT EMSCRIPTEN)
-    message(FATAL_ERROR "Must compile JS binding under Emscripten!")
+    message(FATAL_ERROR "lipsum-cpp ---- Must compile JS binding under Emscripten!")
 endif()
 add_executable(lipsum
     "${CMAKE_CURRENT_SOURCE_DIR}/lipsum_binding_js.cpp"

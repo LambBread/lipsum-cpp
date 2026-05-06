@@ -43,7 +43,7 @@ namespace lipsum
         }
         for (int i = 0; i < length; ++i)
         {
-            ret.push_back(internal::RandomNumber<char>(min, max));
+            ret.push_back(internal::RandomNumber(min, max));
         }
         return ret;
     }

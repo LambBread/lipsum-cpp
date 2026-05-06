@@ -20,7 +20,7 @@
 /**
  * @brief Choose between true or false
  */
-#    define LPSM_FLIP_COIN lpsm::internal::RandomNumber<bool>(false, true)
+#    define LPSM_FLIP_COIN lpsm::internal::RandomNumber(false, true)
 
 /**
  * @namespace lipsum::internal
@@ -33,6 +33,39 @@
  */
 namespace lipsum::internal
 {
+
+    /**
+     * @brief Can std::to_string() be called with T?
+     *
+     * @since 0.4.6
+     */
+    template <typename T>
+    concept ToStringable = requires(T v) {
+        { std::to_string(v) } -> std::convertible_to<std::string>;
+    };
+
+    /**
+     * @brief Can std::ostream take T?
+     *
+     * @since 0.4.6
+     */
+    template <typename T>
+    concept Streamable = requires(std::ostream& os, T v) {
+        { os << v } -> std::same_as<std::ostream&>;
+    } && (!ToStringable<T>);
+
+    /**
+     * @brief Can std::uniform_int_distribution or
+     * std::uniform_real_distribution be constructed with T?
+     *
+     * @since 0.4.6
+     */
+    template <typename T>
+    concept UniformDistributionType =
+            (std::integral<T> || std::floating_point<T>) &&
+            !(std::same_as<T, char>) && !(std::same_as<T, signed char>) &&
+            !(std::same_as<T, unsigned char>) && !(std::same_as<T, bool>);
+
     /**
      * @brief Pick a random TLD.
      *
@@ -116,15 +149,15 @@ namespace lipsum::internal
      * integer, use std::uniform_int_distribution. Else, use
      * std::uniform_real_distribution.
      *
-     * @tparam T The type of the random number. Must be an integer or
-     * floating-point type, else compilation will likely fail.
+     * @tparam T The type of the random number. Must be a uniform-distribution
+     * type, i.e. ints (excluding chars and bool) and floats.
      *
      * @param min The minimum value.
      * @param max The maximum value.
      *
      * @return T The random number.
      */
-    template <typename T> T RandomNumber(T min, T max)
+    template <UniformDistributionType T> T RandomNumber(T min, T max)
     {
         static thread_local std::mt19937 gen(std::random_device{}());
         if constexpr (std::is_integral_v<T>)
@@ -140,32 +173,32 @@ namespace lipsum::internal
     }
 
     /**
-     * @brief Specialization of RandomNumber() for char
+     * @brief Overload of RandomNumber() for char
      *
      * @since 0.3.9
      *
-     * This is a specialization of RandomNumber() for char.
+     * @overload
      *
      * @param min The minimum value.
      * @param max The maximum value.
      *
      * @return char The random character.
      */
-    template <> LIPSUM_API char RandomNumber(char min, char max);
+    LIPSUM_API char RandomNumber(char min, char max);
 
     /**
-     * @brief Specialization of RandomNumber() for bool
+     * @brief Overload of RandomNumber() for bool
      *
      * @since 0.3.9
      *
-     * This is a specialization of RandomNumber() for bool.
+     * @overload
      *
      * @param min The minimum value.
      * @param max The maximum value.
      *
      * @return bool The random character.
      */
-    template <> LIPSUM_API bool RandomNumber(bool min, bool max);
+    LIPSUM_API bool RandomNumber(bool min, bool max);
 
     /**
      * @brief Choose a random index based off weights
@@ -190,15 +223,25 @@ namespace lipsum::internal
      * This function converts the parameter passed into a string using
      * std::stringstream.
      *
+     * @tparam T The type being converted. Must be printable using
+     * std::stringstream.
+     *
      * @param param The parameter being converted.
      *
      * @return std::string The parameter as a string.
      */
-    template <typename T> std::string ToString(const T& param)
+    template <Streamable T> std::string ToString(const T& param)
     {
+        // std::cout << "Using streamable\n";
         std::ostringstream oss;
         oss << param;
         return oss.str();
+    }
+
+    template <ToStringable T> std::string ToString(const T& param)
+    {
+        // std::cout << "Using to_string-able\n";
+        return std::to_string(param);
     }
 } // namespace lipsum::internal
 #endif

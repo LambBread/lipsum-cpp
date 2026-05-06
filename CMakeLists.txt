@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.15)
-project(lipsum-cpp VERSION 0.4.5
+cmake_minimum_required(VERSION 3.20)
+project(lipsum-cpp VERSION 0.4.6
     LANGUAGES C CXX
     DESCRIPTION "A basic library written in C++ for generating placeholder Lorem Ipsum text.")
 
@@ -47,7 +47,7 @@ endif()
 if(LPSM_BUILD_SHARED OR LPSM_BUILD_STATIC)
     # c++20
     target_compile_features(lipsum-cpp PUBLIC cxx_std_20)
-    
+
     # include directories
     target_include_directories(lipsum-cpp PUBLIC 
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>"
