@@ -64,12 +64,11 @@
     - [x] Multi-source functionality (0.4.5)
 - [x] Use C++20 concepts in `lpsm::internal` (0.4.6)
 - [x] Document minimum dependency versions (0.4.6)
+- [x] Include warning flags in CMake (0.4.6)
 
 ## Upcoming
 
-- [ ] Include warning flags (planned 0.4.6)
 - [ ] `lpsm::internal::ToType()` (planned 0.4.6)
-- [ ] `lpsm::Pluralize()` (planned 0.4.6)
 - [ ] `lpsm::CountParagraphs()` (planned 0.4.6)
 - [ ] Smarter `lpsm::CountWords()`?
 - [ ] Merge `lpsm::Generator::html_*` functions into `lpsm::Generator::md_*` (planned 0.4.6)
@@ -79,7 +78,6 @@
 - [ ] Add memory safety checks to CI/CD (e.g. `valgrind`)
 - [ ] Add `CHANGELOG.md`
 - [ ] CMake `find_package` support
-- [ ] Custom default lipsum sentences
 - [ ] YAML/TOML?
 - [ ] Const-correctness?
 - [ ] Performance benchmarks (maybe in unit tests?)

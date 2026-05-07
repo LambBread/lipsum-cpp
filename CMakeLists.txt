@@ -64,6 +64,12 @@ else()
         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/lipsum-cpp>")
 endif()
 
+if(MSVC)
+    target_compile_options(lipsum-cpp PRIVATE /W4)
+else()
+    target_compile_options(lipsum-cpp PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
 if(WIN32)
     target_link_libraries(lipsum-cpp PUBLIC kernel32)
 endif()
