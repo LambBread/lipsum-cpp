@@ -63,11 +63,11 @@
     - [x] Version option (0.4.5)
     - [x] Multi-source functionality (0.4.5)
 - [x] Use C++20 concepts in `lpsm::internal` (0.4.6)
+- [x] Document minimum dependency versions (0.4.6)
 
 ## Upcoming
 
 - [ ] Include warning flags (planned 0.4.6)
-- [ ] Document minimum dependency versions (planned 0.4.6)
 - [ ] `lpsm::internal::ToType()` (planned 0.4.6)
 - [ ] `lpsm::Pluralize()` (planned 0.4.6)
 - [ ] `lpsm::CountParagraphs()` (planned 0.4.6)

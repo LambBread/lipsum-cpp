@@ -114,15 +114,15 @@ lipsum-cpp can be installed via the `Releases` section, or alternatively can be 
 
 #### Build prerequisites
 
-- A C/C++ compiler (e.g. GCC, MSVC, Clang)
+- A C/C++ compiler (e.g. GCC, MSVC, Clang) supporting C++20 or newer
 - Recommended:
-    - CMake
+    - CMake (>= 3.20)
     - Make
+    - another build system (e.g. Ninja, MSBuild, ...)
     - Git
 - Optional:
-    - Emscripten
+    - Emscripten (>= 2.0 required, >= 3.x recommended)
     - 7-Zip
-    - a build system (e.g. Ninja, MSBuild, ...)
     - Doxygen
     - Clang format
     - Clang tidy
