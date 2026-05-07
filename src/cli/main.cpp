@@ -1,8 +1,8 @@
 #ifndef LIPSUM_BUILD_STATIC
 #    define LIPSUM_IMPLEMENTATION
 #endif
-#include <lipsum.hpp>
 #include <limits>
+#include <lipsum.hpp>
 
 // various macros to avoid repetition
 // maybe not best practice?

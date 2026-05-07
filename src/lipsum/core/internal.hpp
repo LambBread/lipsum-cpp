@@ -16,6 +16,7 @@
 #    define LIPSUM_CORE_INTERNAL_HPP
 
 #    include "core.hpp"
+#    include "stdincludes.hpp"
 
 /**
  * @brief Choose between true or false

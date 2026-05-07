@@ -26,8 +26,8 @@
 #    include <string>
 #    include <type_traits>
 #    include <unordered_set>
-#    include <vector>
 #    include <utility>
+#    include <vector>
 #    ifdef __EMSCRIPTEN__
 #        include <emscripten/console.h>
 #    endif

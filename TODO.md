@@ -79,7 +79,6 @@
 - [ ] Add `CHANGELOG.md`
 - [ ] CMake `find_package` support
 - [ ] YAML/TOML?
-- [ ] Const-correctness?
 - [ ] Performance benchmarks (maybe in unit tests?)
 - [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
 - [ ] Add seed options (planned 0.5.0)

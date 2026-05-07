@@ -16,8 +16,8 @@
 #ifndef LIPSUM_CORE_FUNCS_HPP
 #    define LIPSUM_CORE_FUNCS_HPP
 
-#    include "core/core.hpp"
 #    include "core/argvec2.hpp"
+#    include "core/core.hpp"
 #    include "core/source.hpp"
 
 namespace lipsum

@@ -15,8 +15,8 @@
 #ifndef LIPSUM_MARKDOWN_HPP
 #    define LIPSUM_MARKDOWN_HPP
 
-#    include "core/core.hpp"
 #    include "core/argvec2.hpp"
+#    include "core/core.hpp"
 #    include "core/source.hpp"
 
 namespace lipsum

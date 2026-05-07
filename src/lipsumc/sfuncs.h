@@ -15,8 +15,8 @@
 #ifndef LIPSUMC_SFUNCS_H
 #    define LIPSUMC_SFUNCS_H
 
-#    include "core.h"
 #    include "binded.h"
+#    include "core.h"
 
 #    ifdef __cplusplus
 extern "C"
