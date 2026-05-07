@@ -41,19 +41,34 @@ namespace lipsum::internal
      * @since 0.4.6
      */
     template <typename T>
-    concept ToStringable = requires(T v) {
-        { std::to_string(v) } -> std::convertible_to<std::string>;
+    concept ToStringable = requires(const T& value) {
+        { std::to_string(value) } -> std::convertible_to<std::string>;
     };
 
     /**
      * @brief Can std::ostream take T?
      *
      * @since 0.4.6
+     *
+     * Can std::ostream take T and not by std::to_string()?
      */
     template <typename T>
-    concept Streamable = requires(std::ostream& os, T v) {
-        { os << v } -> std::same_as<std::ostream&>;
+    concept Streamable = requires(std::ostream& outs, const T& value) {
+        { outs << value } -> std::same_as<std::ostream&>;
     } && (!ToStringable<T>);
+
+    /**
+     * @brief Is T an int?
+     *
+     * @since 0.4.6
+     *
+     * Is T an integer type, excluding chars and bool?
+     */
+    template <typename T>
+    concept IsInt =
+            (std::integral<T> || std::unsigned_integral<T>) &&
+            !(std::same_as<T, char>) && !(std::same_as<T, signed char>) &&
+            !(std::same_as<T, unsigned char>) && !(std::same_as<T, bool>);
 
     /**
      * @brief Can std::uniform_int_distribution or
@@ -62,10 +77,7 @@ namespace lipsum::internal
      * @since 0.4.6
      */
     template <typename T>
-    concept UniformDistributionType =
-            (std::integral<T> || std::floating_point<T>) &&
-            !(std::same_as<T, char>) && !(std::same_as<T, signed char>) &&
-            !(std::same_as<T, unsigned char>) && !(std::same_as<T, bool>);
+    concept UniformDistributionType = (IsInt<T> || std::floating_point<T>);
 
     /**
      * @brief Pick a random TLD.
@@ -222,10 +234,10 @@ namespace lipsum::internal
      * @since 0.3.0
      *
      * This function converts the parameter passed into a string using
-     * std::stringstream.
+     * std::stringstream or std::to_string().
      *
      * @tparam T The type being converted. Must be printable using
-     * std::stringstream.
+     * std::stringstream or convertable using std::to_string().
      *
      * @param param The parameter being converted.
      *
@@ -243,6 +255,65 @@ namespace lipsum::internal
     {
         // std::cout << "Using to_string-able\n";
         return std::to_string(param);
+    }
+
+    /**
+     * @brief Convert a string to an object.
+     *
+     * @since 0.4.6
+     *
+     * This function converts the string passed into the specified type. If T is
+     * std::string, return input. If T is bool, return based on if input is
+     * true/1 or false/0. If T is char, get first character of the string or a
+     * null character if the string is empty. If T is an integer type, convert
+     * using std::from_chars(). Else, convert using std::stringstream.
+     *
+     * @tparam T The type being converted to.
+     *
+     * @param input The string being converted.
+     *
+     * @return T The string as the type.
+     */
+    template <typename T> T ToType(const std::string& input)
+    {
+        T res{};
+
+        if constexpr (std::same_as<T, std::string>)
+        {
+            return input;
+        }
+        else if constexpr (std::same_as<T, bool>)
+        {
+            // std::cout << "bool ToType\n";
+            return (input == "true" || input == "1");
+        }
+        else if constexpr (std::same_as<T, char>)
+        {
+            // std::cout << "char ToType\n";
+            return input.empty() ? '\0' : input.at(0);
+        }
+        else if constexpr (IsInt<T>)
+        {
+            // std::cout << "integer ToType\n";
+            auto [ptr, ec] = std::from_chars(input.data(),
+                                             input.data() + input.size(),
+                                             res);
+            if (ec != std::errc{})
+            {
+                LogWarn("lpsm::internal::ToType: std::from_chars() failed; "
+                        "invalidly formatted integer? Returning default T.");
+                return T{};
+            }
+            return res;
+        }
+        else
+        // assume streamable
+        {
+            // std::cout << "generic ToType\n";
+            std::istringstream iss(input);
+            iss >> res;
+            return res;
+        }
     }
 } // namespace lipsum::internal
 #endif

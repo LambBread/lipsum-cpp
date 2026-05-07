@@ -10,7 +10,7 @@
 #define GET_ARG(varName, idx, type)                                            \
     if (commandOpts.size() >= idx)                                             \
     {                                                                          \
-        varName = ToType<type>(commandOpts.at(idx - 1));                       \
+        varName = lpsm::internal::ToType<type>(commandOpts.at(idx - 1));       \
     }
 
 #define NUM_AND_USELIPSUM_SUBCOMMAND(name)                                     \
@@ -80,8 +80,8 @@ lpsm::ArgVec2 ParseAv2(const std::string& str)
     lpsm::ArgVec2 ret{0, 0};
     if (pos != std::string::npos)
     {
-        ret.min = ToType<int>(str.substr(0, pos));
-        ret.max = ToType<int>(str.substr(pos + 1));
+        ret.min = lpsm::internal::ToType<int>(str.substr(0, pos));
+        ret.max = lpsm::internal::ToType<int>(str.substr(pos + 1));
     }
     else
     {

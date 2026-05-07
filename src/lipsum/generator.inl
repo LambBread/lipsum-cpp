@@ -115,7 +115,8 @@ namespace lipsum
                             m_Source);
     }
 
-    std::string Generator::scramble(int length, char minChar, char maxChar)
+    std::string
+    Generator::scramble(int length, char minChar, char maxChar) // NOLINT
     {
         return GenerateScramble(length, minChar, maxChar);
     }

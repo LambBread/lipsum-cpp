@@ -65,12 +65,13 @@
 - [x] Use C++20 concepts in `lpsm::internal` (0.4.6)
 - [x] Document minimum dependency versions (0.4.6)
 - [x] Include warning flags in CMake (0.4.6)
+- [x] `lpsm::internal::ToType()` (0.4.6)
 
 ## Upcoming
 
-- [ ] `lpsm::internal::ToType()` (planned 0.4.6)
 - [ ] `lpsm::CountParagraphs()` (planned 0.4.6)
 - [ ] Smarter `lpsm::CountWords()`?
+- [ ] Rename `lpsm::Generator::sentence_fragment()` to `fragment()` (planned 0.4.6)
 - [ ] Merge `lpsm::Generator::html_*` functions into `lpsm::Generator::md_*` (planned 0.4.6)
 - [ ] Add more `lpsm::Generator` functions around Markdown (planned 0.4.6)
 - [ ] CLI: Rewrite with better code practice (e.g. less macros, replace if-elseif-elseif-else) (planned 0.4.6)
