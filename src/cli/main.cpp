@@ -149,7 +149,7 @@ void Help()
     std::cout << "  help - Show this help.\n\n";
     std::cout << "  word [<num = 1>] - Generate words.\n";
     std::cout << "    num - The number of words.\n\n";
-    std::cout << "  sentence_fragment - Generate a sentence fragment.\n\n";
+    std::cout << "  fragment - Generate a sentence fragment.\n\n";
     std::cout << "  sentence [<num = 1>] [<useLipsum = true>] - Generate "
                  "sentences.\n";
     std::cout << "    num - The number of sentences.\n";
@@ -282,7 +282,7 @@ int main(int argc, char** argv)
 
     // clang-format off
     SINGLE_ARG_SUBCOMMAND(word, num, 1, int)
-    else NO_ARG_SUBCOMMAND(sentence_fragment) 
+    else NO_ARG_SUBCOMMAND(fragment) 
     else NUM_AND_USELIPSUM_SUBCOMMAND(sentence) 
     else NUM_AND_USELIPSUM_SUBCOMMAND(paragraph) 
     else SINGLE_ARG_SUBCOMMAND(text, useLipsum, true, bool) 

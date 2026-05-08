@@ -81,7 +81,7 @@ namespace lipsum
         return GenerateWords(num, m_Source);
     }
 
-    std::string Generator::sentence_fragment()
+    std::string Generator::fragment()
     {
         return GenerateSentenceFragment(m_Settings.word, m_Source);
     }

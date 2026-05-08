@@ -126,11 +126,12 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * This function generates a sentence fragment.
+         * This function generates a sentence fragment. Formerly known as
+         * sentence_fragment().
          *
          * @return std::string The random sentence fragment.
          */
-        std::string sentence_fragment();
+        std::string fragment();
 
         /**
          * @brief Generate sentences.

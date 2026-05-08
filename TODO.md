@@ -66,12 +66,13 @@
 - [x] Document minimum dependency versions (0.4.6)
 - [x] Include warning flags in CMake (0.4.6)
 - [x] `lpsm::internal::ToType()` (0.4.6)
+- [x] Rename `lpsm::Generator::sentence_fragment()` to `fragment()` (0.4.6)
+- [x] Move all `lipsum_h.cpp` macros to `LPSM_CPPIFY` (0.4.6)
 
 ## Upcoming
 
 - [ ] `lpsm::CountParagraphs()` (planned 0.4.6)
 - [ ] Smarter `lpsm::CountWords()`?
-- [ ] Rename `lpsm::Generator::sentence_fragment()` to `fragment()` (planned 0.4.6)
 - [ ] Merge `lpsm::Generator::html_*` functions into `lpsm::Generator::md_*` (planned 0.4.6)
 - [ ] Add more `lpsm::Generator` functions around Markdown (planned 0.4.6)
 - [ ] CLI: Rewrite with better code practice (e.g. less macros, replace if-elseif-elseif-else) (planned 0.4.6)
@@ -79,7 +80,7 @@
 - [ ] Add memory safety checks to CI/CD (e.g. `valgrind`)
 - [ ] Add `CHANGELOG.md`
 - [ ] CMake `find_package` support
-- [ ] YAML/TOML?
+- [ ] YAML/TOML? (maybe 0.5.x?)
 - [ ] Performance benchmarks (maybe in unit tests?)
 - [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
 - [ ] Add seed options (planned 0.5.0)

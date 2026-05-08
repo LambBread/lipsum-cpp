@@ -27,7 +27,7 @@ int main()
 
     // Build a template Markdown document with tokens to fill.
     std::string mdTemplate =
-            "# {TITLE}\n\n"
+            "{TITLE}\n\n"
             "## About\n\n"
             "{ABOUT}\n\n"
             "## Highlights\n\n"
@@ -44,10 +44,7 @@ int main()
             "{GALLERY}\n";
 
     // Fill tokens using the library:
-    std::string title = gen.sentence_fragment(); // short title
-    // Capitalize first letter just in case
-    if (!title.empty())
-        title[0] = std::toupper(title[0]);
+    std::string title = lpsm::GenerateMarkdownHeader(); // short title
 
     // About: a short Markdown paragraph (use Markdown generator to add some
     // formatting)
@@ -63,7 +60,7 @@ int main()
     // A single random word used in the code block
     std::string word = lpsm::GenerateWord();
 
-    // A markdown link (uses example.com by default)
+    // A markdown link
     std::string mdLink = lpsm::GenerateMarkdownLink(lpsm::ArgVec2(3, 6),
                                                     lpsm::ArgVec2(1, 2),
                                                     lpsm::ArgVec2(2, 4),
@@ -104,11 +101,6 @@ int main()
     std::cout << "Sentences (periods counted outside parentheses): "
               << sentences << "\n";
     std::cout << "Words (simple whitespace split): " << words << "\n";
-
-    // Demonstrate HTMLify (deprecated) just to show it exists: wrap paragraphs
-    // into <p> tags.
-    // std::cout << "\n----- HTMLified (deprecated HTMLify) -----\n\n";
-    // std::cout << lpsm::HTMLify(md) << "\n";
 
     return 0;
 }

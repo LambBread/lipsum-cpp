@@ -29,7 +29,7 @@ Valid subcommands include:
   word [<num = 1>] - Generate words.
     num - The number of words.
 
-  sentence_fragment - Generate a sentence fragment.
+  fragment - Generate a sentence fragment.
 
   sentence [<num = 1>] [<useLipsum = true>] - Generate sentences.
     num - The number of sentences.

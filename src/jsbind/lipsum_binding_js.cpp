@@ -47,7 +47,7 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
                               &lpsm::Generator::change_setting))
             .function("word", &lpsm::Generator::word)
             .function("sentence", &lpsm::Generator::sentence)
-            .function("sentence_fragment", &lpsm::Generator::sentence_fragment)
+            .function("fragment", &lpsm::Generator::fragment)
             .function("paragraph", &lpsm::Generator::paragraph)
             .function("text", &lpsm::Generator::text)
             .function("scramble", &lpsm::Generator::scramble)
@@ -92,6 +92,8 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     constant("LIPSUM_CPP_VERSION_MAJOR", LIPSUM_CPP_VERSION_MAJOR);
     constant("LIPSUM_CPP_VERSION_MINOR", LIPSUM_CPP_VERSION_MINOR);
     constant("LIPSUM_CPP_VERSION_PATCH", LIPSUM_CPP_VERSION_PATCH);
+    constant("LIPSUM_CPP_VERSION_COMMIT", LIPSUM_CPP_VERSION_COMMIT);
+    constant("LIPSUM_CPP_VERSION_FULL", LIPSUM_CPP_VERSION_FULL);
     function("lpsm_GenerateText", &lpsm::GenerateText);
     function("lpsm_GenerateTextX", &lpsm::GenerateTextX);
     function("lpsm_GenerateMarkdownParagraphs",

@@ -251,14 +251,14 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * This function generates a sentence fragment.
+     * This function generates a sentence fragment. Formerly
+     * lpsm_Generator_sentence_fragment().
      *
      * @param handle The lpsm_GeneratorHandle to use.
      *
      * @return char* The random sentence fragment.
      */
-    LIPSUMC_API char*
-    lpsm_Generator_sentence_fragment(lpsm_GeneratorHandle handle);
+    LIPSUMC_API char* lpsm_Generator_fragment(lpsm_GeneratorHandle handle);
 
     /**
      * @brief Generate sentences.

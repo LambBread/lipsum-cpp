@@ -43,7 +43,7 @@ int main()
     std::cout << gen.word(5) << '\n';
     
     // Generate a sentence fragment.
-    std::cout << gen.sentence_fragment() << '\n';
+    std::cout << gen.fragment() << '\n';
     
     // Generate 6 sentences.
     std::cout << gen.sentence(6, true) << '\n';
