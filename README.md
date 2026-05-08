@@ -150,7 +150,22 @@ lipsum-cpp can be installed via the `Releases` section, or alternatively can be 
 
 3. For C wrapper builds, set `LPSM_BUILD_STATIC` or `LPSM_BUILD_SHARED`, and `LPSM_BUILD_CWRAPPER` all to `ON`.
 
-Alternatively, use `add_subdirectory()` and submodules instead of `FetchContent`.
+Alternatively, instead of `FetchContent`, use:
+
+```cmake
+# with add_subdirectory
+
+add_subdirectory("/path/to/lipsum-cpp/")
+# ...
+target_link_libraries(myapp PRIVATE lipsum-cpp)
+
+
+# with find_package
+
+find_package(lipsum-cpp REQUIRED)
+# ...
+target_link_libraries(myapp PRIVATE lipsum-cpp::lipsum-cpp)
+```
 
 #### Header-only usage
 

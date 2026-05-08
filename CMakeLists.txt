@@ -42,7 +42,7 @@ else()
     add_library(lipsum-cpp INTERFACE)
 endif()
 
-#add_library(lipsum-cpp::lipsum-cpp ALIAS lipsum-cpp)
+add_library(lipsum-cpp::lipsum-cpp ALIAS lipsum-cpp)
 
 if(LPSM_BUILD_SHARED OR LPSM_BUILD_STATIC)
     # c++20

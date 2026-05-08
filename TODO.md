@@ -79,6 +79,7 @@
 - [x] Move all `lipsum_h.cpp` macros to `LPSM_CPPIFY()` (0.4.6)
 - [x] Merge `lpsm::Generator::html_*` functions into `lpsm::Generator::md_*` (0.4.6)
 - [x] Make `lpsm::GenerateMarkdownText()` warn on use of negative `numElements`, allow 1 or 0 elements (0.4.6)
+- [x] CMake `find_package` support (0.4.6)
 
 ## Upcoming
 
@@ -90,7 +91,6 @@
 - [ ] Add memory safety checks to CI/CD (e.g. `valgrind`)
 - [ ] Add `CHANGELOG.md`
 - [ ] REST-ful API?
-- [ ] CMake `find_package` support
 - [ ] YAML/TOML? (maybe 0.5.x?)
 - [ ] Performance benchmarks (maybe in unit tests?)
 - [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
