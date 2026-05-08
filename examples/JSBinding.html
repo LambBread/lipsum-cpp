@@ -11,12 +11,12 @@
     <script>
         createLipsumCpp().then((Module)=>
             {
-                console.log(Module.LIPSUM_CPP_VERSION);
+                console.log(Module.LIPSUM_CPP_VERSION_FULL);
                 const av2 = new Module.lpsm_ArgVec2(1, 6);
                 const source = new Module.lpsm_Source();
                 console.log(av2.roll());
                 const gen = new Module.lpsm_Generator();
-                console.log(gen.md_text(20));
+                console.log(gen.md_text(20, false));
                 console.log(Module.lpsm_GenerateWord(source));
                 console.log(Module.lpsm_CountSentences("Yes this is a test. Testing 123. Testing 123. Foobar test."));
                 const text = Module.lpsm_GenerateMarkdownText(new Module.lpsm_ArgVec2(4, 9), new Module.lpsm_ArgVec2(1, 3),

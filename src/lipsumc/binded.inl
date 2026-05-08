@@ -152,33 +152,20 @@ extern "C" char* lpsm_Generator_slug(lpsm_GeneratorHandle handle,
 
 extern "C" char* lpsm_Generator_md_paragraph(lpsm_GeneratorHandle handle,
                                              int                  num,
-                                             bool                 useLipsum)
+                                             bool                 useLipsum,
+                                             bool                 useHtml)
 {
-    auto ret =
-            LPSM_CPPIFY(handle, lpsm::Generator)->md_paragraph(num, useLipsum);
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)
+                       ->md_paragraph(num, useLipsum, useHtml);
     return ConvertToCstr(ret);
 }
 
 extern "C" char* lpsm_Generator_md_text(lpsm_GeneratorHandle handle,
-                                        int                  numElements)
+                                        int                  numElements,
+                                        bool                 useHtml)
 {
-    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->md_text(numElements);
-    return ConvertToCstr(ret);
-}
-
-extern "C" char* lpsm_Generator_html_paragraph(lpsm_GeneratorHandle handle,
-                                               int                  num,
-                                               bool                 useLipsum)
-{
-    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)
-                       ->html_paragraph(num, useLipsum);
-    return ConvertToCstr(ret);
-}
-
-extern "C" char* lpsm_Generator_html_text(lpsm_GeneratorHandle handle,
-                                          int                  numElements)
-{
-    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->html_text(numElements);
+    auto ret =
+            LPSM_CPPIFY(handle, lpsm::Generator)->md_text(numElements, useHtml);
     return ConvertToCstr(ret);
 }
 

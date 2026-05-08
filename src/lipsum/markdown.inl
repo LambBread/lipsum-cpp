@@ -35,16 +35,29 @@ namespace lipsum
                                      const Source&  source)
     {
         std::string ret;
-        ret += GenerateMarkdownHeader(1, wordHead, useHtml, source);
-        ret += GenerateMarkdownParagraph(word,
-                                         frag,
-                                         sent,
-                                         wordFmt,
-                                         fragFmt,
-                                         wordHead,
-                                         false,
-                                         useHtml,
-                                         source);
+        if (numElements < 0)
+        {
+            internal::LogWarn("lpsm::GenerateMarkdownText(): cannot generate "
+                              "negative number of elements.");
+            return ret;
+        }
+        if (numElements >= 1)
+        {
+            ret += GenerateMarkdownHeader(1, wordHead, useHtml, source);
+        }
+        if (numElements >= 2)
+        {
+            ret += GenerateMarkdownParagraph(word,
+                                             frag,
+                                             sent,
+                                             wordFmt,
+                                             fragFmt,
+                                             wordHead,
+                                             false,
+                                             useHtml,
+                                             source);
+        }
+
         numElements -= 2;
         int  rand;
         bool ordered;

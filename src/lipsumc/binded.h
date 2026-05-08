@@ -385,12 +385,14 @@ extern "C"
      * @param handle The lpsm_GeneratorHandle to use.
      * @param num The number of paragraphs.
      * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random Markdown paragraph.
      */
     LIPSUMC_API char* lpsm_Generator_md_paragraph(lpsm_GeneratorHandle handle,
                                                   int                  num,
-                                                  bool useLipsum);
+                                                  bool useLipsum,
+                                                  bool useHtml);
 
     /**
      * @brief Generate a Markdown document.
@@ -402,44 +404,13 @@ extern "C"
      * @param handle The lpsm_GeneratorHandle to use.
      * @param numElements The number of elements (paragraph, list, heading)
      * in the document.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
      * @return char* The random Markdown document.
      */
     LIPSUMC_API char* lpsm_Generator_md_text(lpsm_GeneratorHandle handle,
-                                             int                  numElements);
-
-    /**
-     * @brief Generate an HTML paragraph.
-     *
-     * @since 0.4.4
-     *
-     * This function generates multiple paragraphs in HTML format.
-     *
-     * @param handle The lpsm_GeneratorHandle to use.
-     * @param num The number of paragraphs.
-     * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
-     *
-     * @return char* The random HTML paragraph.
-     */
-    LIPSUMC_API char* lpsm_Generator_html_paragraph(lpsm_GeneratorHandle handle,
-                                                    int                  num,
-                                                    bool useLipsum);
-
-    /**
-     * @brief Generate an HTML document.
-     *
-     * @since 0.4.4
-     *
-     * This function generates a document in HTML format.
-     *
-     * @param handle The lpsm_GeneratorHandle to use.
-     * @param numElements The number of elements (paragraph, list, heading)
-     * in the document.
-     *
-     * @return char* The random HTML document.
-     */
-    LIPSUMC_API char* lpsm_Generator_html_text(lpsm_GeneratorHandle handle,
-                                               int numElements);
+                                             int                  numElements,
+                                             bool                 useHtml);
 
     /**
      * @brief Generate an XML document.

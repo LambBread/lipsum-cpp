@@ -32,10 +32,19 @@
 - [x] More examples (0.3.4)
 - [x] `S` variants in the C wrapper for functions using `lpsm::ArgVec2` (0.3.5)
 - [x] Remove `lpsm::HTMLify()` (0.3.6)
+- [x] Add HTML output for Markdown functions (0.3.6)
+- [x] Switch gitignored `compile.sh` -> `Makefile` (0.3.6)
+- [x] `lpsm::GenerateURL()` (0.3.7)
+- [x] `lpsm::CountWords()` (0.3.8)
+- [x] `lpsm::GeneratePlainURL()`, `lpsm::GenerateScramble()` (0.3.9)
+
+
 
 ### 0.4.x
 
 - [x] Multi-source generation (0.4.0)
+- [x] Add multi-source to `lpsm::Generator` (0.4.1)
+- [x] Split C wrapper into multiple files (0.4.1)
 - [x] Automatic version numbering using CMake (0.4.2)
 - [x] Switch manual macros in `lipsum_h.cpp` to variadic templates (0.4.2)
 - [x] Better logging (0.4.2)
@@ -67,18 +76,20 @@
 - [x] Include warning flags in CMake (0.4.6)
 - [x] `lpsm::internal::ToType()` (0.4.6)
 - [x] Rename `lpsm::Generator::sentence_fragment()` to `fragment()` (0.4.6)
-- [x] Move all `lipsum_h.cpp` macros to `LPSM_CPPIFY` (0.4.6)
+- [x] Move all `lipsum_h.cpp` macros to `LPSM_CPPIFY()` (0.4.6)
+- [x] Merge `lpsm::Generator::html_*` functions into `lpsm::Generator::md_*` (0.4.6)
+- [x] Make `lpsm::GenerateMarkdownText()` warn on use of negative `numElements`, allow 1 or 0 elements (0.4.6)
 
 ## Upcoming
 
 - [ ] `lpsm::CountParagraphs()` (planned 0.4.6)
 - [ ] Smarter `lpsm::CountWords()`?
-- [ ] Merge `lpsm::Generator::html_*` functions into `lpsm::Generator::md_*` (planned 0.4.6)
 - [ ] Add more `lpsm::Generator` functions around Markdown (planned 0.4.6)
 - [ ] CLI: Rewrite with better code practice (e.g. less macros, replace if-elseif-elseif-else) (planned 0.4.6)
 - [ ] CLI: More descriptive error handling (planned 0.4.6)
 - [ ] Add memory safety checks to CI/CD (e.g. `valgrind`)
 - [ ] Add `CHANGELOG.md`
+- [ ] REST-ful API?
 - [ ] CMake `find_package` support
 - [ ] YAML/TOML? (maybe 0.5.x?)
 - [ ] Performance benchmarks (maybe in unit tests?)

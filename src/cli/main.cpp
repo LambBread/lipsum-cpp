@@ -46,14 +46,6 @@
     (option.starts_with(std::string("--") + #name) ||                          \
      option.starts_with(shorth))
 
-template <typename T> T ToType(const std::string& str)
-{
-    std::stringstream ss(str);
-    T                 ret;
-    ss >> std::boolalpha >> ret;
-    return ret;
-}
-
 constexpr bool InCharRange(int num)
 {
     return (num >= std::numeric_limits<char>::min()) &&
@@ -172,22 +164,20 @@ void Help()
     std::cout << "  plain_url - Generate a plain URL.\n\n";
     std::cout << "  slug [<separator = '-'>] - Generate a slug.\n";
     std::cout << "    separator - The separator to use.\n\n";
-    std::cout << "  md_paragraph [<num = 1>] [<useLipsum = true>] - Generate a "
+    std::cout << "  md_paragraph [<num = 1>] [<useLipsum = true>] [<useHtml = "
+                 "false>]- Generate a "
                  "Markdown paragraph.\n";
     std::cout << "    num - The number of paragraphs.\n";
     std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the "
-                 "first sentence.\n\n";
-    std::cout << "  md_text [<numElements = 15>] - Generate a Markdown "
+                 "first sentence.\n";
+    std::cout << "    useHtml - Whether HTML should be outputted instead of "
+                 "Markdown.\n\n";
+    std::cout << "  md_text [<numElements = 15>] [<useHtml = false>]- Generate "
+                 "a Markdown "
                  "document\n";
-    std::cout << "    numElements - The number of elements.\n\n";
-    std::cout << "  html_paragraph [<num = 1>] [<useLipsum = true>] - Generate "
-                 "an HTML paragraph.\n";
-    std::cout << "    num - The number of paragraphs.\n";
-    std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the "
-                 "first sentence.\n\n";
-    std::cout << "  html_text [<numElements = 15>] - Generate an HTML "
-                 "document.\n";
-    std::cout << "    numElements - The number of elements.\n\n";
+    std::cout << "    numElements - The number of elements.\n";
+    std::cout << "    useHtml - Whether HTML should be outputted instead of "
+                 "Markdown.\n\n";
     std::cout << "  xml [<choices = 30>] - Generate an XML document.\n";
     std::cout << "    choices - The number of 'choices' to make.\n\n";
     std::cout << "  json [<maxDepth = 3>] [<isObject = true>] - Generate a "
@@ -286,8 +276,30 @@ int main(int argc, char** argv)
     else NUM_AND_USELIPSUM_SUBCOMMAND(sentence) 
     else NUM_AND_USELIPSUM_SUBCOMMAND(paragraph) 
     else SINGLE_ARG_SUBCOMMAND(text, useLipsum, true, bool) 
-    else if (subcommand == "scramble")
+    else NO_ARG_SUBCOMMAND(url)
+    else NO_ARG_SUBCOMMAND(plain_url) 
+    else SINGLE_ARG_SUBCOMMAND(slug, separator, '-', char) 
+    else SINGLE_ARG_SUBCOMMAND(xml, choices, 30, int)
+    else if(subcommand == "md_paragraph")
     // clang-format on
+    {
+        int  num       = 1;
+        bool useLipsum = true;
+        bool useHtml   = false;
+        GET_ARG(num, 2, int)
+        GET_ARG(useLipsum, 3, bool)
+        GET_ARG(useHtml, 4, bool)
+        std::cout << gen.md_paragraph(num, useLipsum, useHtml);
+    }
+    else if (subcommand == "md_text")
+    {
+        int  numElements = 15;
+        bool useHtml     = false;
+        GET_ARG(numElements, 2, int)
+        GET_ARG(useHtml, 3, bool)
+        std::cout << gen.md_text(numElements, useHtml);
+    }
+    else if (subcommand == "scramble")
     {
         int length  = 16;
         int minChar = static_cast<int>(' ');
@@ -307,17 +319,7 @@ int main(int argc, char** argv)
                                   static_cast<char>(minChar),
                                   static_cast<char>(maxChar));
     }
-    // clang-format off
-    else NO_ARG_SUBCOMMAND(url)
-    else NO_ARG_SUBCOMMAND(plain_url) 
-    else SINGLE_ARG_SUBCOMMAND(slug, separator, '-', char) 
-    else NUM_AND_USELIPSUM_SUBCOMMAND(md_paragraph)
-    else SINGLE_ARG_SUBCOMMAND(md_text, numElements, 15, int) 
-    else NUM_AND_USELIPSUM_SUBCOMMAND(html_paragraph) 
-    else SINGLE_ARG_SUBCOMMAND(html_text, numElements, 15, int)
-    else SINGLE_ARG_SUBCOMMAND(xml, choices, 30, int)
     else if (subcommand == "json")
-    // clang-format on
     {
         int  maxDepth = 3;
         bool isObject = true;

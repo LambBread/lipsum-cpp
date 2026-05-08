@@ -251,10 +251,13 @@ namespace lipsum
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
          * By default true.
+         * @param useHtml Whether HTML should be outputted instead of Markdown.
+         * By default false.
          *
          * @return std::string The random Markdown paragraph.
          */
-        std::string md_paragraph(int num = 1, bool useLipsum = true);
+        std::string
+        md_paragraph(int num = 1, bool useLipsum = true, bool useHtml = false);
 
         /**
          * @brief Generate a Markdown document.
@@ -265,39 +268,12 @@ namespace lipsum
          *
          * @param numElements The number of elements (paragraph, list, heading)
          * in the document. By default 15.
+         * @param useHtml Whether HTML should be outputted instead of Markdown.
+         * By default false.
          *
          * @return std::string The random Markdown document.
          */
-        std::string md_text(int numElements = 15);
-
-        /**
-         * @brief Generate an HTML paragraph.
-         *
-         * @since 0.4.4
-         *
-         * This function generates multiple paragraphs in HTML format.
-         *
-         * @param num The number of paragraphs. By default 1.
-         * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
-         * By default true.
-         *
-         * @return std::string The random HTML paragraph.
-         */
-        std::string html_paragraph(int num = 1, bool useLipsum = true);
-
-        /**
-         * @brief Generate an HTML document.
-         *
-         * @since 0.4.4
-         *
-         * This function generates a document in HTML format.
-         *
-         * @param numElements The number of elements (paragraph, list, heading)
-         * in the document. By default 15.
-         *
-         * @return std::string The random HTML document.
-         */
-        std::string html_text(int numElements = 15);
+        std::string md_text(int numElements = 15, bool useHtml = false);
 
         /**
          * @brief Generate an XML document.

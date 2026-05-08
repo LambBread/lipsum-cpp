@@ -2,7 +2,6 @@
 
 This is a CLI tool for lipsum-cpp. It contains subcommands for every `lpsm::Generator` function.
 For more info, type `lpsmcpp-cli help`.
-
 ```
 Usage: lpsmcpp-cli <subcommand> [<arguments>] [<options>]
 
@@ -54,19 +53,14 @@ Valid subcommands include:
   slug [<separator = '-'>] - Generate a slug.
     separator - The separator to use.
 
-  md_paragraph [<num = 1>] [<useLipsum = true>] - Generate a Markdown paragraph.
+  md_paragraph [<num = 1>] [<useLipsum = true>] [<useHtml = false>]- Generate a Markdown paragraph.
     num - The number of paragraphs.
     useLipsum - Whether 'Lorem ipsum...' should start the first sentence.
+    useHtml - Whether HTML should be outputted instead of Markdown.
 
-  md_text [<numElements = 15>] - Generate a Markdown document
+  md_text [<numElements = 15>] [<useHtml = false>]- Generate a Markdown document
     numElements - The number of elements.
-
-  html_paragraph [<num = 1>] [<useLipsum = true>] - Generate an HTML paragraph.
-    num - The number of paragraphs.
-    useLipsum - Whether 'Lorem ipsum...' should start the first sentence.
-
-  html_text [<numElements = 15>] - Generate an HTML document.
-    numElements - The number of elements.
+    useHtml - Whether HTML should be outputted instead of Markdown.
 
   xml [<choices = 30>] - Generate an XML document.
     choices - The number of 'choices' to make.

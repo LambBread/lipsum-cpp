@@ -23,7 +23,6 @@
 #    define LIPSUM_IMPLEMENTATION
 #endif
 #include "lipsum.hpp"
-// std::string LIP_VERSION = std::string(LIPSUM_CPP_VERSION);
 
 using namespace emscripten;
 
@@ -56,8 +55,6 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("slug", &lpsm::Generator::slug)
             .function("md_paragraph", &lpsm::Generator::md_paragraph)
             .function("md_text", &lpsm::Generator::md_text)
-            .function("html_paragraph", &lpsm::Generator::html_paragraph)
-            .function("html_text", &lpsm::Generator::html_text)
             .function("xml", &lpsm::Generator::xml)
             .function("json", &lpsm::Generator::json);
     class_<lpsm::Source>("lpsm_Source")
@@ -92,8 +89,9 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     constant("LIPSUM_CPP_VERSION_MAJOR", LIPSUM_CPP_VERSION_MAJOR);
     constant("LIPSUM_CPP_VERSION_MINOR", LIPSUM_CPP_VERSION_MINOR);
     constant("LIPSUM_CPP_VERSION_PATCH", LIPSUM_CPP_VERSION_PATCH);
-    constant("LIPSUM_CPP_VERSION_COMMIT", LIPSUM_CPP_VERSION_COMMIT);
-    constant("LIPSUM_CPP_VERSION_FULL", LIPSUM_CPP_VERSION_FULL);
+    constant("LIPSUM_CPP_VERSION_COMMIT",
+             std::string(LIPSUM_CPP_VERSION_COMMIT));
+    constant("LIPSUM_CPP_VERSION_FULL", std::string(LIPSUM_CPP_VERSION_FULL));
     function("lpsm_GenerateText", &lpsm::GenerateText);
     function("lpsm_GenerateTextX", &lpsm::GenerateTextX);
     function("lpsm_GenerateMarkdownParagraphs",

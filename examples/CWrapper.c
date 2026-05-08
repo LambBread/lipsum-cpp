@@ -19,7 +19,7 @@ int main(void)
             lpsm_GenerateParagraph(4, 9, 1, 3, 5, 8, true, source);
 
     // generate markdown document with 15 elements
-    char* generatedMarkdown = lpsm_Generator_md_text(gen, 15);
+    char* generatedMarkdown = lpsm_Generator_md_text(gen, 15, false);
 
     // create a lpsm::ArgVec2
     lpsm_ArgVec2Handle handle = lpsm_ArgVec2(4, 10);

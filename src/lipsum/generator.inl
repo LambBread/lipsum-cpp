@@ -136,7 +136,7 @@ namespace lipsum
         return GenerateSlug(m_Settings.word, separator, m_Source);
     }
 
-    std::string Generator::md_paragraph(int num, bool useLipsum)
+    std::string Generator::md_paragraph(int num, bool useLipsum, bool useHtml)
     {
         return GenerateMarkdownParagraphs(num,
                                           m_Settings.word,
@@ -146,11 +146,11 @@ namespace lipsum
                                           m_Settings.fragFmt,
                                           m_Settings.wordURL,
                                           useLipsum,
-                                          false,
+                                          useHtml,
                                           m_Source);
     }
 
-    std::string Generator::md_text(int numElements)
+    std::string Generator::md_text(int numElements, bool useHtml)
     {
         return GenerateMarkdownText(m_Settings.word,
                                     m_Settings.frag,
@@ -161,36 +161,7 @@ namespace lipsum
                                     m_Settings.wordURL,
                                     m_Settings.level,
                                     numElements,
-                                    false,
-                                    m_Source);
-    }
-
-    std::string Generator::html_paragraph(int num, bool useLipsum)
-    {
-        return GenerateMarkdownParagraphs(num,
-                                          m_Settings.word,
-                                          m_Settings.frag,
-                                          m_Settings.sent,
-                                          m_Settings.wordFmt,
-                                          m_Settings.fragFmt,
-                                          m_Settings.wordURL,
-                                          useLipsum,
-                                          true,
-                                          m_Source);
-    }
-
-    std::string Generator::html_text(int numElements)
-    {
-        return GenerateMarkdownText(m_Settings.word,
-                                    m_Settings.frag,
-                                    m_Settings.sent,
-                                    m_Settings.point,
-                                    m_Settings.wordFmt,
-                                    m_Settings.fragFmt,
-                                    m_Settings.wordURL,
-                                    m_Settings.level,
-                                    numElements,
-                                    true,
+                                    useHtml,
                                     m_Source);
     }
 

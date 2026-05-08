@@ -29,16 +29,16 @@ int main()
     std::cout << gen.scramble(24, 'a', 'z') << '\n';
 
     // Generate 5 Markdown paragraphs.
-    std::cout << gen.md_paragraph(5, true);
+    std::cout << gen.md_paragraph(5, true, false);
 
     // Generate a Markdown document with 20 elements.
-    std::cout << gen.md_text(20);
+    std::cout << gen.md_text(20, false);
 
     // Generate 5 HTML paragraphs.
-    std::cout << gen.html_paragraph(5, true);
+    std::cout << gen.md_paragraph(5, true, true);
 
     // Generate an HTML document with 20 elements.
-    std::cout << gen.html_text(20);
+    std::cout << gen.md_text(20, true);
 
     // Generate an XML document with 40 "choices".
     std::cout << gen.xml(40) << '\n';
