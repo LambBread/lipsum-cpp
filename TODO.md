@@ -71,6 +71,7 @@
     - [x] Shorthand options (0.4.5)
     - [x] Version option (0.4.5)
     - [x] Multi-source functionality (0.4.5)
+    - [x] More descriptive error handling (0.4.6)
 - [x] Use C++20 concepts in `lpsm::internal` (0.4.6)
 - [x] Document minimum dependency versions (0.4.6)
 - [x] Include warning flags in CMake (0.4.6)
@@ -80,14 +81,14 @@
 - [x] Merge `lpsm::Generator::html_*` functions into `lpsm::Generator::md_*` (0.4.6)
 - [x] Make `lpsm::GenerateMarkdownText()` warn on use of negative `numElements`, allow 1 or 0 elements (0.4.6)
 - [x] CMake `find_package` support (0.4.6)
+- [x] `LIPSUM_CPP_VERSION_TIME` (0.4.6)
 
 ## Upcoming
 
 - [ ] `lpsm::CountParagraphs()` (planned 0.4.6)
 - [ ] Smarter `lpsm::CountWords()`?
 - [ ] Add more `lpsm::Generator` functions around Markdown (planned 0.4.6)
-- [ ] CLI: Rewrite with better code practice (e.g. less macros, replace if-elseif-elseif-else) (planned 0.4.6)
-- [ ] CLI: More descriptive error handling (planned 0.4.6)
+- [ ] More proper JSON (i.e. no duplicate keys)
 - [ ] Add memory safety checks to CI/CD (e.g. `valgrind`)
 - [ ] Add `CHANGELOG.md`
 - [ ] REST-ful API?

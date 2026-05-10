@@ -52,16 +52,18 @@ constexpr bool InCharRange(int num)
            (num <= std::numeric_limits<char>::max());
 }
 
-void ErrorMessage(const std::string& str)
+template <typename... Args> void ErrorMessage(const Args&... args)
 {
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
     SetConsoleTextAttribute(hConsole, 4);
-    std::cerr << str;
+    ((std::cerr << args), ...);
     SetConsoleTextAttribute(hConsole, 7);
 #else
-    std::cerr << "\033[31m" << str << "\033[0m";
+    std::cerr << "\033[31m";
+    ((std::cerr << args), ...);
+    std::cerr << "\033[0m";
 #endif
 }
 
@@ -78,7 +80,10 @@ lpsm::ArgVec2 ParseAv2(const std::string& str)
     else
     {
         ErrorMessage("Error: invalid format of argument\nMust be in format: "
-                     "<min>,<max>");
+                     "<min>,<max>\nGot: ",
+                     str,
+                     '\n');
+        exit(-1);
     }
 
     return ret;
@@ -97,7 +102,9 @@ void SettingOption(const std::string& option,
     }
     else
     {
-        ErrorMessage("Error: must be in format --option=value\n");
+        ErrorMessage("Error: must be in format --option=value\nGot: ",
+                     option,
+                     '\n');
     }
 }
 
@@ -225,6 +232,7 @@ int main(int argc, char** argv)
         if (OPTION_COND(version, "-v"))
         {
             std::cout << LIPSUM_CPP_VERSION_FULL << '\n';
+            std::cout << LIPSUM_CPP_VERSION_TIME << '\n';
             return 0;
         }
 
@@ -250,13 +258,14 @@ int main(int argc, char** argv)
             }
             else
             {
-                ErrorMessage("Error: must be in format --option=value\n");
+                ErrorMessage("Error: must be in format --option=value\nGot: ",
+                             option);
                 return -1;
             }
         }
         else
         {
-            ErrorMessage("Error: unknown option\n");
+            ErrorMessage("Error: unknown option ", option, '\n');
             return -1;
         }
     }
@@ -312,7 +321,11 @@ int main(int argc, char** argv)
         if (!InCharRange(minChar) || !InCharRange(maxChar))
         {
             ErrorMessage("Error: number out of range of char. Please use "
-                         "numbers between 0 and 127.\n");
+                         "numbers between 0 and 127.\nGot minChar=",
+                         minChar,
+                         ", maxChar=",
+                         maxChar,
+                         '\n');
             return -1;
         }
         std::cout << gen.scramble(length,
@@ -334,7 +347,7 @@ int main(int argc, char** argv)
     }
     else
     {
-        ErrorMessage("Error: unknown subcommand\n");
+        ErrorMessage("Error: unknown subcommand ", subcommand, '\n');
         return -1;
     }
 

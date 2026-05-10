@@ -8,7 +8,7 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/LambBread/lipsum-cpp/build.yml)
 
 A header-only library written in C++ for generating sample lorem-ipsum text. Useful for prototyping apps,
-UI testing, and anywhere placeholder text is needed.
+UI testing, benchmarking Markdown/HTML/XML/JSON parser libraries, and anywhere placeholder text is needed.
 
 ## Features
 

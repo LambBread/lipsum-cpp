@@ -19,6 +19,9 @@ else()
 endif()
 message(STATUS "lipsum-cpp ---- current Git commit ${LPSM_VERSION_COMMIT}")
 
+string(TIMESTAMP LPSM_NOW "%Y-%m-%d %H:%M:%S UTC" UTC)
+message(STATUS "lipsum-cpp ---- current time ${LPSM_NOW}")
+
 
 file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum/core/version.hpp
 "/**
@@ -93,6 +96,16 @@ inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = \"${LPSM_VERSION_COMMIT
 * as of the last time scripts/version.cmake was ran.
 */
 inline constexpr const char* LIPSUM_CPP_VERSION_FULL = \"${LPSM_VERSION}-${LPSM_VERSION_COMMIT}\";
+
+/**
+* @brief The time lipsum-cpp was last edited.
+*
+* @since 0.4.6
+*
+* This constant stores the current time in UTC as of the last time scripts/version.cmake was ran,
+* in the format YYYY-MM-DD HH:MM:SS UTC.
+*/
+inline constexpr const char* LIPSUM_CPP_VERSION_TIME = \"${LPSM_NOW}\";
 
 #endif
 ")
@@ -172,6 +185,17 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h
 * as of the last time scripts/version.cmake was ran.
 */
 #define LIPSUM_CPP_VERSION_FULL_C \"${LPSM_VERSION}-${LPSM_VERSION_COMMIT}\"
+
+/**
+* @brief The time lipsum-cpp was last edited.
+*
+* @since 0.4.6
+*
+* This macro stores the current time in UTC as of the last time scripts/version.cmake was ran,
+* in the format YYYY-MM-DD HH:MM:SS UTC.
+*/
+#define LIPSUM_CPP_VERSION_TIME_C = \"${LPSM_NOW}\";
+
 //NOLINTEND(modernize-macro-to-enum)
  #endif
  ")
