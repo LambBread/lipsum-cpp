@@ -82,6 +82,7 @@
 - [x] Make `lpsm::GenerateMarkdownText()` warn on use of negative `numElements`, allow 1 or 0 elements (0.4.6)
 - [x] CMake `find_package` support (0.4.6)
 - [x] `LIPSUM_CPP_VERSION_TIME` (0.4.6)
+- [x] Add Doxygen docs to packages (0.4.6)
 
 ## Upcoming
 
