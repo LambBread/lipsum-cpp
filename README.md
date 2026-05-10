@@ -141,8 +141,8 @@ lipsum-cpp can be installed via the `Releases` section, or alternatively can be 
         GIT_TAG master
     )
     FetchContent_MakeAvailable(lipsum-cpp)
-
-    target_link_libraries(your_target lipsum-cpp)
+    # ...
+    target_link_libraries(your_target PRIVATE lipsum-cpp)
     ```
 
 2. To build as a static or shared library (optional):  
@@ -157,14 +157,14 @@ Alternatively, instead of `FetchContent`, use:
 
 add_subdirectory("/path/to/lipsum-cpp/")
 # ...
-target_link_libraries(myapp PRIVATE lipsum-cpp)
+target_link_libraries(your_target PRIVATE lipsum-cpp)
 
 
 # with find_package
 
 find_package(lipsum-cpp REQUIRED)
 # ...
-target_link_libraries(myapp PRIVATE lipsum-cpp::lipsum-cpp)
+target_link_libraries(your_target PRIVATE lipsum-cpp::lipsum-cpp)
 ```
 
 #### Header-only usage
