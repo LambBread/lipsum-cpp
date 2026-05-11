@@ -201,7 +201,7 @@ extern "C"
      *
      * @since 0.4.5
      *
-     * This reloads the specified lorem ipsum source into m_Source. If path is
+     * Reload the specified lorem ipsum source into m_Source. If path is
      * invalid, it will print a warning and default to the standard
      * lorem-ipsum source.
      *
@@ -237,7 +237,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * This function generates multiple words.
+     * Generate multiple words.
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param num The number of words.
@@ -251,7 +251,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * This function generates a sentence fragment. Formerly
+     * Generate a sentence fragment. Formerly
      * lpsm_Generator_sentence_fragment().
      *
      * @param handle The lpsm_GeneratorHandle to use.
@@ -265,7 +265,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * This function generates multiple sentences.
+     * Generate multiple sentences.
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param num The number of sentences.
@@ -283,7 +283,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * This function generates multiple paragraphs.
+     * Generate multiple paragraphs.
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param num The number of paragraphs.
@@ -301,7 +301,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * This function generates a random number of random paragraphs.
+     * Generate a random number of random paragraphs.
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param useLipsum Whether "Lorem ipsum..." should start the
@@ -364,7 +364,7 @@ extern "C"
      *
      * @since 0.4.5
      *
-     * This function generates a sentence fragment with the spaces replaced with
+     * Generate a sentence fragment with the spaces replaced with
      * the specified separator character.
      *
      * @param handle The lpsm_GeneratorHandle to use.
@@ -380,7 +380,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * This function generates multiple paragraphs in Markdown format.
+     * Generate multiple paragraphs in Markdown or HTML format.
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param num The number of paragraphs.
@@ -399,7 +399,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * This function generates a document in Markdown format.
+     * Generate a document in Markdown or HTML format.
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param numElements The number of elements (paragraph, list, heading)
@@ -411,13 +411,79 @@ extern "C"
     LIPSUMC_API char* lpsm_Generator_md_text(lpsm_GeneratorHandle handle,
                                              int                  numElements,
                                              bool                 useHtml);
+    /**
+     * @brief Generate a Markdown header.
+     *
+     * @since 0.4.6
+     *
+     * Generate a header in Markdown or HTML format.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param level The level of the heading.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
+     *
+     * @return char* The random Markdown header.
+     */
+    LIPSUMC_API char* lpsm_Generator_md_header(lpsm_GeneratorHandle handle,
+                                               int                  level,
+                                               bool                 useHtml);
+
+    /**
+     * @brief Generate an emphasized Markdown sentence.
+     *
+     * @since 0.4.6
+     *
+     * Generate a bold or italic sentence in Markdown or HTML format that is
+     * either bold or italic.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param isBold Whether the sentence is bold or italic.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
+     *
+     * @return char* The random emphasized Markdown sentence.
+     */
+    LIPSUMC_API char* lpsm_Generator_md_emphasis(lpsm_GeneratorHandle handle,
+                                                 bool                 isBold,
+                                                 bool                 useHtml);
+
+    /**
+     * @brief Generate a Markdown link.
+     *
+     * @since 0.4.6
+     *
+     * Generate a link in Markdown or HTML format.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
+     *
+     * @return char* The random Markdown link.
+     */
+    LIPSUMC_API char* lpsm_Generator_md_link(lpsm_GeneratorHandle handle,
+                                             bool                 useHtml);
+
+    /**
+     * @brief Generate a Markdown list.
+     *
+     * @since 0.4.6
+     *
+     * Generate an ordered or unordered list in Markdown or HTML format.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param ordered Whether the list is ordered.
+     * @param useHtml Whether HTML should be outputted instead of Markdown.
+     *
+     * @return char* The random Markdown list.
+     */
+    LIPSUMC_API char* lpsm_Generator_md_list(lpsm_GeneratorHandle handle,
+                                             bool                 ordered,
+                                             bool                 useHtml);
 
     /**
      * @brief Generate an XML document.
      *
      * @since 0.4.4
      *
-     * This function generats a document in XML format.
+     * Generate a document in XML format.
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param choices The number of choices (start element, end element, add
@@ -433,7 +499,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * This function generates an object or array in JSON format.
+     * Generate an object or array in JSON format.
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param maxDepth Maximum depth of recursion.

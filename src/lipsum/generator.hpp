@@ -24,8 +24,6 @@
 namespace lipsum
 {
 
-    // will not make generation funcs const b/c 0.5.x will replace
-    // internal::RandomNumber to member std::mt19937 (modified by calling)
     /**
      * @brief OOP layer over lipsum-cpp
      *
@@ -41,7 +39,7 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * This loads the default lorem ipsum source.
+         * Load the default lorem ipsum source.
          */
         Generator() = default;
 
@@ -50,7 +48,7 @@ namespace lipsum
          *
          * @since 0.4.1
          *
-         * This loads the specified lorem ipsum source into m_Source. If path is
+         * Load the specified lorem ipsum source into m_Source. If path is
          * invalid, it will print a warning and default to the standard
          * lorem-ipsum source.
          *
@@ -65,7 +63,7 @@ namespace lipsum
          *
          * @since 0.4.5
          *
-         * This reloads the specified lorem ipsum source into m_Source. If path
+         * Reload the specified lorem ipsum source into m_Source. If path
          * is invalid, it will print a warning and default to the standard
          * lorem-ipsum source.
          *
@@ -113,7 +111,7 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * This function generates multiple words.
+         * Generates multiple words.
          *
          * @param num The number of words. By default 1.
          *
@@ -126,7 +124,7 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * This function generates a sentence fragment. Formerly known as
+         * Generate a sentence fragment. Formerly known as
          * sentence_fragment().
          *
          * @return std::string The random sentence fragment.
@@ -138,7 +136,7 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * This function generates multiple sentences.
+         * Generate multiple sentences.
          *
          * @param num The number of sentences. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the
@@ -153,7 +151,7 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * This function generates multiple paragraphs.
+         * Generate multiple paragraphs.
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the
@@ -168,7 +166,7 @@ namespace lipsum
          *
          * @since 0.4.4
          *
-         * This function generates a random number of random paragraphs.
+         * Generate a random number of random paragraphs.
          *
          * @param useLipsum Whether "Lorem ipsum..." should start the
          * paragraph(s). By default true.
@@ -228,7 +226,7 @@ namespace lipsum
          *
          * @since 0.4.5
          *
-         * This function generates a sentence fragment with the spaces replaced
+         * Generate a sentence fragment with the spaces replaced
          * with the specified separator character.
          *
          * @param separator The separator character. By default a hyphen.
@@ -246,7 +244,7 @@ namespace lipsum
          *
          * @since 0.3.0
          *
-         * This function generates multiple paragraphs in Markdown format.
+         * Generate multiple paragraphs in Markdown or HTML format.
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
@@ -264,7 +262,7 @@ namespace lipsum
          *
          * @since 0.3.0
          *
-         * This function generates a document in Markdown format.
+         * Generate a document in Markdown or HTML format.
          *
          * @param numElements The number of elements (paragraph, list, heading)
          * in the document. By default 15.
@@ -276,11 +274,72 @@ namespace lipsum
         std::string md_text(int numElements = 15, bool useHtml = false);
 
         /**
+         * @brief Generate a Markdown header.
+         *
+         * @since 0.4.6
+         *
+         * Generate a header in Markdown or HTML format.
+         *
+         * @param level The level of the heading. By default 1.
+         * @param useHtml Whether HTML should be outputted instead of Markdown.
+         * By default false.
+         *
+         * @return std::string The random Markdown header.
+         */
+        std::string md_header(int level = 1, bool useHtml = false);
+
+        /**
+         * @brief Generate an emphasized Markdown sentence.
+         *
+         * @since 0.4.6
+         *
+         * Generate a bold or italic sentence in Markdown or HTML format that is
+         * either bold or italic.
+         *
+         * @param isBold Whether the sentence is bold or italic. By default
+         * true. (bold)
+         * @param useHtml Whether HTML should be outputted instead of Markdown.
+         * By default false.
+         *
+         * @return std::string The random emphasized Markdown sentence.
+         */
+        std::string md_emphasis(bool isBold = true, bool useHtml = false);
+
+        /**
+         * @brief Generate a Markdown link.
+         *
+         * @since 0.4.6
+         *
+         * Generate a link in Markdown or HTML format.
+         *
+         * @param useHtml Whether HTML should be outputted instead of Markdown.
+         * By default false.
+         *
+         * @return std::string The random Markdown link.
+         */
+        std::string md_link(bool useHtml = false);
+
+        /**
+         * @brief Generate a Markdown list.
+         *
+         * @since 0.4.6
+         *
+         * Generate an ordered or unordered list in Markdown or HTML format.
+         *
+         * @param ordered Whether the list is ordered. By default false.
+         * @param useHtml Whether HTML should be outputted instead of Markdown.
+         * By default false.
+         *
+         * @return std::string The random Markdown list.
+         */
+        std::string md_list(bool ordered = false, bool useHtml = false);
+
+        /**
          * @brief Generate an XML document.
          *
          * @since 0.4.4
          *
-         * This function generats a document in XML format.
+         * Generate a document in XML format.
          *
          * @param choices The number of choices (start element, end element, add
          * data element) that are made. By default 30.
@@ -294,9 +353,9 @@ namespace lipsum
          *
          * @since 0.4.4
          *
-         * This function generates an object or array in JSON format.
+         * Generate an object or array in JSON format.
          *
-         * @param maxDepth Maximum depth of recursion. By default 3.
+         * @param maxDepth The maximum level of recursion. By default 3.
          * @param isObject Whether to output an object (true) or an array
          * (false). By default true.
          *
@@ -310,8 +369,8 @@ namespace lipsum
         /**
          * @brief Source used for generation.
          *
-         * This is the source passed into functions. By default the default
-         * lorem-ipsum source from sample.inl.
+         * The source passed into functions. By default the
+         * lorem-ipsum source "lorem" from sample.inl.
          *
          * @since 0.4.1
          */

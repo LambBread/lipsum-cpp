@@ -83,12 +83,15 @@
 - [x] CMake `find_package` support (0.4.6)
 - [x] `LIPSUM_CPP_VERSION_TIME` (0.4.6)
 - [x] Add Doxygen docs to packages (0.4.6)
+- [x] Add XML attributes to generated XML (0.4.6)
+- [x] Fix segfault in `lpsm::internal::RandomNumber()` when `min > max` (0.4.6)
+- [x] Fix `std::bad_alloc` from `lpsm::GenerateSentenceFragment()` when `result` is empty (0.4.6)
+- [x] Add more `lpsm::Generator` functions around Markdown (0.4.6)
 
 ## Upcoming
 
 - [ ] `lpsm::CountParagraphs()` (planned 0.4.6)
 - [ ] Smarter `lpsm::CountWords()`?
-- [ ] Add more `lpsm::Generator` functions around Markdown (planned 0.4.6)
 - [ ] More proper JSON (i.e. no duplicate keys)
 - [ ] Add memory safety checks to CI/CD (e.g. `valgrind`)
 - [ ] Add `CHANGELOG.md`

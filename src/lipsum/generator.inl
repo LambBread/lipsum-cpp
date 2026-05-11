@@ -20,30 +20,36 @@
 #    include "formats.hpp"
 #    include "markdown.hpp"
 
-#    define LPSM_CHANGE_SETTING_BRANCH(name)                                   \
-        if (setting == #name)                                                  \
-        {                                                                      \
-            name = value;                                                      \
-        }
+#    define LPSM_ASSIGN_CHECK(name)                                            \
+        isChecked = !isChecked ? assignSetting(#name, name) : true
 
 namespace lipsum
 {
     void GeneratorSettings::change_setting(const std::string& setting,
                                            const ArgVec2&     value)
     {
-        // clang-format off
-        LPSM_CHANGE_SETTING_BRANCH(word)
-        else LPSM_CHANGE_SETTING_BRANCH(frag) 
-        else LPSM_CHANGE_SETTING_BRANCH(sent) 
-        else LPSM_CHANGE_SETTING_BRANCH(para)
-        else LPSM_CHANGE_SETTING_BRANCH(point)
-        else LPSM_CHANGE_SETTING_BRANCH(wordFmt) 
-        else LPSM_CHANGE_SETTING_BRANCH(fragFmt) 
-        else LPSM_CHANGE_SETTING_BRANCH(wordURL)
-        else LPSM_CHANGE_SETTING_BRANCH(level)
-        else LPSM_CHANGE_SETTING_BRANCH(jsonLength)
-        else
-        // clang-format on
+        auto assignSetting = [&](const char* name, ArgVec2& target) -> bool
+        {
+            if (setting == name)
+            {
+                target = value;
+                return true;
+            }
+            return false;
+        };
+        bool isChecked = false;
+
+        LPSM_ASSIGN_CHECK(word);
+        LPSM_ASSIGN_CHECK(frag);
+        LPSM_ASSIGN_CHECK(sent);
+        LPSM_ASSIGN_CHECK(para);
+        LPSM_ASSIGN_CHECK(point);
+        LPSM_ASSIGN_CHECK(wordFmt);
+        LPSM_ASSIGN_CHECK(fragFmt);
+        LPSM_ASSIGN_CHECK(wordURL);
+        LPSM_ASSIGN_CHECK(level);
+        LPSM_ASSIGN_CHECK(jsonLength);
+        if (!isChecked)
         {
             internal::LogWarn("lpsm::GeneratorSettings::change_setting(): "
                               "unknown "
@@ -161,6 +167,42 @@ namespace lipsum
                                     m_Settings.wordURL,
                                     m_Settings.level,
                                     numElements,
+                                    useHtml,
+                                    m_Source);
+    }
+
+    std::string Generator::md_header(int level, bool useHtml)
+    {
+        return GenerateMarkdownHeader(level,
+                                      m_Settings.wordURL,
+                                      useHtml,
+                                      m_Source);
+    }
+
+    std::string Generator::md_emphasis(bool isBold, bool useHtml)
+    {
+        return GenerateMarkdownEmphasis(isBold,
+                                        m_Settings.wordFmt,
+                                        m_Settings.fragFmt,
+                                        useHtml,
+                                        m_Source);
+    }
+
+    std::string Generator::md_link(bool useHtml)
+    {
+        return GenerateMarkdownLink(m_Settings.wordFmt,
+                                    m_Settings.fragFmt,
+                                    m_Settings.wordURL,
+                                    useHtml,
+                                    m_Source);
+    }
+
+    std::string Generator::md_list(bool ordered, bool useHtml)
+    {
+        return GenerateMarkdownList(ordered,
+                                    m_Settings.wordFmt,
+                                    m_Settings.fragFmt,
+                                    m_Settings.point,
                                     useHtml,
                                     m_Source);
     }

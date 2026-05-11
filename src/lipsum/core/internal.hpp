@@ -97,7 +97,7 @@ namespace lipsum::internal
      *
      * @since 0.0.6
      *
-     * This function handles HTML entities by converting quotation marks,
+     * Handle HTML entities by converting quotation marks,
      * apostrophes, less-than signs, greater-than signs, and ampersands to their
      * corresponding HTML entities.
      *
@@ -173,6 +173,12 @@ namespace lipsum::internal
     template <UniformDistributionType T> T RandomNumber(T min, T max)
     {
         static thread_local std::mt19937 gen(std::random_device{}());
+        if (min > max)
+        {
+            T tempMax = max;
+            max       = min;
+            min       = tempMax;
+        }
         if constexpr (std::is_integral_v<T>)
         {
             std::uniform_int_distribution<T> dist(min, max);

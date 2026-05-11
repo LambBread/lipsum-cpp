@@ -39,15 +39,15 @@ namespace lipsum
 
     std::string internal::GenerateTLD()
     {
-        std::vector<std::string> tlds    = {{".com"},
-                                            {".org"},
-                                            {".net"},
-                                            {".edu"},
-                                            {".io"},
-                                            {".ca"},
-                                            {".co.uk"}};
-        std::vector<int>         weights = {70, 10, 7, 5, 5, 2, 1};
-        int                      idx     = internal::WeightedRandomIdx(weights);
+        std::vector<std::string>      tlds    = {{".com"},
+                                                 {".org"},
+                                                 {".net"},
+                                                 {".edu"},
+                                                 {".io"},
+                                                 {".ca"},
+                                                 {".co.uk"}};
+        static const std::vector<int> weights = {70, 10, 7, 5, 5, 2, 1};
+        int idx = internal::WeightedRandomIdx(weights);
         return tlds.at(idx);
     }
 

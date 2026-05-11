@@ -34,6 +34,18 @@ int main()
     // Generate a Markdown document with 20 elements.
     std::cout << gen.md_text(20, false);
 
+    // Generate a Markdown subtitle.
+    std::cout << gen.md_header(2, false);
+
+    // Generate an italic Markdown sentence.
+    std::cout << gen.md_emphasis(false, false) << '\n';
+
+    // Generate a Markdown link.
+    std::cout << gen.md_link(false) << '\n';
+
+    // Generate an ordered Markdown list.
+    std::cout << gen.md_list(true, false);
+
     // Generate 5 HTML paragraphs.
     std::cout << gen.md_paragraph(5, true, true);
 

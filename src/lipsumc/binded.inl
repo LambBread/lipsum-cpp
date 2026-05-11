@@ -169,6 +169,36 @@ extern "C" char* lpsm_Generator_md_text(lpsm_GeneratorHandle handle,
     return ConvertToCstr(ret);
 }
 
+extern "C" char*
+lpsm_Generator_md_header(lpsm_GeneratorHandle handle, int level, bool useHtml)
+{
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->md_header(level, useHtml);
+    return ConvertToCstr(ret);
+}
+
+extern "C" char* lpsm_Generator_md_emphasis(lpsm_GeneratorHandle handle,
+                                            bool                 isBold,
+                                            bool                 useHtml)
+{
+    auto ret =
+            LPSM_CPPIFY(handle, lpsm::Generator)->md_emphasis(isBold, useHtml);
+    return ConvertToCstr(ret);
+}
+
+extern "C" char* lpsm_Generator_md_link(lpsm_GeneratorHandle handle,
+                                        bool                 useHtml)
+{
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->md_link(useHtml);
+    return ConvertToCstr(ret);
+}
+
+extern "C" char*
+lpsm_Generator_md_list(lpsm_GeneratorHandle handle, bool ordered, bool useHtml)
+{
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->md_list(ordered, useHtml);
+    return ConvertToCstr(ret);
+}
+
 extern "C" char* lpsm_Generator_xml(lpsm_GeneratorHandle handle, int choices)
 {
     auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->xml(choices);

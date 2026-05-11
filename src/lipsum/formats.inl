@@ -38,8 +38,20 @@ namespace lipsum
             {
                 case 0:
                 {
-                    std::string toAdd = GenerateWord(source);
-                    ret += std::string("<") + toAdd + ">";
+                    std::string toAdd       = GenerateWord(source);
+                    std::string attrib      = GenerateWord(source);
+                    std::string attribValue = GenerateWord(source);
+                    bool        useAttrib   = LPSM_FLIP_COIN;
+                    if (useAttrib)
+                    {
+                        ret += std::string("<") + toAdd + std::string(" ") +
+                               attrib + std::string("=\"") + attribValue +
+                               std::string("\">");
+                    }
+                    else
+                    {
+                        ret += std::string("<") + toAdd + ">";
+                    }
                     tagStack.push_back(toAdd);
                     break;
                 }

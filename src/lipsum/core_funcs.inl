@@ -122,7 +122,11 @@ namespace lipsum
         {
             result += GenerateWord(source) += " ";
         }
-        result.pop_back(); // remove trailing space
+
+        if (!result.empty())
+        {
+            result.pop_back(); // remove trailing space
+        }
         return result;
     }
 
@@ -130,32 +134,52 @@ namespace lipsum
                                  const ArgVec2& frag,
                                  const Source&  source)
     {
-        constexpr int CHANCE_COMMA = 88;
-        constexpr int CHANCE_SEMI  = 9;
-        std::string   result;
-        int           frags = frag.roll();
+        // constexpr int CHANCE_COMMA = 88;
+        // constexpr int CHANCE_SEMI  = 9;
+        static const std::vector<int> weights = {88, 9, 3};
+        std::string                   result;
+        int                           frags = frag.roll();
         for (int i = 0; i < frags; ++i)
         {
             result += GenerateSentenceFragment(word, source);
-            int check = internal::RandomNumber<int>(0, 99);
+            // int check = internal::RandomNumber<int>(0, 99);
+            int check = internal::WeightedRandomIdx(weights);
             // don't do if only one fragment
             if (i != frags - 1)
             {
+                switch (check)
+                {
+                    case 0:
+                    {
+                        result += ", ";
+                        break;
+                    }
+                    case 1:
+                    {
+                        result += "; ";
+                        break;
+                    }
+                    case 2:
+                    {
+                        result += " - ";
+                        break;
+                    }
+                }
                 // 9% chance
-                if (check < CHANCE_SEMI)
-                {
-                    result += "; ";
-                }
+                // if (check < CHANCE_SEMI)
+                //{
+                //    result += "; ";
+                //}
                 // 88% chance
-                else if (check < CHANCE_SEMI + CHANCE_COMMA)
-                {
-                    result += ", ";
-                }
+                // else if (check < CHANCE_SEMI + CHANCE_COMMA)
+                //{
+                //    result += ", ";
+                //}
                 // 3% chance
-                else
-                {
-                    result += " - ";
-                }
+                // else
+                //{
+                //    result += " - ";
+                //}
             }
         }
         result += ".";
