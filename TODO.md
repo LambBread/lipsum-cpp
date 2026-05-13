@@ -87,6 +87,7 @@
 - [x] Fix segfault in `lpsm::internal::RandomNumber()` when `min > max` (0.4.6)
 - [x] Fix `std::bad_alloc` from `lpsm::GenerateSentenceFragment()` when `result` is empty (0.4.6)
 - [x] Add more `lpsm::Generator` functions around Markdown (0.4.6)
+- [x] Add `CHANGELOG.md` (0.4.6 WIP)
 
 ## Upcoming
 
@@ -94,7 +95,6 @@
 - [ ] Smarter `lpsm::CountWords()`?
 - [ ] More proper JSON (i.e. no duplicate keys)
 - [ ] Add memory safety checks to CI/CD (e.g. `valgrind`)
-- [ ] Add `CHANGELOG.md`
 - [ ] REST-ful API?
 - [ ] YAML/TOML? (maybe 0.5.x?)
 - [ ] Performance benchmarks (maybe in unit tests?)
