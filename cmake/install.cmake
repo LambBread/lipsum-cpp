@@ -19,6 +19,8 @@ install(
     FILES_MATCHING
     PATTERN "README.md"
     PATTERN "LICENSE.md"
+    PATTERN "TODO.md"
+    PATTERN "CHANGELOG.md"
     PATTERN ".git" EXCLUDE
     PATTERN ".github" EXCLUDE
     PATTERN "bin" EXCLUDE
