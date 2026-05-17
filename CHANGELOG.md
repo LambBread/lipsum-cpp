@@ -383,13 +383,124 @@ std::string lpsm::Generator::word(int);
 
 ### 0.3.0 (2025-12-30)
 
+- Add Markdown generation support
+- Deprecate `lpsm::HTMLify()`
+- New functions:
+
+```cpp
+template <typename T> std::string lpsm::ToString(const T&);
+std::string lpsm::Generator::md_paragraph(bool);
+std::string lpsm::Generator::md_text(int);
+std::string lpsm::GenerateMarkdownHeader(int, const lpsm::ArgVec2&);
+std::string lpsm::GenerateMarkdownEmphasis(bool, const lpsm::ArgVec2&);
+std::string lpsm::GenerateMarkdownLink(const std::string&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&);
+std::string lpsm::GenerateMarkdownList(bool, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&);
+std::string lpsm::GenerateMarkdownParagraph(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                                            const lpsm::ArgVec2&, const lpsm::ArgVec2&, const std::string&, bool);
+std::string lpsm::GenerateMarkdownText(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                                       const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, 
+                                       const std::string&, int);
+int lpsm::CountSentences(const std::string&);
+
+char* lpsm_gen_md_paragraph(bool);
+char* lpsm_gen_md_text(int);
+int lpsm_CountSentences(const char*);
+```
+
+- New examples:
+
+```
+Markdown.cpp
+```
+
+- Removed examples:
+
+```
+HTMLify.cpp
+```
+
 ### 0.3.1 (2025-12-31)
+
+- Split [`lipsum.hpp`](./src/lipsum.hpp) into multiple files
+- Add option to amalgamate into single-header library
+- Split CMake options into [`options.cmake`](./cmake/options.cmake)
+- New examples:
+
+```
+Advanced.cpp
+```
 
 ### 0.3.2 (2026-01-01)
 
+- Add [JS bindings](./src/jsbind/lipsum_binding_js.cpp) via Embind
+- Add `@since` in Doxygen comments
+- New features:
+
+```cpp
+std::string lpsm::GenerateText(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                               bool);
+std::string lpsm::GenerateTextX(int, int, int, int, int, int, int, int, bool);
+std::string lpsm::LipsumVersion();
+std::string lpsm::GenerateMarkdownParagraphs(int, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                                             const lpsm::ArgVec2&, const lpsm::ArgVec2&, const std::string&, bool);
+
+#define lpsm_LipsumVersion()
+char* lpsm_GenerateText(int, int, int, int, int, int, int, int, bool);
+```
+
+- Changed functions:
+
+```cpp
+std::string lpsm::Generator::md_paragraph(int, bool);
+// from std::string lpsm::Generator::md_paragraph(bool);
+```
+
 ### 0.3.3 (2026-01-12)
 
+- Update copyrights to 2026
+- Add [`TODO.md`](./TODO.md)
+- New features:
+
+```c
+typedef void* lpsm_ArgVec2Handle;
+lpsm_ArgVec2Handle lpsm_ArgVec2(int, int);
+void lpsm_ArgVec2Destroy(lpsm_ArgVec2Handle);
+void lpsm_ArgVec2Roll(lpsm_ArgVec2Handle);
+void lpsm_ArgVec2GetMin(lpsm_ArgVec2Handle);
+void lpsm_ArgVec2GetMax(lpsm_ArgVec2Handle);
+```
+
 ### 0.3.4 (2026-01-23)
+
+- `lpsm::GenerateMarkdownHeader()` now gives a warning when `level` > 6 or < 1
+- New functions:
+
+```cpp
+std::string lpsm::GenerateMarkdownHeaderX(int, int, int);
+std::string lpsm::GenerateMarkdownEmphasisX(bool, int, int, int, int);
+std::string lpsm::GenerateMarkdownLinkX(const std::string&, int, int, int, int, int, int);
+std::string lpsm::GenerateMarkdownListX(bool, int, int, int, int, int, int);
+
+char* lpsm_GenerateMarkdownHeader(int, int, int);
+char* lpsm_GenerateMarkdownEmphasis(bool, int, int, int, int);
+char* lpsm_GenerateMarkdownLink(const char*, int, int, int, int, int, int);
+char* lpsm_GenerateMarkdownList(bool, int, int, int, int, int, int);
+```
+
+- New examples:
+
+```
+GenerateMarkdownEmphasis.cpp
+GenerateMarkdownHeader.cpp
+GenerateText.cpp
+Misc.cpp
+```
+
+- Removed examples:
+
+```
+FuncsX.cpp
+```
 
 ### 0.3.5 (2026-01-24)
 
