@@ -16,3 +16,5 @@ option(LPSM_BUILD_VERSION "Have support for running the script that generates ve
 
 # executable suffix for WASM
 option(LPSM_BUILD_ASHTML "Set the executable suffix to HTML for WASM builds" ON)
+
+option(LPSM_VERSION_DEV "Is lipsum-cpp in a work-in-progress version?" ON)

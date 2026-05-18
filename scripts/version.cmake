@@ -17,13 +17,24 @@ if(Git_FOUND)
 else()
     set(LPSM_VERSION_COMMIT "unknown")
 endif()
+
+set(LIPSUM_CPP_VERSION "${LPSM_VERSION}")
+set(LIPSUM_CPP_VERSION_ISDEV "false")
+
+if(LPSM_VERSION_DEV)
+    string(APPEND LIPSUM_CPP_VERSION "-dev")
+    set(LIPSUM_CPP_VERSION_ISDEV "true")
+endif()
+
 message(STATUS "lipsum-cpp ---- current Git commit ${LPSM_VERSION_COMMIT}")
 
 string(TIMESTAMP LPSM_NOW "%Y-%m-%d %H:%M:%S UTC" UTC)
+string(TIMESTAMP LPSM_DATE_NOW "%y%m%d%H" UTC)
 message(STATUS "lipsum-cpp ---- current time ${LPSM_NOW}")
+message(STATUS "lipsum-cpp ---- date ${LPSM_DATE_NOW}")
 
 
-file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum/core/version.hpp
+file(WRITE "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum/core/version.hpp"
 "/**
  * @file lipsum/core/version.hpp
  *
@@ -48,7 +59,7 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum/core/version.hpp
  *
  * This constant stores the current version of lipsum-cpp, stored as a string.
  */
-inline constexpr const char* LIPSUM_CPP_VERSION = \"${LPSM_VERSION}\";
+ inline constexpr const char* LIPSUM_CPP_VERSION = \"${LIPSUM_CPP_VERSION}\";
 
 /**
  * @brief The current major version of lipsum-cpp.
@@ -92,10 +103,10 @@ inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = \"${LPSM_VERSION_COMMIT
 * 
 * @since 0.4.2
 *
-* This constant stores the current version of lipsum-cpp with the abbreviated Git commit ID
+* This constant stores the current version of lipsum-cpp with the abbreviated Git commit ID and date
 * as of the last time scripts/version.cmake was ran.
 */
-inline constexpr const char* LIPSUM_CPP_VERSION_FULL = \"${LPSM_VERSION}-${LPSM_VERSION_COMMIT}\";
+inline constexpr const char* LIPSUM_CPP_VERSION_FULL = \"${LIPSUM_CPP_VERSION}+${LPSM_VERSION_COMMIT}-${LPSM_DATE_NOW}\";
 
 /**
 * @brief The time lipsum-cpp was last edited.
@@ -107,6 +118,24 @@ inline constexpr const char* LIPSUM_CPP_VERSION_FULL = \"${LPSM_VERSION}-${LPSM_
 */
 inline constexpr const char* LIPSUM_CPP_VERSION_TIME = \"${LPSM_NOW}\";
 
+/**
+* @brief Whether lipsum-cpp is a development build.
+*
+* @since 0.4.6
+*
+* This constant stores whether lipsum-cpp is a development build as of the last time scripts/version.cmake was ran.
+*/
+inline constexpr bool LIPSUM_CPP_VERSION_ISDEV = ${LIPSUM_CPP_VERSION_ISDEV};
+
+/**
+* @brief The date lipsum-cpp was last edited.
+* 
+* @since 0.4.6
+*
+* This constant stores the current date in UTC as of the last time scripts/version.cmake was ran, in the format
+* YYMMDDHH.
+*/
+inline constexpr const char* LIPSUM_CPP_VERSION_DATE = \"${LPSM_DATE_NOW}\";
 #endif
 ")
 
@@ -137,7 +166,7 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h
  *
  * This macro stores the current version of lipsum-cpp.
  */
- #define LIPSUM_CPP_VERSION_C \"${LPSM_VERSION}\"
+ #define LIPSUM_CPP_VERSION_C \"${LIPSUM_CPP_VERSION}\"
 
 /**
  * @brief The major version of lipsum-cpp.
@@ -181,10 +210,10 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h
 * 
 * @since 0.4.2
 *
-* This macro stores the current version of lipsum-cpp with the abbreviated Git commit ID
+* This macro stores the current version of lipsum-cpp with the abbreviated Git commit ID and date
 * as of the last time scripts/version.cmake was ran.
 */
-#define LIPSUM_CPP_VERSION_FULL_C \"${LPSM_VERSION}-${LPSM_VERSION_COMMIT}\"
+#define LIPSUM_CPP_VERSION_FULL_C \"${LIPSUM_CPP_VERSION}+${LPSM_VERSION_COMMIT}-${LPSM_DATE_NOW}\"
 
 /**
 * @brief The time lipsum-cpp was last edited.
@@ -194,7 +223,26 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h
 * This macro stores the current time in UTC as of the last time scripts/version.cmake was ran,
 * in the format YYYY-MM-DD HH:MM:SS UTC.
 */
-#define LIPSUM_CPP_VERSION_TIME_C = \"${LPSM_NOW}\";
+#define LIPSUM_CPP_VERSION_TIME_C \"${LPSM_NOW}\"
+
+/**
+* @brief Whether lipsum-cpp is a development build.
+*
+* @since 0.4.6
+*
+* This macro stores whether lipsum-cpp is a development build as of the last time scripts/version.cmake was ran.
+*/
+#define LIPSUM_CPP_VERSION_ISDEV_C ${LIPSUM_CPP_VERSION_ISDEV}
+
+/**
+* @brief The date lipsum-cpp was last edited.
+* 
+* @since 0.4.6
+*
+* This macro stores the current date in UTC as of the last time scripts/version.cmake was ran, in the format
+* YYMMDDHH.
+*/
+#define LIPSUM_CPP_VERSION_DATE_C \"${LPSM_DATE_NOW}\"
 
 //NOLINTEND(modernize-macro-to-enum)
  #endif

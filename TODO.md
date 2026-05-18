@@ -87,10 +87,12 @@
 - [x] Fix segfault in `lpsm::internal::RandomNumber()` when `min > max` (0.4.6)
 - [x] Fix `std::bad_alloc` from `lpsm::GenerateSentenceFragment()` when `result` is empty (0.4.6)
 - [x] Add more `lpsm::Generator` functions around Markdown (0.4.6)
+- [x] `LIPSUM_CPP_VERSION_DATE`, `LIPSUM_CPP_VERSION_ISDEV` (0.4.6)
 - [x] Add `CHANGELOG.md` (0.4.6 WIP)
 
 ## Upcoming
 
+- [ ] CLI: Move help to a traditional man page (planned 0.4.6)
 - [ ] `lpsm::CountParagraphs()` (planned 0.4.6)
 - [ ] Smarter `lpsm::CountWords()`?
 - [ ] More proper JSON (i.e. no duplicate keys)
