@@ -92,6 +92,7 @@
 
 ## Upcoming
 
+- [ ] Arch Linux package support (planned 0.4.6)
 - [ ] CLI: Move help to a traditional man page (planned 0.4.6)
 - [ ] `lpsm::CountParagraphs()` (planned 0.4.6)
 - [ ] Smarter `lpsm::CountWords()`?

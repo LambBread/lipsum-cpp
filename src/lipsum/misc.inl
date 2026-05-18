@@ -41,6 +41,10 @@ namespace lipsum
                               "got ",
                               length);
         }
+        else
+        {
+            ret.reserve(length);
+        }
         for (int i = 0; i < length; ++i)
         {
             ret.push_back(internal::RandomNumber(min, max));

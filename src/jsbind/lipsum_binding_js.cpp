@@ -97,6 +97,8 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
              std::string(LIPSUM_CPP_VERSION_COMMIT));
     constant("LIPSUM_CPP_VERSION_FULL", std::string(LIPSUM_CPP_VERSION_FULL));
     constant("LIPSUM_CPP_VERSION_TIME", std::string(LIPSUM_CPP_VERSION_TIME));
+    constant("LIPSUM_CPP_VERSION_DATE", std::string(LIPSUM_CPP_VERSION_DATE));
+    constant("LIPSUM_CPP_VERSION_ISDEV", LIPSUM_CPP_VERSION_ISDEV);
     function("lpsm_GenerateText", &lpsm::GenerateText);
     function("lpsm_GenerateTextX", &lpsm::GenerateTextX);
     function("lpsm_GenerateMarkdownParagraphs",

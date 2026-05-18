@@ -196,7 +196,7 @@ namespace lipsum
      * @param source The source for words. By default the standard "Lorem
      * ipsum..." sample.
      *
-     * @return std::string The random paragraph.
+     * @return std::string The random paragraphs.
      */
     LIPSUM_API std::string
                GenerateMarkdownParagraphs(int            paraCount = 5,
