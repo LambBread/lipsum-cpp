@@ -680,13 +680,13 @@ char* lpsm_GenerateMarkdownParagraphS(lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lp
 char* lpsm_GenerateMarkdownParagraphsS(int, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, 
                                             lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, bool, bool, bool);
 // from char* lpsm_GenerateMarkdownParagraphsS(int, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, 
-//                                             lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, const char*, bool, bool, bool);
+//                                             lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, const char*, bool, bool, bool)
 char* lpsm_GenerateMarkdownTextS(lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, 
                                  lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle,
                                  int, bool, bool);
 // from char* lpsm_GenerateMarkdownTextS(lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, 
 //                                       lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle,
-//                                       const char*, int, bool, bool);
+//                                       const char*, int, bool, bool)
 ```
 
 - New examples:
@@ -730,7 +730,7 @@ char* lpsm_GenerateScramble(int, char, char);
 template <typename T> T lpsm::internal::RandomNumber(T, T);
 template <> char lpsm::internal::RandomNumber(char, char);
 template <> bool lpsm::internal::RandomNumber(bool, bool);
-// from int lpsm::internal::RandomNumber(int, int);
+// from int lpsm::internal::RandomNumber(int, int)
 ```
 
 ## 0.4.x

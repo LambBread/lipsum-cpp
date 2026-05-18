@@ -53,6 +53,11 @@ if(LPSM_BUILD_SHARED OR LPSM_BUILD_STATIC)
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>"
         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/lipsum-cpp>"
     )
+    if(MSVC)
+        target_compile_options(lipsum-cpp PRIVATE /W4)
+    else()
+        target_compile_options(lipsum-cpp PRIVATE -Wall -Wextra -Wpedantic)
+    endif()
 else()
 
     # c++20
@@ -62,12 +67,6 @@ else()
     target_include_directories(lipsum-cpp INTERFACE 
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>"
         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/lipsum-cpp>")
-endif()
-
-if(MSVC)
-    target_compile_options(lipsum-cpp PRIVATE /W4)
-else()
-    target_compile_options(lipsum-cpp PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
 if(WIN32)

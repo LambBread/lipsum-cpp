@@ -107,8 +107,34 @@ for details.
 
 ## Installation
 
-lipsum-cpp has been mainly tested on Linux and WebAssembly, and there has also been passing builds on Windows and macOS.
-lipsum-cpp can be installed via the `Releases` section, or alternatively can be installed via `make install`.
+lipsum-cpp has been mainly tested on Linux and WebAssembly, and there have also been passing builds on Windows and macOS.
+
+```bash
+# Debian-based
+sudo apt install ./lipsum-cpp-x.x.x-Linux.deb
+
+# RHEL/Fedora-based
+sudo dnf install ./lipsum-cpp-x.x.x-Linux.rpm
+
+# Arch-based
+# Currently not yet supported with native packages.
+# Currently planned for near future.
+# sudo pacman -U ./lipsum-cpp-x.x.x-Linux.pkg.tar.zst
+
+# Windows
+# Run the .msi file provided.
+
+# macOS
+# Install the .dmg provided.
+
+# Cross-platform
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DLPSM_BUILD_CLI=ON <... your CMake options here>
+cmake --build build --config Release
+sudo cmake --install build # or "Administrator" terminal on Windows
+
+# Alternatively, do not install and use FetchContent or add_subdirectory in your project instead.
+```
+
 
 ### Adding to projects & Building
 
@@ -172,7 +198,7 @@ target_link_libraries(your_target PRIVATE lipsum-cpp::lipsum-cpp)
 Simply copy `src/` into your source tree or download and extract an amalgamated
 single-header release from the `Releases` section (typically `lipsum-pkg.zip`).
 
-#### Building manually via GCC
+#### Building manually
 
 Not recommended.
 
