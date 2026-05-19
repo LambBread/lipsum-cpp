@@ -99,6 +99,7 @@
 - [ ] More proper JSON (i.e. no duplicate keys)
 - [ ] Add memory safety checks to CI/CD (e.g. `valgrind`)
 - [ ] REST-ful API?
+- [ ] Switch to another license? (LGPL?) (0.5.0?)
 - [ ] YAML/TOML? (maybe 0.5.x?)
 - [ ] Performance benchmarks (maybe in unit tests?)
 - [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)

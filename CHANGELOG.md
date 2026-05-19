@@ -737,6 +737,116 @@ template <> bool lpsm::internal::RandomNumber(bool, bool);
 
 ### 0.4.0 (2026-03-21)
 
+- Make `lpsm::internal::RandomNumber()` more thread-safe
+- Change style of `.inl`s to have `namespace lipsum` around entire implementation
+- Add multi-source lorem-ipsum generation support, with functions now having an extra `lpsm::Source` argument
+- New features:
+
+```cpp
+class lpsm::Source;
+lpsm::Source::Source();
+lpsm::Source::Source(const std::string&);
+std::string lpsm::Source::RandomWord() const;
+inline constexpr int LIPSUM_CPP_VERSION_MAJOR;
+inline constexpr int LIPSUM_CPP_VERSION_MINOR;
+inline constexpr int LIPSUM_CPP_VERSION_PATCH;
+
+#define LIPSUM_CPP_VERSION_MAJOR_C
+#define LIPSUM_CPP_VERSION_MINOR_C
+#define LIPSUM_CPP_VERSION_PATCH_C
+typedef void* lpsm_SourceHandle;
+lpsm_SourceHandle lpsm_Source(const char*);
+void lpsm_SourceDestroy(lpsm_SourceHandle);
+```
+
+- Changed features:
+
+```cpp
+inline constexpr const char* LIPSUM_CPP_VERSION;
+// from #define LIPSUM_CPP_VERSION
+std::string lpsm::GenerateWord(const lpsm::Source&);
+// from std::string lpsm::GenerateWord()
+std::string lpsm::GenerateSentenceFragment(const lpsm::ArgVec2&, const lpsm::Source&);
+// from std::string lpsm::GenerateSentenceFragment(const lpsm::ArgVec2&)
+std::string lpsm::GenerateSentence(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::Source&);
+// from std::string lpsm::GenerateSentence(const lpsm::ArgVec2&, const lpsm::ArgVec2&)
+std::string lpsm::GenerateParagraph(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateParagraph(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool)
+std::string lpsm::GenerateText(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                               bool, const lpsm::Source&);
+// from std::string lpsm::GenerateText(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+//                                     bool)
+std::string lpsm::GenerateWords(int, const lpsm::Source&);
+// from std::string lpsm::GenerateWords(int)
+std::string lpsm::GenerateSentences(int, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateSentences(int, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool)
+std::string lpsm::GenerateParagraphs(int, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateParagraphs(int, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool)
+std::string lpsm::GeneratePlainURL(const lpsm::Source&);
+// from std::string lpsm::GeneratePlainURL()
+std::string lpsm::GenerateURL(const lpsm::ArgVec2&, const lpsm::Source&);
+// from std::string lpsm::GenerateURL(const lpsm::ArgVec2&)
+std::string lpsm::GenerateSlug(const lpsm::ArgVec2&, char, const lpsm::Source&);
+// from std::string lpsm::GenerateSlug(const lpsm::ArgVec2&, char)
+std::string lpsm::GenerateMarkdownHeader(int, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateMarkdownHeader(int, const lpsm::ArgVec2&, bool)
+std::string lpsm::GenerateMarkdownEmphasis(bool, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateMarkdownEmphasis(bool, const lpsm::ArgVec2&, bool)
+std::string lpsm::GenerateMarkdownLink(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateMarkdownLink(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool)
+std::string lpsm::GenerateMarkdownList(bool, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateMarkdownList(bool, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool)
+std::string lpsm::GenerateMarkdownParagraph(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                                            const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateMarkdownParagraph(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, 
+//                                                  const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, bool)
+std::string lpsm::GenerateMarkdownParagraphs(int, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                                             const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, 
+                                             bool, const lpsm::Source&);
+// from std::string lpsm::GenerateMarkdownParagraphs(int, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+//                                                   const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, bool)
+std::string lpsm::GenerateMarkdownText(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, 
+                                       const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                                       int, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateMarkdownText(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+//                                             const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+//                                             int, bool)
+
+
+// @@@@@@@@@@   @@@@@@   @@@@@    @@@@@@
+//     @@       @    @   @    @   @    @
+//     @@       @    @   @    @   @    @
+//     @@       @    @   @   @    @    @
+//     @@       @@@@@@   @@@@     @@@@@@
+// Markdown X functions, C wrapper
+
+std::string lpsm::GenerateSentenceFragmentX(int, int, const lpsm::Source&);
+// from std::string lpsm::GenerateSentenceFragmentX(int, int)
+std::string lpsm::GenerateSentenceX(int, int, int, int, const lpsm::Source&);
+// from std::string lpsm::GenerateSentenceX(int, int, int, int)
+std::string lpsm::GenerateParagraphX(int, int, int, int, int, int, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateParagraphX(int, int, int, int, int, int, bool)
+std::string lpsm::GenerateTextX(int, int, int, int, int, int, int, int, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateTextX(int, int, int, int, int, int, int, int, bool)
+std::string lpsm::GenerateSentencesX(int, int, int, int, int, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateSentencesX(int, int, int, int, int, bool)
+std::string lpsm::GenerateParagraphsX(int, int, int, int, int, int, int, bool, const lpsm::Source&);
+// from std::string lpsm::GenerateParagraphsX(int, int, int, int, int, int, int, bool)
+std::string lpsm::GenerateURLX(int, int, const lpsm::Source&);
+// from std::string lpsm::GenerateURLX(int, int)
+std::string lpsm::GenerateSlugX(int, int, char, const lpsm::Source&);
+// from std::string lpsm::GenerateSlugX(int, int, char)
+
+```
+
+- Removed features:
+
+```
+std::string lpsm::LipsumVersion();
+
+#define lpsm_LipsumVersion()
+```
+
 ### 0.4.1 (2026-03-22)
 
 ### 0.4.2 (2026-04-12)
