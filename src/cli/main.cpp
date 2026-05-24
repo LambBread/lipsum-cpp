@@ -1,6 +1,7 @@
 #ifndef LIPSUM_BUILD_STATIC
 #    define LIPSUM_IMPLEMENTATION
 #endif
+
 #include <limits>
 #include <lipsum.hpp>
 

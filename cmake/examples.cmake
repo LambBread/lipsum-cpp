@@ -10,6 +10,19 @@ if(LPSM_BUILD_EXAMPLES)
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/examples")
 endif()
 
+# if building tests, enable test and add subdirectory
+if(LPSM_BUILD_TEST)
+    enable_testing()
+    add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/test")
+    add_test(NAME count_words COMMAND lpsmcpp-test count_words)
+    add_test(NAME count_sentences COMMAND lpsmcpp-test count_sentences)
+    add_test(NAME word_count_in_bounds COMMAND lpsmcpp-test word_count_in_bounds)
+    add_test(NAME word_count_equal COMMAND lpsmcpp-test word_count_equal)
+    add_test(NAME sentence_count_in_bounds COMMAND lpsmcpp-test sentence_count_in_bounds)
+    add_test(NAME sentence_count_equal COMMAND lpsmcpp-test sentence_count_equal)
+    add_test(NAME md_sentence_count_in_bounds COMMAND lpsmcpp-test md_sentence_count_in_bounds)
+endif()
+
 # if building cli, message and add subdir
 if(LPSM_BUILD_CLI AND NOT EMSCRIPTEN)
     message(STATUS "lipsum-cpp ---- Building CLI")

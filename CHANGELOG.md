@@ -1108,6 +1108,7 @@ void lpsm_Generator_load_source(lpsm_GeneratorHandle, const char*);
 
 - Add more descriptive error handling in CLI tool
 - Add CMake `find_package()` support
+- Add unit tests
 - Switch some functions in `lpsm::internal` to C++20 concepts
 - Add XML attributes in generated XML
 - Allow 1 or 0 elements in `lpsm::GenerateMarkdownText()`, and warn on negative elements

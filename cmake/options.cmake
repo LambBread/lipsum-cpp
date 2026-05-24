@@ -8,6 +8,7 @@ option(LPSM_BUILD_JSBIND "Build the JS WebAssembly binding" OFF)
 
 # custom targets
 option(LPSM_BUILD_EXAMPLES "Build examples" OFF)
+option(LPSM_BUILD_TEST "Build unit tests" ON)
 option(LPSM_BUILD_DOCS "Build Doxygen docs" OFF)
 option(LPSM_BUILD_CLI "Build lipsum-cpp CLI tool" OFF)
 option(LPSM_FORMAT "Have support for running clang-format on sources" ON)

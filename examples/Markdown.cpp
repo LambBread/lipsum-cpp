@@ -1,11 +1,11 @@
 #ifndef LIPSUM_BUILD_STATIC
 #    define LIPSUM_IMPLEMENTATION
 #endif
-#include <memory>
+
+#include <lipsum.hpp>
 #ifdef __EMSCRIPTEN__
 #    include <emscripten.h>
 #endif
-#include "lipsum.hpp"
 
 int main()
 {

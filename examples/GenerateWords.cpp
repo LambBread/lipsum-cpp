@@ -2,7 +2,8 @@
 #    define LIPSUM_IMPLEMENTATION // only for header-only usage
 #endif
 
-#include "lipsum.hpp"
+#include <lipsum.hpp>
+
 int main()
 {
     // generate 5 words

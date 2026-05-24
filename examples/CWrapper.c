@@ -1,4 +1,4 @@
-#include "lipsum.h"
+#include <lipsum.h>
 
 int main(void)
 {

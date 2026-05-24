@@ -22,7 +22,7 @@
 #ifndef LIPSUM_BUILD_STATIC
 #    define LIPSUM_IMPLEMENTATION
 #endif
-#include "lipsum.hpp"
+#include <lipsum.hpp>
 
 using namespace emscripten;
 

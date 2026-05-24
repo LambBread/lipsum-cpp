@@ -89,21 +89,20 @@
 - [x] Add more `lpsm::Generator` functions around Markdown (0.4.6)
 - [x] `LIPSUM_CPP_VERSION_DATE`, `LIPSUM_CPP_VERSION_ISDEV` (0.4.6)
 - [x] Add `CHANGELOG.md` (0.4.6)
+- [x] Unit tests (0.4.6)
 
 ## Upcoming
 
+- [ ] `lpsm::CountParagraphs()`,`lpsm::CountSentenceFragments()` (planned 0.4.6)
+- [ ] Smarter `lpsm::CountWords()`?
+- [ ] Performance benchmarks (maybe in unit tests?)
 - [ ] Arch Linux package support (planned 0.4.6)
 - [ ] CLI: Move help to a traditional man page (planned 0.4.6)
-- [ ] `lpsm::CountParagraphs()` (planned 0.4.6)
-- [ ] Smarter `lpsm::CountWords()`?
 - [ ] More proper JSON (i.e. no duplicate keys)
-- [ ] Add memory safety checks to CI/CD (e.g. `valgrind`)
 - [ ] REST-ful API?
 - [ ] Switch to another license? (LGPL?) (0.5.0?)
 - [ ] YAML/TOML? (maybe 0.5.x?)
-- [ ] Performance benchmarks (maybe in unit tests?)
 - [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
 - [ ] Add seed options (planned 0.5.0)
-- [ ] Unit tests (planned 0.5.x)
 - [ ] Stabilize API and release 1.0.0
 

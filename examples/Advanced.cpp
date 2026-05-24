@@ -2,7 +2,8 @@
 #ifndef LIPSUM_BUILD_STATIC
 #    define LIPSUM_IMPLEMENTATION
 #endif
-#include "lipsum.hpp"
+
+#include <lipsum.hpp>
 
 // A small helper to replace all occurrences of a token in a string.
 static std::string

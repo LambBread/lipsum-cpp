@@ -32,7 +32,7 @@ UI testing, benchmarking Markdown/HTML/XML/JSON parser libraries, and anywhere p
 #    define LIPSUM_IMPLEMENTATION // only for header-only usage
 #endif
 
-#include "lipsum.hpp"
+#include <lipsum.hpp>
 
 int main()
 {
@@ -69,7 +69,8 @@ int main()
 #    define LIPSUM_IMPLEMENTATION // only for header-only usage
 #endif
 
-#include "lipsum.hpp"
+#include <lipsum.hpp>
+
 int main()
 {
     // generate 5 paragraphs
