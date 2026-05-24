@@ -1,6 +1,7 @@
 build/
 bin/
 docs/
+Testing/
 
 *~
 *.swp
