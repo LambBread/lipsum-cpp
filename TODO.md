@@ -90,10 +90,10 @@
 - [x] `LIPSUM_CPP_VERSION_DATE`, `LIPSUM_CPP_VERSION_ISDEV` (0.4.6)
 - [x] Add `CHANGELOG.md` (0.4.6)
 - [x] Unit tests (0.4.6)
+- [x] `lpsm::CountParagraphs()`,`lpsm::CountSentenceFragments()` (0.4.6)
 
 ## Upcoming
 
-- [ ] `lpsm::CountParagraphs()`,`lpsm::CountSentenceFragments()` (planned 0.4.6)
 - [ ] Smarter `lpsm::CountWords()`?
 - [ ] Performance benchmarks (maybe in unit tests?)
 - [ ] Arch Linux package support (planned 0.4.6)

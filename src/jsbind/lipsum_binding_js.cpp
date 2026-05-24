@@ -125,4 +125,6 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     function("lpsm_GenerateJSONArrayX", &lpsm::GenerateJSONArrayX);
     function("lpsm_GenerateJSONValue", &lpsm::GenerateJSONValue);
     function("lpsm_GenerateJSONValueX", &lpsm::GenerateJSONValueX);
+    function("lpsm_CountSentenceFragments", &lpsm::CountSentenceFragments);
+    function("lpsm_CountParagraphs", &lpsm::CountParagraphs);
 }

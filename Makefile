@@ -67,6 +67,7 @@ clean: ## Remove the build directory.
 full_clean: clean ## Remove the build directory, packaging directory, and generated docs directory.
 	rm -rf $(PKG_DIR)
 	rm -rf $(DOCS_DIR)
+	rm -rf Testing
 
 install: clean build ## Install lipsum-cpp to the default install location.
 	cmake --install build

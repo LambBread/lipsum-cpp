@@ -208,6 +208,20 @@ extern "C"
     LIPSUMC_API int lpsm_CountWords(const char* str);
 
     /**
+     * @brief Count the number of sentence fragments in a string.
+     *
+     * @since 0.4.6
+     *
+     * Count the number of commas, semicolons, and hyphens in a string, excluding
+     * usage in Markdown. (i.e. hyphen at start of line, or in parentheses)
+     *
+     * @param str The string inputted.
+     *
+     * @return int The number of sentence fragments.
+     */
+    LIPSUMC_API int lpsm_CountSentenceFragments(const char* str);
+
+    /**
      * @brief Count the number of sentences in a string.
      *
      * @since 0.3.0
@@ -219,6 +233,22 @@ extern "C"
      * @return int The number of sentences.
      */
     LIPSUMC_API int lpsm_CountSentences(const char* str);
+
+    /**
+     * @brief Count the number of paragraphs or elements in a string.
+     *
+     * @since 0.4.6
+     *
+     * Count the number of tab characters in a non-formatted string, double newlines in Markdown/HTML strings,
+     * and elements in HTML strings.
+     *
+     * @param str The string inputted.
+     * @param format The format the string is in. Valid options include 
+     * 0 (non-formatted), 1 (Markdown/HTML), and 2. (HTML)
+     * 
+     * @return int The number of paragraphs.
+     */
+    LIPSUMC_API int lpsm_CountParagraphs(const char* str, int format);
 
     /**
      * @brief Delete a string returned by a function.

@@ -139,7 +139,7 @@ namespace lipsum
         }
         if (useHtml)
         {
-            ret += (ordered ? "</ol>" : "</ul>");
+            ret += (ordered ? "</ol>\n" : "</ul>\n");
         }
         ret += "\n";
         return ret;
@@ -285,7 +285,7 @@ namespace lipsum
         {
             ret += std::string("<h") + internal::ToString(level) + ">";
             ret += words +=
-                    std::string("</h") + internal::ToString(level) + ">";
+                    std::string("</h") + internal::ToString(level) + ">\n\n";
         }
         return ret;
     }

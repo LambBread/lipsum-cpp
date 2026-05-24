@@ -1132,6 +1132,8 @@ std::string lpsm::Generator::md_header(int, bool);
 std::string lpsm::Generator::md_emphasis(bool, bool);
 std::string lpsm::Generator::md_link(bool);
 std::string lpsm::Generator::md_list(bool, bool);
+int lpsm::CountSentenceFragments(const std::string&);
+int lpsm::CountParagraphs(const std::string&, int);
 
 #define LIPSUM_CPP_VERSION_TIME_C;
 #define LIPSUM_CPP_VERSION_ISDEV_C;
@@ -1140,6 +1142,8 @@ char* lpsm_Generator_md_header(lpsm_GeneratorHandle, int, bool);
 char* lpsm_Generator_md_emphasis(lpsm_GeneratorHandle, bool, bool);
 char* lpsm_Generator_md_link(lpsm_GeneratorHandle, bool);
 char* lpsm_Generator_md_list(lpsm_GeneratorHandle, bool, bool);
+int lpsm_CountSentenceFragments(const char*);
+int lpsm_CountParagraphs(const char*, int);
 ```
 
 - Changed functions:

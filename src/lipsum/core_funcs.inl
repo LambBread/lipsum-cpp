@@ -134,15 +134,12 @@ namespace lipsum
                                  const ArgVec2& frag,
                                  const Source&  source)
     {
-        // constexpr int CHANCE_COMMA = 88;
-        // constexpr int CHANCE_SEMI  = 9;
         static const std::vector<int> weights = {88, 9, 3};
         std::string                   result;
         int                           frags = frag.roll();
         for (int i = 0; i < frags; ++i)
         {
             result += GenerateSentenceFragment(word, source);
-            // int check = internal::RandomNumber<int>(0, 99);
             int check = internal::WeightedRandomIdx(weights);
             // don't do if only one fragment
             if (i != frags - 1)
@@ -165,21 +162,6 @@ namespace lipsum
                         break;
                     }
                 }
-                // 9% chance
-                // if (check < CHANCE_SEMI)
-                //{
-                //    result += "; ";
-                //}
-                // 88% chance
-                // else if (check < CHANCE_SEMI + CHANCE_COMMA)
-                //{
-                //    result += ", ";
-                //}
-                // 3% chance
-                // else
-                //{
-                //    result += " - ";
-                //}
             }
         }
         result += ".";

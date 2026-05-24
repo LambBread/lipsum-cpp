@@ -6,6 +6,7 @@
 
 int main()
 {
+    lpsm::Generator gen;
     // print current version of lipsum-cpp
     std::cout << LIPSUM_CPP_VERSION << '\n';
     std::cout << "major " << LIPSUM_CPP_VERSION_MAJOR << " minor "
@@ -18,6 +19,14 @@ int main()
                                       "123.](https://example.com/foo-bar) "
                                       "Testing 123. Foobar test.")
               << '\n';
+
+    std::cout << lpsm::CountSentenceFragments("This is a test, and this is a test; testing - test, test, test. "
+                                              "Lorem ipsum, dolor sit, amet.\n\n"
+                                              "- This is a list, first letter not be counted.\n"
+                                              "- Foo bar; baz - qux. (This, is not counted.)") << '\n';
+
+    std::cout << lpsm::CountParagraphs(gen.md_text(50, true), 1) << '\n';
+    std::cout << lpsm::CountParagraphs(gen.paragraph(50)) << '\n';
 
     std::cout << lpsm::CountWords("Hello World, Foo bar baz qux quuz. "
                                   "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA. Lorem ipsum "
