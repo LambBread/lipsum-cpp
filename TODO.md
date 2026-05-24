@@ -88,7 +88,7 @@
 - [x] Fix `std::bad_alloc` from `lpsm::GenerateSentenceFragment()` when `result` is empty (0.4.6)
 - [x] Add more `lpsm::Generator` functions around Markdown (0.4.6)
 - [x] `LIPSUM_CPP_VERSION_DATE`, `LIPSUM_CPP_VERSION_ISDEV` (0.4.6)
-- [x] Add `CHANGELOG.md` (0.4.6 WIP)
+- [x] Add `CHANGELOG.md` (0.4.6)
 
 ## Upcoming
 
