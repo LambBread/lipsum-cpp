@@ -71,7 +71,7 @@ jobs:
 
       - name: Build Arch Linux Package
         run: |
-          su - builduser -c "cd '$GITHUB_WORKSPACE && makepkg -s --noconfirm"
+          su - builduser -c "cd \"$GITHUB_WORKSPACE\" && makepkg -s --noconfirm"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
