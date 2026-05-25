@@ -1,6 +1,6 @@
 #!/bin/python3
 # Basic script that splits a source "lorem ipsum" into the unique
-# words it uses. It outputs it in C++ syntax to be put in lipsum.inl.
+# words it uses. It outputs it in C++ syntax to be put in sample.inl.
 import re
 import sys
 from collections import Counter
@@ -13,17 +13,18 @@ def count_unique_words(filename):
     unique_words = list(word_counts.keys())
     return unique_words
 
+def write_array(array, name, f):
+    f.write("static constexpr std::array<const char*, " + str(len(array)) + "> " 
+            + name + " = {")
+    for word in array:
+        f.write(f"\"{word}\",\n")
+    f.write("};\n")
+
 if __name__ == "__main__":
     lorem_ipsum = count_unique_words("lipsum.txt")
     cat_ipsum = count_unique_words("catipsum.txt")
     dog_ipsum = count_unique_words("dogipsum.txt")
     corpo_ipsum = count_unique_words("corporateipsum.txt")
-    def write_array(array, name, f):
-        f.write("static constexpr std::array<const char*, " + str(len(array)) + "> " 
-                + name + " = {")
-        for word in array:
-            f.write(f"\"{word}\",\n")
-        f.write("};\n")
 
     with open("../src/lipsum/core/sample.inl", "w") as file:
         file.write("""/** 

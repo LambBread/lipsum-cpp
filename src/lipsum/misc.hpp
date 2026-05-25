@@ -116,9 +116,8 @@ namespace lipsum
      *
      * @since 0.3.8
      *
-     * Count the number of words in a string using a naive approach.
-     *
-     * @note Some formatting will be counted as words.
+     * Count the number of words in a string using alphanumeric characters,
+     * hyphens, plus-signs, and apostrophes, excluding words within parentheses.
      *
      * @param str The string inputted.
      *

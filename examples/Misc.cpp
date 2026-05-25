@@ -31,9 +31,10 @@ int main()
     std::cout << lpsm::CountParagraphs(gen.md_text(50, true), 1) << '\n';
     std::cout << lpsm::CountParagraphs(gen.paragraph(50)) << '\n';
 
-    std::cout << lpsm::CountWords("Hello World, Foo bar baz qux quuz. "
-                                  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA. Lorem ipsum "
-                                  "dolor sit amet, aaaaaaaaaaaaaaaaaa")
+    std::cout << lpsm::CountWords("Hel+lo World, Foo bar baz - qux-quuz. "
+                                  "AAAAAAAAAAAAAA'AAAAAAAAAAAAAAA. Lorem ipsum "
+                                  "dolor sit amet, aaaaaaaaaaaaaaaaaa\n\n## "
+                                  "This is a subtitle")
               << "\n\n";
     std::cout << "this is a plain URL: " << lpsm::GeneratePlainURL() << '\n';
 

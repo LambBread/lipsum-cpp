@@ -86,12 +86,52 @@ namespace lipsum
 
     int CountWords(const std::string& str)
     {
+        /*
         std::istringstream iss(str);
         int                count = 0;
         std::string        tmp;
         while (iss >> tmp)
         {
             ++count;
+        }*/
+        int  count      = 0;
+        int  urlNum     = 0;
+        bool inWord     = false;
+        char lastLetter = '\0';
+        for (const char& letter : str)
+        {
+            if (letter == '(')
+            {
+                ++urlNum;
+            }
+            if (letter == ')')
+            {
+                --urlNum;
+            }
+
+            bool isWordChar =
+                    static_cast<bool>(
+                            std::isalnum(static_cast<unsigned char>(letter))) ||
+                    (letter == '-' && lastLetter != '\n' &&
+                     lastLetter != ' ') ||
+                    (letter == '+' && lastLetter != '\n' &&
+                     lastLetter != ' ') ||
+                    (letter == '\'' && lastLetter != '\n' && lastLetter != ' ');
+            // if not in parens
+            if (urlNum <= 0)
+            {
+                if (isWordChar && !inWord)
+                {
+                    inWord = true;
+                    ++count;
+                }
+                if (!isWordChar)
+                {
+                    inWord = false;
+                }
+            }
+
+            lastLetter = letter;
         }
         return count;
     }

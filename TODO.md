@@ -93,10 +93,10 @@
 - [x] `lpsm::CountParagraphs()`,`lpsm::CountSentenceFragments()` (0.4.6)
 - [x] Performance benchmarks (0.4.6)
 - [x] Arch Linux package support (0.4.6)
+- [x] Smarter `lpsm::CountWords()` (0.4.6)
 
 ## Upcoming
 
-- [ ] Smarter `lpsm::CountWords()`?
 - [ ] CLI: Move help to a traditional man page (planned 0.4.6)
 - [ ] More proper JSON (i.e. no duplicate keys)
 - [ ] Switch to another license? (LGPL?) (0.5.0?)
