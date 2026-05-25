@@ -65,17 +65,17 @@ jobs:
         run: |
           pacman -Syu --noconfirm base-devel cmake doxygen git
           useradd -m builduser
-          chown -R builduser:builduser
+          chown -R builduser:builduser "$GITHUB_WORKSPACE"
           echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
       - name: Build Arch Linux Package
         run: |
-          su builduser -c "makepkg -s --noconfirm"
+          su - builduser -c "cd '$GITHUB_WORKSPACE && makepkg -s --noconfirm"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
         with:
           name: lipsum-cpp-packages-archlinux
           path: |
-            *.pkg.tar.zst
+            ./*.pkg.tar.zst
           if-no-files-found: ignore
