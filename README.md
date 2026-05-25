@@ -110,7 +110,7 @@ for details.
 
 ## Installation
 
-lipsum-cpp has been mainly tested on Linux and WebAssembly, and there have also been passing builds on Windows and macOS.
+lipsum-cpp has been mainly tested on Linux (Debian 13) and WebAssembly, and there have also been passing builds on Windows and macOS.
 
 ```bash
 # Debian-based
@@ -135,7 +135,10 @@ cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DLPSM_BUILD_CLI=ON <...
 cmake --build build --config Release
 sudo cmake --install build # or "Administrator" terminal on Windows
 
-# Alternatively, do not install and use FetchContent or add_subdirectory in your project instead.
+# From here, use find_package in your CMake project and/or use the CLI tool,
+# lpsmcpp-cli
+
+# Alternatively, do not install and use FetchContent or add_subdirectory in your CMake project instead.
 ```
 
 
@@ -174,10 +177,9 @@ sudo cmake --install build # or "Administrator" terminal on Windows
     target_link_libraries(your_target PRIVATE lipsum-cpp)
     ```
 
-2. To build as a static or shared library (optional):  
-   Set `LPSM_BUILD_STATIC=ON` or `LPSM_BUILD_SHARED=ON` in your CMake options.
-
-3. For C wrapper builds, set `LPSM_BUILD_STATIC` or `LPSM_BUILD_SHARED`, and `LPSM_BUILD_CWRAPPER` all to `ON`.
+2. To build as a static or shared library with C wrapper support (optional):  
+   Set `LPSM_BUILD_STATIC=ON` or `LPSM_BUILD_SHARED=ON` in your CMake options. For C wrapper builds,
+   also set `LPSM_BUILD_CWRAPPER=ON`.
 
 Alternatively, instead of `FetchContent`, use:
 
@@ -240,7 +242,7 @@ Alternatively, build manually although this is not recommended.
 
 ```bash
 mkdir -p bin
-em++ src/jsbind/lipsum_binding_js.cpp -o bin/lipsum.js -s MODULARIZE=1 -s EXPORT_NAME=createLipsumCpp -lembind -Isrc/
+em++ src/jsbind/lipsum_binding_js.cpp -o bin/lipsum.js -s MODULARIZE=1 -s EXPORT_NAME=createLipsumCpp -lembind -Isrc/ -std=c++20
 ```
 
 
