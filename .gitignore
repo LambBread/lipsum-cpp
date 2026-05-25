@@ -2,11 +2,13 @@ build/
 bin/
 docs/
 Testing/
-
+lipsum-cpp-master/
+pkg/
+*.tar.gz
+*.zip
+*.pkg.tar.zst
 *~
 *.swp
 *.bak
 .DS_Store
 Thumbs.db
-
-lipsum-pkg.zip

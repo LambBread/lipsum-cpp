@@ -52,3 +52,30 @@ jobs:
             build/*.rpm
             build/*.msi
           if-no-files-found: ignore
+
+  archlinux:
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Install Arch Linux dependencies
+        run: |
+          pacman -Syu --noconfirm base-devel cmake doxygen git
+          useradd -m builduser
+          chown -R builduser:builduser
+          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+      - name: Build Arch Linux Package
+        run: |
+          su builduser -c "makepkg -s --noconfirm"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: lipsum-cpp-packages-archlinux
+          path: |
+            *.pkg.tar.zst
+          if-no-files-found: ignore

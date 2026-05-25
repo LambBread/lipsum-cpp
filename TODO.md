@@ -92,16 +92,16 @@
 - [x] Unit tests (0.4.6)
 - [x] `lpsm::CountParagraphs()`,`lpsm::CountSentenceFragments()` (0.4.6)
 - [x] Performance benchmarks (0.4.6)
+- [x] Arch Linux package support (0.4.6)
 
 ## Upcoming
 
 - [ ] Smarter `lpsm::CountWords()`?
-- [ ] Arch Linux package support (planned 0.4.6)
 - [ ] CLI: Move help to a traditional man page (planned 0.4.6)
 - [ ] More proper JSON (i.e. no duplicate keys)
-- [ ] REST-ful API?
 - [ ] Switch to another license? (LGPL?) (0.5.0?)
 - [ ] YAML/TOML? (maybe 0.5.x?)
+- [ ] SWIG bindings????
 - [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
 - [ ] Add seed options (planned 0.5.0)
 - [ ] Stabilize API and release 1.0.0

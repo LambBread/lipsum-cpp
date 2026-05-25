@@ -64,10 +64,8 @@ pkg: clean quick_pkg ## Clean the build directory, then make a build with all st
 clean: ## Remove the build directory.
 	rm -rf $(BUILD_DIR)
 
-full_clean: clean ## Remove the build directory, packaging directory, and generated docs directory.
-	rm -rf $(PKG_DIR)
-	rm -rf $(DOCS_DIR)
-	rm -rf Testing
+full_clean: clean ## Remove the build directory, packaging artifacts, generated docs directory, and testing artifacts.
+	rm -rf $(PKG_DIR) $(DOCS_DIR) Testing lipsum-pkg.zip pkg *.pkg.tar.zst *.tar.gz $(SRC_DIR)/lipsum-cpp-master $(SRC_DIR)/*.tar.gz
 
 install: clean build ## Install lipsum-cpp to the default install location.
 	cmake --install build

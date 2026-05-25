@@ -35,7 +35,7 @@
     float perSec = static_cast<float>(newBenchmarkNum) / (avgMilli / 1000.0f); \
                                                                                \
     std::cout << avgMilli << " ms\n";                                          \
-    std::cout << perSec << "/s\n";
+    std::cout << perSec << "/s\n"
 
 constexpr int MIN_WORD       = 4;
 constexpr int MAX_WORD       = 9;
@@ -45,7 +45,7 @@ constexpr int MIN_SENT       = 5;
 constexpr int MAX_SENT       = 8;
 constexpr int MIN_PARA       = 1;
 constexpr int MAX_PARA       = 4;
-constexpr int NUM_BENCHMARKS = 25;
+constexpr int NUM_BENCHMARKS = 70;
 constexpr int BENCHMARK_NUM  = 1000000;
 
 static void LogTestFailure(const std::string& test)
@@ -192,27 +192,27 @@ static void Test_md_text_count_equal(lpsm::Generator& gen)
 
 static void Test_benchmark_words(lpsm::Generator& gen)
 {
-    BENCHMARK(word, 5.0f)
+    BENCHMARK(word, 5.0f);
 }
 
 static void Test_benchmark_sentences(lpsm::Generator& gen)
 {
-    BENCHMARK(sentence, 0.5f)
+    BENCHMARK(sentence, 0.5f);
 }
 
 static void Test_benchmark_paragraphs(lpsm::Generator& gen)
 {
-    BENCHMARK(paragraph, 0.0625f)
+    BENCHMARK(paragraph, 0.0625f);
 }
 
 static void Test_benchmark_md_paragraphs(lpsm::Generator& gen)
 {
-    BENCHMARK(md_paragraph, 0.0625f)
+    BENCHMARK(md_paragraph, 0.0625f);
 }
 
 static void Test_benchmark_md_text(lpsm::Generator& gen)
 {
-    BENCHMARK(md_text, 0.25f)
+    BENCHMARK(md_text, 0.25f);
 }
 
 int main(int argc, char** argv)

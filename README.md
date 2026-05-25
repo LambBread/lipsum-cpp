@@ -16,7 +16,7 @@ UI testing, benchmarking Markdown/HTML/XML/JSON parser libraries, and anywhere p
 - Zero third-party dependencies outside of build dependencies
 - Customizable number of paragraphs, sentences, sentence fragments, and words
 - Multi-source lorem-ipsum generation including built-in lorem-ipsum, cat-ipsum, dog-ipsum, and corporate-ipsum
-- Very fast (112,174 paragraphs per second, 799,335 sentences per second, 19,561,814 words per second,
+- Very fast (148,421 paragraphs per second, 1,070,729 sentences per second, 23,218,788 words per second,
   tested on a medium-low end computer)
 - Markdown, HTML, XML, and JSON generation
 - CLI tool for integration in projects
@@ -120,9 +120,7 @@ sudo apt install ./lipsum-cpp-x.x.x-Linux.deb
 sudo dnf install ./lipsum-cpp-x.x.x-Linux.rpm
 
 # Arch-based
-# Currently not yet supported with native packages.
-# Currently planned for near future.
-# sudo pacman -U ./lipsum-cpp-x.x.x-Linux.pkg.tar.zst
+sudo pacman -U ./lipsum-cpp-x.x.x-x-x86_64.pkg.tar.zst
 
 # Windows
 # Run the .msi file provided.
