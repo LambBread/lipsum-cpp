@@ -32,6 +32,10 @@ jobs:
           -DLPSM_BUILD_DOCS=ON &&
           cmake --build build --config Release
 
+      - name: Run tests
+        run: >
+          ctest --test-dir build
+
       - name: Package with CPack
         run: |
           cd build && cpack

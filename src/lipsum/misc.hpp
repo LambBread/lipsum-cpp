@@ -131,8 +131,9 @@ namespace lipsum
      *
      * @since 0.4.6
      *
-     * Count the number of commas, semicolons, and hyphens in a string, excluding
-     * usage in Markdown. (i.e. hyphen at start of line, or in parentheses)
+     * Count the number of commas, semicolons, and hyphens in a string,
+     * excluding usage in Markdown. (i.e. hyphen at start of line, or in
+     * parentheses)
      *
      * @param str The string inputted.
      *
@@ -159,13 +160,13 @@ namespace lipsum
      *
      * @since 0.4.6
      *
-     * Count the number of tab characters in a non-formatted string, double newlines in Markdown/HTML strings,
-     * and elements in HTML strings.
+     * Count the number of tab characters in a non-formatted string, double
+     * newlines in Markdown/HTML strings, and elements in HTML strings.
      *
      * @param str The string inputted.
-     * @param format The format the string is in. By default 0. (non-formatted) Valid options include 
-     * 0 (non-formatted), 1 (Markdown/HTML), and 2. (HTML)
-     * 
+     * @param format The format the string is in. By default 0. (non-formatted)
+     * Valid options include 0 (non-formatted), 1 (Markdown/HTML), and 2. (HTML)
+     *
      * @return int The number of paragraphs.
      */
     LIPSUM_API int CountParagraphs(const std::string& str, int format = 0);

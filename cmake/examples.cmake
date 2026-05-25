@@ -11,16 +11,27 @@ if(LPSM_BUILD_EXAMPLES)
 endif()
 
 # if building tests, enable test and add subdirectory
-if(LPSM_BUILD_TEST)
+if(LPSM_BUILD_TEST AND NOT EMSCRIPTEN)
     enable_testing()
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/test")
-    add_test(NAME count_words COMMAND lpsmcpp-test count_words)
-    add_test(NAME count_sentences COMMAND lpsmcpp-test count_sentences)
-    add_test(NAME word_count_in_bounds COMMAND lpsmcpp-test word_count_in_bounds)
-    add_test(NAME word_count_equal COMMAND lpsmcpp-test word_count_equal)
-    add_test(NAME sentence_count_in_bounds COMMAND lpsmcpp-test sentence_count_in_bounds)
-    add_test(NAME sentence_count_equal COMMAND lpsmcpp-test sentence_count_equal)
-    add_test(NAME md_sentence_count_in_bounds COMMAND lpsmcpp-test md_sentence_count_in_bounds)
+    set(LPSM_TESTS_LIST
+        count_words
+        count_fragments
+        count_sentences
+        word_count_in_bounds
+        word_count_equal
+        fragment_count_in_bounds
+        sentence_count_in_bounds
+        sentence_count_equal
+        paragraph_count_in_bounds
+        paragraph_count_equal
+        md_sentence_count_in_bounds
+        md_paragraph_count_equal
+        md_text_count_equal
+    )
+    foreach(test IN LISTS LPSM_TESTS_LIST)
+        add_test(NAME ${test} COMMAND lpsmcpp-test ${test})
+    endforeach()
 endif()
 
 # if building cli, message and add subdir

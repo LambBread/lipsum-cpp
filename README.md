@@ -16,6 +16,8 @@ UI testing, benchmarking Markdown/HTML/XML/JSON parser libraries, and anywhere p
 - Zero third-party dependencies outside of build dependencies
 - Customizable number of paragraphs, sentences, sentence fragments, and words
 - Multi-source lorem-ipsum generation including built-in lorem-ipsum, cat-ipsum, dog-ipsum, and corporate-ipsum
+- Very fast (112,174 paragraphs per second, 799,335 sentences per second, 19,561,814 words per second,
+  tested on a medium-low end computer)
 - Markdown, HTML, XML, and JSON generation
 - CLI tool for integration in projects
 - Extensive documentation via Doxygen

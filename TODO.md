@@ -91,11 +91,11 @@
 - [x] Add `CHANGELOG.md` (0.4.6)
 - [x] Unit tests (0.4.6)
 - [x] `lpsm::CountParagraphs()`,`lpsm::CountSentenceFragments()` (0.4.6)
+- [x] Performance benchmarks (0.4.6)
 
 ## Upcoming
 
 - [ ] Smarter `lpsm::CountWords()`?
-- [ ] Performance benchmarks (maybe in unit tests?)
 - [ ] Arch Linux package support (planned 0.4.6)
 - [ ] CLI: Move help to a traditional man page (planned 0.4.6)
 - [ ] More proper JSON (i.e. no duplicate keys)

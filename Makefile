@@ -14,7 +14,7 @@ CMAKE_OPTS ?= -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON \
 			  -DLPSM_BUILD_JSBIND=ON -DLPSM_BUILD_CLI=ON
 
 .PHONY: all clean build configure em_configure em_build format amalgamate \
-	pkg full_clean sample quick_pkg pkg_ version tidy help install cpack
+	pkg full_clean sample quick_pkg pkg_ version tidy help install cpack ctest
 
 all: build ## Build the project normally.
 
@@ -74,6 +74,9 @@ install: clean build ## Install lipsum-cpp to the default install location.
 
 cpack: clean build ## Run CPack and generate packages.
 	cd $(BUILD_DIR) && cpack
+
+ctest: ## Run unit tests.
+	ctest --test-dir $(BUILD_DIR)
 
 help: ## Show this help.
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \

@@ -19,16 +19,16 @@
 #    include "core/internal.hpp"
 #    include "core_funcs.hpp"
 
-static int LipsumMiscInlFind(int count, const std::string& str, const std::string& check)
+static int
+LipsumMiscInlFind(int count, const std::string& str, const std::string& check)
 {
     size_t pos = 0;
-    while((pos = str.find(check, pos)) != std::string::npos)
+    while ((pos = str.find(check, pos)) != std::string::npos)
     {
         ++count;
         pos += check.size();
     }
     return count;
-
 }
 
 namespace lipsum
@@ -98,26 +98,26 @@ namespace lipsum
 
     int CountSentenceFragments(const std::string& str)
     {
-        if(str.empty())
+        if (str.empty())
         {
             return 0;
         }
-        int res = 0;
-        int urlNum = 0;
+        int  res        = 0;
+        int  urlNum     = 0;
         char lastLetter = '\0';
-        for(const char& letter : str)
+        for (const char& letter : str)
         {
-            if(letter == '(')
+            if (letter == '(')
             {
                 ++urlNum;
             }
-            if(letter == ')')
+            if (letter == ')')
             {
                 --urlNum;
             }
 
             // if not in parens
-            if(urlNum <= 0)
+            if (urlNum <= 0)
             {
                 if (letter == ',')
                 {
@@ -131,7 +131,7 @@ namespace lipsum
                 {
                     ++res;
                 }
-                if(letter == '-' && lastLetter != '\n')
+                if (letter == '-' && lastLetter != '\n')
                 {
                     ++res;
                 }
@@ -165,7 +165,7 @@ namespace lipsum
 
     int CountParagraphs(const std::string& str, int format)
     {
-        switch(format)
+        switch (format)
         {
             case 0:
             {
@@ -179,19 +179,20 @@ namespace lipsum
             case 2:
             {
                 int count = LipsumMiscInlFind(0, str, "<p>");
-                count = LipsumMiscInlFind(count, str, "<ol>");
-                count = LipsumMiscInlFind(count, str, "<ul>");
-                count = LipsumMiscInlFind(count, str, "<h1>");
-                count = LipsumMiscInlFind(count, str, "<h2>");
-                count = LipsumMiscInlFind(count, str, "<h3>");
-                count = LipsumMiscInlFind(count, str, "<h4>");
-                count = LipsumMiscInlFind(count, str, "<h5>");
-                count = LipsumMiscInlFind(count, str, "<h6>");
+                count     = LipsumMiscInlFind(count, str, "<ol>");
+                count     = LipsumMiscInlFind(count, str, "<ul>");
+                count     = LipsumMiscInlFind(count, str, "<h1>");
+                count     = LipsumMiscInlFind(count, str, "<h2>");
+                count     = LipsumMiscInlFind(count, str, "<h3>");
+                count     = LipsumMiscInlFind(count, str, "<h4>");
+                count     = LipsumMiscInlFind(count, str, "<h5>");
+                count     = LipsumMiscInlFind(count, str, "<h6>");
                 return count;
             }
             default:
             {
-                internal::LogWarn("lpsm::CountParagraphs(): unknown format ", format);
+                internal::LogWarn("lpsm::CountParagraphs(): unknown format ",
+                                  format);
                 return 0;
             }
         }
