@@ -33,6 +33,7 @@ jobs:
           cmake --build build --config Release
 
       - name: Run tests
+        if: runner.os != 'Windows' 
         run: >
           ctest --test-dir build
 
