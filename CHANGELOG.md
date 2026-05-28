@@ -1105,6 +1105,7 @@ void lpsm_Generator_load_source(lpsm_GeneratorHandle, const char*);
 ### 0.4.6 (2026-05/06 TBD)
 
 - Add more descriptive error handling in CLI tool
+- Add better help command in CLI tool
 - Add CMake `find_package()` support
 - Add unit tests and benchmarking
 - Add Arch Linux package support

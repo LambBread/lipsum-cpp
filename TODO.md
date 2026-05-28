@@ -72,6 +72,7 @@
     - [x] Version option (0.4.5)
     - [x] Multi-source functionality (0.4.5)
     - [x] More descriptive error handling (0.4.6)
+    - [x] Better help command (0.4.6)
 - [x] Use C++20 concepts in `lpsm::internal` (0.4.6)
 - [x] Document minimum dependency versions (0.4.6)
 - [x] Include warning flags in CMake (0.4.6)
@@ -97,8 +98,8 @@
 
 ## Upcoming
 
-- [ ] CLI: Move help to a traditional man page (planned 0.4.6)
 - [ ] More proper JSON (i.e. no duplicate keys)
+- [ ] CLI: Add man page?
 - [ ] Switch to another license? (LGPL?) (0.5.0?)
 - [ ] YAML/TOML? (maybe 0.5.x?)
 - [ ] SWIG bindings????

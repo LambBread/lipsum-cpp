@@ -16,14 +16,6 @@
 
 #define NUM_AND_USELIPSUM_SUBCOMMAND(name)                                     \
     DOUBLE_ARG_SUBCOMMAND(name, int, 1, bool, true)
-//    if (subcommand == #name)
-//    {
-//        int  num       = 1;
-//        bool useLipsum = true;
-//        GET_ARG(num, 2, int);
-//        GET_ARG(useLipsum, 3, bool);
-//        std::cout << gen.name(num, useLipsum);
-//    }
 
 #define SINGLE_ARG_SUBCOMMAND(name, type, defaultVal)                          \
     if (subcommand == #name)                                                   \
@@ -120,103 +112,132 @@ void SettingOption(const std::string& option,
     }
 }
 
-void Help()
+void Help(const std::string& page)
 {
-    //clang-format off
-    std::cout
-            << "Usage: lpsmcpp-cli <subcommand> [<arguments>] [<options>]\n\n";
-    std::cout << "Valid options include:\n";
-    std::cout << "  --help, -h - Show this help\n";
-    std::cout << "  --version, -v - Show the current version of lipsum-cpp.\n";
-    std::cout << "  --word=<min,max>, -w - The min and max words per sentence "
-                 "fragment.\n";
-    std::cout << "  --frag=<min,max>, -f - The min and max sentence fragments "
-                 "per sentence.\n";
-    std::cout << "  --sent=<min,max>, -s - The min and max sentences per "
-                 "paragraph.\n";
-    std::cout << "  --para=<min,max>, -p - The min and max paragraphs per "
-                 "text.\n";
-    std::cout << "  --point=<min,max>, -P - The min and max points per list.\n";
-    std::cout << "  --wordURL=<min,max>, -u - The min and max words in "
-                 "headings, in slugs, and at the end of URLs.\n";
-    std::cout << "  --wordFmt=<min,max>, -W - The min and max words per "
-                 "formatted sentence fragment.\n";
-    std::cout << "  --fragFmt=<min,max>, -F - The min and max sentence "
-                 "fragments per formatted sentence.\n";
-    std::cout << "  --level=<min,max>, -l - The min and max levels of "
-                 "headings.\n";
-    std::cout << "  --jsonLength=<min,max>, -j - The min and max amount of "
-                 "items in JSON objects.\n";
-    std::cout << "  --source=<source>, -S - Load specified source.\n";
-    std::cout << "      <source> may be a filepath to a file or a built-in "
-                 "source.\n";
-    std::cout << "      Built in sources include: default/lorem, cat, "
-                 "dog/doggo, corpo/corporate.\n\n";
-    std::cout << "Valid subcommands include:\n";
-    std::cout << "  help - Show this help.\n\n";
-    std::cout << "  word <num = 1> - Generate words.\n";
-    std::cout << "    num - The number of words.\n\n";
-    std::cout << "  fragment - Generate a sentence fragment.\n\n";
-    std::cout << "  sentence <num = 1> <useLipsum = true> - Generate "
-                 "sentences.\n";
-    std::cout << "    num - The number of sentences.\n";
-    std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the "
-                 "sentences.\n\n";
-    std::cout << "  paragraph <num = 1> <useLipsum = true> - Generate "
-                 "paragraphs.\n";
-    std::cout << "    num - The number of paragraphs.\n";
-    std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the "
-                 "first sentence.\n\n";
-    std::cout << "  text <useLipsum = true> - Generate a text.\n";
-    std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the "
-                 "first sentence.\n\n";
-    std::cout << "  scramble <length = 16> <minChar = 32> <maxChar = 126> - "
-                 "Generate a character scramble.\n";
-    std::cout << "    length - The number of characters.\n";
-    std::cout << "    minChar - The lowest ASCII value possible.\n";
-    std::cout << "    maxChar - The highest ASCII value possible.\n\n";
-    std::cout << "  url - Generate a URL.\n\n";
-    std::cout << "  plain_url - Generate a plain URL.\n\n";
-    std::cout << "  slug <separator = '-'> - Generate a slug.\n";
-    std::cout << "    separator - The separator to use.\n\n";
-    std::cout << "  md_paragraph <num = 1> <useLipsum = true> <useHtml = "
-                 "false> - Generate Markdown paragraphs.\n";
-    std::cout << "    num - The number of paragraphs.\n";
-    std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the "
-                 "first sentence.\n";
-    std::cout << "    useHtml - Whether HTML should be outputted instead of "
-                 "Markdown.\n\n";
-    std::cout << "  md_text <numElements = 15> <useHtml = false> - Generate a "
-                 "Markdown document\n";
-    std::cout << "    numElements - The number of elements.\n";
-    std::cout << "    useHtml - Whether HTML should be outputted instead of "
-                 "Markdown.\n\n";
-    std::cout << "  md_header <level = 1> <useHtml = false> - Generate a "
-                 "Markdown header.\n";
-    std::cout << "    level - The level of the heading.\n";
-    std::cout << "    useHtml - Whether HTML should be outputted instead of "
-                 "Markdown.\n\n";
-    std::cout << "  md_emphasis <isBold = true> <useHtml = false> - Generate "
-                 "an emphasized Markdown sentence.\n";
-    std::cout << "    isBold - Whether the sentence is bold or italic.\n";
-    std::cout << "    useHtml - Whether HTML should be outputted instead of "
-                 "Markdown.\n\n";
-    std::cout << "  md_link <useHtml = false> - Generate a Markdown link.\n";
-    std::cout << "    useHtml - Whether HTML should be outputted instead of "
-                 "Markdown.\n\n";
-    std::cout << "  md_list <ordered = false> <useHtml = false> - Generate a "
-                 "Markdown list.\n";
-    std::cout << "    ordered - Whether the list is ordered.\n";
-    std::cout << "    useHtml - Whether HTML should be outputted instead of "
-                 "Markdown.\n\n";
-    std::cout << "  xml <choices = 30> - Generate an XML document.\n";
-    std::cout << "    choices - The number of 'choices' to make.\n\n";
-    std::cout << "  json <maxDepth = 3> <isObject = true> - Generate a JSON "
-                 "object or array.\n";
-    std::cout << "    maxDepth - The maximum recursion depth.\n";
-    std::cout << "    isObject - Whether the output is an object or an "
-                 "array.\n\n";
-    //clang-format on
+    // clang-format off
+    if (page == "home")
+    {
+        std::cout << "Usage: lpsmcpp-cli <subcommand> [<arguments>] [<options>]\n\n";
+        std::cout << "Options include:\n";
+        std::cout << "  --help, -h - Show this help\n";
+        std::cout << "  --version, -v - Show the current version of lipsum-cpp.\n";
+        std::cout << "  --word=<min,max>, -w - The min and max words per sentence fragment.\n";
+        std::cout << "  --frag=<min,max>, -f - The min and max sentence fragments per sentence.\n";
+        std::cout << "  --sent=<min,max>, -s - The min and max sentences per paragraph.\n";
+        std::cout << "  --para=<min,max>, -p - The min and max paragraphs per text.\n";
+        std::cout << "  --point=<min,max>, -P - The min and max points per list.\n";
+        std::cout << "  --wordURL=<min,max>, -u - The min and max words in headings, in slugs, and at the end of URLs.\n";
+        std::cout << "  --wordFmt=<min,max>, -W - The min and max words per formatted sentence fragment.\n";
+        std::cout << "  --fragFmt=<min,max>, -F - The min and max sentence fragments per formatted sentence.\n";
+        std::cout << "  --level=<min,max>, -l - The min and max levels of headings.\n";
+        std::cout << "  --jsonLength=<min,max>, -j - The min and max amount of items in JSON objects.\n";
+        std::cout << "  --source=<source>, -S - Load specified source.\n";
+        std::cout << "      <source> may be a path to a file or a built-in source.\n";
+        std::cout << "      Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.\n\n";
+        std::cout << "Subcommands include:\n";
+        std::cout << "  help, word, fragment, sentence, paragraph, text,\n";
+        std::cout << "  url, plain_url, slug, md_paragraph, md_text, md_header,\n";
+        std::cout << "  md_emphasis, md_link, md_list, xml, json\n\n";
+        std::cout << "For more information, type lpsmcpp-cli help <subcommand>.\n";
+    }
+    if (page == "help")
+    {
+        std::cout << "  help <subcommand = 'main'> - Show this help.\n\n";
+    }
+    if (page == "word")
+    {
+        std::cout << "  word <num = 1> - Generate words.\n";
+        std::cout << "    num - The number of words.\n\n";
+    }
+    if (page == "fragment")
+    {
+        std::cout << "  fragment - Generate a sentence fragment.\n\n";
+    }
+    if (page == "sentence")
+    {
+        std::cout << "  sentence <num = 1> <useLipsum = true> - Generate sentences.\n";
+        std::cout << "    num - The number of sentences.\n";
+        std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the first sentence.\n\n";
+    }
+    if (page == "paragraph")
+    {
+        std::cout << "  paragraph <num = 1> <useLipsum = true> - Generate paragraphs.\n";
+        std::cout << "    num - The number of paragraphs.\n";
+        std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the first sentence.\n\n";
+    }
+    if (page == "text")
+    {
+        std::cout << "  text <useLipsum = true> - Generate a text.\n";
+        std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the first sentence.\n\n";
+    }
+    if (page == "scramble")
+    {
+        std::cout << "  scramble <length = 16> <minChar = 32> <maxChar = 126> - Generate a character scramble.\n";
+        std::cout << "    length - The number of characters.\n";
+        std::cout << "    minChar - The lowest ASCII value possible.\n";
+        std::cout << "    maxChar - The highest ASCII value possible.\n\n";
+    }
+    if (page == "url")
+    {
+        std::cout << "  url - Generate a URL.\n\n";
+    }
+    if (page == "plain_url")
+    {
+        std::cout << "  plain_url - Generate a plain URL.\n\n";
+    }
+    if (page == "slug")
+    {
+        std::cout << "  slug <separator = '-'> - Generate a slug.\n";
+        std::cout << "    separator - The separator to use.\n\n";
+    }
+    if (page == "md_paragraph")
+    {
+        std::cout << "  md_paragraph <num = 1> <useLipsum = true> <useHtml = false> - Generate Markdown paragraphs.\n";
+        std::cout << "    num - The number of paragraphs.\n";
+        std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the first sentence.\n";
+        std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
+    }
+    if (page == "md_text")
+    {
+        std::cout << "  md_text <numElements = 15> <useHtml = false> - Generate a Markdown document.\n";
+        std::cout << "    numElements - The number of elements.\n";
+        std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
+    }
+    if (page == "md_header")
+    {
+        std::cout << "  md_header <level = 1> <useHtml = false> - Generate a Markdown header.\n";
+        std::cout << "    level - The level of the heading.\n";
+        std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
+    }
+    if (page == "md_emphasis")
+    {
+        std::cout << "  md_emphasis <isBold = true> <useHtml = false> - Generate an emphasized Markdown sentence.\n";
+        std::cout << "    isBold - Whether the sentence is bold or italic.\n";
+        std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
+    }
+    if (page == "md_link")
+    {
+        std::cout << "  md_link <useHtml = false> - Generate a Markdown link.\n";
+        std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
+    }
+    if (page == "md_list")
+    {
+        std::cout << "  md_list <ordered = false> <useHtml = false> - Generate a Markdown list.\n";
+        std::cout << "    ordered - Whether the list is ordered.\n";
+        std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
+    }
+    if (page == "xml")
+    {
+        std::cout << "  xml <choices = 30> - Generate an XML document.\n";
+        std::cout << "    choices - The number of 'choices' to make.\n\n";
+    }
+    if (page == "json")
+    {
+        std::cout << "  json <maxDepth = 3> <isObject = true> - Generate a JSON object or array.\n";
+        std::cout << "    maxDepth - The maximum recursion depth.\n";
+        std::cout << "    isObject - Whether the output is an object or an array.\n\n";
+    }
+    // clang-format on
 }
 
 int main(int argc, char** argv)
@@ -224,7 +245,7 @@ int main(int argc, char** argv)
 
     if (argc < 2)
     {
-        Help();
+        Help("home");
         return 0;
     }
 
@@ -250,7 +271,7 @@ int main(int argc, char** argv)
     {
         if (OPTION_COND(help, "-h"))
         {
-            Help();
+            Help("home");
             return 0;
         }
 
@@ -298,7 +319,7 @@ int main(int argc, char** argv)
     // no subcommand
     if (commandOpts.empty())
     {
-        Help();
+        Help("home");
         return 0;
     }
 
@@ -357,7 +378,9 @@ int main(int argc, char** argv)
     }
     else if (subcommand == "help")
     {
-        Help();
+        std::string page = "home";
+        GET_ARG(page, 2, std::string);
+        Help(page);
         return 0;
     }
     else
