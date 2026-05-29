@@ -2,6 +2,8 @@
 
 For a more brief overview, see [`TODO.md`](./TODO.md).
 
+*Dates are measured in local time, UTC-7 / UTC-8.*
+
 ## 0.0.x
 
 ### 0.0.1 (2025-09-02)
@@ -1102,13 +1104,14 @@ char* lpsm_Generator_plain_url(lpsm_GeneratorHandle);
 void lpsm_Generator_load_source(lpsm_GeneratorHandle, const char*);
 ```
 
-### 0.4.6 (2026-05/06 TBD)
+### 0.4.6 (2026-05-28)
 
 - Add more descriptive error handling in CLI tool
 - Add better help command in CLI tool
 - Add CMake `find_package()` support
 - Add unit tests and benchmarking
 - Add Arch Linux package support
+- Ensure no possibility of duplicate keys in JSON
 - Make `lpsm::CountWords()` "smarter"
 - Switch some functions in `lpsm::internal` to C++20 concepts
 - Add XML attributes in generated XML

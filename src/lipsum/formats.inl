@@ -96,7 +96,7 @@ namespace lipsum
 
     std::string GenerateJSONNumber()
     {
-        constexpr int JSON_NUMBER_MIN = -1000;
+        constexpr int JSON_NUMBER_MIN = 0;
         constexpr int JSON_NUMBER_MAX = 1000;
         return internal::ToString(
                 internal::RandomNumber(JSON_NUMBER_MIN, JSON_NUMBER_MAX));
@@ -134,7 +134,8 @@ namespace lipsum
             {
                 ret += ",";
             }
-            std::string key = GenerateJSONString(source);
+            std::string key = std::string("\"") + GenerateWord(source) +
+                              internal::ToString(i) + "\"";
             ret += key + std::string(":") +
                    GenerateJSONValue(depth + 1, maxDepth, jsonLength, source);
         }

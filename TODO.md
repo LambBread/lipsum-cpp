@@ -95,15 +95,14 @@
 - [x] Performance benchmarks (0.4.6)
 - [x] Arch Linux package support (0.4.6)
 - [x] Smarter `lpsm::CountWords()` (0.4.6)
+- [x] Avoid duplicate keys in JSON (0.4.6)
 
 ## Upcoming
 
-- [ ] More proper JSON (i.e. no duplicate keys)
-- [ ] CLI: Add man page?
+- [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
 - [ ] Switch to another license? (LGPL?) (0.5.0?)
+- [ ] Add seed options (planned 0.5.0)
 - [ ] YAML/TOML? (maybe 0.5.x?)
 - [ ] SWIG bindings????
-- [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
-- [ ] Add seed options (planned 0.5.0)
 - [ ] Stabilize API and release 1.0.0
 
