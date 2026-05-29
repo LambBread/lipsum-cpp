@@ -100,7 +100,6 @@
 ## Upcoming
 
 - [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
-- [ ] Switch to another license? (LGPL?) (0.5.0?)
 - [ ] Add seed options (planned 0.5.0)
 - [ ] YAML/TOML? (maybe 0.5.x?)
 - [ ] SWIG bindings????
