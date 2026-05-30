@@ -82,44 +82,188 @@ namespace lipsum
         change_setting(setting, ArgVec2(minValue, maxValue));
     }
 
+    std::string Generator::single_sentence()
+    {
+        static const std::vector<int> weights = {88, 9, 3};
+        std::string                   result;
+        int                           frags = m_Settings.frag.roll();
+        for (int i = 0; i < frags; ++i)
+        {
+            result += fragment();
+            int check = internal::WeightedRandomIdx(weights);
+            // don't do if only one fragment
+            if (i != frags - 1)
+            {
+                switch (check)
+                {
+                    case 0:
+                    {
+                        result += ", ";
+                        break;
+                    }
+                    case 1:
+                    {
+                        result += "; ";
+                        break;
+                    }
+                    case 2:
+                    {
+                        result += " - ";
+                        break;
+                    }
+                }
+            }
+        }
+        result += ".";
+        result.at(0) = static_cast<char>(
+                std::toupper(static_cast<unsigned char>(result.at(0))));
+        return result;
+    }
+
+    std::string Generator::single_paragraph(bool useLipsum)
+    {
+        std::string result = "\t";
+        int         sents  = m_Settings.sent.roll();
+        for (int i = 0; i < sents; ++i)
+        {
+            if (i == 0 && useLipsum)
+            {
+                result += GenerateDefaultLipsumSentence() += " ";
+            }
+            else
+            {
+                result += single_sentence() += " ";
+            }
+        }
+
+        if (!result.empty())
+        {
+            // remove trailing space
+            result.pop_back();
+        }
+        result += "\n";
+        return result;
+    }
+
     std::string Generator::word(int num)
     {
-        return GenerateWords(num, m_Source);
+
+        std::string ret;
+
+        if (num < 0)
+        {
+            internal::LogWarn("lpsm::Generator::word(): expected num >= 0, "
+                              "got ",
+                              num);
+        }
+
+        for (int i = 0; i < num; ++i)
+        {
+            ret += m_Source.random_word() += " ";
+        }
+
+        if (!ret.empty())
+        {
+            ret.pop_back();
+        }
+        return ret;
+
+        // return GenerateWords(num, m_Source);
     }
 
     std::string Generator::fragment()
     {
-        return GenerateSentenceFragment(m_Settings.word, m_Source);
+        std::string result;
+        int         numWords = m_Settings.word.roll();
+        for (int i = 0; i < numWords; ++i)
+        {
+            result += m_Source.random_word() += " ";
+        }
+
+        if (!result.empty())
+        {
+            result.pop_back(); // remove trailing space
+        }
+        return result;
+        // return GenerateSentenceFragment(m_Settings.word, m_Source);
     }
 
     std::string Generator::sentence(int num, bool useLipsum)
     {
-        return GenerateSentences(num,
-                                 m_Settings.word,
-                                 m_Settings.frag,
-                                 useLipsum,
-                                 m_Source);
+        std::string result;
+
+        if (num < 0)
+        {
+            internal::LogWarn("lpsm::Generator::sentence(): expected num "
+                              ">= 0, got ",
+                              num);
+        }
+
+        for (int i = 0; i < num; ++i)
+        {
+            if (i == 0 && useLipsum)
+            {
+                result += GenerateDefaultLipsumSentence() + " ";
+            }
+            else
+            {
+                result += single_sentence() += " ";
+            }
+        }
+        return result;
+        // return GenerateSentences(num,
+        //                          m_Settings.word,
+        //                          m_Settings.frag,
+        //                          useLipsum,
+        //                          m_Source);
     }
 
     std::string Generator::paragraph(int num, bool useLipsum)
     {
-        return GenerateParagraphs(num,
-                                  m_Settings.word,
-                                  m_Settings.frag,
-                                  m_Settings.sent,
-                                  useLipsum,
-                                  m_Source);
+        std::string result;
+
+        if (num < 0)
+        {
+            internal::LogWarn("lpsm::Generator::paragraph(): expected num "
+                              ">= 0, got ",
+                              num);
+        }
+
+        for (int i = 0; i < num; ++i)
+        {
+            if (i == 0 && useLipsum)
+            {
+                result += single_paragraph(true);
+            }
+            else
+            {
+                result += single_paragraph(false);
+            }
+        }
+        return result;
+
+        // return GenerateParagraphs(num,
+        //                           m_Settings.word,
+        //                           m_Settings.frag,
+        //                           m_Settings.sent,
+        //                           useLipsum,
+        //                           m_Source);
     }
 
     std::string Generator::text(bool useLipsum)
     {
-        return GenerateText(m_Settings.word,
-                            m_Settings.frag,
-                            m_Settings.sent,
-                            m_Settings.para,
-                            useLipsum,
-                            m_Source);
+        int num = m_Settings.para.roll();
+        return paragraph(num, useLipsum);
+        // return GenerateText(m_Settings.word,
+        //                     m_Settings.frag,
+        //                     m_Settings.sent,
+        //                     m_Settings.para,
+        //                     useLipsum,
+        //                     m_Source);
     }
+
+    // TODO: scrambles, markdown, etc.
+    // remove free functions
 
     std::string
     Generator::scramble(int length, char minChar, char maxChar) // NOLINT

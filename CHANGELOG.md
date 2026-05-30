@@ -1186,3 +1186,15 @@ std::string lpsm::Generator::html_text(int);
 char* lpsm_Generator_html_paragraph(lpsm_GeneratorHandle, int, bool);
 char* lpsm_Generator_html_text(lpsm_GeneratorHandle, int);
 ```
+
+## 0.5.x
+
+### 0.5.0 (2026-06 TBD)
+
+- Move some free function logic into `lpsm::Generator`
+- New functions:
+
+```
+std::string lpsm::Generator::single_sentence(); // private
+std::string lpsm::Generator::single_paragraph(); // private
+```

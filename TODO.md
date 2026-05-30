@@ -96,10 +96,10 @@
 - [x] Arch Linux package support (0.4.6)
 - [x] Smarter `lpsm::CountWords()` (0.4.6)
 - [x] Avoid duplicate keys in JSON (0.4.6)
+- [x] Move most of the free functions' logic into `lpsm::Generator` (0.5.0 WIP)
 
 ## Upcoming
 
-- [ ] Move some of the free functions' logic into `lpsm::Generator` (planned 0.5.0)
 - [ ] Add seed options (planned 0.5.0)
 - [ ] YAML/TOML? (maybe 0.5.x?)
 - [ ] SWIG bindings????

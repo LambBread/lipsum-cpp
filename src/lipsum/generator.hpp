@@ -364,6 +364,30 @@ namespace lipsum
         std::string json(int maxDepth = 3, bool isObject = true);
 
     private:
+        /**
+         * @brief Generate a single sentence.
+         *
+         * @since 0.5.0
+         *
+         * Generate a single sentence. This function is private.
+         *
+         * @return std::string The sentence.
+         */
+        std::string single_sentence();
+
+        /**
+         * @brief Generate a single paragraph.
+         *
+         * @since 0.5.0
+         *
+         * Generate a single paragraph. This function is private.
+         *
+         * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+         *
+         * @return std::string The paragraph.
+         */
+        std::string single_paragraph(bool useLipsum);
+
         GeneratorSettings m_Settings; ///< Settings for generation
 
         /**
