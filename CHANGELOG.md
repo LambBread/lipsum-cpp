@@ -89,7 +89,13 @@ const char* lpsm_GenerateParagraph(int, int, int, int, bool);
 ```
 GenerateDefaultLipsumSentence.cpp
 GenerateSentences.cpp
-GenerateParagraphList.cpp -> GenerateParagraphs.cpp
+```
+
+- Changed examples:
+
+```
+GenerateParagraphs.cpp
+// from GenerateParagraphList.cpp
 ```
 
 ### 0.0.6 (2025-09-07)
@@ -1191,10 +1197,140 @@ char* lpsm_Generator_html_text(lpsm_GeneratorHandle, int);
 
 ### 0.5.0 (2026-06 TBD)
 
-- Move some free function logic into `lpsm::Generator`
+- Move most free function logic into `lpsm::Generator`
 - New functions:
 
+```cpp
+std::string lpsm::Generator::single_sentence(const lpsm::ArgVec2&, const lpsm::ArgVec2&); // private
+std::string lpsm::Generator::single_paragraph(bool); // private
+std::string lpsm::Generator::single_md_paragraph(bool, bool); // private
+std::string lpsm::Generator::json_string(); // private
+std::string lpsm::Generator::json_number(); // private
+std::string lpsm::Generator::json_value(int, int);
+
+char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int, int);
 ```
-std::string lpsm::Generator::single_sentence(); // private
-std::string lpsm::Generator::single_paragraph(); // private
+
+- Changed functions:
+
+```cpp
+std::string lpsm::Generator::json(int, int, bool);
+// from std::string lpsm::Generator::json(int, bool)
+
+char* lpsm_Generator_json(lpsm_GeneratorHandle, int, int, bool);
+// from std::string lpsm_Generator_json(lpsm_GeneratorHandle, int, bool)
+```
+
+- Removed features:
+```cpp
+std::string lpsm::GenerateWord(const lpsm::Source&);
+std::string lpsm::GenerateSentenceFragment(const lpsm::ArgVec2&, const lpsm::Source&);
+std::string lpsm::GenerateSentence(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::Source&);
+std::string lpsm::GenerateParagraph(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+std::string lpsm::GenerateText(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                               bool, const lpsm::Source&);
+std::string lpsm::GenerateWords(int, const lpsm::Source&);
+std::string lpsm::GenerateSentences(int, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+std::string lpsm::GenerateParagraphs(int, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+std::string lpsm::GeneratePlainURL(const lpsm::Source&);
+std::string lpsm::GenerateURL(const lpsm::ArgVec2&, const lpsm::Source&);
+std::string lpsm::GenerateSlug(const lpsm::ArgVec2&, char, const lpsm::Source&);
+std::string lpsm::GenerateScramble(int, char, char);
+std::string lpsm::GenerateMarkdownHeader(int, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+std::string lpsm::GenerateMarkdownEmphasis(bool, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+std::string lpsm::GenerateMarkdownLink(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+std::string lpsm::GenerateMarkdownList(bool, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, const lpsm::Source&);
+std::string lpsm::GenerateMarkdownParagraph(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                                            const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, bool, const lpsm::Source&);
+std::string lpsm::GenerateMarkdownParagraphs(int, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                                             const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, bool, 
+                                             bool, const lpsm::Source&);
+std::string lpsm::GenerateMarkdownText(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, 
+                                       const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::ArgVec2&,
+                                       int, bool, const lpsm::Source&);
+std::string lpsm::GenerateXMLDocument(int, const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::Source&);
+std::string lpsm::GenerateJSONString(const lpsm::Source&);
+std::string lpsm::GenerateJSONNumber();
+std::string lpsm::GenerateJSONObject(int, int, const lpsm::ArgVec2&, const lpsm::Source&);
+std::string lpsm::GenerateJSONArray(int, int, const lpsm::ArgVec2&, const lpsm::Source&);
+std::string lpsm::GenerateJSONValue(int, int, const lpsm::ArgVec2&, const lpsm::Source&);
+std::string lpsm::GenerateSentenceFragmentX(int, int, const lpsm::Source&);
+std::string lpsm::GenerateSentenceX(int, int, int, int, const lpsm::Source&);
+std::string lpsm::GenerateParagraphX(int, int, int, int, int, int, bool, const lpsm::Source&);
+std::string lpsm::GenerateTextX(int, int, int, int, int, int, int, int, bool, const lpsm::Source&);
+std::string lpsm::GenerateSentencesX(int, int, int, int, int, bool, const lpsm::Source&);
+std::string lpsm::GenerateParagraphsX(int, int, int, int, int, int, int, bool, const lpsm::Source&);
+std::string lpsm::GenerateURLX(int, int, const lpsm::Source&);
+std::string lpsm::GenerateSlugX(int, int, char, const lpsm::Source&);
+std::string lpsm::GenerateMarkdownHeaderX(int, int, int, bool, const lpsm::Source&);
+std::string lpsm::GenerateMarkdownEmphasisX(bool, int, int, int, int, bool, const lpsm::Source&);
+std::string lpsm::GenerateMarkdownLinkX(int, int, int, int, int, int, bool, const lpsm::Source&);
+std::string lpsm::GenerateMarkdownListX(bool, int, int, int, int, int, int, bool, const lpsm::Source&);
+std::string lpsm::GenerateXMLDocumentX(int, int, int, int, int, const lpsm::Source&);
+std::string lpsm::GenerateJSONObjectX(int, int, int, int, const lpsm::Source&);
+std::string lpsm::GenerateJSONArrayX(int, int, int, int, const lpsm::Source&);
+std::string lpsm::GenerateJSONValueX(int, int, int, int, const lpsm::Source&);
+
+char* lpsm_GenerateWord(lpsm_SourceHandle);
+char* lpsm_GenerateSentenceFragment(int, int, lpsm_SourceHandle);
+char* lpsm_GenerateSentence(int, int, int, int, lpsm_SourceHandle);
+char* lpsm_GenerateParagraph(int, int, int, int, int, int, bool, lpsm_SourceHandle);
+char* lpsm_GenerateText(int, int, int, int, int, int, int, int, bool, lpsm_SourceHandle);
+char* lpsm_GenerateWords(int, lpsm_SourceHandle);
+char* lpsm_GenerateSentences(int, int, int, int, int, bool, lpsm_SourceHandle);
+char* lpsm_GenerateParagraphs(int, int, int, int, int, int, int, bool, lpsm_SourceHandle);
+char* lpsm_GeneratePlainURL(lpsm_SourceHandle);
+char* lpsm_GenerateURL(int, int, lpsm_SourceHandle);
+char* lpsm_GenerateSlug(int, int, char, lpsm_SourceHandle);
+char* lpsm_GenerateMarkdownHeader(int, int, int, bool, lpsm_SourceHandle);
+char* lpsm_GenerateMarkdownEmphasis(bool, int, int, int, int, bool, lpsm_SourceHandle);
+char* lpsm_GenerateMarkdownLink(int, int, int, int, int, int, bool, lpsm_SourceHandle);
+char* lpsm_GenerateMarkdownList(bool, int, int, int, int, int, int, bool, lpsm_SourceHandle);
+char* lpsm_GenerateXMLDocument(int, int, int, int, int, lpsm_SourceHandle);
+char* lpsm_GenerateJSONString(lpsm_SourceHandle);
+char* lpsm_GenerateJSONNumber(void);
+char* lpsm_GenerateJSONObject(int, int, int, int, lpsm_SourceHandle);
+char* lpsm_GenerateJSONArray(int, int, int, int, lpsm_SourceHandle);
+char* lpsm_GenerateJSONValue(int, int, int, int, lpsm_SourceHandle);
+char* lpsm_GenerateSentenceFragmentS(lpsm_ArgVec2Handle, lpsm_SourceHandle, bool);
+char* lpsm_GenerateSentenceS(lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_SourceHandle, bool);
+char* lpsm_GenerateParagraphS(lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, bool, lpsm_SourceHandle, bool);
+char* lpsm_GenerateTextS(lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, bool, lpsm_SourceHandle, bool);
+char* lpsm_GenerateParagraphsS(int, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, bool, lpsm_SourceHandle, bool);
+char* lpsm_GenerateSentencesS(int, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, bool, lpsm_SourceHandle, bool);
+char* lpsm_GenerateMarkdownHeaderS(int, lpsm_ArgVec2Handle, bool, lpsm_SourceHandle, bool);
+char* lpsm_GenerateMarkdownEmphasisS(bool, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, bool, lpsm_SourceHandle, bool);
+char* lpsm_GenerateMarkdownLinkS(lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, bool, lpsm_SourceHandle, bool);
+char* lpsm_GenerateMarkdownListS(bool, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, bool, lpsm_SourceHandle, bool);
+char* lpsm_GenerateMarkdownParagraphS(lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle,
+                                      lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, bool, bool, lpsm_SourceHandle, bool);
+char* lpsm_GenerateMarkdownParagraphsS(int, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle,
+                                       lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, bool, bool, lpsm_SourceHandle, bool);
+char* lpsm_GenerateMarkdownTextS(lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, 
+                                 lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle,
+                                 int, bool, lpsm_SourceHandle, bool);
+char* lpsm_GenerateXMLDocumentS(int, lpsm_ArgVec2Handle, lpsm_ArgVec2Handle, lpsm_SourceHandle, bool);
+char* lpsm_GenerateJSONObjectS(int, int, lpsm_ArgVec2Handle, lpsm_SourceHandle, bool);
+char* lpsm_GenerateJSONArrayS(int, int, lpsm_ArgVec2Handle, lpsm_SourceHandle, bool);
+char* lpsm_GenerateJSONValueS(int, int, lpsm_ArgVec2Handle, lpsm_SourceHandle, bool);
+int lpsm_ArgVec2_roll(lpsm_ArgVec2Handle);
+int lpsm_ArgVec2_min(lpsm_ArgVec2Handle);
+int lpsm_ArgVec2_max(lpsm_ArgVec2Handle);
+typedef void* lpsm_SourceHandle;
+lpsm_SourceHandle lpsm_Source(const char*);
+void lpsm_SourceDestroy(lpsm_SourceHandle);
+```
+
+- Removed examples:
+
+```
+GenerateWord.cpp
+GenerateWords.cpp
+GenerateSentenceFragment.cpp
+GenerateSentence.cpp
+GenerateSentences.cpp
+GenerateParagraph.cpp
+GenerateParagraphs.cpp
+GenerateText.cpp
+Formats.cpp
 ```

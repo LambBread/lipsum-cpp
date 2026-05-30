@@ -25,11 +25,11 @@ namespace lipsum
 {
 
     /**
-     * @brief OOP layer over lipsum-cpp
+     * @brief Main class of lipsum-cpp
      *
      * @since 0.2.0
      *
-     * This provides a more user-friendly object-oriented layer over lipsum-cpp.
+     * This is the main class for generation using lipsum-cpp.
      */
     class LIPSUM_API Generator
     {
@@ -252,7 +252,7 @@ namespace lipsum
          * @param useHtml Whether HTML should be outputted instead of Markdown.
          * By default false.
          *
-         * @return std::string The random Markdown paragraph.
+         * @return std::string The random Markdown paragraphs.
          */
         std::string
         md_paragraph(int num = 1, bool useLipsum = true, bool useHtml = false);
@@ -355,13 +355,29 @@ namespace lipsum
          *
          * Generate an object or array in JSON format.
          *
+         * @param depth The current depth of recursion. By default 0.
          * @param maxDepth The maximum level of recursion. By default 3.
          * @param isObject Whether to output an object (true) or an array
          * (false). By default true.
          *
          * @return std::string The random JSON object or array.
          */
-        std::string json(int maxDepth = 3, bool isObject = true);
+        std::string json(int depth = 0, int maxDepth = 3, bool isObject = true);
+
+        /**
+         * @brief Generate a JSON value.
+         *
+         * @since 0.5.0
+         *
+         * Generate an object, array, number, string, boolean, or null in JSON
+         * format.
+         *
+         * @param depth The current depth of recursion. By default 0.
+         * @param maxDepth The maximum level of recursion. By default 3.
+         *
+         * @return std::string The random JSON value.
+         */
+        std::string json_value(int depth = 0, int maxDepth = 3);
 
     private:
         /**
@@ -371,9 +387,15 @@ namespace lipsum
          *
          * Generate a single sentence. This function is private.
          *
+         * @param wordArg The minimum and maximum possible number of words in a
+         * sentence fragment.
+         * @param frag The minimum and maximum possible number of sentence
+         * fragments in the sentence.
+         *
          * @return std::string The sentence.
          */
-        std::string single_sentence();
+        std::string single_sentence(const ArgVec2& wordArg,
+                                    const ArgVec2& frag);
 
         /**
          * @brief Generate a single paragraph.
@@ -387,6 +409,45 @@ namespace lipsum
          * @return std::string The paragraph.
          */
         std::string single_paragraph(bool useLipsum);
+
+        /**
+         * @brief Generate a single Markdown paragraph.
+         *
+         * @since 0.5.0
+         *
+         * Generate a single paragraph in Markdown or HTML format. This function
+         * is private.
+         *
+         * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
+         * @param useHtml Whether HTML should be outputted instead of Markdown.
+         *
+         * @return std::string The random Markdown paragraph.
+         */
+        std::string single_md_paragraph(bool useLipsum, bool useHtml);
+
+        /**
+         * @brief Generate a random JSON string.
+         *
+         * @since 0.5.0
+         *
+         * Generate a random word, surrounded by quotes. This function is
+         * private.
+         *
+         * @return std::string The random JSON string.
+         */
+        std::string json_string();
+
+        /**
+         * @brief Generate a random JSON number.
+         *
+         * @since 0.5.0
+         *
+         * Generate a random number, surrounded by quotes. This function is
+         * private.
+         *
+         * @return std::string The random JSON number.
+         */
+        std::string json_number();
 
         GeneratorSettings m_Settings; ///< Settings for generation
 

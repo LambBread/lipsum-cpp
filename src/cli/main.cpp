@@ -137,7 +137,7 @@ void Help(const std::string& page)
         std::cout << "Subcommands include:\n";
         std::cout << "  help, word, fragment, sentence, paragraph, text,\n";
         std::cout << "  url, plain_url, slug, md_paragraph, md_text, md_header,\n";
-        std::cout << "  md_emphasis, md_link, md_list, xml, json\n\n";
+        std::cout << "  md_emphasis, md_link, md_list, xml, json, json_value\n\n";
         std::cout << "For more information, type lpsmcpp-cli help <subcommand>.\n";
     }
     if (page == "help")
@@ -233,9 +233,16 @@ void Help(const std::string& page)
     }
     if (page == "json")
     {
-        std::cout << "  json <maxDepth = 3> <isObject = true> - Generate a JSON object or array.\n";
+        std::cout << "  json <depth = 0> <maxDepth = 3> <isObject = true> - Generate a JSON object or array.\n";
+        std::cout << "    depth - The current level of recursion.\n";
         std::cout << "    maxDepth - The maximum recursion depth.\n";
         std::cout << "    isObject - Whether the output is an object or an array.\n\n";
+    }
+    if (page == "json_value")
+    {
+        std::cout << "  json_value <depth = 0> <maxDepth = 3> - Generate a JSON value.\n";
+        std::cout << "    depth - The current level of recursion.\n";
+        std::cout << "    maxDepth - The maximum recursion depth.\n\n";
     }
     // clang-format on
 }
@@ -335,7 +342,7 @@ int main(int argc, char** argv)
     else NO_ARG_SUBCOMMAND(plain_url) 
     else SINGLE_ARG_SUBCOMMAND(slug, int, '-') 
     else SINGLE_ARG_SUBCOMMAND(xml, int, 30)
-    else DOUBLE_ARG_SUBCOMMAND(json, int, 3, bool, true)
+    else DOUBLE_ARG_SUBCOMMAND(json_value, int, 0, int, 3)
     else DOUBLE_ARG_SUBCOMMAND(md_text, int, 15, bool, false)
     else DOUBLE_ARG_SUBCOMMAND(md_header, int, 1, bool, false)
     else DOUBLE_ARG_SUBCOMMAND(md_emphasis, bool, true, bool, false)
@@ -351,6 +358,16 @@ int main(int argc, char** argv)
         GET_ARG(useLipsum, 3, bool);
         GET_ARG(useHtml, 4, bool);
         std::cout << gen.md_paragraph(num, useLipsum, useHtml);
+    }
+    else if (subcommand == "json")
+    {
+        int  depth    = 0;
+        int  maxDepth = 3;
+        bool isObject = true;
+        GET_ARG(depth, 2, int);
+        GET_ARG(maxDepth, 3, int);
+        GET_ARG(isObject, 4, bool);
+        std::cout << gen.json(depth, maxDepth, isObject);
     }
     else if (subcommand == "scramble")
     {

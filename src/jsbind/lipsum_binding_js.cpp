@@ -28,20 +28,11 @@ using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(lipsumcpp)
 {
-    class_<lpsm::ArgVec2>("lpsm_ArgVec2")
-            .constructor<int, int>()
-            .function("roll", &lpsm::ArgVec2::roll)
-            .property("min", &lpsm::ArgVec2::min)
-            .property("max", &lpsm::ArgVec2::max);
     class_<lpsm::Generator>("lpsm_Generator")
             .constructor<>()
             .constructor<std::string>()
             .function("load_source", &lpsm::Generator::load_source)
             .function("change_setting",
-                      select_overload<void(const std::string&,
-                                           const lpsm::ArgVec2&)>(
-                              &lpsm::Generator::change_setting))
-            .function("change_setting_x",
                       select_overload<void(const std::string&, int, int)>(
                               &lpsm::Generator::change_setting))
             .function("word", &lpsm::Generator::word)
@@ -60,35 +51,8 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("md_link", &lpsm::Generator::md_link)
             .function("md_list", &lpsm::Generator::md_list)
             .function("xml", &lpsm::Generator::xml)
-            .function("json", &lpsm::Generator::json);
-    class_<lpsm::Source>("lpsm_Source")
-            .constructor<>()
-            .constructor<std::string>()
-            .function("random_word", &lpsm::Source::random_word)
-            .function("load", &lpsm::Source::load);
-    function("lpsm_GenerateWord", &lpsm::GenerateWord);
-    function("lpsm_GenerateSentence", &lpsm::GenerateSentence);
-    function("lpsm_GenerateSentenceFragment", &lpsm::GenerateSentenceFragment);
-    function("lpsm_GenerateParagraph", &lpsm::GenerateParagraph);
-    function("lpsm_GenerateWords", &lpsm::GenerateWords);
-    function("lpsm_GenerateSentences", &lpsm::GenerateSentences);
-    function("lpsm_GenerateParagraphs", &lpsm::GenerateParagraphs);
-    function("lpsm_GenerateDefaultLipsumSentence",
-             &lpsm::GenerateDefaultLipsumSentence);
-    function("lpsm_GenerateMarkdownHeader", &lpsm::GenerateMarkdownHeader);
-    function("lpsm_GenerateMarkdownEmphasis", &lpsm::GenerateMarkdownEmphasis);
-    function("lpsm_GenerateMarkdownLink", &lpsm::GenerateMarkdownLink);
-    function("lpsm_GenerateMarkdownList", &lpsm::GenerateMarkdownList);
-    function("lpsm_GenerateMarkdownParagraph",
-             &lpsm::GenerateMarkdownParagraph);
-    function("lpsm_GenerateMarkdownText", &lpsm::GenerateMarkdownText);
-    function("lpsm_GenerateSentenceFragmentX",
-             &lpsm::GenerateSentenceFragmentX);
-    function("lpsm_GenerateSentenceX", &lpsm::GenerateSentenceX);
-    function("lpsm_GenerateParagraphX", &lpsm::GenerateParagraphX);
-    function("lpsm_GenerateParagraphsX", &lpsm::GenerateParagraphsX);
-    function("lpsm_GenerateSentencesX", &lpsm::GenerateSentencesX);
-    function("lpsm_CountSentences", &lpsm::CountSentences);
+            .function("json", &lpsm::Generator::json)
+            .function("json_value", &lpsm::Generator::json_value);
     constant("LIPSUM_CPP_VERSION", std::string(LIPSUM_CPP_VERSION));
     constant("LIPSUM_CPP_VERSION_MAJOR", LIPSUM_CPP_VERSION_MAJOR);
     constant("LIPSUM_CPP_VERSION_MINOR", LIPSUM_CPP_VERSION_MINOR);
@@ -99,32 +63,10 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     constant("LIPSUM_CPP_VERSION_TIME", std::string(LIPSUM_CPP_VERSION_TIME));
     constant("LIPSUM_CPP_VERSION_DATE", std::string(LIPSUM_CPP_VERSION_DATE));
     constant("LIPSUM_CPP_VERSION_ISDEV", LIPSUM_CPP_VERSION_ISDEV);
-    function("lpsm_GenerateText", &lpsm::GenerateText);
-    function("lpsm_GenerateTextX", &lpsm::GenerateTextX);
-    function("lpsm_GenerateMarkdownParagraphs",
-             &lpsm::GenerateMarkdownParagraphs);
-    function("lpsm_GenerateMarkdownHeaderX", &lpsm::GenerateMarkdownHeaderX);
-    function("lpsm_GenerateMarkdownEmphasisX",
-             &lpsm::GenerateMarkdownEmphasisX);
-    function("lpsm_GenerateMarkdownLinkX", &lpsm::GenerateMarkdownLinkX);
-    function("lpsm_GenerateMarkdownListX", &lpsm::GenerateMarkdownListX);
-    function("lpsm_GenerateSlug", &lpsm::GenerateSlug);
-    function("lpsm_GenerateSlugX", &lpsm::GenerateSlugX);
-    function("lpsm_GenerateURL", &lpsm::GenerateURL);
-    function("lpsm_GenerateURLX", &lpsm::GenerateURLX);
+    function("lpsm_GenerateDefaultLipsumSentence",
+             &lpsm::GenerateDefaultLipsumSentence);
     function("lpsm_CountWords", &lpsm::CountWords);
-    function("lpsm_GeneratePlainURL", &lpsm::GeneratePlainURL);
-    function("lpsm_GenerateScramble", &lpsm::GenerateScramble);
-    function("lpsm_GenerateXMLDocument", &lpsm::GenerateXMLDocument);
-    function("lpsm_GenerateXMLDocumentX", &lpsm::GenerateXMLDocumentX);
-    function("lpsm_GenerateJSONString", &lpsm::GenerateJSONString);
-    function("lpsm_GenerateJSONNumber", &lpsm::GenerateJSONNumber);
-    function("lpsm_GenerateJSONObject", &lpsm::GenerateJSONObject);
-    function("lpsm_GenerateJSONObjectX", &lpsm::GenerateJSONObjectX);
-    function("lpsm_GenerateJSONArray", &lpsm::GenerateJSONArray);
-    function("lpsm_GenerateJSONArrayX", &lpsm::GenerateJSONArrayX);
-    function("lpsm_GenerateJSONValue", &lpsm::GenerateJSONValue);
-    function("lpsm_GenerateJSONValueX", &lpsm::GenerateJSONValueX);
     function("lpsm_CountSentenceFragments", &lpsm::CountSentenceFragments);
+    function("lpsm_CountSentences", &lpsm::CountSentences);
     function("lpsm_CountParagraphs", &lpsm::CountParagraphs);
 }

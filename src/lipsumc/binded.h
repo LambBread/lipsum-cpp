@@ -20,24 +20,6 @@
 // NOLINTBEGIN(modernize-use-using)
 
 /**
- * @brief A handle to a lipsum::ArgVec2
- *
- * @since 0.3.3
- *
- * This is a typedef of a pointer to a lipsum::ArgVec2.
- */
-typedef void* lpsm_ArgVec2Handle;
-
-/**
- * @brief A handle to a lipsum::Source
- *
- * @since 0.4.0
- *
- * This is a typedef of a pointer to a lipsum::ArgVec2.
- */
-typedef void* lpsm_SourceHandle;
-
-/**
  * @brief A handle to a lipsum::Generator
  *
  * @since 0.4.4
@@ -52,115 +34,6 @@ typedef void* lpsm_GeneratorHandle;
 extern "C"
 {
 #    endif
-
-    /**
-     * @brief Create a lipsum::Source
-     *
-     * @since 0.4.0
-     *
-     * This function creates a pointer pointing to a lipsum::Source.
-     *
-     * @warning The lpsm_SourceHandle must be manually deleted with
-     * lpsm_SourceDestroy().
-     *
-     * @param path The path entered into lipsum::Source::Source. If path is set
-     * to any of the built-in sources by lipsum::Source::Source(const
-     * std::string&), it will use the specified built-in source.
-     *
-     * @return lpsm_SourceHandle A handle to the object.
-     */
-    LIPSUMC_API lpsm_SourceHandle lpsm_Source(const char* path);
-
-    /**
-     * @brief Delete a lipsum::Source
-     *
-     * @since 0.4.0
-     *
-     * This function deletes a lpsm_SourceHandle allocated with lpsm_Source().
-     *
-     * @warning Do not call lpsm_SourceDestroy on the same handle twice or use
-     * the handle after deleting it, as that would be a double-free or
-     * use-after-free.
-     *
-     * @param handle The lpsm_SourceHandle to delete.
-     */
-    LIPSUMC_API void lpsm_SourceDestroy(lpsm_SourceHandle handle);
-
-    /**
-     * @brief Create a lipsum::ArgVec2.
-     *
-     * @since 0.3.3
-     *
-     * This function creates a pointer pointing to a lipsum::ArgVec2.
-     *
-     * @warning The lpsm_ArgVec2Handle must be manually deleted with
-     * lpsm_ArgVec2Destroy(), except for objects created in the "S" functions
-     * when argument "del" is set to true.
-     *
-     * @param min Value to enter into the minimum value
-     * @param max Value to enter into the maximum value
-     *
-     * @return lpsm_ArgVec2Handle The lipsum::ArgVec2.
-     */
-    LIPSUMC_API lpsm_ArgVec2Handle lpsm_ArgVec2(int min, int max);
-
-    /**
-     * @brief Delete a lipsum::ArgVec2.
-     *
-     * @since 0.3.3
-     *
-     * This function deletes a lipsum::ArgVec2 allocated with
-     * lpsm_ArgVec2().
-     *
-     * @warning Do not call lpsm_ArgVec2Destroy on the same handle twice or use
-     * the handle after deleting it, as that would be a double-free or
-     * use-after-free.
-     *
-     * @param av2 The lpsm_ArgVec2Handle to delete.
-     */
-    LIPSUMC_API void lpsm_ArgVec2Destroy(lpsm_ArgVec2Handle av2);
-
-    /**
-     * @brief Run lipsum::ArgVec2::roll.
-     *
-     * @since 0.3.3
-     *
-     * This function calls lipsum::ArgVec2::roll(). Formerly known as
-     * lpsm_ArgVec2Roll().
-     *
-     * @param av2 The lipsum::ArgVec2.
-     *
-     * @return int The random number.
-     */
-    LIPSUMC_API int lpsm_ArgVec2_roll(lpsm_ArgVec2Handle av2);
-
-    /**
-     * @brief Get lipsum::ArgVec2::min
-     *
-     * @since 0.3.3
-     *
-     * This function retrieves the min property of a lipsum::ArgVec2. Formerly
-     * known a lpsm_ArgVec2GetMin().
-     *
-     * @param av2 The lipsum::ArgVec2.
-     *
-     * @return int The min value.
-     */
-    LIPSUMC_API int lpsm_ArgVec2_min(lpsm_ArgVec2Handle av2);
-
-    /**
-     * @brief Get lipsum::ArgVec2::max
-     *
-     * @since 0.3.3
-     *
-     * This function retrieves the max property of a lipsum::ArgVec2. Formerly
-     * known as lpsm_ArgVec2GetMax().
-     *
-     * @param av2 The lipsum::ArgVec2.
-     *
-     * @return int The max value.
-     */
-    LIPSUMC_API int lpsm_ArgVec2_max(lpsm_ArgVec2Handle av2);
 
     /**
      * @brief Create a lipsum::Generator
@@ -502,6 +375,7 @@ extern "C"
      * Generate an object or array in JSON format.
      *
      * @param handle The lpsm_GeneratorHandle to use.
+     * @param depth The current depth of recursion. By default 0.
      * @param maxDepth Maximum depth of recursion.
      * @param isObject Whether to output an object (true) or an array
      * (false).
@@ -509,8 +383,27 @@ extern "C"
      * @return char* The random JSON object or array.
      */
     LIPSUMC_API char* lpsm_Generator_json(lpsm_GeneratorHandle handle,
+                                          int                  depth,
                                           int                  maxDepth,
                                           bool                 isObject);
+
+    /**
+     * @brief Generate a JSON value.
+     *
+     * @since 0.5.0
+     *
+     * Generate an object, array, number, string, boolean, or null in JSON
+     * format.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param depth The current depth of recursion.
+     * @param maxDepth The maximum level of recursion.
+     *
+     * @return char* The random JSON value.
+     */
+    LIPSUMC_API char* lpsm_Generator_json_value(lpsm_GeneratorHandle handle,
+                                                int                  depth,
+                                                int                  maxDepth);
 
 #    ifdef __cplusplus
 }

@@ -17,7 +17,6 @@
 #    define LIPSUM_MISC_INL
 
 #    include "core/internal.hpp"
-#    include "core_funcs.hpp"
 
 static int
 LipsumMiscInlFind(int count, const std::string& str, const std::string& check)
@@ -44,56 +43,8 @@ namespace lipsum
         return {"Lorem ipsum dolor sit amet, consectetur adipiscing elit."};
     }
 
-    std::string GenerateScramble(int length, char min, char max)
-    {
-        std::string ret;
-        if (length < 0)
-        {
-            internal::LogWarn("lpsm::GenerateScramble(): expected length >= 0, "
-                              "got ",
-                              length);
-        }
-        else
-        {
-            ret.reserve(length);
-        }
-        for (int i = 0; i < length; ++i)
-        {
-            ret.push_back(internal::RandomNumber(min, max));
-        }
-        return ret;
-    }
-
-    std::string GeneratePlainURL(const Source& source)
-    {
-        return std::string("lpsmcpp-") + GenerateWord(source) +
-               internal::GenerateTLD();
-    }
-
-    std::string GenerateURL(const ArgVec2& word, const Source& source)
-    {
-        return std::string("https://") + GeneratePlainURL(source) +
-               std::string("/#") + GenerateSlug(word, '-', source);
-    }
-
-    std::string
-    GenerateSlug(const ArgVec2& word, char separator, const Source& source)
-    {
-        std::string ret = GenerateSentenceFragment(word, source);
-        std::replace(ret.begin(), ret.end(), ' ', separator);
-        return ret;
-    }
-
     int CountWords(const std::string& str)
     {
-        /*
-        std::istringstream iss(str);
-        int                count = 0;
-        std::string        tmp;
-        while (iss >> tmp)
-        {
-            ++count;
-        }*/
         int  count      = 0;
         int  urlNum     = 0;
         bool inWord     = false;

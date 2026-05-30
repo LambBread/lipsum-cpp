@@ -16,14 +16,25 @@ UI testing, benchmarking Markdown/HTML/XML/JSON parser libraries, and anywhere p
 - Zero third-party dependencies outside of build dependencies
 - Customizable number of paragraphs, sentences, sentence fragments, and words
 - Multi-source lorem-ipsum generation including built-in lorem-ipsum, cat-ipsum, dog-ipsum, and corporate-ipsum
-- Very fast (148,421 paragraphs per second, 1,070,729 sentences per second, 23,218,788 words per second,
-  tested on a medium-low end computer)
+- Very fast and lightweight (see `Benchmarks` section)
 - Markdown, HTML, XML, and JSON generation
 - CLI tool for integration in projects
 - Extensive documentation via Doxygen
 - C++, C, and JavaScript support (static/shared library, wrapper, and Emscripten module builds supported)
 - CMake support for easy integration
 - Example code and live demo available
+
+## Benchmarks
+
+All tested with CMake `Release` build type, with default `lpsm::Generator` arguments.
+
+*Medium-end computer: Debian 13, 8GB DDR4 RAM, Intel i3-6100 @ 3.7GHz*:
+
+23,825,730 words/second
+1,129,105 sentences/second
+165,406 paragraphs/second
+146,052 Markdown paragraphs/second
+294,004 Markdown "elements"/second
 
 ## Usage
 
@@ -64,8 +75,6 @@ int main()
 
 ### Advanced example
 
-*Note: these functions are likely to get removed in the near future.*
-
 ```cpp
 #ifndef LIPSUM_BUILD_STATIC
 #    define LIPSUM_IMPLEMENTATION // only for header-only usage
@@ -75,29 +84,66 @@ int main()
 
 int main()
 {
-    // generate 5 paragraphs
-    // of 5-8 sentences
-    // of 1-3 sentence fragments
-    // of 4-9 words,
-    // starting with "Lorem ipsum..." (default)
-    std::cout << lpsm::GenerateParagraphs();
-    // generate 10 paragraphs
-    // of 7-10 sentences
-    // of 3-6 sentence fragments
-    // of 6-9 words,
-    // not starting with "Lorem ipsum..."
-    std::cout << lpsm::GenerateParagraphs(10,
-                                          lpsm::ArgVec2(6, 9),
-                                          lpsm::ArgVec2(3, 6),
-                                          lpsm::ArgVec2(7, 10),
-                                          false);
-    // equivalent statement
-    std::cout << lpsm::GenerateParagraphsX(10, 6, 9, 3, 6, 7, 10, false);
+    // Create a generator using corporate ipsum.
+    lpsm::Generator gen("corpo");
+
+    // Change to 6-9 words per sentence fragment,
+    // 3-6 sentence fragments per sentence,
+    // 6-9 items in JSON arrays/objects
+    gen.change_setting("word", 6, 9);
+    gen.change_setting("frag", 3, 6);
+    gen.change_setting("jsonLength", 6, 9);
+
+    // Generate a URL.
+    std::cout << gen.url() << '\n';
+
+    // Generate a plain URL.
+    std::cout << gen.plain_url() << '\n';
+
+    // Generate a slug.
+    std::cout << gen.slug('_') << '\n';
+
+    // Generate a scramble.
+    std::cout << gen.scramble(24, 'a', 'z') << '\n';
+
+    // Generate 5 Markdown paragraphs.
+    std::cout << gen.md_paragraph(5, true, false);
+
+    // Generate a Markdown document with 20 elements.
+    std::cout << gen.md_text(20, false);
+
+    // Generate a Markdown subtitle.
+    std::cout << gen.md_header(2, false);
+
+    // Generate an italic Markdown sentence.
+    std::cout << gen.md_emphasis(false, false) << '\n';
+
+    // Generate a Markdown link.
+    std::cout << gen.md_link(false) << '\n';
+
+    // Generate an ordered Markdown list.
+    std::cout << gen.md_list(true, false);
+
+    // Generate 5 HTML paragraphs.
+    std::cout << gen.md_paragraph(5, true, true);
+
+    // Generate an HTML document with 20 elements.
+    std::cout << gen.md_text(20, true);
+
+    // Generate an XML document with 40 "choices".
+    std::cout << gen.xml(40) << '\n';
+
+    // Generate a JSON object with a max recursion of 5.
+    std::cout << gen.json(0, 5, true) << '\n';
+
+    // Generate a JSON value with a max recursion of 5.
+    std::cout << gen.json_value(0, 5) << '\n';
+
     return 0;
 }
 ```
 
-[See this example live](https://lambbread.github.io/lipsumcpp-example/GenerateParagraphs.html)
+[See this example live](https://lambbread.github.io/lipsumcpp-example/GeneratorFormats.html)
 
 
 ### Binding usage

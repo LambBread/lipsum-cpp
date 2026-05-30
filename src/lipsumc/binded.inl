@@ -21,47 +21,6 @@
  * ----------------
  */
 
-extern "C" lpsm_SourceHandle lpsm_Source(const char* path)
-{
-    lpsm_SourceHandle ret;
-    ret = reinterpret_cast<lpsm_SourceHandle>(new lpsm::Source(path));
-    return ret;
-}
-
-extern "C" void lpsm_SourceDestroy(lpsm_SourceHandle handle)
-{
-    // auto* realSource = reinterpret_cast<lpsm::Source*>(handle);
-    auto* realSource = LPSM_CPPIFY(handle, lpsm::Source);
-    delete realSource;
-}
-
-extern "C" lpsm_ArgVec2Handle lpsm_ArgVec2(int min, int max)
-{
-    return reinterpret_cast<lpsm_ArgVec2Handle>(new lpsm::ArgVec2(min, max));
-}
-
-extern "C" void lpsm_ArgVec2Destroy(lpsm_ArgVec2Handle av2)
-{
-    // auto* realAv2 = reinterpret_cast<lpsm::ArgVec2*>(av2);
-    auto* realAv2 = LPSM_CPPIFY(av2, lpsm::ArgVec2);
-    delete realAv2;
-}
-
-extern "C" int lpsm_ArgVec2_roll(lpsm_ArgVec2Handle av2)
-{
-    return LPSM_CPPIFY(av2, lpsm::ArgVec2)->roll();
-}
-
-extern "C" int lpsm_ArgVec2_min(lpsm_ArgVec2Handle av2)
-{
-    return LPSM_CPPIFY(av2, lpsm::ArgVec2)->min;
-}
-
-extern "C" int lpsm_ArgVec2_max(lpsm_ArgVec2Handle av2)
-{
-    return LPSM_CPPIFY(av2, lpsm::ArgVec2)->max;
-}
-
 extern "C" lpsm_GeneratorHandle lpsm_Generator(const char* path)
 {
     return (reinterpret_cast<lpsm_GeneratorHandle>(new lpsm::Generator(path)));
@@ -205,10 +164,21 @@ extern "C" char* lpsm_Generator_xml(lpsm_GeneratorHandle handle, int choices)
     return ConvertToCstr(ret);
 }
 
-extern "C" char*
-lpsm_Generator_json(lpsm_GeneratorHandle handle, int maxDepth, bool isObject)
+extern "C" char* lpsm_Generator_json(lpsm_GeneratorHandle handle,
+                                     int                  depth,
+                                     int                  maxDepth,
+                                     bool                 isObject)
 {
-    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->json(maxDepth, isObject);
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)
+                       ->json(depth, maxDepth, isObject);
+    return ConvertToCstr(ret);
+}
+
+extern "C" char*
+lpsm_Generator_json_value(lpsm_GeneratorHandle handle, int depth, int maxDepth)
+{
+    auto ret =
+            LPSM_CPPIFY(handle, lpsm::Generator)->json_value(depth, maxDepth);
     return ConvertToCstr(ret);
 }
 

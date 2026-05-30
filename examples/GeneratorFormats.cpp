@@ -56,7 +56,10 @@ int main()
     std::cout << gen.xml(40) << '\n';
 
     // Generate a JSON object with a max recursion of 5.
-    std::cout << gen.json(5, true) << '\n';
+    std::cout << gen.json(0, 5, true) << '\n';
+
+    // Generate a JSON value with a max recursion of 5.
+    std::cout << gen.json_value(0, 5) << '\n';
 
     return 0;
 }

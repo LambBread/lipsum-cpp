@@ -2,21 +2,12 @@ cmake_minimum_required(VERSION 3.20)
 
 # all example targets
 set(LPSM_EXAMPLES_TARGETS
-    GenerateWord
-    GenerateWords
-    GenerateParagraph
-    GenerateParagraphs
-    GenerateSentence
-    GenerateSentences
-    GenerateSentenceFragment
     Generator
     GeneratorFormats
     Markdown
     Advanced
-    GenerateText
     Misc
     Source
-    Formats
 )
 
 # add executable + link to lipsum-cpp for each

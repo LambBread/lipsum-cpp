@@ -26,7 +26,7 @@ Options include:
 Subcommands include:
   help, word, fragment, sentence, paragraph, text,
   url, plain_url, slug, md_paragraph, md_text, md_header,
-  md_emphasis, md_link, md_list, xml, json
+  md_emphasis, md_link, md_list, xml, json, json_value
 
 For more information, type lpsmcpp-cli help <subcommand>.
 ```

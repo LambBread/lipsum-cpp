@@ -6,9 +6,11 @@ The differences between the C++ and C API are that:
 
 - Namespace `lpsm` is replaced with prefix `lpsm_`.
 - Most usage of C++ `::` is replaced with `_`.
-- Arguments explicitly provided to functions, such as `lpsm_GenerateParagraphs(5, 4, 9, 1, 3, 5, 8, true, source)` replacing `lpsm::GenerateParagraphs()`.
+- Arguments explicitly provided to functions, such as `lpsm_Generator_paragraph(handle, 1, true)`
+  replacing `lpsm::Generator::paragraph()`.
 - Explicit creation of a `lpsm_SourceHandle` when using free functions.
 
-Internal functions such as `lpsm::internal::RandomNumber` are not available in the C wrapper.
+Internal functions such as `lpsm::internal::RandomNumber` are not available in the C wrapper, as well as some internal classes
+like `lpsm::Source` and `lpsm::ArgVec2`.
 
-When using the C wrapper, remember to use `lpsm_DeleteString()`, `lpsm_ArgVec2Destroy()`, and `lpsm_SourceDestroy()` to avoid memory leaks!
+When using the C wrapper, remember to use `lpsm_DeleteString()` and `lpsm_GeneratorDestroy()` to avoid memory leaks!
