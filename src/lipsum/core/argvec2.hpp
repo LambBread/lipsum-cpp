@@ -47,9 +47,11 @@ namespace lipsum
          * This function returns a random value between min and max. Formerly
          * known as lpsm::Generator::Roll().
          *
+         * @param gen The generator to use.
+         *
          * @return int The random number.
          */
-        [[nodiscard]] int roll() const;
+        [[nodiscard]] int roll(std::mt19937& gen) const;
 
         int min; ///< The minimum value
         int max; ///< The maximum value

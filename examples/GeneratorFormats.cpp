@@ -6,8 +6,8 @@
 
 int main()
 {
-    // Create a generator using corporate ipsum.
-    lpsm::Generator gen("corpo");
+    // Create a generator using corporate ipsum and the specified seed.
+    lpsm::Generator gen("corpo", 1234);
 
     // Change to 6-9 words per sentence fragment,
     // 3-6 sentence fragments per sentence,

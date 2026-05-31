@@ -31,7 +31,9 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     class_<lpsm::Generator>("lpsm_Generator")
             .constructor<>()
             .constructor<std::string>()
+            .constructor<std::string, int>()
             .function("load_source", &lpsm::Generator::load_source)
+            .function("load_seed", &lpsm::Generator::load_seed)
             .function("change_setting",
                       select_overload<void(const std::string&, int, int)>(
                               &lpsm::Generator::change_setting))

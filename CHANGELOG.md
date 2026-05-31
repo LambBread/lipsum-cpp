@@ -1198,32 +1198,53 @@ char* lpsm_Generator_html_text(lpsm_GeneratorHandle, int);
 ### 0.5.0 (2026-06 TBD)
 
 - Move most free function logic into `lpsm::Generator`
+- Add seed options to `lpsm::Generator`
 - Get benchmarks on a low-end computer
 - New functions:
 
 ```cpp
+lpsm::Generator::Generator(int);
+lpsm::Generator::Generator(const std::string&, int);
 std::string lpsm::Generator::single_sentence(const lpsm::ArgVec2&, const lpsm::ArgVec2&); // private
 std::string lpsm::Generator::single_paragraph(bool); // private
 std::string lpsm::Generator::single_md_paragraph(bool, bool); // private
 std::string lpsm::Generator::json_string(); // private
 std::string lpsm::Generator::json_number(); // private
+template <lpsm::internal::UniformDistributionType> T lpsm::Generator::random_number(T, T); // private
+char lpsm::Generator::random_number(char, char); // private
+bool lpsm::Generator::random_number(bool, bool); // private
+int lpsm::Generator::weighted_random_idx(const std::vector<int>&); // private
+std::string lpsm::Generator::tld(); // private
+void lpsm::Generator::load_seed(int);
 std::string lpsm::Generator::json_value(int, int);
 
 char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int, int);
+void lpsm_Generator_load_seed(lpsm_GeneratorHandle, int);
 ```
 
 - Changed functions:
 
 ```cpp
+std::string lpsm::ArgVec2::roll(std::mt19937&) const;
+// from std::string lpsm::ArgVec2::roll() const;
+std::string lpsm::Source::random_word(std::mt19937&) const;
+// from std::string lpsm::Source::random_word() const;
 std::string lpsm::Generator::json(int, int, bool);
 // from std::string lpsm::Generator::json(int, bool)
 
+lpsm_GeneratorHandle lpsm_Generator(const char*, int);
+// from lpsm_GeneratorHandle lpsm_Generator(const char*)
 char* lpsm_Generator_json(lpsm_GeneratorHandle, int, int, bool);
 // from std::string lpsm_Generator_json(lpsm_GeneratorHandle, int, bool)
 ```
 
 - Removed features:
 ```cpp
+template <lpsm::internal::UniformDistributionType> T lpsm::internal::RandomNumber(T, T);
+char lpsm::internal::RandomNumber(char, char);
+bool lpsm::internal::RandomNumber(bool, bool);
+int lpsm::internal::WeightedRandomIdx(const std::vector<int>&);
+std::string lpsm::internal::GenerateTLD();
 std::string lpsm::GenerateWord(const lpsm::Source&);
 std::string lpsm::GenerateSentenceFragment(const lpsm::ArgVec2&, const lpsm::Source&);
 std::string lpsm::GenerateSentence(const lpsm::ArgVec2&, const lpsm::ArgVec2&, const lpsm::Source&);

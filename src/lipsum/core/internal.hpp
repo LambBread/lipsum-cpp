@@ -21,7 +21,7 @@
 /**
  * @brief Choose between true or false
  */
-#    define LPSM_FLIP_COIN lpsm::internal::RandomNumber(false, true)
+#    define LPSM_FLIP_COIN random_number(false, true)
 
 /**
  * @namespace lipsum::internal
@@ -78,19 +78,6 @@ namespace lipsum::internal
      */
     template <typename T>
     concept UniformDistributionType = (IsInt<T> || std::floating_point<T>);
-
-    /**
-     * @brief Pick a random TLD.
-     *
-     * @since 0.3.7
-     *
-     * This function picks a random TLD out of .com, .org, .net, .edu, .io, .ca,
-     * and .co.uk, each with chances of 70%, 10%, 7%, 5%, 5%, 2%, and 1%
-     * respectively.
-     *
-     * @return std::string The random TLD.
-     */
-    LIPSUM_API std::string GenerateTLD();
 
     /**
      * @brief Handle HTML entities.
@@ -152,87 +139,6 @@ namespace lipsum::internal
         std::cerr << "\033[33m" << message << "\033[0m";
 #    endif
     }
-
-    /**
-     * @brief Generate a random number.
-     *
-     * @since 0.2.0
-     *
-     * Generate a random number between min and max, inclusive. If T is an
-     * integer, use std::uniform_int_distribution. Else, use
-     * std::uniform_real_distribution.
-     *
-     * @tparam T The type of the random number. Must be a uniform-distribution
-     * type, i.e. ints (excluding chars and bool) and floats.
-     *
-     * @param min The minimum value.
-     * @param max The maximum value.
-     *
-     * @return T The random number.
-     */
-    template <UniformDistributionType T> T RandomNumber(T min, T max)
-    {
-        static thread_local std::mt19937 gen(std::random_device{}());
-        if (min > max)
-        {
-            T tempMax = max;
-            max       = min;
-            min       = tempMax;
-        }
-        if constexpr (std::is_integral_v<T>)
-        {
-            std::uniform_int_distribution<T> dist(min, max);
-            return dist(gen);
-        }
-        else
-        {
-            std::uniform_real_distribution<T> dist(min, max);
-            return dist(gen);
-        }
-    }
-
-    /**
-     * @brief Overload of RandomNumber() for char
-     *
-     * @since 0.3.9
-     *
-     * @overload
-     *
-     * @param min The minimum value.
-     * @param max The maximum value.
-     *
-     * @return char The random character.
-     */
-    LIPSUM_API char RandomNumber(char min, char max);
-
-    /**
-     * @brief Overload of RandomNumber() for bool
-     *
-     * @since 0.3.9
-     *
-     * @overload
-     *
-     * @param min The minimum value.
-     * @param max The maximum value.
-     *
-     * @return bool The random character.
-     */
-    LIPSUM_API bool RandomNumber(bool min, bool max);
-
-    /**
-     * @brief Choose a random index based off weights
-     *
-     * @since 0.4.3
-     *
-     * This function chooses a random index of weights, with higher valued
-     * weights being more likely. To do this, it passes the weights into an
-     * std::discrete_distribution.
-     *
-     * @param weights The weights.
-     *
-     * @return int The random index.
-     */
-    LIPSUM_API int WeightedRandomIdx(const std::vector<int>& weights);
 
     /**
      * @brief Convert an object to a string.

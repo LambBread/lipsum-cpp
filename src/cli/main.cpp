@@ -131,6 +131,7 @@ void Help(const std::string& page)
         std::cout << "  --fragFmt=<min,max>, -F - The min and max sentence fragments per formatted sentence.\n";
         std::cout << "  --level=<min,max>, -l - The min and max levels of headings.\n";
         std::cout << "  --jsonLength=<min,max>, -j - The min and max amount of items in JSON objects.\n";
+        std::cout << "  --seed=<seed>, -E - Load specified seed.\n";
         std::cout << "  --source=<source>, -S - Load specified source.\n";
         std::cout << "      <source> may be a path to a file or a built-in source.\n";
         std::cout << "      Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.\n\n";
@@ -314,6 +315,22 @@ int main(int argc, char** argv)
                 ErrorMessage("Error: must be in format --option=value\nGot: ",
                              option);
                 return -1;
+            }
+        }
+        else if (OPTION_COND(seed, "-E"))
+        {
+            size_t pos = option.find('=');
+            if (pos != std::string::npos)
+            {
+                std::string value = option.substr(pos + 1);
+                int         seed  = lpsm::internal::ToType<int>(value);
+                gen.load_seed(seed);
+            }
+            else
+            {
+                ErrorMessage("Error: must be in format --option=value\nGot: ",
+                             option,
+                             '\n');
             }
         }
         else

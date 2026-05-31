@@ -45,7 +45,6 @@ namespace lpsm = lipsum; ///< Alias for namespace lipsum
 #    ifdef LIPSUM_IMPLEMENTATION
 
 #        include "lipsum/core/argvec2.inl"
-#        include "lipsum/core/internal.inl"
 #        include "lipsum/core/source.inl"
 #        include "lipsum/generator.inl"
 #        include "lipsum/misc.inl"

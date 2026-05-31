@@ -101,10 +101,11 @@
 
 - [x] Move most of the free functions' logic into `lpsm::Generator` (0.5.0)
 - [x] Run benchmarks on low-end computer (0.5.0)
+- [x] Add seed options by moving random number generation functions into `lpsm::Generator` (0.5.0)
 
 ## Upcoming
 
-- [ ] Add seed options (planned 0.5.0)
+- [ ] Add practical examples (planned 0.5.0)
 - [ ] YAML/TOML? (maybe 0.5.x?)
 - [ ] SWIG bindings????
 - [ ] Stabilize API and release 1.0.0

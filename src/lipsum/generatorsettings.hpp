@@ -15,6 +15,8 @@
 #ifndef LIPSUM_GENERATORSETTINGS_HPP
 #    define LIPSUM_GENERATORSETTINGS_HPP
 
+#    include "core/argvec2.hpp"
+
 namespace lipsum
 {
     /**

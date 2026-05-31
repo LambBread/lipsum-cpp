@@ -39,9 +39,34 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * Load the default lorem ipsum source.
+         * Load the default lorem ipsum source and choose a random seed.
          */
-        Generator() = default;
+        Generator();
+
+        /**
+         * @brief Constructor for Generator
+         *
+         * @since 0.5.0
+         *
+         * Load the default lorem ipsum source and the specified seed.
+         *
+         * @param seed The seed specified.
+         */
+        Generator(int seed);
+
+        /**
+         * @brief Constructor for Generator
+         *
+         * @since 0.5.0
+         *
+         * Load the specified lorem ipsum source and the specified seed.
+         *
+         * @param path The filepath or name of the lorem ipsum source.
+         * @param seed The seed specified.
+         *
+         * @sa lipsum::Source::load
+         */
+        Generator(const std::string& path, int seed);
 
         /**
          * @brief Constructor for Generator
@@ -72,6 +97,17 @@ namespace lipsum
          * @sa lipsum::Source::load
          */
         void load_source(const std::string& path);
+
+        /**
+         * @brief Reload a seed
+         *
+         * @since 0.5.0
+         *
+         * Reload the seed of m_Gen.
+         *
+         * @param seed The seed specified.
+         */
+        void load_seed(int seed);
 
         /**
          * @brief Change a setting
@@ -449,7 +485,105 @@ namespace lipsum
          */
         std::string json_number();
 
+        /**
+         * @brief Generate a random number.
+         *
+         * @since 0.5.0
+         *
+         * Generate a random number between min and max, inclusive. If T is an
+         * integer, use std::uniform_int_distribution. Else, use
+         * std::uniform_real_distribution.
+         *
+         * @tparam T The type of the random number. Must be a
+         * uniform-distribution type, i.e. ints (excluding chars and bool) and
+         * floats.
+         *
+         * @param min The minimum value.
+         * @param max The maximum value.
+         *
+         * @return T The random number.
+         */
+        template <internal::UniformDistributionType T>
+        T random_number(T min, T max)
+        {
+            // static thread_local std::mt19937 gen(std::random_device{}());
+            if (min > max)
+            {
+                T tempMax = max;
+                max       = min;
+                min       = tempMax;
+            }
+            if constexpr (std::is_integral_v<T>)
+            {
+                std::uniform_int_distribution<T> dist(min, max);
+                return dist(m_Gen);
+            }
+            else
+            {
+                std::uniform_real_distribution<T> dist(min, max);
+                return dist(m_Gen);
+            }
+        }
+
+        /**
+         * @brief Overload of random_number() for char
+         *
+         * @since 0.5.0
+         *
+         * @overload
+         *
+         * @param min The minimum value.
+         * @param max The maximum value.
+         *
+         * @return char The random character.
+         */
+        char random_number(char min, char max);
+
+        /**
+         * @brief Overload of random_number() for bool
+         *
+         * @since 0.5.0
+         *
+         * @overload
+         *
+         * @param min The minimum value.
+         * @param max The maximum value.
+         *
+         * @return bool The random character.
+         */
+        bool random_number(bool min, bool max);
+
+        /**
+         * @brief Choose a random index based off weights
+         *
+         * @since 0.5.0
+         *
+         * This function chooses a random index of weights, with higher valued
+         * weights being more likely. To do this, it passes the weights into an
+         * std::discrete_distribution.
+         *
+         * @param weights The weights.
+         *
+         * @return int The random index.
+         */
+        int weighted_random_idx(const std::vector<int>& weights);
+
+        /**
+         * @brief Pick a random TLD.
+         *
+         * @since 0.5.0
+         *
+         * This function picks a random TLD out of .com, .org, .net, .edu, .io,
+         * .ca, and .co.uk, each with chances of 70%, 10%, 7%, 5%, 5%, 2%, and
+         * 1% respectively.
+         *
+         * @return std::string The random TLD.
+         */
+        std::string tld();
+
         GeneratorSettings m_Settings; ///< Settings for generation
+
+        std::mt19937 m_Gen; ///< Random number generator
 
         /**
          * @brief Source used for generation.

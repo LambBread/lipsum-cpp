@@ -21,9 +21,18 @@
  * ----------------
  */
 
-extern "C" lpsm_GeneratorHandle lpsm_Generator(const char* path)
+extern "C" lpsm_GeneratorHandle lpsm_Generator(const char* path, int seed)
 {
-    return (reinterpret_cast<lpsm_GeneratorHandle>(new lpsm::Generator(path)));
+    lpsm::Generator* gen;
+    if (seed == 0)
+    {
+        gen = new lpsm::Generator(path);
+    }
+    else
+    {
+        gen = new lpsm::Generator(path, seed);
+    }
+    return (reinterpret_cast<lpsm_GeneratorHandle>(gen));
 }
 
 extern "C" void lpsm_GeneratorDestroy(lpsm_GeneratorHandle handle)
@@ -36,6 +45,11 @@ extern "C" void lpsm_Generator_load_source(lpsm_GeneratorHandle handle,
                                            const char*          path)
 {
     LPSM_CPPIFY(handle, lpsm::Generator)->load_source(path);
+}
+
+extern "C" void lpsm_Generator_load_seed(lpsm_GeneratorHandle handle, int seed)
+{
+    LPSM_CPPIFY(handle, lpsm::Generator)->load_seed(seed);
 }
 
 extern "C" void lpsm_Generator_change_setting(lpsm_GeneratorHandle handle,

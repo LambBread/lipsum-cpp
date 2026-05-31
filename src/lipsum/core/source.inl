@@ -20,8 +20,8 @@
 #    define LPSM_SOURCE_CUSTOM_IPSUM(ipsum, name)                              \
         if (currentLoaded == name)                                             \
         {                                                                      \
-            idx = internal::RandomNumber<int>(0, ipsum.size() - 1);            \
-            return {ipsum.at(idx)};                                            \
+            std::uniform_int_distribution<int> dist(0, ipsum.size() - 1);      \
+            return {ipsum.at(dist(gen))};                                      \
         }
 
 namespace lipsum
@@ -31,20 +31,21 @@ namespace lipsum
         load(path);
     }
 
-    std::string Source::random_word() const
+    std::string Source::random_word(std::mt19937& gen) const
     {
-        int idx;
         if (m_Words.empty())
         {
             LPSM_SOURCE_CUSTOM_IPSUM(CAT_IPSUM, "cat")
             LPSM_SOURCE_CUSTOM_IPSUM(DOG_IPSUM, "dog")
             LPSM_SOURCE_CUSTOM_IPSUM(CORPO_IPSUM, "corpo")
-            idx = internal::RandomNumber<int>(0, LIPSUM_VEC.size() - 1);
-            return {LIPSUM_VEC.at(idx)};
+            std::uniform_int_distribution<int> dist(0, LIPSUM_VEC.size() - 1);
+            // idx = internal::RandomNumber<int>(0, LIPSUM_VEC.size() - 1);
+            return {LIPSUM_VEC.at(dist(gen))};
         }
 
-        idx = internal::RandomNumber<int>(0, m_Words.size() - 1);
-        return m_Words.at(idx);
+        std::uniform_int_distribution<int> dist(0, m_Words.size() - 1);
+        // idx = internal::RandomNumber<int>(0, m_Words.size() - 1);
+        return m_Words.at(dist(gen));
     }
 
     void Source::load(const std::string& path)

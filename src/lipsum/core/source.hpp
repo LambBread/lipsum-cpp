@@ -76,9 +76,11 @@ namespace lipsum
          * it uses a built-in source from sample.inl as a fallback. Formerly
          * known as lpsm::Source::RandomWord().
          *
+         * @param gen The generator to use.
+         *
          * @return std::string The random word.
          */
-        [[nodiscard]] std::string random_word() const;
+        [[nodiscard]] std::string random_word(std::mt19937& gen) const;
 
     private:
         std::string currentLoaded; ///< If not using a custom list, which
