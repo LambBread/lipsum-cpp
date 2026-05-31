@@ -100,10 +100,10 @@
 ### 0.5.x
 
 - [x] Move most of the free functions' logic into `lpsm::Generator` (0.5.0)
+- [x] Run benchmarks on low-end computer (0.5.0)
 
 ## Upcoming
 
-- [ ] Run benchmarks on low-end computer
 - [ ] Add seed options (planned 0.5.0)
 - [ ] YAML/TOML? (maybe 0.5.x?)
 - [ ] SWIG bindings????

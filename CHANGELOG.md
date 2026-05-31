@@ -1198,6 +1198,7 @@ char* lpsm_Generator_html_text(lpsm_GeneratorHandle, int);
 ### 0.5.0 (2026-06 TBD)
 
 - Move most free function logic into `lpsm::Generator`
+- Get benchmarks on a low-end computer
 - New functions:
 
 ```cpp

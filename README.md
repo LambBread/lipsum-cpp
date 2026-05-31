@@ -16,7 +16,7 @@ UI testing, benchmarking Markdown/HTML/XML/JSON parser libraries, and anywhere p
 - Zero third-party dependencies outside of build dependencies
 - Customizable number of paragraphs, sentences, sentence fragments, and words
 - Multi-source lorem-ipsum generation including built-in lorem-ipsum, cat-ipsum, dog-ipsum, and corporate-ipsum
-- Very fast and lightweight (see `Benchmarks` section)
+- Extremely fast and very lightweight (see `Benchmarks` section)
 - Markdown, HTML, XML, and JSON generation
 - CLI tool for integration in projects
 - Extensive documentation via Doxygen
@@ -28,13 +28,21 @@ UI testing, benchmarking Markdown/HTML/XML/JSON parser libraries, and anywhere p
 
 All tested with CMake `Release` build type, with default `lpsm::Generator` arguments.
 
-*Medium-end computer: Debian 13, 8GB DDR4 RAM, Intel i3-6100 @ 3.7GHz*:
+*Medium-end computer: Debian 13, 8GB DDR4 RAM, Intel i3-6100 (4-core) @ 3.7GHz*:
 
-23,825,730 words/second
-1,129,105 sentences/second
-165,406 paragraphs/second
-146,052 Markdown paragraphs/second
-294,004 Markdown "elements"/second
+- 23,825,730 words/second
+- 1,129,105 sentences/second
+- 165,406 paragraphs/second
+- 146,052 Markdown paragraphs/second
+- 294,004 Markdown "elements"/second
+
+*Very low-end computer: BookwormPup32, 1GB DDR2 RAM, Intel Centrino Duo (2-core) @ 1.6GHz*:
+
+- 2,767,236 words/second
+- 105,033 sentences/second
+- 15,833 paragraphs/second
+- 15,267 Markdown paragraphs/second
+- 27,966 Markdown "elements"/second
 
 ## Usage
 
