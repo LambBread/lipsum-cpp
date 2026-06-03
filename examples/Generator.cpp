@@ -16,13 +16,13 @@ int main()
     std::cout << gen.fragment() << '\n';
 
     // Generate 6 sentences.
-    std::cout << gen.sentence(6, true) << '\n';
+    std::cout << gen.sentence(6, lpsm::USELIPSUM) << '\n';
 
     // Generate 3 paragraphs.
-    std::cout << gen.paragraph(3, true);
+    std::cout << gen.paragraph(3, lpsm::USELIPSUM);
 
     // Generate a text.
-    std::cout << gen.text(true);
+    std::cout << gen.text(lpsm::USELIPSUM);
 
     return 0;
 }

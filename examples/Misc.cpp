@@ -7,7 +7,8 @@
 int main()
 {
     lpsm::Generator gen;
-    // print current version of lipsum-cpp
+
+    // Print the current version of lipsum-cpp.
     std::cout << LIPSUM_CPP_VERSION << '\n';
     std::cout << "major " << LIPSUM_CPP_VERSION_MAJOR << " minor "
               << LIPSUM_CPP_VERSION_MINOR << " patch "

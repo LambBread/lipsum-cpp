@@ -25,6 +25,27 @@ namespace lipsum
 {
 
     /**
+     * @brief Flags for lipsum-cpp
+     *
+     * @since 0.5.0
+     *
+     * This stores various flags for convenience.
+     */
+    enum GeneratorFlags : bool
+    {
+        USELIPSUM    = true,
+        NO_USELIPSUM = false,
+        HTML         = true,
+        MARKDOWN     = false,
+        OBJECT       = true,
+        ARRAY        = false,
+        BOLD         = true,
+        ITALIC       = false,
+        ORDERED      = true,
+        UNORDERED    = false
+    };
+
+    /**
      * @brief Main class of lipsum-cpp
      *
      * @since 0.2.0

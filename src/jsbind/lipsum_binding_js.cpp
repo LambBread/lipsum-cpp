@@ -55,6 +55,18 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("xml", &lpsm::Generator::xml)
             .function("json", &lpsm::Generator::json)
             .function("json_value", &lpsm::Generator::json_value);
+    enum_<lpsm::GeneratorFlags>("lpsm_GeneratorFlags")
+            .value("USELIPSUM", lpsm::USELIPSUM)
+            .value("NO_USELIPSUM", lpsm::NO_USELIPSUM)
+            .value("HTML", lpsm::HTML)
+            .value("MARKDOWN", lpsm::MARKDOWN)
+            .value("OBJECT", lpsm::OBJECT)
+            .value("ARRAY", lpsm::ARRAY)
+            .value("BOLD", lpsm::BOLD)
+            .value("ITALIC", lpsm::ITALIC)
+            .value("ORDERED", lpsm::ORDERED)
+            .value("UNORDERED", lpsm::UNORDERED);
+
     constant("LIPSUM_CPP_VERSION", std::string(LIPSUM_CPP_VERSION));
     constant("LIPSUM_CPP_VERSION_MAJOR", LIPSUM_CPP_VERSION_MAJOR);
     constant("LIPSUM_CPP_VERSION_MINOR", LIPSUM_CPP_VERSION_MINOR);

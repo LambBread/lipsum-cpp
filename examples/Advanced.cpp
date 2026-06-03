@@ -54,7 +54,7 @@ int main()
 
     // About: a short Markdown paragraph (use Markdown generator to add some
     // formatting)
-    std::string about = gen.md_paragraph(1, true); // starts with Lorem ipsum
+    std::string about = gen.md_paragraph(1, lpsm::USELIPSUM);
 
     // Highlights: a markdown list (unordered)
     std::string highlights = gen.md_list();
@@ -66,7 +66,7 @@ int main()
     std::string mdLink = gen.md_link();
 
     // Gallery: several short paragraphs
-    std::string gallery = gen.paragraph(3, false);
+    std::string gallery = gen.paragraph(3, lpsm::NO_USELIPSUM);
 
     gen.change_setting("word", 2, 4);
     gen.change_setting("frag", 1, 1);

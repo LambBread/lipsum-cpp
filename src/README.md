@@ -17,7 +17,7 @@ This is the main source directory of lipsum-cpp.
 - Class functions and CLI subcommands: `snake_case`
 - Unit tests: `snake_case`
 - Python: `snake_case`
-- Macros and `constexpr` constants: `SHOUTY_CASE`
+- Macros, `constexpr` constants, enum values: `SHOUTY_CASE`
 - CMake variables: `SHOUTY_CASE`
 - Internal variables and function arguments: `camelCase`
 

@@ -12,7 +12,7 @@ int main()
 {
     lpsm::Generator gen;
 
-    // Change some settings.
+    // Change various settings.
     gen.change_setting("word", 6, 9);
     gen.change_setting("frag", 3, 6);
     gen.change_setting("sent", 7, 10);
@@ -23,7 +23,7 @@ int main()
     gen.change_setting("level", 1, 6);
 
     // Generate an HTML document with 30 elements.
-    std::string text = gen.md_text(30, true);
+    std::string text = gen.md_text(30, lpsm::HTML);
     std::cout << text << "\n\n";
 
     // clang-format off

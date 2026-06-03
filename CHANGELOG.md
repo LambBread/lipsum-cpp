@@ -1200,9 +1200,10 @@ char* lpsm_Generator_html_text(lpsm_GeneratorHandle, int);
 - Move most free function logic into `lpsm::Generator`
 - Add seed options to `lpsm::Generator`
 - Get benchmarks on a low-end computer
-- New functions:
+- New features:
 
 ```cpp
+enum lpsm::GeneratorFlags;
 lpsm::Generator::Generator(int);
 lpsm::Generator::Generator(const std::string&, int);
 std::string lpsm::Generator::single_sentence(const lpsm::ArgVec2&, const lpsm::ArgVec2&); // private
@@ -1218,6 +1219,7 @@ std::string lpsm::Generator::tld(); // private
 void lpsm::Generator::load_seed(int);
 std::string lpsm::Generator::json_value(int, int);
 
+enum lpsm_GeneratorFlags;
 char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int, int);
 void lpsm_Generator_load_seed(lpsm_GeneratorHandle, int);
 ```
