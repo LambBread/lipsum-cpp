@@ -15,6 +15,19 @@
 #ifndef LIPSUMC_BINDED_H
 #    define LIPSUMC_BINDED_H
 
+// NOLINTBEGIN
+#    define LPSM_USELIPSUM true
+#    define LPSM_NO_USELIPSUM false
+#    define LPSM_HTML true
+#    define LPSM_MARKDOWN false
+#    define LPSM_OBJECT true
+#    define LPSM_ARRAY false
+#    define LPSM_BOLD true
+#    define LPSM_ITALIC false
+#    define LPSM_ORDERED true
+#    define LPSM_UNORDERED false
+// NOLINTEND
+
 #    include "core.h"
 
 // NOLINTBEGIN(modernize-use-using)
@@ -27,27 +40,6 @@
  * This is a typedef of a pointer to a lipsum::Generator.
  */
 typedef void* lpsm_GeneratorHandle;
-
-/**
- * @brief Flags for lipsum-cpp
- *
- * @since 0.5.0
- *
- * This stores various flags for convenience.
- */
-enum lpsm_GeneratorFlags : bool
-{
-    LPSM_USELIPSUM    = true,
-    LPSM_NO_USELIPSUM = false,
-    LPSM_HTML         = true,
-    LPSM_MARKDOWN     = false,
-    LPSM_OBJECT       = true,
-    LPSM_ARRAY        = false,
-    LPSM_BOLD         = true,
-    LPSM_ITALIC       = false,
-    LPSM_ORDERED      = true,
-    LPSM_UNORDERED    = false
-};
 
 // NOLINTEND(modernize-use-using)
 

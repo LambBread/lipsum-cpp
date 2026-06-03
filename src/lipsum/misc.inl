@@ -160,7 +160,8 @@ namespace lipsum
         {
             case 0:
             {
-                return std::count(str.begin(), str.end(), '\t');
+                return static_cast<int>(
+                        std::count(str.begin(), str.end(), '\t'));
             }
             case 1:
             {

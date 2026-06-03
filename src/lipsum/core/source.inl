@@ -20,7 +20,7 @@
 #    define LPSM_SOURCE_CUSTOM_IPSUM(ipsum, name)                              \
         if (currentLoaded == name)                                             \
         {                                                                      \
-            std::uniform_int_distribution<int> dist(0, ipsum.size() - 1);      \
+            std::uniform_int_distribution<size_t> dist(0, ipsum.size() - 1);   \
             return {ipsum.at(dist(gen))};                                      \
         }
 

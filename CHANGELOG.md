@@ -1219,7 +1219,16 @@ std::string lpsm::Generator::tld(); // private
 void lpsm::Generator::load_seed(int);
 std::string lpsm::Generator::json_value(int, int);
 
-enum lpsm_GeneratorFlags;
+#define LPSM_USELIPSUM
+#define LPSM_NO_USELIPSUM
+#define LPSM_HTML
+#define LPSM_MARKDOWN
+#define LPSM_OBJECT
+#define LPSM_ARRAY
+#define LPSM_BOLD
+#define LPSM_ITALIC
+#define LPSM_ORDERED
+#define LPSM_UNORDERED
 char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int, int);
 void lpsm_Generator_load_seed(lpsm_GeneratorHandle, int);
 ```
