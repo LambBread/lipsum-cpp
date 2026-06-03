@@ -38,12 +38,12 @@ namespace lipsum
             LPSM_SOURCE_CUSTOM_IPSUM(CAT_IPSUM, "cat")
             LPSM_SOURCE_CUSTOM_IPSUM(DOG_IPSUM, "dog")
             LPSM_SOURCE_CUSTOM_IPSUM(CORPO_IPSUM, "corpo")
-            std::uniform_int_distribution<int> dist(0, LIPSUM_VEC.size() - 1);
+            std::uniform_int_distribution<size_t> dist(0, LIPSUM_VEC.size() - 1);
             // idx = internal::RandomNumber<int>(0, LIPSUM_VEC.size() - 1);
             return {LIPSUM_VEC.at(dist(gen))};
         }
 
-        std::uniform_int_distribution<int> dist(0, m_Words.size() - 1);
+        std::uniform_int_distribution<size_t> dist(0, m_Words.size() - 1);
         // idx = internal::RandomNumber<int>(0, m_Words.size() - 1);
         return m_Words.at(dist(gen));
     }
