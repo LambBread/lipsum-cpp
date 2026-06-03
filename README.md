@@ -92,7 +92,7 @@ pip install --user quom
 
 At the root of the project, run `make amalgamate` or `make pkg`.
 
-#### System-wide installation (Optional)
+### System-wide installation (Optional)
 
 ```bash
 # Debian-based
