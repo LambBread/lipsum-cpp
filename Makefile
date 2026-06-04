@@ -54,7 +54,7 @@ amalgamate: ## Form the main source files into single file variants.
 pkg_: ## Run the final packaging steps, namely copying certain examples and compressing the final archive.
 	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(BUILD_DIR)/$(EXAMPLES_DIR)/
 	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(PKG_DIR)/
-	cp $(EXAMPLES_DIR)/JSBinding.html $(BUILD_DIR)/$(EXAMPLES_DIR)/
+	cp $(EXAMPLES_DIR)/*.html $(EXAMPLES_DIR)/*.js $(BUILD_DIR)/$(EXAMPLES_DIR)/
 	7z a -tzip -r -mx=9 lipsum-pkg.zip $(PKG_DIR)
 	
 quick_pkg: em_configure version format tidy em_build amalgamate pkg_ ## Build an Emscripten build of the project, running the versioning script, clang-format, clang-tidy, amalgamation, and final packaging steps.

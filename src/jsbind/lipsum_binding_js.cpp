@@ -11,6 +11,7 @@
  * @author LambBread from github.com
  *
  * @example JSBinding.html
+ * @example WebInterface.js
  */
 
 #ifdef __EMSCRIPTEN__

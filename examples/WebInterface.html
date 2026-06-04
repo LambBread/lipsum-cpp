@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lipsum-cpp web interface example</title>
+    <style>
+        textarea { height: auto; }
+    </style>
+
+</head>
+<body>
+    <div id="version">lipsum-cpp version</div>
+    <select id="func">
+        <option value="word">word</option>
+        <option value="fragment">fragment</option>
+        <option value="sentence">sentence</option>
+        <option value="paragraph">paragraph</option>
+        <option value="text">text</option>
+        <option value="scramble">scramble</option>
+        <option value="plain_url">plain_url</option>
+        <option value="url">url</option>
+        <option value="slug">slug</option>
+        <option value="md_paragraph">md_paragraph</option>
+        <option value="md_text">md_text</option>
+        <option value="md_header">md_header</option>
+        <option value="md_emphasis">md_emphasis</option>
+        <option value="md_link">md_link</option>
+        <option value="md_list">md_list</option>
+        <option value="xml">xml</option>
+        <option value="json">json</option>
+        <option value="json_value">json_value</option>
+    </select><br>
+    <label for="num">Number to use:</label>
+    <input type="number" id="num" value="1"><br>
+    <label for="separator">Slug separator or minimum scramble character:</label>
+    <input type="text" id="separator" value="-"><br>
+    <label for="maxChar">Maximum scramble character:</label>
+    <input type="text" id="maxChar" value="~"><br>
+    <label for="useLipsum">Start with "Lorem ipsum..."? (or is bold / ordered / is JSON object)</label>
+    <input type="checkbox" id="useLipsum" checked><br>
+    <label for="useHtml">Use HTML instead of Markdown?</label>
+    <input type="checkbox" id="useHtml"><br>
+    <button id="generate">Generate</button>
+        <br>
+    <textarea id="output" rows="20" cols="100"></textarea>
+    <script src="lipsum.js"></script>
+    <script src="WebInterface.js"></script>
+</body>
+</html>

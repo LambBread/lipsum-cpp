@@ -1354,6 +1354,12 @@ lpsm_SourceHandle lpsm_Source(const char*);
 void lpsm_SourceDestroy(lpsm_SourceHandle);
 ```
 
+- New examples:
+
+```
+WebInterface.html
+```
+
 - Removed examples:
 
 ```
