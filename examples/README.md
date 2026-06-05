@@ -9,4 +9,6 @@ These are examples for lipsum-cpp. Some examples include:
 - [`JSBinding.html`](./JSBinding.html), demonstrating the JavaScript binding
 - [`Markdown.cpp`](./Markdown.cpp), demonstrating the Markdown functions
 - [`Misc.cpp`](./Misc.cpp), demonstrating miscellanous features
+- [`ParserStressTest`](./ParserStressTest.cpp), demonstrating benchmarking `libjson-c` and `libxml2` using `lipsum-cpp`
 - [`Source.cpp`](./Source.cpp), demonstrating use of alternative lorem-ipsum sources, using source `cat`
+- [`WebInterface.html`](./WebInterface.html), providing a basic web UI for generation

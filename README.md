@@ -42,6 +42,8 @@ lipsum-cpp has been mainly tested on Linux (Debian 13) and WebAssembly, and ther
     - Doxygen
     - `clang-format`
     - `clang-tidy`
+    - `libxml2` (for [`ParserStressTest.cpp`](./examples/ParserStressTest.cpp))
+    - `libjson-c` (for [`ParserStressTest.cpp`](./examples/ParserStressTest.cpp))
     - [quom](https://github.com/Viatorus/quom)
 
 ### Quick Start

@@ -16,6 +16,7 @@
  * @example GeneratorFormats.cpp
  * @example Markdown.cpp
  * @example Misc.cpp
+ * @example ParserStressTest.cpp
  * @example Source.cpp
  */
 

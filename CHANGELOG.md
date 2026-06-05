@@ -1357,6 +1357,7 @@ void lpsm_SourceDestroy(lpsm_SourceHandle);
 - New examples:
 
 ```
+ParserStressTest.cpp
 WebInterface.html
 ```
 
