@@ -1358,6 +1358,7 @@ void lpsm_SourceDestroy(lpsm_SourceHandle);
 
 ```
 ParserStressTest.cpp
+FontViewer.html
 WebInterface.html
 ```
 

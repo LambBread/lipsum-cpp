@@ -12,6 +12,7 @@
  *
  * @example JSBinding.html
  * @example WebInterface.js
+ * @example FontViewer.html
  */
 
 #ifdef __EMSCRIPTEN__

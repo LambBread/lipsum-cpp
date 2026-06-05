@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lipsum-cpp font viewer example</title>
+    <style>
+        #content5
+        {
+            font-size: 5em;
+        }
+        #content4
+        {
+            font-size: 4em;
+        }
+        #content3
+        {
+            font-size: 3em;
+        }
+        #content2
+        {
+            font-size: 2em;
+        }
+        #content1
+        {
+            font-size: 1em;
+        }
+        #content0
+        {
+            font-size: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <input id="font" type="text" value="serif">
+    <button id="button">Run</button>
+    <div id="content5"></div>
+    <div id="content4"></div>
+    <div id="content3"></div>
+    <div id="content2"></div>
+    <div id="content1"></div>
+    <div id="content0"></div>
+    <script src="lipsum.js"></script>
+    <script>
+        createLipsumCpp().then(Module =>
+        {  
+            const gen = new Module.lpsm_Generator();
+            gen.change_setting("frag", 1, 2);
+            gen.change_setting("word", 3, 6);
+            const button = document.querySelector("#button");
+            button.addEventListener("click", function()
+            {
+                for(let i = 0; i <= 5; ++i)
+                {
+                    document.querySelector(`#content${i}`).textContent = 
+                        gen.sentence(1, Module.lpsm_GeneratorFlags.NO_USELIPSUM.value);
+                    document.querySelector(`#content${i}`).setAttribute("style", 
+                        `font-family: ${document.querySelector('#font').value};`);
+                }
+            });
+            button.click();
+        });
+    </script>
+</body>
+</html>
