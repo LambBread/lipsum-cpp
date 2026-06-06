@@ -24,6 +24,22 @@
 
 #    include "lipsumc/binded.h"
 
+// NOLINTBEGIN
+/**
+ * @brief Types of methods used in lpsm_CountParagraphs()
+ *
+ * Types of methods used in lpsm_CountParagraphs(). LPSM_CPM_PLAIN is counting
+ * plain text, LPSM_CPM_MARKDOWN is counting Markdown or HTML, and LPSM_CPM_HTML
+ * is counting HTML explicitly.
+ */
+typedef enum lpsm_CountParaMethod
+{
+    LPSM_CPM_PLAIN = 0,
+    LPSM_CPM_MARKDOWN,
+    LPSM_CPM_HTML
+} lpsm_CountParaMethod;
+// NOLINTEND
+
 #    ifdef __cplusplus
 extern "C"
 {
@@ -97,12 +113,12 @@ extern "C"
      * newlines in Markdown/HTML strings, and elements in HTML strings.
      *
      * @param str The string inputted.
-     * @param format The format the string is in. Valid options include
-     * 0 (non-formatted), 1 (Markdown/HTML), and 2. (HTML)
+     * @param format The format the string is in.
      *
      * @return int The number of paragraphs.
      */
-    LIPSUMC_API int lpsm_CountParagraphs(const char* str, int format);
+    LIPSUMC_API int lpsm_CountParagraphs(const char*          str,
+                                         lpsm_CountParaMethod format);
 
     /**
      * @brief Delete a string returned by a function.

@@ -68,6 +68,10 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .value("ITALIC", lpsm::ITALIC)
             .value("ORDERED", lpsm::ORDERED)
             .value("UNORDERED", lpsm::UNORDERED);
+    enum_<lpsm::CountParaMethod>("lpsm_CountParaMethod")
+            .value("Plain", lpsm::CountParaMethod::Plain)
+            .value("Markdown", lpsm::CountParaMethod::Markdown)
+            .value("HTML", lpsm::CountParaMethod::HTML);
 
     constant("LIPSUM_CPP_VERSION", std::string(LIPSUM_CPP_VERSION));
     constant("LIPSUM_CPP_VERSION_MAJOR", LIPSUM_CPP_VERSION_MAJOR);

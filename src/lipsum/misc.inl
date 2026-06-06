@@ -154,21 +154,21 @@ namespace lipsum
         return res;
     }
 
-    int CountParagraphs(const std::string& str, int format)
+    int CountParagraphs(const std::string& str, CountParaMethod format)
     {
         switch (format)
         {
-            case 0:
+            case CountParaMethod::Plain:
             {
                 return static_cast<int>(
                         std::count(str.begin(), str.end(), '\t'));
             }
-            case 1:
+            case CountParaMethod::Markdown:
             {
                 int count = LipsumMiscInlFind(0, str, "\n\n");
                 return count;
             }
-            case 2:
+            case CountParaMethod::HTML:
             {
                 int count = LipsumMiscInlFind(0, str, "<p>");
                 count     = LipsumMiscInlFind(count, str, "<ol>");
@@ -184,7 +184,7 @@ namespace lipsum
             default:
             {
                 internal::LogWarn("lpsm::CountParagraphs(): unknown format ",
-                                  format);
+                                  static_cast<int>(format));
                 return 0;
             }
         }

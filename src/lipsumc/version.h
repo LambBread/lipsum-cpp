@@ -61,7 +61,7 @@
  * This macro stores the current abbreviated Git commit ID of lipsum-cpp
  * as of the last time scripts/version.cmake was ran.
  */
-#    define LIPSUM_CPP_VERSION_COMMIT_C "2f21997"
+#    define LIPSUM_CPP_VERSION_COMMIT_C "c3b32fe"
 
 /**
  * @brief The current version of lipsum-cpp, to the Git commit.
@@ -71,7 +71,7 @@
  * This macro stores the current version of lipsum-cpp with the abbreviated Git
  * commit ID and date as of the last time scripts/version.cmake was ran.
  */
-#    define LIPSUM_CPP_VERSION_FULL_C "0.5.0-dev+2f21997-26060502"
+#    define LIPSUM_CPP_VERSION_FULL_C "0.5.0-dev+c3b32fe-26060621"
 
 /**
  * @brief The time lipsum-cpp was last edited.
@@ -81,7 +81,7 @@
  * This macro stores the current time in UTC as of the last time
  * scripts/version.cmake was ran, in the format YYYY-MM-DD HH:MM:SS UTC.
  */
-#    define LIPSUM_CPP_VERSION_TIME_C "2026-06-05 02:35:02 UTC"
+#    define LIPSUM_CPP_VERSION_TIME_C "2026-06-06 21:59:29 UTC"
 
 /**
  * @brief Whether lipsum-cpp is a development build.
@@ -101,7 +101,7 @@
  * This macro stores the current date in UTC as of the last time
  * scripts/version.cmake was ran, in the format YYMMDDHH.
  */
-#    define LIPSUM_CPP_VERSION_DATE_C "26060502"
+#    define LIPSUM_CPP_VERSION_DATE_C "26060621"
 
 // NOLINTEND(modernize-macro-to-enum)
 #endif

@@ -46,7 +46,7 @@ constexpr int MAX_SENT       = 8;
 constexpr int MIN_PARA       = 1;
 constexpr int MAX_PARA       = 4;
 constexpr int NUM_BENCHMARKS = 70;
-constexpr int BENCHMARK_NUM  = 1000000;
+constexpr int BENCHMARK_NUM  = 1'000'000;
 
 static void LogTestFailure(const std::string& test)
 {
@@ -143,7 +143,7 @@ static void Test_sentence_count_equal(lpsm::Generator& gen)
 static void Test_paragraph_count_in_bounds(lpsm::Generator& gen)
 {
     std::string checking = gen.text();
-    int         numParas = lpsm::CountParagraphs(checking, 0);
+    int         numParas = lpsm::CountParagraphs(checking);
     if (numParas < MIN_PARA || numParas > MAX_PARA)
     {
         LogTestFailure("paragraph_count_in_bounds");
@@ -153,7 +153,7 @@ static void Test_paragraph_count_in_bounds(lpsm::Generator& gen)
 static void Test_paragraph_count_equal(lpsm::Generator& gen)
 {
     std::string checking = gen.paragraph(20);
-    int         numParas = lpsm::CountParagraphs(checking, 0);
+    int         numParas = lpsm::CountParagraphs(checking);
     if (numParas != 20)
     {
         LogTestFailure("paragraph_count_equal");
@@ -173,7 +173,8 @@ static void Test_md_sentence_count_in_bounds(lpsm::Generator& gen)
 static void Test_md_paragraph_count_equal(lpsm::Generator& gen)
 {
     std::string checking = gen.md_paragraph(50);
-    int         numParas = lpsm::CountParagraphs(checking, 1);
+    int         numParas =
+            lpsm::CountParagraphs(checking, lpsm::CountParaMethod::Markdown);
     if (numParas != 50)
     {
         LogTestFailure("md_paragraph_count_equal");
@@ -183,7 +184,8 @@ static void Test_md_paragraph_count_equal(lpsm::Generator& gen)
 static void Test_md_text_count_equal(lpsm::Generator& gen)
 {
     std::string checking = gen.md_text(100);
-    int         numElems = lpsm::CountParagraphs(checking, 1);
+    int         numElems =
+            lpsm::CountParagraphs(checking, lpsm::CountParaMethod::Markdown);
     if (numElems != 100)
     {
         LogTestFailure("md_text_count_equal");

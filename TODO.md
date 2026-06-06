@@ -102,15 +102,16 @@
 - [x] Move most of the free functions' logic into `lpsm::Generator` (0.5.0)
 - [x] Run benchmarks on low-end computer (0.5.0)
 - [x] Add seed options by moving random number generation functions into `lpsm::Generator` (0.5.0)
+- [x] Fix lack of randomness in C wrapper (using seed 0?) (0.5.0)
 - [x] Add more practical examples (0.5.0 WIP)
 
 ## Upcoming
 
-- [ ] Switch built-in lorem-ipsum source names to enums (planned 0.5.0)
-- [ ] YAML/TOML? (potentially 0.5.1)
+- [ ] Add warnings in Doxygen comments for C wrapper `char*` functions (planned 0.5.0)
 - [ ] Email generation (planned 0.5.1)
 - [ ] Case slug generation, e.g. `camelCase`, `PascalCase`, `snake_case` (planned 0.5.1)
 - [ ] Code block generation (planned 0.5.1)
-- [ ] SWIG bindings?
+- [ ] YAML/TOML? (potentially 0.5.2)
+- [ ] SWIG bindings? (potentially 0.5.2)
 - [ ] Stabilize API and release 1.0.0
 

@@ -59,13 +59,32 @@ extern "C"
      * lpsm_GeneratorDestroy().
      *
      * @param path The filepath or name of the lorem ipsum source.
-     * @param seed The seed specified. If equal to 0, use a random seed.
      *
      * @return lpsm_GeneratorHandle The lipsum::Generator.
      *
      * @sa lipsum::Source::load
      */
-    LIPSUMC_API lpsm_GeneratorHandle lpsm_Generator(const char* path, int seed);
+    LIPSUMC_API lpsm_GeneratorHandle lpsm_Generator(const char* path);
+
+    /**
+     * @brief Create a lipsum::Generator
+     *
+     * @since 0.4.4
+     *
+     * This function creates a pointer pointing to a lipsum::Generator.
+     *
+     * @warning The lpsm_GeneratorHandle must be manually deleted with
+     * lpsm_GeneratorDestroy().
+     *
+     * @param path The filepath or name of the lorem ipsum source.
+     * @param seed The seed specified.
+     *
+     * @return lpsm_GeneratorHandle The lipsum::Generator.
+     *
+     * @sa lipsum::Source::load
+     */
+    LIPSUMC_API lpsm_GeneratorHandle lpsm_GeneratorSeeded(const char* path,
+                                                          int         seed);
 
     /**
      * @brief Delete a lipsum::Generator

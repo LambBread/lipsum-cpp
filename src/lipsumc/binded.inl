@@ -21,18 +21,17 @@
  * ----------------
  */
 
-extern "C" lpsm_GeneratorHandle lpsm_Generator(const char* path, int seed)
+extern "C" lpsm_GeneratorHandle lpsm_Generator(const char* path)
 {
-    lpsm::Generator* gen;
-    if (seed == 0)
-    {
-        gen = new lpsm::Generator(path);
-    }
-    else
-    {
-        gen = new lpsm::Generator(path, seed);
-    }
+    auto* gen = new lpsm::Generator(path, 0);
+    gen->load_seed(std::random_device{}());
     return (reinterpret_cast<lpsm_GeneratorHandle>(gen));
+}
+
+extern "C" lpsm_GeneratorHandle lpsm_GeneratorSeeded(const char* path, int seed)
+{
+    auto* gen = new lpsm::Generator(path, seed);
+    return reinterpret_cast<lpsm_GeneratorHandle>(gen);
 }
 
 extern "C" void lpsm_GeneratorDestroy(lpsm_GeneratorHandle handle)

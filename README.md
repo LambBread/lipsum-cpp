@@ -13,11 +13,12 @@ UI testing, benchmarking Markdown/HTML/XML/JSON parser libraries, and anywhere p
 ## Features
 
 - Header-only (also possible to use an amalgamated single-header `lipsum.hpp`)
-- Zero third-party dependencies outside of build dependencies
-- Customizable number of paragraphs, sentences, sentence fragments, and words
-- Multi-source lorem-ipsum generation including built-in lorem-ipsum, cat-ipsum, dog-ipsum, and corporate-ipsum
 - Extremely fast and very lightweight (see [`Benchmarks`](#benchmarks) section)
+- Zero third-party dependencies outside of build dependencies
+- Multi-source lorem-ipsum generation including built-in lorem-ipsum, cat-ipsum, dog-ipsum, 
+  and corporate-ipsum as well as custom sources
 - Markdown, HTML, XML, and JSON generation
+- Customizable number of paragraphs, sentences, sentence fragments, and words
 - CLI tool for integration in projects
 - Extensive documentation via Doxygen
 - C++, C, and JavaScript support (static/shared library, wrapper, and Emscripten module builds supported)

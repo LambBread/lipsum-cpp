@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    lpsm_GeneratorHandle gen = lpsm_Generator("dog", 0);
+    lpsm_GeneratorHandle gen = lpsm_Generator("dog");
 
     // Change setting to 6-9 words per sentence fragment.
     lpsm_Generator_change_setting(gen, "word", 6, 9);

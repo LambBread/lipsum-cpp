@@ -1204,6 +1204,7 @@ char* lpsm_Generator_html_text(lpsm_GeneratorHandle, int);
 
 ```cpp
 enum lpsm::GeneratorFlags;
+enum class lpsm::CountParaMethod;
 lpsm::Generator::Generator(int);
 lpsm::Generator::Generator(const std::string&, int);
 std::string lpsm::Generator::single_sentence(const lpsm::ArgVec2&, const lpsm::ArgVec2&); // private
@@ -1229,6 +1230,8 @@ std::string lpsm::Generator::json_value(int, int);
 #define LPSM_ITALIC
 #define LPSM_ORDERED
 #define LPSM_UNORDERED
+typedef enum lpsm_CountParaMethod lpsm_CountParaMethod;
+lpsm_GeneratorHandle lpsm_GeneratorSeeded(const char*, int);
 char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int, int);
 void lpsm_Generator_load_seed(lpsm_GeneratorHandle, int);
 ```
@@ -1242,11 +1245,13 @@ std::string lpsm::Source::random_word(std::mt19937&) const;
 // from std::string lpsm::Source::random_word() const;
 std::string lpsm::Generator::json(int, int, bool);
 // from std::string lpsm::Generator::json(int, bool)
+std::string lpsm::CountParagraphs(const std::string&, lpsm::CountParaMethod);
+// from std::string lpsm::CountParagraphs(const std::string&, int)
 
-lpsm_GeneratorHandle lpsm_Generator(const char*, int);
-// from lpsm_GeneratorHandle lpsm_Generator(const char*)
 char* lpsm_Generator_json(lpsm_GeneratorHandle, int, int, bool);
 // from std::string lpsm_Generator_json(lpsm_GeneratorHandle, int, bool)
+char* lpsm_CountParagraphs(const char*, lpsm_CountParaMethod);
+// from char* lpsm_CountParagraphs(const char*, int)
 ```
 
 - Removed features:
