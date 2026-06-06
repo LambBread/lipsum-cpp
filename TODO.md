@@ -102,11 +102,15 @@
 - [x] Move most of the free functions' logic into `lpsm::Generator` (0.5.0)
 - [x] Run benchmarks on low-end computer (0.5.0)
 - [x] Add seed options by moving random number generation functions into `lpsm::Generator` (0.5.0)
+- [x] Add more practical examples (0.5.0 WIP)
 
 ## Upcoming
 
-- [ ] Add practical examples (planned 0.5.0)
-- [ ] YAML/TOML? (maybe 0.5.x?)
-- [ ] SWIG bindings????
+- [ ] Switch built-in lorem-ipsum source names to enums (planned 0.5.0)
+- [ ] YAML/TOML? (potentially 0.5.1)
+- [ ] Email generation (planned 0.5.1)
+- [ ] Case slug generation, e.g. `camelCase`, `PascalCase`, `snake_case` (planned 0.5.1)
+- [ ] Code block generation (planned 0.5.1)
+- [ ] SWIG bindings?
 - [ ] Stabilize API and release 1.0.0
 
