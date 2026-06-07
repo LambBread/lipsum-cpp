@@ -188,7 +188,7 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h
 #ifndef LIPSUMC_VERSION_H
 #define LIPSUMC_VERSION_H
 
-//NOLINTBEGIN(modernize-macro-to-enum)
+//NOLINTBEGIN
 
 /**
  * @brief The current version of lipsum-cpp.
@@ -275,13 +275,13 @@ file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h
 */
 #define LIPSUM_CPP_VERSION_DATE_C \"${LPSM_DATE_NOW}\"
 
-//NOLINTEND(modernize-macro-to-enum)
+//NOLINTEND
  #endif
  ")
 
  file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
 "PROJECT_NAME = \"lipsum-cpp\"
-PROJECT_BRIEF = \"A library written in C++ for generating sample text.\"
+PROJECT_BRIEF = ${PROJECT_DESCRIPTION}
 PROJECT_NUMBER = \"${LPSM_VERSION}\"
 INPUT = src
 EXAMPLE_PATH = examples/
@@ -294,4 +294,5 @@ WARN_IF_DOC_ERROR = YES
 QUIET = YES
 WARNINGS = YES
 EXTRACT_PRIVATE = YES
+ALIASES += \"cstrnote=@note This function returns a heap-allocated char* which should be deleted with lpsm_DeleteString().^^\"
 ")

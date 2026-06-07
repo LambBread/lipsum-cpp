@@ -58,6 +58,8 @@ extern "C"
      * Returns the sentence "Lorem ipsum dolor sit amet, consectetur adipiscing
      * elit."
      *
+     * @cstrnote
+     *
      * @return char* The default Lorem Ipsum sentence.
      */
     LIPSUMC_API char* lpsm_GenerateDefaultLipsumSentence(void);
@@ -127,6 +129,10 @@ extern "C"
      *
      * Since pointers allocated with new[] cannot be deallocated with free(),
      * this function handles the deallocation.
+     *
+     * @warning Do not call this function twice on the same string or use the
+     * string after deleting, as that would cause a double free or
+     * use-after-free and potentially crash the program.
      *
      * @param str The string to delete.
      */

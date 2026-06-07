@@ -103,11 +103,11 @@
 - [x] Run benchmarks on low-end computer (0.5.0)
 - [x] Add seed options by moving random number generation functions into `lpsm::Generator` (0.5.0)
 - [x] Fix lack of randomness in C wrapper (using seed 0?) (0.5.0)
+- [x] Add warnings in Doxygen comments for C wrapper `char*` functions (0.5.0)
 - [x] Add more practical examples (0.5.0 WIP)
 
 ## Upcoming
 
-- [ ] Add warnings in Doxygen comments for C wrapper `char*` functions (planned 0.5.0)
 - [ ] Email generation (planned 0.5.1)
 - [ ] Case slug generation, e.g. `camelCase`, `PascalCase`, `snake_case` (planned 0.5.1)
 - [ ] Code block generation (planned 0.5.1)

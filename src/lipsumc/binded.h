@@ -55,7 +55,7 @@ extern "C"
      *
      * This function creates a pointer pointing to a lipsum::Generator.
      *
-     * @warning The lpsm_GeneratorHandle must be manually deleted with
+     * @note The lpsm_GeneratorHandle should be manually deleted with
      * lpsm_GeneratorDestroy().
      *
      * @param path The filepath or name of the lorem ipsum source.
@@ -69,11 +69,11 @@ extern "C"
     /**
      * @brief Create a lipsum::Generator
      *
-     * @since 0.4.4
+     * @since 0.5.0
      *
      * This function creates a pointer pointing to a lipsum::Generator.
      *
-     * @warning The lpsm_GeneratorHandle must be manually deleted with
+     * @note The lpsm_GeneratorHandle should be manually deleted with
      * lpsm_GeneratorDestroy().
      *
      * @param path The filepath or name of the lorem ipsum source.
@@ -96,7 +96,7 @@ extern "C"
      *
      * @warning Do not call lpsm_GeneratorDestroy on the same handle twice or
      * use the handle after deleting it, as that would be a double-free or
-     * use-after-free.
+     * use-after-free and would potentially crash the program.
      *
      * @param handle The lpsm_GeneratorHandle to delete.
      */
@@ -157,6 +157,8 @@ extern "C"
      *
      * Generate multiple words.
      *
+     * @cstrnote
+     *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param num The number of words.
      *
@@ -172,6 +174,8 @@ extern "C"
      * Generate a sentence fragment. Formerly
      * lpsm_Generator_sentence_fragment().
      *
+     * @cstrnote
+     *
      * @param handle The lpsm_GeneratorHandle to use.
      *
      * @return char* The random sentence fragment.
@@ -184,6 +188,8 @@ extern "C"
      * @since 0.4.4
      *
      * Generate multiple sentences.
+     *
+     * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param num The number of sentences.
@@ -203,6 +209,8 @@ extern "C"
      *
      * Generate multiple paragraphs.
      *
+     * @cstrnote
+     *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param num The number of paragraphs.
      * @param useLipsum Whether "Lorem ipsum..." should start the
@@ -221,6 +229,8 @@ extern "C"
      *
      * Generate a random number of random paragraphs.
      *
+     * @cstrnote
+     *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param useLipsum Whether "Lorem ipsum..." should start the
      * paragraph(s).
@@ -236,6 +246,8 @@ extern "C"
      * @since 0.4.5
      *
      * Generate a random string of text with random characters.
+     *
+     * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param length The number of characters.
@@ -258,6 +270,8 @@ extern "C"
      * by a random TLD, followed by a slash and a random HTML id as a slug
      * separated by hyphens.
      *
+     * @cstrnote
+     *
      * @param handle The lpsm_GeneratorHandle to use.
      *
      * @return char* The URL.
@@ -270,6 +284,8 @@ extern "C"
      * @since 0.4.5
      *
      * Generate a URL with a random word followed by a random TLD.
+     *
+     * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
      *
@@ -285,6 +301,8 @@ extern "C"
      * Generate a sentence fragment with the spaces replaced with
      * the specified separator character.
      *
+     * @cstrnote
+     *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param separator The separator character.
      *
@@ -299,6 +317,8 @@ extern "C"
      * @since 0.4.4
      *
      * Generate multiple paragraphs in Markdown or HTML format.
+     *
+     * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param num The number of paragraphs.
@@ -319,6 +339,8 @@ extern "C"
      *
      * Generate a document in Markdown or HTML format.
      *
+     * @cstrnote
+     *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param numElements The number of elements (paragraph, list, heading)
      * in the document.
@@ -335,6 +357,8 @@ extern "C"
      * @since 0.4.6
      *
      * Generate a header in Markdown or HTML format.
+     *
+     * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param level The level of the heading.
@@ -354,6 +378,8 @@ extern "C"
      * Generate a bold or italic sentence in Markdown or HTML format that is
      * either bold or italic.
      *
+     * @cstrnote
+     *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param isBold Whether the sentence is bold or italic.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
@@ -371,6 +397,8 @@ extern "C"
      *
      * Generate a link in Markdown or HTML format.
      *
+     * @cstrnote
+     *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param useHtml Whether HTML should be outputted instead of Markdown.
      *
@@ -385,6 +413,8 @@ extern "C"
      * @since 0.4.6
      *
      * Generate an ordered or unordered list in Markdown or HTML format.
+     *
+     * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param ordered Whether the list is ordered.
@@ -403,6 +433,8 @@ extern "C"
      *
      * Generate a document in XML format.
      *
+     * @cstrnote
+     *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param choices The number of choices (start element, end element, add
      * data element) that are made.
@@ -418,6 +450,8 @@ extern "C"
      * @since 0.4.4
      *
      * Generate an object or array in JSON format.
+     *
+     * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param depth The current depth of recursion. By default 0.
@@ -439,6 +473,8 @@ extern "C"
      *
      * Generate an object, array, number, string, boolean, or null in JSON
      * format.
+     *
+     * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param depth The current depth of recursion.

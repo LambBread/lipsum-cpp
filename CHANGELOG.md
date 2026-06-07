@@ -1199,6 +1199,7 @@ char* lpsm_Generator_html_text(lpsm_GeneratorHandle, int);
 
 - Move most free function logic into `lpsm::Generator`
 - Add seed options to `lpsm::Generator`
+- Add warnings in Doxygen comments for C wrapper
 - Get benchmarks on a low-end computer
 - New features:
 
