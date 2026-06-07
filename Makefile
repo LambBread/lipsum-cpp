@@ -57,9 +57,9 @@ pkg_: ## Run the final packaging steps, namely copying certain examples and comp
 	cp $(EXAMPLES_DIR)/*.html $(EXAMPLES_DIR)/*.js $(BUILD_DIR)/$(EXAMPLES_DIR)/
 	7z a -tzip -r -mx=9 lipsum-pkg.zip $(PKG_DIR)
 	
-quick_pkg: em_configure version format tidy em_build amalgamate pkg_ ## Build an Emscripten build of the project, running the versioning script, clang-format, clang-tidy, amalgamation, and final packaging steps.
+quick_pkg: em_configure version tidy em_build amalgamate pkg_ ## Build an Emscripten build of the project, running the versioning script, clang-format, clang-tidy, amalgamation, and final packaging steps.
 
-pkg: clean quick_pkg ## Clean the build directory, then make a build with all steps of quick_pkg.
+pkg: full_clean quick_pkg ## Clean the build directory, then make a build with all steps of quick_pkg.
 
 clean: ## Remove the build directory.
 	rm -rf $(BUILD_DIR)
