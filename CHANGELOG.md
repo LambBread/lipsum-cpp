@@ -1195,7 +1195,7 @@ char* lpsm_Generator_html_text(lpsm_GeneratorHandle, int);
 
 ## 0.5.x
 
-### 0.5.0 (2026-06 TBD)
+### 0.5.0 (2026-06-07)
 
 - Move most free function logic into `lpsm::Generator`
 - Add seed options to `lpsm::Generator`
