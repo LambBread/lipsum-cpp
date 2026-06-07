@@ -104,7 +104,7 @@
 - [x] Add seed options by moving random number generation functions into `lpsm::Generator` (0.5.0)
 - [x] Fix lack of randomness in C wrapper (using seed 0?) (0.5.0)
 - [x] Add warnings in Doxygen comments for C wrapper `char*` functions (0.5.0)
-- [x] Add more practical examples (0.5.0 WIP)
+- [x] Add more practical examples (0.5.0)
 
 ## Upcoming
 
@@ -113,5 +113,5 @@
 - [ ] Code block generation (planned 0.5.1)
 - [ ] YAML/TOML? (potentially 0.5.2)
 - [ ] SWIG bindings? (potentially 0.5.2)
-- [ ] Stabilize API and release 1.0.0
+- [ ] Release 1.0.0
 

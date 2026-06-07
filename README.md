@@ -45,6 +45,7 @@ lipsum-cpp has been mainly tested on Linux (Debian 13) and WebAssembly, and ther
     - `clang-tidy`
     - `libxml2` (for [`ParserStressTest.cpp`](./examples/ParserStressTest.cpp))
     - `libjson-c` (for [`ParserStressTest.cpp`](./examples/ParserStressTest.cpp))
+    - `zlib` (for [`CompressionBenchmarks.cpp`](./examples/CompressionBenchmarks.cpp))
     - [quom](https://github.com/Viatorus/quom)
 
 ### Quick Start

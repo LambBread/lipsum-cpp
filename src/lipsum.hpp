@@ -12,6 +12,7 @@
  * @copyright Copyright (c) 2026 LambBread
  *
  * @example Advanced.cpp
+ * @example CompressionBenchmarks.cpp
  * @example Generator.cpp
  * @example GeneratorFormats.cpp
  * @example Markdown.cpp

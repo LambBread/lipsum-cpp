@@ -1363,6 +1363,7 @@ void lpsm_SourceDestroy(lpsm_SourceHandle);
 - New examples:
 
 ```
+CompressionBenchmarks.cpp
 ParserStressTest.cpp
 FontViewer.html
 WebInterface.html
