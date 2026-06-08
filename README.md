@@ -192,6 +192,9 @@ int main()
     // Generate a plain URL.
     std::cout << gen.plain_url() << '\n';
 
+    // Generate an email.
+    std::cout << gen.email() << '\n';
+
     // Generate a slug.
     std::cout << gen.slug('_') << '\n';
 

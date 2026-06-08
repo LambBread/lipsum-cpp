@@ -294,6 +294,22 @@ extern "C"
     LIPSUMC_API char* lpsm_Generator_plain_url(lpsm_GeneratorHandle handle);
 
     /**
+     * @brief Generate an email.
+     *
+     * @since 0.5.1
+     *
+     * Generate two words separated by a period, with an at-sign and a plain
+     * url.
+     *
+     * @cstrnote
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     *
+     * @return char* The email.
+     */
+    LIPSUMC_API char* lpsm_Generator_email(lpsm_GeneratorHandle handle);
+
+    /**
      * @brief Generate a slug.
      *
      * @since 0.4.5

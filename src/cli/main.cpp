@@ -137,7 +137,7 @@ void Help(const std::string& page)
         std::cout << "      Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.\n\n";
         std::cout << "Subcommands include:\n";
         std::cout << "  help, word, fragment, sentence, paragraph, text,\n";
-        std::cout << "  url, plain_url, slug, md_paragraph, md_text, md_header,\n";
+        std::cout << "  url, plain_url, email, slug, md_paragraph, md_text, md_header,\n";
         std::cout << "  md_emphasis, md_link, md_list, xml, json, json_value\n\n";
         std::cout << "For more information, type lpsmcpp-cli help <subcommand>.\n";
     }
@@ -185,6 +185,10 @@ void Help(const std::string& page)
     if (page == "plain_url")
     {
         std::cout << "  plain_url - Generate a plain URL.\n\n";
+    }
+    if (page == "email")
+    {
+        std::cout << "  email - Generate an email.\n";
     }
     if (page == "slug")
     {
@@ -351,12 +355,13 @@ int main(int argc, char** argv)
 
     // clang-format off
     SINGLE_ARG_SUBCOMMAND(word, int, 1)
-    else NO_ARG_SUBCOMMAND(fragment) 
-    else NUM_AND_USELIPSUM_SUBCOMMAND(sentence) 
-    else NUM_AND_USELIPSUM_SUBCOMMAND(paragraph) 
-    else SINGLE_ARG_SUBCOMMAND(text, bool, true) 
+    else NO_ARG_SUBCOMMAND(fragment)
+    else NUM_AND_USELIPSUM_SUBCOMMAND(sentence)
+    else NUM_AND_USELIPSUM_SUBCOMMAND(paragraph)
+    else SINGLE_ARG_SUBCOMMAND(text, bool, true)
     else NO_ARG_SUBCOMMAND(url)
-    else NO_ARG_SUBCOMMAND(plain_url) 
+    else NO_ARG_SUBCOMMAND(plain_url)
+    else NO_ARG_SUBCOMMAND(email)
     else SINGLE_ARG_SUBCOMMAND(slug, int, '-') 
     else SINGLE_ARG_SUBCOMMAND(xml, int, 30)
     else DOUBLE_ARG_SUBCOMMAND(json_value, int, 0, int, 3)

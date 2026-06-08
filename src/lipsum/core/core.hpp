@@ -3,8 +3,9 @@
  *
  * @brief Core macros for lipsum-cpp
  *
- * This defines constants for the current lipsum-cpp version as well as the
- * shared library macro. This file is under the BSD Zero-Clause License.
+ * This defines the
+ * shared library macro and some utility macros. This file is under the BSD
+ * Zero-Clause License.
  *
  * @copyright Copyright (c) 2026 LambBread
  *
@@ -21,6 +22,17 @@
 #    ifndef __cplusplus
 #        error lipsum.hpp only supports C++, did you mean lipsum.h?
 #    endif
+
+/**
+ * @brief Choose between true or false
+ */
+#    define LPSM_FLIP_COIN random_number(false, true)
+
+/**
+ * @brief Simplify safe cctype usage
+ */
+#    define LPSM_SAFE_CCTYPE(type, func, arg)                                  \
+        (static_cast<type>(func(static_cast<unsigned char>((arg)))))
 
 /**
  * @brief Macro for shared libraries

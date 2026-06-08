@@ -6,9 +6,9 @@ import sys
 from collections import Counter
 
 def count_unique_words(filename):
-    with open(filename, 'r', encoding='utf-8') as f:
+    with open(filename, "r", encoding="utf-8") as f:
         text = f.read()
-    words = re.findall(r'\b\w+\b', text.lower())
+    words = re.findall(r"\b[\w'-_]+\b", text.lower())
     word_counts = Counter(words)
     unique_words = list(word_counts.keys())
     return unique_words

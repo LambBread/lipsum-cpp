@@ -161,8 +161,7 @@ namespace lipsum
             }
         }
         result += ".";
-        result.at(0) = static_cast<char>(
-                std::toupper(static_cast<unsigned char>(result.at(0))));
+        result.at(0) = LPSM_SAFE_CCTYPE(char, std::toupper, result.at(0));
         return result;
     }
 

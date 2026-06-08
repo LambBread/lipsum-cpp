@@ -19,11 +19,6 @@
 #    include "stdincludes.hpp"
 
 /**
- * @brief Choose between true or false
- */
-#    define LPSM_FLIP_COIN random_number(false, true)
-
-/**
  * @namespace lipsum::internal
  *
  * @brief This namespace contains functions only used internally by other

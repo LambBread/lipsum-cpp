@@ -1382,3 +1382,16 @@ GenerateParagraphs.cpp
 GenerateText.cpp
 Formats.cpp
 ```
+
+### 0.5.1 (2026-06 TBD)
+
+- Count apostrophes as part of a word in multi-source generation
+- Move `LPSM_FLIP_COIN` to `core.hpp`
+- New features:
+
+```cpp
+std::string lpsm::Generator::email();
+#define LPSM_SAFE_CCTYPE()
+
+char* lpsm_Generator_email(lpsm_GeneratorHandle);
+```

@@ -97,11 +97,11 @@ namespace lipsum
         {
             if (i == 0 && useLipsum)
             {
-                result += single_paragraph(true);
+                result += single_paragraph(USELIPSUM);
             }
             else
             {
-                result += single_paragraph(false);
+                result += single_paragraph(NO_USELIPSUM);
             }
         }
         return result;
@@ -147,6 +147,12 @@ namespace lipsum
     std::string Generator::plain_url()
     {
         return std::string("lpsmcpp-") + m_Source.random_word(m_Gen) + tld();
+    }
+
+    std::string Generator::email()
+    {
+        return m_Source.random_word(m_Gen) + std::string(".") +
+               m_Source.random_word(m_Gen) + std::string("@") + plain_url();
     }
 
     std::string Generator::slug(char separator)

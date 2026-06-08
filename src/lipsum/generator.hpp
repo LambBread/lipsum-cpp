@@ -279,6 +279,18 @@ namespace lipsum
         std::string plain_url();
 
         /**
+         * @brief Generate an email.
+         *
+         * @since 0.5.1
+         *
+         * Generate two words separated by a period, with an at-sign and a plain
+         * url.
+         *
+         * @return std::string The email.
+         */
+        std::string email();
+
+        /**
          * @brief Generate a slug.
          *
          * @since 0.4.5

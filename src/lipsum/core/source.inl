@@ -40,12 +40,10 @@ namespace lipsum
             LPSM_SOURCE_CUSTOM_IPSUM(CORPO_IPSUM, "corpo")
             std::uniform_int_distribution<size_t> dist(0,
                                                        LIPSUM_VEC.size() - 1);
-            // idx = internal::RandomNumber<int>(0, LIPSUM_VEC.size() - 1);
             return {LIPSUM_VEC.at(dist(gen))};
         }
 
         std::uniform_int_distribution<size_t> dist(0, m_Words.size() - 1);
-        // idx = internal::RandomNumber<int>(0, m_Words.size() - 1);
         return m_Words.at(dist(gen));
     }
 
@@ -86,12 +84,10 @@ namespace lipsum
         }
         while (file.get(letter))
         {
-            if (static_cast<bool>(
-                        std::isalnum(static_cast<unsigned char>(letter))) ||
-                letter == '_')
+            if (LPSM_SAFE_CCTYPE(bool, std::isalnum, letter) || letter == '_' ||
+                letter == '-' || letter == '\'')
             {
-                word += static_cast<char>(
-                        std::tolower(static_cast<unsigned char>(letter)));
+                word += LPSM_SAFE_CCTYPE(char, std::tolower, letter);
             }
             else if (!word.empty())
             {

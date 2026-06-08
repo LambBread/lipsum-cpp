@@ -40,11 +40,11 @@ namespace lipsum
         {
             if (i == 0 && useLipsum)
             {
-                ret += single_md_paragraph(true, useHtml);
+                ret += single_md_paragraph(USELIPSUM, useHtml);
             }
             else
             {
-                ret += single_md_paragraph(false, useHtml);
+                ret += single_md_paragraph(NO_USELIPSUM, useHtml);
             }
         }
         return ret;
@@ -65,7 +65,7 @@ namespace lipsum
         }
         if (numElements >= 2)
         {
-            ret += single_md_paragraph(false, useHtml);
+            ret += single_md_paragraph(NO_USELIPSUM, useHtml);
         }
 
         numElements -= 2;
@@ -112,8 +112,7 @@ namespace lipsum
         std::string words    = word(numWords);
         if (!words.empty())
         {
-            words.at(0) = static_cast<char>(
-                    std::toupper(static_cast<unsigned char>(words.at(0))));
+            words.at(0) = LPSM_SAFE_CCTYPE(char, std::toupper, words.at(0));
         }
         if (!useHtml)
         {
@@ -361,11 +360,11 @@ namespace lipsum
             }
             case 4:
             {
-                return json(depth, maxDepth, false);
+                return json(depth, maxDepth, ARRAY);
             }
             default:
             {
-                return json(depth, maxDepth, true);
+                return json(depth, maxDepth, OBJECT);
             }
         }
     }

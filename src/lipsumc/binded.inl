@@ -115,6 +115,12 @@ extern "C" char* lpsm_Generator_plain_url(lpsm_GeneratorHandle handle)
     return ConvertToCstr(ret);
 }
 
+extern "C" char* lpsm_Generator_email(lpsm_GeneratorHandle handle)
+{
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->email();
+    return ConvertToCstr(ret);
+}
+
 extern "C" char* lpsm_Generator_slug(lpsm_GeneratorHandle handle,
                                      char                 separator)
 {
