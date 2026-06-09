@@ -72,7 +72,7 @@ namespace lipsum
      *
      * @since 0.4.6
      *
-     * Count the number of commas, semicolons, and hyphens in a string,
+     * Count the number of commas, semicolons, hyphens, and colons in a string,
      * excluding usage in Markdown. (i.e. hyphen at start of line, or in
      * parentheses)
      *
@@ -87,8 +87,8 @@ namespace lipsum
      *
      * @since 0.3.0
      *
-     * Count the number of periods in a string, ignoring usage in Markdown URLs.
-     * (i.e. in parentheses)
+     * Count the number of periods, exclamation marks, and question marks in a
+     * string, ignoring usage in Markdown URLs. (i.e. in parentheses)
      *
      * @param str The string inputted.
      *

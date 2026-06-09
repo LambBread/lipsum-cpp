@@ -144,8 +144,13 @@ namespace lipsum
     std::string Generator::single_sentence(const ArgVec2& wordArg,
                                            const ArgVec2& frag)
     {
-        static const std::vector<int>         weights = {88, 9, 3};
-        static const std::vector<std::string> mapped  = {", ", "; ", " - "};
+        static const std::vector<int>         weights        = {88, 7, 3, 2};
+        static const std::vector<int>         weightsEndMark = {80, 15, 5};
+        static const std::vector<std::string> mapped         = {", ",
+                                                                "; ",
+                                                                ": ",
+                                                                " - "};
+        static const std::vector<std::string> mappedEndMark  = {".", "?", "!"};
         std::string                           result;
         int                                   words;
         int                                   frags = frag.roll(m_Gen);
@@ -160,7 +165,7 @@ namespace lipsum
                 result += mapped.at(check);
             }
         }
-        result += ".";
+        result += mappedEndMark.at(weighted_random_idx(weightsEndMark));
         result.at(0) = LPSM_SAFE_CCTYPE(char, std::toupper, result.at(0));
         return result;
     }

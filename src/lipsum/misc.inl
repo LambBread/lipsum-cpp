@@ -118,6 +118,10 @@ namespace lipsum
                 {
                     ++res;
                 }
+                if (letter == ':')
+                {
+                    ++res;
+                }
                 if (letter == '.')
                 {
                     ++res;
@@ -146,7 +150,8 @@ namespace lipsum
             {
                 --urlNum;
             }
-            if (letter == '.' && urlNum <= 0)
+            if ((letter == '.' || letter == '?' || letter == '!') &&
+                urlNum <= 0)
             {
                 ++res;
             }

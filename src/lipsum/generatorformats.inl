@@ -69,17 +69,22 @@ namespace lipsum
         }
 
         numElements -= 2;
-        int  rand;
+        int  lastRand = 0;
+        int  rand     = 0;
         bool ordered;
         while (numElements > 0)
         {
-            rand    = random_number<int>(0, 2);
+            rand = random_number<int>(0, 2);
+            if ((lastRand == 1 && rand == 1) || numElements == 1)
+            {
+                rand = 0;
+            }
             ordered = LPSM_FLIP_COIN;
             switch (rand)
             {
                 case 0:
                 {
-                    ret += single_md_paragraph(false, useHtml);
+                    ret += single_md_paragraph(NO_USELIPSUM, useHtml);
                     break;
                 }
                 case 1:
@@ -94,6 +99,7 @@ namespace lipsum
                 }
             }
             --numElements;
+            lastRand = rand;
         }
         return ret;
     }

@@ -1386,6 +1386,9 @@ Formats.cpp
 ### 0.5.1 (2026-06 TBD)
 
 - Count apostrophes as part of a word in multi-source generation
+- Add exclamation marks, question marks, colons in sentences
+- Make `lpsm::Generator::md_text()` generate more 'realistic' Markdown
+  headers (i.e. avoiding repeat headers & headers at end)
 - Move `LPSM_FLIP_COIN` to `core.hpp`
 - New features:
 

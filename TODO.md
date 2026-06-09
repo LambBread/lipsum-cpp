@@ -107,12 +107,12 @@
 - [x] Add more practical examples (0.5.0)
 - [x] Email generation (0.5.1)
 - [x] Count apostrophes and hyphens as part of words in `split.py` (0.5.1)
+- [x] Exclamation marks, question marks, colons in sentences (0.5.1)
 
 ## Upcoming
 
 - [ ] Case slug generation, e.g. `camelCase`, `PascalCase`, `snake_case` (planned 0.5.1)
 - [ ] Code block generation (planned 0.5.1)
-- [ ] Exclamation marks, question marks, colons in sentences (planned 0.5.1)
 - [ ] Less random generation (i.e. using common word sequences from sources) (planned 0.5.1/0.5.2)
 - [ ] YAML/TOML? (potentially 0.5.2)
 - [ ] SWIG bindings? (potentially 0.5.2)
