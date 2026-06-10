@@ -60,7 +60,7 @@ inline constexpr int LIPSUM_CPP_VERSION_PATCH = 1;
  * This constant stores the current abbreviated Git commit ID of lipsum-cpp
  * as of the last time scripts/version.cmake was ran.
  */
-inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = "dc7833c";
+inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = "4a89575";
 
 /**
  * @brief The current version of lipsum-cpp, to the Git commit.
@@ -71,7 +71,7 @@ inline constexpr const char* LIPSUM_CPP_VERSION_COMMIT = "dc7833c";
  * Git commit ID and date as of the last time scripts/version.cmake was ran.
  */
 inline constexpr const char* LIPSUM_CPP_VERSION_FULL =
-        "0.5.1-dev+dc7833c-26060903";
+        "0.5.1-dev+4a89575-26061003";
 
 /**
  * @brief The time lipsum-cpp was last edited.
@@ -82,7 +82,7 @@ inline constexpr const char* LIPSUM_CPP_VERSION_FULL =
  * scripts/version.cmake was ran, in the format YYYY-MM-DD HH:MM:SS UTC.
  */
 inline constexpr const char* LIPSUM_CPP_VERSION_TIME =
-        "2026-06-09 03:10:00 UTC";
+        "2026-06-10 03:01:31 UTC";
 
 /**
  * @brief Whether lipsum-cpp is a development build.
@@ -102,5 +102,5 @@ inline constexpr bool LIPSUM_CPP_VERSION_ISDEV = true;
  * This constant stores the current date in UTC as of the last time
  * scripts/version.cmake was ran, in the format YYMMDDHH.
  */
-inline constexpr const char* LIPSUM_CPP_VERSION_DATE = "26060903";
+inline constexpr const char* LIPSUM_CPP_VERSION_DATE = "26061003";
 #endif

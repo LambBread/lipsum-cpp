@@ -328,11 +328,12 @@ extern "C"
                                           char                 separator);
 
     /**
-     * @brief Generate a Markdown paragraph.
+     * @brief Generate Markdown or HTML paragraphs.
      *
      * @since 0.4.4
      *
-     * Generate multiple paragraphs in Markdown or HTML format.
+     * Generate multiple paragraphs in Markdown or HTML format. Formerly known
+     * as lpsm_Generator_md_paragraph().
      *
      * @cstrnote
      *
@@ -343,17 +344,18 @@ extern "C"
      *
      * @return char* The random Markdown paragraph.
      */
-    LIPSUMC_API char* lpsm_Generator_md_paragraph(lpsm_GeneratorHandle handle,
-                                                  int                  num,
-                                                  bool useLipsum,
-                                                  bool useHtml);
+    LIPSUMC_API char* lpsm_Generator_fmt_paragraph(lpsm_GeneratorHandle handle,
+                                                   int                  num,
+                                                   bool useLipsum,
+                                                   bool useHtml);
 
     /**
-     * @brief Generate a Markdown document.
+     * @brief Generate a Markdown or HTML document.
      *
      * @since 0.4.4
      *
-     * Generate a document in Markdown or HTML format.
+     * Generate a document in Markdown or HTML format. Formerly known as
+     * lpsm_Generator_md_text().
      *
      * @cstrnote
      *
@@ -364,15 +366,16 @@ extern "C"
      *
      * @return char* The random Markdown document.
      */
-    LIPSUMC_API char* lpsm_Generator_md_text(lpsm_GeneratorHandle handle,
-                                             int                  numElements,
-                                             bool                 useHtml);
+    LIPSUMC_API char* lpsm_Generator_fmt_text(lpsm_GeneratorHandle handle,
+                                              int                  numElements,
+                                              bool                 useHtml);
     /**
-     * @brief Generate a Markdown header.
+     * @brief Generate a Markdown or HTML header.
      *
      * @since 0.4.6
      *
-     * Generate a header in Markdown or HTML format.
+     * Generate a header in Markdown or HTML format. Formerly known as
+     * lpsm_Generator_md_header().
      *
      * @cstrnote
      *
@@ -382,17 +385,17 @@ extern "C"
      *
      * @return char* The random Markdown header.
      */
-    LIPSUMC_API char* lpsm_Generator_md_header(lpsm_GeneratorHandle handle,
-                                               int                  level,
-                                               bool                 useHtml);
+    LIPSUMC_API char* lpsm_Generator_fmt_header(lpsm_GeneratorHandle handle,
+                                                int                  level,
+                                                bool                 useHtml);
 
     /**
-     * @brief Generate an emphasized Markdown sentence.
+     * @brief Generate an emphasized Markdown or HTML sentence.
      *
      * @since 0.4.6
      *
      * Generate a bold or italic sentence in Markdown or HTML format that is
-     * either bold or italic.
+     * either bold or italic. Formerly known as lpsm_Generator_md_emphasis().
      *
      * @cstrnote
      *
@@ -402,16 +405,17 @@ extern "C"
      *
      * @return char* The random emphasized Markdown sentence.
      */
-    LIPSUMC_API char* lpsm_Generator_md_emphasis(lpsm_GeneratorHandle handle,
-                                                 bool                 isBold,
-                                                 bool                 useHtml);
+    LIPSUMC_API char* lpsm_Generator_fmt_emphasis(lpsm_GeneratorHandle handle,
+                                                  bool                 isBold,
+                                                  bool                 useHtml);
 
     /**
-     * @brief Generate a Markdown link.
+     * @brief Generate a Markdown or HTML link.
      *
      * @since 0.4.6
      *
-     * Generate a link in Markdown or HTML format.
+     * Generate a link in Markdown or HTML format. Formerly known as
+     * lpsm_Generator_md_link().
      *
      * @cstrnote
      *
@@ -420,15 +424,16 @@ extern "C"
      *
      * @return char* The random Markdown link.
      */
-    LIPSUMC_API char* lpsm_Generator_md_link(lpsm_GeneratorHandle handle,
-                                             bool                 useHtml);
+    LIPSUMC_API char* lpsm_Generator_fmt_link(lpsm_GeneratorHandle handle,
+                                              bool                 useHtml);
 
     /**
-     * @brief Generate a Markdown list.
+     * @brief Generate a Markdown or HTML list.
      *
      * @since 0.4.6
      *
      * Generate an ordered or unordered list in Markdown or HTML format.
+     * Formerly known as lpsm_Generator_md_list().
      *
      * @cstrnote
      *
@@ -438,9 +443,9 @@ extern "C"
      *
      * @return char* The random Markdown list.
      */
-    LIPSUMC_API char* lpsm_Generator_md_list(lpsm_GeneratorHandle handle,
-                                             bool                 ordered,
-                                             bool                 useHtml);
+    LIPSUMC_API char* lpsm_Generator_fmt_list(lpsm_GeneratorHandle handle,
+                                              bool                 ordered,
+                                              bool                 useHtml);
 
     /**
      * @brief Generate an XML document.

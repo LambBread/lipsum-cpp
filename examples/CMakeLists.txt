@@ -7,7 +7,6 @@ set(LPSM_EXAMPLES_TARGETS
     Markdown
     Advanced
     Misc
-    Source
 )
 
 # add executable + link to lipsum-cpp for each

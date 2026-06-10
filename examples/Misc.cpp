@@ -31,7 +31,7 @@ int main()
                          "- Foo bar; baz - qux. (This, is not counted.)")
               << '\n';
 
-    std::cout << lpsm::CountParagraphs(gen.md_text(50, true),
+    std::cout << lpsm::CountParagraphs(gen.fmt_text(50, lpsm::HTML),
                                        lpsm::CountParaMethod::Markdown)
               << '\n';
     std::cout << lpsm::CountParagraphs(gen.paragraph(50)) << '\n';

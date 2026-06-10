@@ -309,11 +309,12 @@ namespace lipsum
          */
 
         /**
-         * @brief Generate a Markdown paragraph.
+         * @brief Generate Markdown or HTML paragraphs.
          *
          * @since 0.3.0
          *
-         * Generate multiple paragraphs in Markdown or HTML format.
+         * Generate multiple paragraphs in Markdown or HTML format. Formerly
+         * known as md_paragraph().
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
@@ -324,14 +325,15 @@ namespace lipsum
          * @return std::string The random Markdown paragraphs.
          */
         std::string
-        md_paragraph(int num = 1, bool useLipsum = true, bool useHtml = false);
+        fmt_paragraph(int num = 1, bool useLipsum = true, bool useHtml = false);
 
         /**
-         * @brief Generate a Markdown document.
+         * @brief Generate a Markdown or HTML document.
          *
          * @since 0.3.0
          *
-         * Generate a document in Markdown or HTML format.
+         * Generate a document in Markdown or HTML format. Formerly known as
+         * md_text().
          *
          * @param numElements The number of elements (paragraph, list, heading)
          * in the document. By default 15.
@@ -340,14 +342,15 @@ namespace lipsum
          *
          * @return std::string The random Markdown document.
          */
-        std::string md_text(int numElements = 15, bool useHtml = false);
+        std::string fmt_text(int numElements = 15, bool useHtml = false);
 
         /**
-         * @brief Generate a Markdown header.
+         * @brief Generate a Markdown or HTML header.
          *
          * @since 0.4.6
          *
-         * Generate a header in Markdown or HTML format.
+         * Generate a header in Markdown or HTML format. Formerly known as
+         * md_header().
          *
          * @param level The level of the heading. By default 1.
          * @param useHtml Whether HTML should be outputted instead of Markdown.
@@ -355,15 +358,15 @@ namespace lipsum
          *
          * @return std::string The random Markdown header.
          */
-        std::string md_header(int level = 1, bool useHtml = false);
+        std::string fmt_header(int level = 1, bool useHtml = false);
 
         /**
-         * @brief Generate an emphasized Markdown sentence.
+         * @brief Generate an emphasized Markdown or HTML sentence.
          *
          * @since 0.4.6
          *
          * Generate a bold or italic sentence in Markdown or HTML format that is
-         * either bold or italic.
+         * either bold or italic. Formerly known as md_emphasis().
          *
          * @param isBold Whether the sentence is bold or italic. By default
          * true. (bold)
@@ -372,28 +375,30 @@ namespace lipsum
          *
          * @return std::string The random emphasized Markdown sentence.
          */
-        std::string md_emphasis(bool isBold = true, bool useHtml = false);
+        std::string fmt_emphasis(bool isBold = true, bool useHtml = false);
 
         /**
-         * @brief Generate a Markdown link.
+         * @brief Generate a Markdown or HTML link.
          *
          * @since 0.4.6
          *
-         * Generate a link in Markdown or HTML format.
+         * Generate a link in Markdown or HTML format. Formerly known as
+         * md_link().
          *
          * @param useHtml Whether HTML should be outputted instead of Markdown.
          * By default false.
          *
          * @return std::string The random Markdown link.
          */
-        std::string md_link(bool useHtml = false);
+        std::string fmt_link(bool useHtml = false);
 
         /**
-         * @brief Generate a Markdown list.
+         * @brief Generate a Markdown or HTML list.
          *
          * @since 0.4.6
          *
          * Generate an ordered or unordered list in Markdown or HTML format.
+         * Formerly known as md_list().
          *
          * @param ordered Whether the list is ordered. By default false.
          * @param useHtml Whether HTML should be outputted instead of Markdown.
@@ -401,7 +406,7 @@ namespace lipsum
          *
          * @return std::string The random Markdown list.
          */
-        std::string md_list(bool ordered = false, bool useHtml = false);
+        std::string fmt_list(bool ordered = false, bool useHtml = false);
 
         /**
          * @brief Generate an XML document.
@@ -485,14 +490,14 @@ namespace lipsum
          * @since 0.5.0
          *
          * Generate a single paragraph in Markdown or HTML format. This function
-         * is private.
+         * is private. Formerly known as single_md_paragraph().
          *
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
          * @param useHtml Whether HTML should be outputted instead of Markdown.
          *
          * @return std::string The random Markdown paragraph.
          */
-        std::string single_md_paragraph(bool useLipsum, bool useHtml);
+        std::string single_fmt_paragraph(bool useLipsum, bool useHtml);
 
         /**
          * @brief Generate a random JSON string.

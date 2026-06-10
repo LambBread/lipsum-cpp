@@ -13,9 +13,9 @@
             {
                 console.log(Module.LIPSUM_CPP_VERSION_FULL);
                 const gen = new Module.lpsm_Generator();
-                console.log(gen.md_text(20, Module.lpsm_GeneratorFlags.MARKDOWN.value));
+                console.log(gen.fmt_text(20, Module.lpsm_GeneratorFlags.MARKDOWN.value));
                 console.log(Module.lpsm_CountSentences("Yes this is a test. Testing 123. Testing 123. Foobar test."));
-                const text = gen.md_text(15, Module.lpsm_GeneratorFlags.HTML.value);
+                const text = gen.fmt_text(15, Module.lpsm_GeneratorFlags.HTML.value);
                 console.log(text);
                 document.querySelector("#content").innerHTML = text;
             });

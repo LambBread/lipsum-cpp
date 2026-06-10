@@ -25,13 +25,13 @@ namespace lipsum
      * FORMATS
      */
 
-    std::string Generator::md_paragraph(int num, bool useLipsum, bool useHtml)
+    std::string Generator::fmt_paragraph(int num, bool useLipsum, bool useHtml)
     {
         std::string ret;
 
         if (num < 0)
         {
-            internal::LogWarn("lpsm::Generator::md_paragraph(): expected "
+            internal::LogWarn("lpsm::Generator::fmt_paragraph(): expected "
                               "num >= 0, got ",
                               num);
         }
@@ -40,32 +40,32 @@ namespace lipsum
         {
             if (i == 0 && useLipsum)
             {
-                ret += single_md_paragraph(USELIPSUM, useHtml);
+                ret += single_fmt_paragraph(USELIPSUM, useHtml);
             }
             else
             {
-                ret += single_md_paragraph(NO_USELIPSUM, useHtml);
+                ret += single_fmt_paragraph(NO_USELIPSUM, useHtml);
             }
         }
         return ret;
     }
 
-    std::string Generator::md_text(int numElements, bool useHtml)
+    std::string Generator::fmt_text(int numElements, bool useHtml)
     {
         std::string ret;
         if (numElements < 0)
         {
-            internal::LogWarn("lpsm::Generator::md_text(): cannot generate "
+            internal::LogWarn("lpsm::Generator::fmt_text(): cannot generate "
                               "negative number of elements.");
             return ret;
         }
         if (numElements >= 1)
         {
-            ret += md_header(1, useHtml);
+            ret += fmt_header(1, useHtml);
         }
         if (numElements >= 2)
         {
-            ret += single_md_paragraph(NO_USELIPSUM, useHtml);
+            ret += single_fmt_paragraph(NO_USELIPSUM, useHtml);
         }
 
         numElements -= 2;
@@ -84,17 +84,17 @@ namespace lipsum
             {
                 case 0:
                 {
-                    ret += single_md_paragraph(NO_USELIPSUM, useHtml);
+                    ret += single_fmt_paragraph(NO_USELIPSUM, useHtml);
                     break;
                 }
                 case 1:
                 {
-                    ret += md_header(m_Settings.level.roll(m_Gen), useHtml);
+                    ret += fmt_header(m_Settings.level.roll(m_Gen), useHtml);
                     break;
                 }
                 case 2:
                 {
-                    ret += md_list(ordered, useHtml);
+                    ret += fmt_list(ordered, useHtml);
                     break;
                 }
             }
@@ -104,11 +104,11 @@ namespace lipsum
         return ret;
     }
 
-    std::string Generator::md_header(int level, bool useHtml)
+    std::string Generator::fmt_header(int level, bool useHtml)
     {
         if (level > 6 || level < 1)
         {
-            internal::LogWarn("lpsm::Generator::md_header(): invalid header "
+            internal::LogWarn("lpsm::Generator::fmt_header(): invalid header "
                               "level ",
                               level,
                               ", expected from 1 to 6");
@@ -138,7 +138,7 @@ namespace lipsum
         return ret;
     }
 
-    std::string Generator::md_emphasis(bool isBold, bool useHtml)
+    std::string Generator::fmt_emphasis(bool isBold, bool useHtml)
     {
         std::string ret;
         std::string sent =
@@ -166,7 +166,7 @@ namespace lipsum
         return ret;
     }
 
-    std::string Generator::md_link(bool useHtml)
+    std::string Generator::fmt_link(bool useHtml)
     {
         std::string ret;
         std::string link = url();
@@ -185,7 +185,7 @@ namespace lipsum
         return ret;
     }
 
-    std::string Generator::md_list(bool ordered, bool useHtml)
+    std::string Generator::fmt_list(bool ordered, bool useHtml)
     {
         std::string ret;
         int         points = m_Settings.point.roll(m_Gen);

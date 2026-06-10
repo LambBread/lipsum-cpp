@@ -23,7 +23,7 @@ int main()
     gen.change_setting("level", 1, 6);
 
     // Generate an HTML document with 30 elements.
-    std::string text = gen.md_text(30, lpsm::HTML);
+    std::string text = gen.fmt_text(30, lpsm::HTML);
     std::cout << text << "\n\n";
 
     // clang-format off

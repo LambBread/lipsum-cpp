@@ -11,7 +11,7 @@ int main(void)
     char* generatedWords = lpsm_Generator_word(gen, 5);
 
     // Generate a Markdown document with 15 elements.
-    char* generatedMarkdown = lpsm_Generator_md_text(gen, 15, LPSM_MARKDOWN);
+    char* generatedMarkdown = lpsm_Generator_fmt_text(gen, 15, LPSM_MARKDOWN);
 
     printf("%s\n", generatedWords);
     printf("%s", generatedMarkdown);

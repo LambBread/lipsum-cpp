@@ -137,8 +137,8 @@ void Help(const std::string& page)
         std::cout << "      Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.\n\n";
         std::cout << "Subcommands include:\n";
         std::cout << "  help, word, fragment, sentence, paragraph, text,\n";
-        std::cout << "  url, plain_url, email, slug, md_paragraph, md_text, md_header,\n";
-        std::cout << "  md_emphasis, md_link, md_list, xml, json, json_value\n\n";
+        std::cout << "  url, plain_url, email, slug, fmt_paragraph, fmt_text, fmt_header,\n";
+        std::cout << "  fmt_emphasis, fmt_link, fmt_list, xml, json, json_value\n\n";
         std::cout << "For more information, type lpsmcpp-cli help <subcommand>.\n";
     }
     if (page == "help")
@@ -195,39 +195,39 @@ void Help(const std::string& page)
         std::cout << "  slug <separator = '-'> - Generate a slug.\n";
         std::cout << "    separator - The separator to use.\n\n";
     }
-    if (page == "md_paragraph")
+    if (page == "fmt_paragraph")
     {
-        std::cout << "  md_paragraph <num = 1> <useLipsum = true> <useHtml = false> - Generate Markdown paragraphs.\n";
+        std::cout << "  fmt_paragraph <num = 1> <useLipsum = true> <useHtml = false> - Generate Markdown or HTML paragraphs.\n";
         std::cout << "    num - The number of paragraphs.\n";
         std::cout << "    useLipsum - Whether 'Lorem ipsum...' should start the first sentence.\n";
         std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
     }
-    if (page == "md_text")
+    if (page == "fmt_text")
     {
-        std::cout << "  md_text <numElements = 15> <useHtml = false> - Generate a Markdown document.\n";
+        std::cout << "  fmt_text <numElements = 15> <useHtml = false> - Generate a Markdown or HTML document.\n";
         std::cout << "    numElements - The number of elements.\n";
         std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
     }
-    if (page == "md_header")
+    if (page == "fmt_header")
     {
-        std::cout << "  md_header <level = 1> <useHtml = false> - Generate a Markdown header.\n";
+        std::cout << "  fmt_header <level = 1> <useHtml = false> - Generate a Markdown ot HTML header.\n";
         std::cout << "    level - The level of the heading.\n";
         std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
     }
-    if (page == "md_emphasis")
+    if (page == "fmt_emphasis")
     {
-        std::cout << "  md_emphasis <isBold = true> <useHtml = false> - Generate an emphasized Markdown sentence.\n";
+        std::cout << "  fmt_emphasis <isBold = true> <useHtml = false> - Generate an emphasized Markdown or HTML sentence.\n";
         std::cout << "    isBold - Whether the sentence is bold or italic.\n";
         std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
     }
-    if (page == "md_link")
+    if (page == "fmt_link")
     {
-        std::cout << "  md_link <useHtml = false> - Generate a Markdown link.\n";
+        std::cout << "  fmt_link <useHtml = false> - Generate a Markdown or HTML link.\n";
         std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
     }
-    if (page == "md_list")
+    if (page == "fmt_list")
     {
-        std::cout << "  md_list <ordered = false> <useHtml = false> - Generate a Markdown list.\n";
+        std::cout << "  fmt_list <ordered = false> <useHtml = false> - Generate a Markdown or HTML list.\n";
         std::cout << "    ordered - Whether the list is ordered.\n";
         std::cout << "    useHtml - Whether HTML should be outputted instead of Markdown.\n\n";
     }
@@ -365,12 +365,12 @@ int main(int argc, char** argv)
     else SINGLE_ARG_SUBCOMMAND(slug, int, '-') 
     else SINGLE_ARG_SUBCOMMAND(xml, int, 30)
     else DOUBLE_ARG_SUBCOMMAND(json_value, int, 0, int, 3)
-    else DOUBLE_ARG_SUBCOMMAND(md_text, int, 15, bool, false)
-    else DOUBLE_ARG_SUBCOMMAND(md_header, int, 1, bool, false)
-    else DOUBLE_ARG_SUBCOMMAND(md_emphasis, bool, true, bool, false)
-    else SINGLE_ARG_SUBCOMMAND(md_link, bool, false)
-    else DOUBLE_ARG_SUBCOMMAND(md_list, bool, false, bool, false)
-    else if(subcommand == "md_paragraph")
+    else DOUBLE_ARG_SUBCOMMAND(fmt_text, int, 15, bool, false)
+    else DOUBLE_ARG_SUBCOMMAND(fmt_header, int, 1, bool, false)
+    else DOUBLE_ARG_SUBCOMMAND(fmt_emphasis, bool, true, bool, false)
+    else SINGLE_ARG_SUBCOMMAND(fmt_link, bool, false)
+    else DOUBLE_ARG_SUBCOMMAND(fmt_list, bool, false, bool, false)
+    else if(subcommand == "fmt_paragraph")
     // clang-format on
     {
         int  num       = 1;
@@ -379,7 +379,7 @@ int main(int argc, char** argv)
         GET_ARG(num, 2, int);
         GET_ARG(useLipsum, 3, bool);
         GET_ARG(useHtml, 4, bool);
-        std::cout << gen.md_paragraph(num, useLipsum, useHtml);
+        std::cout << gen.fmt_paragraph(num, useLipsum, useHtml);
     }
     else if (subcommand == "json")
     {

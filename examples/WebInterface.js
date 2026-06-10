@@ -26,13 +26,13 @@ createLipsumCpp().then(Module =>
         {
             output.value = gen.scramble(num, separator, maxChar);
         }
-        else if(funcSelect.value === "md_paragraph")
+        else if(funcSelect.value === "fmt_paragraph")
         {
-            output.value = gen.md_paragraph(num, useLipsum, useHtml);
+            output.value = gen.fmt_paragraph(num, useLipsum, useHtml);
         }
-        else if(funcSelect.value === "md_link")
+        else if(funcSelect.value === "fmt_link")
         {
-            output.value = gen.md_link(useHtml);
+            output.value = gen.fmt_link(useHtml);
         }
         else if(funcSelect.value === "text")
         {
@@ -48,11 +48,11 @@ createLipsumCpp().then(Module =>
             //console.log(funcSelect.value);
             output.value = gen[funcSelect.value](num, useLipsum);
         }
-        else if(["md_text", "md_header"].includes(funcSelect.value))
+        else if(["fmt_text", "fmt_header"].includes(funcSelect.value))
         {
             output.value = gen[funcSelect.value](num, useHtml);
         }
-        else if(["md_emphasis", "md_list"].includes(funcSelect.value))
+        else if(["fmt_emphasis", "fmt_list"].includes(funcSelect.value))
         {
             output.value = gen[funcSelect.value](useLipsum, useHtml);
         }

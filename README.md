@@ -132,6 +132,8 @@ target_link_libraries(your_target PRIVATE lipsum-cpp::lipsum-cpp)
 
 ### Basic example
 
+*`LIPSUM_IMPLEMENTATION` must be defined in exactly one file per project for header-only usage.*
+
 ```cpp
 #ifndef LIPSUM_BUILD_STATIC
 #    define LIPSUM_IMPLEMENTATION // only for header-only usage
@@ -202,28 +204,28 @@ int main()
     std::cout << gen.scramble(24, 'a', 'z') << '\n';
 
     // Generate 5 Markdown paragraphs.
-    std::cout << gen.md_paragraph(5, lpsm::USELIPSUM, lpsm::MARKDOWN);
+    std::cout << gen.fmt_paragraph(5, lpsm::USELIPSUM, lpsm::MARKDOWN);
 
     // Generate a Markdown document with 20 elements.
-    std::cout << gen.md_text(20, lpsm::MARKDOWN);
+    std::cout << gen.fmt_text(20, lpsm::MARKDOWN);
 
     // Generate a Markdown subtitle.
-    std::cout << gen.md_header(2, lpsm::MARKDOWN);
+    std::cout << gen.fmt_header(2, lpsm::MARKDOWN);
 
     // Generate an italic Markdown sentence.
-    std::cout << gen.md_emphasis(lpsm::ITALIC, lpsm::MARKDOWN) << '\n';
+    std::cout << gen.fmt_emphasis(lpsm::ITALIC, lpsm::MARKDOWN) << '\n';
 
     // Generate a Markdown link.
-    std::cout << gen.md_link(lpsm::MARKDOWN) << '\n';
+    std::cout << gen.fmt_link(lpsm::MARKDOWN) << '\n';
 
     // Generate an ordered Markdown list.
-    std::cout << gen.md_list(lpsm::ORDERED, lpsm::MARKDOWN);
+    std::cout << gen.fmt_list(lpsm::ORDERED, lpsm::MARKDOWN);
 
     // Generate 5 HTML paragraphs.
-    std::cout << gen.md_paragraph(5, lpsm::USELIPSUM, lpsm::HTML);
+    std::cout << gen.fmt_paragraph(5, lpsm::USELIPSUM, lpsm::HTML);
 
     // Generate an HTML document with 20 elements.
-    std::cout << gen.md_text(20, lpsm::HTML);
+    std::cout << gen.fmt_text(20, lpsm::HTML);
 
     // Generate an XML document with 40 "choices".
     std::cout << gen.xml(40) << '\n';
@@ -273,7 +275,7 @@ All tested with CMake `Release` build type, with default `lpsm::Generator` argum
 
 ### Low-end environment
 
-*BookwormPup32, 1GB DDR2 RAM, Intel Centrino Duo (2-core) @ 1.6GHz*:
+*Puppy Linux (BookwormPup32), 1GB DDR2 RAM, Intel Centrino Duo (2-core) @ 1.6GHz*:
 
 - 2,767,236 words/second
 - 105,033 sentences/second
@@ -289,5 +291,7 @@ All tested with CMake `Release` build type, with default `lpsm::Generator` argum
 - [`scripts/corporateipsum.txt`](./scripts/corporateipsum.txt) was generated with [corporate-ipsum.com](https://www.corporate-ipsum.com/).
 
 ---
+
+Licensed under [`0BSD.`](https://opensource.org/license/0bsd) (see [`LICENSE.md`](./LICENSE.md) for details)
 
 > Created by [LambBread](https://github.com/LambBread)

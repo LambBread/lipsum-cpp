@@ -162,7 +162,7 @@ static void Test_paragraph_count_equal(lpsm::Generator& gen)
 
 static void Test_md_sentence_count_in_bounds(lpsm::Generator& gen)
 {
-    std::string checking = gen.md_paragraph(1);
+    std::string checking = gen.fmt_paragraph(1, lpsm::MARKDOWN);
     int         numSents = lpsm::CountSentences(checking);
     if (numSents < MIN_SENT || numSents > MAX_SENT)
     {
@@ -172,7 +172,7 @@ static void Test_md_sentence_count_in_bounds(lpsm::Generator& gen)
 
 static void Test_md_paragraph_count_equal(lpsm::Generator& gen)
 {
-    std::string checking = gen.md_paragraph(50);
+    std::string checking = gen.fmt_paragraph(50, lpsm::MARKDOWN);
     int         numParas =
             lpsm::CountParagraphs(checking, lpsm::CountParaMethod::Markdown);
     if (numParas != 50)
@@ -183,7 +183,7 @@ static void Test_md_paragraph_count_equal(lpsm::Generator& gen)
 
 static void Test_md_text_count_equal(lpsm::Generator& gen)
 {
-    std::string checking = gen.md_text(100);
+    std::string checking = gen.fmt_text(100, lpsm::MARKDOWN);
     int         numElems =
             lpsm::CountParagraphs(checking, lpsm::CountParaMethod::Markdown);
     if (numElems != 100)
@@ -209,12 +209,12 @@ static void Test_benchmark_paragraphs(lpsm::Generator& gen)
 
 static void Test_benchmark_md_paragraphs(lpsm::Generator& gen)
 {
-    BENCHMARK(md_paragraph, 0.0625f);
+    BENCHMARK(fmt_paragraph, 0.0625f);
 }
 
 static void Test_benchmark_md_text(lpsm::Generator& gen)
 {
-    BENCHMARK(md_text, 0.25f);
+    BENCHMARK(fmt_text, 0.25f);
 }
 
 int main(int argc, char** argv)

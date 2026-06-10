@@ -32,28 +32,28 @@ int main()
     std::cout << gen.scramble(24, 'a', 'z') << '\n';
 
     // Generate 5 Markdown paragraphs.
-    std::cout << gen.md_paragraph(5, lpsm::USELIPSUM, lpsm::MARKDOWN);
+    std::cout << gen.fmt_paragraph(5, lpsm::USELIPSUM, lpsm::MARKDOWN);
 
     // Generate a Markdown document with 20 elements.
-    std::cout << gen.md_text(20, lpsm::MARKDOWN);
+    std::cout << gen.fmt_text(20, lpsm::MARKDOWN);
 
     // Generate a Markdown subtitle.
-    std::cout << gen.md_header(2, lpsm::MARKDOWN);
+    std::cout << gen.fmt_header(2, lpsm::MARKDOWN);
 
     // Generate an italic Markdown sentence.
-    std::cout << gen.md_emphasis(lpsm::ITALIC, lpsm::MARKDOWN) << '\n';
+    std::cout << gen.fmt_emphasis(lpsm::ITALIC, lpsm::MARKDOWN) << '\n';
 
     // Generate a Markdown link.
-    std::cout << gen.md_link(lpsm::MARKDOWN) << '\n';
+    std::cout << gen.fmt_link(lpsm::MARKDOWN) << '\n';
 
     // Generate an ordered Markdown list.
-    std::cout << gen.md_list(lpsm::ORDERED, lpsm::MARKDOWN);
+    std::cout << gen.fmt_list(lpsm::ORDERED, lpsm::MARKDOWN);
 
     // Generate 5 HTML paragraphs.
-    std::cout << gen.md_paragraph(5, lpsm::USELIPSUM, lpsm::HTML);
+    std::cout << gen.fmt_paragraph(5, lpsm::USELIPSUM, lpsm::HTML);
 
     // Generate an HTML document with 20 elements.
-    std::cout << gen.md_text(20, lpsm::HTML);
+    std::cout << gen.fmt_text(20, lpsm::HTML);
 
     // Generate an XML document with 40 "choices".
     std::cout << gen.xml(40) << '\n';

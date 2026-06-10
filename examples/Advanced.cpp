@@ -50,20 +50,20 @@ int main()
             "{GALLERY}\n";
 
     // Fill tokens using the library:
-    std::string title = gen.md_header(); // short title
+    std::string title = gen.fmt_header(1, lpsm::MARKDOWN); // short title
 
     // About: a short Markdown paragraph (use Markdown generator to add some
     // formatting)
-    std::string about = gen.md_paragraph(1, lpsm::USELIPSUM);
+    std::string about = gen.fmt_paragraph(1, lpsm::USELIPSUM, lpsm::MARKDOWN);
 
     // Highlights: a markdown list (unordered)
-    std::string highlights = gen.md_list();
+    std::string highlights = gen.fmt_list(lpsm::UNORDERED, lpsm::MARKDOWN);
 
     // A single random word used in the code block
     std::string word = gen.word();
 
     // A markdown link
-    std::string mdLink = gen.md_link();
+    std::string mdLink = gen.fmt_link(lpsm::MARKDOWN);
 
     // Gallery: several short paragraphs
     std::string gallery = gen.paragraph(3, lpsm::NO_USELIPSUM);

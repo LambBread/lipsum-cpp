@@ -7,7 +7,7 @@
 int main()
 {
     lpsm::Generator gen;
-    std::string     text = gen.md_text(100000);
+    std::string     text = gen.fmt_text(100000);
     // std::string text;
     // text.reserve(1000000);
     // for(int i = 0; i < 1000; ++i)

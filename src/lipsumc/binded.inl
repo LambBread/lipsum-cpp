@@ -128,52 +128,52 @@ extern "C" char* lpsm_Generator_slug(lpsm_GeneratorHandle handle,
     return ConvertToCstr(ret);
 }
 
-extern "C" char* lpsm_Generator_md_paragraph(lpsm_GeneratorHandle handle,
-                                             int                  num,
-                                             bool                 useLipsum,
-                                             bool                 useHtml)
+extern "C" char* lpsm_Generator_fmt_paragraph(lpsm_GeneratorHandle handle,
+                                              int                  num,
+                                              bool                 useLipsum,
+                                              bool                 useHtml)
 {
     auto ret = LPSM_CPPIFY(handle, lpsm::Generator)
-                       ->md_paragraph(num, useLipsum, useHtml);
+                       ->fmt_paragraph(num, useLipsum, useHtml);
     return ConvertToCstr(ret);
 }
 
-extern "C" char* lpsm_Generator_md_text(lpsm_GeneratorHandle handle,
-                                        int                  numElements,
-                                        bool                 useHtml)
+extern "C" char* lpsm_Generator_fmt_text(lpsm_GeneratorHandle handle,
+                                         int                  numElements,
+                                         bool                 useHtml)
 {
-    auto ret =
-            LPSM_CPPIFY(handle, lpsm::Generator)->md_text(numElements, useHtml);
-    return ConvertToCstr(ret);
-}
-
-extern "C" char*
-lpsm_Generator_md_header(lpsm_GeneratorHandle handle, int level, bool useHtml)
-{
-    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->md_header(level, useHtml);
-    return ConvertToCstr(ret);
-}
-
-extern "C" char* lpsm_Generator_md_emphasis(lpsm_GeneratorHandle handle,
-                                            bool                 isBold,
-                                            bool                 useHtml)
-{
-    auto ret =
-            LPSM_CPPIFY(handle, lpsm::Generator)->md_emphasis(isBold, useHtml);
-    return ConvertToCstr(ret);
-}
-
-extern "C" char* lpsm_Generator_md_link(lpsm_GeneratorHandle handle,
-                                        bool                 useHtml)
-{
-    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->md_link(useHtml);
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)
+                       ->fmt_text(numElements, useHtml);
     return ConvertToCstr(ret);
 }
 
 extern "C" char*
-lpsm_Generator_md_list(lpsm_GeneratorHandle handle, bool ordered, bool useHtml)
+lpsm_Generator_fmt_header(lpsm_GeneratorHandle handle, int level, bool useHtml)
 {
-    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->md_list(ordered, useHtml);
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->fmt_header(level, useHtml);
+    return ConvertToCstr(ret);
+}
+
+extern "C" char* lpsm_Generator_fmt_emphasis(lpsm_GeneratorHandle handle,
+                                             bool                 isBold,
+                                             bool                 useHtml)
+{
+    auto ret =
+            LPSM_CPPIFY(handle, lpsm::Generator)->fmt_emphasis(isBold, useHtml);
+    return ConvertToCstr(ret);
+}
+
+extern "C" char* lpsm_Generator_fmt_link(lpsm_GeneratorHandle handle,
+                                         bool                 useHtml)
+{
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->fmt_link(useHtml);
+    return ConvertToCstr(ret);
+}
+
+extern "C" char*
+lpsm_Generator_fmt_list(lpsm_GeneratorHandle handle, bool ordered, bool useHtml)
+{
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)->fmt_list(ordered, useHtml);
     return ConvertToCstr(ret);
 }
 

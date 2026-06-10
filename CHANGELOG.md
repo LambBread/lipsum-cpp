@@ -1387,7 +1387,8 @@ Formats.cpp
 
 - Count apostrophes as part of a word in multi-source generation
 - Add exclamation marks, question marks, colons in sentences
-- Make `lpsm::Generator::md_text()` generate more 'realistic' Markdown
+- Rename `lpsm::Generator::md_*` functions to `lpsm::Generator::fmt_*`
+- Make `lpsm::Generator::fmt_text()` generate more 'realistic'
   headers (i.e. avoiding repeat headers & headers at end)
 - Move `LPSM_FLIP_COIN` to `core.hpp`
 - New features:
@@ -1397,4 +1398,43 @@ std::string lpsm::Generator::email();
 #define LPSM_SAFE_CCTYPE()
 
 char* lpsm_Generator_email(lpsm_GeneratorHandle);
+```
+
+- Changed functions:
+
+```cpp
+std::string lpsm::Generator::single_fmt_paragraph(bool, bool); // private
+// from std::string lpsm::Generator::single_md_paragraph(bool, bool) // private
+std::string lpsm::Generator::fmt_paragraph(int, bool, bool);
+// from std::string lpsm::Generator::md_paragraph(int, bool, bool)
+std::string lpsm::Generator::fmt_text(int, bool);
+// from std::string lpsm::Generator::md_text(int, bool)
+std::string lpsm::Generator::fmt_header(int, bool);
+// from std::string lpsm::Generator::md_header(int, bool)
+std::string lpsm::Generator::fmt_emphasis(bool, bool);
+// from std::string lpsm::Generator::md_emphasis(bool, bool)
+std::string lpsm::Generator::fmt_link(bool);
+// from std::string lpsm::Generator::md_link(bool)
+std::string lpsm::Generator::fmt_list(bool, bool);
+// from std::string lpsm::Generator::md_list(bool, bool)
+
+char* lpsm_Generator_fmt_paragraph(lpsm_GeneratorHandle, int, bool, bool);
+// from char* lpsm_Generator_md_paragraph(lpsm_GeneratorHandle, int, bool, bool)
+char* lpsm_Generator_fmt_text(lpsm_GeneratorHandle, int, bool);
+// from char* lpsm_Generator_md_text(lpsm_GeneratorHandle, int, bool)
+char* lpsm_Generator_fmt_header(lpsm_GeneratorHandle, int, bool);
+// from char* lpsm_Generator_md_header(lpsm_GeneratorHandle, int, bool)
+char* lpsm_Generator_fmt_emphasis(lpsm_GeneratorHandle, bool, bool);
+// from char* lpsm_Generator_md_emphasis(lpsm_GeneratorHandle, bool, bool)
+char* lpsm_Generator_fmt_link(lpsm_GeneratorHandle, bool);
+// from char* lpsm_Generator_md_link(lpsm_GeneratorHandle, bool)
+char* lpsm_Generator_fmt_list(lpsm_GeneratorHandle, bool, bool);
+// from char* lpsm_Generator_md_list(lpsm_GeneratorHandle, bool, bool)
+
+```
+
+- Removed examples:
+
+```
+Source.cpp
 ```

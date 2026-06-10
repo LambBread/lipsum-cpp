@@ -196,7 +196,7 @@ namespace lipsum
         return result;
     }
 
-    std::string Generator::single_md_paragraph(bool useLipsum, bool useHtml)
+    std::string Generator::single_fmt_paragraph(bool useLipsum, bool useHtml)
     {
         std::string ret;
         int         sents = m_Settings.sent.roll(m_Gen);
@@ -218,11 +218,11 @@ namespace lipsum
             }
             else if ((fmtRoll == m_Settings.sent.min) && addLink)
             {
-                ret += md_link(useHtml);
+                ret += fmt_link(useHtml);
             }
             else if ((fmtRoll == m_Settings.sent.min) && !addLink)
             {
-                ret += md_emphasis(isBold, useHtml);
+                ret += fmt_emphasis(isBold, useHtml);
             }
             else
             {
