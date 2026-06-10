@@ -39,7 +39,7 @@ jobs:
 
       - name: Package with CPack
         run: |
-          cd build && cpack -C Release
+          cd build && cpack
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
