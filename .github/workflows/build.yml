@@ -19,7 +19,7 @@ jobs:
       - name: Setup CMake
         uses: jwlawson/actions-setup-cmake@v2
         with:
-          cmake-version: '3.31.6'
+          cmake-version: '4.2.6'
 
       - name: Setup Doxygen
         uses: ssciwr/doxygen-install@v2
@@ -40,10 +40,10 @@ jobs:
       - name: Build static library (Windows)
         if: runner.os == 'Windows'
         run: >
-          cmake -S . -B build -G "Visual Studio 17 2022" -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON
+          cmake -S . -B build -G "Visual Studio 18 2026" -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON
           -DLPSM_BUILD_EXAMPLES=ON -DLPSM_FORMAT=OFF -DLPSM_BUILD_SAMPLE=OFF
           -DLPSM_BUILD_VERSION=OFF -DLPSM_BUILD_CLI=ON -DLPSM_BUILD_DOCS=ON &&
-          cmake --build build --target Release
+          cmake --build build --config Release
 
       - name: Run tests
         if: runner.os != 'Windows' 
