@@ -24,6 +24,10 @@ jobs:
       - name: Setup Doxygen
         uses: ssciwr/doxygen-install@v2
 
+      - name: Set up MSBuild
+        if: runner.os == 'Windows'
+        uses: microsoft/setup-msbuild@v4
+
       - name: Build static library
         if: runner.os != 'Windows'
         run: >
