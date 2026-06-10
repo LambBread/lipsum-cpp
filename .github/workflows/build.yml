@@ -26,7 +26,7 @@ jobs:
 
       - name: Set up MSBuild
         if: runner.os == 'Windows'
-        uses: microsoft/setup-msbuild@v4
+        uses: microsoft/setup-msbuild@v3
 
       - name: Build static library
         if: runner.os != 'Windows'
