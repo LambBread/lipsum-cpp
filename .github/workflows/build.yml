@@ -25,12 +25,21 @@ jobs:
         uses: ssciwr/doxygen-install@v2
 
       - name: Build static library
+        if: runner.os != 'Windows'
         run: >
           cmake -S . -B build -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON 
           -DLPSM_BUILD_EXAMPLES=ON -DLPSM_FORMAT=OFF -DLPSM_BUILD_SAMPLE=OFF 
           -DLPSM_BUILD_VERSION=OFF -DCMAKE_BUILD_TYPE=Release -DLPSM_BUILD_CLI=ON 
           -DLPSM_BUILD_DOCS=ON &&
-          cmake --build build --config Release
+          cmake --build build
+
+      - name: Build static library (Windows)
+        if: runner.os == 'Windows'
+        run: >
+          cmake -S . -B build -G "Visual Studio 17 2022" -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON
+          -DLPSM_BUILD_EXAMPLES=ON -DLPSM_FORMAT=OFF -DLPSM_BUILD_SAMPLE=OFF
+          -DLPSM_BUILD_VERSION=OFF -DLPSM_BUILD_CLI=ON -DLPSM_BUILD_DOCS=ON &&
+          cmake --build build --target Release
 
       - name: Run tests
         if: runner.os != 'Windows' 
