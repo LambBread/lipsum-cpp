@@ -40,7 +40,12 @@ namespace lipsum
 
     int ArgVec2::roll(std::mt19937& gen) const
     {
-        std::uniform_int_distribution<int> dist(min, max);
+        if (min <= max)
+        {
+            std::uniform_int_distribution<int> dist(min, max);
+            return dist(gen);
+        }
+        std::uniform_int_distribution<int> dist(max, min);
         return dist(gen);
     }
 

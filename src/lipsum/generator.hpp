@@ -46,6 +46,24 @@ namespace lipsum
     };
 
     /**
+     * @brief Cases used by lipsum::Generator::case_slug()
+     *
+     * @since 0.5.1
+     *
+     * Types of cases used by lipsum::Generator::case_slug(). Includes various
+     * types such as camel case, snake case, etc.
+     */
+    enum class CaseSlugCase : int
+    {
+        CamelCase = 0,
+        PascalCase,
+        SnakeCase,
+        ShoutyCase,
+        KebabCase,
+        TrainCase,
+    };
+
+    /**
      * @brief Main class of lipsum-cpp
      *
      * @since 0.2.0
@@ -304,6 +322,20 @@ namespace lipsum
          */
         std::string slug(char separator = '-');
 
+        /**
+         * @brief Generate a case slug.
+         *
+         * @since 0.5.1
+         *
+         * Generate a case slug in the specified case, e.g. camel case, snake
+         * case, etc.
+         *
+         * @param case_ The case. By default camel case.
+         *
+         * @return std::string The case slug.
+         */
+        std::string case_slug(CaseSlugCase case_ = CaseSlugCase::CamelCase);
+
         /*
          * FORMATS
          */
@@ -544,7 +576,6 @@ namespace lipsum
         template <internal::UniformDistributionType T>
         T random_number(T min, T max)
         {
-            // static thread_local std::mt19937 gen(std::random_device{}());
             if (min > max)
             {
                 T tempMax = max;

@@ -41,6 +41,24 @@
  */
 typedef void* lpsm_GeneratorHandle;
 
+/**
+ * @brief Cases used by lpsm_Generator_case_slug()
+ *
+ * @since 0.5.1
+ *
+ * Types of cases used by lpsm_Generator_case_slug(). Includes various types
+ * such as camel case, snake case, etc.
+ */
+typedef enum lpsm_CaseSlugCase
+{
+    LPSM_CSC_CAMEL_CASE = 0,
+    LPSM_CSC_PASCAL_CASE,
+    LPSM_CSC_SNAKE_CASE,
+    LPSM_CSC_SHOUTY_CASE,
+    LPSM_CSC_KEBAB_CASE,
+    LPSM_CSC_TRAIN_CASE
+} lpsm_CaseSlugCase;
+
 // NOLINTEND(modernize-use-using)
 
 #    ifdef __cplusplus
@@ -326,6 +344,24 @@ extern "C"
      */
     LIPSUMC_API char* lpsm_Generator_slug(lpsm_GeneratorHandle handle,
                                           char                 separator);
+
+    /**
+     * @brief Generate a case slug.
+     *
+     * @since 0.5.1
+     *
+     * Generate a case slug in the specified case, e.g. camel case, snake case,
+     * etc.
+     *
+     * @cstrnote
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param case_ The case.
+     *
+     * @return std::string The case slug.
+     */
+    LIPSUMC_API char* lpsm_Generator_case_slug(lpsm_GeneratorHandle handle,
+                                               lpsm_CaseSlugCase    case_);
 
     /**
      * @brief Generate Markdown or HTML paragraphs.

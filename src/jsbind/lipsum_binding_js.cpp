@@ -49,12 +49,12 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("email", &lpsm::Generator::email)
             .function("url", &lpsm::Generator::url)
             .function("slug", &lpsm::Generator::slug)
-            .function("fmt_paragraph", &lpsm::Generator::md_paragraph)
-            .function("fmt_text", &lpsm::Generator::md_text)
-            .function("fmt_header", &lpsm::Generator::md_header)
-            .function("fmt_emphasis", &lpsm::Generator::md_emphasis)
-            .function("fmt_link", &lpsm::Generator::md_link)
-            .function("fmt_list", &lpsm::Generator::md_list)
+            .function("fmt_paragraph", &lpsm::Generator::fmt_paragraph)
+            .function("fmt_text", &lpsm::Generator::fmt_text)
+            .function("fmt_header", &lpsm::Generator::fmt_header)
+            .function("fmt_emphasis", &lpsm::Generator::fmt_emphasis)
+            .function("fmt_link", &lpsm::Generator::fmt_link)
+            .function("fmt_list", &lpsm::Generator::fmt_list)
             .function("xml", &lpsm::Generator::xml)
             .function("json", &lpsm::Generator::json)
             .function("json_value", &lpsm::Generator::json_value);
@@ -73,6 +73,13 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .value("Plain", lpsm::CountParaMethod::Plain)
             .value("Markdown", lpsm::CountParaMethod::Markdown)
             .value("HTML", lpsm::CountParaMethod::HTML);
+    enum_<lpsm::CaseSlugCase>("lpsm_CaseSlugCase")
+            .value("CamelCase", lpsm::CaseSlugCase::CamelCase)
+            .value("PascalCase", lpsm::CaseSlugCase::PascalCase)
+            .value("SnakeCase", lpsm::CaseSlugCase::SnakeCase)
+            .value("ShoutyCase", lpsm::CaseSlugCase::ShoutyCase)
+            .value("KebabCase", lpsm::CaseSlugCase::KebabCase)
+            .value("TrainCase", lpsm::CaseSlugCase::TrainCase);
 
     constant("LIPSUM_CPP_VERSION", std::string(LIPSUM_CPP_VERSION));
     constant("LIPSUM_CPP_VERSION_MAJOR", LIPSUM_CPP_VERSION_MAJOR);

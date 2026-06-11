@@ -27,7 +27,7 @@ if(LPSM_TIDY)
 
         # custom target running on sources
         add_custom_target(tidy
-            COMMAND ${CLANG_TIDY_EXE} "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum_h.cpp" -- -DLIPSUM_BUILD_STATIC
+            COMMAND ${CLANG_TIDY_EXE} "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum_h.cpp" -- "-I${CMAKE_CURRENT_SOURCE_DIR}/src" -DLIPSUM_BUILD_STATIC
             COMMAND ${CLANG_TIDY_EXE} "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum_static.cpp"
             COMMENT "Running clang-tidy on source files..."
             VERBATIM)

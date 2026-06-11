@@ -109,11 +109,11 @@
 - [x] Count apostrophes and hyphens as part of words in `split.py` (0.5.1)
 - [x] Exclamation marks, question marks, colons in sentences (0.5.1)
 - [x] Switch `md_` `lpsm::Generator` functions to more inclusively named `fmt_` functions (0.5.1)
-- [x] Move amalgamation, `clang-tidy` into CMake (planned 0.5.1)
+- [x] Move amalgamation, `clang-tidy` into CMake (0.5.1)
+- [x] Case slug generation, e.g. `camelCase`, `PascalCase`, `snake_case` (0.5.1)
 
 ## Upcoming
 
-- [ ] Case slug generation, e.g. `camelCase`, `PascalCase`, `snake_case` (planned 0.5.1)
 - [ ] Code block generation (planned 0.5.1)
 - [ ] Less random generation (i.e. using common word sequences from sources) (planned 0.5.1/0.5.2)
 - [ ] YAML/TOML? (potentially 0.5.2)

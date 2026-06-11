@@ -128,6 +128,14 @@ extern "C" char* lpsm_Generator_slug(lpsm_GeneratorHandle handle,
     return ConvertToCstr(ret);
 }
 
+extern "C" char* lpsm_Generator_case_slug(lpsm_GeneratorHandle handle,
+                                          lpsm_CaseSlugCase    case_)
+{
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)
+                       ->case_slug(static_cast<lpsm::CaseSlugCase>(case_));
+    return ConvertToCstr(ret);
+}
+
 extern "C" char* lpsm_Generator_fmt_paragraph(lpsm_GeneratorHandle handle,
                                               int                  num,
                                               bool                 useLipsum,

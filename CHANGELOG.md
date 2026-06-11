@@ -1392,13 +1392,18 @@ Formats.cpp
   headers (i.e. avoiding repeat headers & headers at end)
 - Move `LPSM_FLIP_COIN` to `core.hpp`
 - Move amalgamation and `clang-tidy` into CMake
+- Fix re-introduced seg-fault bug from 0.5.0
 - New features:
 
 ```cpp
+enum class lpsm::CaseSlugCase;
 std::string lpsm::Generator::email();
+std;;string lpsm::Generator::case_slug(lpsm::CaseSlugCase);
 #define LPSM_SAFE_CCTYPE()
 
+typedef enum lpsm_CaseSlugCase lpsm_CaseSlugCase;
 char* lpsm_Generator_email(lpsm_GeneratorHandle);
+char* lpsm_Generator_case_slug(lpsm_GeneratorHandle, lpsm_CaseSlugCase);
 ```
 
 - Changed functions:

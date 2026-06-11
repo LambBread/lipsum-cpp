@@ -1,4 +1,4 @@
-Checks: 'modernize-*,readability-*,-modernize-use-trailing-return-type,-readability-magic-numbers,-modernize-use-ranges'
+Checks: 'modernize-*,readability-*,-modernize-use-trailing-return-type,-readability-magic-numbers,-modernize-use-ranges,-readability-implicit-bool-conversion'
 WarningsAsErrors: ''
 HeaderFilterRegex: '.*'
 #AnalyzeTemporaryDtors: false

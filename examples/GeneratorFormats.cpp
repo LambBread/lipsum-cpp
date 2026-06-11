@@ -28,6 +28,9 @@ int main()
     // Generate a slug.
     std::cout << gen.slug('_') << '\n';
 
+    // Generate a camel case case slug.
+    std::cout << gen.case_slug(lpsm::CaseSlugCase::CamelCase) << '\n';
+
     // Generate a scramble.
     std::cout << gen.scramble(24, 'a', 'z') << '\n';
 

@@ -25,5 +25,7 @@ This is the main source directory of lipsum-cpp.
 
 - C++'s `::` is replaced with `_`
 - Binded class constructors are the name of the class
+- Enum class values are `LPSM_` with the abbreviated enum class name, and the value name, in `SHOUTY_CASE`.
+    - e.g. `lpsm::CountParaMethod::Plain` -> `LPSM_CPM_PLAIN`
 - Binded class handles are the name of the class with `Handle` appended at the end
 - Binded class destructors are the name of the class with `Destroy` appended at the end

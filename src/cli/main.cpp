@@ -137,8 +137,9 @@ void Help(const std::string& page)
         std::cout << "      Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.\n\n";
         std::cout << "Subcommands include:\n";
         std::cout << "  help, word, fragment, sentence, paragraph, text,\n";
-        std::cout << "  url, plain_url, email, slug, fmt_paragraph, fmt_text, fmt_header,\n";
-        std::cout << "  fmt_emphasis, fmt_link, fmt_list, xml, json, json_value\n\n";
+        std::cout << "  url, plain_url, email, slug, case_slug, fmt_paragraph, \n";
+        std::cout << "  fmt_text, fmt_header, fmt_emphasis, fmt_link, fmt_list, \n";
+        std::cout << "  xml, json, json_value\n\n";
         std::cout << "For more information, type lpsmcpp-cli help <subcommand>.\n";
     }
     if (page == "help")
@@ -194,6 +195,13 @@ void Help(const std::string& page)
     {
         std::cout << "  slug <separator = '-'> - Generate a slug.\n";
         std::cout << "    separator - The separator to use.\n\n";
+    }
+    if (page == "case_slug")
+    {
+        std::cout << "  case_slug <case = 0> - Generate a case slug.\n";
+        std::cout << "    case - The case to use.\n";
+        std::cout << "      0 - camelCase, 1 - PascalCase, 2 - snake_case\n";
+        std::cout << "      3 - SHOUTY_CASE, 4 - kebab-case, 5 - TRAIN-CASE\n\n";
     }
     if (page == "fmt_paragraph")
     {
@@ -414,6 +422,19 @@ int main(int argc, char** argv)
         std::cout << gen.scramble(length,
                                   static_cast<char>(minChar),
                                   static_cast<char>(maxChar));
+    }
+    else if (subcommand == "case_slug")
+    {
+        int case_ = 0;
+        GET_ARG(case_, 2, int);
+        if (case_ < 0 || case_ > 5)
+        {
+            ErrorMessage("Error: case slug out of range. Please use number "
+                         "between 0 and 5.\nGot case_=",
+                         case_,
+                         '\n');
+        }
+        std::cout << gen.case_slug(static_cast<lpsm::CaseSlugCase>(case_));
     }
     else if (subcommand == "help")
     {

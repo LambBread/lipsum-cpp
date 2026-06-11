@@ -38,6 +38,7 @@ typedef enum lpsm_CountParaMethod
     LPSM_CPM_MARKDOWN,
     LPSM_CPM_HTML
 } lpsm_CountParaMethod;
+
 // NOLINTEND
 
 #    ifdef __cplusplus

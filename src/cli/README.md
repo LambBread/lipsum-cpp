@@ -19,14 +19,16 @@ Options include:
   --fragFmt=<min,max>, -F - The min and max sentence fragments per formatted sentence.
   --level=<min,max>, -l - The min and max levels of headings.
   --jsonLength=<min,max>, -j - The min and max amount of items in JSON objects.
+  --seed=<seed>, -E - Load specified seed.
   --source=<source>, -S - Load specified source.
       <source> may be a path to a file or a built-in source.
       Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.
 
 Subcommands include:
   help, word, fragment, sentence, paragraph, text,
-  url, plain_url, email, slug, fmt_paragraph, fmt_text, fmt_header,
-  fmt_emphasis, fmt_link, fmt_list, xml, json, json_value
+  url, plain_url, email, slug, case_slug, fmt_paragraph, 
+  fmt_text, fmt_header, fmt_emphasis, fmt_link, fmt_list, 
+  xml, json, json_value
 
 For more information, type lpsmcpp-cli help <subcommand>.
 ```

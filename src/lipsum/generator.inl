@@ -19,6 +19,45 @@
 #    include "generatorcore.inl"
 #    include "generatorformats.inl"
 
+static std::string ClearApostrAndCh(char letter, const std::string& str)
+{
+    std::string ret;
+    ret.reserve(str.size());
+    for (const char& let : str)
+    {
+        if (let != '\'' && let != letter)
+        {
+            ret.push_back(let);
+        }
+    }
+    return ret;
+}
+
+static std::string
+ClearApostrAndCh(char let1, char let2, const std::string& str)
+{
+    std::string ret;
+    ret.reserve(str.size());
+    for (const char& let : str)
+    {
+        if (let != '\'' && let != let1 && let != let2)
+        {
+            ret.push_back(let);
+        }
+    }
+    return ret;
+}
+
+static std::string CapitalizeStr(const std::string& str)
+{
+    std::string ret = str;
+    for (auto& letter : ret)
+    {
+        letter = LPSM_SAFE_CCTYPE(char, std::toupper, letter);
+    }
+    return ret;
+}
+
 namespace lipsum
 {
 
@@ -162,6 +201,62 @@ namespace lipsum
         result               = word(numWords);
         std::replace(result.begin(), result.end(), ' ', separator);
         return result;
+    }
+
+    std::string Generator::case_slug(CaseSlugCase case_)
+    {
+        std::string ret;
+        std::string innerWord;
+        int         numWords = -2;
+        switch (case_)
+        {
+            case CaseSlugCase::CamelCase:
+            {
+                numWords = m_Settings.wordURL.roll(m_Gen);
+                ret += m_Source.random_word(m_Gen);
+                --numWords;
+                [[fallthrough]];
+            }
+            case CaseSlugCase::PascalCase:
+            {
+                if (numWords == -2)
+                {
+                    numWords = m_Settings.wordURL.roll(m_Gen);
+                }
+                for (int i = 0; i < numWords; ++i)
+                {
+                    innerWord       = ClearApostrAndCh('-',
+                                                 '_',
+                                                 m_Source.random_word(m_Gen));
+                    innerWord.at(0) = LPSM_SAFE_CCTYPE(char,
+                                                       std::toupper,
+                                                       innerWord.at(0));
+                    ret += innerWord;
+                }
+                break;
+            }
+            case CaseSlugCase::SnakeCase:
+            {
+                ret = ClearApostrAndCh('-', slug('_'));
+                break;
+            }
+            case CaseSlugCase::ShoutyCase:
+            {
+                ret = CapitalizeStr(ClearApostrAndCh('-', slug('_')));
+                break;
+            }
+            case CaseSlugCase::KebabCase:
+            {
+                ret = ClearApostrAndCh('_', slug('-'));
+                break;
+            }
+            case CaseSlugCase::TrainCase:
+            {
+                ret = CapitalizeStr(ClearApostrAndCh('_', slug('-')));
+                break;
+            }
+        }
+        return ret;
     }
 
 } // namespace lipsum
