@@ -8,12 +8,9 @@ include(CMakePackageConfigHelpers)
 
 # include configuration files
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/options.cmake")
-include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/sample.cmake")
-include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/docs.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/examples.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/optcomp.cmake")
-include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/format.cmake")
-include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/version.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/targets.cmake")
 
 if(LPSM_BUILD_STATIC AND LPSM_BUILD_SHARED)
     message(FATAL_ERROR "lipsum-cpp ---- cannot build both static and shared!")

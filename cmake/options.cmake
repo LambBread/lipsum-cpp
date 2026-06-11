@@ -15,6 +15,8 @@ option(LPSM_BUILD_CLI "Build lipsum-cpp CLI tool" OFF)
 option(LPSM_FORMAT "Have support for running clang-format on sources" ON)
 option(LPSM_BUILD_SAMPLE "Have support for running the Python script that generates sample.inl" ON)
 option(LPSM_BUILD_VERSION "Have support for running the script that generates version header files" ON)
+option(LPSM_TIDY "Have support for running clang-tidy on sources" ON)
+option(LPSM_AMALGAMATE "Have support for amalgamating single-header builds" OFF)
 
 # executable suffix for WASM
 option(LPSM_BUILD_ASHTML "Set the executable suffix to HTML for WASM builds" ON)

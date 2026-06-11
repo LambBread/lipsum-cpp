@@ -94,7 +94,7 @@ Install [quom](https://github.com/Viatorus/quom) via `pip`, such as with:
 pip install --user quom
 ```
 
-At the root of the project, run `make amalgamate` or `make pkg`.
+At the root of the project, run `make amalgamate`, `make pkg`, or `cmake --build build --target amalgamate`.
 
 ### System-wide installation (Optional)
 

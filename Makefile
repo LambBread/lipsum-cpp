@@ -11,7 +11,8 @@ CMAKE_GENERATOR ?= Ninja
 BUILD_TYPE ?= Release
 CMAKE_OPTS ?= -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON \
 			  -DLPSM_BUILD_DOCS=ON -DLPSM_BUILD_EXAMPLES=ON \
-			  -DLPSM_BUILD_JSBIND=ON -DLPSM_BUILD_CLI=ON -DLPSM_BUILD_EXTRA_EXAMPLES=ON
+			  -DLPSM_BUILD_JSBIND=ON -DLPSM_BUILD_CLI=ON -DLPSM_BUILD_EXTRA_EXAMPLES=ON \
+			  -DLPSM_AMALGAMATE=ON
 
 .PHONY: all clean build configure em_configure em_build format amalgamate \
 	pkg full_clean sample quick_pkg pkg_ version tidy help install cpack ctest
@@ -35,8 +36,7 @@ version: ## Run the versioning script.
 	cmake --build $(BUILD_DIR) --target format
 
 tidy: ## Run clang-tidy.
-	clang-tidy src/lipsum_h.cpp -- -DLIPSUM_BUILD_STATIC
-	clang-tidy src/lipsum_static.cpp
+	cmake --build $(BUILD_DIR) --target tidy
 
 format: ## Run clang-format.
 	cmake --build $(BUILD_DIR) --target format
@@ -46,10 +46,7 @@ sample: ## Run the script that creates the standard lorem-ipsum sample, along wi
 	cmake --build $(BUILD_DIR) --target format
 
 amalgamate: ## Form the main source files into single file variants.
-	mkdir -p $(PKG_DIR)
-	quom $(SRC_DIR)/lipsum.hpp $(PKG_DIR)/lipsum.hpp
-	quom $(SRC_DIR)/lipsum.h $(PKG_DIR)/lipsum.h
-	quom $(SRC_DIR)/lipsum_h.cpp $(PKG_DIR)/lipsum_h.cpp
+	cmake --build $(BUILD_DIR) --target amalgamate
 
 pkg_: ## Run the final packaging steps, namely copying certain examples and compressing the final archive.
 	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(BUILD_DIR)/$(EXAMPLES_DIR)/

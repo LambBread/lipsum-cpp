@@ -1391,6 +1391,7 @@ Formats.cpp
 - Make `lpsm::Generator::fmt_text()` generate more 'realistic'
   headers (i.e. avoiding repeat headers & headers at end)
 - Move `LPSM_FLIP_COIN` to `core.hpp`
+- Move amalgamation and `clang-tidy` into CMake
 - New features:
 
 ```cpp
