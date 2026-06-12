@@ -136,6 +136,14 @@ extern "C" char* lpsm_Generator_case_slug(lpsm_GeneratorHandle handle,
     return ConvertToCstr(ret);
 }
 
+extern "C" char* lpsm_Generator_code(lpsm_GeneratorHandle handle,
+                                     lpsm_CodeLanguage    lang)
+{
+    auto ret = LPSM_CPPIFY(handle, lpsm::Generator)
+                       ->code(static_cast<lpsm::CodeLanguage>(lang));
+    return ConvertToCstr(ret);
+}
+
 extern "C" char* lpsm_Generator_fmt_paragraph(lpsm_GeneratorHandle handle,
                                               int                  num,
                                               bool                 useLipsum,

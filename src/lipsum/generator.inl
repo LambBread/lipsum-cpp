@@ -259,5 +259,65 @@ namespace lipsum
         return ret;
     }
 
+    std::string Generator::code(CodeLanguage lang)
+    {
+        std::string              ret;
+        std::vector<std::string> varNames;
+        std::string              mainNamespace =
+                scramble(m_Settings.wordURL.roll(m_Gen), 'a', 'z');
+        int numStatements = m_Settings.point.roll(m_Gen);
+        if (numStatements <= 0)
+        {
+            internal::LogWarn("lpsm::Generator::code(): expected numStatements "
+                              "> 0, got ",
+                              numStatements);
+        }
+        switch (lang)
+        {
+            case CodeLanguage::Cpp:
+            {
+                ret += std::string("#include <") + mainNamespace +
+                       std::string("/") + mainNamespace + ".hpp>\n";
+                ret += "#include <iostream>\nint main()\n{\n";
+                for (int i = 0; i < numStatements; ++i)
+                {
+                    varNames.push_back(case_slug(CaseSlugCase::CamelCase));
+                    ret += std::string("    auto ") + varNames.back() +
+                           std::string(" = ") + mainNamespace +
+                           std::string("::") +
+                           case_slug(CaseSlugCase::PascalCase) + "();\n";
+                }
+                ret += "    std::cout";
+                for (int i = 0; i < numStatements; ++i)
+                {
+                    ret += std::string(" << ") + varNames.at(i) + " << ' '";
+                }
+                ret += " << '\\n';\n    return 0;\n}";
+                break;
+            }
+            case CodeLanguage::Python:
+            {
+                ret += std::string("import ") + mainNamespace + "\n";
+                ret += "if __name__ == \"__main__\":\n";
+                for (int i = 0; i < numStatements; ++i)
+                {
+                    varNames.push_back(case_slug(CaseSlugCase::SnakeCase));
+                    ret += std::string("    ") + varNames.back() +
+                           std::string(" = ") + mainNamespace +
+                           std::string(".") +
+                           case_slug(CaseSlugCase::SnakeCase) + "()\n";
+                }
+                ret += "    print(f\"";
+                for (int i = 0; i < numStatements; ++i)
+                {
+                    ret += std::string("{") + varNames.at(i) +
+                           std::string("} ");
+                }
+                ret += "\")\n";
+            }
+        }
+        return ret;
+    }
+
 } // namespace lipsum
 #endif

@@ -49,6 +49,8 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("email", &lpsm::Generator::email)
             .function("url", &lpsm::Generator::url)
             .function("slug", &lpsm::Generator::slug)
+            .function("case_slug", &lpsm::Generator::case_slug)
+            .function("code", &lpsm::Generator::code)
             .function("fmt_paragraph", &lpsm::Generator::fmt_paragraph)
             .function("fmt_text", &lpsm::Generator::fmt_text)
             .function("fmt_header", &lpsm::Generator::fmt_header)
@@ -80,6 +82,9 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .value("ShoutyCase", lpsm::CaseSlugCase::ShoutyCase)
             .value("KebabCase", lpsm::CaseSlugCase::KebabCase)
             .value("TrainCase", lpsm::CaseSlugCase::TrainCase);
+    enum_<lpsm::CodeLanguage>("lpsm_CodeLanguage")
+            .value("Cpp", lpsm::CodeLanguage::Cpp)
+            .value("Python", lpsm::CodeLanguage::Python);
 
     constant("LIPSUM_CPP_VERSION", std::string(LIPSUM_CPP_VERSION));
     constant("LIPSUM_CPP_VERSION_MAJOR", LIPSUM_CPP_VERSION_MAJOR);

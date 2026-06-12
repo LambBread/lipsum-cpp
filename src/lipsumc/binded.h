@@ -59,6 +59,20 @@ typedef enum lpsm_CaseSlugCase
     LPSM_CSC_TRAIN_CASE
 } lpsm_CaseSlugCase;
 
+/**
+ * @brief Languages used by lpsm_Generator_code()
+ *
+ * @since 0.5.1
+ *
+ * Programming languages that lpsm_Generator_code() can generate, such as C++
+ * and Python.
+ */
+typedef enum lpsm_CodeLanguage
+{
+    LPSM_CODEL_CPP = 0,
+    LPSM_CODEL_PYTHON
+} lpsm_CodeLanguage;
+
 // NOLINTEND(modernize-use-using)
 
 #    ifdef __cplusplus
@@ -358,10 +372,25 @@ extern "C"
      * @param handle The lpsm_GeneratorHandle to use.
      * @param case_ The case.
      *
-     * @return std::string The case slug.
+     * @return char* The case slug.
      */
     LIPSUMC_API char* lpsm_Generator_case_slug(lpsm_GeneratorHandle handle,
                                                lpsm_CaseSlugCase    case_);
+
+    /**
+     * @brief Generate a code block.
+     *
+     * @since 0.5.1
+     *
+     * Generate a pseudo main function in the specified programming language.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param lang The language chosen.
+     *
+     * @return char* The code block.
+     */
+    LIPSUMC_API char* lpsm_Generator_code(lpsm_GeneratorHandle handle,
+                                          lpsm_CodeLanguage    lang);
 
     /**
      * @brief Generate Markdown or HTML paragraphs.

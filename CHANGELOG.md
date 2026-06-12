@@ -1397,13 +1397,17 @@ Formats.cpp
 
 ```cpp
 enum class lpsm::CaseSlugCase;
+enum class lpsm::CodeLanguage;
 std::string lpsm::Generator::email();
-std;;string lpsm::Generator::case_slug(lpsm::CaseSlugCase);
+std::string lpsm::Generator::case_slug(lpsm::CaseSlugCase);
+std::string lpsm::Generator::code(lpsm::CodeLanguage);
 #define LPSM_SAFE_CCTYPE()
 
 typedef enum lpsm_CaseSlugCase lpsm_CaseSlugCase;
+typedef enum lpsm_CodeLanguage lpsm_CodeLanguage;
 char* lpsm_Generator_email(lpsm_GeneratorHandle);
 char* lpsm_Generator_case_slug(lpsm_GeneratorHandle, lpsm_CaseSlugCase);
+char* lpsm_Generator_code(lpsm_GeneratorHandle, lpsm_CodeLanguage);
 ```
 
 - Changed functions:

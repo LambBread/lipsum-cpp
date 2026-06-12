@@ -26,7 +26,7 @@ Options include:
 
 Subcommands include:
   help, word, fragment, sentence, paragraph, text,
-  url, plain_url, email, slug, case_slug, fmt_paragraph, 
+  url, plain_url, email, slug, case_slug, code, fmt_paragraph, 
   fmt_text, fmt_header, fmt_emphasis, fmt_link, fmt_list, 
   xml, json, json_value
 

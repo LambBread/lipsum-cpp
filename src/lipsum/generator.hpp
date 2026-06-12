@@ -64,6 +64,20 @@ namespace lipsum
     };
 
     /**
+     * @brief Languages used by lipsum::Generator::code()
+     *
+     * @since 0.5.1
+     *
+     * Programming languages that lipsum::Generator::code() can generate, such
+     * as C++ and Python.
+     */
+    enum class CodeLanguage : int
+    {
+        Cpp = 0,
+        Python
+    };
+
+    /**
      * @brief Main class of lipsum-cpp
      *
      * @since 0.2.0
@@ -335,6 +349,20 @@ namespace lipsum
          * @return std::string The case slug.
          */
         std::string case_slug(CaseSlugCase case_ = CaseSlugCase::CamelCase);
+
+        /**
+         * @brief Generate a code block.
+         *
+         * @since 0.5.1
+         *
+         * Generate a pseudo main function in the specified programming
+         * language.
+         *
+         * @param lang The language chosen. By default C++.
+         *
+         * @return std::string The code block.
+         */
+        std::string code(CodeLanguage lang = CodeLanguage::Cpp);
 
         /*
          * FORMATS

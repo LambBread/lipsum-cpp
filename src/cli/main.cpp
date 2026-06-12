@@ -137,7 +137,7 @@ void Help(const std::string& page)
         std::cout << "      Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.\n\n";
         std::cout << "Subcommands include:\n";
         std::cout << "  help, word, fragment, sentence, paragraph, text,\n";
-        std::cout << "  url, plain_url, email, slug, case_slug, fmt_paragraph, \n";
+        std::cout << "  url, plain_url, email, slug, case_slug, code, fmt_paragraph, \n";
         std::cout << "  fmt_text, fmt_header, fmt_emphasis, fmt_link, fmt_list, \n";
         std::cout << "  xml, json, json_value\n\n";
         std::cout << "For more information, type lpsmcpp-cli help <subcommand>.\n";
@@ -202,6 +202,12 @@ void Help(const std::string& page)
         std::cout << "    case - The case to use.\n";
         std::cout << "      0 - camelCase, 1 - PascalCase, 2 - snake_case\n";
         std::cout << "      3 - SHOUTY_CASE, 4 - kebab-case, 5 - TRAIN-CASE\n\n";
+    }
+    if (page == "code")
+    {
+        std::cout << "  code <lang = 0> - Generate a code block.\n";
+        std::cout << "    lang - The language to use.\n";
+        std::cout << "      0 - C++, 1 - Python\n\n";
     }
     if (page == "fmt_paragraph")
     {
@@ -325,7 +331,8 @@ int main(int argc, char** argv)
             else
             {
                 ErrorMessage("Error: must be in format --option=value\nGot: ",
-                             option);
+                             option,
+                             '\n');
                 return -1;
             }
         }
@@ -435,6 +442,19 @@ int main(int argc, char** argv)
                          '\n');
         }
         std::cout << gen.case_slug(static_cast<lpsm::CaseSlugCase>(case_));
+    }
+    else if (subcommand == "code")
+    {
+        int lang = 0;
+        GET_ARG(lang, 2, int);
+        if (lang < 0 || lang > 1)
+        {
+            ErrorMessage("Error: language chosen out of range. Please use "
+                         "number between 0 and 1.\nGot lang=",
+                         lang,
+                         '\n');
+        }
+        std::cout << gen.code(static_cast<lpsm::CodeLanguage>(lang));
     }
     else if (subcommand == "help")
     {

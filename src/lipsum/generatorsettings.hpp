@@ -61,7 +61,8 @@ namespace lipsum
         ArgVec2 para{1, 4};
 
         /**
-         * @brief The minimum and maximum possible number of points in lists.
+         * @brief The minimum and maximum possible number of points in lists or
+         * statements in code blocks.
          *
          * @since 0.4.5
          */
@@ -69,7 +70,8 @@ namespace lipsum
 
         /**
          * @brief The minimum and maximum possible number of words at the end of
-         * a URL, in a heading, or in slugs.
+         * a URL, in a heading, in slugs, or characters in code block
+         * namespaces.
          *
          * @since 0.4.5
          */

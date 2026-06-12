@@ -205,6 +205,9 @@ int main()
 
     // Generate a scramble.
     std::cout << gen.scramble(24, 'a', 'z') << '\n';
+    
+    // Generate a C++ psuedocode block.
+    std::cout << gen.code(lpsm::CodeLanguage::Cpp) << '\n';
 
     // Generate 5 Markdown paragraphs.
     std::cout << gen.fmt_paragraph(5, lpsm::USELIPSUM, lpsm::MARKDOWN);
