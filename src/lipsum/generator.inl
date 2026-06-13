@@ -279,6 +279,9 @@ namespace lipsum
                 ret += std::string("#include <") + mainNamespace +
                        std::string("/") + mainNamespace + ".hpp>\n";
                 ret += "#include <iostream>\nint main()\n{\n";
+                ret += std::string("    // ") +
+                       single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
+                       "\n";
                 for (int i = 0; i < numStatements; ++i)
                 {
                     varNames.push_back(case_slug(CaseSlugCase::CamelCase));
@@ -299,6 +302,9 @@ namespace lipsum
             {
                 ret += std::string("import ") + mainNamespace + "\n";
                 ret += "if __name__ == \"__main__\":\n";
+                ret += std::string("    # ") +
+                       single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
+                       "\n";
                 for (int i = 0; i < numStatements; ++i)
                 {
                     varNames.push_back(case_slug(CaseSlugCase::SnakeCase));
