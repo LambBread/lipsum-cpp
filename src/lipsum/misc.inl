@@ -110,19 +110,8 @@ namespace lipsum
             // if not in parens
             if (urlNum <= 0)
             {
-                if (letter == ',')
-                {
-                    ++res;
-                }
-                if (letter == ';')
-                {
-                    ++res;
-                }
-                if (letter == ':')
-                {
-                    ++res;
-                }
-                if (letter == '.')
+                if (letter == ',' || letter == ';' || letter == ':' ||
+                    letter == '.' || letter == '?' || letter == '!')
                 {
                     ++res;
                 }

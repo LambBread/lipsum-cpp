@@ -114,6 +114,8 @@ static void Test_fragment_count_in_bounds(lpsm::Generator& gen)
 {
     std::string checking = gen.sentence(1, false);
     int         numFrags = lpsm::CountSentenceFragments(checking);
+    std::cout << numFrags << " ( " << MIN_FRAG << ", " << MAX_FRAG << ")\n";
+    std::cout << checking << '\n';
     if (numFrags < MIN_FRAG || numFrags > MAX_FRAG)
     {
         LogTestFailure("fragment_count_in_bounds");
