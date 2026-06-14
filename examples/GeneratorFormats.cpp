@@ -31,7 +31,7 @@ int main()
     // Generate a camel case case slug.
     std::cout << gen.case_slug(lpsm::CaseSlugCase::CamelCase) << '\n';
 
-    // Generate a C++ psuedocode block.
+    // Generate a C++ pseudocode block.
     std::cout << gen.code(lpsm::CodeLanguage::Cpp) << '\n';
 
     // Generate a scramble.

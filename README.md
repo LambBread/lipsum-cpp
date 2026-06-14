@@ -206,7 +206,7 @@ int main()
     // Generate a scramble.
     std::cout << gen.scramble(24, 'a', 'z') << '\n';
     
-    // Generate a C++ psuedocode block.
+    // Generate a C++ pseudocode block.
     std::cout << gen.code(lpsm::CodeLanguage::Cpp) << '\n';
 
     // Generate 5 Markdown paragraphs.
@@ -273,21 +273,25 @@ All tested with CMake `Release` build type, with default `lpsm::Generator` argum
 
 *Debian 13, 8GB DDR4 RAM, Intel i3-6100 (4-core) @ 3.7GHz*:
 
-- 23,825,730 words/second
-- 1,129,105 sentences/second
-- 165,406 paragraphs/second
-- 146,052 Markdown paragraphs/second
-- 294,004 Markdown "elements"/second
+| Metric              | Performance per second |
+| ------------------- | ---------------------- |
+| Words               | 28,825,730             |
+| Sentences           | 1,129,105              |
+| Paragraphs          | 165,406                |
+| Markdown paragraphs | 146,052                |
+| Markdown elements   | 294,004                |
 
 ### Low-end environment
 
 *Puppy Linux (BookwormPup32), 1GB DDR2 RAM, Intel Centrino Duo (2-core) @ 1.6GHz*:
 
-- 2,767,236 words/second
-- 105,033 sentences/second
-- 15,833 paragraphs/second
-- 15,267 Markdown paragraphs/second
-- 27,966 Markdown "elements"/second
+| Metric              | Performance per second |
+| ------------------- | ---------------------- |
+| Words               | 2,767,236              |
+| Sentences           | 105,033                |
+| Paragraphs          | 15,833                 |
+| Markdown paragraphs | 15,267                 |
+| Markdown elements   | 27,966                 |
 
 ## Credits
 
@@ -298,6 +302,6 @@ All tested with CMake `Release` build type, with default `lpsm::Generator` argum
 
 ---
 
-Licensed under [`0BSD.`](https://opensource.org/license/0bsd) (see [`LICENSE.md`](./LICENSE.md) for details)
+Licensed under [0BSD](https://opensource.org/license/0bsd). (see [`LICENSE.md`](./LICENSE.md) for details)
 
 > Created by [LambBread](https://github.com/LambBread)
