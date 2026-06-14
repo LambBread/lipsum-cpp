@@ -17,7 +17,7 @@ createLipsumCpp().then(Module =>
         const maxChar = $("#maxChar").value.charCodeAt(0);
         const useLipsum = $("#useLipsum").checked;
         const useHtml = $("#useHtml").checked;
-        console.log(useLipsum)
+        //console.log(useLipsum)
         if(funcSelect.value === "slug")
         {
             output.value = gen.slug(separator);
@@ -42,8 +42,61 @@ createLipsumCpp().then(Module =>
         {
             output.value = gen[funcSelect.value](0, num, useLipsum);
         }
+        else if(funcSelect.value == "code")
+        {
+            //console.log(num)
+            //console.log(num === "1")
+            if(num === "1")
+            {
+                output.value = gen.code(Module.lpsm_CodeLanguage.Python);
+            }
+            else
+            {
+                output.value = gen.code(Module.lpsm_CodeLanguage.Cpp);
+            }
+        }
+        else if(funcSelect.value == "case_slug")
+        {
+            let asEnum = Module.lpsm_CaseSlugCase.CamelCase;
+        
+            switch(num)
+            {
+                case "0":
+                {
+                    asEnum = Module.lpsm_CaseSlugCase.CamelCase;
+                    break;
+                }
+                case "1":
+                {
+                    asEnum = Module.lpsm_CaseSlugCase.PascalCase;
+                    break;
+                }
+                case "2":
+                {
+                    asEnum = Module.lpsm_CaseSlugCase.SnakeCase;
+                    break;
+                }
+                case "3":
+                {
+                    asEnum = Module.lpsm_CaseSlugCase.ShoutyCase;
+                    break;
+                }
+                case "4":
+                {
+                    asEnum = Module.lpsm_CaseSlugCase.KebabCase;
+                    break;
+                }
+                case "5":
+                {
+                    asEnum = Module.lpsm_CaseSlugCase.TrainCase;
+                    break;
+                }
+            }
+            output.value = gen.case_slug(asEnum);
+        }
         else if(["word", "fragment", "sentence",
-            "paragraph", "url", "plain_url", "xml"].includes(funcSelect.value))
+            "paragraph", "url", "plain_url", "xml", 
+            "email"].includes(funcSelect.value))
         {
             //console.log(funcSelect.value);
             output.value = gen[funcSelect.value](num, useLipsum);

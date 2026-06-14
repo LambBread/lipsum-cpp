@@ -115,7 +115,7 @@
 
 ## Upcoming
 
-- [ ] New examples using code blocks, emails; update `WebInterface.html` to include these (planned 0.5.1)
+- [ ] More language generation in code blocks (planned 0.5.2)
 - [ ] YAML/TOML? (potentially 0.5.2)
 - [ ] SWIG bindings? (potentially 0.5.2)
 - [ ] Release 1.0.0
