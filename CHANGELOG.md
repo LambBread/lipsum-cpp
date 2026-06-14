@@ -1383,7 +1383,7 @@ GenerateText.cpp
 Formats.cpp
 ```
 
-### 0.5.1 (2026-06 TBD)
+### 0.5.1 (2026-06-13)
 
 - Count apostrophes as part of a word in multi-source generation
 - Add exclamation marks, question marks, colons in sentences
