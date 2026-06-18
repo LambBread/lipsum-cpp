@@ -116,6 +116,9 @@
 ## Upcoming
 
 - [ ] More language generation in code blocks (planned 0.5.2)
+    - [x] Rust
+    - [ ] C
+    - [ ] JavaScript
 - [ ] YAML/TOML? (potentially 0.5.2)
 - [ ] SWIG bindings? (potentially 0.5.2)
 - [ ] Release 1.0.0

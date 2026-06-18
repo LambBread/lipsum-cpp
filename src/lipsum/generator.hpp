@@ -74,7 +74,8 @@ namespace lipsum
     enum class CodeLanguage : int
     {
         Cpp = 0,
-        Python
+        Python,
+        Rust
     };
 
     /**

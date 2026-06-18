@@ -21,4 +21,4 @@ option(LPSM_AMALGAMATE "Have support for amalgamating single-header builds" OFF)
 # executable suffix for WASM
 option(LPSM_BUILD_ASHTML "Set the executable suffix to HTML for WASM builds" ON)
 
-option(LPSM_VERSION_DEV "Is lipsum-cpp in a work-in-progress version?" OFF)
+option(LPSM_VERSION_DEV "Is lipsum-cpp in a work-in-progress version?" ON)

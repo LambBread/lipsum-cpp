@@ -50,6 +50,10 @@ createLipsumCpp().then(Module =>
             {
                 output.value = gen.code(Module.lpsm_CodeLanguage.Python);
             }
+            else if(num == "2")
+            {
+                output.value = gen.code(Module.lpsm_CodeLanguage.Rust);
+            }
             else
             {
                 output.value = gen.code(Module.lpsm_CodeLanguage.Cpp);

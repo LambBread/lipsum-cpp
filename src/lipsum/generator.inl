@@ -320,6 +320,35 @@ namespace lipsum
                            std::string("} ");
                 }
                 ret += "\")\n";
+                break;
+            }
+            case CodeLanguage::Rust:
+            {
+                ret += std::string("use ") + mainNamespace + ";\n";
+                ret += "fn main()\n{\n";
+                ret += std::string("    // ") +
+                       single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
+                       "\n";
+                for (int i = 0; i < numStatements; ++i)
+                {
+                    varNames.push_back(case_slug(CaseSlugCase::SnakeCase));
+                    ret += std::string("    let ") + varNames.back() +
+                           std::string(" = ") + mainNamespace +
+                           std::string("::") +
+                           case_slug(CaseSlugCase::SnakeCase) + "()\n";
+                }
+                ret += "    println!(\"";
+                for (int i = 0; i < numStatements; ++i)
+                {
+                    ret += std::string("{} ");
+                }
+                ret += "\"";
+                for (int i = 0; i < numStatements; ++i)
+                {
+                    ret += std::string(", ") + varNames.at(i);
+                }
+                ret += ");\n}";
+                break;
             }
         }
         return ret;

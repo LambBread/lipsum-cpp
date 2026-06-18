@@ -70,7 +70,8 @@ typedef enum lpsm_CaseSlugCase
 typedef enum lpsm_CodeLanguage
 {
     LPSM_CODEL_CPP = 0,
-    LPSM_CODEL_PYTHON
+    LPSM_CODEL_PYTHON,
+    LPSM_CODEL_RUST
 } lpsm_CodeLanguage;
 
 // NOLINTEND(modernize-use-using)
