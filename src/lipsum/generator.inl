@@ -335,12 +335,42 @@ namespace lipsum
                     ret += std::string("    let ") + varNames.back() +
                            std::string(" = ") + mainNamespace +
                            std::string("::") +
-                           case_slug(CaseSlugCase::SnakeCase) + "()\n";
+                           case_slug(CaseSlugCase::SnakeCase) + "();\n";
                 }
                 ret += "    println!(\"";
                 for (int i = 0; i < numStatements; ++i)
                 {
                     ret += std::string("{} ");
+                }
+                ret += "\"";
+                for (int i = 0; i < numStatements; ++i)
+                {
+                    ret += std::string(", ") + varNames.at(i);
+                }
+                ret += ");\n}";
+                break;
+            }
+            case CodeLanguage::C:
+            {
+                ret += std::string("#include <") + mainNamespace +
+                       std::string("/") + mainNamespace + ".h>\n";
+                ret += "#include <stdio.h>\n";
+                ret += "int main(void)\n{\n";
+                ret += std::string("    // ") +
+                       single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
+                       "\n";
+                for (int i = 0; i < numStatements; ++i)
+                {
+                    varNames.push_back(case_slug(CaseSlugCase::CamelCase));
+                    ret += std::string("    int ") + varNames.back() +
+                           std::string(" = ") + mainNamespace +
+                           std::string("_") +
+                           case_slug(CaseSlugCase::PascalCase) + "();\n";
+                }
+                ret += "    printf(\"";
+                for (int i = 0; i < numStatements; ++i)
+                {
+                    ret += std::string("%d ");
                 }
                 ret += "\"";
                 for (int i = 0; i < numStatements; ++i)

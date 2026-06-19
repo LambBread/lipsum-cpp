@@ -85,7 +85,8 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     enum_<lpsm::CodeLanguage>("lpsm_CodeLanguage")
             .value("Cpp", lpsm::CodeLanguage::Cpp)
             .value("Python", lpsm::CodeLanguage::Python)
-            .value("Rust", lpsm::CodeLanguage::Rust);
+            .value("Rust", lpsm::CodeLanguage::Rust)
+            .value("C", lpsm::CodeLanguage::C);
 
     constant("LIPSUM_CPP_VERSION", std::string(LIPSUM_CPP_VERSION));
     constant("LIPSUM_CPP_VERSION_MAJOR", LIPSUM_CPP_VERSION_MAJOR);

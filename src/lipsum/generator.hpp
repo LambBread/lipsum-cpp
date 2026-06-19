@@ -75,7 +75,8 @@ namespace lipsum
     {
         Cpp = 0,
         Python,
-        Rust
+        Rust,
+        C
     };
 
     /**

@@ -117,7 +117,7 @@
 
 - [ ] More language generation in code blocks (planned 0.5.2)
     - [x] Rust
-    - [ ] C
+    - [x] C
     - [ ] JavaScript
 - [ ] YAML/TOML? (potentially 0.5.2)
 - [ ] SWIG bindings? (potentially 0.5.2)
