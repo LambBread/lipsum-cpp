@@ -17,7 +17,7 @@ UI testing, benchmarking Markdown/HTML/XML/JSON parser libraries, and anywhere p
 - Zero third-party dependencies outside of build dependencies
 - Multi-source lorem-ipsum generation including built-in lorem-ipsum, cat-ipsum, dog-ipsum, 
   and corporate-ipsum as well as custom sources
-- Markdown, HTML, XML, JSON, and code block (C, C++, Python, and Rust snippet) generation
+- Markdown, HTML, XML, JSON, and code block (C, C++, Rust, Python, and JavaScript snippet) generation
 - Customizable number of paragraphs, sentences, sentence fragments, and words
 - CLI tool for integration in projects
 - Extensive documentation via Doxygen

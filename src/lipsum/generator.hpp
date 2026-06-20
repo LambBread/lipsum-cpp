@@ -76,7 +76,8 @@ namespace lipsum
         Cpp = 0,
         Python,
         Rust,
-        C
+        C,
+        JavaScript
     };
 
     /**

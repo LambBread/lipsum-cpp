@@ -207,7 +207,7 @@ void Help(const std::string& page)
     {
         std::cout << "  code <lang = 0> - Generate a code block.\n";
         std::cout << "    lang - The language to use.\n";
-        std::cout << "      0 - C++, 1 - Python, 2 - Rust, 3 - C\n\n";
+        std::cout << "      0 - C++, 1 - Python, 2 - Rust, 3 - C, 4 - JavaScript\n\n";
     }
     if (page == "fmt_paragraph")
     {
@@ -447,10 +447,10 @@ int main(int argc, char** argv)
     {
         int lang = 0;
         GET_ARG(lang, 2, int);
-        if (lang < 0 || lang > 3)
+        if (lang < 0 || lang > 4)
         {
             ErrorMessage("Error: language chosen out of range. Please use "
-                         "number between 0 and 2.\nGot lang=",
+                         "number between 0 and 4.\nGot lang=",
                          lang,
                          '\n');
         }

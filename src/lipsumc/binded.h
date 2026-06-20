@@ -72,7 +72,8 @@ typedef enum lpsm_CodeLanguage
     LPSM_CODEL_CPP = 0,
     LPSM_CODEL_PYTHON,
     LPSM_CODEL_RUST,
-    LPSM_CODEL_C
+    LPSM_CODEL_C,
+    LPSM_CODEL_JAVASCRIPT
 } lpsm_CodeLanguage;
 
 // NOLINTEND(modernize-use-using)

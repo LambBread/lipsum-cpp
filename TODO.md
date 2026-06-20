@@ -112,13 +112,13 @@
 - [x] Move amalgamation, `clang-tidy` into CMake (0.5.1)
 - [x] Case slug generation, e.g. `camelCase`, `PascalCase`, `snake_case` (0.5.1)
 - [x] Code block generation (0.5.1)
+- [x] More language generation in code blocks (0.5.2)
+    - [x] Rust
+    - [x] C
+    - [x] JavaScript
 
 ## Upcoming
 
-- [ ] More language generation in code blocks (planned 0.5.2)
-    - [x] Rust
-    - [x] C
-    - [ ] JavaScript
 - [ ] YAML/TOML? (potentially 0.5.2)
 - [ ] SWIG bindings? (potentially 0.5.2)
 - [ ] Release 1.0.0

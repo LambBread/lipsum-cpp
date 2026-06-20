@@ -380,6 +380,30 @@ namespace lipsum
                 ret += ");\n}";
                 break;
             }
+            case CodeLanguage::JavaScript:
+            {
+                ret += std::string("import * as ") + mainNamespace +
+                       std::string(" from \"./") + mainNamespace + ".js\";\n";
+                ret += std::string("// ") +
+                       single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
+                       "\n";
+                for (int i = 0; i < numStatements; ++i)
+                {
+                    varNames.push_back(case_slug(CaseSlugCase::CamelCase));
+                    ret += std::string("const ") + varNames.back() +
+                           std::string(" = ") + mainNamespace +
+                           std::string(".") +
+                           case_slug(CaseSlugCase::CamelCase) + "();\n";
+                }
+                ret += "console.log(";
+                ret += varNames.front();
+                for (int i = 1; i < numStatements; ++i)
+                {
+                    ret += std::string(", \" \", ") + varNames.at(i);
+                }
+                ret += ");\n";
+                break;
+            }
         }
         return ret;
     }

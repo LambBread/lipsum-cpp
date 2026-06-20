@@ -64,6 +64,11 @@ createLipsumCpp().then(Module =>
                     val = Module.lpsm_CodeLanguage.C;
                     break;
                 }
+                case "4":
+                {
+                    val = Module.lpsm_CodeLanguage.JavaScript;
+                    break;
+                }
             }
             //console.log(val);
             output.value = gen.code(val);

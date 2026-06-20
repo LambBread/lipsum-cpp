@@ -1451,4 +1451,4 @@ Source.cpp
 
 ### 0.5.2 (2026-06 TBD)
 
-- Add more `lpsm::Generator::code()` language generation support: Rust, C
+- Add more `lpsm::Generator::code()` language generation support: Rust, C, JavaScript
