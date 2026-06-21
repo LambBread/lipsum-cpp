@@ -119,7 +119,7 @@
 
 ## Upcoming
 
-- [ ] YAML/TOML? (potentially 0.5.2)
-- [ ] SWIG bindings? (potentially 0.5.2)
+- [ ] YAML? (potentially 0.5.2)
+- [ ] TOML? (potentially 0.5.2)
 - [ ] Release 1.0.0
 
