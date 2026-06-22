@@ -9,6 +9,8 @@ This is the main source directory of lipsum-cpp.
 - [lipsum](./lipsum/): main code of lipsum-cpp
     - [lipsum/core](./lipsum/core/): core parts of lipsum-cpp such as `lpsm::internal`, the version constants, and some classes
 - [jsbind](./jsbind/): the JavaScript binding
+- [cli](./cli/): the CLI tool
+- [test](./test/): unit tests
 
 ## Naming convention
 
@@ -29,3 +31,9 @@ This is the main source directory of lipsum-cpp.
     - e.g. `lpsm::CountParaMethod::Plain` -> `LPSM_CPM_PLAIN`
 - Binded class handles are the name of the class with `Handle` appended at the end
 - Binded class destructors are the name of the class with `Destroy` appended at the end
+
+## Minimum build mode
+
+The changes between "minimum build" mode and normal mode is that all format generation functions return 
+an empty string, and commas and periods are the only punctuation symbols available. Multi-source lorem-ipsum 
+functionality is stripped and warnings do not contain colour.

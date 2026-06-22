@@ -112,11 +112,12 @@ namespace lipsum::internal
         ((oss << args), ...);
         oss << '\n';
         std::string message = oss.str();
-#    ifdef __EMSCRIPTEN__
+#    ifndef LIPSUM_MIN_BUILD
+#        ifdef __EMSCRIPTEN__
         // emscripten
 
         emscripten_console_warn(message.c_str());
-#    elif defined(_WIN32)
+#        elif defined(_WIN32)
         // windows
 
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -128,10 +129,13 @@ namespace lipsum::internal
 
         // default
         SetConsoleTextAttribute(hConsole, 7);
-#    else
+#        else
         // assumed unix-like
 
         std::cerr << "\033[33m" << message << "\033[0m";
+#        endif
+#    else
+        std::cerr << message;
 #    endif
     }
 

@@ -116,6 +116,7 @@
     - [x] Rust
     - [x] C
     - [x] JavaScript
+- [x] Minimum build mode (0.5.2)
 
 ## Upcoming
 

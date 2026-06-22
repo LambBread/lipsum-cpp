@@ -65,7 +65,7 @@ namespace lipsum
          *
          * @param path A path to the source file.
          */
-        void load(const std::string& path);
+        void load([[maybe_unused]] const std::string& path);
 
         /**
          * @brief Select a random word.

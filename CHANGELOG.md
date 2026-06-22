@@ -1449,6 +1449,7 @@ char* lpsm_Generator_fmt_list(lpsm_GeneratorHandle, bool, bool);
 Source.cpp
 ```
 
-### 0.5.2 (2026-06 TBD)
+### 0.5.2 (2026-06/07 TBD)
 
 - Add more `lpsm::Generator::code()` language generation support: Rust, C, JavaScript
+- Add "minimum build" support (see `src/README.md`)

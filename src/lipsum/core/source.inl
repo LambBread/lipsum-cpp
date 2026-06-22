@@ -47,9 +47,10 @@ namespace lipsum
         return m_Words.at(dist(gen));
     }
 
-    void Source::load(const std::string& path)
+    void Source::load([[maybe_unused]] const std::string& path)
     {
         m_Words.clear();
+#    ifndef LIPSUM_MIN_BUILD
         if (path == "default" || path == "lorem")
         {
             currentLoaded = "default";
@@ -70,7 +71,6 @@ namespace lipsum
             currentLoaded = "corpo";
             return;
         }
-
         std::ifstream                   file(path);
         std::unordered_set<std::string> unique;
         std::string                     word;
@@ -100,6 +100,9 @@ namespace lipsum
             unique.insert(word);
         }
         std::copy(unique.begin(), unique.end(), std::back_inserter(m_Words));
+#    else
+        currentLoaded = "default";
+#    endif
     }
 } // namespace lipsum
 #endif

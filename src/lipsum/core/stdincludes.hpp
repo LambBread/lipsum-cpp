@@ -19,26 +19,28 @@
 #    include <cctype>
 #    include <charconv>
 #    include <concepts>
-#    include <fstream>
 #    include <iostream>
 #    include <iterator>
 #    include <random>
 #    include <sstream>
 #    include <string>
 #    include <type_traits>
-#    include <unordered_set>
 #    include <utility>
 #    include <vector>
-#    ifdef __EMSCRIPTEN__
-#        include <emscripten/console.h>
-#    endif
-#    ifdef _WIN32
-#        ifndef WIN32_LEAN_AND_MEAN
-#            define WIN32_LEAN_AND_MEAN
+#    ifndef LIPSUM_MIN_BUILD
+#        include <fstream>
+#        include <unordered_set>
+#        ifdef __EMSCRIPTEN__
+#            include <emscripten/console.h>
 #        endif
-#        ifndef NOMINMAX
-#            define NOMINMAX
+#        ifdef _WIN32
+#            ifndef WIN32_LEAN_AND_MEAN
+#                define WIN32_LEAN_AND_MEAN
+#            endif
+#            ifndef NOMINMAX
+#                define NOMINMAX
+#            endif
+#            include <windows.h>
 #        endif
-#        include <windows.h>
 #    endif
 #endif

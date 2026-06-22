@@ -21,6 +21,8 @@
 namespace lipsum
 {
 
+#    ifndef LIPSUM_MIN_BUILD
+
     /*
      * FORMATS
      */
@@ -374,5 +376,46 @@ namespace lipsum
             }
         }
     }
+#    else
+    // placeholders
+
+    std::string Generator::fmt_paragraph(int, bool, bool)
+    {
+        return "";
+    }
+    std::string Generator::fmt_text(int, bool)
+    {
+        return "";
+    }
+    std::string Generator::fmt_header(int, bool)
+    {
+        return "";
+    }
+    std::string Generator::fmt_emphasis(bool, bool)
+    {
+        return "";
+    }
+    std::string Generator::fmt_link(bool)
+    {
+        return "";
+    }
+    std::string Generator::fmt_list(bool, bool)
+    {
+        return "";
+    }
+    std::string Generator::xml(int)
+    {
+        return "";
+    }
+    std::string Generator::json(int, int, bool)
+    {
+        return "";
+    }
+    std::string Generator::json_value(int, int)
+    {
+        return "";
+    }
+#    endif
 } // namespace lipsum
+
 #endif

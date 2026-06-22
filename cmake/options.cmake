@@ -6,6 +6,8 @@ option(LPSM_BUILD_SHARED "Build as shared library" OFF)
 option(LPSM_BUILD_CWRAPPER "Build C wrapper" OFF)
 option(LPSM_BUILD_JSBIND "Build the JS WebAssembly binding" OFF)
 
+option(LPSM_MIN_BUILD "Build a minimum build" OFF)
+
 # custom targets
 option(LPSM_BUILD_EXAMPLES "Build examples" OFF)
 option(LPSM_BUILD_EXTRA_EXAMPLES "Build advanced examples" OFF)

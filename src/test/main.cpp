@@ -242,14 +242,16 @@ int main(int argc, char** argv)
         TEST_MAP(sentence_count_equal),
         TEST_MAP(paragraph_count_in_bounds),
         TEST_MAP(paragraph_count_equal),
+#ifndef LIPSUM_MIN_BUILD
         TEST_MAP(md_sentence_count_in_bounds),
         TEST_MAP(md_paragraph_count_equal),
         TEST_MAP(md_text_count_equal),
+        TEST_MAP(benchmark_md_paragraphs),
+        TEST_MAP(benchmark_md_text),
+#endif
         TEST_MAP(benchmark_words),
         TEST_MAP(benchmark_sentences),
-        TEST_MAP(benchmark_paragraphs),
-        TEST_MAP(benchmark_md_paragraphs),
-        TEST_MAP(benchmark_md_text)
+        TEST_MAP(benchmark_paragraphs)
     };
     // clang-format on
 

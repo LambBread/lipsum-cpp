@@ -127,6 +127,7 @@ namespace lipsum
         return dist(m_Gen);
     }
 
+#    ifndef LIPSUM_MIN_BUILD
     std::string Generator::tld()
     {
         std::vector<std::string>      tlds    = {{".com"},
@@ -167,32 +168,6 @@ namespace lipsum
         }
         result += mappedEndMark.at(weighted_random_idx(weightsEndMark));
         result.at(0) = LPSM_SAFE_CCTYPE(char, std::toupper, result.at(0));
-        return result;
-    }
-
-    std::string Generator::single_paragraph(bool useLipsum)
-    {
-        std::string result = "\t";
-        int         sents  = m_Settings.sent.roll(m_Gen);
-        for (int i = 0; i < sents; ++i)
-        {
-            if (i == 0 && useLipsum)
-            {
-                result += GenerateDefaultLipsumSentence() += " ";
-            }
-            else
-            {
-                result += single_sentence(m_Settings.word, m_Settings.frag) +=
-                        " ";
-            }
-        }
-
-        if (!result.empty())
-        {
-            // remove trailing space
-            result.pop_back();
-        }
-        result += "\n";
         return result;
     }
 
@@ -249,6 +224,75 @@ namespace lipsum
         constexpr int JSON_NUMBER_MAX = 1000;
         return internal::ToString(
                 random_number(JSON_NUMBER_MIN, JSON_NUMBER_MAX));
+    }
+#    else
+    std::string Generator::tld()
+    {
+        return ".com";
+    }
+
+    std::string Generator::single_sentence(const ArgVec2& wordArg,
+                                           const ArgVec2& frag)
+    {
+        std::string result;
+        int         words;
+        int         frags = frag.roll(m_Gen);
+        for (int i = 0; i < frags; ++i)
+        {
+            words = wordArg.roll(m_Gen);
+            result += word(words);
+            if (i != frags - 1)
+            {
+                result += ", ";
+            }
+        }
+        result += ".";
+        result.at(0) = LPSM_SAFE_CCTYPE(char, std::toupper, result.at(0));
+        return result;
+    }
+
+    // placeholder
+
+    std::string Generator::single_fmt_paragraph(bool, bool)
+    {
+        return "";
+    }
+
+    std::string Generator::json_string()
+    {
+        return "";
+    }
+
+    std::string Generator::json_number()
+    {
+        return "";
+    }
+#    endif
+
+    std::string Generator::single_paragraph(bool useLipsum)
+    {
+        std::string result = "\t";
+        int         sents  = m_Settings.sent.roll(m_Gen);
+        for (int i = 0; i < sents; ++i)
+        {
+            if (i == 0 && useLipsum)
+            {
+                result += GenerateDefaultLipsumSentence() += " ";
+            }
+            else
+            {
+                result += single_sentence(m_Settings.word, m_Settings.frag) +=
+                        " ";
+            }
+        }
+
+        if (!result.empty())
+        {
+            // remove trailing space
+            result.pop_back();
+        }
+        result += "\n";
+        return result;
     }
 } // namespace lipsum
 #endif
