@@ -117,10 +117,12 @@
     - [x] C
     - [x] JavaScript
 - [x] Minimum build mode (0.5.2)
+- [x] Optimize C wrapper with move semantics (0.5.2)
 
 ## Upcoming
 
 - [ ] `-o` flag in CLI tool (planned 0.5.2)
+- [ ] Batch operations in CLI tool? (potentially 0.5.2)
 - [ ] Less arguments in `lpsm::Generator::json()`? (potentially 0.5.2)
 - [ ] Recursion depth limit in `lpsm::Generator::json()` (planned 0.5.2)
 - [ ] Add documentation explaining how library internally works (planned 0.5.2)

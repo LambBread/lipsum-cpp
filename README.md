@@ -267,7 +267,8 @@ for details.
 
 ## Benchmarks
 
-All tested with CMake `Release` build type, with default `lpsm::Generator` arguments.
+All tested with CMake `Release` build type, with default
+`lpsm::Generator` arguments under a normal build.
 
 ### Medium-end environment
 

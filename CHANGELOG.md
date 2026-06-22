@@ -1453,3 +1453,5 @@ Source.cpp
 
 - Add more `lpsm::Generator::code()` language generation support: Rust, C, JavaScript
 - Add "minimum build" support (see `src/README.md`)
+- Add move semantics and more standard functions in C wrapper 
+  (`std::memcpy` instead of `strlcpy` or `strcpy_s`)
