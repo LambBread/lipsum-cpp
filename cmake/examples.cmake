@@ -10,6 +10,10 @@ if(LPSM_BUILD_EXAMPLES)
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/examples")
 endif()
 
+if(LPSM_MIN_BUILD)
+    message(STATUS "lipsum-cpp ---- Doing minimum build")
+endif()
+
 # if building tests, enable test and add subdirectory
 if(LPSM_BUILD_TEST AND NOT EMSCRIPTEN)
     enable_testing()

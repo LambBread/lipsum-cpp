@@ -492,14 +492,13 @@ namespace lipsum
          *
          * Generate an object or array in JSON format.
          *
-         * @param depth The current depth of recursion. By default 0.
          * @param maxDepth The maximum level of recursion. By default 3.
          * @param isObject Whether to output an object (true) or an array
          * (false). By default true.
          *
          * @return std::string The random JSON object or array.
          */
-        std::string json(int depth = 0, int maxDepth = 3, bool isObject = true);
+        std::string json(int maxDepth = 3, bool isObject = true);
 
         /**
          * @brief Generate a JSON value.
@@ -509,12 +508,11 @@ namespace lipsum
          * Generate an object, array, number, string, boolean, or null in JSON
          * format.
          *
-         * @param depth The current depth of recursion. By default 0.
          * @param maxDepth The maximum level of recursion. By default 3.
          *
          * @return std::string The random JSON value.
          */
-        std::string json_value(int depth = 0, int maxDepth = 3);
+        std::string json_value(int maxDepth = 3);
 
     private:
         /**

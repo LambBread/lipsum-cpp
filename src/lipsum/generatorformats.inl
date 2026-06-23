@@ -290,7 +290,7 @@ namespace lipsum
         return ret;
     }
 
-    std::string Generator::json(int depth, int maxDepth, bool isObject)
+    std::string Generator::json(int maxDepth, bool isObject)
     {
         int         count = m_Settings.jsonLength.roll(m_Gen);
         std::string ret   = (isObject ? "{" : "[");
@@ -307,22 +307,22 @@ namespace lipsum
                 std::string key = std::string("\"") +
                                   m_Source.random_word(m_Gen) +
                                   internal::ToString(i) + "\"";
-                ret += key + std::string(":") + json_value(depth + 1, maxDepth);
+                ret += key + std::string(":") + json_value(maxDepth - 1);
             }
             else
             {
 
-                ret += json_value(depth + 1, maxDepth);
+                ret += json_value(maxDepth - 1);
             }
         }
         ret += (isObject ? "}" : "]");
         return ret;
     }
 
-    std::string Generator::json_value(int depth, int maxDepth)
+    std::string Generator::json_value(int maxDepth)
     {
         int choice;
-        if (depth > maxDepth)
+        if (maxDepth <= 0)
         {
             choice = random_number(0, 3);
             switch (choice)
@@ -368,11 +368,11 @@ namespace lipsum
             }
             case 4:
             {
-                return json(depth, maxDepth, ARRAY);
+                return json(maxDepth, ARRAY);
             }
             default:
             {
-                return json(depth, maxDepth, OBJECT);
+                return json(maxDepth, OBJECT);
             }
         }
     }
@@ -407,11 +407,11 @@ namespace lipsum
     {
         return "";
     }
-    std::string Generator::json(int, int, bool)
+    std::string Generator::json(int, bool)
     {
         return "";
     }
-    std::string Generator::json_value(int, int)
+    std::string Generator::json_value(int)
     {
         return "";
     }

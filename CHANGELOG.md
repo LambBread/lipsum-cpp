@@ -1455,3 +1455,16 @@ Source.cpp
 - Add "minimum build" support (see `src/README.md`)
 - Add move semantics and more standard functions in C wrapper 
   (`std::memcpy` instead of `strlcpy` or `strcpy_s`)
+- Changed functions:
+
+```cpp
+std::string lpsm::Generator::json(int, bool);
+// from std::string lpsm::Generator::json(int, int, bool)
+std::string lpsm::Generator::json_value(int);
+// from std::string lpsm::Generator::json_value(int, int);
+
+char* lpsm_Generator_json(lpsm_GeneratorHandle, int, bool);
+// from char* lpsm_Generator_json(lpsm_GeneratorHandle, int, int, bool)
+char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int);
+// from char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int, int)
+```

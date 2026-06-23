@@ -40,7 +40,7 @@ createLipsumCpp().then(Module =>
         }
         else if(["json", "json_value"].includes(funcSelect.value))
         {
-            output.value = gen[funcSelect.value](0, num, useLipsum);
+            output.value = gen[funcSelect.value](num, useLipsum);
         }
         else if(funcSelect.value == "code")
         {

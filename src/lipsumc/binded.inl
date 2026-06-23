@@ -202,21 +202,17 @@ extern "C" char* lpsm_Generator_xml(lpsm_GeneratorHandle handle, int choices)
     return ConvertToCstr(std::move(ret));
 }
 
-extern "C" char* lpsm_Generator_json(lpsm_GeneratorHandle handle,
-                                     int                  depth,
-                                     int                  maxDepth,
-                                     bool                 isObject)
+extern "C" char*
+lpsm_Generator_json(lpsm_GeneratorHandle handle, int maxDepth, bool isObject)
 {
-    auto&& ret = LPSM_CPPIFY(handle, lpsm::Generator)
-                         ->json(depth, maxDepth, isObject);
+    auto&& ret = LPSM_CPPIFY(handle, lpsm::Generator)->json(maxDepth, isObject);
     return ConvertToCstr(std::move(ret));
 }
 
-extern "C" char*
-lpsm_Generator_json_value(lpsm_GeneratorHandle handle, int depth, int maxDepth)
+extern "C" char* lpsm_Generator_json_value(lpsm_GeneratorHandle handle,
+                                           int                  maxDepth)
 {
-    auto&& ret =
-            LPSM_CPPIFY(handle, lpsm::Generator)->json_value(depth, maxDepth);
+    auto&& ret = LPSM_CPPIFY(handle, lpsm::Generator)->json_value(maxDepth);
     return ConvertToCstr(std::move(ret));
 }
 

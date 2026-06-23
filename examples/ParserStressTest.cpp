@@ -12,7 +12,7 @@ int main()
     lpsm::Generator gen;
     gen.change_setting("jsonLength", 10, 20);
     std::string xml  = gen.xml(500000);
-    std::string json = gen.json(0, 6, lpsm::OBJECT);
+    std::string json = gen.json(6, lpsm::OBJECT);
 
     LIBXML_TEST_VERSION
 

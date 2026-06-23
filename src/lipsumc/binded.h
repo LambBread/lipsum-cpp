@@ -543,7 +543,6 @@ extern "C"
      * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
-     * @param depth The current depth of recursion. By default 0.
      * @param maxDepth Maximum depth of recursion.
      * @param isObject Whether to output an object (true) or an array
      * (false).
@@ -551,7 +550,6 @@ extern "C"
      * @return char* The random JSON object or array.
      */
     LIPSUMC_API char* lpsm_Generator_json(lpsm_GeneratorHandle handle,
-                                          int                  depth,
                                           int                  maxDepth,
                                           bool                 isObject);
 
@@ -566,13 +564,11 @@ extern "C"
      * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
-     * @param depth The current depth of recursion.
      * @param maxDepth The maximum level of recursion.
      *
      * @return char* The random JSON value.
      */
     LIPSUMC_API char* lpsm_Generator_json_value(lpsm_GeneratorHandle handle,
-                                                int                  depth,
                                                 int                  maxDepth);
 
 #    ifdef __cplusplus

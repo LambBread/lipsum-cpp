@@ -12,7 +12,7 @@ BUILD_TYPE ?= Release
 CMAKE_OPTS ?= -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON \
 			  -DLPSM_BUILD_DOCS=ON -DLPSM_BUILD_EXAMPLES=ON \
 			  -DLPSM_BUILD_JSBIND=ON -DLPSM_BUILD_CLI=ON -DLPSM_BUILD_EXTRA_EXAMPLES=ON \
-			  -DLPSM_AMALGAMATE=ON -DLPSM_MIN_BUILD=ON
+			  -DLPSM_AMALGAMATE=ON
 
 .PHONY: all clean build configure em_configure em_build format amalgamate \
 	pkg full_clean sample quick_pkg pkg_ version tidy help install cpack ctest
