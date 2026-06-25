@@ -98,26 +98,29 @@ namespace lipsum::internal
      * starting with "lipsum-cpp WARNING -- " and the message, ending in a
      * newline. If in Emscripten environment, use JavaScript console.warn()
      * instead. If in Windows environment, use SetConsoleTextAttribute()
-     * instead.
+     * instead. If doing a minimum build, skip making text yellow or warning in
+     * JS console. If doing a quiet build, do not print.
      *
      * @tparam Args The arguments' types. All must be printable with
      * std::ostream, or else the code will fail to compile.
      *
      * @param args The arguments to print.
      */
-    template <typename... Args> void LogWarn(const Args&... args)
+    template <typename... Args>
+    void LogWarn([[maybe_unused]] const Args&... args)
     {
+#    ifndef LIPSUM_QUIET
         std::ostringstream oss;
         oss << "lipsum-cpp WARNING -- ";
         ((oss << args), ...);
         oss << '\n';
         std::string message = oss.str();
-#    ifndef LIPSUM_MIN_BUILD
-#        ifdef __EMSCRIPTEN__
+#        ifndef LIPSUM_MIN_BUILD
+#            ifdef __EMSCRIPTEN__
         // emscripten
 
         emscripten_console_warn(message.c_str());
-#        elif defined(_WIN32)
+#            elif defined(_WIN32)
         // windows
 
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -129,13 +132,14 @@ namespace lipsum::internal
 
         // default
         SetConsoleTextAttribute(hConsole, 7);
-#        else
+#            else
         // assumed unix-like
 
         std::cerr << "\033[33m" << message << "\033[0m";
-#        endif
-#    else
+#            endif
+#        else
         std::cerr << message;
+#        endif
 #    endif
     }
 

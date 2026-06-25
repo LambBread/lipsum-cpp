@@ -31,7 +31,7 @@ jobs:
       - name: Build static library
         if: runner.os != 'Windows'
         run: >
-          cmake -S . -B build -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON 
+          cmake -S . -B build 
           -DLPSM_BUILD_EXAMPLES=ON -DLPSM_FORMAT=OFF -DLPSM_BUILD_SAMPLE=OFF 
           -DLPSM_BUILD_VERSION=OFF -DCMAKE_BUILD_TYPE=Release -DLPSM_BUILD_CLI=ON 
           -DLPSM_BUILD_DOCS=ON -DLPSM_TIDY=OFF &&
@@ -40,7 +40,7 @@ jobs:
       - name: Build static library (Windows)
         if: runner.os == 'Windows'
         run: >
-          cmake -S . -B build -G "Visual Studio 18 2026" -DLPSM_BUILD_STATIC=ON -DLPSM_BUILD_CWRAPPER=ON
+          cmake -S . -B build -G "Visual Studio 18 2026"
           -DLPSM_BUILD_EXAMPLES=ON -DLPSM_FORMAT=OFF -DLPSM_BUILD_SAMPLE=OFF
           -DLPSM_BUILD_VERSION=OFF -DLPSM_BUILD_CLI=ON -DLPSM_BUILD_DOCS=ON -DLPSM_TIDY=OFF &&
           cmake --build build --config Release

@@ -1,12 +1,13 @@
 # static/shared
-option(LPSM_BUILD_STATIC "Build as static library" OFF)
+option(LPSM_BUILD_STATIC "Build as static library" ON)
 option(LPSM_BUILD_SHARED "Build as shared library" OFF)
 
 # wrappers/bindings
-option(LPSM_BUILD_CWRAPPER "Build C wrapper" OFF)
-option(LPSM_BUILD_JSBIND "Build the JS WebAssembly binding" OFF)
+option(LPSM_BUILD_CWRAPPER "Build C wrapper" ON)
+option(LPSM_BUILD_JSBIND "Build the JS WebAssembly binding" ON)
 
 option(LPSM_MIN_BUILD "Build a minimum build" OFF)
+option(LPSM_QUIET "Disable runtime warnings" OFF)
 
 # custom targets
 option(LPSM_BUILD_EXAMPLES "Build examples" OFF)

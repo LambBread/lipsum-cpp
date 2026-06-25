@@ -23,10 +23,6 @@ if(LPSM_BUILD_STATIC)
     
     # definitions
     target_compile_definitions(lipsum-cpp PUBLIC LIPSUM_BUILD_STATIC)
-    if(LPSM_MIN_BUILD)
-        target_compile_definitions(lipsum-cpp
-            PUBLIC LIPSUM_MIN_BUILD)
-    endif()
 elseif(LPSM_BUILD_SHARED)
     # shared library
 
@@ -37,18 +33,10 @@ elseif(LPSM_BUILD_SHARED)
         PUBLIC LIPSUM_BUILD_STATIC LIPSUM_BUILD_SHARED 
         PRIVATE LIPSUM_EXPORT_SHARED
     )
-    if(LPSM_MIN_BUILD)
-        target_compile_definitions(lipsum-cpp
-            PUBLIC LIPSUM_MIN_BUILD)
-    endif()
 else()
     # header only
 
     add_library(lipsum-cpp INTERFACE)
-    if(LPSM_MIN_BUILD)
-        target_compile_definitions(lipsum-cpp
-            INTERFACE LIPSUM_MIN_BUILD)
-    endif()
 endif()
 
 add_library(lipsum-cpp::lipsum-cpp ALIAS lipsum-cpp)
@@ -67,6 +55,11 @@ if(LPSM_BUILD_SHARED OR LPSM_BUILD_STATIC)
     else()
         target_compile_options(lipsum-cpp PRIVATE -Wall -Wextra -Wpedantic)
     endif()
+    
+    target_compile_definitions(lipsum-cpp PUBLIC
+        $<$<BOOL:${LPSM_MIN_BUILD}>:LIPSUM_MIN_BUILD>
+        $<$<BOOL:${LPSM_QUIET}>:LIPSUM_QUIET>
+    )
 else()
 
     # c++20
@@ -75,7 +68,13 @@ else()
     # include directories
     target_include_directories(lipsum-cpp INTERFACE 
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>"
-        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/lipsum-cpp>")
+        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/lipsum-cpp>"
+    )
+
+    target_compile_definitions(lipsum-cpp INTERFACE
+        $<$<BOOL:${LPSM_MIN_BUILD}>:LIPSUM_MIN_BUILD>
+        $<$<BOOL:${LPSM_QUIET}>:LIPSUM_QUIET>
+    )
 endif()
 
 if(WIN32 AND NOT LPSM_MIN_BUILD)

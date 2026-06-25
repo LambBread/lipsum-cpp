@@ -321,7 +321,17 @@ namespace lipsum
 
     std::string Generator::json_value(int maxDepth)
     {
-        int choice;
+        int           choice;
+        constexpr int JSON_VALUE_WARN_DEPTH = 50;
+        if (maxDepth >= JSON_VALUE_WARN_DEPTH)
+        {
+            internal::LogWarn("lpsm::Generator::json_value(): got maxDepth = ",
+                              maxDepth,
+                              ", which is"
+                              "greater than the recommended maximum depth ",
+                              JSON_VALUE_WARN_DEPTH,
+                              ".");
+        }
         if (maxDepth <= 0)
         {
             choice = random_number(0, 3);

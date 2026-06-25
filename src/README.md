@@ -32,8 +32,8 @@ This is the main source directory of lipsum-cpp.
 - Binded class handles are the name of the class with `Handle` appended at the end
 - Binded class destructors are the name of the class with `Destroy` appended at the end
 
-## Minimum build mode
+## Minimum & Quiet build modes
 
 The changes between "minimum build" mode and normal mode is that all format generation functions return 
 an empty string, and commas and periods are the only punctuation symbols available. Multi-source lorem-ipsum 
-functionality is stripped and warnings do not contain colour.
+functionality is stripped and warnings do not contain colour. Quiet mode disables logging from `lpsm::internal::LogWarn()`.

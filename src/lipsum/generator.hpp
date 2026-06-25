@@ -377,7 +377,8 @@ namespace lipsum
          * @since 0.3.0
          *
          * Generate multiple paragraphs in Markdown or HTML format. Formerly
-         * known as md_paragraph().
+         * known as md_paragraph(). If doing a minimum build, return an empty
+         * string.
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
@@ -396,7 +397,7 @@ namespace lipsum
          * @since 0.3.0
          *
          * Generate a document in Markdown or HTML format. Formerly known as
-         * md_text().
+         * md_text(). If doing a minimum build, return an empty string.
          *
          * @param numElements The number of elements (paragraph, list, heading)
          * in the document. By default 15.
@@ -413,7 +414,7 @@ namespace lipsum
          * @since 0.4.6
          *
          * Generate a header in Markdown or HTML format. Formerly known as
-         * md_header().
+         * md_header(). If doing a minimum build, return an empty string.
          *
          * @param level The level of the heading. By default 1.
          * @param useHtml Whether HTML should be outputted instead of Markdown.
@@ -429,7 +430,8 @@ namespace lipsum
          * @since 0.4.6
          *
          * Generate a bold or italic sentence in Markdown or HTML format that is
-         * either bold or italic. Formerly known as md_emphasis().
+         * either bold or italic. Formerly known as md_emphasis(). If doing a
+         * minimum build, return an empty string.
          *
          * @param isBold Whether the sentence is bold or italic. By default
          * true. (bold)
@@ -446,7 +448,7 @@ namespace lipsum
          * @since 0.4.6
          *
          * Generate a link in Markdown or HTML format. Formerly known as
-         * md_link().
+         * md_link(). If doing a minimum build, return an empty string.
          *
          * @param useHtml Whether HTML should be outputted instead of Markdown.
          * By default false.
@@ -461,7 +463,8 @@ namespace lipsum
          * @since 0.4.6
          *
          * Generate an ordered or unordered list in Markdown or HTML format.
-         * Formerly known as md_list().
+         * Formerly known as md_list(). If doing a minimum build, return an
+         * empty string.
          *
          * @param ordered Whether the list is ordered. By default false.
          * @param useHtml Whether HTML should be outputted instead of Markdown.
@@ -476,7 +479,8 @@ namespace lipsum
          *
          * @since 0.4.4
          *
-         * Generate a document in XML format.
+         * Generate a document in XML format. If doing a minimum build, return
+         * an empty string.
          *
          * @param choices The number of choices (start element, end element, add
          * data element) that are made. By default 30.
@@ -490,7 +494,8 @@ namespace lipsum
          *
          * @since 0.4.4
          *
-         * Generate an object or array in JSON format.
+         * Generate an object or array in JSON format. If doing a minimum build,
+         * return an empty string.
          *
          * @param maxDepth The maximum level of recursion. By default 3.
          * @param isObject Whether to output an object (true) or an array
@@ -506,7 +511,8 @@ namespace lipsum
          * @since 0.5.0
          *
          * Generate an object, array, number, string, boolean, or null in JSON
-         * format.
+         * format. If maxDepth is greater than or equal to 50, print a warning.
+         * If doing a minimum build, return an empty string.
          *
          * @param maxDepth The maximum level of recursion. By default 3.
          *
@@ -551,7 +557,8 @@ namespace lipsum
          * @since 0.5.0
          *
          * Generate a single paragraph in Markdown or HTML format. This function
-         * is private. Formerly known as single_md_paragraph().
+         * is private. Formerly known as single_md_paragraph(). If doing a
+         * minimum build, return an empty string.
          *
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
          * @param useHtml Whether HTML should be outputted instead of Markdown.
@@ -566,7 +573,7 @@ namespace lipsum
          * @since 0.5.0
          *
          * Generate a random word, surrounded by quotes. This function is
-         * private.
+         * private. If doing a minimum build, return an empty string.
          *
          * @return std::string The random JSON string.
          */
@@ -578,7 +585,7 @@ namespace lipsum
          * @since 0.5.0
          *
          * Generate a random number, surrounded by quotes. This function is
-         * private.
+         * private. If doing a minimum build, return an empty string.
          *
          * @return std::string The random JSON number.
          */
@@ -591,7 +598,7 @@ namespace lipsum
          *
          * Generate a random number between min and max, inclusive. If T is an
          * integer, use std::uniform_int_distribution. Else, use
-         * std::uniform_real_distribution.
+         * std::uniform_real_distribution. This function is private.
          *
          * @tparam T The type of the random number. Must be a
          * uniform-distribution type, i.e. ints (excluding chars and bool) and
@@ -673,7 +680,7 @@ namespace lipsum
          *
          * This function picks a random TLD out of .com, .org, .net, .edu, .io,
          * .ca, and .co.uk, each with chances of 70%, 10%, 7%, 5%, 5%, 2%, and
-         * 1% respectively.
+         * 1% respectively. This function is private.
          *
          * @return std::string The random TLD.
          */

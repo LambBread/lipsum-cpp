@@ -52,24 +52,28 @@ lipsum-cpp has been mainly tested on Linux (Debian 13) and WebAssembly, and ther
 
 #### Using CMake (Recommended)
 
-1. Add to your CMake project:
+lipsum-cpp with CMake defaults to a static library with C wrapper support. Some other presets include:
+
+- Shared library (`LPSM_BUILD_SHARED=ON`)
+- Header-only library (`LPSM_BUILD_STATIC=OFF` and `LPSM_BUILD_SHARED=OFF`)
+- No C wrapper support (`LPSM_BUILD_CWRAPPER=OFF`), required with header-only builds
+- "Minimum" and "Quiet" modes (see [`src/README.md`](./src/README.md); 
+  change `LPSM_MIN_BUILD` and `LPSM_QUIET` options)
+
+To add to your CMake project:
     
-    ```cmake
-    include(FetchContent)
+```cmake
+include(FetchContent)
 
-    FetchContent_Declare(
-        lipsum-cpp
-        GIT_REPOSITORY https://github.com/LambBread/lipsum-cpp.git
-        GIT_TAG master
-    )
-    FetchContent_MakeAvailable(lipsum-cpp)
-    # ...
-    target_link_libraries(your_target PRIVATE lipsum-cpp)
-    ```
-
-2. To build as a static or shared library with C wrapper support (optional):  
-   Set `LPSM_BUILD_STATIC=ON` or `LPSM_BUILD_SHARED=ON` in your CMake options. For C wrapper builds,
-   also set `LPSM_BUILD_CWRAPPER=ON`.
+FetchContent_Declare(
+    lipsum-cpp
+    GIT_REPOSITORY https://github.com/LambBread/lipsum-cpp.git
+    GIT_TAG master
+) 
+FetchContent_MakeAvailable(lipsum-cpp)
+# ...
+target_link_libraries(your_target PRIVATE lipsum-cpp)
+```
 
 Alternatively, instead of `FetchContent`, use `add_subdirectory`:
 
