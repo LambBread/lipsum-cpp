@@ -2,6 +2,7 @@
 #    define LIPSUM_IMPLEMENTATION
 #endif
 
+#include <fstream>
 #include <limits>
 #include <lipsum.hpp>
 
@@ -22,7 +23,7 @@
     {                                                                          \
         type argName = defaultVal;                                             \
         GET_ARG(argName, 2, type);                                             \
-        std::cout << gen.name(argName);                                        \
+        (*ostr) << gen.name(argName);                                          \
     }
 #define DOUBLE_ARG_SUBCOMMAND(name, type1, defaultVal1, type2, defaultVal2)    \
     if (subcommand == #name)                                                   \
@@ -31,13 +32,13 @@
         type2 argName2 = defaultVal2;                                          \
         GET_ARG(argName1, 2, type1);                                           \
         GET_ARG(argName2, 3, type2);                                           \
-        std::cout << gen.name(argName1, argName2);                             \
+        (*ostr) << gen.name(argName1, argName2);                               \
     }
 
 #define NO_ARG_SUBCOMMAND(name)                                                \
     if (subcommand == #name)                                                   \
     {                                                                          \
-        std::cout << gen.name();                                               \
+        (*ostr) << gen.name();                                                 \
     }
 
 #define SETTING_OPTION(name, shorth)                                           \
@@ -132,6 +133,7 @@ void Help(const std::string& page)
         std::cout << "  --level=<min,max>, -l - The min and max levels of headings.\n";
         std::cout << "  --jsonLength=<min,max>, -j - The min and max amount of items in JSON objects.\n";
         std::cout << "  --seed=<seed>, -E - Load specified seed.\n";
+        std::cout << "  --output=<file>, -o - Output to the specified file.\n";
         std::cout << "  --source=<source>, -S - Load specified source.\n";
         std::cout << "      <source> may be a path to a file or a built-in source.\n";
         std::cout << "      Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.\n\n";
@@ -276,6 +278,9 @@ int main(int argc, char** argv)
     std::vector<std::string> options;
     std::vector<std::string> commandOpts;
 
+    std::ostream* ostr = &std::cout;
+    std::ofstream fileStream;
+
     lpsm::Generator gen;
 
     for (int i = 1; i < argc; ++i)
@@ -350,6 +355,24 @@ int main(int argc, char** argv)
                              '\n');
             }
         }
+        else if (OPTION_COND(output, "-o"))
+        {
+
+            size_t pos = option.find('=');
+            if (pos != std::string::npos)
+            {
+                std::string value = option.substr(pos + 1);
+                fileStream.open(value);
+                ostr = &fileStream;
+            }
+            else
+            {
+                ErrorMessage("Error: must be in format --option=value\nGot: ",
+                             option,
+                             '\n');
+                return -1;
+            }
+        }
         else
         {
             ErrorMessage("Error: unknown option ", option, '\n');
@@ -393,7 +416,7 @@ int main(int argc, char** argv)
         GET_ARG(num, 2, int);
         GET_ARG(useLipsum, 3, bool);
         GET_ARG(useHtml, 4, bool);
-        std::cout << gen.fmt_paragraph(num, useLipsum, useHtml);
+        (*ostr) << gen.fmt_paragraph(num, useLipsum, useHtml);
     }
     else if (subcommand == "scramble")
     {
@@ -415,9 +438,9 @@ int main(int argc, char** argv)
                          '\n');
             return -1;
         }
-        std::cout << gen.scramble(length,
-                                  static_cast<char>(minChar),
-                                  static_cast<char>(maxChar));
+        (*ostr) << gen.scramble(length,
+                                static_cast<char>(minChar),
+                                static_cast<char>(maxChar));
     }
     else if (subcommand == "case_slug")
     {
@@ -430,7 +453,7 @@ int main(int argc, char** argv)
                          case_,
                          '\n');
         }
-        std::cout << gen.case_slug(static_cast<lpsm::CaseSlugCase>(case_));
+        (*ostr) << gen.case_slug(static_cast<lpsm::CaseSlugCase>(case_));
     }
     else if (subcommand == "code")
     {
@@ -443,7 +466,7 @@ int main(int argc, char** argv)
                          lang,
                          '\n');
         }
-        std::cout << gen.code(static_cast<lpsm::CodeLanguage>(lang));
+        (*ostr) << gen.code(static_cast<lpsm::CodeLanguage>(lang));
     }
     else if (subcommand == "help")
     {
@@ -458,6 +481,7 @@ int main(int argc, char** argv)
         return -1;
     }
 
+    (*ostr) << '\n';
     std::cout << '\n';
 
     return 0;

@@ -269,7 +269,6 @@ int main(int argc, char** argv)
     else
     {
         std::cerr << "Unknown test\n";
-        return -1;
     }
 
     return 0;

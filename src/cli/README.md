@@ -20,6 +20,7 @@ Options include:
   --level=<min,max>, -l - The min and max levels of headings.
   --jsonLength=<min,max>, -j - The min and max amount of items in JSON objects.
   --seed=<seed>, -E - Load specified seed.
+  --output=<file>, -o - Output to the specified file.
   --source=<source>, -S - Load specified source.
       <source> may be a path to a file or a built-in source.
       Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.

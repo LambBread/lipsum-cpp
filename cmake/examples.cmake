@@ -29,10 +29,14 @@ if(LPSM_BUILD_TEST AND NOT EMSCRIPTEN)
         sentence_count_equal
         paragraph_count_in_bounds
         paragraph_count_equal
-        md_sentence_count_in_bounds
-        md_paragraph_count_equal
-        md_text_count_equal
     )
+    if(NOT LPSM_MIN_BUILD)
+        list(APPEND LPSM_TESTS_LIST
+            md_sentence_count_in_bounds
+            md_paragraph_count_equal
+            md_text_count_equal
+        )
+    endif()
     foreach(test IN LISTS LPSM_TESTS_LIST)
         add_test(NAME ${test} COMMAND lpsmcpp-test ${test})
     endforeach()

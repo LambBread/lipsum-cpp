@@ -1455,6 +1455,7 @@ Source.cpp
 - Add "minimum build" support (see `src/README.md`)
 - Add move semantics and more standard functions in C wrapper 
   (`std::memcpy` instead of `strlcpy` or `strcpy_s`)
+- Add `-o` flag in CLI tool
 - Changed functions:
 
 ```cpp
