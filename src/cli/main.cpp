@@ -122,6 +122,11 @@ void Help(const std::string& page)
         std::cout << "Options include:\n";
         std::cout << "  --help, -h - Show this help\n";
         std::cout << "  --version, -v - Show the current version of lipsum-cpp.\n";
+        std::cout << "  --seed=<seed>, -E - Load specified seed.\n";
+        std::cout << "  --output=<file>, -o - Output to the specified file.\n";
+        std::cout << "  --source=<source>, -S - Load specified source.\n";
+        std::cout << "      <source> may be a path to a file or a built-in source.\n";
+        std::cout << "      Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.\n\n";
         std::cout << "  --word=<min,max>, -w - The min and max words per sentence fragment.\n";
         std::cout << "  --frag=<min,max>, -f - The min and max sentence fragments per sentence.\n";
         std::cout << "  --sent=<min,max>, -s - The min and max sentences per paragraph.\n";
@@ -132,16 +137,13 @@ void Help(const std::string& page)
         std::cout << "  --fragFmt=<min,max>, -F - The min and max sentence fragments per formatted sentence.\n";
         std::cout << "  --level=<min,max>, -l - The min and max levels of headings.\n";
         std::cout << "  --jsonLength=<min,max>, -j - The min and max amount of items in JSON objects.\n";
-        std::cout << "  --seed=<seed>, -E - Load specified seed.\n";
-        std::cout << "  --output=<file>, -o - Output to the specified file.\n";
-        std::cout << "  --source=<source>, -S - Load specified source.\n";
-        std::cout << "      <source> may be a path to a file or a built-in source.\n";
-        std::cout << "      Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.\n\n";
+        std::cout << "  --csvRows=<min,max>, -R - The min and max number of rows in CSV documents.\n";
+        std::cout << "  --csvCols=<min,max>, -C - The min and max number of columns in CSV documents.\n";
         std::cout << "Subcommands include:\n";
         std::cout << "  help, word, fragment, sentence, paragraph, text,\n";
         std::cout << "  url, plain_url, email, slug, case_slug, code, fmt_paragraph, \n";
         std::cout << "  fmt_text, fmt_header, fmt_emphasis, fmt_link, fmt_list, \n";
-        std::cout << "  xml, json, json_value\n\n";
+        std::cout << "  xml, json, json_value, csv\n\n";
         std::cout << "For more information, type lpsmcpp-cli help <subcommand>.\n";
     }
     if (page == "help")
@@ -263,6 +265,10 @@ void Help(const std::string& page)
         std::cout << "  json_value <maxDepth = 3> - Generate a JSON value.\n";
         std::cout << "    maxDepth - The maximum recursion depth.\n\n";
     }
+    if (page == "csv")
+    {
+        std::cout << "  csv - Generate a CSV document.\n\n";
+    }
     // clang-format on
 }
 
@@ -322,6 +328,8 @@ int main(int argc, char** argv)
         else SETTING_OPTION(fragFmt, "-F")
         else SETTING_OPTION(level, "-l")
         else SETTING_OPTION(jsonLength, "-j")
+        else SETTING_OPTION(csvRows, "-R")
+        else SETTING_OPTION(csvCols, "-C")
         else if(OPTION_COND(source, "-S"))
         // clang-format on
         {
@@ -407,6 +415,7 @@ int main(int argc, char** argv)
     else DOUBLE_ARG_SUBCOMMAND(fmt_emphasis, bool, true, bool, false)
     else SINGLE_ARG_SUBCOMMAND(fmt_link, bool, false)
     else DOUBLE_ARG_SUBCOMMAND(fmt_list, bool, false, bool, false)
+    else NO_ARG_SUBCOMMAND(csv)
     else if(subcommand == "fmt_paragraph")
     // clang-format on
     {

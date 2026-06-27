@@ -569,6 +569,21 @@ extern "C"
     LIPSUMC_API char* lpsm_Generator_json_value(lpsm_GeneratorHandle handle,
                                                 int                  maxDepth);
 
+    /**
+     * @brief Generate a CSV document.
+     *
+     * @since 0.5.2
+     *
+     * Call lipsum::Generator::csv() on the specified handle.
+     *
+     * @cstrnote
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     *
+     * @return char* The CSV document.
+     */
+    LIPSUMC_API char* lpsm_Generator_csv(lpsm_GeneratorHandle handle);
+
 #    ifdef __cplusplus
 }
 #    endif

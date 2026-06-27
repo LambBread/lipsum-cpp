@@ -216,4 +216,10 @@ extern "C" char* lpsm_Generator_json_value(lpsm_GeneratorHandle handle,
     return ConvertToCstr(std::move(ret));
 }
 
+extern "C" char* lpsm_Generator_csv(lpsm_GeneratorHandle handle)
+{
+    auto&& ret = LPSM_CPPIFY(handle, lpsm::Generator)->csv();
+    return ConvertToCstr(std::move(ret));
+}
+
 #endif

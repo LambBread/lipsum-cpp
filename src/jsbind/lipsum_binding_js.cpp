@@ -59,7 +59,8 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("fmt_list", &lpsm::Generator::fmt_list)
             .function("xml", &lpsm::Generator::xml)
             .function("json", &lpsm::Generator::json)
-            .function("json_value", &lpsm::Generator::json_value);
+            .function("json_value", &lpsm::Generator::json_value)
+            .function("csv", &lpsm::Generator::csv);
     enum_<lpsm::GeneratorFlags>("lpsm_GeneratorFlags")
             .value("USELIPSUM", lpsm::USELIPSUM)
             .value("NO_USELIPSUM", lpsm::NO_USELIPSUM)

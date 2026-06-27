@@ -47,6 +47,8 @@ namespace lipsum
         LPSM_ASSIGN_CHECK(wordURL);
         LPSM_ASSIGN_CHECK(level);
         LPSM_ASSIGN_CHECK(jsonLength);
+        LPSM_ASSIGN_CHECK(csvRows);
+        LPSM_ASSIGN_CHECK(csvCols);
         if (!isChecked)
         {
             internal::LogWarn("lpsm::GeneratorSettings::change_setting(): "

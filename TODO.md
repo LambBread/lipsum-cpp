@@ -122,11 +122,11 @@
 - [x] `-o` flag in CLI tool (0.5.2)
 - [x] Recursion depth limit in `lpsm::Generator::json()` (0.5.2)
 - [x] Add documentation explaining how library internally works (0.5.2)
+- [x] CSV (0.5.2)
 
 ## Upcoming
 
 - [ ] Batch operations in CLI tool? (potentially 0.5.2)
-- [ ] Documentation on when to use `word()`, `fragment()`, `sentence()` etc. in code (planned 0.5.2)
 - [ ] Conan package?? (potentially 0.5.2)
 - [ ] YAML? (potentially 0.5.2)
 - [ ] TOML? (potentially 0.5.2)

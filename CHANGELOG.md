@@ -1461,6 +1461,15 @@ Source.cpp
 - Add more descriptive documentation for `lpsm::Generator` functions
 - Make `single_fmt_paragraph()` add formatted content with a specific chance (1/15) instead of being
   dependent on `m_Settings.para`
+- Add CSV generation
+- New functions:
+
+```cpp
+std::string lpsm::Generator::csv();
+
+char* lpsm_Generator_csv(lpsm_GeneratorHandle);
+```
+
 - Changed functions:
 
 ```cpp

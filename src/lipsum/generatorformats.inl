@@ -380,6 +380,96 @@ namespace lipsum
             }
         }
     }
+
+    std::string Generator::csv()
+    {
+        constexpr float CSV_NUMBER_MIN = -1000.0f;
+        constexpr float CSV_NUMBER_MAX = 1000.0f;
+        enum class CsvTypes : int
+        {
+            Int = 0,
+            Float,
+            Sentence,
+            Word,
+            Email,
+            Scramble
+        };
+
+        int                   numRows = m_Settings.csvRows.roll(m_Gen);
+        int                   numCols = m_Settings.csvCols.roll(m_Gen);
+        std::vector<CsvTypes> cols;
+        std::string           ret;
+        cols.reserve(numCols);
+        for (int i = 0; i < numCols; ++i)
+        {
+            cols.push_back(static_cast<CsvTypes>(random_number<int>(0, 5)));
+            ret += m_Source.random_word(m_Gen) + ",";
+        }
+        // remove trailing comma
+        if (!ret.empty())
+        {
+            ret.pop_back();
+        }
+        ret += "\n";
+
+        auto csvTypeLogic = [&](CsvTypes type)
+        {
+            switch (type)
+            {
+                case CsvTypes::Int:
+                {
+                    ret += json_number() + ",";
+                    break;
+                }
+                case CsvTypes::Float:
+                {
+                    ret += internal::ToString(
+                                   random_number<float>(CSV_NUMBER_MIN,
+                                                        CSV_NUMBER_MAX)) +
+                           ",";
+                    break;
+                }
+                case CsvTypes::Sentence:
+                {
+                    ret += std::string("\"") +
+                           single_sentence(m_Settings.wordFmt,
+                                           m_Settings.fragFmt) +
+                           "\",";
+                    break;
+                }
+                case CsvTypes::Word:
+                {
+                    ret += m_Source.random_word(m_Gen) + ",";
+                    break;
+                }
+                case CsvTypes::Email:
+                {
+                    ret += email() + ",";
+                    break;
+                }
+                case CsvTypes::Scramble:
+                {
+                    ret += scramble(16, 'a', 'z') + ",";
+                    break;
+                }
+            }
+        };
+
+        for (int i = 0; i < numRows; ++i)
+        {
+            for (int j = 0; j < numCols; ++j)
+            {
+                csvTypeLogic(cols.at(j));
+            }
+            // remove trailing comma
+            if (!ret.empty())
+            {
+                ret.pop_back();
+            }
+            ret += "\n";
+        }
+        return ret;
+    }
 #    else
     // placeholders
 
@@ -416,6 +506,10 @@ namespace lipsum
         return "";
     }
     std::string Generator::json_value(int)
+    {
+        return "";
+    }
+    std::string Generator::csv()
     {
         return "";
     }

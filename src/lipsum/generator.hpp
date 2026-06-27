@@ -574,6 +574,21 @@ namespace lipsum
          */
         std::string json_value(int maxDepth = 3);
 
+        /**
+         * @brief Generate a CSV document.
+         *
+         * @since 0.5.2
+         *
+         * Generate a CSV document. It does this by choosing a random number of
+         * rows and columns, and selecting the types of each column out of the
+         * following: integers, floating point values, sentences, words, emails,
+         * and scrambles. It sets up the top row, and then for every row, fill
+         * each column.
+         *
+         * @return std::string The CSV document.
+         */
+        std::string csv();
+
     private:
         /**
          * @brief Generate a single sentence.
@@ -660,7 +675,7 @@ namespace lipsum
          *
          * @since 0.5.0
          *
-         * Generate a random number from -1000 to 1000, surrounded by quotes.
+         * Generate a random number from -1000 to 1000, converted to a string.
          * This function is private. If doing a minimum build, return an empty
          * string.
          *

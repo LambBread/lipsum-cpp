@@ -110,6 +110,21 @@ namespace lipsum
         ArgVec2 jsonLength{2, 5};
 
         /**
+         * @brief The minimum and maximum possible number of rows in CSV data.
+         *
+         * @since 0.5.2
+         */
+        ArgVec2 csvRows{10, 15};
+
+        /**
+         * @brief The minimum and maximum possible number of columns in CSV
+         * data.
+         *
+         * @since 0.5.2
+         */
+        ArgVec2 csvCols{5, 8};
+
+        /**
          * @brief Change a setting
          *
          * @since 0.4.5
