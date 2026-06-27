@@ -173,29 +173,37 @@ namespace lipsum
 
     std::string Generator::single_fmt_paragraph(bool useLipsum, bool useHtml)
     {
-        std::string ret;
-        int         sents = m_Settings.sent.roll(m_Gen);
-        int         fmtRoll;
-        bool        addLink;
-        bool        isBold;
+        std::string   ret;
+        int           sents = m_Settings.sent.roll(m_Gen);
+        int           fmtRoll;
+        bool          addLink;
+        bool          isBold;
+        constexpr int FMT_PARA_CHANCE_FMT = 14;
+
+        // 1 in 15
+        static const std::vector<int> weights = {FMT_PARA_CHANCE_FMT, 1};
+
         if (useHtml)
         {
             ret += "<p>";
         }
         for (int i = 0; i < sents; ++i)
         {
-            fmtRoll = m_Settings.sent.roll(m_Gen);
-            addLink = LPSM_FLIP_COIN;
-            isBold  = LPSM_FLIP_COIN;
+            fmtRoll = weighted_random_idx(weights);
+            if (fmtRoll == 1)
+            {
+                addLink = LPSM_FLIP_COIN;
+                isBold  = LPSM_FLIP_COIN;
+            }
             if (i == 0 && useLipsum)
             {
                 ret += GenerateDefaultLipsumSentence();
             }
-            else if ((fmtRoll == m_Settings.sent.min) && addLink)
+            else if ((fmtRoll == 1) && addLink)
             {
                 ret += fmt_link(useHtml);
             }
-            else if ((fmtRoll == m_Settings.sent.min) && !addLink)
+            else if ((fmtRoll == 1) && !addLink)
             {
                 ret += fmt_emphasis(isBold, useHtml);
             }
@@ -277,12 +285,12 @@ namespace lipsum
         {
             if (i == 0 && useLipsum)
             {
-                result += GenerateDefaultLipsumSentence() += " ";
+                result += GenerateDefaultLipsumSentence() + " ";
             }
             else
             {
-                result += single_sentence(m_Settings.word, m_Settings.frag) +=
-                        " ";
+                result +=
+                        single_sentence(m_Settings.word, m_Settings.frag) + " ";
             }
         }
 

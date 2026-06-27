@@ -190,7 +190,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * Generate multiple words.
+     * Call lipsum::Generator::word() on the specified handle.
      *
      * @cstrnote
      *
@@ -206,7 +206,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * Generate a sentence fragment. Formerly
+     * Call lipsum::Generator::fragment() on the specified handle. Formerly
      * lpsm_Generator_sentence_fragment().
      *
      * @cstrnote
@@ -222,7 +222,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * Generate multiple sentences.
+     * Call lipsum::Generator::sentence() on the specified handle.
      *
      * @cstrnote
      *
@@ -242,7 +242,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * Generate multiple paragraphs.
+     * Call lipsum::Generator::paragraph() on the specified handle.
      *
      * @cstrnote
      *
@@ -262,7 +262,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * Generate a random number of random paragraphs.
+     * Call lipsum::Generator::text() on the specified handle.
      *
      * @cstrnote
      *
@@ -280,7 +280,7 @@ extern "C"
      *
      * @since 0.4.5
      *
-     * Generate a random string of text with random characters.
+     * Call lipsum::Generator::scramble() on the specified handle.
      *
      * @cstrnote
      *
@@ -301,9 +301,7 @@ extern "C"
      *
      * @since 0.4.5
      *
-     * Generate a URL starting in https://, followed by a random word, followed
-     * by a random TLD, followed by a slash and a random HTML id as a slug
-     * separated by hyphens.
+     * Call lipsum::Generator::url() on the specified handle.
      *
      * @cstrnote
      *
@@ -318,7 +316,7 @@ extern "C"
      *
      * @since 0.4.5
      *
-     * Generate a URL with a random word followed by a random TLD.
+     * Call lipsum::Generator::plain_url() on the specified handle.
      *
      * @cstrnote
      *
@@ -333,8 +331,7 @@ extern "C"
      *
      * @since 0.5.1
      *
-     * Generate two words separated by a period, with an at-sign and a plain
-     * url.
+     * Call lipsum::Generator::email() on the specified handle.
      *
      * @cstrnote
      *
@@ -349,8 +346,7 @@ extern "C"
      *
      * @since 0.4.5
      *
-     * Generate a sentence fragment with the spaces replaced with
-     * the specified separator character.
+     * Call lipsum::Generator::slug() on the specified handle.
      *
      * @cstrnote
      *
@@ -367,8 +363,7 @@ extern "C"
      *
      * @since 0.5.1
      *
-     * Generate a case slug in the specified case, e.g. camel case, snake case,
-     * etc.
+     * Call lipsum::Generator::case_slug() on the specified handle.
      *
      * @cstrnote
      *
@@ -385,7 +380,7 @@ extern "C"
      *
      * @since 0.5.1
      *
-     * Generate a pseudo main function in the specified programming language.
+     * Call lipsum::Generator::code() on the specified handle.
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param lang The language chosen.
@@ -400,7 +395,8 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * Generate multiple paragraphs in Markdown or HTML format. Formerly known
+     * Call lipsum::Generator::fmt_paragraph() on the specified handle.
+     * Formerly known
      * as lpsm_Generator_md_paragraph().
      *
      * @cstrnote
@@ -422,7 +418,8 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * Generate a document in Markdown or HTML format. Formerly known as
+     * Call lipsum::Generator::fmt_text() on the specified handle.
+     * Formerly known as
      * lpsm_Generator_md_text().
      *
      * @cstrnote
@@ -442,7 +439,8 @@ extern "C"
      *
      * @since 0.4.6
      *
-     * Generate a header in Markdown or HTML format. Formerly known as
+     * Call lipsum::Generator::fmt_header() on the specified handle.
+     * Formerly known as
      * lpsm_Generator_md_header().
      *
      * @cstrnote
@@ -462,8 +460,8 @@ extern "C"
      *
      * @since 0.4.6
      *
-     * Generate a bold or italic sentence in Markdown or HTML format that is
-     * either bold or italic. Formerly known as lpsm_Generator_md_emphasis().
+     * Call lipsum::Generator::fmt_emphasis() on the specified handle.
+     * Formerly known as lpsm_Generator_md_emphasis().
      *
      * @cstrnote
      *
@@ -482,7 +480,8 @@ extern "C"
      *
      * @since 0.4.6
      *
-     * Generate a link in Markdown or HTML format. Formerly known as
+     * Call lipsum::Generator::fmt_link() on the specified handle.
+     * Formerly known as
      * lpsm_Generator_md_link().
      *
      * @cstrnote
@@ -500,7 +499,7 @@ extern "C"
      *
      * @since 0.4.6
      *
-     * Generate an ordered or unordered list in Markdown or HTML format.
+     * Call lipsum::Generator::fmt_list() on the specified handle.
      * Formerly known as lpsm_Generator_md_list().
      *
      * @cstrnote
@@ -520,7 +519,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * Generate a document in XML format.
+     * Call lipsum::Generator::xml() on the specified handle.
      *
      * @cstrnote
      *
@@ -538,7 +537,7 @@ extern "C"
      *
      * @since 0.4.4
      *
-     * Generate an object or array in JSON format.
+     * Call lipsum::Generator::json() on the specified handle.
      *
      * @cstrnote
      *
@@ -558,8 +557,7 @@ extern "C"
      *
      * @since 0.5.0
      *
-     * Generate an object, array, number, string, boolean, or null in JSON
-     * format.
+     * Call lipsum::Generator::json_value() on the specified handle.
      *
      * @cstrnote
      *

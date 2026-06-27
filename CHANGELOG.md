@@ -1458,6 +1458,9 @@ Source.cpp
   (`std::memcpy` instead of `strlcpy` or `strcpy_s`)
 - Add `-o` flag in CLI tool
 - Add recursion depth limit in JSON generation functions
+- Add more descriptive documentation for `lpsm::Generator` functions
+- Make `single_fmt_paragraph()` add formatted content with a specific chance (1/15) instead of being
+  dependent on `m_Settings.para`
 - Changed functions:
 
 ```cpp

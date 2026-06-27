@@ -203,7 +203,8 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * Generates multiple words.
+         * Generate the specified number of words, separated by spaces. If num
+         * is negative, print a warning to the console.
          *
          * @param num The number of words. By default 1.
          *
@@ -216,8 +217,8 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * Generate a sentence fragment. Formerly known as
-         * sentence_fragment().
+         * Generate a sentence fragment by choosing a random number of words and
+         * calling word(). Formerly known as sentence_fragment().
          *
          * @return std::string The random sentence fragment.
          */
@@ -228,13 +229,18 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * Generate multiple sentences.
+         * Generate multiple sentences separated by spaces. If num is negative,
+         * print a warning to the console. If useLipsum is true, make the first
+         * sentence the default lorem-ipsum sentence.
          *
          * @param num The number of sentences. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the
          * sentence(s). By default true.
          *
          * @return std::string The random sentence(s).
+         *
+         * @sa lipsum::Generator::single_sentence(const lpsm::ArgVec2&, const
+         * lpsm::ArgVec2&)
          */
         std::string sentence(int num = 1, bool useLipsum = true);
 
@@ -243,13 +249,16 @@ namespace lipsum
          *
          * @since 0.2.0
          *
-         * Generate multiple paragraphs.
+         * Generate multiple paragraphs. If num is negative, print a warning to
+         * the console.
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the
          * paragraph(s). By default true.
          *
          * @return std::string The random paragraph(s).
+         *
+         * @sa lipsum::Generator::single_paragraph(bool)
          */
         std::string paragraph(int num = 1, bool useLipsum = true);
 
@@ -258,7 +267,8 @@ namespace lipsum
          *
          * @since 0.4.4
          *
-         * Generate a random number of random paragraphs.
+         * Generate a random number of random paragraphs by choosing a random
+         * number of paragraphs and calling paragraph().
          *
          * @param useLipsum Whether "Lorem ipsum..." should start the
          * paragraph(s). By default true.
@@ -276,7 +286,9 @@ namespace lipsum
          *
          * @since 0.4.5
          *
-         * Generate a random string of text with random characters.
+         * Generate a random string of text with random characters. If length is
+         * negative, print a warning to the console. Add length number of random
+         * characters from minChar to maxChar to the string.
          *
          * @param length The number of characters. By default 16.
          * @param minChar The lowest-valued ASCII character that can appear. By
@@ -294,11 +306,13 @@ namespace lipsum
          *
          * @since 0.4.5
          *
-         * Generate a URL starting in https://, followed by a random word,
-         * followed by a random TLD, followed by a slash and a random HTML id as
+         * Generate a URL starting in https://, followed by a plain url,
+         * followed by a slash and a random HTML id as
          * a slug separated by hyphens.
          *
          * @return std::string The URL.
+         *
+         * @sa lipsum::Generator::plain_url()
          */
         std::string url();
 
@@ -307,7 +321,8 @@ namespace lipsum
          *
          * @since 0.4.5
          *
-         * Generate a URL with a random word followed by a random TLD.
+         * Generate a URL with "lpsmcpp-" and a random word followed by a random
+         * TLD.
          *
          * @return std::string The plain URL.
          */
@@ -377,8 +392,8 @@ namespace lipsum
          * @since 0.3.0
          *
          * Generate multiple paragraphs in Markdown or HTML format. Formerly
-         * known as md_paragraph(). If doing a minimum build, return an empty
-         * string.
+         * known as md_paragraph(). If num is negative, print a warning to the
+         * console. If doing a minimum build, return an empty string.
          *
          * @param num The number of paragraphs. By default 1.
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
@@ -397,7 +412,17 @@ namespace lipsum
          * @since 0.3.0
          *
          * Generate a document in Markdown or HTML format. Formerly known as
-         * md_text(). If doing a minimum build, return an empty string.
+         * md_text(). If numElements is negative, print a warning to the
+         * console. If numElements is greater than or equal to 1, add a heading.
+         * If numElements is greater than or equal to 2, add a formatted
+         * paragraph. For every numElements beyond 2, pick a random number from
+         * 0 to 2. If it is equal to 1 and the last roll resulted in 1, or there
+         * is only 3 total elements, set it to 0. This is meant to stop headings
+         * after each other and headings at the end of a document. Choose if a
+         * list will be ordered, and if the random number is equal to 0, add a
+         * formatted paragraph. If the random number is equal to 1, add a
+         * heading. If it is equal to 2, add a list. If doing a minimum build,
+         * return an empty string.
          *
          * @param numElements The number of elements (paragraph, list, heading)
          * in the document. By default 15.
@@ -413,8 +438,13 @@ namespace lipsum
          *
          * @since 0.4.6
          *
-         * Generate a header in Markdown or HTML format. Formerly known as
-         * md_header(). If doing a minimum build, return an empty string.
+         * Generate a header in Markdown or HTML format. If level is less than 1
+         * or greater than 6, print a warning to the console. If useHtml is
+         * true, start an HTML heading tag at the specified level. If useHtml is
+         * false, start a Markdown heading at the specified level. Append a
+         * sentence fragment with the first letter capitalized, close the HTML
+         * tag and append two newlines. Formerly known as md_header(). If doing
+         * a minimum build, return an empty string.
          *
          * @param level The level of the heading. By default 1.
          * @param useHtml Whether HTML should be outputted instead of Markdown.
@@ -430,8 +460,11 @@ namespace lipsum
          * @since 0.4.6
          *
          * Generate a bold or italic sentence in Markdown or HTML format that is
-         * either bold or italic. Formerly known as md_emphasis(). If doing a
-         * minimum build, return an empty string.
+         * either bold or italic. If isBold is true, make the sentence bold;
+         * else italic. If useHtml is true, use HTML bold or italic tags. If
+         * useHtml is false, use Markdown bold or italic specifiers. Formerly
+         * known as md_emphasis(). If doing a minimum build, return an empty
+         * string.
          *
          * @param isBold Whether the sentence is bold or italic. By default
          * true. (bold)
@@ -447,13 +480,20 @@ namespace lipsum
          *
          * @since 0.4.6
          *
-         * Generate a link in Markdown or HTML format. Formerly known as
-         * md_link(). If doing a minimum build, return an empty string.
+         * Generate a link in Markdown or HTML format. Generate a random
+         * sentence and random URL; if useHtml is false, return an opening
+         * square bracket, the sentence, a closing square bracket and opening
+         * parenthesis, the URL, and a closing parenthesis to form a Markdown
+         * URL. If useHtml is true, return an HTML \<a\> tag linking to the url
+         * with the sentence. Formerly known as md_link(). If doing a minimum
+         * build, return an empty string.
          *
          * @param useHtml Whether HTML should be outputted instead of Markdown.
          * By default false.
          *
          * @return std::string The random Markdown link.
+         *
+         * @sa lipsum::Generator::url()
          */
         std::string fmt_link(bool useHtml = false);
 
@@ -462,7 +502,14 @@ namespace lipsum
          *
          * @since 0.4.6
          *
-         * Generate an ordered or unordered list in Markdown or HTML format.
+         * Generate an ordered or unordered list in Markdown or HTML format. It
+         * does this by picking a random number of points, and if useHtml is
+         * true, start an HTML list tag. Repeat the number of points: if useHtml
+         * is false and ordered is true, append the current index and a period;
+         * if useHtml is false and ordered is false, append a hyphen and a
+         * space. If useHtml is true, start an \<li\> HTML tag. Append a random
+         * sentence, and append a newline or close the HTML tag. End the loop,
+         * and close the HTML list tag.
          * Formerly known as md_list(). If doing a minimum build, return an
          * empty string.
          *
@@ -479,8 +526,15 @@ namespace lipsum
          *
          * @since 0.4.4
          *
-         * Generate a document in XML format. If doing a minimum build, return
-         * an empty string.
+         * Generate a document in XML format. It does this by starting the XML
+         * prolog, choosing the root element, and starting it. It then repeats
+         * choices times: it generates a random number from 0 to 2. If it is 0,
+         * start an XML tag with a random element with optionally an attribute,
+         * and also add it to the tag stack. If the number is 1, add a closed
+         * element with a random sentence inside. If the number is 2, close the
+         * previously opened tag if possible. Finally, end the loop and close
+         * all remaining tags in the tag stack, and close the root element. If
+         * doing a minimum build, return an empty string.
          *
          * @param choices The number of choices (start element, end element, add
          * data element) that are made. By default 30.
@@ -526,7 +580,12 @@ namespace lipsum
          *
          * @since 0.5.0
          *
-         * Generate a single sentence. This function is private.
+         * Generate a single sentence. This function is private. It works by
+         * picking a random number of sentence fragments and joining them with
+         * random punctuation marks (weighted towards commas, but semicolons,
+         * colons, and dashes can appear). It ends the sentence with a period,
+         * exclamation mark, or comma. It then capitalizes the first letter of
+         * the sentence. If in minimum build mode, only use commas and periods.
          *
          * @param wordArg The minimum and maximum possible number of words in a
          * sentence fragment.
@@ -543,7 +602,13 @@ namespace lipsum
          *
          * @since 0.5.0
          *
-         * Generate a single paragraph. This function is private.
+         * Generate a single paragraph. This function is private. It works by
+         * starting the paragraph with a single tab character and picking a
+         * random number of sentences. It loops that number of times, and if
+         * useLipsum is true and it is the first line, add the default
+         * lorem-ipsum sentence. Else, add a random sentence. It then will add a
+         * space. Once the loop is done, if the string is not empty, remove the
+         * last trailing space, and finally end with a newline.
          *
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
          *
@@ -552,13 +617,24 @@ namespace lipsum
         std::string single_paragraph(bool useLipsum);
 
         /**
-         * @brief Generate a single Markdown paragraph.
+         * @brief Generate a single Markdown or HTML paragraph.
          *
          * @since 0.5.0
          *
          * Generate a single paragraph in Markdown or HTML format. This function
-         * is private. Formerly known as single_md_paragraph(). If doing a
-         * minimum build, return an empty string.
+         * is private. Formerly known as single_md_paragraph(). It works by
+         * first choosing a random number of sentences, and if useHtml is true,
+         * start an HTML paragraph tag. It then loops that number of times,
+         * choosing an internal value fmtRoll with a 1 in 15 chance of being 1.
+         * If fmtRoll is 1, choose whether to add a link and whether an
+         * emphasized sentence will be bold or italic. If useLipsum is true and
+         * it is currently on the first line, add the default lorem-ipsum
+         * sentence. Else, if fmtRoll is 1 and a link is being added, append a
+         * link. Else, if fmtRoll is 1 and a link is not being added, append an
+         * emphasized sentence. Else, append a normal sentence. Then, append a
+         * space. If useHtml is true, close the HTML paragraph tag. Finally, end
+         * with two new line characters. If doing a minimum build, return an
+         * empty string.
          *
          * @param useLipsum Whether "Lorem ipsum..." should start the paragraph.
          * @param useHtml Whether HTML should be outputted instead of Markdown.
@@ -584,8 +660,9 @@ namespace lipsum
          *
          * @since 0.5.0
          *
-         * Generate a random number, surrounded by quotes. This function is
-         * private. If doing a minimum build, return an empty string.
+         * Generate a random number from -1000 to 1000, surrounded by quotes.
+         * This function is private. If doing a minimum build, return an empty
+         * string.
          *
          * @return std::string The random JSON number.
          */
@@ -680,7 +757,8 @@ namespace lipsum
          *
          * This function picks a random TLD out of .com, .org, .net, .edu, .io,
          * .ca, and .co.uk, each with chances of 70%, 10%, 7%, 5%, 5%, 2%, and
-         * 1% respectively. This function is private.
+         * 1% respectively. This function is private. If doing a minimum build,
+         * choose .com.
          *
          * @return std::string The random TLD.
          */

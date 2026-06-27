@@ -170,21 +170,15 @@ namespace lipsum
 
     std::string Generator::fmt_link(bool useHtml)
     {
-        std::string ret;
         std::string link = url();
         std::string sentence =
                 single_sentence(m_Settings.wordFmt, m_Settings.fragFmt);
         if (!useHtml)
         {
-            ret += std::string("[") += sentence += std::string("](") += link +=
-                    ")";
+            return std::string("[") + sentence + std::string("](") + link + ")";
         }
-        else
-        {
-            ret += std::string("<a href=\"") + link + std::string("\">") +
-                   sentence + "</a>";
-        }
-        return ret;
+        return std::string("<a href=\"") + link + std::string("\">") +
+               sentence + "</a>";
     }
 
     std::string Generator::fmt_list(bool ordered, bool useHtml)
@@ -201,7 +195,7 @@ namespace lipsum
             {
                 if (ordered)
                 {
-                    ret += internal::ToString(i + 1) += ". ";
+                    ret += internal::ToString(i + 1) + ". ";
                 }
                 else
                 {

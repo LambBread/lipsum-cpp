@@ -259,6 +259,7 @@ namespace lipsum
         return ret;
     }
 
+#    ifndef LIPSUM_MIN_BUILD
     std::string Generator::code(CodeLanguage lang)
     {
         std::string              ret;
@@ -407,6 +408,13 @@ namespace lipsum
         }
         return ret;
     }
+#    else
+    std::string Generator::code(CodeLanguage lang)
+    {
+        (void)lang;
+        return "";
+    }
+#    endif
 
 } // namespace lipsum
 #endif
