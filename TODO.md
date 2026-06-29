@@ -126,9 +126,10 @@
 
 ## Upcoming
 
-- [ ] Batch operations in CLI tool? (potentially 0.5.2)
-- [ ] Conan package?? (potentially 0.5.2)
+- [ ] Verbose mode (planned 0.5.2)
+- [ ] Tidy `lpsm::Generator::code()` source (planned 0.5.2)
 - [ ] YAML? (potentially 0.5.2)
 - [ ] TOML? (potentially 0.5.2)
+- [ ] Conan package?? (potentially 0.5.2)
 - [ ] Release 1.0.0
 

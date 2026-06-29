@@ -24,7 +24,8 @@ namespace lipsum
     {
         if (min < 0 || max < 0)
         {
-            internal::LogWarn("lpsm::ArgVec2::ArgVec2(): min and max set to (",
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::ArgVec2::ArgVec2(): min and max set to (",
                               min,
                               ", ",
                               max,

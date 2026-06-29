@@ -1462,9 +1462,11 @@ Source.cpp
 - Make `single_fmt_paragraph()` add formatted content with a specific chance (1/15) instead of being
   dependent on `m_Settings.para`
 - Add CSV generation
-- New functions:
+- Add better logging supporting errors, info, trace, etc.
+- New features:
 
 ```cpp
+enum class lpsm::internal::LogType : int;
 std::string lpsm::Generator::csv();
 
 char* lpsm_Generator_csv(lpsm_GeneratorHandle);
@@ -1473,6 +1475,8 @@ char* lpsm_Generator_csv(lpsm_GeneratorHandle);
 - Changed functions:
 
 ```cpp
+template <typename... Args> void lpsm::internal::LogWarn(lpsm::internal::LogType, Args...);
+// from template <typename... Args> void lpsm::internal::LogWarn(Args...)
 std::string lpsm::Generator::json(int, bool);
 // from std::string lpsm::Generator::json(int, int, bool)
 std::string lpsm::Generator::json_value(int);

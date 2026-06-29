@@ -57,21 +57,6 @@ constexpr bool InCharRange(int num)
            (num <= std::numeric_limits<char>::max());
 }
 
-template <typename... Args> void ErrorMessage(const Args&... args)
-{
-#ifdef _WIN32
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    SetConsoleTextAttribute(hConsole, 4);
-    ((std::cerr << args), ...);
-    SetConsoleTextAttribute(hConsole, 7);
-#else
-    std::cerr << "\033[31m";
-    ((std::cerr << args), ...);
-    std::cerr << "\033[0m";
-#endif
-}
-
 lpsm::ArgVec2 ParseAv2(const std::string& str)
 {
     size_t pos = str.find(',');
@@ -84,10 +69,12 @@ lpsm::ArgVec2 ParseAv2(const std::string& str)
     }
     else
     {
-        ErrorMessage("Error: invalid format of argument\nMust be in format: "
-                     "<min>,<max>\nGot: ",
-                     str,
-                     '\n');
+        lpsm::internal::
+                LogWarn(lpsm::internal::LogType::Error,
+                        "Error: invalid format of argument\nMust be in format: "
+                        "<min>,<max>\nGot: ",
+                        str,
+                        '\n');
         exit(-1);
     }
 
@@ -107,9 +94,11 @@ void SettingOption(const std::string& option,
     }
     else
     {
-        ErrorMessage("Error: must be in format --option=value\nGot: ",
-                     option,
-                     '\n');
+        lpsm::internal::
+                LogWarn(lpsm::internal::LogType::Error,
+                        "Error: must be in format --option=value\nGot: ",
+                        option,
+                        '\n');
     }
 }
 
@@ -275,6 +264,11 @@ void Help(const std::string& page)
 int main(int argc, char** argv)
 {
 
+    lpsm::internal::LogWarn(lpsm::internal::LogType::Trace, "foo");
+    lpsm::internal::LogWarn(lpsm::internal::LogType::Info, "bar");
+    lpsm::internal::LogWarn(lpsm::internal::LogType::Warn, "baz");
+    lpsm::internal::LogWarn(lpsm::internal::LogType::Error, "qux");
+    lpsm::internal::LogWarn(lpsm::internal::LogType::Critical, "corge");
     if (argc < 2)
     {
         Help("home");
@@ -341,9 +335,11 @@ int main(int argc, char** argv)
             }
             else
             {
-                ErrorMessage("Error: must be in format --option=value\nGot: ",
-                             option,
-                             '\n');
+                lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
+                                        "Error: must be in format "
+                                        "--option=value\nGot: ",
+                                        option,
+                                        '\n');
                 return -1;
             }
         }
@@ -358,9 +354,11 @@ int main(int argc, char** argv)
             }
             else
             {
-                ErrorMessage("Error: must be in format --option=value\nGot: ",
-                             option,
-                             '\n');
+                lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
+                                        "Error: must be in format "
+                                        "--option=value\nGot: ",
+                                        option,
+                                        '\n');
             }
         }
         else if (OPTION_COND(output, "-o"))
@@ -375,15 +373,20 @@ int main(int argc, char** argv)
             }
             else
             {
-                ErrorMessage("Error: must be in format --option=value\nGot: ",
-                             option,
-                             '\n');
+                lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
+                                        "Error: must be in format "
+                                        "--option=value\nGot: ",
+                                        option,
+                                        '\n');
                 return -1;
             }
         }
         else
         {
-            ErrorMessage("Error: unknown option ", option, '\n');
+            lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
+                                    "Error: unknown option ",
+                                    option,
+                                    '\n');
             return -1;
         }
     }
@@ -439,12 +442,14 @@ int main(int argc, char** argv)
 
         if (!InCharRange(minChar) || !InCharRange(maxChar))
         {
-            ErrorMessage("Error: number out of range of char. Please use "
-                         "numbers between 0 and 127.\nGot minChar=",
-                         minChar,
-                         ", maxChar=",
-                         maxChar,
-                         '\n');
+            lpsm::internal::
+                    LogWarn(lpsm::internal::LogType::Error,
+                            "Error: number out of range of char. Please use "
+                            "numbers between 0 and 127.\nGot minChar=",
+                            minChar,
+                            ", maxChar=",
+                            maxChar,
+                            '\n');
             return -1;
         }
         (*ostr) << gen.scramble(length,
@@ -457,10 +462,12 @@ int main(int argc, char** argv)
         GET_ARG(case_, 2, int);
         if (case_ < 0 || case_ > 5)
         {
-            ErrorMessage("Error: case slug out of range. Please use number "
-                         "between 0 and 5.\nGot case_=",
-                         case_,
-                         '\n');
+            lpsm::internal::
+                    LogWarn(lpsm::internal::LogType::Error,
+                            "Error: case slug out of range. Please use number "
+                            "between 0 and 5.\nGot case_=",
+                            case_,
+                            '\n');
         }
         (*ostr) << gen.case_slug(static_cast<lpsm::CaseSlugCase>(case_));
     }
@@ -470,10 +477,12 @@ int main(int argc, char** argv)
         GET_ARG(lang, 2, int);
         if (lang < 0 || lang > 4)
         {
-            ErrorMessage("Error: language chosen out of range. Please use "
-                         "number between 0 and 4.\nGot lang=",
-                         lang,
-                         '\n');
+            lpsm::internal::
+                    LogWarn(lpsm::internal::LogType::Error,
+                            "Error: language chosen out of range. Please use "
+                            "number between 0 and 4.\nGot lang=",
+                            lang,
+                            '\n');
         }
         (*ostr) << gen.code(static_cast<lpsm::CodeLanguage>(lang));
     }
@@ -486,7 +495,10 @@ int main(int argc, char** argv)
     }
     else
     {
-        ErrorMessage("Error: unknown subcommand ", subcommand, '\n');
+        lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
+                                "Error: unknown subcommand ",
+                                subcommand,
+                                '\n');
         return -1;
     }
 

@@ -51,7 +51,8 @@ namespace lipsum
         LPSM_ASSIGN_CHECK(csvCols);
         if (!isChecked)
         {
-            internal::LogWarn("lpsm::GeneratorSettings::change_setting(): "
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::GeneratorSettings::change_setting(): "
                               "unknown "
                               "setting ",
                               setting,

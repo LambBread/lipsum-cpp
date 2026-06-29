@@ -177,7 +177,8 @@ namespace lipsum
             }
             default:
             {
-                internal::LogWarn("lpsm::CountParagraphs(): unknown format ",
+                internal::LogWarn(internal::LogType::Warn,
+                                  "lpsm::CountParagraphs(): unknown format ",
                                   static_cast<int>(format));
                 return 0;
             }

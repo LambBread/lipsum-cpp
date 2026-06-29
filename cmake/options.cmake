@@ -8,6 +8,7 @@ option(LPSM_BUILD_JSBIND "Build the JS WebAssembly binding" ON)
 
 option(LPSM_MIN_BUILD "Build a minimum build" OFF)
 option(LPSM_QUIET "Disable runtime warnings" OFF)
+option(LPSM_VERBOSE "Enable verbose logging" OFF)
 
 # custom targets
 option(LPSM_BUILD_EXAMPLES "Build examples" OFF)

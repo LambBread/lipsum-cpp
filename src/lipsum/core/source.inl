@@ -77,7 +77,8 @@ namespace lipsum
         char                            letter;
         if (!file.is_open())
         {
-            internal::LogWarn("lpsm::Source::load(): Could not open file ",
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::Source::load(): Could not open file ",
                               path,
                               "; falling back to standard lorem-ipsum source");
             return;

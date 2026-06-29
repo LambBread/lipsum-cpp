@@ -31,6 +31,20 @@ namespace lipsum::internal
 {
 
     /**
+     * @brief Log types for lipsum::internal::LogWarn()
+     *
+     * @since 0.5.2
+     */
+    enum class LogType : int
+    {
+        Trace = 0,
+        Info,
+        Warn,
+        Error,
+        Critical
+    };
+
+    /**
      * @brief Can std::to_string() be called with T?
      *
      * @since 0.4.6
@@ -94,48 +108,113 @@ namespace lipsum::internal
      *
      * @since 0.4.2
      *
-     * Log a warning to the console coloured yellow using ANSI escape codes,
-     * starting with "lipsum-cpp WARNING -- " and the message, ending in a
-     * newline. If in Emscripten environment, use JavaScript console.warn()
-     * instead. If in Windows environment, use SetConsoleTextAttribute()
-     * instead. If doing a minimum build, skip making text yellow or warning in
-     * JS console. If doing a quiet build, do not print.
+     * Log to the console coloured using ANSI escape codes with a message,
+     * ending in a newline. If in Emscripten environment, use JavaScript console
+     * functions instead. If in Windows environment, use
+     * SetConsoleTextAttribute() instead. If doing a minimum build, skip
+     * colouring text or logging in JS console. If doing a quiet build, do not
+     * print.
      *
      * @tparam Args The arguments' types. All must be printable with
      * std::ostream, or else the code will fail to compile.
      *
+     * @param type The log type of the message.
      * @param args The arguments to print.
      */
     template <typename... Args>
-    void LogWarn([[maybe_unused]] const Args&... args)
+    void LogWarn([[maybe_unused]] LogType type,
+                 [[maybe_unused]] const Args&... args)
     {
 #    ifndef LIPSUM_QUIET
         std::ostringstream oss;
-        oss << "lipsum-cpp WARNING -- ";
+        oss << "lipsum-cpp ";
+        switch (type)
+        {
+            case LogType::Trace:
+            {
+                oss << "TRACE";
+                break;
+            }
+            case LogType::Info:
+            {
+                oss << "INFO";
+                break;
+            }
+            case LogType::Warn:
+            {
+                oss << "WARNING";
+                break;
+            }
+            case LogType::Error:
+            {
+                oss << "ERROR";
+                break;
+            }
+            case LogType::Critical:
+            {
+                oss << "CRITICAL";
+                break;
+            }
+        }
+        oss << " -- ";
         ((oss << args), ...);
         oss << '\n';
         std::string message = oss.str();
 #        ifndef LIPSUM_MIN_BUILD
 #            ifdef __EMSCRIPTEN__
-        // emscripten
-
-        emscripten_console_warn(message.c_str());
+        auto funcCalling = emscripten_console_warn;
+        if (type == LogType::Trace || type == LogType::Info)
+        {
+            funcCalling = emscripten_console_log;
+        }
+        if (type == LogType::Error || type == LogType::Critical)
+        {
+            funcCalling = emscripten_console_error;
+        }
+        funcCalling(message.c_str());
 #            elif defined(_WIN32)
-        // windows
-
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
+        HANDLE hConsole   = GetStdHandle(STD_OUTPUT_HANDLE);
+        int    colorUsing = 6; // yellow
+        if (type == LogType::Trace)
+        {
+            colorUsing = 8; // gray
+        }
+        if (type == LogType::Info)
+        {
+            colorUsing = 2; // green
+        }
+        if (type == LogType::Error)
+        {
+            colorUsing = 12; // light red
+        }
+        if (type == LogType::Critical)
+        {
+            colorUsing = 4; // red
+        }
         // yellow
-        SetConsoleTextAttribute(hConsole, 6);
-
+        SetConsoleTextAttribute(hConsole, colorUsing);
         std::cerr << message;
-
         // default
         SetConsoleTextAttribute(hConsole, 7);
 #            else
-        // assumed unix-like
-
-        std::cerr << "\033[33m" << message << "\033[0m";
+        int colorUsing = 33; // yellow
+        if (type == LogType::Trace)
+        {
+            colorUsing = 90; // gray
+        }
+        if (type == LogType::Info)
+        {
+            colorUsing = 32; // green
+        }
+        if (type == LogType::Error)
+        {
+            colorUsing = 91; // light red
+        }
+        if (type == LogType::Critical)
+        {
+            colorUsing = 31; // red
+        }
+        std::cerr << "\033[" << colorUsing << "m" << message << "\033[0m";
 #            endif
 #        else
         std::cerr << message;
@@ -215,7 +294,8 @@ namespace lipsum::internal
                                              res);
             if (ec != std::errc{})
             {
-                LogWarn("lpsm::internal::ToType: std::from_chars() failed; "
+                LogWarn(internal::LogType::Error,
+                        "lpsm::internal::ToType: std::from_chars() failed; "
                         "invalidly formatted integer? Returning default T.");
                 return T{};
             }

@@ -33,7 +33,8 @@ namespace lipsum
 
         if (num < 0)
         {
-            internal::LogWarn("lpsm::Generator::fmt_paragraph(): expected "
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::Generator::fmt_paragraph(): expected "
                               "num >= 0, got ",
                               num);
         }
@@ -57,7 +58,8 @@ namespace lipsum
         std::string ret;
         if (numElements < 0)
         {
-            internal::LogWarn("lpsm::Generator::fmt_text(): cannot generate "
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::Generator::fmt_text(): cannot generate "
                               "negative number of elements.");
             return ret;
         }
@@ -110,7 +112,8 @@ namespace lipsum
     {
         if (level > 6 || level < 1)
         {
-            internal::LogWarn("lpsm::Generator::fmt_header(): invalid header "
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::Generator::fmt_header(): invalid header "
                               "level ",
                               level,
                               ", expected from 1 to 6");
@@ -319,7 +322,8 @@ namespace lipsum
         constexpr int JSON_VALUE_WARN_DEPTH = 50;
         if (maxDepth >= JSON_VALUE_WARN_DEPTH)
         {
-            internal::LogWarn("lpsm::Generator::json_value(): got maxDepth = ",
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::Generator::json_value(): got maxDepth = ",
                               maxDepth,
                               ", which is"
                               "greater than the recommended maximum depth ",
@@ -383,8 +387,8 @@ namespace lipsum
 
     std::string Generator::csv()
     {
-        constexpr float CSV_NUMBER_MIN = -1000.0f;
-        constexpr float CSV_NUMBER_MAX = 1000.0f;
+        constexpr float CSV_NUMBER_MIN = -1000.0F;
+        constexpr float CSV_NUMBER_MAX = 1000.0F;
         enum class CsvTypes : int
         {
             Int = 0,

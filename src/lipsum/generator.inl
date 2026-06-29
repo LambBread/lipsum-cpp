@@ -72,7 +72,8 @@ namespace lipsum
 
         if (num < 0)
         {
-            internal::LogWarn("lpsm::Generator::word(): expected num >= 0, "
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::Generator::word(): expected num >= 0, "
                               "got ",
                               num);
         }
@@ -101,7 +102,8 @@ namespace lipsum
 
         if (num < 0)
         {
-            internal::LogWarn("lpsm::Generator::sentence(): expected num "
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::Generator::sentence(): expected num "
                               ">= 0, got ",
                               num);
         }
@@ -127,7 +129,8 @@ namespace lipsum
 
         if (num < 0)
         {
-            internal::LogWarn("lpsm::Generator::paragraph(): expected num "
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::Generator::paragraph(): expected num "
                               ">= 0, got ",
                               num);
         }
@@ -161,7 +164,8 @@ namespace lipsum
         std::string ret;
         if (length < 0)
         {
-            internal::LogWarn("lpsm::Generator::scramble(): expected length >= "
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::Generator::scramble(): expected length >= "
                               "0, "
                               "got ",
                               length);
@@ -269,7 +273,8 @@ namespace lipsum
         int numStatements = m_Settings.point.roll(m_Gen);
         if (numStatements <= 0)
         {
-            internal::LogWarn("lpsm::Generator::code(): expected numStatements "
+            internal::LogWarn(internal::LogType::Warn,
+                              "lpsm::Generator::code(): expected numStatements "
                               "> 0, got ",
                               numStatements);
         }
