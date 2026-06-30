@@ -21,15 +21,11 @@
 
 static char* ConvertToCstr(std::string&& str)
 {
+    LPSM_VERBOSE_LOG(Info, "Moving a string into a C string");
     std::string result = std::move(str);
     char*       cstr   = new char[result.size() + 1];
     std::memcpy(cstr, result.c_str(), result.size());
     cstr[result.size()] = '\0';
-    // #ifndef _WIN32
-    //     strlcpy(cstr, result.c_str(), result.size() + 1);
-    // #else
-    //     strcpy_s(cstr, result.size() + 1, result.c_str());
-    // #endif
     return cstr;
 }
 
@@ -69,5 +65,6 @@ extern "C" int lpsm_CountParagraphs(const char*          str,
 
 extern "C" void lpsm_DeleteString(char* str) // NOLINT
 {
+    LPSM_VERBOSE_LOG(Info, "Deleting string ", &str);
     delete[] str;
 }

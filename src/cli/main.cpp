@@ -264,11 +264,11 @@ void Help(const std::string& page)
 int main(int argc, char** argv)
 {
 
-    lpsm::internal::LogWarn(lpsm::internal::LogType::Trace, "foo");
-    lpsm::internal::LogWarn(lpsm::internal::LogType::Info, "bar");
-    lpsm::internal::LogWarn(lpsm::internal::LogType::Warn, "baz");
-    lpsm::internal::LogWarn(lpsm::internal::LogType::Error, "qux");
-    lpsm::internal::LogWarn(lpsm::internal::LogType::Critical, "corge");
+    // lpsm::internal::LogWarn(lpsm::internal::LogType::Trace, "foo");
+    // lpsm::internal::LogWarn(lpsm::internal::LogType::Info, "bar");
+    // lpsm::internal::LogWarn(lpsm::internal::LogType::Warn, "baz");
+    // lpsm::internal::LogWarn(lpsm::internal::LogType::Error, "qux");
+    // lpsm::internal::LogWarn(lpsm::internal::LogType::Critical, "corge");
     if (argc < 2)
     {
         Help("home");

@@ -125,6 +125,15 @@ namespace lipsum
         Generator(const std::string& path, int seed);
 
         /**
+         * Destructor for Generator
+         *
+         * @since 0.2.0
+         *
+         * Print a message if verbose mode is enabled.
+         */
+        ~Generator();
+
+        /**
          * @brief Constructor for Generator
          *
          * @since 0.4.1

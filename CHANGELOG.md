@@ -1449,10 +1449,10 @@ char* lpsm_Generator_fmt_list(lpsm_GeneratorHandle, bool, bool);
 Source.cpp
 ```
 
-### 0.5.2 (2026-06/07 TBD)
+### 0.5.2 (2026-07 TBD)
 
 - Add more `lpsm::Generator::code()` language generation support: Rust, C, JavaScript
-- Add "minimum build" support and quiet build support (see `src/README.md`)
+- Add "minimum build" support, quiet build, and verbose build support (see `src/README.md`)
 - Default to static library C wrapper build in CMake
 - Add move semantics and more standard functions in C wrapper 
   (`std::memcpy` instead of `strlcpy` or `strcpy_s`)

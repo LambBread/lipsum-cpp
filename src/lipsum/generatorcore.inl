@@ -36,6 +36,14 @@ namespace lipsum
             return false;
         };
         bool isChecked = false;
+        LPSM_VERBOSE_LOG(Trace,
+                         "Changing setting ",
+                         setting,
+                         " to (",
+                         value.min,
+                         ", ",
+                         value.max,
+                         ")");
 
         LPSM_ASSIGN_CHECK(word);
         LPSM_ASSIGN_CHECK(frag);
@@ -67,32 +75,47 @@ namespace lipsum
     Generator::Generator()
     {
         m_Gen.seed(std::random_device{}());
+        LPSM_VERBOSE_LOG(Info, "Creating a lpsm::Generator");
+    }
+
+    Generator::~Generator()
+    {
+        LPSM_VERBOSE_LOG(Info, "Destroying a lpsm::Generator");
     }
 
     Generator::Generator(int seed)
     {
         m_Gen.seed(seed);
+        LPSM_VERBOSE_LOG(Info, "Creating a lpsm::Generator with seed ", seed);
     }
 
     Generator::Generator(const std::string& path)
     {
         load_source(path);
+        LPSM_VERBOSE_LOG(Info, "Creating a lpsm::Generator with source ", path);
     }
 
     Generator::Generator(const std::string& path, int seed)
     {
         load_source(path);
         m_Gen.seed(seed);
+        LPSM_VERBOSE_LOG(Info,
+                         "Creating a lpsm::Generator with seed ",
+                         seed,
+                         " and source ",
+                         path);
     }
 
     void Generator::load_source(const std::string& path)
     {
         m_Source.load(path);
+        LPSM_VERBOSE_LOG(Trace, "Loading source ", path);
     }
 
     void Generator::load_seed(int seed)
     {
         m_Gen.seed(seed);
+        LPSM_VERBOSE_LOG(Trace, "Loading seed ", seed);
     }
 
     void Generator::change_setting(const std::string& setting,

@@ -84,6 +84,7 @@ namespace lipsum
 
             lastLetter = letter;
         }
+        LPSM_VERBOSE_LOG(Trace, "Counting words, got ", count);
         return count;
     }
 
@@ -122,6 +123,7 @@ namespace lipsum
             }
             lastLetter = letter;
         }
+        LPSM_VERBOSE_LOG(Trace, "Counting sentence fragments, got ", res);
         return res;
     }
 
@@ -145,6 +147,7 @@ namespace lipsum
                 ++res;
             }
         }
+        LPSM_VERBOSE_LOG(Trace, "Counting sentences, got ", res);
         return res;
     }
 

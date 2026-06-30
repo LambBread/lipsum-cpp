@@ -36,4 +36,5 @@ This is the main source directory of lipsum-cpp.
 
 The changes between "minimum build" mode and normal mode is that all format generation functions return 
 an empty string, and commas and periods are the only punctuation symbols available. Multi-source lorem-ipsum 
-functionality is stripped and warnings do not contain colour. Quiet mode disables logging from `lpsm::internal::LogWarn()`.
+functionality is stripped and log messages do not contain colour. Quiet mode disables logging from `lpsm::internal::LogWarn()`.
+Verbose mode enables verbose log messages from lipsum-cpp, and is technically not incompatible with quiet mode.

@@ -59,6 +59,7 @@ if(LPSM_BUILD_SHARED OR LPSM_BUILD_STATIC)
     target_compile_definitions(lipsum-cpp PUBLIC
         $<$<BOOL:${LPSM_MIN_BUILD}>:LIPSUM_MIN_BUILD>
         $<$<BOOL:${LPSM_QUIET}>:LIPSUM_QUIET>
+        $<$<BOOL:${LPSM_VERBOSE}>:LIPSUM_VERBOSE>
     )
 else()
 
@@ -74,6 +75,7 @@ else()
     target_compile_definitions(lipsum-cpp INTERFACE
         $<$<BOOL:${LPSM_MIN_BUILD}>:LIPSUM_MIN_BUILD>
         $<$<BOOL:${LPSM_QUIET}>:LIPSUM_QUIET>
+        $<$<BOOL:${LPSM_VERBOSE}>:LIPSUM_VERBOSE>
     )
 endif()
 

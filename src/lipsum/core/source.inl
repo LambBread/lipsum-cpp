@@ -49,6 +49,7 @@ namespace lipsum
 
     void Source::load([[maybe_unused]] const std::string& path)
     {
+        LPSM_VERBOSE_LOG(Info, "Loading source ", path);
         m_Words.clear();
 #    ifndef LIPSUM_MIN_BUILD
         if (path == "default" || path == "lorem")

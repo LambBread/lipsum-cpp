@@ -35,6 +35,19 @@
         (static_cast<type>(func(static_cast<unsigned char>((arg)))))
 
 /**
+ * @brief Verbose log messages
+ */
+#    ifdef LIPSUM_VERBOSE
+#        define LPSM_VERBOSE_LOG(type, ...)                                    \
+            lpsm::internal::LogWarn(lpsm::internal::LogType::type,             \
+                                    __func__,                                  \
+                                    " - ",                                     \
+                                    __VA_ARGS__)
+#    else
+#        define LPSM_VERBOSE_LOG(type, ...)
+#    endif
+
+/**
  * @brief Macro for shared libraries
  *
  * @since 0.1.2

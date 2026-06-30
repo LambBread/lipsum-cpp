@@ -57,8 +57,8 @@ lipsum-cpp with CMake defaults to a static library with C wrapper support. Some 
 - Shared library (`LPSM_BUILD_SHARED=ON`)
 - Header-only library (`LPSM_BUILD_STATIC=OFF` and `LPSM_BUILD_SHARED=OFF`)
 - No C wrapper support (`LPSM_BUILD_CWRAPPER=OFF`), required with header-only builds
-- "Minimum" and "Quiet" modes (see [`src/README.md`](./src/README.md); 
-  change `LPSM_MIN_BUILD` and `LPSM_QUIET` options)
+- "Minimum", "Quiet", and "Verbose" modes (see [`src/README.md`](./src/README.md); 
+  change `LPSM_MIN_BUILD`, `LPSM_QUIET`, and `LPSM_VERBOSE` options)
 
 To add to your CMake project:
     

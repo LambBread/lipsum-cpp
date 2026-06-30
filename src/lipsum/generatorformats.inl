@@ -320,12 +320,13 @@ namespace lipsum
     {
         int           choice;
         constexpr int JSON_VALUE_WARN_DEPTH = 50;
+        LPSM_VERBOSE_LOG(Trace, "Creating a JSON value at depth ", maxDepth);
         if (maxDepth >= JSON_VALUE_WARN_DEPTH)
         {
             internal::LogWarn(internal::LogType::Warn,
                               "lpsm::Generator::json_value(): got maxDepth = ",
                               maxDepth,
-                              ", which is"
+                              ", which is "
                               "greater than the recommended maximum depth ",
                               JSON_VALUE_WARN_DEPTH,
                               ".");
