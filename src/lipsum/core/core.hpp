@@ -14,38 +14,35 @@
 
 #pragma once
 
-#ifndef LIPSUM_CORE_CORE_HPP
-#    define LIPSUM_CORE_CORE_HPP
+#include "version.hpp"
 
-#    include "version.hpp"
-
-#    ifndef __cplusplus
-#        error lipsum.hpp only supports C++, did you mean lipsum.h?
-#    endif
+#ifndef __cplusplus
+#    error lipsum.hpp only supports C++, did you mean lipsum.h?
+#endif
 
 /**
  * @brief Choose between true or false
  */
-#    define LPSM_FLIP_COIN random_number(false, true)
+#define LPSM_FLIP_COIN random_number(false, true)
 
 /**
  * @brief Simplify safe cctype usage
  */
-#    define LPSM_SAFE_CCTYPE(type, func, arg)                                  \
-        (static_cast<type>(func(static_cast<unsigned char>((arg)))))
+#define LPSM_SAFE_CCTYPE(type, func, arg)                                      \
+    (static_cast<type>(func(static_cast<unsigned char>((arg)))))
 
 /**
  * @brief Verbose log messages
  */
-#    ifdef LIPSUM_VERBOSE
-#        define LPSM_VERBOSE_LOG(type, ...)                                    \
-            lpsm::internal::LogWarn(lpsm::internal::LogType::type,             \
-                                    __func__,                                  \
-                                    " - ",                                     \
-                                    __VA_ARGS__)
-#    else
-#        define LPSM_VERBOSE_LOG(type, ...)
-#    endif
+#ifdef LIPSUM_VERBOSE
+#    define LPSM_VERBOSE_LOG(type, ...)                                        \
+        lpsm::internal::LogWarn(lpsm::internal::LogType::type,                 \
+                                __func__,                                      \
+                                " - ",                                         \
+                                __VA_ARGS__)
+#else
+#    define LPSM_VERBOSE_LOG(type, ...)
+#endif
 
 /**
  * @brief Macro for shared libraries
@@ -55,17 +52,16 @@
  * This macro helps with shared libraries on Windows by exporting
  * or importing functions.
  */
-#    ifdef LIPSUM_BUILD_SHARED
-#        ifdef _WIN32
-#            ifdef LIPSUM_EXPORT_SHARED
-#                define LIPSUM_API __declspec(dllexport)
-#            else
-#                define LIPSUM_API __declspec(dllimport)
-#            endif
+#ifdef LIPSUM_BUILD_SHARED
+#    ifdef _WIN32
+#        ifdef LIPSUM_EXPORT_SHARED
+#            define LIPSUM_API __declspec(dllexport)
 #        else
-#            define LIPSUM_API
+#            define LIPSUM_API __declspec(dllimport)
 #        endif
 #    else
 #        define LIPSUM_API
 #    endif
+#else
+#    define LIPSUM_API
 #endif

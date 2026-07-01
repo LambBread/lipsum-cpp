@@ -1463,6 +1463,7 @@ Source.cpp
   dependent on `m_Settings.para`
 - Add CSV generation
 - Add better logging supporting errors, info, trace, etc.
+- Remove C-style traditional include-guards (added 0.4.2)
 - New features:
 
 ```cpp

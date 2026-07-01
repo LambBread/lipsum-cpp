@@ -22,13 +22,10 @@
 
 #pragma once
 
-#ifndef LIPSUM_HPP
-#    define LIPSUM_HPP
-
-#    include "lipsum/core/internal.hpp"
-#    include "lipsum/core/stdincludes.hpp"
-#    include "lipsum/generator.hpp"
-#    include "lipsum/misc.hpp"
+#include "lipsum/core/internal.hpp"
+#include "lipsum/core/stdincludes.hpp"
+#include "lipsum/generator.hpp"
+#include "lipsum/misc.hpp"
 
 /**
  * @namespace lipsum
@@ -43,12 +40,11 @@ namespace lipsum
 
 namespace lpsm = lipsum; ///< Alias for namespace lipsum
 
-#    ifdef LIPSUM_IMPLEMENTATION
+#ifdef LIPSUM_IMPLEMENTATION
 
-#        include "lipsum/core/argvec2.inl"
-#        include "lipsum/core/source.inl"
-#        include "lipsum/generator.inl"
-#        include "lipsum/misc.inl"
+#    include "lipsum/core/argvec2.inl"
+#    include "lipsum/core/source.inl"
+#    include "lipsum/generator.inl"
+#    include "lipsum/misc.inl"
 
-#    endif
 #endif

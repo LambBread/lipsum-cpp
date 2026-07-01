@@ -10,9 +10,6 @@
  */
 #pragma once
 
-#ifndef LIPSUM_CORE_SAMPLE_INL
-#    define LIPSUM_CORE_SAMPLE_INL
-
 static constexpr std::array<const char*, 167> LIPSUM_VEC = {
         "lorem",        "ipsum",       "dolor",       "sit",
         "amet",         "consectetur", "adipiscing",  "elit",
@@ -278,4 +275,3 @@ static constexpr std::array<const char*, 136> CORPO_IPSUM = {
         "priority",
         "quarter",
 };
-#endif

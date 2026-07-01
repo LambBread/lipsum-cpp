@@ -12,10 +12,7 @@
  */
 #pragma once
 
-#ifndef LIPSUM_GENERATORSETTINGS_HPP
-#    define LIPSUM_GENERATORSETTINGS_HPP
-
-#    include "core/argvec2.hpp"
+#include "core/argvec2.hpp"
 
 namespace lipsum
 {
@@ -140,4 +137,3 @@ namespace lipsum
         void change_setting(const std::string& setting, const ArgVec2& value);
     };
 } // namespace lipsum
-#endif

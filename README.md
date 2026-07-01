@@ -245,6 +245,9 @@ int main()
 
     // Generate a JSON value with a max recursion of 5.
     std::cout << gen.json_value(5) << '\n';
+    
+    // Generate a CSV document.
+    std::cout << gen.csv();
 
     return 0;
 }

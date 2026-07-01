@@ -11,18 +11,15 @@
  */
 #pragma once
 
-#ifndef LIPSUM_CORE_SOURCE_INL
-#    define LIPSUM_CORE_SOURCE_INL
+#include "internal.hpp"
+#include "sample.inl"
 
-#    include "internal.hpp"
-#    include "sample.inl"
-
-#    define LPSM_SOURCE_CUSTOM_IPSUM(ipsum, name)                              \
-        if (currentLoaded == name)                                             \
-        {                                                                      \
-            std::uniform_int_distribution<size_t> dist(0, ipsum.size() - 1);   \
-            return {ipsum.at(dist(gen))};                                      \
-        }
+#define LPSM_SOURCE_CUSTOM_IPSUM(ipsum, name)                                  \
+    if (currentLoaded == name)                                                 \
+    {                                                                          \
+        std::uniform_int_distribution<size_t> dist(0, ipsum.size() - 1);       \
+        return {ipsum.at(dist(gen))};                                          \
+    }
 
 namespace lipsum
 {
@@ -51,7 +48,7 @@ namespace lipsum
     {
         LPSM_VERBOSE_LOG(Info, "Loading source ", path);
         m_Words.clear();
-#    ifndef LIPSUM_MIN_BUILD
+#ifndef LIPSUM_MIN_BUILD
         if (path == "default" || path == "lorem")
         {
             currentLoaded = "default";
@@ -102,9 +99,8 @@ namespace lipsum
             unique.insert(word);
         }
         std::copy(unique.begin(), unique.end(), std::back_inserter(m_Words));
-#    else
+#else
         currentLoaded = "default";
-#    endif
+#endif
     }
 } // namespace lipsum
-#endif

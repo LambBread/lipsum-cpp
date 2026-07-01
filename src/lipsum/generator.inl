@@ -12,12 +12,9 @@
  */
 #pragma once
 
-#ifndef LIPSUM_GENERATOR_INL
-#    define LIPSUM_GENERATOR_INL
-
-#    include "core/internal.hpp"
-#    include "generatorcore.inl"
-#    include "generatorformats.inl"
+#include "core/internal.hpp"
+#include "generatorcore.inl"
+#include "generatorformats.inl"
 
 static std::string ClearApostrAndCh(char letter, const std::string& str)
 {
@@ -263,7 +260,7 @@ namespace lipsum
         return ret;
     }
 
-#    ifndef LIPSUM_MIN_BUILD
+#ifndef LIPSUM_MIN_BUILD
     std::string Generator::code(CodeLanguage lang)
     {
         std::string              ret;
@@ -413,13 +410,12 @@ namespace lipsum
         }
         return ret;
     }
-#    else
+#else
     std::string Generator::code(CodeLanguage lang)
     {
         (void)lang;
         return "";
     }
-#    endif
+#endif
 
 } // namespace lipsum
-#endif

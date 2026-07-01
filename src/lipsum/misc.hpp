@@ -13,12 +13,9 @@
  */
 #pragma once
 
-#ifndef LIPSUM_MISC_HPP
-#    define LIPSUM_MISC_HPP
-
-#    include "core/argvec2.hpp"
-#    include "core/core.hpp"
-#    include "core/source.hpp"
+#include "core/argvec2.hpp"
+#include "core/core.hpp"
+#include "core/source.hpp"
 
 namespace lipsum
 {
@@ -114,4 +111,3 @@ namespace lipsum
                     CountParaMethod    format = CountParaMethod::Plain);
 
 } // namespace lipsum
-#endif

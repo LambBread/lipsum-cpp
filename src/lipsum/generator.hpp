@@ -13,13 +13,10 @@
 
 #pragma once
 
-#ifndef LIPSUM_GENERATOR_HPP
-#    define LIPSUM_GENERATOR_HPP
-
-#    include "core/argvec2.hpp"
-#    include "core/core.hpp"
-#    include "core/source.hpp"
-#    include "generatorsettings.hpp"
+#include "core/argvec2.hpp"
+#include "core/core.hpp"
+#include "core/source.hpp"
+#include "generatorsettings.hpp"
 
 namespace lipsum
 {
@@ -803,4 +800,3 @@ namespace lipsum
         Source m_Source;
     };
 } // namespace lipsum
-#endif

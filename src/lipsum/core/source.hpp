@@ -11,10 +11,7 @@
  */
 #pragma once
 
-#ifndef LIPSUM_CORE_SOURCE_HPP
-#    define LIPSUM_CORE_SOURCE_HPP
-
-#    include "core.hpp"
+#include "core.hpp"
 
 namespace lipsum
 {
@@ -89,4 +86,3 @@ namespace lipsum
                 m_Words; ///< The internal list of words stored.
     };
 } // namespace lipsum
-#endif

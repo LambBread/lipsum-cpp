@@ -13,15 +13,12 @@
 
 #pragma once
 
-#ifndef LIPSUM_GENERATORFORMATS_INL
-#    define LIPSUM_GENERATORFORMATS_INL
-
-#    include "core/internal.hpp"
+#include "core/internal.hpp"
 
 namespace lipsum
 {
 
-#    ifndef LIPSUM_MIN_BUILD
+#ifndef LIPSUM_MIN_BUILD
 
     /*
      * FORMATS
@@ -475,7 +472,7 @@ namespace lipsum
         }
         return ret;
     }
-#    else
+#else
     // placeholders
 
     std::string Generator::fmt_paragraph(int, bool, bool)
@@ -518,7 +515,5 @@ namespace lipsum
     {
         return "";
     }
-#    endif
-} // namespace lipsum
-
 #endif
+} // namespace lipsum

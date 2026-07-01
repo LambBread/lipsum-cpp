@@ -13,13 +13,10 @@
 
 #pragma once
 
-#ifndef LIPSUM_GENERATORCORE_INL
-#    define LIPSUM_GENERATORCORE_INL
+#include "core/internal.hpp"
 
-#    include "core/internal.hpp"
-
-#    define LPSM_ASSIGN_CHECK(name)                                            \
-        isChecked = !isChecked ? assignSetting(#name, name) : true
+#define LPSM_ASSIGN_CHECK(name)                                                \
+    isChecked = !isChecked ? assignSetting(#name, name) : true
 
 namespace lipsum
 {
@@ -153,7 +150,7 @@ namespace lipsum
         return dist(m_Gen);
     }
 
-#    ifndef LIPSUM_MIN_BUILD
+#ifndef LIPSUM_MIN_BUILD
     std::string Generator::tld()
     {
         std::vector<std::string>      tlds    = {{".com"},
@@ -259,7 +256,7 @@ namespace lipsum
         return internal::ToString(
                 random_number(JSON_NUMBER_MIN, JSON_NUMBER_MAX));
     }
-#    else
+#else
     std::string Generator::tld()
     {
         return ".com";
@@ -301,7 +298,7 @@ namespace lipsum
     {
         return "";
     }
-#    endif
+#endif
 
     std::string Generator::single_paragraph(bool useLipsum)
     {
@@ -329,4 +326,3 @@ namespace lipsum
         return result;
     }
 } // namespace lipsum
-#endif

@@ -12,10 +12,7 @@
  */
 #pragma once
 
-#ifndef LIPSUM_CORE_ARGVEC2_INL
-#    define LIPSUM_CORE_ARGVEC2_INL
-
-#    include "internal.hpp"
+#include "internal.hpp"
 
 namespace lipsum
 {
@@ -101,4 +98,3 @@ namespace lipsum
     }
 
 } // namespace lipsum
-#endif

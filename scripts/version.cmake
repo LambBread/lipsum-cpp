@@ -80,9 +80,6 @@ file(WRITE "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum/core/version.hpp"
  */
 #pragma once
 
-#ifndef LIPSUM_CORE_VERSION_HPP
-#define LIPSUM_CORE_VERSION_HPP
-
 /**
  * @brief The current version of lipsum-cpp.
  *
@@ -167,7 +164,6 @@ inline constexpr bool LIPSUM_CPP_VERSION_ISDEV = ${LIPSUM_CPP_VERSION_ISDEV};
 * YYMMDDHH.
 */
 inline constexpr const char* LIPSUM_CPP_VERSION_DATE = \"${LPSM_DATE_NOW}\";
-#endif
 ")
 
 file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumc/version.h

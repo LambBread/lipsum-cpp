@@ -12,10 +12,7 @@
 
 #pragma once
 
-#ifndef LIPSUM_CORE_ARGVEC2_HPP
-#    define LIPSUM_CORE_ARGVEC2_HPP
-
-#    include "core.hpp"
+#include "core.hpp"
 
 namespace lipsum
 {
@@ -57,4 +54,3 @@ namespace lipsum
         int max; ///< The maximum value
     };
 } // namespace lipsum
-#endif

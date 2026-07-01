@@ -39,13 +39,9 @@ if __name__ == "__main__":
  */
 #pragma once
 
-#ifndef LIPSUM_CORE_SAMPLE_INL
-#define LIPSUM_CORE_SAMPLE_INL
-
 """)
         write_array(lorem_ipsum, "LIPSUM_VEC", file)
         write_array(cat_ipsum, "CAT_IPSUM", file)
         write_array(dog_ipsum, "DOG_IPSUM", file)
         write_array(corpo_ipsum, "CORPO_IPSUM", file)
-        file.write("#endif")
 

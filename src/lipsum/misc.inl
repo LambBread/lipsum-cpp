@@ -13,10 +13,7 @@
  */
 #pragma once
 
-#ifndef LIPSUM_MISC_INL
-#    define LIPSUM_MISC_INL
-
-#    include "core/internal.hpp"
+#include "core/internal.hpp"
 
 static int
 LipsumMiscInlFind(int count, const std::string& str, const std::string& check)
@@ -189,4 +186,3 @@ namespace lipsum
     }
 
 } // namespace lipsum
-#endif

@@ -123,11 +123,11 @@
 - [x] Recursion depth limit in `lpsm::Generator::json()` (0.5.2)
 - [x] Add documentation explaining how library internally works (0.5.2)
 - [x] CSV (0.5.2)
-- [x] Verbose mode (planned 0.5.2)
+- [x] Verbose mode (0.5.2)
+- [x] Remove include-guards in C++ source (0.5.2)
 
 ## Upcoming
 
-- [ ] Remove include-guards in C++ source (planned 0.5.2)
 - [ ] Tidy `lpsm::Generator::code()` source (planned 0.5.2)
 - [ ] YAML? (potentially 0.5.2)
 - [ ] TOML? (potentially 0.5.2)

@@ -11,36 +11,32 @@
  */
 #pragma once
 
-#ifndef LIPSUM_CORE_STDINCLUDES_HPP
-#    define LIPSUM_CORE_STDINCLUDES_HPP
-
-#    include <algorithm>
-#    include <array>
-#    include <cctype>
-#    include <charconv>
-#    include <concepts>
-#    include <iostream>
-#    include <iterator>
-#    include <random>
-#    include <sstream>
-#    include <string>
-#    include <type_traits>
-#    include <utility>
-#    include <vector>
-#    ifndef LIPSUM_MIN_BUILD
-#        include <fstream>
-#        include <unordered_set>
-#        ifdef __EMSCRIPTEN__
-#            include <emscripten/console.h>
+#include <algorithm>
+#include <array>
+#include <cctype>
+#include <charconv>
+#include <concepts>
+#include <iostream>
+#include <iterator>
+#include <random>
+#include <sstream>
+#include <string>
+#include <type_traits>
+#include <utility>
+#include <vector>
+#ifndef LIPSUM_MIN_BUILD
+#    include <fstream>
+#    include <unordered_set>
+#    ifdef __EMSCRIPTEN__
+#        include <emscripten/console.h>
+#    endif
+#    ifdef _WIN32
+#        ifndef WIN32_LEAN_AND_MEAN
+#            define WIN32_LEAN_AND_MEAN
 #        endif
-#        ifdef _WIN32
-#            ifndef WIN32_LEAN_AND_MEAN
-#                define WIN32_LEAN_AND_MEAN
-#            endif
-#            ifndef NOMINMAX
-#                define NOMINMAX
-#            endif
-#            include <windows.h>
+#        ifndef NOMINMAX
+#            define NOMINMAX
 #        endif
+#        include <windows.h>
 #    endif
 #endif

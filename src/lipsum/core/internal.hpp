@@ -12,11 +12,8 @@
  */
 #pragma once
 
-#ifndef LIPSUM_CORE_INTERNAL_HPP
-#    define LIPSUM_CORE_INTERNAL_HPP
-
-#    include "core.hpp"
-#    include "stdincludes.hpp"
+#include "core.hpp"
+#include "stdincludes.hpp"
 
 /**
  * @namespace lipsum::internal
@@ -125,7 +122,7 @@ namespace lipsum::internal
     void LogWarn([[maybe_unused]] LogType type,
                  [[maybe_unused]] const Args&... args)
     {
-#    ifndef LIPSUM_QUIET
+#ifndef LIPSUM_QUIET
         std::ostringstream oss;
         oss << "lipsum-cpp ";
         switch (type)
@@ -160,8 +157,8 @@ namespace lipsum::internal
         ((oss << args), ...);
         oss << '\n';
         std::string message = oss.str();
-#        ifndef LIPSUM_MIN_BUILD
-#            ifdef __EMSCRIPTEN__
+#    ifndef LIPSUM_MIN_BUILD
+#        ifdef __EMSCRIPTEN__
         auto funcCalling = emscripten_console_warn;
         if (type == LogType::Trace || type == LogType::Info)
         {
@@ -172,7 +169,7 @@ namespace lipsum::internal
             funcCalling = emscripten_console_error;
         }
         funcCalling(message.c_str());
-#            elif defined(_WIN32)
+#        elif defined(_WIN32)
         HANDLE hConsole   = GetStdHandle(STD_OUTPUT_HANDLE);
         int    colorUsing = 6; // yellow
         if (type == LogType::Trace)
@@ -196,7 +193,7 @@ namespace lipsum::internal
         std::cerr << message;
         // default
         SetConsoleTextAttribute(hConsole, 7);
-#            else
+#        else
         int colorUsing = 33; // yellow
         if (type == LogType::Trace)
         {
@@ -215,11 +212,11 @@ namespace lipsum::internal
             colorUsing = 31; // red
         }
         std::cerr << "\033[" << colorUsing << "m" << message << "\033[0m";
-#            endif
-#        else
-        std::cerr << message;
 #        endif
+#    else
+        std::cerr << message;
 #    endif
+#endif
     }
 
     /**
@@ -311,4 +308,3 @@ namespace lipsum::internal
         }
     }
 } // namespace lipsum::internal
-#endif

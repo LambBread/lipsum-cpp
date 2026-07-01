@@ -13,9 +13,6 @@
 
 #pragma once
 
-#ifndef LIPSUMC_BINDED_INL
-#    define LIPSUMC_BINDED_INL
-
 /*
  * BINDED
  * ----------------
@@ -221,5 +218,3 @@ extern "C" char* lpsm_Generator_csv(lpsm_GeneratorHandle handle)
     auto&& ret = LPSM_CPPIFY(handle, lpsm::Generator)->csv();
     return ConvertToCstr(std::move(ret));
 }
-
-#endif
