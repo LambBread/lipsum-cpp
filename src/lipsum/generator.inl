@@ -275,136 +275,157 @@ namespace lipsum
                               "> 0, got ",
                               numStatements);
         }
+
+        auto varBlock = [&](CaseSlugCase       varCase,
+                            CaseSlugCase       funcCase,
+                            const std::string& varDeclarer,
+                            const std::string& namespSep)
+        {
+            for (int i = 0; i < numStatements; ++i)
+            {
+                varNames.push_back(case_slug(varCase));
+                ret += varDeclarer + varNames.back() + std::string(" = ") +
+                       mainNamespace + namespSep + case_slug(funcCase) +
+                       "();\n";
+            }
+        };
+
+        auto cppBlock = [&]()
+        {
+            ret += std::string("#include <") + mainNamespace +
+                   std::string("/") + mainNamespace + ".hpp>\n";
+            ret += "#include <iostream>\nint main()\n{\n";
+            ret += std::string("    // ") +
+                   single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
+                   "\n";
+            varBlock(CaseSlugCase::CamelCase,
+                     CaseSlugCase::PascalCase,
+                     "    auto ",
+                     "::");
+            ret += "    std::cout";
+            for (int i = 0; i < numStatements; ++i)
+            {
+                ret += std::string(" << ") + varNames.at(i) + " << ' '";
+            }
+            ret += " << '\\n';\n    return 0;\n}";
+        };
+
+        auto pyBlock = [&]()
+        {
+            ret += std::string("import ") + mainNamespace + "\n";
+            ret += "if __name__ == \"__main__\":\n";
+            ret += std::string("    # ") +
+                   single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
+                   "\n";
+            // pyVars();
+            varBlock(CaseSlugCase::SnakeCase,
+                     CaseSlugCase::SnakeCase,
+                     "    ",
+                     ".");
+            ret += "    print(f\"";
+            for (int i = 0; i < numStatements; ++i)
+            {
+                ret += std::string("{") + varNames.at(i) + std::string("} ");
+            }
+            ret += "\")\n";
+        };
+
+        auto rsBlock = [&]()
+        {
+            ret += std::string("use ") + mainNamespace + ";\n";
+            ret += "fn main()\n{\n";
+            ret += std::string("    // ") +
+                   single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
+                   "\n";
+            // rsVars();
+            varBlock(CaseSlugCase::SnakeCase,
+                     CaseSlugCase::SnakeCase,
+                     "    let ",
+                     "::");
+            ret += "    println!(\"";
+            for (int i = 0; i < numStatements; ++i)
+            {
+                ret += std::string("{} ");
+            }
+            ret += "\"";
+            for (int i = 0; i < numStatements; ++i)
+            {
+                ret += std::string(", ") + varNames.at(i);
+            }
+            ret += ");\n}";
+        };
+
+        auto cBlock = [&]()
+        {
+            ret += std::string("#include <") + mainNamespace +
+                   std::string("/") + mainNamespace + ".h>\n";
+            ret += "#include <stdio.h>\n";
+            ret += "int main(void)\n{\n";
+            ret += std::string("    // ") +
+                   single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
+                   "\n";
+            varBlock(CaseSlugCase::CamelCase,
+                     CaseSlugCase::PascalCase,
+                     "    int ",
+                     "_");
+            ret += "    printf(\"";
+            for (int i = 0; i < numStatements; ++i)
+            {
+                ret += std::string("%d ");
+            }
+            ret += "\"";
+            for (int i = 0; i < numStatements; ++i)
+            {
+                ret += std::string(", ") + varNames.at(i);
+            }
+            ret += ");\n}";
+        };
+
+        auto jsBlock = [&]()
+        {
+            ret += std::string("import * as ") + mainNamespace +
+                   std::string(" from \"./") + mainNamespace + ".js\";\n";
+            ret += std::string("// ") +
+                   single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
+                   "\n";
+            varBlock(CaseSlugCase::CamelCase,
+                     CaseSlugCase::CamelCase,
+                     "const ",
+                     ".");
+            ret += "console.log(";
+            ret += varNames.front();
+            for (int i = 1; i < numStatements; ++i)
+            {
+                ret += std::string(", \" \", ") + varNames.at(i);
+            }
+            ret += ");\n";
+        };
+
         switch (lang)
         {
             case CodeLanguage::Cpp:
             {
-                ret += std::string("#include <") + mainNamespace +
-                       std::string("/") + mainNamespace + ".hpp>\n";
-                ret += "#include <iostream>\nint main()\n{\n";
-                ret += std::string("    // ") +
-                       single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
-                       "\n";
-                for (int i = 0; i < numStatements; ++i)
-                {
-                    varNames.push_back(case_slug(CaseSlugCase::CamelCase));
-                    ret += std::string("    auto ") + varNames.back() +
-                           std::string(" = ") + mainNamespace +
-                           std::string("::") +
-                           case_slug(CaseSlugCase::PascalCase) + "();\n";
-                }
-                ret += "    std::cout";
-                for (int i = 0; i < numStatements; ++i)
-                {
-                    ret += std::string(" << ") + varNames.at(i) + " << ' '";
-                }
-                ret += " << '\\n';\n    return 0;\n}";
+                cppBlock();
                 break;
             }
             case CodeLanguage::Python:
             {
-                ret += std::string("import ") + mainNamespace + "\n";
-                ret += "if __name__ == \"__main__\":\n";
-                ret += std::string("    # ") +
-                       single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
-                       "\n";
-                for (int i = 0; i < numStatements; ++i)
-                {
-                    varNames.push_back(case_slug(CaseSlugCase::SnakeCase));
-                    ret += std::string("    ") + varNames.back() +
-                           std::string(" = ") + mainNamespace +
-                           std::string(".") +
-                           case_slug(CaseSlugCase::SnakeCase) + "()\n";
-                }
-                ret += "    print(f\"";
-                for (int i = 0; i < numStatements; ++i)
-                {
-                    ret += std::string("{") + varNames.at(i) +
-                           std::string("} ");
-                }
-                ret += "\")\n";
+                pyBlock();
                 break;
             }
             case CodeLanguage::Rust:
             {
-                ret += std::string("use ") + mainNamespace + ";\n";
-                ret += "fn main()\n{\n";
-                ret += std::string("    // ") +
-                       single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
-                       "\n";
-                for (int i = 0; i < numStatements; ++i)
-                {
-                    varNames.push_back(case_slug(CaseSlugCase::SnakeCase));
-                    ret += std::string("    let ") + varNames.back() +
-                           std::string(" = ") + mainNamespace +
-                           std::string("::") +
-                           case_slug(CaseSlugCase::SnakeCase) + "();\n";
-                }
-                ret += "    println!(\"";
-                for (int i = 0; i < numStatements; ++i)
-                {
-                    ret += std::string("{} ");
-                }
-                ret += "\"";
-                for (int i = 0; i < numStatements; ++i)
-                {
-                    ret += std::string(", ") + varNames.at(i);
-                }
-                ret += ");\n}";
+                rsBlock();
                 break;
             }
             case CodeLanguage::C:
             {
-                ret += std::string("#include <") + mainNamespace +
-                       std::string("/") + mainNamespace + ".h>\n";
-                ret += "#include <stdio.h>\n";
-                ret += "int main(void)\n{\n";
-                ret += std::string("    // ") +
-                       single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
-                       "\n";
-                for (int i = 0; i < numStatements; ++i)
-                {
-                    varNames.push_back(case_slug(CaseSlugCase::CamelCase));
-                    ret += std::string("    int ") + varNames.back() +
-                           std::string(" = ") + mainNamespace +
-                           std::string("_") +
-                           case_slug(CaseSlugCase::PascalCase) + "();\n";
-                }
-                ret += "    printf(\"";
-                for (int i = 0; i < numStatements; ++i)
-                {
-                    ret += std::string("%d ");
-                }
-                ret += "\"";
-                for (int i = 0; i < numStatements; ++i)
-                {
-                    ret += std::string(", ") + varNames.at(i);
-                }
-                ret += ");\n}";
+                cBlock();
                 break;
             }
             case CodeLanguage::JavaScript:
             {
-                ret += std::string("import * as ") + mainNamespace +
-                       std::string(" from \"./") + mainNamespace + ".js\";\n";
-                ret += std::string("// ") +
-                       single_sentence(m_Settings.wordFmt, m_Settings.fragFmt) +
-                       "\n";
-                for (int i = 0; i < numStatements; ++i)
-                {
-                    varNames.push_back(case_slug(CaseSlugCase::CamelCase));
-                    ret += std::string("const ") + varNames.back() +
-                           std::string(" = ") + mainNamespace +
-                           std::string(".") +
-                           case_slug(CaseSlugCase::CamelCase) + "();\n";
-                }
-                ret += "console.log(";
-                ret += varNames.front();
-                for (int i = 1; i < numStatements; ++i)
-                {
-                    ret += std::string(", \" \", ") + varNames.at(i);
-                }
-                ret += ");\n";
+                jsBlock();
                 break;
             }
         }

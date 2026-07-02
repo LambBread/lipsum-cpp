@@ -1464,6 +1464,7 @@ Source.cpp
 - Add CSV generation
 - Add better logging supporting errors, info, trace, etc.
 - Remove C-style traditional include-guards (added 0.4.2)
+- Clean up `lpsm::Generator::code()` source code
 - New features:
 
 ```cpp

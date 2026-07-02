@@ -125,10 +125,10 @@
 - [x] CSV (0.5.2)
 - [x] Verbose mode (0.5.2)
 - [x] Remove include-guards in C++ source (0.5.2)
+- [x] Tidy `lpsm::Generator::code()` source (0.5.2)
 
 ## Upcoming
 
-- [ ] Tidy `lpsm::Generator::code()` source (planned 0.5.2)
 - [ ] YAML? (potentially 0.5.2)
 - [ ] TOML? (potentially 0.5.2)
 - [ ] Conan package?? (potentially 0.5.2)
