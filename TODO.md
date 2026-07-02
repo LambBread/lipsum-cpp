@@ -129,8 +129,13 @@
 
 ## Upcoming
 
-- [ ] YAML? (potentially 0.5.3)
-- [ ] TOML? (potentially 0.5.3)
+- [ ] `benchmark` CMake target (planned 0.5.2)
+- [ ] Bulk generation with CLI tool? (potentially 0.5.2)
 - [ ] Conan package?? (potentially 0.5.3)
+- [ ] UTF-8/Unicode support? (potentially 0.5.3)
+- [ ] Iterators? (potentially 0.5.3)
+- [ ] Markov chain?? (potentially 0.5.3)
+- [ ] YAML? (potentially 0.5.3/0.6.0?)
+- [ ] TOML? (potentially 0.5.3/0.6.0?)
 - [ ] Release 1.0.0
 
