@@ -129,8 +129,8 @@
 
 ## Upcoming
 
-- [ ] YAML? (potentially 0.5.2)
-- [ ] TOML? (potentially 0.5.2)
-- [ ] Conan package?? (potentially 0.5.2)
+- [ ] YAML? (potentially 0.5.3)
+- [ ] TOML? (potentially 0.5.3)
+- [ ] Conan package?? (potentially 0.5.3)
 - [ ] Release 1.0.0
 
