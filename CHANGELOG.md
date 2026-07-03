@@ -1465,6 +1465,7 @@ Source.cpp
 - Add better logging supporting errors, info, trace, etc.
 - Remove C-style traditional include-guards (added 0.4.2)
 - Clean up `lpsm::Generator::code()` source code
+- Add CMake `benchmark` target
 - New features:
 
 ```cpp

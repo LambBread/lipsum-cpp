@@ -69,7 +69,7 @@ static void Test_count_fragments(lpsm::Generator& gen)
     int numFrags = lpsm::CountSentenceFragments(
             "This is a test, and this is a test; testing - test, "
             "test, test. "
-            "Lorem ipsum, dolor sit, amet.\n\n"
+            "Lorem ipsum: dolor sit, amet.\n\n"
             "- This is a list, first letter not be counted.\n"
             "- Foo bar; baz - qux. (This, is not counted.)");
     if (numFrags != 14)
@@ -81,8 +81,8 @@ static void Test_count_fragments(lpsm::Generator& gen)
 static void Test_count_sentences(lpsm::Generator& gen)
 {
     int numSents = lpsm::CountSentences(
-            "This is a sentence. This is another sentence. "
-            "[This is a third sentence.](https://this-is-not-a-sentence.com) "
+            "This is a sentence! This is another sentence. "
+            "[This is a third sentence?](https://this-is-not-a-sentence.com) "
             "(This is not a sentence.)");
     if (numSents != 3)
     {
