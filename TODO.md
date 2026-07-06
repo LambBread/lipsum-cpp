@@ -127,11 +127,11 @@
 - [x] Remove include-guards in C++ source (0.5.2)
 - [x] Tidy `lpsm::Generator::code()` source (0.5.2)
 - [x] `benchmark` CMake target (0.5.2)
+- [x] Interactive CLI tool (0.5.2 WIP)
 
 ## Upcoming
 
-- [ ] Bulk generation with CLI tool? (potentially 0.5.2)
-- [ ] Interactive mode (`-I`) in CLI tool? (potentially 0.5.3)
+- [ ] Bulk generation with CLI tool? (potentially 0.5.3)
 - [ ] Conan package?? (potentially 0.5.3)
 - [ ] UTF-8/Unicode support? (potentially 0.5.3)
 - [ ] Iterators? (potentially 0.5.3)

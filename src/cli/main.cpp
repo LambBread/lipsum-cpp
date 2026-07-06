@@ -130,8 +130,8 @@ void Help(const std::string& page)
         std::cout << "  --csvCols=<min,max>, -C - The min and max number of columns in CSV documents.\n";
         std::cout << "Subcommands include:\n";
         std::cout << "  help, word, fragment, sentence, paragraph, text,\n";
-        std::cout << "  url, plain_url, email, slug, case_slug, code, fmt_paragraph, \n";
-        std::cout << "  fmt_text, fmt_header, fmt_emphasis, fmt_link, fmt_list, \n";
+        std::cout << "  url, plain_url, email, slug, scramble, case_slug, code, \n";
+        std::cout << "  fmt_paragraph, fmt_text, fmt_header, fmt_emphasis, fmt_link, fmt_list, \n";
         std::cout << "  xml, json, json_value, csv\n\n";
         std::cout << "For more information, type lpsmcpp-cli help <subcommand>.\n";
     }
