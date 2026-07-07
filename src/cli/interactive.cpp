@@ -2,7 +2,14 @@
 #    define LIPSUM_IMPLEMENTATION
 #endif
 
+#include <limits>
 #include <lipsum.hpp>
+
+constexpr bool InCharRange(int num)
+{
+    return (num >= std::numeric_limits<char>::min()) &&
+           (num <= std::numeric_limits<char>::max());
+}
 
 int main()
 {
@@ -36,13 +43,39 @@ int main()
     std::cout << "    21. Generate a JSON value.\n";
     std::cout << "    22. Generate a CSV document.\n";
     std::cout << ">>> ";
-    int subcommand;
+
+    int  subcommand;
+    int  num;
+    bool useLipsum;
+    bool useHtml;
     std::cin >> subcommand;
+
+    auto askNum = [&]()
+    {
+        std::cout << "How many?\n>>> ";
+        std::cin >> num;
+    };
+
+    auto askBool = [](bool& val, const std::string& msg)
+    {
+        std::cout << msg << " (Y,n)\n>>> ";
+        std::string temp;
+        std::cin >> temp;
+        if (!temp.empty() && (temp.at(0) == 'n' || temp.at(0) == 'N'))
+        {
+            val = false;
+        }
+        else
+        {
+            val = true;
+        }
+    };
     switch (subcommand)
     {
         case 1:
         {
-            std::cout << gen.word();
+            askNum();
+            std::cout << gen.word(num);
             break;
         }
         case 2:
@@ -52,17 +85,22 @@ int main()
         }
         case 3:
         {
-            std::cout << gen.sentence();
+            askNum();
+            askBool(useLipsum, "Start with \"Lorem ipsum...\"?");
+            std::cout << gen.sentence(num, useLipsum);
             break;
         }
         case 4:
         {
-            std::cout << gen.paragraph();
+            askNum();
+            askBool(useLipsum, "Start with \"Lorem ipsum...\"?");
+            std::cout << gen.paragraph(num, useLipsum);
             break;
         }
         case 5:
         {
-            std::cout << gen.text();
+            askBool(useLipsum, "Start with \"Lorem ipsum...\"?");
+            std::cout << gen.text(useLipsum);
             break;
         }
         case 6:
@@ -82,67 +120,149 @@ int main()
         }
         case 9:
         {
-            std::cout << gen.slug();
+            std::cout << "What character? (ASCII value)\n>>> ";
+            std::cin >> num;
+            if (!InCharRange(num))
+            {
+                lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
+                                        "number out of range of char. Please "
+                                        "use numbers between "
+                                        "0 and 127.\nGot num=",
+                                        num);
+            }
+            std::cout << gen.slug(static_cast<char>(num));
             break;
         }
         case 10:
         {
-            std::cout << gen.scramble();
+            int minChar;
+            int maxChar;
+            std::cout << "How many characters?\n>>> ";
+            std::cin >> num;
+            std::cout << "What minimum character? (ASCII value)\n>>> ";
+            std::cin >> minChar;
+            std::cout << "What maximum character? (ASCII value)\n>>> ";
+            std::cin >> maxChar;
+            if (!InCharRange(num))
+            {
+                lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
+                                        "number out of range of char. Please "
+                                        "use numbers between "
+                                        "0 and 127.\nGot minChar=",
+                                        minChar,
+                                        ", maxChar=",
+                                        maxChar);
+            }
+            std::cout << gen.scramble(num,
+                                      static_cast<char>(minChar),
+                                      static_cast<char>(maxChar));
             break;
         }
         case 11:
         {
-            std::cout << gen.case_slug();
+            std::cout << "What case?\n";
+            std::cout << "    0 - camelCase\n";
+            std::cout << "    1 - PascalCase\n";
+            std::cout << "    2 - snake_case\n";
+            std::cout << "    3 - SHOUTY_CASE\n";
+            std::cout << "    4 - kebab-case\n";
+            std::cout << "    5 - TRAIN-CASE\n>>> ";
+            std::cin >> num;
+            if (num < 0 || num > 5)
+            {
+                lpsm::internal::
+                        LogWarn(lpsm::internal::LogType::Error,
+                                "case slug out of range. Please use number "
+                                "between 0 and 5.\nGot num=",
+                                num);
+            }
+            std::cout << gen.case_slug(static_cast<lpsm::CaseSlugCase>(num));
             break;
         }
         case 12:
         {
-            std::cout << gen.code();
+            std::cout << "What language?\n";
+            std::cout << "    0 - C++\n";
+            std::cout << "    1 - Python\n";
+            std::cout << "    2 - Rust\n";
+            std::cout << "    3 - C\n";
+            std::cout << "    4 - JavaScript\n>>> ";
+            std::cin >> num;
+            if (num < 0 || num > 4)
+            {
+                lpsm::internal::
+                        LogWarn(lpsm::internal::LogType::Error,
+                                "language chosen out of range. Please use "
+                                "number between 0 and 4.\nGot num=",
+                                num);
+            }
+            std::cout << gen.code(static_cast<lpsm::CodeLanguage>(num));
             break;
         }
         case 13:
         {
-            std::cout << gen.fmt_paragraph();
+            askNum();
+            askBool(useLipsum, "Start with \"Lorem ipsum...\"?");
+            askBool(useHtml, "Use HTML (Y) or Markdown (n)?");
+            std::cout << gen.fmt_paragraph(num, useLipsum, useHtml);
             break;
         }
         case 14:
         {
-            std::cout << gen.fmt_text();
+            std::cout << "How many elements?\n>>> ";
+            std::cin >> num;
+            askBool(useHtml, "Use HTML (Y) or Markdown (n)?");
+            std::cout << gen.fmt_text(num, useHtml);
             break;
         }
         case 15:
         {
-            std::cout << gen.fmt_header();
+            std::cout << "What header level? (1-6)\n>>> ";
+            std::cin >> num;
+            askBool(useHtml, "Use HTML (Y) or Markdown (n)?");
+            std::cout << gen.fmt_header(num, useHtml);
             break;
         }
         case 16:
         {
-            std::cout << gen.fmt_emphasis();
+            askBool(useLipsum, "Is the sentence bold?");
+            askBool(useHtml, "Use HTML (Y) or Markdown (n)?");
+            std::cout << gen.fmt_emphasis(useLipsum, useHtml);
             break;
         }
         case 17:
         {
-            std::cout << gen.fmt_link();
+            askBool(useHtml, "Use HTML (Y) or Markdown (n)?");
+            std::cout << gen.fmt_link(useHtml);
             break;
         }
         case 18:
         {
-            std::cout << gen.fmt_list();
+            askBool(useLipsum, "Is the list ordered?");
+            askBool(useHtml, "Use HTML (Y) or Markdown (n)?");
+            std::cout << gen.fmt_list(useLipsum, useHtml);
             break;
         }
         case 19:
         {
-            std::cout << gen.xml();
+            std::cout << "How many \"choices\"?\n>>> ";
+            std::cin >> num;
+            std::cout << gen.xml(num);
             break;
         }
         case 20:
         {
-            std::cout << gen.json();
+            std::cout << "How many maximum recursions?\n>>> ";
+            std::cin >> num;
+            askBool(useLipsum, "Is it an object (Y) or array (n)?");
+            std::cout << gen.json(num, useLipsum);
             break;
         }
         case 21:
         {
-            std::cout << gen.json_value();
+            std::cout << "How many maximum recursions?\n>>> ";
+            std::cin >> num;
+            std::cout << gen.json_value(num);
             break;
         }
         case 22:
@@ -153,9 +273,9 @@ int main()
         default:
         {
             lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
-                                    "Invalid subcommand ",
+                                    "invalid subcommand ",
                                     subcommand,
-                                    " expected between 1 and 22.");
+                                    ": expected between 1 and 22.");
             break;
         }
     }
