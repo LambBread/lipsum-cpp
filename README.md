@@ -275,7 +275,7 @@ for details.
 ## Benchmarks
 
 All tested with CMake `Release` build type, with default
-`lpsm::Generator` arguments under a normal build.
+`lpsm::Generator` arguments under a normal, static library build.
 
 ### Medium-end environment
 
@@ -300,6 +300,36 @@ All tested with CMake `Release` build type, with default
 | Paragraphs          | 15,833                 |
 | Markdown paragraphs | 15,267                 |
 | Markdown elements   | 27,966                 |
+
+### GitHub Actions Windows runner
+
+| Metric              | Performance per second |
+| ------------------- | ---------------------- |
+| Words               | 18,206,408             |
+| Sentences           | 490,375                |
+| Paragraphs          | 67,996                 |
+| Markdown paragraphs | 64,619                 |
+| Markdown elements   | 109,314                |
+
+### GitHub Actions macOS runner
+
+| Metric              | Performance per second |
+| ------------------- | ---------------------- |
+| Words               | 14,804,787             |
+| Sentences           | 720,016                |
+| Paragraphs          | 106,058                |
+| Markdown paragraphs | 95,303                 |
+| Markdown elements   | 163,419                |
+
+### GitHub Actions Ubuntu runner
+
+| Metric              | Performance per second |
+| ------------------- | ---------------------- |
+| Words               | 24,511,520             |
+| Sentences           | 1,100,179              |
+| Paragraphs          | 163,271                |
+| Markdown paragraphs | 152,726                |
+| Markdown elements   | 266,789                |
 
 ## Credits
 
