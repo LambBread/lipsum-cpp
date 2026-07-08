@@ -35,9 +35,13 @@ foreach(bench IN LISTS LPSM_BENCHMARKS)
 endforeach()
 
 add_custom_target(benchmark
-    DEPENDS clean_benchmark_log lpsmcpp-test ${LPSM_BENCHMARKS}
-    WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
     COMMENT "Running benchmarks"
-    VERBATIM
 )
+
+set(PREVIOUS_TARGET clean_benchmark_log)
+foreach(bench IN LISTS LPSM_BENCHMARKS)
+    add_dependencies(${bench} ${PREVIOUS_TARGET})
+    set(PREVIOUS_TARGET ${bench})
+endforeach()
+add_dependencies(benchmark ${PREVIOUS_TARGET})
 
