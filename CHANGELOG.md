@@ -1449,7 +1449,7 @@ char* lpsm_Generator_fmt_list(lpsm_GeneratorHandle, bool, bool);
 Source.cpp
 ```
 
-### 0.5.2 (2026-07 TBD)
+### 0.5.2 (2026-07-07)
 
 - Add more `lpsm::Generator::code()` language generation support: Rust, C, JavaScript
 - Add "minimum build" support, quiet build, and verbose build support (see `src/README.md`)
@@ -1460,13 +1460,13 @@ Source.cpp
 - Add recursion depth limit in JSON generation functions
 - Add more descriptive documentation for `lpsm::Generator` functions
 - Make `single_fmt_paragraph()` add formatted content with a specific chance (1/15) instead of being
-  dependent on `m_Settings.para`
+  dependent on `m_Settings.sent`
 - Add CSV generation
 - Add better logging supporting errors, info, trace, etc.
 - Remove C-style traditional include-guards (added 0.4.2)
 - Clean up `lpsm::Generator::code()` source code
 - Add CMake `benchmark` target
-- Add interactive CLI tool
+- Add interactive CLI tool, `lpsmcpp-interactive`
 - New features:
 
 ```cpp

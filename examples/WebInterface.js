@@ -114,7 +114,7 @@ createLipsumCpp().then(Module =>
         }
         else if(["word", "fragment", "sentence",
             "paragraph", "url", "plain_url", "xml", 
-            "email"].includes(funcSelect.value))
+            "email", "csv"].includes(funcSelect.value))
         {
             //console.log(funcSelect.value);
             output.value = gen[funcSelect.value](num, useLipsum);

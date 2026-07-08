@@ -1,7 +1,7 @@
 # lipsum-cpp CLI
 
 This is a CLI tool for lipsum-cpp. It contains subcommands for every `lpsm::Generator` function.
-For more info, type `lpsmcpp-cli help`.
+For more info, type `lpsmcpp-cli help`. There is also an interactive CLI tool, `lpsmcpp-interactive`.
 
 ```
 Usage: lpsmcpp-cli <subcommand> [<arguments>] [<options>]

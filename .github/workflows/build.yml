@@ -56,7 +56,7 @@ jobs:
 
       - name: Benchmark
         run: |
-          cmake --build build --target benchmark
+          cmake --build build --target benchmark --config Release
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7

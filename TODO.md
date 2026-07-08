@@ -127,7 +127,7 @@
 - [x] Remove include-guards in C++ source (0.5.2)
 - [x] Tidy `lpsm::Generator::code()` source (0.5.2)
 - [x] `benchmark` CMake target (0.5.2)
-- [x] Interactive CLI tool (0.5.2 WIP)
+- [x] Interactive CLI tool (0.5.2)
 
 ## Upcoming
 
