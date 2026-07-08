@@ -20,6 +20,7 @@ UI testing, benchmarking Markdown/HTML/XML/JSON parser libraries, and anywhere p
 - Markdown, HTML, XML, JSON, CSV, and code block (C, C++, Rust, Python, and JavaScript snippet) generation
 - Customizable number of paragraphs, sentences, sentence fragments, and words
 - CLI tool for integration in projects
+- Interactive CLI tool for easy generation
 - Extensive documentation via Doxygen
 - C++, C, and JavaScript support (static/shared library, wrapper, and Emscripten module builds supported)
 - CMake support for easy integration
