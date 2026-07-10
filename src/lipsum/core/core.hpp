@@ -20,6 +20,11 @@
 #    error lipsum.hpp only supports C++, did you mean lipsum.h?
 #endif
 
+// suppress verbose errors
+#if defined(LIPSUM_VERBOSE) && defined(LIPSUM_QUIET)
+#    undef LIPSUM_VERBOSE
+#endif
+
 /**
  * @brief Choose between true or false
  */

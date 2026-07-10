@@ -47,6 +47,7 @@ namespace lipsum
         return dist(gen);
     }
 
+#ifndef LIPSUM_MIN_BUILD
     std::string internal::HandleHTMLEntity(const std::string& str)
     {
         std::string result;
@@ -96,5 +97,11 @@ namespace lipsum
         }
         return result;
     }
+#else
+    std::string internal::HandleHTMLEntity(const std::string& str)
+    {
+        return str;
+    }
+#endif
 
 } // namespace lipsum

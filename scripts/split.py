@@ -41,7 +41,9 @@ if __name__ == "__main__":
 
 """)
         write_array(lorem_ipsum, "LIPSUM_VEC", file)
+        file.write("#ifndef LIPSUM_MIN_BUILD\n")
         write_array(cat_ipsum, "CAT_IPSUM", file)
         write_array(dog_ipsum, "DOG_IPSUM", file)
         write_array(corpo_ipsum, "CORPO_IPSUM", file)
+        file.write("#endif\n")
 

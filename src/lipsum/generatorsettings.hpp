@@ -57,6 +57,7 @@ namespace lipsum
          */
         ArgVec2 para{1, 4};
 
+#ifndef LIPSUM_MIN_BUILD
         /**
          * @brief The minimum and maximum possible number of points in lists or
          * statements in code blocks.
@@ -120,6 +121,8 @@ namespace lipsum
          * @since 0.5.2
          */
         ArgVec2 csvCols{5, 8};
+
+#endif
 
         /**
          * @brief Change a setting

@@ -14,18 +14,17 @@
 #include <algorithm>
 #include <array>
 #include <cctype>
-#include <charconv>
 #include <concepts>
 #include <iostream>
 #include <iterator>
 #include <random>
 #include <sstream>
 #include <string>
-#include <type_traits>
-#include <utility>
 #include <vector>
 #ifndef LIPSUM_MIN_BUILD
+#    include <charconv>
 #    include <fstream>
+#    include <type_traits>
 #    include <unordered_set>
 #    ifdef __EMSCRIPTEN__
 #        include <emscripten/console.h>

@@ -128,6 +128,7 @@
 - [x] Tidy `lpsm::Generator::code()` source (0.5.2)
 - [x] `benchmark` CMake target (0.5.2)
 - [x] Interactive CLI tool (0.5.2)
+- [x] More minimal minimum build (0.5.3)
 
 ## Upcoming
 

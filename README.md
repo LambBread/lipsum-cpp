@@ -32,7 +32,7 @@ lipsum-cpp has been mainly tested on Linux (Debian 13) and WebAssembly, and ther
 
 ### Build prerequisites
 
-- A C/C++ compiler (e.g. GCC, MSVC, Clang) supporting C++20 or newer
+- A C/C++ compiler (e.g. GCC, MSVC, Clang) supporting ideally C++20 or newer
 - Recommended:
     - CMake (>= 3.20)
     - Make

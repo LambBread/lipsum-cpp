@@ -14,14 +14,17 @@ This is the main source directory of lipsum-cpp.
 
 ## Naming convention
 
-- Classes: `PascalCase`
+- Classes, structs, enums: `PascalCase`
 - Free functions: `PascalCase`
 - Class functions and CLI subcommands: `snake_case`
 - Unit tests: `snake_case`
 - Python: `snake_case`
-- Macros, `constexpr` constants, enum values: `SHOUTY_CASE`
+- Macros, `constexpr` constants, enum values (excluding enum class): `SHOUTY_CASE`
+- Enum class values: `PascalCase`
 - CMake variables: `SHOUTY_CASE`
 - Internal variables and function arguments: `camelCase`
+- Lambdas: `camelCase`
+- If a variable name conflicts with a keyword, prefer another name or append an underscore, e.g. `case_`
 
 ### C wrapper
 
@@ -32,9 +35,12 @@ This is the main source directory of lipsum-cpp.
 - Binded class handles are the name of the class with `Handle` appended at the end
 - Binded class destructors are the name of the class with `Destroy` appended at the end
 
-## Minimum & Quiet build modes
+## Minimum, Quiet, & Verbose build modes
 
-The changes between "minimum build" mode and normal mode is that all format generation functions return 
-an empty string, and commas and periods are the only punctuation symbols available. Multi-source lorem-ipsum 
+The changes between "minimum build" mode and normal mode is that the only functionality that is available is the
+core plain text generation functions. Commas and periods are the only punctuation symbols available, many unneeded settings
+are stripped, some C++20 `lpsm::internal` concepts are stripped, and `lpsm::internal::ToString()` and
+`lpsm::internal::ToType()` only use basic `std::stringstream` conversion. Multi-source lorem-ipsum 
 functionality is stripped and log messages do not contain colour. Quiet mode disables logging from `lpsm::internal::LogWarn()`.
-Verbose mode enables verbose log messages from lipsum-cpp, and is technically not incompatible with quiet mode.
+Verbose mode enables verbose log messages from lipsum-cpp. If both verbose and quiet mode are enabled, treat as simply
+quiet mode.

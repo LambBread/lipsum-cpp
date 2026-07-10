@@ -54,6 +54,7 @@ static constexpr std::array<const char*, 167> LIPSUM_VEC = {
         "lobortis",     "tempor",      "nullam",      "potenti",
         "fringilla",    "fusce",       "feugiat",
 };
+#ifndef LIPSUM_MIN_BUILD
 static constexpr std::array<const char*, 207> CAT_IPSUM = {
         "found",       "somthing",  "move",      "i",         "bite",
         "it",          "tail",      "chew",      "ipad",      "power",
@@ -275,3 +276,4 @@ static constexpr std::array<const char*, 136> CORPO_IPSUM = {
         "priority",
         "quarter",
 };
+#endif

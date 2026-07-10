@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(lipsum-cpp VERSION 0.5.2
+project(lipsum-cpp VERSION 0.5.3
     LANGUAGES C CXX
     DESCRIPTION "A basic library written in C++ for generating placeholder Lorem Ipsum text.")
 

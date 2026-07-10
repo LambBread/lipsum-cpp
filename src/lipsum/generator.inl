@@ -16,6 +16,7 @@
 #include "generatorcore.inl"
 #include "generatorformats.inl"
 
+#ifndef LIPSUM_MIN_BUILD
 static std::string ClearApostrAndCh(char letter, const std::string& str)
 {
     std::string ret;
@@ -54,6 +55,7 @@ static std::string CapitalizeStr(const std::string& str)
     }
     return ret;
 }
+#endif
 
 namespace lipsum
 {
@@ -152,6 +154,7 @@ namespace lipsum
         return paragraph(num, useLipsum);
     }
 
+#ifndef LIPSUM_MIN_BUILD
     /*
      * MISC
      */
@@ -260,7 +263,6 @@ namespace lipsum
         return ret;
     }
 
-#ifndef LIPSUM_MIN_BUILD
     std::string Generator::code(CodeLanguage lang)
     {
         std::string              ret;
@@ -432,9 +434,32 @@ namespace lipsum
         return ret;
     }
 #else
-    std::string Generator::code(CodeLanguage lang)
+    std::string Generator::scramble(int, char, char)
     {
-        (void)lang;
+        return "";
+    }
+    std::string Generator::url()
+    {
+        return "";
+    }
+    std::string Generator::plain_url()
+    {
+        return "";
+    }
+    std::string Generator::email()
+    {
+        return "";
+    }
+    std::string Generator::slug(char)
+    {
+        return "";
+    }
+    std::string Generator::case_slug(CaseSlugCase)
+    {
+        return "";
+    }
+    std::string Generator::code(CodeLanguage)
+    {
         return "";
     }
 #endif

@@ -30,6 +30,7 @@ namespace lipsum
 
     std::string Source::random_word(std::mt19937& gen) const
     {
+#ifndef LIPSUM_MIN_BUILD
         if (m_Words.empty())
         {
             LPSM_SOURCE_CUSTOM_IPSUM(CAT_IPSUM, "cat")
@@ -42,6 +43,10 @@ namespace lipsum
 
         std::uniform_int_distribution<size_t> dist(0, m_Words.size() - 1);
         return m_Words.at(dist(gen));
+#else
+        std::uniform_int_distribution<size_t> dist(0, LIPSUM_VEC.size() - 1);
+        return {LIPSUM_VEC.at(dist(gen))};
+#endif
     }
 
     void Source::load([[maybe_unused]] const std::string& path)

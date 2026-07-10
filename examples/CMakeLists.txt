@@ -21,7 +21,7 @@ if(LPSM_BUILD_CWRAPPER)
     target_link_libraries(CWrapper lipsum-cpp)
 endif()
 
-if(LPSM_BUILD_EXTRA_EXAMPLES AND NOT EMSCRIPTEN)
+if(LPSM_BUILD_EXTRA_EXAMPLES AND NOT EMSCRIPTEN AND NOT LPSM_MIN_BUILD)
     find_package(LibXml2 REQUIRED)
     find_package(json-c CONFIG REQUIRED)
     find_package(ZLIB REQUIRED)

@@ -1,6 +1,6 @@
 # Maintainer: LambBread <LambBread@github.com>
 pkgname=lipsum-cpp
-pkgver=0.5.2
+pkgver=0.5.3
 pkgrel=1
 pkgdesc="A basic library written in C++ for generating placeholder Lorem Ipsum text."
 arch=('x86_64' 'aarch64')

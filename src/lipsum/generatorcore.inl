@@ -46,6 +46,7 @@ namespace lipsum
         LPSM_ASSIGN_CHECK(frag);
         LPSM_ASSIGN_CHECK(sent);
         LPSM_ASSIGN_CHECK(para);
+#ifndef LIPSUM_MIN_BUILD
         LPSM_ASSIGN_CHECK(point);
         LPSM_ASSIGN_CHECK(wordFmt);
         LPSM_ASSIGN_CHECK(fragFmt);
@@ -54,6 +55,7 @@ namespace lipsum
         LPSM_ASSIGN_CHECK(jsonLength);
         LPSM_ASSIGN_CHECK(csvRows);
         LPSM_ASSIGN_CHECK(csvCols);
+#endif
         if (!isChecked)
         {
             internal::LogWarn(internal::LogType::Warn,

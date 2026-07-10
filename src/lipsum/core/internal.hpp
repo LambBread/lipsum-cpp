@@ -41,6 +41,8 @@ namespace lipsum::internal
         Critical
     };
 
+#ifndef LIPSUM_MIN_BUILD
+
     /**
      * @brief Can std::to_string() be called with T?
      *
@@ -63,6 +65,7 @@ namespace lipsum::internal
         { outs << value } -> std::same_as<std::ostream&>;
     } && (!ToStringable<T>);
 
+#endif
     /**
      * @brief Is T an int?
      *
@@ -219,6 +222,7 @@ namespace lipsum::internal
 #endif
     }
 
+#ifndef LIPSUM_MIN_BUILD
     /**
      * @brief Convert an object to a string.
      *
@@ -307,4 +311,21 @@ namespace lipsum::internal
             return res;
         }
     }
+
+#else
+    template <typename T> std::string ToString(const T& param)
+    {
+        std::ostringstream oss;
+        oss << param;
+        return oss.str();
+    }
+
+    template <typename T> T ToType(const std::string& param)
+    {
+        T                  res;
+        std::istringstream iss(param);
+        iss >> std::boolalpha >> res;
+        return res;
+    }
+#endif
 } // namespace lipsum::internal
