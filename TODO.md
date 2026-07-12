@@ -129,10 +129,10 @@
 - [x] `benchmark` CMake target (0.5.2)
 - [x] Interactive CLI tool (0.5.2)
 - [x] More minimal minimum build (0.5.3)
+- [x] Bulk generation in CLI tool (0.5.3)
 
 ## Upcoming
 
-- [ ] Bulk generation with CLI tool? (potentially 0.5.3)
 - [ ] Conan package?? (potentially 0.5.3)
 - [ ] UTF-8/Unicode support? (potentially 0.5.3)
 - [ ] Iterators? (potentially 0.5.3)

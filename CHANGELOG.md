@@ -1495,3 +1495,4 @@ char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int);
 ### 0.5.3 (2026-07/08 TBD)
 
 - Make minimum build more "minimal" (e.g. no slug generation)
+- Add bulk generation in CLI tool

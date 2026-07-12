@@ -15,6 +15,9 @@ Options include:
       <source> may be a path to a file or a built-in source.
       Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.
 
+  --bulk - Separate bulk operations.
+      Example: lpsmcpp-cli paragraph 2 --bulk sentence 4
+
   --word=<min,max>, -w - The min and max words per sentence fragment.
   --frag=<min,max>, -f - The min and max sentence fragments per sentence.
   --sent=<min,max>, -s - The min and max sentences per paragraph.
@@ -29,8 +32,8 @@ Options include:
   --csvCols=<min,max>, -C - The min and max number of columns in CSV documents.
 Subcommands include:
   help, word, fragment, sentence, paragraph, text,
-  url, plain_url, email, slug, case_slug, code, fmt_paragraph, 
-  fmt_text, fmt_header, fmt_emphasis, fmt_link, fmt_list, 
+  url, plain_url, email, slug, scramble, case_slug, code, 
+  fmt_paragraph, fmt_text, fmt_header, fmt_emphasis, fmt_link, fmt_list, 
   xml, json, json_value, csv
 
 For more information, type lpsmcpp-cli help <subcommand>.

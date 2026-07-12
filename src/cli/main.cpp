@@ -113,6 +113,8 @@ void Help(const std::string& page)
         std::cout << "  --source=<source>, -S - Load specified source.\n";
         std::cout << "      <source> may be a path to a file or a built-in source.\n";
         std::cout << "      Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.\n\n";
+        std::cout << "  --bulk - Separate bulk operations.\n";
+        std::cout << "      Example: lpsmcpp-cli paragraph 2 --bulk sentence 4\n\n";
         std::cout << "  --word=<min,max>, -w - The min and max words per sentence fragment.\n";
         std::cout << "  --frag=<min,max>, -f - The min and max sentence fragments per sentence.\n";
         std::cout << "  --sent=<min,max>, -s - The min and max sentences per paragraph.\n";
@@ -258,132 +260,10 @@ void Help(const std::string& page)
     // clang-format on
 }
 
-int main(int argc, char** argv)
+int MainLogic(const std::vector<std::string>& commandOpts,
+              std::ostream*                   ostr,
+              lpsm::Generator&                gen)
 {
-
-    // lpsm::internal::LogWarn(lpsm::internal::LogType::Trace, "foo");
-    // lpsm::internal::LogWarn(lpsm::internal::LogType::Info, "bar");
-    // lpsm::internal::LogWarn(lpsm::internal::LogType::Warn, "baz");
-    // lpsm::internal::LogWarn(lpsm::internal::LogType::Error, "qux");
-    // lpsm::internal::LogWarn(lpsm::internal::LogType::Critical, "corge");
-    if (argc < 2)
-    {
-        Help("home");
-        return 0;
-    }
-
-    std::vector<std::string> options;
-    std::vector<std::string> commandOpts;
-
-    std::ostream* ostr = &std::cout;
-    std::ofstream fileStream;
-
-    lpsm::Generator gen;
-
-    for (int i = 1; i < argc; ++i)
-    {
-        std::string realArg = argv[i];
-        if (realArg.starts_with("-")) // using a c++20 feature!
-        {
-            options.push_back(realArg);
-        }
-        else
-        {
-            commandOpts.push_back(realArg);
-        }
-    }
-
-    for (const auto& option : options)
-    {
-        if (OPTION_COND(help, "-h"))
-        {
-            Help("home");
-            return 0;
-        }
-
-        if (OPTION_COND(version, "-v"))
-        {
-            std::cout << LIPSUM_CPP_VERSION_FULL << '\n';
-            std::cout << LIPSUM_CPP_VERSION_TIME << '\n';
-            return 0;
-        }
-
-        // clang-format off
-        SETTING_OPTION(word, "-w")
-        else SETTING_OPTION(frag, "-f")
-        else SETTING_OPTION(sent, "-s")
-        else SETTING_OPTION(para, "-p")
-        else SETTING_OPTION(point, "-P")
-        else SETTING_OPTION(wordURL, "-u")
-        else SETTING_OPTION(wordFmt, "-W")
-        else SETTING_OPTION(fragFmt, "-F")
-        else SETTING_OPTION(level, "-l")
-        else SETTING_OPTION(jsonLength, "-j")
-        else SETTING_OPTION(csvRows, "-R")
-        else SETTING_OPTION(csvCols, "-C")
-        else if(OPTION_COND(source, "-S"))
-        // clang-format on
-        {
-            size_t pos = option.find('=');
-            if (pos != std::string::npos)
-            {
-                std::string value = option.substr(pos + 1);
-                gen.load_source(value);
-            }
-            else
-            {
-                lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
-                                        "must be in format "
-                                        "--option=value\nGot: ",
-                                        option);
-                return -1;
-            }
-        }
-        else if (OPTION_COND(seed, "-E"))
-        {
-            size_t pos = option.find('=');
-            if (pos != std::string::npos)
-            {
-                std::string value = option.substr(pos + 1);
-                int         seed  = lpsm::internal::ToType<int>(value);
-                gen.load_seed(seed);
-            }
-            else
-            {
-                lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
-                                        "must be in format "
-                                        "--option=value\nGot: ",
-                                        option);
-            }
-        }
-        else if (OPTION_COND(output, "-o"))
-        {
-
-            size_t pos = option.find('=');
-            if (pos != std::string::npos)
-            {
-                std::string value = option.substr(pos + 1);
-                fileStream.open(value);
-                ostr = &fileStream;
-            }
-            else
-            {
-                lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
-                                        "must be in format "
-                                        "--option=value\nGot: ",
-                                        option);
-                return -1;
-            }
-        }
-        else
-        {
-            lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
-                                    "unknown option ",
-                                    option);
-            return -1;
-        }
-    }
-
     // no subcommand
     if (commandOpts.empty())
     {
@@ -502,7 +382,153 @@ int main(int argc, char** argv)
     }
 
     (*ostr) << '\n';
-    std::cout << '\n';
+    return 0;
+}
+int main(int argc, char** argv)
+{
+
+    // lpsm::internal::LogWarn(lpsm::internal::LogType::Trace, "foo");
+    // lpsm::internal::LogWarn(lpsm::internal::LogType::Info, "bar");
+    // lpsm::internal::LogWarn(lpsm::internal::LogType::Warn, "baz");
+    // lpsm::internal::LogWarn(lpsm::internal::LogType::Error, "qux");
+    // lpsm::internal::LogWarn(lpsm::internal::LogType::Critical, "corge");
+    if (argc < 2)
+    {
+        Help("home");
+        return 0;
+    }
+
+    std::vector<std::string>              options;
+    std::vector<std::vector<std::string>> commandOpts;
+
+    std::ostream*            ostr = &std::cout;
+    std::ofstream            fileStream;
+    std::vector<std::string> cmdOptsToAdd;
+
+    lpsm::Generator gen;
+
+    for (int i = 1; i < argc; ++i)
+    {
+        std::string realArg = argv[i];
+        if (realArg.starts_with("-")) // using a c++20 feature!
+        {
+            if (realArg.starts_with("--bulk"))
+            {
+                commandOpts.push_back(cmdOptsToAdd);
+                cmdOptsToAdd.clear();
+            }
+            options.push_back(realArg);
+        }
+        else
+        {
+            cmdOptsToAdd.push_back(realArg);
+        }
+    }
+    commandOpts.push_back(cmdOptsToAdd);
+
+    for (const auto& option : options)
+    {
+        if (OPTION_COND(help, "-h"))
+        {
+            Help("home");
+            return 0;
+        }
+
+        if (OPTION_COND(version, "-v"))
+        {
+            std::cout << LIPSUM_CPP_VERSION_FULL << '\n';
+            std::cout << LIPSUM_CPP_VERSION_TIME << '\n';
+            return 0;
+        }
+
+        // clang-format off
+        SETTING_OPTION(word, "-w")
+        else SETTING_OPTION(frag, "-f")
+        else SETTING_OPTION(sent, "-s")
+        else SETTING_OPTION(para, "-p")
+        else SETTING_OPTION(point, "-P")
+        else SETTING_OPTION(wordURL, "-u")
+        else SETTING_OPTION(wordFmt, "-W")
+        else SETTING_OPTION(fragFmt, "-F")
+        else SETTING_OPTION(level, "-l")
+        else SETTING_OPTION(jsonLength, "-j")
+        else SETTING_OPTION(csvRows, "-R")
+        else SETTING_OPTION(csvCols, "-C")
+        else if(OPTION_COND(source, "-S"))
+        // clang-format on
+        {
+            size_t pos = option.find('=');
+            if (pos != std::string::npos)
+            {
+                std::string value = option.substr(pos + 1);
+                gen.load_source(value);
+            }
+            else
+            {
+                lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
+                                        "must be in format "
+                                        "--option=value\nGot: ",
+                                        option);
+                return -1;
+            }
+        }
+        else if (OPTION_COND(seed, "-E"))
+        {
+            size_t pos = option.find('=');
+            if (pos != std::string::npos)
+            {
+                std::string value = option.substr(pos + 1);
+                int         seed  = lpsm::internal::ToType<int>(value);
+                gen.load_seed(seed);
+            }
+            else
+            {
+                lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
+                                        "must be in format "
+                                        "--option=value\nGot: ",
+                                        option);
+            }
+        }
+        else if (OPTION_COND(output, "-o"))
+        {
+
+            size_t pos = option.find('=');
+            if (pos != std::string::npos)
+            {
+                std::string value = option.substr(pos + 1);
+                fileStream.open(value);
+                ostr = &fileStream;
+            }
+            else
+            {
+                lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
+                                        "must be in format "
+                                        "--option=value\nGot: ",
+                                        option);
+                return -1;
+            }
+        }
+        else if (option.starts_with("--bulk"))
+        {
+            // acceptable, skip
+        }
+        else
+        {
+            lpsm::internal::LogWarn(lpsm::internal::LogType::Error,
+                                    "unknown option ",
+                                    option);
+            return -1;
+        }
+    }
+
+    for (const auto& internalCmdOpts : commandOpts)
+    {
+        int ret = MainLogic(internalCmdOpts, ostr, gen);
+        if (ret != 0)
+        {
+            return ret;
+        }
+    }
 
     return 0;
 }
