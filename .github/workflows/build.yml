@@ -68,7 +68,7 @@ jobs:
             build/*.deb
             build/*.dmg
             build/*.rpm
-            build/*.msi
+            build/*.exe
             build/src/test/benchmark_log.txt
           if-no-files-found: ignore
 

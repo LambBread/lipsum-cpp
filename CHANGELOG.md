@@ -1496,3 +1496,4 @@ char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int);
 
 - Make minimum build more "minimal" (e.g. no slug generation)
 - Add bulk generation in CLI tool
+- Remove `.msi` CPack generation; switch to NSIS generation
