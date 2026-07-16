@@ -433,6 +433,38 @@ namespace lipsum
         }
         return ret;
     }
+
+    std::string Generator::ip_addr(bool useIpv6, bool usePort)
+    {
+        std::ostringstream ret;
+        std::string port = internal::ToString(random_number(1023, 65535));
+        if (useIpv6)
+        {
+            ret << (usePort ? "[" : "");
+            ret << std::hex;
+            for (int i = 0; i < 7; ++i)
+            {
+                ret << random_number(0, 65535) << ":";
+            }
+            ret << random_number(0, 65535);
+            ret << (usePort ? "]" : "");
+            if (usePort)
+            {
+                ret << ":" << port;
+            }
+            return ret.str();
+        }
+        ret << random_number(0, 255) << ".";
+        ret << random_number(0, 255) << ".";
+        ret << random_number(0, 255) << ".";
+        ret << random_number(0, 255);
+        if (usePort)
+        {
+            ret << ":";
+            ret << port;
+        }
+        return ret.str();
+    }
 #else
     std::string Generator::scramble(int, char, char)
     {
@@ -459,6 +491,10 @@ namespace lipsum
         return "";
     }
     std::string Generator::code(CodeLanguage)
+    {
+        return "";
+    }
+    std::string Generator::ip_addr(bool, bool)
     {
         return "";
     }

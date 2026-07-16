@@ -1497,3 +1497,14 @@ char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int);
 - Make minimum build more "minimal" (e.g. no slug generation)
 - Add bulk generation in CLI tool
 - Remove `.msi` CPack generation; switch to NSIS generation
+- New features:
+
+```cpp
+std::string lpsm::ip_addr(bool, bool);
+
+#define LPSM_IPV4
+#define LPSM_IPV6
+#define LPSM_NOPORT
+#define LPSM_PORT
+char* lpsm_ip_addr(lpsm_GeneratorHandle, bool, bool);
+```

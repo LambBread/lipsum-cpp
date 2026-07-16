@@ -26,6 +26,10 @@
 #    define LPSM_ITALIC false
 #    define LPSM_ORDERED true
 #    define LPSM_UNORDERED false
+#    define LPSM_IPV4 false
+#    define LPSM_IPV6 true
+#    define LPSM_NOPORT false
+#    define LPSM_PORT true
 // NOLINTEND
 
 #    include "core.h"
@@ -389,6 +393,23 @@ extern "C"
      */
     LIPSUMC_API char* lpsm_Generator_code(lpsm_GeneratorHandle handle,
                                           lpsm_CodeLanguage    lang);
+
+    /**
+     * @brief Generate an IP address.
+     *
+     * @since 0.5.3
+     *
+     * Call lipsum::Generator::ip_addr() on the specified handle.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     * @param useIpv6 Whether to use IPv6.
+     * @param usePort Whether to add a port.
+     *
+     * @return char* The IP address.
+     */
+    LIPSUMC_API char* lpsm_Generator_ip_addr(lpsm_GeneratorHandle handle,
+                                             bool                 useIpv6,
+                                             bool                 usePort);
 
     /**
      * @brief Generate Markdown or HTML paragraphs.

@@ -130,14 +130,17 @@
 - [x] Interactive CLI tool (0.5.2)
 - [x] More minimal minimum build (0.5.3)
 - [x] Bulk generation in CLI tool (0.5.3)
+- [x] IP address generation (0.5.3)
 
 ## Upcoming
 
-- [ ] Conan package?? (potentially 0.5.3)
-- [ ] UTF-8/Unicode support? (potentially 0.5.3)
-- [ ] Iterators? (potentially 0.5.3)
-- [ ] Markov chain?? (potentially 0.5.3)
-- [ ] YAML? (potentially 0.5.3/0.6.0?)
-- [ ] TOML? (potentially 0.5.3/0.6.0?)
+- [ ] Phone number generation (planned 0.5.3)
+- [ ] "Non-random" generation (potentially 0.5.3)
+- [ ] Conan package (potentially 0.5.3)
+- [ ] Iterators (potentially 0.5.4)
+- [ ] Markov chain (potentially 0.5.4)
+- [ ] UTF-8/Unicode support (potentially 0.5.4)
+- [ ] YAML (potentially 0.6.0)
+- [ ] TOML (potentially 0.6.0)
 - [ ] Release 1.0.0
 

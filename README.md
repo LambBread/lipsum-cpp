@@ -210,6 +210,9 @@ int main()
 
     // Generate a scramble.
     std::cout << gen.scramble(24, 'a', 'z') << '\n';
+
+    // Generate an IPv6 IP address with a port.
+    std::cout << gen.ip_addr(lpsm::IPV6, lpsm::PORT) << '\n';
     
     // Generate a C++ pseudocode block.
     std::cout << gen.code(lpsm::CodeLanguage::Cpp) << '\n';

@@ -142,6 +142,13 @@ extern "C" char* lpsm_Generator_code(lpsm_GeneratorHandle handle,
     return ConvertToCstr(std::move(ret));
 }
 
+extern "C" char*
+lpsm_Generator_ip_addr(lpsm_GeneratorHandle handle, bool useIpv6, bool usePort)
+{
+    auto&& ret =
+            LPSM_CPPIFY(handle, lpsm::Generator)->ip_addr(useIpv6, usePort);
+    return ConvertToCstr(std::move(ret));
+}
 extern "C" char* lpsm_Generator_fmt_paragraph(lpsm_GeneratorHandle handle,
                                               int                  num,
                                               bool                 useLipsum,

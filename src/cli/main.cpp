@@ -282,6 +282,7 @@ int MainLogic(const std::vector<std::string>& commandOpts,
     else NO_ARG_SUBCOMMAND(url)
     else NO_ARG_SUBCOMMAND(plain_url)
     else NO_ARG_SUBCOMMAND(email)
+    else DOUBLE_ARG_SUBCOMMAND(ip_addr, bool, false, bool, false)
     else SINGLE_ARG_SUBCOMMAND(xml, int, 30)
     else SINGLE_ARG_SUBCOMMAND(json_value, int, 3)
     else DOUBLE_ARG_SUBCOMMAND(json, int, 3, bool, true)

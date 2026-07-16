@@ -39,7 +39,11 @@ namespace lipsum
         BOLD         = true,
         ITALIC       = false,
         ORDERED      = true,
-        UNORDERED    = false
+        UNORDERED    = false,
+        IPV4         = false,
+        IPV6         = true,
+        NOPORT       = false,
+        PORT         = true
     };
 
     /**
@@ -387,6 +391,25 @@ namespace lipsum
          * @return std::string The code block.
          */
         std::string code(CodeLanguage lang = CodeLanguage::Cpp);
+
+        /**
+         * @brief Generate an IP address.
+         *
+         * @since 0.5.3
+         *
+         * Generate an IPv4 or IPv6 IP address, optionally with a port.
+         * Start by choosing a port. If useIpv6 is false, generate 4 numbers
+         * from 0-255 and fill them into the format x.x.x.x, or x.x.x.x:port.
+         * If useIpv6 is true, generate 8 hexadecimal numbers from 0-65536
+         * and fill them into the format x:x:x:x:x:x:x:x, or
+         * [x:x:x:x:x:x:x:x]:port.
+         *
+         * @param useIpv6 Whether to use IPv6. By default false (IPv4).
+         * @param usePort Whether to add a port. By default false.
+         *
+         * @return std::string The IP address.
+         */
+        std::string ip_addr(bool useIpv6 = false, bool usePort = false);
 
         /*
          * FORMATS

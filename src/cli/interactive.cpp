@@ -132,16 +132,17 @@ int main()
         std::cout << "    10. Generate a character scramble.\n";
         std::cout << "    11. Generate a case slug.\n";
         std::cout << "    12. Generate a code block.\n";
-        std::cout << "    13. Generate formatted paragraphs.\n";
-        std::cout << "    14. Generate a formatted document.\n";
-        std::cout << "    15. Generate a formatted header.\n";
-        std::cout << "    16. Generate a formatted sentence.\n";
-        std::cout << "    17. Generate a formatted link.\n";
-        std::cout << "    18. Generate a formatted list.\n";
-        std::cout << "    19. Generate an XML document.\n";
-        std::cout << "    20. Generate a JSON array or object.\n";
-        std::cout << "    21. Generate a JSON value.\n";
-        std::cout << "    22. Generate a CSV document.\n";
+        std::cout << "    13. Generate an IP address.\n";
+        std::cout << "    14. Generate formatted paragraphs.\n";
+        std::cout << "    15. Generate a formatted document.\n";
+        std::cout << "    16. Generate a formatted header.\n";
+        std::cout << "    17. Generate a formatted sentence.\n";
+        std::cout << "    18. Generate a formatted link.\n";
+        std::cout << "    19. Generate a formatted list.\n";
+        std::cout << "    20. Generate an XML document.\n";
+        std::cout << "    21. Generate a JSON array or object.\n";
+        std::cout << "    22. Generate a JSON value.\n";
+        std::cout << "    23. Generate a CSV document.\n";
         std::cout << ">>> ";
 
         int  subcommand;
@@ -296,13 +297,20 @@ int main()
             }
             case 13:
             {
+                askBool(useLipsum, "Use IPv6 (Y) or IPv4 (n)?");
+                askBool(useHtml, "Add a port?");
+                std::cout << gen.ip_addr(useLipsum, useHtml);
+                break;
+            }
+            case 14:
+            {
                 askNum();
                 askBool(useLipsum, "Start with \"Lorem ipsum...\"?");
                 askBool(useHtml, "Use HTML (Y) or Markdown (n)?");
                 std::cout << gen.fmt_paragraph(num, useLipsum, useHtml);
                 break;
             }
-            case 14:
+            case 15:
             {
                 std::cout << "How many elements?\n>>> ";
                 std::cin >> num;
@@ -310,7 +318,7 @@ int main()
                 std::cout << gen.fmt_text(num, useHtml);
                 break;
             }
-            case 15:
+            case 16:
             {
                 std::cout << "What header level? (1-6)\n>>> ";
                 std::cin >> num;
@@ -318,34 +326,34 @@ int main()
                 std::cout << gen.fmt_header(num, useHtml);
                 break;
             }
-            case 16:
+            case 17:
             {
                 askBool(useLipsum, "Is the sentence bold?");
                 askBool(useHtml, "Use HTML (Y) or Markdown (n)?");
                 std::cout << gen.fmt_emphasis(useLipsum, useHtml);
                 break;
             }
-            case 17:
+            case 18:
             {
                 askBool(useHtml, "Use HTML (Y) or Markdown (n)?");
                 std::cout << gen.fmt_link(useHtml);
                 break;
             }
-            case 18:
+            case 19:
             {
                 askBool(useLipsum, "Is the list ordered?");
                 askBool(useHtml, "Use HTML (Y) or Markdown (n)?");
                 std::cout << gen.fmt_list(useLipsum, useHtml);
                 break;
             }
-            case 19:
+            case 20:
             {
                 std::cout << "How many \"choices\"?\n>>> ";
                 std::cin >> num;
                 std::cout << gen.xml(num);
                 break;
             }
-            case 20:
+            case 21:
             {
                 std::cout << "How many maximum recursions?\n>>> ";
                 std::cin >> num;
@@ -353,14 +361,14 @@ int main()
                 std::cout << gen.json(num, useLipsum);
                 break;
             }
-            case 21:
+            case 22:
             {
                 std::cout << "How many maximum recursions?\n>>> ";
                 std::cin >> num;
                 std::cout << gen.json_value(num);
                 break;
             }
-            case 22:
+            case 23:
             {
                 std::cout << gen.csv();
                 break;

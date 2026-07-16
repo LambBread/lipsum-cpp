@@ -123,7 +123,7 @@ createLipsumCpp().then(Module =>
         {
             output.value = gen[funcSelect.value](num, useHtml);
         }
-        else if(["fmt_emphasis", "fmt_list"].includes(funcSelect.value))
+        else if(["fmt_emphasis", "fmt_list", "ip_addr"].includes(funcSelect.value))
         {
             output.value = gen[funcSelect.value](useLipsum, useHtml);
         }
