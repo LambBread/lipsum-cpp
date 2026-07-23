@@ -214,6 +214,9 @@ int main()
     // Generate an IPv6 IP address with a port.
     std::cout << gen.ip_addr(lpsm::IPV6, lpsm::PORT) << '\n';
     
+    // Generate a phone number.
+    std::cout << gen.phone_number() << '\n';
+    
     // Generate a C++ pseudocode block.
     std::cout << gen.code(lpsm::CodeLanguage::Cpp) << '\n';
 

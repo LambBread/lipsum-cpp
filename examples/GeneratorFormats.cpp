@@ -40,6 +40,9 @@ int main()
     // Generate an IPv6 IP address with a port.
     std::cout << gen.ip_addr(lpsm::IPV6, lpsm::PORT) << '\n';
 
+    // Generate a phone number.
+    std::cout << gen.phone_number() << '\n';
+
     // Generate 5 Markdown paragraphs.
     std::cout << gen.fmt_paragraph(5, lpsm::USELIPSUM, lpsm::MARKDOWN);
 

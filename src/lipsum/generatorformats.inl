@@ -394,7 +394,9 @@ namespace lipsum
             Sentence,
             Word,
             Email,
-            Scramble
+            Scramble,
+            IP,
+            Phone
         };
 
         int                   numRows = m_Settings.csvRows.roll(m_Gen);
@@ -404,7 +406,7 @@ namespace lipsum
         cols.reserve(numCols);
         for (int i = 0; i < numCols; ++i)
         {
-            cols.push_back(static_cast<CsvTypes>(random_number<int>(0, 5)));
+            cols.push_back(static_cast<CsvTypes>(random_number<int>(0, 7)));
             ret += m_Source.random_word(m_Gen) + ",";
         }
         // remove trailing comma
@@ -452,6 +454,17 @@ namespace lipsum
                 case CsvTypes::Scramble:
                 {
                     ret += scramble(16, 'a', 'z') + ",";
+                    break;
+                }
+                case CsvTypes::IP:
+                {
+                    ret += ip_addr(LPSM_FLIP_COIN, LPSM_FLIP_COIN) + ",";
+                    break;
+                }
+                case CsvTypes::Phone:
+                {
+                    ret += "\"";
+                    ret += phone_number() + "\",";
                     break;
                 }
             }

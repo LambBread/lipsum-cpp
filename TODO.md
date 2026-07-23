@@ -131,10 +131,10 @@
 - [x] More minimal minimum build (0.5.3)
 - [x] Bulk generation in CLI tool (0.5.3)
 - [x] IP address generation (0.5.3)
+- [x] Phone number generation (0.5.3)
 
 ## Upcoming
 
-- [ ] Phone number generation (planned 0.5.3)
 - [ ] "Non-random" generation (potentially 0.5.3)
 - [ ] Conan package (potentially 0.5.3)
 - [ ] Iterators (potentially 0.5.4)

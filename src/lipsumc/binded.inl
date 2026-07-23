@@ -149,6 +149,12 @@ lpsm_Generator_ip_addr(lpsm_GeneratorHandle handle, bool useIpv6, bool usePort)
             LPSM_CPPIFY(handle, lpsm::Generator)->ip_addr(useIpv6, usePort);
     return ConvertToCstr(std::move(ret));
 }
+
+extern "C" char* lpsm_Generator_phone_number(lpsm_GeneratorHandle handle)
+{
+    auto&& ret = LPSM_CPPIFY(handle, lpsm::Generator)->phone_number();
+    return ConvertToCstr(std::move(ret));
+}
 extern "C" char* lpsm_Generator_fmt_paragraph(lpsm_GeneratorHandle handle,
                                               int                  num,
                                               bool                 useLipsum,

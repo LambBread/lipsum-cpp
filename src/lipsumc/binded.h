@@ -412,6 +412,19 @@ extern "C"
                                              bool                 usePort);
 
     /**
+     * @brief Generate a phone number.
+     *
+     * @since 0.5.3
+     *
+     * Call lipsum::Generator::phone_number() on the specified handle.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     *
+     * @return char* The phone number.
+     */
+    LIPSUMC_API char* lpsm_Generator_phone_number(lpsm_GeneratorHandle handle);
+
+    /**
      * @brief Generate Markdown or HTML paragraphs.
      *
      * @since 0.4.4

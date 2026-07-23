@@ -465,7 +465,22 @@ namespace lipsum
         }
         return ret.str();
     }
+
+    std::string Generator::phone_number()
+    {
+        std::string ret = "(+1) ";
+        ret += internal::ToString(random_number(0, 999));
+        ret += "-";
+        ret += internal::ToString(random_number(0, 999));
+        ret += "-";
+        ret += internal::ToString(random_number(0, 9999));
+        return ret;
+    }
 #else
+    std::string Generator::phone_number()
+    {
+        return "";
+    }
     std::string Generator::scramble(int, char, char)
     {
         return "";

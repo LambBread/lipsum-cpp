@@ -1500,11 +1500,13 @@ char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int);
 - New features:
 
 ```cpp
-std::string lpsm::ip_addr(bool, bool);
+std::string lpsm::Generator::ip_addr(bool, bool);
+std::string lpsm::Generator::phone_number();
 
 #define LPSM_IPV4
 #define LPSM_IPV6
 #define LPSM_NOPORT
 #define LPSM_PORT
-char* lpsm_ip_addr(lpsm_GeneratorHandle, bool, bool);
+char* lpsm_Generator_ip_addr(lpsm_GeneratorHandle, bool, bool);
+char* lpsm_Generator_phone_number(lpsm_GeneratorHandle);
 ```

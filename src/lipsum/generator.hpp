@@ -411,6 +411,17 @@ namespace lipsum
          */
         std::string ip_addr(bool useIpv6 = false, bool usePort = false);
 
+        /**
+         * @brief Generate a phone number.
+         *
+         * @since 0.5.3
+         *
+         * Generate a phone number in the format "(+1) xxx-xxx-xxxx".
+         *
+         * @return std::string The phone number.
+         */
+        std::string phone_number();
+
         /*
          * FORMATS
          */

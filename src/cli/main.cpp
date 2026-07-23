@@ -129,9 +129,10 @@ void Help(const std::string& page)
         std::cout << "  --csvCols=<min,max>, -C - The min and max number of columns in CSV documents.\n";
         std::cout << "Subcommands include:\n";
         std::cout << "  help, word, fragment, sentence, paragraph, text,\n";
-        std::cout << "  url, plain_url, email, slug, scramble, case_slug, code, \n";
-        std::cout << "  fmt_paragraph, fmt_text, fmt_header, fmt_emphasis, fmt_link, fmt_list, \n";
-        std::cout << "  xml, json, json_value, csv\n\n";
+        std::cout << "  url, plain_url, email, slug, scramble, case_slug,\n";
+        std::cout << "  code, ip_addr, phone_number, fmt_paragraph, fmt_text, fmt_header\n";
+        std::cout << "  fmt_emphasis, fmt_link, fmt_list, xml, json, json_value,\n";
+        std::cout << "  csv\n\n";
         std::cout << "For more information, type lpsmcpp-cli help <subcommand>.\n";
     }
     if (page == "help")
@@ -200,6 +201,16 @@ void Help(const std::string& page)
         std::cout << "  code <lang = 0> - Generate a code block.\n";
         std::cout << "    lang - The language to use.\n";
         std::cout << "      0 - C++, 1 - Python, 2 - Rust, 3 - C, 4 - JavaScript\n\n";
+    }
+    if (page == "ip_addr")
+    {
+        std::cout << "  ip_addr <useIpv6 = false> <usePort = false> - Generate an IP address.\n";
+        std::cout << "    useIpv6 - Whether to use IPv6 (true) or IPv4 (false).\n";
+        std::cout << "    usePort - Whether to add a port.\n\n";
+    }
+    if (page == "phone_number")
+    {
+        std::cout << "  phone_number - Generate a phone number.\n\n";
     }
     if (page == "fmt_paragraph")
     {
@@ -282,6 +293,7 @@ int MainLogic(const std::vector<std::string>& commandOpts,
     else NO_ARG_SUBCOMMAND(url)
     else NO_ARG_SUBCOMMAND(plain_url)
     else NO_ARG_SUBCOMMAND(email)
+    else NO_ARG_SUBCOMMAND(phone_number)
     else DOUBLE_ARG_SUBCOMMAND(ip_addr, bool, false, bool, false)
     else SINGLE_ARG_SUBCOMMAND(xml, int, 30)
     else SINGLE_ARG_SUBCOMMAND(json_value, int, 3)
