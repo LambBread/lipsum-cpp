@@ -28,6 +28,10 @@ jobs:
         if: runner.os == 'Windows'
         uses: microsoft/setup-msbuild@v3
 
+      - name: Set up NSIS
+        if: runner.os == 'Windows'
+        uses: negrutiu/nsis-install@v3
+
       - name: Build static library
         if: runner.os != 'Windows'
         run: >
