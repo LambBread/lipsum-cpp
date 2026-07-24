@@ -14,11 +14,20 @@
 #include "internal.hpp"
 #include "sample.inl"
 
+#define LPSM_SOURCE_IPSUM(ipsum)                                               \
+    if (lazy)                                                                  \
+    {                                                                          \
+        ++idx;                                                                 \
+        idx %= ipsum.size();                                                   \
+        return {ipsum.at(idx)};                                                \
+    }                                                                          \
+    std::uniform_int_distribution<size_t> dist(0, ipsum.size() - 1);           \
+    return {ipsum.at(dist(gen))};
+
 #define LPSM_SOURCE_CUSTOM_IPSUM(ipsum, name)                                  \
     if (currentLoaded == name)                                                 \
     {                                                                          \
-        std::uniform_int_distribution<size_t> dist(0, ipsum.size() - 1);       \
-        return {ipsum.at(dist(gen))};                                          \
+        LPSM_SOURCE_IPSUM(ipsum)                                               \
     }
 
 namespace lipsum
@@ -28,7 +37,7 @@ namespace lipsum
         load(path);
     }
 
-    std::string Source::random_word(std::mt19937& gen) const
+    std::string Source::random_word(std::mt19937& gen, bool lazy)
     {
 #ifndef LIPSUM_MIN_BUILD
         if (m_Words.empty())
@@ -36,13 +45,9 @@ namespace lipsum
             LPSM_SOURCE_CUSTOM_IPSUM(CAT_IPSUM, "cat")
             LPSM_SOURCE_CUSTOM_IPSUM(DOG_IPSUM, "dog")
             LPSM_SOURCE_CUSTOM_IPSUM(CORPO_IPSUM, "corpo")
-            std::uniform_int_distribution<size_t> dist(0,
-                                                       LIPSUM_VEC.size() - 1);
-            return {LIPSUM_VEC.at(dist(gen))};
+            LPSM_SOURCE_IPSUM(LIPSUM_VEC)
         }
-
-        std::uniform_int_distribution<size_t> dist(0, m_Words.size() - 1);
-        return m_Words.at(dist(gen));
+        LPSM_SOURCE_IPSUM(m_Words)
 #else
         std::uniform_int_distribution<size_t> dist(0, LIPSUM_VEC.size() - 1);
         return {LIPSUM_VEC.at(dist(gen))};

@@ -77,9 +77,11 @@ namespace lipsum
          *
          * @return std::string The random word.
          */
-        [[nodiscard]] std::string random_word(std::mt19937& gen) const;
+        [[nodiscard]] std::string random_word(std::mt19937& gen,
+                                              bool          lazy = false);
 
     private:
+        int         idx = -1;
         std::string currentLoaded; ///< If not using a custom list, which
                                    ///< built-in source to use.
         std::vector<std::string>
