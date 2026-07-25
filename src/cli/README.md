@@ -18,6 +18,7 @@ Options include:
   --bulk - Separate bulk operations.
       Example: lpsmcpp-cli paragraph 2 --bulk sentence 4
 
+  --lazy - Use "lazy" generation.
   --word=<min,max>, -w - The min and max words per sentence fragment.
   --frag=<min,max>, -f - The min and max sentence fragments per sentence.
   --sent=<min,max>, -s - The min and max sentences per paragraph.
@@ -32,9 +33,10 @@ Options include:
   --csvCols=<min,max>, -C - The min and max number of columns in CSV documents.
 Subcommands include:
   help, word, fragment, sentence, paragraph, text,
-  url, plain_url, email, slug, scramble, case_slug, code, 
-  fmt_paragraph, fmt_text, fmt_header, fmt_emphasis, fmt_link, fmt_list, 
-  xml, json, json_value, csv
+  url, plain_url, email, slug, scramble, case_slug,
+  code, ip_addr, phone_number, fmt_paragraph, fmt_text, fmt_header
+  fmt_emphasis, fmt_link, fmt_list, xml, json, json_value,
+  csv
 
 For more information, type lpsmcpp-cli help <subcommand>.
 ```

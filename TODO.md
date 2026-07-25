@@ -136,7 +136,6 @@
 
 ## Upcoming
 
-- [ ] Conan package (potentially 0.5.3)
 - [ ] Iterators (potentially 0.5.4)
 - [ ] Markov chain (potentially 0.5.4)
 - [ ] UTF-8/Unicode support (potentially 0.5.4)
