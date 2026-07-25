@@ -26,6 +26,13 @@ namespace lipsum
     struct LIPSUM_API GeneratorSettings
     {
         /**
+         * @brief Whether generation will be "lazy".
+         *
+         * @since 0.5.3
+         */
+        bool lazy = false;
+
+        /**
          * @brief The minimum and maximum possible number of words in a sentence
          * fragment.
          *
@@ -138,5 +145,15 @@ namespace lipsum
          * @param value The new value for the setting.
          */
         void change_setting(const std::string& setting, const ArgVec2& value);
+
+        /**
+         * @brief Toggle the lazy flag.
+         *
+         * @since 0.5.3
+         *
+         * Toggle the lazy flag. If "lazy" is false, set it to true; else, set
+         * it to false.
+         */
+        void toggle_lazy();
     };
 } // namespace lipsum

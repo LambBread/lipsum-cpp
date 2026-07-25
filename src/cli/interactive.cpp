@@ -67,6 +67,14 @@ int main()
         {
             gen.load_seed(lpsm::internal::ToType<int>(seedStr));
         }
+        bool doLazy = false;
+
+        askBool(doLazy, "Use \"lazy\" generation?");
+
+        if (doLazy)
+        {
+            gen.toggle_lazy();
+        }
 
         while (true)
         {

@@ -45,10 +45,11 @@ namespace lipsum
          * known as lpsm::Generator::Roll().
          *
          * @param gen The generator to use.
+         * @param lazy Whether to use "lazy" mode, i.e. using an average.
          *
          * @return int The random number.
          */
-        [[nodiscard]] int roll(std::mt19937& gen) const;
+        [[nodiscard]] int roll(std::mt19937& gen, bool lazy = false) const;
 
         int min; ///< The minimum value
         int max; ///< The maximum value

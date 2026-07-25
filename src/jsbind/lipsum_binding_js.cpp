@@ -39,6 +39,7 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .function("change_setting",
                       select_overload<void(const std::string&, int, int)>(
                               &lpsm::Generator::change_setting))
+            .function("toggle_lazy", &lpsm::Generator::toggle_lazy)
             .function("word", &lpsm::Generator::word)
             .function("sentence", &lpsm::Generator::sentence)
             .function("fragment", &lpsm::Generator::fragment)

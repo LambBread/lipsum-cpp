@@ -175,10 +175,7 @@ extern "C"
      *
      * @since 0.4.5
      *
-     * Change a setting for generation. Valid setting names include "word",
-     * "frag", "sent", "para", "point", "wordFmt", "fragFmt", "wordURL",
-     * "level", and "jsonLength". If an invalid setting name is used, raise
-     * a warning and ignore.
+     * Call lipsum::Generator::change_setting() on the specified handle.
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param setting The name of the setting.
@@ -189,6 +186,18 @@ extern "C"
                                                    const char*          setting,
                                                    int minValue,
                                                    int maxValue);
+
+    /**
+     * @brief Toggle the lazy flag.
+     *
+     * @since 0.5.3
+     *
+     * Call lipsum::Generator::toggle_lazy() on the specified handle.
+     *
+     * @param handle The lpsm_GeneratorHandle to use.
+     */
+    LIPSUMC_API void lpsm_Generator_toggle_lazy(lpsm_GeneratorHandle handle);
+
     /**
      * @brief Generate words.
      *

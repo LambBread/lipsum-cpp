@@ -132,10 +132,10 @@
 - [x] Bulk generation in CLI tool (0.5.3)
 - [x] IP address generation (0.5.3)
 - [x] Phone number generation (0.5.3)
+- [x] "Non-random" generation (0.5.3)
 
 ## Upcoming
 
-- [ ] "Non-random" generation (potentially 0.5.3)
 - [ ] Conan package (potentially 0.5.3)
 - [ ] Iterators (potentially 0.5.4)
 - [ ] Markov chain (potentially 0.5.4)

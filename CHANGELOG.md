@@ -1497,9 +1497,12 @@ char* lpsm_Generator_json_value(lpsm_GeneratorHandle, int);
 - Make minimum build more "minimal" (e.g. no slug generation)
 - Add bulk generation in CLI tool
 - Remove `.msi` CPack generation; switch to NSIS generation
+- Add "lazy mode"
 - New features:
 
 ```cpp
+void lpsm::GeneratorSettings::toggle_lazy();
+void lpsm::Generator::toggle_lazy();
 std::string lpsm::Generator::ip_addr(bool, bool);
 std::string lpsm::Generator::phone_number();
 
@@ -1507,6 +1510,15 @@ std::string lpsm::Generator::phone_number();
 #define LPSM_IPV6
 #define LPSM_NOPORT
 #define LPSM_PORT
+void lpsm_Generator_toggle_lazy(lpsm_GeneratorHandle);
 char* lpsm_Generator_ip_addr(lpsm_GeneratorHandle, bool, bool);
 char* lpsm_Generator_phone_number(lpsm_GeneratorHandle);
+```
+
+- Changed features:
+```cpp
+std::string lpsm::Source::random_word(std::mt19937&, bool);
+// from std::string lpsm::Source::random_word(std::mt19937&) const
+std::string lpsm::ArgVec2::roll(std::mt19937&, bool) const;
+// from std::string lpsm::ArgVec2::roll(std::mt19937&) const
 ```

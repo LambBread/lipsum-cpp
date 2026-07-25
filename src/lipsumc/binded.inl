@@ -57,6 +57,11 @@ extern "C" void lpsm_Generator_change_setting(lpsm_GeneratorHandle handle,
             ->change_setting(setting, minValue, maxValue);
 }
 
+extern "C" void lpsm_Generator_toggle_lazy(lpsm_GeneratorHandle handle)
+{
+    LPSM_CPPIFY(handle, lpsm::Generator)->toggle_lazy();
+}
+
 extern "C" char* lpsm_Generator_word(lpsm_GeneratorHandle handle, int num)
 {
     auto&& ret = LPSM_CPPIFY(handle, lpsm::Generator)->word(num);

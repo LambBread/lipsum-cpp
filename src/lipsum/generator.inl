@@ -79,7 +79,7 @@ namespace lipsum
 
         for (int i = 0; i < num; ++i)
         {
-            ret += m_Source.random_word(m_Gen) += " ";
+            ret += m_Source.random_word(m_Gen, m_Settings.lazy) += " ";
         }
 
         if (!ret.empty())
@@ -91,7 +91,7 @@ namespace lipsum
 
     std::string Generator::fragment()
     {
-        int numWords = m_Settings.word.roll(m_Gen);
+        int numWords = m_Settings.word.roll(m_Gen, m_Settings.lazy);
         return word(numWords);
     }
 
@@ -150,7 +150,7 @@ namespace lipsum
 
     std::string Generator::text(bool useLipsum)
     {
-        int num = m_Settings.para.roll(m_Gen);
+        int num = m_Settings.para.roll(m_Gen, m_Settings.lazy);
         return paragraph(num, useLipsum);
     }
 
@@ -189,19 +189,21 @@ namespace lipsum
 
     std::string Generator::plain_url()
     {
-        return std::string("lpsmcpp-") + m_Source.random_word(m_Gen) + tld();
+        return std::string("lpsmcpp-") +
+               m_Source.random_word(m_Gen, m_Settings.lazy) + tld();
     }
 
     std::string Generator::email()
     {
-        return m_Source.random_word(m_Gen) + std::string(".") +
-               m_Source.random_word(m_Gen) + std::string("@") + plain_url();
+        return m_Source.random_word(m_Gen, m_Settings.lazy) + std::string(".") +
+               m_Source.random_word(m_Gen, m_Settings.lazy) + std::string("@") +
+               plain_url();
     }
 
     std::string Generator::slug(char separator)
     {
         std::string result;
-        int         numWords = m_Settings.wordURL.roll(m_Gen);
+        int         numWords = m_Settings.wordURL.roll(m_Gen, m_Settings.lazy);
         result               = word(numWords);
         std::replace(result.begin(), result.end(), ' ', separator);
         return result;
@@ -216,8 +218,8 @@ namespace lipsum
         {
             case CaseSlugCase::CamelCase:
             {
-                numWords = m_Settings.wordURL.roll(m_Gen);
-                ret += m_Source.random_word(m_Gen);
+                numWords = m_Settings.wordURL.roll(m_Gen, m_Settings.lazy);
+                ret += m_Source.random_word(m_Gen, m_Settings.lazy);
                 --numWords;
                 [[fallthrough]];
             }
@@ -225,13 +227,14 @@ namespace lipsum
             {
                 if (numWords == -2)
                 {
-                    numWords = m_Settings.wordURL.roll(m_Gen);
+                    numWords = m_Settings.wordURL.roll(m_Gen, m_Settings.lazy);
                 }
                 for (int i = 0; i < numWords; ++i)
                 {
-                    innerWord       = ClearApostrAndCh('-',
-                                                 '_',
-                                                 m_Source.random_word(m_Gen));
+                    innerWord = ClearApostrAndCh(
+                            '-',
+                            '_',
+                            m_Source.random_word(m_Gen, m_Settings.lazy));
                     innerWord.at(0) = LPSM_SAFE_CCTYPE(char,
                                                        std::toupper,
                                                        innerWord.at(0));
@@ -268,8 +271,10 @@ namespace lipsum
         std::string              ret;
         std::vector<std::string> varNames;
         std::string              mainNamespace =
-                scramble(m_Settings.wordURL.roll(m_Gen), 'a', 'z');
-        int numStatements = m_Settings.point.roll(m_Gen);
+                scramble(m_Settings.wordURL.roll(m_Gen, m_Settings.lazy),
+                         'a',
+                         'z');
+        int numStatements = m_Settings.point.roll(m_Gen, m_Settings.lazy);
         if (numStatements <= 0)
         {
             internal::LogWarn(internal::LogType::Warn,

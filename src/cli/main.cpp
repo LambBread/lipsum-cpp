@@ -115,6 +115,7 @@ void Help(const std::string& page)
         std::cout << "      Built in sources include: default/lorem, cat, dog/doggo, corpo/corporate.\n\n";
         std::cout << "  --bulk - Separate bulk operations.\n";
         std::cout << "      Example: lpsmcpp-cli paragraph 2 --bulk sentence 4\n\n";
+        std::cout << "  --lazy - Use \"lazy\" generation.\n";
         std::cout << "  --word=<min,max>, -w - The min and max words per sentence fragment.\n";
         std::cout << "  --frag=<min,max>, -f - The min and max sentence fragments per sentence.\n";
         std::cout << "  --sent=<min,max>, -s - The min and max sentences per paragraph.\n";
@@ -455,14 +456,14 @@ int main(int argc, char** argv)
         }
 
         // clang-format off
-        SETTING_OPTION(word, "-w")
+        SETTING_OPTION(wordURL, "-u")
+        else SETTING_OPTION(wordFmt, "-W")
+        else SETTING_OPTION(fragFmt, "-F")
+        else SETTING_OPTION(word, "-w")
         else SETTING_OPTION(frag, "-f")
         else SETTING_OPTION(sent, "-s")
         else SETTING_OPTION(para, "-p")
         else SETTING_OPTION(point, "-P")
-        else SETTING_OPTION(wordURL, "-u")
-        else SETTING_OPTION(wordFmt, "-W")
-        else SETTING_OPTION(fragFmt, "-F")
         else SETTING_OPTION(level, "-l")
         else SETTING_OPTION(jsonLength, "-j")
         else SETTING_OPTION(csvRows, "-R")
@@ -524,6 +525,10 @@ int main(int argc, char** argv)
         else if (option.starts_with("--bulk"))
         {
             // acceptable, skip
+        }
+        else if (option.starts_with("--lazy"))
+        {
+            gen.toggle_lazy();
         }
         else
         {

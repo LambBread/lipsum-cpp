@@ -67,6 +67,12 @@ namespace lipsum
         }
     }
 
+    void GeneratorSettings::toggle_lazy()
+    {
+        LPSM_VERBOSE_LOG(Info, "Toggling option lazy");
+        lazy = !lazy;
+    }
+
     /*
      * SETUP
      */
@@ -103,6 +109,11 @@ namespace lipsum
                          seed,
                          " and source ",
                          path);
+    }
+
+    void Generator::toggle_lazy()
+    {
+        m_Settings.toggle_lazy();
     }
 
     void Generator::load_source(const std::string& path)
@@ -179,10 +190,10 @@ namespace lipsum
         static const std::vector<std::string> mappedEndMark  = {".", "?", "!"};
         std::string                           result;
         int                                   words;
-        int                                   frags = frag.roll(m_Gen);
+        int frags = frag.roll(m_Gen, m_Settings.lazy);
         for (int i = 0; i < frags; ++i)
         {
-            words = wordArg.roll(m_Gen);
+            words = wordArg.roll(m_Gen, m_Settings.lazy);
             result += word(words);
             int check = weighted_random_idx(weights);
             // don't do if only one fragment
@@ -199,7 +210,7 @@ namespace lipsum
     std::string Generator::single_fmt_paragraph(bool useLipsum, bool useHtml)
     {
         std::string   ret;
-        int           sents = m_Settings.sent.roll(m_Gen);
+        int           sents = m_Settings.sent.roll(m_Gen, m_Settings.lazy);
         int           fmtRoll;
         bool          addLink;
         bool          isBold;
@@ -248,7 +259,8 @@ namespace lipsum
 
     std::string Generator::json_string()
     {
-        return std::string("\"") + m_Source.random_word(m_Gen) + "\"";
+        return std::string("\"") +
+               m_Source.random_word(m_Gen, m_Settings.lazy) + "\"";
     }
 
     std::string Generator::json_number()
@@ -269,10 +281,10 @@ namespace lipsum
     {
         std::string result;
         int         words;
-        int         frags = frag.roll(m_Gen);
+        int         frags = frag.roll(m_Gen, m_Settings.lazy);
         for (int i = 0; i < frags; ++i)
         {
-            words = wordArg.roll(m_Gen);
+            words = wordArg.roll(m_Gen, m_Settings.lazy);
             result += word(words);
             if (i != frags - 1)
             {
@@ -305,7 +317,7 @@ namespace lipsum
     std::string Generator::single_paragraph(bool useLipsum)
     {
         std::string result = "\t";
-        int         sents  = m_Settings.sent.roll(m_Gen);
+        int         sents  = m_Settings.sent.roll(m_Gen, m_Settings.lazy);
         for (int i = 0; i < sents; ++i)
         {
             if (i == 0 && useLipsum)

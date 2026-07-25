@@ -90,7 +90,9 @@ namespace lipsum
                 }
                 case 1:
                 {
-                    ret += fmt_header(m_Settings.level.roll(m_Gen), useHtml);
+                    ret += fmt_header(m_Settings.level.roll(m_Gen,
+                                                            m_Settings.lazy),
+                                      useHtml);
                     break;
                 }
                 case 2:
@@ -116,7 +118,7 @@ namespace lipsum
                               ", expected from 1 to 6");
         }
         std::string ret;
-        int         numWords = m_Settings.wordURL.roll(m_Gen);
+        int         numWords = m_Settings.wordURL.roll(m_Gen, m_Settings.lazy);
         std::string words    = word(numWords);
         if (!words.empty())
         {
@@ -184,7 +186,7 @@ namespace lipsum
     std::string Generator::fmt_list(bool ordered, bool useHtml)
     {
         std::string ret;
-        int         points = m_Settings.point.roll(m_Gen);
+        int         points = m_Settings.point.roll(m_Gen, m_Settings.lazy);
         if (useHtml)
         {
             ret += (ordered ? "<ol>" : "<ul>");
@@ -221,7 +223,7 @@ namespace lipsum
     {
         std::string ret = R"(<?xml version="1.0" encoding="UTF-8"?>)";
         std::vector<std::string> tagStack;
-        std::string              root = m_Source.random_word(m_Gen);
+        std::string root = m_Source.random_word(m_Gen, m_Settings.lazy);
         ret += std::string("<") + root + ">";
 
         int choice;
@@ -233,10 +235,13 @@ namespace lipsum
             {
                 case 0:
                 {
-                    std::string toAdd       = m_Source.random_word(m_Gen);
-                    std::string attrib      = m_Source.random_word(m_Gen);
-                    std::string attribValue = m_Source.random_word(m_Gen);
-                    bool        useAttrib   = LPSM_FLIP_COIN;
+                    std::string toAdd =
+                            m_Source.random_word(m_Gen, m_Settings.lazy);
+                    std::string attrib =
+                            m_Source.random_word(m_Gen, m_Settings.lazy);
+                    std::string attribValue =
+                            m_Source.random_word(m_Gen, m_Settings.lazy);
+                    bool useAttrib = LPSM_FLIP_COIN;
                     if (useAttrib)
                     {
                         ret += std::string("<") + toAdd + std::string(" ") +
@@ -253,7 +258,8 @@ namespace lipsum
 
                 case 1:
                 {
-                    std::string toAdd = m_Source.random_word(m_Gen);
+                    std::string toAdd =
+                            m_Source.random_word(m_Gen, m_Settings.lazy);
                     ret += std::string("<") + toAdd + std::string(">") +
                            single_sentence(m_Settings.word, m_Settings.frag) +
                            std::string("</") + toAdd + ">";
@@ -286,7 +292,7 @@ namespace lipsum
 
     std::string Generator::json(int maxDepth, bool isObject)
     {
-        int         count = m_Settings.jsonLength.roll(m_Gen);
+        int         count = m_Settings.jsonLength.roll(m_Gen, m_Settings.lazy);
         std::string ret   = (isObject ? "{" : "[");
         for (int i = 0; i < count; ++i)
         {
@@ -299,7 +305,7 @@ namespace lipsum
             {
 
                 std::string key = std::string("\"") +
-                                  m_Source.random_word(m_Gen) +
+                                  m_Source.random_word(m_Gen, m_Settings.lazy) +
                                   internal::ToString(i) + "\"";
                 ret += key + std::string(":") + json_value(maxDepth - 1);
             }
@@ -399,15 +405,15 @@ namespace lipsum
             Phone
         };
 
-        int                   numRows = m_Settings.csvRows.roll(m_Gen);
-        int                   numCols = m_Settings.csvCols.roll(m_Gen);
+        int numRows = m_Settings.csvRows.roll(m_Gen, m_Settings.lazy);
+        int numCols = m_Settings.csvCols.roll(m_Gen, m_Settings.lazy);
         std::vector<CsvTypes> cols;
         std::string           ret;
         cols.reserve(numCols);
         for (int i = 0; i < numCols; ++i)
         {
             cols.push_back(static_cast<CsvTypes>(random_number<int>(0, 7)));
-            ret += m_Source.random_word(m_Gen) + ",";
+            ret += m_Source.random_word(m_Gen, m_Settings.lazy) + ",";
         }
         // remove trailing comma
         if (!ret.empty())
@@ -443,7 +449,7 @@ namespace lipsum
                 }
                 case CsvTypes::Word:
                 {
-                    ret += m_Source.random_word(m_Gen) + ",";
+                    ret += m_Source.random_word(m_Gen, m_Settings.lazy) + ",";
                     break;
                 }
                 case CsvTypes::Email:

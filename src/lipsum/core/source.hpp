@@ -74,6 +74,8 @@ namespace lipsum
          * known as lpsm::Source::RandomWord().
          *
          * @param gen The generator to use.
+         * @param lazy Whether to use "lazy" mode. i.e. use a non-random index
+         * of the source list.
          *
          * @return std::string The random word.
          */

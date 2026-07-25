@@ -36,8 +36,13 @@ namespace lipsum
         this->max = max;
     }
 
-    int ArgVec2::roll(std::mt19937& gen) const
+    int ArgVec2::roll(std::mt19937& gen, bool lazy) const
     {
+        if (lazy)
+        {
+            return (min + max) / 2;
+        }
+
         if (min <= max)
         {
             std::uniform_int_distribution<int> dist(min, max);

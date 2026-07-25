@@ -204,6 +204,16 @@ namespace lipsum
         void
         change_setting(const std::string& setting, int minValue, int maxValue);
 
+        /**
+         * @brief Toggle the lazy flag.
+         *
+         * @since 0.5.3
+         *
+         * Toggle the lazy flag. If "lazy" is false, set it to true; else, set
+         * it to false.
+         */
+        void toggle_lazy();
+
         /*
          * CORE
          */
