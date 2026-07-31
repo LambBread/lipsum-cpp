@@ -49,6 +49,8 @@ lipsum-cpp has been mainly tested on Linux (Debian 13) and WebAssembly, and ther
     - `zlib` (for [`CompressionBenchmarks.cpp`](./examples/CompressionBenchmarks.cpp))
     - [quom](https://github.com/Viatorus/quom)
 
+Alternatively, use `nix-shell` to install all build dependencies temporarily.
+
 ### Quick Start
 
 #### Using CMake (Recommended)
