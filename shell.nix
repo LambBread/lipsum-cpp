@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} };
+{ pkgs ? import <nixpkgs> {} }:
 
 pkgs.mkShell
 {
@@ -29,5 +29,6 @@ pkgs.mkShell
         source "$VENV_DIR/bin/activate"
         export PIP_PREFIX="$VENV_DIR"
         pip3 install quom
+        unset SOURCE_DATE_EPOCH
     '';
 }

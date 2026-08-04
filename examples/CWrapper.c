@@ -16,6 +16,9 @@ int main(void)
     printf("%s\n", generatedWords);
     printf("%s", generatedMarkdown);
 
+    // test
+    printf("%s\n", lpsm_internal_Version__());
+
     lpsm_GeneratorDestroy(gen);
     lpsm_DeleteString(generatedWords);
     lpsm_DeleteString(generatedMarkdown);

@@ -41,6 +41,11 @@ extern "C" char* lpsm_GenerateDefaultLipsumSentence(void)
     return ConvertToCstr(lpsm::GenerateDefaultLipsumSentence());
 }
 
+extern "C" const char* lpsm_internal_Version__()
+{
+    return LIPSUM_CPP_VERSION_C;
+}
+
 extern "C" int lpsm_CountWords(const char* str)
 {
     return lpsm::CountWords(std::string(str));

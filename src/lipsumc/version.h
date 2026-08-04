@@ -24,7 +24,7 @@
  *
  * This macro stores the current version of lipsum-cpp.
  */
-#    define LIPSUM_CPP_VERSION_C "0.5.3"
+#    define LIPSUM_CPP_VERSION_C "0.5.4-dev"
 
 /**
  * @brief The major version of lipsum-cpp.
@@ -51,7 +51,7 @@
  *
  * This macro stores the current patch version of lipsum-cpp.
  */
-#    define LIPSUM_CPP_VERSION_PATCH_C 3
+#    define LIPSUM_CPP_VERSION_PATCH_C 4
 
 /**
  * @brief The current Git commit of lipsum-cpp
@@ -61,7 +61,7 @@
  * This macro stores the current abbreviated Git commit ID of lipsum-cpp
  * as of the last time scripts/version.cmake was ran.
  */
-#    define LIPSUM_CPP_VERSION_COMMIT_C "cee5547"
+#    define LIPSUM_CPP_VERSION_COMMIT_C "efc21c1"
 
 /**
  * @brief The current version of lipsum-cpp, to the Git commit.
@@ -71,7 +71,7 @@
  * This macro stores the current version of lipsum-cpp with the abbreviated Git
  * commit ID and date as of the last time scripts/version.cmake was ran.
  */
-#    define LIPSUM_CPP_VERSION_FULL_C "0.5.3+cee5547-26072522"
+#    define LIPSUM_CPP_VERSION_FULL_C "0.5.4-dev+efc21c1-26080422"
 
 /**
  * @brief The time lipsum-cpp was last edited.
@@ -81,7 +81,7 @@
  * This macro stores the current time in UTC as of the last time
  * scripts/version.cmake was ran, in the format YYYY-MM-DD HH:MM:SS UTC.
  */
-#    define LIPSUM_CPP_VERSION_TIME_C "2026-07-25 22:17:59 UTC"
+#    define LIPSUM_CPP_VERSION_TIME_C "2026-08-04 22:11:51 UTC"
 
 /**
  * @brief Whether lipsum-cpp is a development build.
@@ -91,7 +91,7 @@
  * This macro stores whether lipsum-cpp is a development build as of the last
  * time scripts/version.cmake was ran.
  */
-#    define LIPSUM_CPP_VERSION_ISDEV_C false
+#    define LIPSUM_CPP_VERSION_ISDEV_C true
 
 /**
  * @brief The date lipsum-cpp was last edited.
@@ -101,7 +101,7 @@
  * This macro stores the current date in UTC as of the last time
  * scripts/version.cmake was ran, in the format YYMMDDHH.
  */
-#    define LIPSUM_CPP_VERSION_DATE_C "26072522"
+#    define LIPSUM_CPP_VERSION_DATE_C "26080422"
 
 // NOLINTEND
 #endif

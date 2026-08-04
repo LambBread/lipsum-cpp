@@ -1522,3 +1522,12 @@ std::string lpsm::Source::random_word(std::mt19937&, bool);
 std::string lpsm::ArgVec2::roll(std::mt19937&, bool) const;
 // from std::string lpsm::ArgVec2::roll(std::mt19937&) const
 ```
+
+### 0.5.4 (2026-08/09 TBD)
+
+- Add Python binding
+- New features:
+
+```c
+const char* lpsm_internal_Version__();
+```

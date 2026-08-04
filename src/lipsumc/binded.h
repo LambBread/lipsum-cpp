@@ -395,6 +395,8 @@ extern "C"
      *
      * Call lipsum::Generator::code() on the specified handle.
      *
+     * @cstrnote
+     *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param lang The language chosen.
      *
@@ -409,6 +411,8 @@ extern "C"
      * @since 0.5.3
      *
      * Call lipsum::Generator::ip_addr() on the specified handle.
+     *
+     * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
      * @param useIpv6 Whether to use IPv6.
@@ -426,6 +430,8 @@ extern "C"
      * @since 0.5.3
      *
      * Call lipsum::Generator::phone_number() on the specified handle.
+     *
+     * @cstrnote
      *
      * @param handle The lpsm_GeneratorHandle to use.
      *

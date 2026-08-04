@@ -66,6 +66,17 @@ extern "C"
     LIPSUMC_API char* lpsm_GenerateDefaultLipsumSentence(void);
 
     /**
+     * @brief Return the current version of lipsum-cpp.
+     *
+     * @since 0.5.4
+     *
+     * Return the current version of lipsum-cpp, intended for wrappers.
+     *
+     * @return const char* The version of lipsum-cpp.
+     */
+    LIPSUMC_API const char* lpsm_internal_Version__();
+
+    /**
      * @brief Count the number of words in a string.
      *
      * Count the number of words in a string using a naive approach. It counts

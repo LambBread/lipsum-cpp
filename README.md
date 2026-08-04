@@ -39,7 +39,8 @@ lipsum-cpp has been mainly tested on Linux (Debian 13) and WebAssembly, and ther
     - another build system (e.g. Ninja, MSBuild, ...)
     - Git
 - Optional:
-    - Emscripten (>= 2.0 required, >= 3.x recommended)
+    - Python 3.x
+    - Emscripten (>= 2.0 required, >= 4.x recommended)
     - 7-Zip
     - Doxygen
     - `clang-format`

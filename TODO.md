@@ -133,12 +133,15 @@
 - [x] IP address generation (0.5.3)
 - [x] Phone number generation (0.5.3)
 - [x] "Non-random" generation (0.5.3)
+- [x] Python bindings (0.5.4 WIP)
 
 ## Upcoming
 
-- [ ] Iterators (potentially 0.5.4)
-- [ ] Markov chain (potentially 0.5.4)
-- [ ] UTF-8/Unicode support (potentially 0.5.4)
+- [ ] Rust bindings (potentially 0.5.4)
+- [ ] Format conversion function (potentially 0.5.4)
+- [ ] Iterators (potentially 0.5.5)
+- [ ] Markov chain (potentially 0.5.5)
+- [ ] UTF-8/Unicode support (potentially 0.5.5)
 - [ ] YAML (potentially 0.6.0)
 - [ ] TOML (potentially 0.6.0)
 - [ ] Release 1.0.0
