@@ -3,7 +3,7 @@
 import ctypes
 import os
 import sys
-from custom_exceptions import LipsumCppException
+from .custom_exceptions import LipsumCppException
 
 def load_lipsum_cpp() -> ctypes.CDLL:
     """Load lipsum-cpp's dynamic library."""

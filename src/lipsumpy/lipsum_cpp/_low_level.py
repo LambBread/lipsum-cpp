@@ -1,14 +1,47 @@
 import ctypes
-from _ctypes_loader import native_lib
-from custom_exceptions import LipsumCppException
+from ._ctypes_loader import native_lib
+from .custom_exceptions import LipsumCppException
 
 native_lib.lpsm_internal_Version__.argtypes = []
 native_lib.lpsm_internal_Version__.restype = ctypes.c_char_p
-native_lib.lpsm_DeleteString.argtypes = [ctypes.c_char_p]
+native_lib.lpsm_DeleteString.argtypes = [ctypes.c_void_p]
 native_lib.lpsm_Generator.argtypes = [ctypes.c_char_p]
 native_lib.lpsm_Generator.restype = ctypes.c_void_p
 native_lib.lpsm_GeneratorSeeded.argtypes = [ctypes.c_char_p, ctypes.c_int]
 native_lib.lpsm_GeneratorSeeded.restype = ctypes.c_void_p
 native_lib.lpsm_GeneratorDestroy.argtypes = [ctypes.c_void_p]
+native_lib.lpsm_Generator_load_source.argtypes = [ctypes.c_void_p, ctypes.c_char_p]
+native_lib.lpsm_Generator_load_seed.argtypes = [ctypes.c_void_p, ctypes.c_int]
+native_lib.lpsm_Generator_change_setting.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.c_int, ctypes.c_int]
+native_lib.lpsm_Generator_toggle_lazy.argtypes = [ctypes.c_void_p]
+native_lib.lpsm_Generator_word.argtypes = [ctypes.c_void_p, ctypes.c_int]
+native_lib.lpsm_Generator_word.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_fragment.argtypes = [ctypes.c_void_p]
+native_lib.lpsm_Generator_fragment.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_sentence.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_bool]
+native_lib.lpsm_Generator_sentence.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_paragraph.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_bool]
+native_lib.lpsm_Generator_paragraph.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_text.argtypes = [ctypes.c_void_p, ctypes.c_bool]
+native_lib.lpsm_Generator_text.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_scramble.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_char, ctypes.c_char]
+native_lib.lpsm_Generator_scramble.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_url.argtypes = [ctypes.c_void_p]
+native_lib.lpsm_Generator_url.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_plain_url.argtypes = [ctypes.c_void_p]
+native_lib.lpsm_Generator_plain_url.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_email.argtypes = [ctypes.c_void_p]
+native_lib.lpsm_Generator_email.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_slug.argtypes = [ctypes.c_void_p, ctypes.c_char]
+native_lib.lpsm_Generator_slug.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_case_slug.argtypes = [ctypes.c_void_p, ctypes.c_int]
+native_lib.lpsm_Generator_case_slug.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_code.argtypes = [ctypes.c_void_p, ctypes.c_int]
+native_lib.lpsm_Generator_code.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_ip_addr.argtypes = [ctypes.c_void_p, ctypes.c_bool, ctypes.c_bool]
+native_lib.lpsm_Generator_ip_addr.restype = ctypes.c_void_p
+native_lib.lpsm_Generator_phone_number.argtypes = [ctypes.c_void_p]
+native_lib.lpsm_Generator_phone_number.restype = ctypes.c_void_p
+
 
 
