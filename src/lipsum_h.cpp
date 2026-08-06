@@ -43,7 +43,7 @@ extern "C" char* lpsm_GenerateDefaultLipsumSentence(void)
 
 extern "C" const char* lpsm_internal_Version__()
 {
-    return LIPSUM_CPP_VERSION_C;
+    return LIPSUM_CPP_VERSION_FULL_C;
 }
 
 extern "C" int lpsm_CountWords(const char* str)

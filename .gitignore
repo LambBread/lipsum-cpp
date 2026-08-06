@@ -4,10 +4,12 @@ docs/
 Testing/
 lipsum-cpp-master/
 pkg/
+__pycache__/
 .venv/
 *.tar.gz
 *.zip
 *.pkg.tar.zst
+*.so
 *~
 *.swp
 *.bak

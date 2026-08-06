@@ -1,5 +1,5 @@
 """Exceptions defined for lipsum-cpp."""
 
-class LipsumCppError(Exception):
+class LipsumCppException(Exception):
     """An exception originating from the C++ library."""
     pass

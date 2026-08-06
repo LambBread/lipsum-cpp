@@ -3,9 +3,9 @@
 import ctypes
 import os
 import sys
-from .exceptions import LipsumCppException
+from custom_exceptions import LipsumCppException
 
-def load_lipsum_cpp() -> ctypes.DLL:
+def load_lipsum_cpp() -> ctypes.CDLL:
     """Load lipsum-cpp's dynamic library."""
     if sys.platform == "win32":
         lib_name = "lipsum-cpp.dll"
