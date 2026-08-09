@@ -1,31 +1,59 @@
 # from ._ctypes_loader import native_lib
+import ctypes
 from ._low_level import native_lib
 
-LPSM_USELIPSUM = True
-LPSM_NO_USELIPSUM = False
-LPSM_HTML = True
-LPSM_MARKDOWN = False
-LPSM_OBJECT = True
-LPSM_ARRAY = False
-LPSM_BOLD = True
-LPSM_ITALIC = False
-LPSM_ORDERED = True
-LPSM_UNORDERED = False
-LPSM_IPV4 = False
-LPSM_IPV6 = True
-LPSM_NOPORT = False
-LPSM_PORT = True
-LPSM_CSC_CAMEL_CASE = 0
-LPSM_CSC_PASCAL_CASE = 1
-LPSM_CSC_SNAKE_CASE = 2
-LPSM_CSC_SHOUTY_CASE = 3
-LPSM_CSC_KEBAB_CASE = 4
-LPSM_CSC_TRAIN_CASE = 5
-LPSM_CODEL_CPP = 0
-LPSM_CODEL_PYTHON = 1
-LPSM_CODEL_RUST = 2
-LPSM_CODEL_C = 3
-LPSM_CODEL_JAVASCRIPT = 4
+__version__ = str(native_lib.lpsm_internal_Version__(), "utf-8")
+USELIPSUM = True
+NO_USELIPSUM = False
+HTML = True
+MARKDOWN = False
+OBJECT = True
+ARRAY = False
+BOLD = True
+ITALIC = False
+ORDERED = True
+UNORDERED = False
+IPV4 = False
+IPV6 = True
+NOPORT = False
+PORT = True
+CSC_CAMEL_CASE = 0
+CSC_PASCAL_CASE = 1
+CSC_SNAKE_CASE = 2
+CSC_SHOUTY_CASE = 3
+CSC_KEBAB_CASE = 4
+CSC_TRAIN_CASE = 5
+CODEL_CPP = 0
+CODEL_PYTHON = 1
+CODEL_RUST = 2
+CODEL_C = 3
+CODEL_JAVASCRIPT = 4
+
+# TODO: better documentation, more functions
+
+class LipsumString:
+    def __init__(self, ptr:int):
+        self.__ptr = ptr
+
+    def __str__(self):
+        str_at = ctypes.string_at(self.__ptr)
+        return str_at.decode("utf-8")
+
+    def __del__(self):
+        native_lib.lpsm_DeleteString(self.__ptr)
+
+class Generator:
+    def __init__(self, source_name:str = "lorem", seed = None):
+        if seed is None:
+            self.__gen = native_lib.lpsm_Generator(bytes(source_name, "utf-8"))
+        else:
+            self.__gen = native_lib.lpsm_GeneratorSeeded(bytes(source_name, "utf-8"), seed)
+
+    def __del__(self):
+        native_lib.lpsm_GeneratorDestroy(self.__gen)
+
+    def paragraph(self, num:int = 1, use_lipsum:bool = True):
+        return LipsumString(native_lib.lpsm_Generator_paragraph(self.__gen, num, use_lipsum))
 
 # if __name__ == "__main__":
 #     print(native_lib.lpsm_internal_Version__())
