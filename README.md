@@ -117,7 +117,7 @@ sudo dnf install ./lipsum-cpp-x.x.x-Linux.rpm
 sudo pacman -U ./lipsum-cpp-x.x.x-x-x86_64.pkg.tar.zst
 
 # Windows
-# Run the .msi file provided.
+# Run the .exe file provided.
 
 # macOS
 # Install the .dmg provided.

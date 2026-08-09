@@ -1527,7 +1527,7 @@ std::string lpsm::ArgVec2::roll(std::mt19937&, bool) const;
 
 - Add `shell.nix` for NixOS development
 - Add Python binding
-- New features:
+- New functions:
 
 ```c
 const char* lpsm_internal_Version__();
