@@ -22,7 +22,7 @@ UI testing, benchmarking Markdown/HTML/XML/JSON parser libraries, and anywhere p
 - CLI tool for integration in projects
 - Interactive CLI tool for easy generation
 - Extensive documentation via Doxygen
-- C++, C, and JavaScript support (static/shared library, wrapper, and Emscripten module builds supported)
+- C++, C, Python, and JavaScript support (static/shared library, wrapper, and Emscripten module builds supported)
 - CMake support for easy integration
 - Example code and live demo available
 

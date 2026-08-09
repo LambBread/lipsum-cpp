@@ -12,3 +12,5 @@ if __name__ == "__main__":
     print(lipsum_cpp.__version__)
     gen = lipsum_cpp.Generator("cat", 69)
     print(gen.paragraph(4, False))
+    print(gen.ip_addr())
+    print(gen.code())
