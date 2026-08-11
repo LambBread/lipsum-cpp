@@ -123,6 +123,36 @@ class Generator:
     def phone_number(self):
         return LipsumString(native_lib.lpsm_Generator_phone_number(self.__gen))
 
+    def fmt_paragraph(self, num:int = 1, use_lipsum:bool = True, use_html:bool = False):
+        return LipsumString(native_lib.lpsm_Generator_fmt_paragraph(self.__gen, num, use_lipsum, use_html))
+
+    def fmt_text(self, numElements:int = 15, use_html:bool = False):
+        return LipsumString(native_lib.lpsm_Generator_fmt_text(self.__gen, numElements, use_html))
+
+    def fmt_header(self, level:int = 1, use_html:bool = False):
+        return LipsumString(native_lib.lpsm_Generator_fmt_header(self.__gen, level, use_html))
+
+    def fmt_emphasis(self, is_bold:bool = True, use_html:bool = False):
+        return LipsumString(native_lib.lpsm_Generator_fmt_emphasis(self.__gen, is_bold, use_html))
+
+    def fmt_link(self, use_html:bool = False):
+        return LipsumString(native_lib.lpsm_Generator_fmt_link(self.__gen, use_html))
+
+    def fmt_list(self, ordered:bool = False, use_html:bool = False):
+        return LipsumString(native_lib.lpsm_Generator_fmt_list(self.__gen, ordered, use_html))
+
+    def xml(self, choices:int = 30):
+        return LipsumString(native_lib.lpsm_Generator_xml(self.__gen, choices))
+
+    def json(self, max_depth:int = 3, is_object:bool = True):
+        return LipsumString(native_lib.lpsm_Generator_json(self.__gen, max_depth, is_object))
+
+    def json_value(self, max_depth:int = 3):
+        return LipsumString(native_lib.lpsm_Generator_json_value(self.__gen, max_depth))
+
+    def csv(self):
+        return LipsumString(native_lib.lpsm_Generator_csv(self.__gen))
+
 
 # if __name__ == "__main__":
 #     print(native_lib.lpsm_internal_Version__())

@@ -133,10 +133,11 @@
 - [x] IP address generation (0.5.3)
 - [x] Phone number generation (0.5.3)
 - [x] "Non-random" generation (0.5.3)
-- [x] Python bindings (0.5.4 WIP)
+- [x] Python bindings (0.5.4)
 
 ## Upcoming
 
+- [ ] Documentation for Python binding (planned 0.5.4)
 - [ ] Rust bindings (potentially 0.5.4)
 - [ ] Format conversion function (potentially 0.5.4)
 - [ ] Iterators (potentially 0.5.5)
