@@ -27,8 +27,6 @@ class CodeLanguage:
 class CountParaMethod:
     Plain, Markdown, HTML = range(3)
 
-# TODO: better documentation, more functions
-
 class LipsumString:
     def __init__(self, ptr:int):
         self.__ptr = ptr

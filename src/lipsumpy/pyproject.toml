@@ -1,0 +1,26 @@
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lipsum_cpp"
+version = "0.5.4"
+description = "A basic library written in C++ for generating placeholder Lorem Ipsum text."
+authors = [
+    { name = "LambBread", email = "LambBread@github.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "0BSD" }
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+"*" = ["*.so", "*.dylib", "*.dll"]
+
+[project.urls]
+Homepage = "https://github.com/LambBread/lipsum-cpp"
+Repository = "https://github.com/LambBread/lipsum-cpp.git"

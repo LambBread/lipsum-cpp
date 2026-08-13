@@ -6,10 +6,13 @@ lipsum-cpp-master/
 pkg/
 __pycache__/
 .venv/
+*.egg-info/
 *.tar.gz
 *.zip
 *.pkg.tar.zst
 *.so
+*.dll
+*.dylib
 *~
 *.swp
 *.bak

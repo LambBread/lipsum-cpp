@@ -65,6 +65,35 @@ package() {
 } 
 ")
 
+file(WRITE "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumpy/pyproject.toml"
+"
+[build-system]
+requires = [\"setuptools>=61.0\"]
+build-backend = \"setuptools.build_meta\"
+
+[project]
+name = \"lipsum_cpp\"
+version = \"${LPSM_VERSION}\"
+description = ${PROJECT_DESCRIPTION}
+authors = [
+    { name = \"LambBread\", email = \"LambBread@github.com\" }
+]
+readme = \"README.md\"
+requires-python = \">=3.8\"
+license = { text = \"0BSD\" }
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = [\".\"]
+
+[tool.setuptools.package-data]
+\"*\" = [\"*.so\", \"*.dylib\", \"*.dll\"]
+
+[project.urls]
+Homepage = \"https://github.com/LambBread/lipsum-cpp\"
+Repository = \"https://github.com/LambBread/lipsum-cpp.git\"
+")
+
 file(WRITE "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum/core/version.hpp"
 "/**
  * @file lipsum/core/version.hpp

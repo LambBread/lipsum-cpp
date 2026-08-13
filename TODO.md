@@ -137,7 +137,6 @@
 
 ## Upcoming
 
-- [ ] Documentation for Python binding (planned 0.5.4)
 - [ ] Rust bindings (potentially 0.5.4)
 - [ ] Format conversion function (potentially 0.5.4)
 - [ ] Iterators (potentially 0.5.5)

@@ -29,6 +29,7 @@ pkgs.mkShell
         source "$VENV_DIR/bin/activate"
         export PIP_PREFIX="$VENV_DIR"
         pip3 install quom
+        pip3 install ${toString ./src/lipsumpy}
         unset SOURCE_DATE_EPOCH
     '';
 }

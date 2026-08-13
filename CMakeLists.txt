@@ -83,4 +83,13 @@ if(WIN32 AND NOT LPSM_MIN_BUILD)
     target_link_libraries(lipsum-cpp PUBLIC kernel32)
 endif()
 
+if(LPSM_BUILD_SHARED AND LPSM_BUILD_CWRAPPER)
+add_custom_command(TARGET lipsum-cpp POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+        $<TARGET_FILE:lipsum-cpp>
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsumpy/lipsum_cpp"
+    COMMENT "Copying shared library to src/lipsumpy/lipsum_cpp"
+)
+endif()
+
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/install.cmake")

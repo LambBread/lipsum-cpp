@@ -1532,3 +1532,9 @@ std::string lpsm::ArgVec2::roll(std::mt19937&, bool) const;
 ```c
 const char* lpsm_internal_Version__();
 ```
+
+- New examples:
+
+```
+PyWrapper.py
+```

@@ -14,4 +14,4 @@ if __name__ == "__main__":
     print(gen.paragraph(4, False))
     print(gen.ip_addr())
     print(gen.code())
-    print(gen.fmt_text(20000, lipsum_cpp.HTML))
+    print(gen.fmt_text(200, lipsum_cpp.HTML))
