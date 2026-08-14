@@ -83,7 +83,7 @@ if(WIN32 AND NOT LPSM_MIN_BUILD)
     target_link_libraries(lipsum-cpp PUBLIC kernel32)
 endif()
 
-if(LPSM_BUILD_SHARED AND LPSM_BUILD_CWRAPPER)
+if(LPSM_BUILD_SHARED AND LPSM_BUILD_CWRAPPER AND NOT EMSCRIPTEN)
 add_custom_command(TARGET lipsum-cpp POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
         $<TARGET_FILE:lipsum-cpp>

@@ -11,7 +11,7 @@ CMAKE_GENERATOR ?= Ninja
 BUILD_TYPE ?= Release
 CMAKE_OPTS ?= -DLPSM_BUILD_DOCS=ON -DLPSM_BUILD_EXAMPLES=ON \
 			  -DLPSM_BUILD_JSBIND=ON -DLPSM_BUILD_CLI=ON -DLPSM_BUILD_EXTRA_EXAMPLES=ON \
-			  -DLPSM_AMALGAMATE=ON -DLPSM_BUILD_SHARED=ON -DLPSM_BUILD_STATIC=OFF \
+			  -DLPSM_AMALGAMATE=ON -DLPSM_BUILD_SHARED=OFF -DLPSM_BUILD_STATIC=ON \
 			  -DLPSM_VERBOSE=ON
 
 .PHONY: all clean build configure em_configure em_build format amalgamate \
@@ -53,6 +53,14 @@ pkg_: ## Run the final packaging steps, namely copying certain examples and comp
 	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(PKG_DIR)/
 	cp $(EXAMPLES_DIR)/*.html $(EXAMPLES_DIR)/*.js $(BUILD_DIR)/$(EXAMPLES_DIR)/
 	7z a -tzip -r -mx=9 lipsum-pkg.zip ./$(PKG_DIR) -xr!.venv/
+	rm -rf ../LambBread.github.io/lipsum-cpp-docs
+	rm -rf ../LambBread.github.io/lipsumcpp-example/*.html
+	rm -rf ../LambBread.github.io/lipsumcpp-example/*.js
+	rm -rf ../LambBread.github.io/lipsumcpp-example/*.wasm
+	cp -r $(DOCS_DIR)/html ../LambBread.github.io/lipsum-cpp-docs
+	cp -r $(BUILD_DIR)/$(EXAMPLES_DIR)/*.html ../LambBread.github.io/lipsumcpp-example
+	cp -r $(BUILD_DIR)/$(EXAMPLES_DIR)/*.js ../LambBread.github.io/lipsumcpp-example
+	cp -r $(BUILD_DIR)/$(EXAMPLES_DIR)/*.wasm ../LambBread.github.io/lipsumcpp-example
 	
 quick_pkg: em_configure version tidy em_build amalgamate pkg_ ## Build an Emscripten build of the project, running the versioning script, clang-format, clang-tidy, amalgamation, and final packaging steps.
 
