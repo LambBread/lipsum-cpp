@@ -12,6 +12,7 @@
  */
 #pragma once
 
+#include "../misc.hpp"
 #include "core.hpp"
 #include "stdincludes.hpp"
 
@@ -93,15 +94,15 @@ namespace lipsum::internal
      *
      * @since 0.0.6
      *
-     * Handle HTML entities by converting quotation marks,
-     * apostrophes, less-than signs, greater-than signs, and ampersands to their
-     * corresponding HTML entities.
+     * Handle escaping HTML entities, escaping Markdown characters, etc.
      *
-     * @param str The string to handle.
+     * @param letter The character to handle.
+     * @param format The format to escape in.
      *
      * @return The handled string.
      */
-    LIPSUM_API std::string HandleHTMLEntity(const std::string& str);
+    LIPSUM_API std::string HandleHTMLEntity(char   letter,
+                                            Format format = Format::HTML);
 
     /**
      * @brief Log a warning.

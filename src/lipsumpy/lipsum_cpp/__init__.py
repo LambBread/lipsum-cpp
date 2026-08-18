@@ -24,8 +24,8 @@ class CaseSlugCase:
 class CodeLanguage:
     Cpp, Python, Rust, C, JavaScript = range(5)
 
-class CountParaMethod:
-    Plain, Markdown, HTML = range(3)
+class Format:
+    Plain, Markdown, HTML, JSON, XML = range(5)
 
 class LipsumString:
     def __init__(self, ptr:int):
@@ -50,7 +50,7 @@ def count_sentence_fragments(str_:str):
 def count_sentences(str_:str):
     return native_lib.lpsm_CountSentences(bytes(str_, "utf-8"))
 
-def count_paragraphs(str_:str, method:int = CountParaMethod.Plain):
+def count_paragraphs(str_:str, method:int = Format.Plain):
     return native_lib.lpsm_CountParagraphs(bytes(str_, "utf-8"), method)
 
 class Generator:

@@ -32,7 +32,7 @@ int main()
               << '\n';
 
     std::cout << lpsm::CountParagraphs(gen.fmt_text(50, lpsm::HTML),
-                                       lpsm::CountParaMethod::Markdown)
+                                       lpsm::Format::Markdown)
               << '\n';
     std::cout << lpsm::CountParagraphs(gen.paragraph(50)) << '\n';
 
@@ -41,5 +41,7 @@ int main()
                                   "dolor sit amet, aaaaaaaaaaaaaaaaaa\n\n## "
                                   "This is a subtitle")
               << "\n\n";
+
+    std::cout << lpsm::ConvertFormat(gen.paragraph(5), lpsm::Format::Plain, lpsm::Format::JSON);
     return 0;
 }

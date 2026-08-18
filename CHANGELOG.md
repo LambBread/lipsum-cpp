@@ -1529,10 +1529,22 @@ std::string lpsm::ArgVec2::roll(std::mt19937&, bool) const;
 - Add Python binding
 - New features:
 
-```c
+```cpp
+std::string lpsm::ConvertFormat(const std::string&, lpsm::Format, lpsm::Format);
+
 const char* lpsm_internal_Version__();
 ```
 
+- Changed features:
+```cpp
+enum class lpsm::Format : int;
+// from enum class lpsm::CountParaMethod : int
+std::string lpsm::internal::HandleHTMLEntity(char, lpsm::Format);
+// from std::string lpsm::internal::HandleHTMLEntity(const std::string&);
+
+typedef enum lpsm_Format lpsm_Format;
+// from typedef enum lpsm_CountParaMethod lpsm_CountParaMethod
+```
 - New examples:
 
 ```

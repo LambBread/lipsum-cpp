@@ -26,18 +26,23 @@
 
 // NOLINTBEGIN
 /**
- * @brief Types of methods used in lpsm_CountParagraphs()
+ * @brief Types of formats.
  *
- * Types of methods used in lpsm_CountParagraphs(). LPSM_CPM_PLAIN is counting
- * plain text, LPSM_CPM_MARKDOWN is counting Markdown or HTML, and LPSM_CPM_HTML
- * is counting HTML explicitly.
+ * @since 0.4.6
+ *
+ * Types of formats used in lpsm_CountParagraphs() and lpsm_ConvertFormat(). In
+ * lpsm_CountParagraphs(), LPSM_FMT_PLAIN is counting plain text,
+ * LPSM_FMT_MARKDOWN is counting Markdown or HTML, and LPSM_FMT_HTML is counting
+ * HTML explicitly. Formerly known as lpsm_CountParaMethod.
  */
-typedef enum lpsm_CountParaMethod
+typedef enum lpsm_Format
 {
-    LPSM_CPM_PLAIN = 0,
-    LPSM_CPM_MARKDOWN,
-    LPSM_CPM_HTML
-} lpsm_CountParaMethod;
+    LPSM_FMT_PLAIN = 0,
+    LPSM_FMT_MARKDOWN,
+    LPSM_FMT_HTML,
+    LPSM_FMT_JSON,
+    LPSM_FMT_XML
+} lpsm_Format;
 
 // NOLINTEND
 
@@ -131,8 +136,7 @@ extern "C"
      *
      * @return int The number of paragraphs.
      */
-    LIPSUMC_API int lpsm_CountParagraphs(const char*          str,
-                                         lpsm_CountParaMethod format);
+    LIPSUMC_API int lpsm_CountParagraphs(const char* str, lpsm_Format format);
 
     /**
      * @brief Delete a string returned by a function.

@@ -75,10 +75,12 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
             .value("ITALIC", lpsm::ITALIC)
             .value("ORDERED", lpsm::ORDERED)
             .value("UNORDERED", lpsm::UNORDERED);
-    enum_<lpsm::CountParaMethod>("lpsm_CountParaMethod")
-            .value("Plain", lpsm::CountParaMethod::Plain)
-            .value("Markdown", lpsm::CountParaMethod::Markdown)
-            .value("HTML", lpsm::CountParaMethod::HTML);
+    enum_<lpsm::Format>("lpsm_Format")
+            .value("Plain", lpsm::Format::Plain)
+            .value("Markdown", lpsm::Format::Markdown)
+            .value("HTML", lpsm::Format::HTML)
+            .value("JSON", lpsm::Format::JSON)
+            .value("XML", lpsm::Format::XML);
     enum_<lpsm::CaseSlugCase>("lpsm_CaseSlugCase")
             .value("CamelCase", lpsm::CaseSlugCase::CamelCase)
             .value("PascalCase", lpsm::CaseSlugCase::PascalCase)

@@ -20,17 +20,22 @@
 namespace lipsum
 {
     /**
-     * @brief Types of methods used in lpsm::CountParagraphs()
+     * @brief Types of formats.
      *
-     * Types of methods used in lpsm::CountParagraphs(). Plain is counting plain
-     * text, Markdown is counting Markdown or HTML, and HTML is counting HTML
-     * explicitly.
+     * @since 0.4.6
+     *
+     * Types of formats used in lipsum::CountParagraphs() and
+     * lipsum::ConvertFormat(). In lipsum::CountParagraphs(), Plain is counting
+     * plain text, Markdown is counting Markdown or HTML, and HTML is counting
+     * HTML explicitly. Formerly known as CountParaMethod.
      */
-    enum class CountParaMethod : int
+    enum class Format : int
     {
         Plain = 0,
         Markdown,
-        HTML
+        HTML,
+        JSON,
+        XML
     };
 
     /*
@@ -106,8 +111,12 @@ namespace lipsum
      *
      * @return int The number of paragraphs.
      */
-    LIPSUM_API int
-    CountParagraphs(const std::string& str,
-                    CountParaMethod    format = CountParaMethod::Plain);
+    LIPSUM_API int CountParagraphs(const std::string& str,
+                                   Format             format = Format::Plain);
+
+    // TODO: Doxygen comment, C binding, more conversion routes
+    LIPSUM_API std::string ConvertFormat(const std::string& str,
+                                         Format format1 = Format::Plain,
+                                         Format format2 = Format::HTML);
 
 } // namespace lipsum

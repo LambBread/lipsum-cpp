@@ -13,6 +13,7 @@
 #pragma once
 
 #include "core.hpp"
+#include "stdincludes.hpp"
 
 namespace lipsum
 {

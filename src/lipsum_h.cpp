@@ -61,11 +61,10 @@ extern "C" int lpsm_CountSentences(const char* str)
     return lpsm::CountSentences(std::string(str));
 }
 
-extern "C" int lpsm_CountParagraphs(const char*          str,
-                                    lpsm_CountParaMethod format)
+extern "C" int lpsm_CountParagraphs(const char* str, lpsm_Format format)
 {
     return lpsm::CountParagraphs(std::string(str),
-                                 static_cast<lpsm::CountParaMethod>(format));
+                                 static_cast<lpsm::Format>(format));
 }
 
 extern "C" void lpsm_DeleteString(char* str) // NOLINT

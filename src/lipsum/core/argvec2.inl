@@ -53,54 +53,133 @@ namespace lipsum
     }
 
 #ifndef LIPSUM_MIN_BUILD
-    std::string internal::HandleHTMLEntity(const std::string& str)
+    std::string internal::HandleHTMLEntity(char letter, Format format)
     {
+        if (format == Format::Plain)
+        {
+            return {1, letter};
+        }
         std::string result;
 
-        // -> RESERVE_NUMER / RESERVE_DENOM times size of string
-        constexpr int RESERVE_NUMER = 7;
-        constexpr int RESERVE_DENOM = 5;
-        // plus RESERVE_PLUS for small strings
-        constexpr int RESERVE_PLUS = 8;
-
-        result.reserve((str.length() * RESERVE_NUMER / RESERVE_DENOM) +
-                       RESERVE_PLUS);
-        for (const auto& letter : str)
+        auto xmlLogic = [&]() -> std::string
         {
             switch (letter)
             {
                 case '&':
                 {
-                    result.append("&amp;");
-                    break;
+                    return "&amp;";
                 }
                 case '<':
                 {
-                    result.append("&lt;");
-                    break;
+                    return "&lt;";
                 }
                 case '>':
                 {
-                    result.append("&gt;");
-                    break;
+                    return "&gt;";
                 }
                 case '"':
                 {
-                    result.append("&quot;");
-                    break;
+                    return "&quot;";
                 }
                 case '\'':
                 {
-                    result.append("&apos;");
-                    break;
+                    return "&apos;";
                 }
                 default:
                 {
-                    result.push_back(letter);
+                    return {1, letter};
                 }
             }
+        };
+
+        auto jsonLogic = [&]() -> std::string
+        {
+            switch (letter)
+            {
+                case '\\':
+                {
+                    return "\\\\";
+                }
+                case '\"':
+                {
+                    return "\\\"";
+                }
+                case '\n':
+                {
+                    return "\\n";
+                }
+                case '\t':
+                {
+                    return "\\t";
+                }
+                default:
+                {
+                    return {1, letter};
+                }
+            }
+        };
+
+        auto mdLogic = [&]() -> std::string
+        {
+            static const std::vector<char> chars = {'\\',
+                                                    '`',
+                                                    '*',
+                                                    '_',
+                                                    '{',
+                                                    '}',
+                                                    '[',
+                                                    ']',
+                                                    '(',
+                                                    ')',
+                                                    '#',
+                                                    '+',
+                                                    '-',
+                                                    '.',
+                                                    '!'};
+            for (const auto& let : chars)
+            {
+                if (let == letter)
+                {
+                    return std::string("\\") + std::string(1, let);
+                }
+            }
+            return {1, letter};
+        };
+
+        switch (format)
+        {
+            case Format::HTML:
+            case Format::XML:
+            {
+                return xmlLogic();
+            }
+            case Format::JSON:
+            {
+                return jsonLogic();
+            }
+            case Format::Markdown:
+            {
+                return mdLogic();
+            }
+            default:
+            {
+                internal::LogWarn(internal::LogType::Error,
+                                  "lpsm::internal::HandleHTMLEntity(): Format "
+                                  "option ",
+                                  static_cast<int>(format),
+                                  " is out of range.");
+                return "";
+            }
         }
-        return result;
+
+        // -> RESERVE_NUMER / RESERVE_DENOM times size of string
+        // constexpr int RESERVE_NUMER = 7;
+        // constexpr int RESERVE_DENOM = 5;
+        // plus RESERVE_PLUS for small strings
+        // constexpr int RESERVE_PLUS = 8;
+
+        // result.reserve((str.length() * RESERVE_NUMER / RESERVE_DENOM) +
+        //                RESERVE_PLUS);
     }
 #else
     std::string internal::HandleHTMLEntity(const std::string& str)

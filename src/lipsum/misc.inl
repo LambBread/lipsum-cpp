@@ -148,21 +148,21 @@ namespace lipsum
         return res;
     }
 
-    int CountParagraphs(const std::string& str, CountParaMethod format)
+    int CountParagraphs(const std::string& str, Format format)
     {
         switch (format)
         {
-            case CountParaMethod::Plain:
+            case Format::Plain:
             {
                 return static_cast<int>(
                         std::count(str.begin(), str.end(), '\t'));
             }
-            case CountParaMethod::Markdown:
+            case Format::Markdown:
             {
                 int count = LipsumMiscInlFind(0, str, "\n\n");
                 return count;
             }
-            case CountParaMethod::HTML:
+            case Format::HTML:
             {
                 int count = LipsumMiscInlFind(0, str, "<p>");
                 count     = LipsumMiscInlFind(count, str, "<ol>");
@@ -178,9 +178,101 @@ namespace lipsum
             default:
             {
                 internal::LogWarn(internal::LogType::Warn,
-                                  "lpsm::CountParagraphs(): unknown format ",
+                                  "lpsm::CountParagraphs(): invalid format for "
+                                  "conversion: ",
                                   static_cast<int>(format));
                 return 0;
+            }
+        }
+    }
+
+    std::string
+    ConvertFormat(const std::string& str, Format format1, Format format2)
+    {
+        auto plainConvs = [&]() -> std::string
+        {
+            std::string ret;
+            ret.reserve(str.size());
+            switch (format2)
+            {
+                case Format::Plain:
+                {
+                    return str;
+                }
+                case Format::Markdown:
+                {
+                    for (const auto& letter : str)
+                    {
+                        if (letter == '\t')
+                        {
+                            ret += "\n\n";
+                        }
+                        else
+                        {
+                            ret += internal::HandleHTMLEntity(letter,
+                                                              Format::Markdown);
+                        }
+                    }
+                    return ret;
+                }
+                case Format::XML:
+                {
+                    ret += R"(<?xml version="1.0" encoding="UTF-8"?>)";
+                    [[fallthrough]];
+                }
+                case Format::HTML:
+                {
+                    for (const auto& letter : str)
+                    {
+                        if(letter == '\t')
+                        {
+                            ret += "<p>";
+                        }
+                        ret += internal::HandleHTMLEntity(letter, Format::HTML);
+                        if(letter == '\n')
+                        {
+                            ret += "</p>";
+                        }
+                    }
+                    return ret;
+                }
+                case Format::JSON:
+                {
+                    ret.reserve(str.size());
+                    ret += "{\"text\": \"";
+                    for (const auto& letter : str)
+                    {
+                        ret += internal::HandleHTMLEntity(letter, Format::JSON);
+                    }
+                    ret += "\"}";
+                    return ret;
+                }
+                default:
+                {
+                    internal::LogWarn(internal::LogType::Error,
+                                      "lpsm::ConvertFormat(): Format option ",
+                                      static_cast<int>(format2),
+                                      " is out of range.");
+                    return "";
+                }
+            }
+        };
+
+        switch (format1)
+        {
+            case Format::Plain:
+            {
+                return plainConvs();
+            }
+            default:
+            {
+                internal::LogWarn(internal::LogType::Error,
+                                  "lpsm::ConvertFormat(): Unknown route from "
+                                  "format ",
+                                  static_cast<int>(format1),
+                                  " to ",
+                                  static_cast<int>(format2));
+                return "";
             }
         }
     }
