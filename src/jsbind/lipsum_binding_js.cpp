@@ -111,4 +111,5 @@ EMSCRIPTEN_BINDINGS(lipsumcpp)
     function("lpsm_CountSentenceFragments", &lpsm::CountSentenceFragments);
     function("lpsm_CountSentences", &lpsm::CountSentences);
     function("lpsm_CountParagraphs", &lpsm::CountParagraphs);
+    function("lpsm_ConvertFormat", &lpsm::ConvertFormat);
 }

@@ -68,6 +68,7 @@ pkg: full_clean quick_pkg ## Clean the build directory, then make a build with a
 
 clean: ## Remove the build directory.
 	rm -rf $(BUILD_DIR)
+	rm -rf $(SRC_DIR)/lipsumpy/build
 
 full_clean: clean ## Remove the build directory, packaging artifacts, generated docs directory, and testing artifacts.
 	rm -rf $(PKG_DIR) $(DOCS_DIR) Testing lipsum-pkg.zip pkg *.pkg.tar.zst *.tar.gz $(SRC_DIR)/lipsum-cpp-master $(SRC_DIR)/*.tar.gz

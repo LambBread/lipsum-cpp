@@ -115,6 +115,19 @@ namespace lipsum
                                    Format             format = Format::Plain);
 
     // TODO: Doxygen comment, C binding, more conversion routes
+    /**
+     * @brief Convert a string between two formats.
+     *
+     * @since 0.5.4
+     *
+     * Attempt a conversion of a string between the two specified formats.
+     *
+     * @param str The string inputted.
+     * @param format1 The string's format. By default plain text.
+     * @param format2 The destination format. By default HTML.
+     *
+     * @return std::string The converted string.
+     */
     LIPSUM_API std::string ConvertFormat(const std::string& str,
                                          Format format1 = Format::Plain,
                                          Format format2 = Format::HTML);

@@ -134,10 +134,12 @@
 - [x] Phone number generation (0.5.3)
 - [x] "Non-random" generation (0.5.3)
 - [x] Python bindings (0.5.4)
-- [x] Format conversion function (0.5.4 WIP)
+- [x] Basic format conversion function (0.5.4)
 
 ## Upcoming
 
+- [ ] Better Python binding documentation (planned 0.5.5)
+- [ ] More format conversion (potentially 0.5.5)
 - [ ] Iterators (potentially 0.5.5)
 - [ ] Markov chain (potentially 0.5.5)
 - [ ] UTF-8/Unicode support (potentially 0.5.5)

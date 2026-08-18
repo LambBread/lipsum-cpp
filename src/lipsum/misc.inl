@@ -191,12 +191,15 @@ namespace lipsum
     {
         auto plainConvs = [&]() -> std::string
         {
+            LPSM_VERBOSE_LOG(Trace,
+                             "Format is Plain. Attempting conversion...");
             std::string ret;
             ret.reserve(str.size());
             switch (format2)
             {
                 case Format::Plain:
                 {
+                    LPSM_VERBOSE_LOG(Trace, "Using Plain->Plain.");
                     return str;
                 }
                 case Format::Markdown:
@@ -213,23 +216,26 @@ namespace lipsum
                                                               Format::Markdown);
                         }
                     }
+                    LPSM_VERBOSE_LOG(Trace, "Using Plain->Markdown.");
                     return ret;
                 }
                 case Format::XML:
                 {
+                    LPSM_VERBOSE_LOG(Trace, "Using Plain->XML.");
                     ret += R"(<?xml version="1.0" encoding="UTF-8"?>)";
                     [[fallthrough]];
                 }
                 case Format::HTML:
                 {
+                    LPSM_VERBOSE_LOG(Trace, "Using Plain->HTML.");
                     for (const auto& letter : str)
                     {
-                        if(letter == '\t')
+                        if (letter == '\t')
                         {
                             ret += "<p>";
                         }
                         ret += internal::HandleHTMLEntity(letter, Format::HTML);
-                        if(letter == '\n')
+                        if (letter == '\n')
                         {
                             ret += "</p>";
                         }
@@ -238,8 +244,8 @@ namespace lipsum
                 }
                 case Format::JSON:
                 {
-                    ret.reserve(str.size());
-                    ret += "{\"text\": \"";
+                    LPSM_VERBOSE_LOG(Trace, "Using Plain->JSON.");
+                    ret += R"({"text": ")";
                     for (const auto& letter : str)
                     {
                         ret += internal::HandleHTMLEntity(letter, Format::JSON);
@@ -258,6 +264,7 @@ namespace lipsum
             }
         };
 
+        LPSM_VERBOSE_LOG(Info, "Converting between formats...");
         switch (format1)
         {
             case Format::Plain:

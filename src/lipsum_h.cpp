@@ -67,6 +67,15 @@ extern "C" int lpsm_CountParagraphs(const char* str, lpsm_Format format)
                                  static_cast<lpsm::Format>(format));
 }
 
+extern "C" char*
+lpsm_ConvertFormat(const char* str, lpsm_Format format1, lpsm_Format format2)
+{
+    auto&& ret = lpsm::ConvertFormat(std::string(str),
+                                     static_cast<lpsm::Format>(format1),
+                                     static_cast<lpsm::Format>(format2));
+    return ConvertToCstr(std::move(ret));
+}
+
 extern "C" void lpsm_DeleteString(char* str) // NOLINT
 {
     LPSM_VERBOSE_LOG(Info, "Deleting string ", &str);

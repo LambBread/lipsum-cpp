@@ -53,6 +53,9 @@ def count_sentences(str_:str):
 def count_paragraphs(str_:str, method:int = Format.Plain):
     return native_lib.lpsm_CountParagraphs(bytes(str_, "utf-8"), method)
 
+def convert_format(str_:str, format1:int = Format.Plain, format2:int = Format.HTML):
+    return LipsumString(native_lib.lpsm_ConvertFormat(bytes(str_, "utf-8"), format1, format2))
+
 class Generator:
     def __init__(self, source_name:str = "lorem", seed = None):
         if seed is None:

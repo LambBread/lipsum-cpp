@@ -42,6 +42,8 @@ int main()
                                   "This is a subtitle")
               << "\n\n";
 
-    std::cout << lpsm::ConvertFormat(gen.paragraph(5), lpsm::Format::Plain, lpsm::Format::JSON);
+    std::cout << lpsm::ConvertFormat(gen.paragraph(5),
+                                     lpsm::Format::Plain,
+                                     lpsm::Format::JSON);
     return 0;
 }

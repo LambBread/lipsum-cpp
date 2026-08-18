@@ -139,6 +139,23 @@ extern "C"
     LIPSUMC_API int lpsm_CountParagraphs(const char* str, lpsm_Format format);
 
     /**
+     * @brief Convert a string between two formats.
+     *
+     * @since 0.5.4
+     *
+     * Attempt a conversion of a string between the two specified formats.
+     *
+     * @param str The string inputted.
+     * @param format1 The string's format.
+     * @param format2 The destination format.
+     *
+     * @return char* The converted string.
+     */
+    LIPSUMC_API char* lpsm_ConvertFormat(const char* str,
+                                         lpsm_Format format1,
+                                         lpsm_Format format2);
+
+    /**
      * @brief Delete a string returned by a function.
      *
      * @since 0.0.8
