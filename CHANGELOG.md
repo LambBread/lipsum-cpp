@@ -1523,7 +1523,7 @@ std::string lpsm::ArgVec2::roll(std::mt19937&, bool) const;
 // from std::string lpsm::ArgVec2::roll(std::mt19937&) const
 ```
 
-### 0.5.4 (2026-08/09 TBD)
+### 0.5.4 (2026-08-18)
 
 - Add `shell.nix` for NixOS development
 - Add Python binding
