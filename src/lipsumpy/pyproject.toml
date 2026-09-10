@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lipsum_cpp"
-version = "0.5.4"
+version = "0.5.5"
 description = "A basic library written in C++ for generating placeholder Lorem Ipsum text."
 authors = [
     { name = "LambBread", email = "LambBread@github.com" }

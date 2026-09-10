@@ -322,3 +322,88 @@ EXTRACT_PRIVATE = YES
 ALIASES += \"cstrnote=@note This function returns a heap-allocated char* which should be deleted with lpsm_DeleteString().^^^^@warning Do not use a string returned from this function after deleting it with lpsm_DeleteString() or call lpsm_DeleteString() on it twice, as this will cause a use-after-free or double-free and potentially crash your program.^^\"
 EXCLUDE_PATTERNS = \"*/build/*\"
 ")
+
+file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/flake.nix
+"
+{
+description = ${PROJECT_DESCRIPTION};
+    inputs = {
+        nixpkgs.url = \"github:NixOS/nixpkgs/nixos-unstable\";
+        flake-utils.url = \"github:numtide/flake-utils\";
+    };
+
+    outputs =
+        {
+            self,
+            nixpkgs,
+            flake-utils,
+        }:
+        flake-utils.lib.eachDefaultSystem (
+            system:
+            let
+                pkgs = import nixpkgs { inherit system; };
+            in
+            {
+                packages.default = pkgs.stdenv.mkDerivation
+                {
+                    pname = \"lipsum-cpp\";
+                    version = \"${LPSM_VERSION}\";
+                    src = ./.;
+                    nativeBuildInputs = with pkgs; [
+                        cmake
+                        ninja
+                        pkg-config
+                        doxygen
+                    ];
+
+                    cmakeFlags = [
+                        \"-GNinja\"
+                        \"-DCMAKE_BUILD_TYPE=Release\"
+                        \"-DLPSM_BUILD_EXAMPLES=ON\"
+                        \"-DLPSM_FORMAT=OFF\"
+                        \"-DLPSM_TIDY=OFF\"
+                        \"-DLPSM_BUILD_CLI=ON\"
+                        \"-DLPSM_BUILD_DOCS=ON\"
+                        \"-DLPSM_BUILD_SAMPLE=OFF\"
+                        \"-DLPSM_BUILD_VERSION=OFF\"
+                        
+                    ];
+
+                };
+
+                devShells.default = pkgs.mkShell {
+                    packages = with pkgs; [
+                        gcc
+                        gnumake
+                        cmake
+                        ninja
+                        python3
+                        doxygen
+                        clang-tools
+                        emscripten
+                        gdb
+                        dpkg
+                        rpm
+                        cpio
+                        fpm
+                        libxml2
+                        json_c
+                        zlib
+                        pkg-config
+                    ];
+
+                    shellHook = ''
+                        VENV_DIR=$(mktemp -d -t python3-venv-XXXXXX)
+                        trap \"rm -rf $VENV_DIR\" EXIT
+                        python3 -m venv \"$VENV_DIR\"
+                        source \"$VENV_DIR/bin/activate\"
+                        export PIP_PREFIX=\"$VENV_DIR\"
+                        pip3 install quom
+                        pip3 install ./src/lipsumpy
+                        unset SOURCE_DATE_EPOCH
+                    '';
+                };
+            }
+        );
+}
+")

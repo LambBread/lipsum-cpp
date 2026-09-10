@@ -135,6 +135,7 @@
 - [x] "Non-random" generation (0.5.3)
 - [x] Python bindings (0.5.4)
 - [x] Basic format conversion function (0.5.4)
+- [x] Nix flake (0.5.5)
 
 ## Upcoming
 

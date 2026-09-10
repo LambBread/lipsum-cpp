@@ -4,6 +4,7 @@ docs/
 Testing/
 lipsum-cpp-master/
 pkg/
+result
 __pycache__/
 .venv/
 *.egg-info/

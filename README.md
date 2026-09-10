@@ -50,7 +50,7 @@ lipsum-cpp has been mainly tested on Linux (Debian 13) and WebAssembly, and ther
     - `zlib` (for [`CompressionBenchmarks.cpp`](./examples/CompressionBenchmarks.cpp))
     - [quom](https://github.com/Viatorus/quom)
 
-Alternatively, use `nix-shell` to install all build dependencies temporarily.
+Alternatively, use `nix-shell` or `nix develop` to install all build dependencies temporarily.
 
 ### Quick Start
 
@@ -116,11 +116,14 @@ sudo dnf install ./lipsum-cpp-x.x.x-Linux.rpm
 # Arch-based
 sudo pacman -U ./lipsum-cpp-x.x.x-x-x86_64.pkg.tar.zst
 
+# NixOS
+# Add this repo as a flake input and use package inputs,lipsum-cpp.packages.${pkgs.stdenv.hostPlatform.system}.default
+
 # Windows
 # Run the .exe file provided.
 
 # macOS
-# Install the .dmg provided.
+# Install via the archive provided.
 
 # Cross-platform (build from source)
 cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DLPSM_BUILD_CLI=ON <... your CMake options here>
@@ -287,9 +290,9 @@ for details.
 All tested with CMake `Release` build type, with default
 `lpsm::Generator` arguments under a normal, static library build.
 
-### Medium-end environment
+### Low-end environment
 
-*Debian 13, 8GB DDR4 RAM, Intel i3-6100 (4-core) @ 3.7GHz*:
+*Debian 13, 8GB DDR4 RAM, Intel i3-6100 (2-core, 4-thread) @ 3.7GHz*:
 
 | Metric              | Performance per second |
 | ------------------- | ---------------------- |
@@ -299,7 +302,7 @@ All tested with CMake `Release` build type, with default
 | Markdown paragraphs | 146,052                |
 | Markdown elements   | 294,004                |
 
-### Low-end environment
+### Extreme low-end environment
 
 *Puppy Linux (BookwormPup32), 1GB DDR2 RAM, Intel Centrino Duo (2-core) @ 1.6GHz*:
 
