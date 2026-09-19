@@ -1554,3 +1554,4 @@ PyWrapper.py
 ### 0.5.5 (2026-09 - 2026-11 TBD)
 
 - Add Nix flake
+- Add better Python wrapper documentation

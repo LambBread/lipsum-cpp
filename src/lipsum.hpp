@@ -18,7 +18,6 @@
  * @example Markdown.cpp
  * @example Misc.cpp
  * @example ParserStressTest.cpp
- * @example PyWrapper.py
  */
 
 #pragma once

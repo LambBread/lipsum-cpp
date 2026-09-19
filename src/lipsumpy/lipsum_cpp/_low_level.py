@@ -1,3 +1,15 @@
+"""@file _low_level.py
+
+@brief Set up lipsum-cpp's shared library function arguments.
+
+Set up lipsum-cpp's shared library function arguments using native ctypes.
+This file is under the BSD Zero-Clause License.
+
+@copyright Copyright (c) 2026 LambBread
+
+@author LambBread from github.com
+"""
+
 import ctypes
 from ._ctypes_loader import native_lib
 from .custom_exceptions import LipsumCppException

@@ -1,4 +1,14 @@
-"""Handle loading lipsum-cpp."""
+"""@file _ctypes_loader.py
+
+@brief Handles loading lipsum-cpp's dynamic library.
+
+This file handles loading lipsum-cpp's dynamic library. 
+This file is under the BSD Zero-Clause License.
+
+@copyright Copyright (c) 2026 LambBread
+
+@author LambBread from github.com
+"""
 
 import ctypes
 import os
@@ -6,7 +16,12 @@ import sys
 from .custom_exceptions import LipsumCppException
 
 def load_lipsum_cpp() -> ctypes.CDLL:
-    """Load lipsum-cpp's dynamic library."""
+    """@brief Load lipsum-cpp's dynamic library.
+
+       @since 0.5.4
+    
+       @return ctypes.CDLL The dynamic library.
+    """
     if sys.platform == "win32":
         lib_name = "lipsum-cpp.dll"
     elif sys.platform == "darwin":

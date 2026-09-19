@@ -114,7 +114,7 @@ namespace lipsum
     LIPSUM_API int CountParagraphs(const std::string& str,
                                    Format             format = Format::Plain);
 
-    // TODO: Doxygen comment, C binding, more conversion routes
+    // TODO: more conversion routes
     /**
      * @brief Convert a string between two formats.
      *

@@ -136,10 +136,10 @@
 - [x] Python bindings (0.5.4)
 - [x] Basic format conversion function (0.5.4)
 - [x] Nix flake (0.5.5)
+- [x] Better Python binding documentation (0.5.5 WIP)
 
 ## Upcoming
 
-- [ ] Better Python binding documentation (planned 0.5.5)
 - [ ] More format conversion (potentially 0.5.5)
 - [ ] Iterators (potentially 0.5.5)
 - [ ] Markov chain (potentially 0.5.5)
