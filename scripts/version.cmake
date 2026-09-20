@@ -319,6 +319,7 @@ WARN_IF_DOC_ERROR = YES
 QUIET = YES
 WARNINGS = YES
 EXTRACT_PRIVATE = YES
+PYTHON_DOCSTRING = NO
 ALIASES += \"cstrnote=@note This function returns a heap-allocated char* which should be deleted with lpsm_DeleteString().^^^^@warning Do not use a string returned from this function after deleting it with lpsm_DeleteString() or call lpsm_DeleteString() on it twice, as this will cause a use-after-free or double-free and potentially crash your program.^^\"
 EXCLUDE_PATTERNS = \"*/build/*\"
 ")

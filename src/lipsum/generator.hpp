@@ -182,8 +182,8 @@ namespace lipsum
          *
          * Change a setting for generation. Valid setting names include "word",
          * "frag", "sent", "para", "point", "wordFmt", "fragFmt", "wordURL",
-         * "level", and "jsonLength". If an invalid setting name is used, raise
-         * a warning and ignore.
+         * "level", "jsonLength", "csvRows", and "csvCols". If an invalid
+         * setting name is used, raise a warning and ignore.
          *
          * @param setting The name of the setting.
          * @param value The new value for the setting.
@@ -332,7 +332,7 @@ namespace lipsum
          *
          * @return std::string The URL.
          *
-         * @sa lipsum::Generator::plain_url()
+         * @sa lipsum::Generator::plain_url
          */
         std::string url();
 
@@ -543,7 +543,7 @@ namespace lipsum
          *
          * @return std::string The random Markdown link.
          *
-         * @sa lipsum::Generator::url()
+         * @sa lipsum::Generator::url
          */
         std::string fmt_link(bool useHtml = false);
 
