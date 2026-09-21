@@ -264,12 +264,111 @@ namespace lipsum
             }
         };
 
+        auto mdConvs = [&]() -> std::string
+        {
+            LPSM_VERBOSE_LOG(Trace,
+                             "Format is Markdown. Attempting conversion...");
+            std::string ret;
+            ret.reserve(str.size());
+            switch (format2)
+            {
+                case Format::Plain:
+                {
+                    LPSM_VERBOSE_LOG(Trace, "Using Markdown->Plain.");
+                    char        lastLetter = ' ';
+                    bool        inUrlText  = false;
+                    bool        inUrl      = false;
+                    std::string urlText;
+                    for (const auto& letter : str)
+                    {
+                        // TODO: handle lists, tabs
+                        urlText.clear();
+
+                        // skip emphasis and headings
+                        if (letter == '*' || letter == '#')
+                        {
+                            // std::cout << "skipping emphasis or heading\n";
+                        }
+
+                        // end url link
+                        else if (letter == ')' && inUrl)
+                        {
+                            // std::cout << "ending url link\n";
+                            inUrl = false;
+                        }
+
+                        // start url link
+                        else if (letter == '(' && lastLetter == ']')
+                        {
+                            // std::cout << "starting url link\n";
+                            inUrl = true;
+                        }
+
+                        // start url text
+                        else if (letter == '[')
+                        {
+                            // std::cout << "starting url text\n";
+                            inUrlText = true;
+                        }
+
+                        // end url text
+                        else if (letter == ']' && inUrlText)
+                        {
+                            // std::cout << "ending url text\n";
+                            inUrlText = false;
+                            ret += urlText;
+                        }
+
+                        // skip url link
+                        else if (inUrl)
+                        {
+                            // std::cout << "skipping url link\n";
+                        }
+
+                        else if (inUrlText)
+                        {
+                            // std::cout << "adding letter from url text\n";
+                            urlText += letter;
+                        }
+                        else
+                        {
+                            ret += letter;
+                            // std::cout << letter;
+                        }
+                        lastLetter = letter;
+                    }
+                    return ret;
+                }
+                case Format::Markdown:
+                {
+                    LPSM_VERBOSE_LOG(Trace, "Using Markdown->Markdown.");
+                    return str;
+                }
+                default:
+                {
+                    internal::
+                            LogWarn(internal::LogType::Error,
+                                    "lpsm::ConvertFormat(): Unknown route from "
+                                    "format ",
+                                    static_cast<int>(format1),
+                                    " to ",
+                                    static_cast<int>(format2));
+                    return "";
+                }
+            }
+        };
+
         LPSM_VERBOSE_LOG(Info, "Converting between formats...");
+        // std::cout << str;
         switch (format1)
         {
             case Format::Plain:
             {
                 return plainConvs();
+            }
+            case Format::Markdown:
+            {
+                return mdConvs();
             }
             default:
             {

@@ -137,10 +137,10 @@
 - [x] Basic format conversion function (0.5.4)
 - [x] Nix flake (0.5.5)
 - [x] Better Python binding documentation (0.5.5)
+- [x] More format conversion (0.5.5 WIP)
 
 ## Upcoming
 
-- [ ] More format conversion (potentially 0.5.5)
 - [ ] Iterators (potentially 0.5.5)
 - [ ] Markov chain (potentially 0.5.5)
 - [ ] UTF-8/Unicode support (potentially 0.5.5)

@@ -1555,3 +1555,4 @@ PyWrapper.py
 
 - Add Nix flake
 - Add better Python wrapper documentation
+- Add more `lpsm::ConvertFormat` conversion routes
