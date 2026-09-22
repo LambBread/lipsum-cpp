@@ -57,7 +57,7 @@ namespace lipsum
     {
         if (format == Format::Plain)
         {
-            return {1, letter};
+            return std::string(1, letter); // NOLINT
         }
         std::string result;
 
@@ -87,7 +87,7 @@ namespace lipsum
                 }
                 default:
                 {
-                    return {1, letter};
+                    return std::string(1, letter); // NOLINT
                 }
             }
         };
@@ -114,7 +114,7 @@ namespace lipsum
                 }
                 default:
                 {
-                    return {1, letter};
+                    return std::string(1, letter); // NOLINT
                 }
             }
         };
@@ -143,7 +143,7 @@ namespace lipsum
                     return std::string("\\") + std::string(1, let);
                 }
             }
-            return {1, letter};
+            return std::string(1, letter); // NOLINT
         };
 
         switch (format)

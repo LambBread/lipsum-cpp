@@ -197,11 +197,6 @@ namespace lipsum
             ret.reserve(str.size());
             switch (format2)
             {
-                case Format::Plain:
-                {
-                    LPSM_VERBOSE_LOG(Trace, "Using Plain->Plain.");
-                    return str;
-                }
                 case Format::Markdown:
                 {
                     for (const auto& letter : str)
@@ -264,6 +259,115 @@ namespace lipsum
             }
         };
 
+        auto mdToPlain = [&]() -> std::string
+        {
+            LPSM_VERBOSE_LOG(Trace, "Using Markdown->Plain.");
+            std::string ret;
+            ret.reserve(str.size());
+            char        lastLetter        = '\0';
+            bool        inUrlText         = false;
+            bool        inUrl             = false;
+            bool        toAddTab          = true;
+            int         numListCharsToDel = 0;
+            std::string urlText;
+            for (const auto& letter : str)
+            {
+                urlText.clear();
+
+                if (letter == '\n' && lastLetter == '\n')
+                {
+                    // ret += "\t";
+                    toAddTab = true;
+                    continue;
+                }
+
+                if (letter == '#' || (letter == '-' && lastLetter == '\n'))
+                {
+                    toAddTab          = true;
+                    numListCharsToDel = 1;
+                    continue;
+                }
+
+                if (letter >= '0' && letter <= '9' && lastLetter == '\n')
+                {
+                    toAddTab          = true;
+                    numListCharsToDel = 2;
+                    continue;
+                }
+
+                // skip emphasis
+                if (letter == '*')
+                {
+                    // std::cout << "skipping emphasis or heading\n";
+                    continue;
+                }
+
+                // end url link
+                if (letter == ')' && inUrl)
+                {
+                    // std::cout << "ending url link\n";
+                    inUrl = false;
+                    continue;
+                }
+
+                // start url link
+                if (letter == '(' && lastLetter == ']')
+                {
+                    // std::cout << "starting url link\n";
+                    inUrl = true;
+                    continue;
+                }
+
+                // start url text
+                if (letter == '[')
+                {
+                    // std::cout << "starting url text\n";
+                    inUrlText = true;
+                    continue;
+                }
+
+                // end url text
+                if (letter == ']' && inUrlText)
+                {
+                    // std::cout << "ending url text\n";
+                    inUrlText = false;
+                    ret += urlText;
+                    continue;
+                }
+
+                // skip url link
+                if (inUrl)
+                {
+                    // std::cout << "skipping url link\n";
+                    continue;
+                }
+
+                if (inUrlText)
+                {
+                    // std::cout << "adding letter from url text\n";
+                    urlText += letter;
+                    continue;
+                }
+
+                if (toAddTab)
+                {
+                    ret += "\t";
+                    toAddTab = false;
+                }
+                if (numListCharsToDel <= 0)
+                {
+                    ret += letter;
+                }
+                else
+                {
+                    --numListCharsToDel;
+                }
+                // std::cout << letter;
+                lastLetter = letter;
+            }
+            return ret;
+        };
+
         auto mdConvs = [&]() -> std::string
         {
             LPSM_VERBOSE_LOG(Trace,
@@ -274,75 +378,11 @@ namespace lipsum
             {
                 case Format::Plain:
                 {
-                    LPSM_VERBOSE_LOG(Trace, "Using Markdown->Plain.");
-                    char        lastLetter = ' ';
-                    bool        inUrlText  = false;
-                    bool        inUrl      = false;
-                    std::string urlText;
-                    for (const auto& letter : str)
-                    {
-                        // TODO: handle lists, tabs
-                        urlText.clear();
-
-                        // skip emphasis and headings
-                        if (letter == '*' || letter == '#')
-                        {
-                            // std::cout << "skipping emphasis or heading\n";
-                        }
-
-                        // end url link
-                        else if (letter == ')' && inUrl)
-                        {
-                            // std::cout << "ending url link\n";
-                            inUrl = false;
-                        }
-
-                        // start url link
-                        else if (letter == '(' && lastLetter == ']')
-                        {
-                            // std::cout << "starting url link\n";
-                            inUrl = true;
-                        }
-
-                        // start url text
-                        else if (letter == '[')
-                        {
-                            // std::cout << "starting url text\n";
-                            inUrlText = true;
-                        }
-
-                        // end url text
-                        else if (letter == ']' && inUrlText)
-                        {
-                            // std::cout << "ending url text\n";
-                            inUrlText = false;
-                            ret += urlText;
-                        }
-
-                        // skip url link
-                        else if (inUrl)
-                        {
-                            // std::cout << "skipping url link\n";
-                        }
-
-                        else if (inUrlText)
-                        {
-                            // std::cout << "adding letter from url text\n";
-                            urlText += letter;
-                        }
-                        else
-                        {
-                            ret += letter;
-                            // std::cout << letter;
-                        }
-                        lastLetter = letter;
-                    }
-                    return ret;
+                    return mdToPlain();
                 }
-                case Format::Markdown:
+                case Format::JSON:
                 {
-                    LPSM_VERBOSE_LOG(Trace, "Using Markdown->Markdown.");
-                    return str;
+                    return ConvertFormat(str, Format::Plain, Format::JSON);
                 }
                 default:
                 {
@@ -359,6 +399,13 @@ namespace lipsum
         };
 
         LPSM_VERBOSE_LOG(Info, "Converting between formats...");
+        if (format1 == format2)
+        {
+            LPSM_VERBOSE_LOG(Trace,
+                             "Converting between two formats of the same type. "
+                             "Ignoring...");
+            return str;
+        }
         // std::cout << str;
         switch (format1)
         {

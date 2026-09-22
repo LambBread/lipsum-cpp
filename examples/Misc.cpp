@@ -42,7 +42,10 @@ int main()
                                   "This is a subtitle")
               << "\n\n";
 
-    std::cout << lpsm::ConvertFormat(gen.fmt_paragraph(5, lpsm::MARKDOWN),
+    auto text = gen.fmt_text(40, lpsm::MARKDOWN);
+    std::cout << text;
+
+    std::cout << lpsm::ConvertFormat(text,
                                      lpsm::Format::Markdown,
                                      lpsm::Format::Plain);
     return 0;
