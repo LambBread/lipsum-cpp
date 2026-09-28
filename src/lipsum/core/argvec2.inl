@@ -63,60 +63,31 @@ namespace lipsum
 
         auto xmlLogic = [&]() -> std::string
         {
-            switch (letter)
+            std::unordered_map<char, std::string> xmlMap = {{'&', "&amp;"},
+                                                            {'<', "&lt;"},
+                                                            {'>', "&gt;"},
+                                                            {'"', "&quot;"},
+                                                            {'\'', "&apos;"}};
+
+            if (xmlMap.contains(letter))
             {
-                case '&':
-                {
-                    return "&amp;";
-                }
-                case '<':
-                {
-                    return "&lt;";
-                }
-                case '>':
-                {
-                    return "&gt;";
-                }
-                case '"':
-                {
-                    return "&quot;";
-                }
-                case '\'':
-                {
-                    return "&apos;";
-                }
-                default:
-                {
-                    return std::string(1, letter); // NOLINT
-                }
+                return xmlMap.at(letter);
             }
+            return std::string(1, letter); // NOLINT
         };
 
         auto jsonLogic = [&]() -> std::string
         {
-            switch (letter)
+            std::unordered_map<char, std::string> jsonMap = {{'\\', "\\\\"},
+                                                             {'"', "\\\""},
+                                                             {'\n', "\\n"},
+                                                             {'\t', "\\t"}};
+
+            if (jsonMap.contains(letter))
             {
-                case '\\':
-                {
-                    return "\\\\";
-                }
-                case '\"':
-                {
-                    return "\\\"";
-                }
-                case '\n':
-                {
-                    return "\\n";
-                }
-                case '\t':
-                {
-                    return "\\t";
-                }
-                default:
-                {
-                    return std::string(1, letter); // NOLINT
-                }
+                return jsonMap.at(letter);
             }
+            return std::string(1, letter); // NOLINT
         };
 
         auto mdLogic = [&]() -> std::string
@@ -171,20 +142,73 @@ namespace lipsum
                 return "";
             }
         }
+    }
 
-        // -> RESERVE_NUMER / RESERVE_DENOM times size of string
-        // constexpr int RESERVE_NUMER = 7;
-        // constexpr int RESERVE_DENOM = 5;
-        // plus RESERVE_PLUS for small strings
-        // constexpr int RESERVE_PLUS = 8;
+    char internal::StripHTMLEntity(const std::string& str, Format format)
+    {
+        if (format == Format::Plain)
+        {
+            return str.empty() ? ' ' : str.at(0);
+        }
 
-        // result.reserve((str.length() * RESERVE_NUMER / RESERVE_DENOM) +
-        //                RESERVE_PLUS);
+        if (!str.empty() && str.at(0) == '\\' &&
+            (format == Format::Markdown || format == Format::JSON))
+        {
+            if (str.size() >= 2)
+            {
+                if (str.at(1) == 'n' && format == Format::JSON)
+                {
+                    return '\n';
+                }
+                if (str.at(1) == 't' && format == Format::JSON)
+                {
+                    return '\t';
+                }
+                return str.at(1);
+            }
+        }
+
+        if (!str.empty() && str.at(0) == '&' &&
+            (format == Format::XML || format == Format::HTML))
+        {
+            std::string                           escaped;
+            std::unordered_map<std::string, char> htmlMap = {{"amp", '&'},
+                                                             {"lt", '<'},
+                                                             {"gt", '>'},
+                                                             {"quot", '"'},
+                                                             {"apos", '\''}};
+
+            int iter = 1;
+            while (str.at(iter) != ';')
+            {
+                escaped += std::string(1, str.at(iter));
+                ++iter;
+            }
+            if (htmlMap.contains(escaped))
+            {
+                return htmlMap.at(escaped);
+            }
+            // std::cout << escaped << '\n';
+        }
+
+        // error:
+
+        internal::LogWarn(internal::LogType::Error,
+                          "lpsm::internal::StripHTMLEntity(): An unknown or "
+                          "invalid string was provided.");
+        return ' ';
     }
 #else
-    std::string internal::HandleHTMLEntity(const std::string& str)
+    std::string internal::HandleHTMLEntity(char letter, Format)
     {
-        return str;
+        LPSM_VERBOSE_MINLOG;
+        return std::string(1, letter); // NOLINT
+    }
+
+    char internal::StripHTMLEntity(const std::string& str, Format)
+    {
+        LPSM_VERBOSE_MINLOG;
+        return (str.size() >= 2 ? str.at(1) : ' ');
     }
 #endif
 

@@ -484,38 +484,47 @@ namespace lipsum
 #else
     std::string Generator::phone_number()
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::scramble(int, char, char)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::url()
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::plain_url()
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::email()
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::slug(char)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::case_slug(CaseSlugCase)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::code(CodeLanguage)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::ip_addr(bool, bool)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
 #endif

@@ -1556,3 +1556,13 @@ PyWrapper.py
 - Add Nix flake
 - Add better Python wrapper documentation
 - Add more `lpsm::ConvertFormat` conversion routes
+- Fix certain features for minimum build mode
+- Rewrite certain switch statement/if-else blocks with `std::unordered_map`
+
+- New functions:
+
+```cpp
+char lpsm::internal::StripHTMLEntity(const std::string&, lpsm::Format);
+
+```
+

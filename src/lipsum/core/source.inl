@@ -49,6 +49,7 @@ namespace lipsum
         }
         LPSM_SOURCE_IPSUM(m_Words)
 #else
+        (void)lazy;
         std::uniform_int_distribution<size_t> dist(0, LIPSUM_VEC.size() - 1);
         return {LIPSUM_VEC.at(dist(gen))};
 #endif

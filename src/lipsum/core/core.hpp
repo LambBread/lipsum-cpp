@@ -41,13 +41,16 @@
  */
 #ifdef LIPSUM_VERBOSE
 #    define LPSM_VERBOSE_LOG(type, ...)                                        \
-        lpsm::internal::LogWarn(lpsm::internal::LogType::type,                 \
-                                __func__,                                      \
-                                " - ",                                         \
-                                __VA_ARGS__)
+        lipsum::internal::LogWarn(lipsum::internal::LogType::type,             \
+                                  __func__,                                    \
+                                  " - ",                                       \
+                                  __VA_ARGS__)
 #else
 #    define LPSM_VERBOSE_LOG(type, ...)
 #endif
+
+#define LPSM_VERBOSE_MINLOG                                                    \
+    LPSM_VERBOSE_LOG(Trace, "Using placeholder function")
 
 /**
  * @brief Macro for shared libraries

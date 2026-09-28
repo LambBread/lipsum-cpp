@@ -300,16 +300,19 @@ namespace lipsum
 
     std::string Generator::single_fmt_paragraph(bool, bool)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
 
     std::string Generator::json_string()
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
 
     std::string Generator::json_number()
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
 #endif

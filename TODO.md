@@ -138,10 +138,10 @@
 - [x] Nix flake (0.5.5)
 - [x] Better Python binding documentation (0.5.5)
 - [x] More format conversion (0.5.5 WIP)
+- [x] Implement reverse HTML entity escaping (0.5.5)
 
 ## Upcoming
 
-- [ ] Implement reverse HTML entity escaping (planned 0.5.5)
 - [ ] Iterators (potentially 0.5.5)
 - [ ] Markov chain (potentially 0.5.5)
 - [ ] UTF-8/Unicode support (potentially 0.5.5)

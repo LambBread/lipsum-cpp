@@ -186,9 +186,11 @@ namespace lipsum
         }
     }
 
-#define LIPSUM_MD_PLAIN_CONT                                                   \
-    lastLetter = letter;                                                       \
-    continue
+#ifndef LIPSUM_MIN_BUILD
+
+#    define LIPSUM_MD_PLAIN_CONT                                               \
+        lastLetter = letter;                                                   \
+        continue
 
     // NOLINTBEGIN(readability-function-cognitive-complexity)
 
@@ -437,5 +439,12 @@ namespace lipsum
         }
     }
     // NOLINTEND(readability-function-cognitive-complexity)
+#else
+    std::string ConvertFormat(const std::string& str, Format, Format)
+    {
+        LPSM_VERBOSE_MINLOG;
+        return str;
+    }
+#endif
 
 } // namespace lipsum

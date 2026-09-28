@@ -496,42 +496,52 @@ namespace lipsum
 
     std::string Generator::fmt_paragraph(int, bool, bool)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::fmt_text(int, bool)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::fmt_header(int, bool)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::fmt_emphasis(bool, bool)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::fmt_link(bool)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::fmt_list(bool, bool)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::xml(int)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::json(int, bool)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::json_value(int)
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
     std::string Generator::csv()
     {
+        LPSM_VERBOSE_MINLOG;
         return "";
     }
 #endif

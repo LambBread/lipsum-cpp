@@ -105,6 +105,22 @@ namespace lipsum::internal
                                             Format format = Format::HTML);
 
     /**
+     * @brief Reverse an HTML entity into its original form.
+     *
+     * @since 0.5.5
+     *
+     * Un-escape HTML entities, Markdown characters, etc.
+     *
+     * @param str The string to handle. Must start with an ampersand or a
+     * backslash.
+     * @param format The format to use.
+     *
+     * @return The un-escaped string as a char.
+     */
+    LIPSUM_API char StripHTMLEntity(const std::string& str,
+                                    Format             format = Format::HTML);
+
+    /**
      * @brief Log a warning.
      *
      * @since 0.4.2
@@ -127,42 +143,22 @@ namespace lipsum::internal
                  [[maybe_unused]] const Args&... args)
     {
 #ifndef LIPSUM_QUIET
+        std::unordered_map<LogType, std::string> typeMap =
+                {{LogType::Trace, "TRACE"},
+                 {LogType::Info, "INFO"},
+                 {LogType::Warn, "WARN"},
+                 {LogType::Error, "ERROR"},
+                 {LogType::Critical, "CRITICAL"}};
         std::ostringstream oss;
         oss << "lipsum-cpp ";
-        switch (type)
-        {
-            case LogType::Trace:
-            {
-                oss << "TRACE";
-                break;
-            }
-            case LogType::Info:
-            {
-                oss << "INFO";
-                break;
-            }
-            case LogType::Warn:
-            {
-                oss << "WARNING";
-                break;
-            }
-            case LogType::Error:
-            {
-                oss << "ERROR";
-                break;
-            }
-            case LogType::Critical:
-            {
-                oss << "CRITICAL";
-                break;
-            }
-        }
+        oss << typeMap.at(type);
         oss << " -- ";
         ((oss << args), ...);
         oss << '\n';
         std::string message = oss.str();
 #    ifndef LIPSUM_MIN_BUILD
 #        ifdef __EMSCRIPTEN__
+
         auto funcCalling = emscripten_console_warn;
         if (type == LogType::Trace || type == LogType::Info)
         {
@@ -173,48 +169,31 @@ namespace lipsum::internal
             funcCalling = emscripten_console_error;
         }
         funcCalling(message.c_str());
+
 #        elif defined(_WIN32)
-        HANDLE hConsole   = GetStdHandle(STD_OUTPUT_HANDLE);
-        int    colorUsing = 6; // yellow
-        if (type == LogType::Trace)
-        {
-            colorUsing = 8; // gray
-        }
-        if (type == LogType::Info)
-        {
-            colorUsing = 2; // green
-        }
-        if (type == LogType::Error)
-        {
-            colorUsing = 12; // light red
-        }
-        if (type == LogType::Critical)
-        {
-            colorUsing = 4; // red
-        }
-        // yellow
+
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        std::unordered_map<LogType, int> winMap = {{LogType::Trace, 8},
+                                                   {LogType::Info, 2},
+                                                   {LogType::Warn, 6},
+                                                   {LogType::Error, 12},
+                                                   {LogType::Critical, 4}};
+
+        int colorUsing = winMap.at(type);
+
         SetConsoleTextAttribute(hConsole, colorUsing);
         std::cerr << message;
+
         // default
         SetConsoleTextAttribute(hConsole, 7);
 #        else
-        int colorUsing = 33; // yellow
-        if (type == LogType::Trace)
-        {
-            colorUsing = 90; // gray
-        }
-        if (type == LogType::Info)
-        {
-            colorUsing = 32; // green
-        }
-        if (type == LogType::Error)
-        {
-            colorUsing = 91; // light red
-        }
-        if (type == LogType::Critical)
-        {
-            colorUsing = 31; // red
-        }
+
+        std::unordered_map<LogType, int> unxMap     = {{LogType::Trace, 90},
+                                                       {LogType::Info, 32},
+                                                       {LogType::Warn, 33},
+                                                       {LogType::Error, 91},
+                                                       {LogType::Critical, 31}};
+        int                              colorUsing = unxMap.at(type);
         std::cerr << "\033[" << colorUsing << "m" << message << "\033[0m";
 #        endif
 #    else
@@ -316,6 +295,7 @@ namespace lipsum::internal
 #else
     template <typename T> std::string ToString(const T& param)
     {
+        LPSM_VERBOSE_MINLOG;
         std::ostringstream oss;
         oss << param;
         return oss.str();
@@ -323,6 +303,7 @@ namespace lipsum::internal
 
     template <typename T> T ToType(const std::string& param)
     {
+        LPSM_VERBOSE_MINLOG;
         T                  res;
         std::istringstream iss(param);
         iss >> std::boolalpha >> res;

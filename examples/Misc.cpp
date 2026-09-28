@@ -48,5 +48,7 @@ int main()
     std::cout << lpsm::ConvertFormat(text,
                                      lpsm::Format::Markdown,
                                      lpsm::Format::Plain);
+
+    // std::cout << lpsm::internal::StripHTMLEntity("&amp;");
     return 0;
 }
