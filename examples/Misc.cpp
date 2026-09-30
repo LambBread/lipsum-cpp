@@ -49,6 +49,7 @@ int main()
                                      lpsm::Format::Markdown,
                                      lpsm::Format::Plain);
 
-    // std::cout << lpsm::internal::StripHTMLEntity("&amp;");
+    std::cout << lpsm::internal::StripHTMLEntity("\\-\\#\\`\\\\",
+                                                 lpsm::Format::JSON);
     return 0;
 }

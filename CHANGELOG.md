@@ -1562,7 +1562,7 @@ PyWrapper.py
 - New functions:
 
 ```cpp
-char lpsm::internal::StripHTMLEntity(const std::string&, lpsm::Format);
+std::string lpsm::internal::StripHTMLEntity(const std::string&, lpsm::Format);
 
 ```
 

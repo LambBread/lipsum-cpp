@@ -105,20 +105,19 @@ namespace lipsum::internal
                                             Format format = Format::HTML);
 
     /**
-     * @brief Reverse an HTML entity into its original form.
+     * @brief Reverse any HTML entities into its original form.
      *
      * @since 0.5.5
      *
      * Un-escape HTML entities, Markdown characters, etc.
      *
-     * @param str The string to handle. Must start with an ampersand or a
-     * backslash.
+     * @param str The string to handle.
      * @param format The format to use.
      *
-     * @return The un-escaped string as a char.
+     * @return The un-escaped string.
      */
-    LIPSUM_API char StripHTMLEntity(const std::string& str,
-                                    Format             format = Format::HTML);
+    LIPSUM_API std::string StripHTMLEntity(const std::string& str,
+                                           Format format = Format::HTML);
 
     /**
      * @brief Log a warning.

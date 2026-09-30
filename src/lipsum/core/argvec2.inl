@@ -144,59 +144,119 @@ namespace lipsum
         }
     }
 
-    char internal::StripHTMLEntity(const std::string& str, Format format)
+    static char LipsumArgvec2InlEscapeStr(const std::string& str, Format format)
+    {
+            if (!str.empty() && str.at(0) == '\\' &&
+                (format == Format::Markdown || format == Format::JSON))
+            {
+                if (str.size() >= 2)
+                {
+                    if (str.at(1) == 'n' && format == Format::JSON)
+                    {
+                        return '\n';
+                    }
+                    if (str.at(1) == 't' && format == Format::JSON)
+                    {
+                        return '\t';
+                    }
+                    return str.at(1);
+                }
+            }
+
+            if (!str.empty() && str.at(0) == '&' &&
+                (format == Format::XML || format == Format::HTML))
+            {
+                // std::string                           escaped;
+                std::unordered_map<std::string, char> htmlMap = {{"amp", '&'},
+                                                                 {"lt", '<'},
+                                                                 {"gt", '>'},
+                                                                 {"quot", '"'},
+                                                                 {"apos",
+                                                                  '\''}};
+
+                // int iter = 1;
+                std::string escaped = str.substr(1, str.size() - 2);
+                // while (str.at(iter) != ';')
+                //{
+                //     escaped += std::string(1, str.at(iter));
+                //     ++iter;
+                // }
+                if (htmlMap.contains(escaped))
+                {
+                    return htmlMap.at(escaped);
+                }
+                // std::cout << escaped << '\n';
+            }
+
+            internal::
+                    LogWarn(internal::LogType::Error,
+                            "LipsumArgvec2InlEscapeStr(): An unknown or "
+                            "invalid string was provided.");
+            return ' ';
+
+    }
+
+    std::string internal::StripHTMLEntity(const std::string& str, Format format)
     {
         if (format == Format::Plain)
         {
-            return str.empty() ? ' ' : str.at(0);
+            return str;
         }
 
-        if (!str.empty() && str.at(0) == '\\' &&
-            (format == Format::Markdown || format == Format::JSON))
+        //auto escapeStr = [](const std::string& str, Format format) -> char
+        //{
+        //};
+
+        std::string ret;
+        std::string toEscape;
+        bool        isEscaping = false;
+        for (const auto& letter : str)
         {
-            if (str.size() >= 2)
+            if (letter == '\\' && !isEscaping &&
+                (format == Format::Markdown || format == Format::JSON))
             {
-                if (str.at(1) == 'n' && format == Format::JSON)
-                {
-                    return '\n';
-                }
-                if (str.at(1) == 't' && format == Format::JSON)
-                {
-                    return '\t';
-                }
-                return str.at(1);
+                isEscaping = true;
+                toEscape.push_back(letter);
+                continue;
             }
+
+            if (letter == '&' && !isEscaping &&
+                (format == Format::XML || format == Format::HTML))
+            {
+                isEscaping = true;
+                toEscape.push_back(letter);
+                continue;
+            }
+
+            if (isEscaping && (format == Format::HTML || format == Format::XML))
+            {
+                toEscape.push_back(letter);
+                if (letter == ';')
+                {
+                    isEscaping = false;
+                    ret.push_back(LipsumArgvec2InlEscapeStr(toEscape, format));
+                    toEscape.clear();
+                }
+                continue;
+            }
+
+            if (isEscaping &&
+                (format == Format::Markdown || format == Format::JSON))
+            {
+                toEscape.push_back(letter);
+                isEscaping = false;
+                ret.push_back(LipsumArgvec2InlEscapeStr(toEscape, format));
+                toEscape.clear();
+                continue;
+            }
+            ret.push_back(letter);
         }
 
-        if (!str.empty() && str.at(0) == '&' &&
-            (format == Format::XML || format == Format::HTML))
-        {
-            std::string                           escaped;
-            std::unordered_map<std::string, char> htmlMap = {{"amp", '&'},
-                                                             {"lt", '<'},
-                                                             {"gt", '>'},
-                                                             {"quot", '"'},
-                                                             {"apos", '\''}};
-
-            int iter = 1;
-            while (str.at(iter) != ';')
-            {
-                escaped += std::string(1, str.at(iter));
-                ++iter;
-            }
-            if (htmlMap.contains(escaped))
-            {
-                return htmlMap.at(escaped);
-            }
-            // std::cout << escaped << '\n';
-        }
+        return ret;
 
         // error:
 
-        internal::LogWarn(internal::LogType::Error,
-                          "lpsm::internal::StripHTMLEntity(): An unknown or "
-                          "invalid string was provided.");
-        return ' ';
+        // return ' ';
     }
 #else
     std::string internal::HandleHTMLEntity(char letter, Format)
@@ -205,10 +265,10 @@ namespace lipsum
         return std::string(1, letter); // NOLINT
     }
 
-    char internal::StripHTMLEntity(const std::string& str, Format)
+    std::string internal::StripHTMLEntity(const std::string& str, Format)
     {
         LPSM_VERBOSE_MINLOG;
-        return (str.size() >= 2 ? str.at(1) : ' ');
+        return str;
     }
 #endif
 
