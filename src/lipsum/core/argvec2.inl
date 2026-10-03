@@ -146,54 +146,51 @@ namespace lipsum
 
     static char LipsumArgvec2InlEscapeStr(const std::string& str, Format format)
     {
-            if (!str.empty() && str.at(0) == '\\' &&
-                (format == Format::Markdown || format == Format::JSON))
+        if (!str.empty() && str.at(0) == '\\' &&
+            (format == Format::Markdown || format == Format::JSON))
+        {
+            if (str.size() >= 2)
             {
-                if (str.size() >= 2)
+                if (str.at(1) == 'n' && format == Format::JSON)
                 {
-                    if (str.at(1) == 'n' && format == Format::JSON)
-                    {
-                        return '\n';
-                    }
-                    if (str.at(1) == 't' && format == Format::JSON)
-                    {
-                        return '\t';
-                    }
-                    return str.at(1);
+                    return '\n';
                 }
+                if (str.at(1) == 't' && format == Format::JSON)
+                {
+                    return '\t';
+                }
+                return str.at(1);
             }
+        }
 
-            if (!str.empty() && str.at(0) == '&' &&
-                (format == Format::XML || format == Format::HTML))
+        if (!str.empty() && str.at(0) == '&' &&
+            (format == Format::XML || format == Format::HTML))
+        {
+            // std::string                           escaped;
+            std::unordered_map<std::string, char> htmlMap = {{"amp", '&'},
+                                                             {"lt", '<'},
+                                                             {"gt", '>'},
+                                                             {"quot", '"'},
+                                                             {"apos", '\''}};
+
+            // int iter = 1;
+            std::string escaped = str.substr(1, str.size() - 2);
+            // while (str.at(iter) != ';')
+            //{
+            //     escaped += std::string(1, str.at(iter));
+            //     ++iter;
+            // }
+            if (htmlMap.contains(escaped))
             {
-                // std::string                           escaped;
-                std::unordered_map<std::string, char> htmlMap = {{"amp", '&'},
-                                                                 {"lt", '<'},
-                                                                 {"gt", '>'},
-                                                                 {"quot", '"'},
-                                                                 {"apos",
-                                                                  '\''}};
-
-                // int iter = 1;
-                std::string escaped = str.substr(1, str.size() - 2);
-                // while (str.at(iter) != ';')
-                //{
-                //     escaped += std::string(1, str.at(iter));
-                //     ++iter;
-                // }
-                if (htmlMap.contains(escaped))
-                {
-                    return htmlMap.at(escaped);
-                }
-                // std::cout << escaped << '\n';
+                return htmlMap.at(escaped);
             }
+            // std::cout << escaped << '\n';
+        }
 
-            internal::
-                    LogWarn(internal::LogType::Error,
-                            "LipsumArgvec2InlEscapeStr(): An unknown or "
-                            "invalid string was provided.");
-            return ' ';
-
+        internal::LogWarn(internal::LogType::Error,
+                          "LipsumArgvec2InlEscapeStr(): An unknown or "
+                          "invalid string was provided.");
+        return ' ';
     }
 
     std::string internal::StripHTMLEntity(const std::string& str, Format format)
@@ -203,9 +200,9 @@ namespace lipsum
             return str;
         }
 
-        //auto escapeStr = [](const std::string& str, Format format) -> char
+        // auto escapeStr = [](const std::string& str, Format format) -> char
         //{
-        //};
+        // };
 
         std::string ret;
         std::string toEscape;

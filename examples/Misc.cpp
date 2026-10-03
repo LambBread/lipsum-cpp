@@ -49,7 +49,10 @@ int main()
                                      lpsm::Format::Markdown,
                                      lpsm::Format::Plain);
 
-    std::cout << lpsm::internal::StripHTMLEntity("\\-\\#\\`\\\\",
-                                                 lpsm::Format::JSON);
+    std::cout << lpsm::internal::
+                    StripHTMLEntity(lpsm::ConvertFormat(gen.paragraph(40),
+                                                        lpsm::Format::Plain,
+                                                        lpsm::Format::JSON),
+                                    lpsm::Format::JSON);
     return 0;
 }

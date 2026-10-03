@@ -1551,7 +1551,7 @@ typedef enum lpsm_Format lpsm_Format;
 PyWrapper.py
 ```
 
-### 0.5.5 (2026-09 - 2026-11 TBD)
+### 0.5.5 (2026-10/11/12 TBD)
 
 - Add Nix flake
 - Add better Python wrapper documentation

@@ -301,7 +301,7 @@ namespace lipsum
             // std::cout << letter;
             lastLetter = letter;
         }
-        return ret;
+        return internal::StripHTMLEntity(ret, Format::Markdown);
     }
 
     std::string
