@@ -309,13 +309,30 @@ namespace lipsum
         LPSM_VERBOSE_LOG(Trace, "Using Markdown->HTML.");
         std::string ret;
         ret.reserve(str.size());
-        char lastLetter  = '\0';
-        int  boldLevel   = 0;
-        bool inHeader    = false;
-        int  headerLevel = 0;
+        std::string urlText;
+        std::string urlLink;
+        char        lastLetter      = '\0';
+        int         boldLevel       = 0;
+        bool        inHeader        = false;
+        bool        nextCharEscaped = false;
+        bool        inUrlText       = false;
+        bool        inUrlLink       = false;
+        int         headerLevel     = 0;
 
         for (const auto& letter : str)
         {
+            if (letter == '\\')
+            {
+                nextCharEscaped = true;
+                continue;
+            }
+            if (nextCharEscaped)
+            {
+                ret += internal::HandleHTMLEntity(letter, Format::HTML);
+                nextCharEscaped = false;
+                LIPSUM_MD_PLAIN_CONT;
+            }
+
             if (letter == '*' && lastLetter == '*')
             {
                 if (boldLevel == 0)
@@ -323,30 +340,79 @@ namespace lipsum
                     LPSM_VERBOSE_LOG(Debug, "Inserting bold");
                     boldLevel = 2;
                     ret += "<strong>";
+                    std::cout << "<strong>";
                 }
                 else if (boldLevel == 2)
                 {
                     LPSM_VERBOSE_LOG(Debug, "Ending bold");
-                    boldLevel = 0;
+                    boldLevel = 3;
                     ret += "</strong>";
+                    std::cout << "</strong>";
                 }
                 LIPSUM_MD_PLAIN_CONT;
             }
 
-            if (letter != '*' && lastLetter == '*' && boldLevel != 2)
+            if (letter != '*' && lastLetter == '*' && boldLevel != 3)
             {
                 if (boldLevel == 0)
                 {
                     LPSM_VERBOSE_LOG(Debug, "Inserting italic");
                     boldLevel = 1;
                     ret += "<em>";
+                    std::cout << "<em>";
                 }
                 else if (boldLevel == 1)
                 {
                     LPSM_VERBOSE_LOG(Debug, "Ending italic");
                     boldLevel = 0;
                     ret += "</em>";
+                    std::cout << "</em>";
                 }
+            }
+
+            if (boldLevel == 3)
+            {
+                boldLevel = 0;
+            }
+
+            if (letter == '[')
+            {
+                LPSM_VERBOSE_LOG(Debug, "Starting link text");
+                inUrlText = true;
+                LIPSUM_MD_PLAIN_CONT;
+            }
+
+            if (lastLetter == ']' && letter == '(')
+            {
+                LPSM_VERBOSE_LOG(Debug, "Ending link text, starting link URL");
+                inUrlText = false;
+                inUrlLink = true;
+                LIPSUM_MD_PLAIN_CONT;
+            }
+
+            if (letter == ')' && inUrlLink)
+            {
+                LPSM_VERBOSE_LOG(Debug, "Ending link URL");
+                inUrlLink = false;
+                inUrlText = false;
+                ret += "<a href=\"" + urlLink + "\">" + urlText + "</a>";
+                std::cout << "<a href=\"" << urlLink << "\">" << urlText
+                          << "</a>";
+                urlLink.clear();
+                urlText.clear();
+                LIPSUM_MD_PLAIN_CONT;
+            }
+
+            if (inUrlText && letter != ']')
+            {
+                urlText.push_back(letter);
+                LIPSUM_MD_PLAIN_CONT;
+            }
+
+            if (inUrlLink)
+            {
+                urlLink.push_back(letter);
+                LIPSUM_MD_PLAIN_CONT;
             }
 
             if (letter == '#')
@@ -362,6 +428,7 @@ namespace lipsum
                 LPSM_VERBOSE_LOG(Debug, "Inserting header");
                 inHeader = true;
                 ret += "<h" + internal::ToString(headerLevel) + ">";
+                std::cout << "<h" << headerLevel << ">";
                 LIPSUM_MD_PLAIN_CONT;
             }
 
@@ -371,16 +438,17 @@ namespace lipsum
                 {
                     LPSM_VERBOSE_LOG(Debug, "Ending header");
                     inHeader = false;
-                    ret += "</h" + internal::ToString(headerLevel) + ">";
+                    ret += "</h" + internal::ToString(headerLevel) + ">\n";
+                    std::cout << "</h" << headerLevel << ">\n";
                     headerLevel = 0;
                     LIPSUM_MD_PLAIN_CONT;
                 }
             }
 
-            if (letter != '*')
+            if (letter != '*' && (letter != '\n' || !inHeader) && letter != ']')
             {
-                ret += letter;
-                std::cout << letter;
+                ret += internal::HandleHTMLEntity(letter, Format::HTML);
+                std::cout << internal::HandleHTMLEntity(letter, Format::HTML);
             }
 
             lastLetter = letter;
