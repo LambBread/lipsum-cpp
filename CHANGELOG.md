@@ -1555,7 +1555,11 @@ PyWrapper.py
 
 - Add Nix flake
 - Add better Python wrapper documentation
+- Add `Debug` log level and change logging colours
 - Add more `lpsm::ConvertFormat` conversion routes
+    - `Markdown->Plain`
+    - `Markdown->JSON`
+    - `Markdown->HTML`
 - Fix certain features for minimum build mode
 - Rewrite certain switch statement/if-else blocks with `std::unordered_map`
 

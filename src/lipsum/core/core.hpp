@@ -60,16 +60,16 @@
  * This macro helps with shared libraries on Windows by exporting
  * or importing functions.
  */
-#ifdef LIPSUM_BUILD_SHARED
-#    ifdef _WIN32
-#        ifdef LIPSUM_EXPORT_SHARED
-#            define LIPSUM_API __declspec(dllexport)
-#        else
-#            define LIPSUM_API __declspec(dllimport)
-#        endif
+#if defined(LIPSUM_BUILD_SHARED) && defined(_WIN32)
+// #    ifdef _WIN32
+#    ifdef LIPSUM_EXPORT_SHARED
+#        define LIPSUM_API __declspec(dllexport)
 #    else
-#        define LIPSUM_API
+#        define LIPSUM_API __declspec(dllimport)
 #    endif
+// #    else
+// #        define LIPSUM_API
+// #    endif
 #else
 #    define LIPSUM_API
 #endif

@@ -69,7 +69,7 @@ namespace lipsum
 
     void GeneratorSettings::toggle_lazy()
     {
-        LPSM_VERBOSE_LOG(Info, "Toggling option lazy");
+        LPSM_VERBOSE_LOG(Trace, "Toggling option lazy");
         lazy = !lazy;
     }
 

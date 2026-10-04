@@ -36,6 +36,7 @@ namespace lipsum::internal
     enum class LogType : int
     {
         Trace = 0,
+        Debug,
         Info,
         Warn,
         Error,
@@ -144,6 +145,7 @@ namespace lipsum::internal
 #ifndef LIPSUM_QUIET
         std::unordered_map<LogType, std::string> typeMap =
                 {{LogType::Trace, "TRACE"},
+                 {LogType::Debug, "DEBUG"},
                  {LogType::Info, "INFO"},
                  {LogType::Warn, "WARN"},
                  {LogType::Error, "ERROR"},
@@ -159,7 +161,8 @@ namespace lipsum::internal
 #        ifdef __EMSCRIPTEN__
 
         auto funcCalling = emscripten_console_warn;
-        if (type == LogType::Trace || type == LogType::Info)
+        if (type == LogType::Trace || type == LogType::Info ||
+            type == LogInfo::Debug)
         {
             funcCalling = emscripten_console_log;
         }
@@ -172,8 +175,9 @@ namespace lipsum::internal
 #        elif defined(_WIN32)
 
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        std::unordered_map<LogType, int> winMap = {{LogType::Trace, 8},
-                                                   {LogType::Info, 2},
+        std::unordered_map<LogType, int> winMap = {{LogType::Trace, 9},
+                                                   {LogType::Debug,
+                                                    13} {LogType::Info, 2},
                                                    {LogType::Warn, 6},
                                                    {LogType::Error, 12},
                                                    {LogType::Critical, 4}};
@@ -187,7 +191,8 @@ namespace lipsum::internal
         SetConsoleTextAttribute(hConsole, 7);
 #        else
 
-        std::unordered_map<LogType, int> unxMap     = {{LogType::Trace, 90},
+        std::unordered_map<LogType, int> unxMap     = {{LogType::Trace, 94},
+                                                       {LogType::Debug, 95},
                                                        {LogType::Info, 32},
                                                        {LogType::Warn, 33},
                                                        {LogType::Error, 91},

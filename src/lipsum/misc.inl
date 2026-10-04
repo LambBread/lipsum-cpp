@@ -304,6 +304,90 @@ namespace lipsum
         return internal::StripHTMLEntity(ret, Format::Markdown);
     }
 
+    static std::string LipsumMiscInlMarkdownToHtml(const std::string& str)
+    {
+        LPSM_VERBOSE_LOG(Trace, "Using Markdown->HTML.");
+        std::string ret;
+        ret.reserve(str.size());
+        char lastLetter  = '\0';
+        int  boldLevel   = 0;
+        bool inHeader    = false;
+        int  headerLevel = 0;
+
+        for (const auto& letter : str)
+        {
+            if (letter == '*' && lastLetter == '*')
+            {
+                if (boldLevel == 0)
+                {
+                    LPSM_VERBOSE_LOG(Debug, "Inserting bold");
+                    boldLevel = 2;
+                    ret += "<strong>";
+                }
+                else if (boldLevel == 2)
+                {
+                    LPSM_VERBOSE_LOG(Debug, "Ending bold");
+                    boldLevel = 0;
+                    ret += "</strong>";
+                }
+                LIPSUM_MD_PLAIN_CONT;
+            }
+
+            if (letter != '*' && lastLetter == '*' && boldLevel != 2)
+            {
+                if (boldLevel == 0)
+                {
+                    LPSM_VERBOSE_LOG(Debug, "Inserting italic");
+                    boldLevel = 1;
+                    ret += "<em>";
+                }
+                else if (boldLevel == 1)
+                {
+                    LPSM_VERBOSE_LOG(Debug, "Ending italic");
+                    boldLevel = 0;
+                    ret += "</em>";
+                }
+            }
+
+            if (letter == '#')
+            {
+                LPSM_VERBOSE_LOG(Debug, "Increasing header level");
+                // inHeader = true;
+                ++headerLevel;
+                LIPSUM_MD_PLAIN_CONT;
+            }
+
+            if (letter == ' ' && lastLetter == '#')
+            {
+                LPSM_VERBOSE_LOG(Debug, "Inserting header");
+                inHeader = true;
+                ret += "<h" + internal::ToString(headerLevel) + ">";
+                LIPSUM_MD_PLAIN_CONT;
+            }
+
+            if (letter == '\n' && lastLetter == '\n')
+            {
+                if (inHeader)
+                {
+                    LPSM_VERBOSE_LOG(Debug, "Ending header");
+                    inHeader = false;
+                    ret += "</h" + internal::ToString(headerLevel) + ">";
+                    headerLevel = 0;
+                    LIPSUM_MD_PLAIN_CONT;
+                }
+            }
+
+            if (letter != '*')
+            {
+                ret += letter;
+                std::cout << letter;
+            }
+
+            lastLetter = letter;
+        }
+        return ret;
+    }
+
     std::string
     ConvertFormat(const std::string& str, Format format1, Format format2)
     {
@@ -389,8 +473,13 @@ namespace lipsum
                 {
                     return LipsumMiscInlMarkdownToPlain(str);
                 }
+                case Format::HTML:
+                {
+                    return LipsumMiscInlMarkdownToHtml(str);
+                }
                 case Format::JSON:
                 {
+                    LPSM_VERBOSE_LOG(Trace, "Using Markdown->JSON.");
                     return ConvertFormat(str, Format::Plain, Format::JSON);
                 }
                 default:
@@ -407,7 +496,7 @@ namespace lipsum
             }
         };
 
-        LPSM_VERBOSE_LOG(Info, "Converting between formats...");
+        LPSM_VERBOSE_LOG(Trace, "Converting between formats...");
         if (format1 == format2)
         {
             LPSM_VERBOSE_LOG(Trace,

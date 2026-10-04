@@ -42,17 +42,17 @@ int main()
                                   "This is a subtitle")
               << "\n\n";
 
-    auto text = gen.fmt_text(40, lpsm::MARKDOWN);
+    auto text = gen.fmt_paragraph(40, lpsm::MARKDOWN);
     std::cout << text;
 
     std::cout << lpsm::ConvertFormat(text,
                                      lpsm::Format::Markdown,
-                                     lpsm::Format::Plain);
+                                     lpsm::Format::HTML);
 
-    std::cout << lpsm::internal::
-                    StripHTMLEntity(lpsm::ConvertFormat(gen.paragraph(40),
-                                                        lpsm::Format::Plain,
-                                                        lpsm::Format::JSON),
-                                    lpsm::Format::JSON);
+    // std::cout << lpsm::internal::
+    //                 StripHTMLEntity(lpsm::ConvertFormat(gen.paragraph(40),
+    //                                                     lpsm::Format::Plain,
+    //                                                     lpsm::Format::JSON),
+    //                                 lpsm::Format::JSON);
     return 0;
 }
