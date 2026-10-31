@@ -177,7 +177,7 @@ namespace lipsum::internal
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         std::unordered_map<LogType, int> winMap = {{LogType::Trace, 9},
                                                    {LogType::Debug,
-                                                    13} {LogType::Info, 2},
+                                                    13}, {LogType::Info, 2},
                                                    {LogType::Warn, 6},
                                                    {LogType::Error, 12},
                                                    {LogType::Critical, 4}};
