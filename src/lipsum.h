@@ -143,7 +143,8 @@ extern "C"
      *
      * @since 0.5.4
      *
-     * Attempt a conversion of a string between the two specified formats.
+     * Attempt a conversion of a string between the two specified formats. Note
+     * that this is only designed for converting text generated with lipsum-cpp.
      *
      * @param str The string inputted.
      * @param format1 The string's format.

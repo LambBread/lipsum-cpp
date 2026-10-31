@@ -317,8 +317,12 @@ namespace lipsum
         bool        nextCharEscaped = false;
         bool        inUrlText       = false;
         bool        inUrlLink       = false;
-        int         headerLevel     = 0;
+        bool        inOrderedList   = false;
+        bool        inUnorderedList = false;
+        // bool inListElem = false;
+        int headerLevel = 0;
 
+        // TODO: Fix numbers and spaces remaining from lists.
         for (const auto& letter : str)
         {
             if (letter == '\\')
@@ -337,17 +341,17 @@ namespace lipsum
             {
                 if (boldLevel == 0)
                 {
-                    LPSM_VERBOSE_LOG(Debug, "Inserting bold");
+                    // LPSM_VERBOSE_LOG(Debug, "Inserting bold");
                     boldLevel = 2;
                     ret += "<strong>";
-                    std::cout << "<strong>";
+                    // std::cout << "<strong>";
                 }
                 else if (boldLevel == 2)
                 {
-                    LPSM_VERBOSE_LOG(Debug, "Ending bold");
+                    // LPSM_VERBOSE_LOG(Debug, "Ending bold");
                     boldLevel = 3;
                     ret += "</strong>";
-                    std::cout << "</strong>";
+                    // std::cout << "</strong>";
                 }
                 LIPSUM_MD_PLAIN_CONT;
             }
@@ -356,17 +360,17 @@ namespace lipsum
             {
                 if (boldLevel == 0)
                 {
-                    LPSM_VERBOSE_LOG(Debug, "Inserting italic");
+                    // LPSM_VERBOSE_LOG(Debug, "Inserting italic");
                     boldLevel = 1;
                     ret += "<em>";
-                    std::cout << "<em>";
+                    // std::cout << "<em>";
                 }
                 else if (boldLevel == 1)
                 {
-                    LPSM_VERBOSE_LOG(Debug, "Ending italic");
+                    // LPSM_VERBOSE_LOG(Debug, "Ending italic");
                     boldLevel = 0;
                     ret += "</em>";
-                    std::cout << "</em>";
+                    // std::cout << "</em>";
                 }
             }
 
@@ -375,16 +379,68 @@ namespace lipsum
                 boldLevel = 0;
             }
 
+            if (((letter == '-' && lastLetter == '\n') ||
+                 (letter == '.' &&
+                  LPSM_SAFE_CCTYPE(bool, std::isdigit, lastLetter))) &&
+                (inUnorderedList || inOrderedList))
+            {
+                // LPSM_VERBOSE_LOG(Debug, "Adding list item");
+                ret += "<li>";
+                LIPSUM_MD_PLAIN_CONT;
+            }
+            if (letter == '\n' && lastLetter == '\n')
+            {
+                if (inUnorderedList)
+                {
+                    // LPSM_VERBOSE_LOG(Debug, "Ending unordered list");
+                    inUnorderedList = false;
+                    inOrderedList   = false;
+                    ret += "</ul>\n";
+                    LIPSUM_MD_PLAIN_CONT;
+                }
+                if (inOrderedList)
+                {
+                    // LPSM_VERBOSE_LOG(Debug, "Ending ordered list");
+                    inOrderedList   = false;
+                    inUnorderedList = false;
+                    ret += "</ol>\n";
+                    LIPSUM_MD_PLAIN_CONT;
+                }
+            }
+            if (letter == '\n' && (inUnorderedList || inOrderedList))
+            {
+                // LPSM_VERBOSE_LOG(Debug, "Ending list item");
+                ret += "</li>";
+            }
+            if (letter == '-' && lastLetter == '\n' && !inUnorderedList)
+            {
+                // LPSM_VERBOSE_LOG(Debug, "Starting unordered list");
+                inUnorderedList = true;
+                ret += "<ul><li>";
+                LIPSUM_MD_PLAIN_CONT;
+            }
+
+            if (letter == '.' &&
+                LPSM_SAFE_CCTYPE(bool, std::isdigit, lastLetter) &&
+                !inOrderedList)
+            {
+                // LPSM_VERBOSE_LOG(Debug, "Starting ordered list");
+                inOrderedList = true;
+                ret += "<ol><li>";
+                LIPSUM_MD_PLAIN_CONT;
+            }
+
             if (letter == '[')
             {
-                LPSM_VERBOSE_LOG(Debug, "Starting link text");
+                // LPSM_VERBOSE_LOG(Debug, "Starting link text");
                 inUrlText = true;
                 LIPSUM_MD_PLAIN_CONT;
             }
 
             if (lastLetter == ']' && letter == '(')
             {
-                LPSM_VERBOSE_LOG(Debug, "Ending link text, starting link URL");
+                // LPSM_VERBOSE_LOG(Debug, "Ending link text, starting link
+                // URL");
                 inUrlText = false;
                 inUrlLink = true;
                 LIPSUM_MD_PLAIN_CONT;
@@ -392,12 +448,12 @@ namespace lipsum
 
             if (letter == ')' && inUrlLink)
             {
-                LPSM_VERBOSE_LOG(Debug, "Ending link URL");
+                // LPSM_VERBOSE_LOG(Debug, "Ending link URL");
                 inUrlLink = false;
                 inUrlText = false;
                 ret += "<a href=\"" + urlLink + "\">" + urlText + "</a>";
-                std::cout << "<a href=\"" << urlLink << "\">" << urlText
-                          << "</a>";
+                // std::cout << "<a href=\"" << urlLink << "\">" << urlText
+                //           << "</a>";
                 urlLink.clear();
                 urlText.clear();
                 LIPSUM_MD_PLAIN_CONT;
@@ -417,18 +473,18 @@ namespace lipsum
 
             if (letter == '#')
             {
-                LPSM_VERBOSE_LOG(Debug, "Increasing header level");
-                // inHeader = true;
+                // LPSM_VERBOSE_LOG(Debug, "Increasing header level");
+                //  inHeader = true;
                 ++headerLevel;
                 LIPSUM_MD_PLAIN_CONT;
             }
 
             if (letter == ' ' && lastLetter == '#')
             {
-                LPSM_VERBOSE_LOG(Debug, "Inserting header");
+                // LPSM_VERBOSE_LOG(Debug, "Inserting header");
                 inHeader = true;
                 ret += "<h" + internal::ToString(headerLevel) + ">";
-                std::cout << "<h" << headerLevel << ">";
+                // std::cout << "<h" << headerLevel << ">";
                 LIPSUM_MD_PLAIN_CONT;
             }
 
@@ -436,10 +492,10 @@ namespace lipsum
             {
                 if (inHeader)
                 {
-                    LPSM_VERBOSE_LOG(Debug, "Ending header");
+                    // LPSM_VERBOSE_LOG(Debug, "Ending header");
                     inHeader = false;
                     ret += "</h" + internal::ToString(headerLevel) + ">\n";
-                    std::cout << "</h" << headerLevel << ">\n";
+                    // std::cout << "</h" << headerLevel << ">\n";
                     headerLevel = 0;
                     LIPSUM_MD_PLAIN_CONT;
                 }
@@ -448,7 +504,8 @@ namespace lipsum
             if (letter != '*' && (letter != '\n' || !inHeader) && letter != ']')
             {
                 ret += internal::HandleHTMLEntity(letter, Format::HTML);
-                std::cout << internal::HandleHTMLEntity(letter, Format::HTML);
+                // std::cout << internal::HandleHTMLEntity(letter,
+                // Format::HTML);
             }
 
             lastLetter = letter;

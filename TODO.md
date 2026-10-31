@@ -142,9 +142,9 @@
 
 ## Upcoming
 
-- [ ] Iterators (potentially 0.5.5)
-- [ ] Markov chain (potentially 0.5.5)
-- [ ] UTF-8/Unicode support (potentially 0.5.5)
+- [ ] Iterators (potentially 0.5.6)
+- [ ] Markov chain (potentially 0.5.6)
+- [ ] UTF-8/Unicode support (potentially 0.5.6)
 - [ ] YAML (potentially 0.6.0)
 - [ ] TOML (potentially 0.6.0)
 - [ ] Release 1.0.0

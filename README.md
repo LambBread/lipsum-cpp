@@ -32,7 +32,7 @@ lipsum-cpp has been mainly tested on Linux (Debian 13) and WebAssembly, and ther
 
 ### Build prerequisites
 
-- A C/C++ compiler (e.g. GCC, MSVC, Clang) supporting ideally C++20 or newer
+- A C/C++ compiler (e.g. GCC, MSVC, Clang) supporting C++20 or newer
 - Recommended:
     - CMake (>= 3.20)
     - Make
@@ -50,7 +50,7 @@ lipsum-cpp has been mainly tested on Linux (Debian 13) and WebAssembly, and ther
     - `zlib` (for [`CompressionBenchmarks.cpp`](./examples/CompressionBenchmarks.cpp))
     - [quom](https://github.com/Viatorus/quom)
 
-Alternatively, use `nix-shell` or `nix develop` to install all build dependencies temporarily.
+Alternatively, use `nix develop` to create a developer shell.
 
 ### Quick Start
 

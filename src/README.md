@@ -44,3 +44,14 @@ are stripped, some C++20 `lpsm::internal` concepts are stripped, and `lpsm::inte
 functionality is stripped and log messages do not contain colour. Quiet mode disables logging from `lpsm::internal::LogWarn()`.
 Verbose mode enables verbose log messages from lipsum-cpp. If both verbose and quiet mode are enabled, treat as simply
 quiet mode.
+
+## ConvertFormat status
+
+
+|          | Plain | Markdown | HTML | XML | JSON |
+|----------|-------|----------|------|-----|------|
+| Plain    | [x]   | [x]      | [x]  | [x] | [x]  |
+| Markdown | [x]   | [x]      | [x]  |     | [x]  |
+| HTML     |       |          | [x]  |     |      |         
+| XML      |       |          |      | [x] |      |         
+| JSON     |       |          |      |     | [x]  |         
