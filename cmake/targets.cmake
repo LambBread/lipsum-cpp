@@ -13,7 +13,7 @@ if(LPSM_FORMAT)
         )
 
         # custom target running on sources
-        add_custom_target(format COMMAND ${CLANG_FORMAT_EXE} -i ${LPSM_FORMAT_SOURCES}
+        add_custom_target(lpsmcpp-format COMMAND ${CLANG_FORMAT_EXE} -i ${LPSM_FORMAT_SOURCES}
             COMMENT "Running clang-format on source files..."
             VERBATIM)
     else()
@@ -26,7 +26,7 @@ if(LPSM_TIDY)
     if(CLANG_TIDY_EXE)
 
         # custom target running on sources
-        add_custom_target(tidy
+        add_custom_target(lpsmcpp-tidy
             COMMAND ${CLANG_TIDY_EXE} "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum_h.cpp" -- "-I${CMAKE_CURRENT_SOURCE_DIR}/src" -DLIPSUM_BUILD_STATIC
             COMMAND ${CLANG_TIDY_EXE} "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum_static.cpp"
             COMMENT "Running clang-tidy on source files..."
@@ -40,7 +40,7 @@ if(LPSM_AMALGAMATE)
     find_program(QUOM_EXE NAMES quom)
     if(QUOM_EXE)
         file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
-        add_custom_target(amalgamate
+        add_custom_target(lpsmcpp-amalgamate
             COMMAND ${QUOM_EXE} "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/bin/lipsum.hpp"
             COMMAND ${QUOM_EXE} "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum.h" "${CMAKE_CURRENT_SOURCE_DIR}/bin/lipsum.h"
             COMMAND ${QUOM_EXE} "${CMAKE_CURRENT_SOURCE_DIR}/src/lipsum_h.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/bin/lipsum_h.cpp"
@@ -57,7 +57,7 @@ if(LPSM_BUILD_SAMPLE)
 
     # add target
     add_custom_target(
-        sample
+        lpsmcpp-sample
         COMMAND ${Python_EXECUTABLE} split.py
         WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/scripts"
         VERBATIM
@@ -65,7 +65,7 @@ if(LPSM_BUILD_SAMPLE)
 endif()
 
 if(LPSM_BUILD_VERSION)
-    add_custom_target(version
+    add_custom_target(lpsmcpp-version
         COMMAND ${CMAKE_COMMAND} 
         -DLPSM_VERSION=${PROJECT_VERSION} 
         -DLPSM_VERSION_MAJOR=${PROJECT_VERSION_MAJOR} 
@@ -88,7 +88,7 @@ if(LPSM_BUILD_DOCS)
     if(DOXYGEN_FOUND)
         set(DOXYGEN_IN "${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile")
         set(DOXYGEN_OUT "${CMAKE_CURRENT_SOURCE_DIR}/docs")
-        add_custom_target(doc ALL
+        add_custom_target(lpsmcpp-doc ALL
             COMMAND "${DOXYGEN_EXECUTABLE}" "${DOXYGEN_IN}"
             WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
             COMMENT "Generating API documentation with Doxygen"

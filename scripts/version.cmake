@@ -374,8 +374,6 @@ description = ${PROJECT_DESCRIPTION};
 
                 devShells.default = pkgs.mkShell {
                     packages = with pkgs; [
-                        gcc
-                        gnumake
                         cmake
                         ninja
                         python3
@@ -391,6 +389,7 @@ description = ${PROJECT_DESCRIPTION};
                         json_c
                         zlib
                         pkg-config
+                        git
                     ];
 
                     shellHook = ''

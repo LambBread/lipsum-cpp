@@ -34,7 +34,7 @@ foreach(bench IN LISTS LPSM_BENCHMARKS)
     )
 endforeach()
 
-add_custom_target(benchmark
+add_custom_target(lpsmcpp-benchmark
     COMMENT "Running benchmarks"
 )
 
@@ -43,5 +43,5 @@ foreach(bench IN LISTS LPSM_BENCHMARKS)
     add_dependencies(${bench} ${PREVIOUS_TARGET})
     set(PREVIOUS_TARGET ${bench})
 endforeach()
-add_dependencies(benchmark ${PREVIOUS_TARGET})
+add_dependencies(lpsmcpp-benchmark ${PREVIOUS_TARGET})
 

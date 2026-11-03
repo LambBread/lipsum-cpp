@@ -60,7 +60,7 @@ jobs:
 
       - name: Benchmark
         run: |
-          cmake --build build --target benchmark --config Release
+          cmake --build build --target lpsmcpp-benchmark --config Release
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7

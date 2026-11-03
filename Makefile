@@ -32,21 +32,21 @@ em_build: em_configure ## Build the project under Emscripten.
 	cmake --build $(BUILD_DIR)
 
 version: ## Run the versioning script.
-	cmake --build $(BUILD_DIR) --target version
-	cmake --build $(BUILD_DIR) --target format
+	cmake --build $(BUILD_DIR) --target lpsmcpp-version
+	cmake --build $(BUILD_DIR) --target lpsmcpp-format
 
 tidy: ## Run clang-tidy.
-	cmake --build $(BUILD_DIR) --target tidy
+	cmake --build $(BUILD_DIR) --target lpsmcpp-tidy
 
 format: ## Run clang-format.
-	cmake --build $(BUILD_DIR) --target format
+	cmake --build $(BUILD_DIR) --target lpsmcpp-format
 
 sample: ## Run the script that creates the standard lorem-ipsum sample, along with clang-format.
-	cmake --build $(BUILD_DIR) --target sample
-	cmake --build $(BUILD_DIR) --target format
+	cmake --build $(BUILD_DIR) --target lpsmcpp-sample
+	cmake --build $(BUILD_DIR) --target lpsmcpp-format
 
 amalgamate: ## Form the main source files into single file variants.
-	cmake --build $(BUILD_DIR) --target amalgamate
+	cmake --build $(BUILD_DIR) --target lpsmcpp-amalgamate
 
 pkg_: ## Run the final packaging steps, namely copying certain examples and compressing the final archive.
 	cp $(BUILD_DIR)/$(SRC_DIR)/jsbind/lipsum* $(BUILD_DIR)/$(EXAMPLES_DIR)/

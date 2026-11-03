@@ -50,8 +50,8 @@ quiet mode.
 
 |          | Plain | Markdown | HTML | XML | JSON |
 |----------|-------|----------|------|-----|------|
-| Plain    | [x]   | [x]      | [x]  | [x] | [x]  |
-| Markdown | [x]   | [x]      | [x]  |     | [x]  |
-| HTML     |       |          | [x]  |     |      |         
-| XML      |       |          |      | [x] |      |         
-| JSON     |       |          |      |     | [x]  |         
+| Plain    | x     | x        | x    | x   | x    |
+| Markdown | x     | x        | x    |     | x    |
+| HTML     |       |          | x    |     |      |         
+| XML      |       |          |      | x   |      |         
+| JSON     |       |          |      |     | x    |         

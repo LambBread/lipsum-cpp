@@ -102,7 +102,7 @@ Install [quom](https://github.com/Viatorus/quom) via `pip`, such as with:
 pip install --user quom
 ```
 
-At the root of the project, run `make amalgamate`, `make pkg`, or `cmake --build build --target amalgamate`.
+At the root of the project, run `make amalgamate`, `make pkg`, or `cmake --build build --target lpsmcpp-amalgamate`.
 
 ### System-wide installation (Optional)
 
@@ -117,7 +117,7 @@ sudo dnf install ./lipsum-cpp-x.x.x-Linux.rpm
 sudo pacman -U ./lipsum-cpp-x.x.x-x-x86_64.pkg.tar.zst
 
 # NixOS
-# Add this repo as a flake input and use package inputs,lipsum-cpp.packages.${pkgs.stdenv.hostPlatform.system}.default
+# Add this repo as a flake input and use package inputs.lipsum-cpp.packages.${pkgs.stdenv.hostPlatform.system}.default
 
 # Windows
 # Run the .exe file provided.

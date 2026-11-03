@@ -47,8 +47,6 @@ description = "A basic library written in C++ for generating placeholder Lorem I
 
                 devShells.default = pkgs.mkShell {
                     packages = with pkgs; [
-                        gcc
-                        gnumake
                         cmake
                         ninja
                         python3
@@ -64,6 +62,7 @@ description = "A basic library written in C++ for generating placeholder Lorem I
                         json_c
                         zlib
                         pkg-config
+                        git
                     ];
 
                     shellHook = ''
